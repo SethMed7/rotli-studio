@@ -1,3 +1,8 @@
 #!/bin/sh
-# The studio repo is public: nothing is pushed until the public-repo gate passes (scripts/check-public.ts).
-exec bun scripts/check-public.ts
+# The studio repo is public: nothing is pushed until the public-repo gate passes on the exact commits being
+# pushed (git feeds "<local ref> <local sha> <remote ref> <remote sha>" lines on stdin).
+shas=""
+while read -r local_ref local_sha remote_ref remote_sha; do
+  case "$local_sha" in 0000000000000000000000000000000000000000) ;; *) shas="$shas $local_sha" ;; esac
+done
+exec bun scripts/check-public.ts $shas

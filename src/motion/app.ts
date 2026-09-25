@@ -29,8 +29,17 @@ const $ = (s: string) => document.querySelector<HTMLElement>(s)!;
 const main = $("#main"), nav = $("#nav");
 let M: Manifest;
 const byId = (id: string) => M.pieces.find((p) => p.id === id);
-const text = async (url: string) => { const r = await fetch(url); if (!r.ok) throw new Error(`${r.status} ${url}`); return r.text(); };
-const json = async <T>(url: string, init?: RequestInit) => { const r = await fetch(url, init); if (!r.ok) throw new Error(`${r.status} ${url}`); return (await r.json()) as T; };
+// Every navigation bumps `gen`; a fetch started under an older navigation throws Stale when it resolves, so
+// a slow response for page A can never be written into page B.
+let gen = 0;
+class Stale extends Error {}
+const text = async (url: string) => { const g = gen, r = await fetch(url); if (!r.ok) throw new Error(`${r.status} ${url}`); const t = await r.text(); if (g !== gen) throw new Stale(); return t; };
+const json = async <T>(url: string, init?: RequestInit) => { const g = gen, r = await fetch(url, init); if (!r.ok) throw new Error(`${r.status} ${url}`); const v = (await r.json()) as T; if (g !== gen) throw new Stale(); return v; };
+/** a section that failed to load says so (and a stale one says nothing) */
+const failed = (el: HTMLElement | null) => (e: unknown) => { if (!(e instanceof Stale) && el) el.innerHTML = `<p class="error">Could not load this: ${esc(String(e))}. <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; };
+const smooth = (): ScrollBehavior => (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
+/** Markdown shown inside a page that already has its h1: every heading steps down one level */
+const embedded = (html: string) => html.replace(/<(\/?)h([1-5])(\b[^>]*)>/g, (_, slash: string, n: string, rest: string) => `<${slash}h${Number(n) + 1}${rest}>`);
 const secs = (frames: number, fps = 30) => `${(frames / fps).toFixed(frames % fps ? 1 : 0)} s`;
 const tc = (f: number, fps = 30) => `${Math.floor(f / fps / 60)}:${String(Math.floor(f / fps) % 60).padStart(2, "0")}.${String(f % fps).padStart(2, "0")}`;
 const mb = (n: number) => `${(n / 1e6).toFixed(1)} MB`;
@@ -64,13 +73,13 @@ function renderNav(route: string, pieceId?: string) {
 export const HERO_POSTER_FRAME = 45;
 let stopPlayers: (() => void) | null = null;
 const stats = () => { const vids = M.pieces.filter((p) => p.kind === "video" && p.meta); return { pieces: M.pieces.length, episodes: M.series.reduce((a, x) => a + (x.episodes?.length ?? 0), 0), minutes: vids.reduce((a, p) => a + p.meta!.durationFrames / 30, 0) / 60, goldens: M.pieces.filter((p) => p.golden).length, runs: M.pieces.filter((p) => p.run).length }; };
-const seriesRows = () => `<ul class="rows">${M.series.map((x) => { const first = x.episodes ? byId(x.episodes[0]?.main ?? "") : byId(x.pieces?.[0] ?? "");
-  return `<li><a class="row" href="#/series/${x.id}"><img src="${poster(first)}" alt="" loading="lazy"><div><h3>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h3><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`; }).join("")}</ul>`;
+const seriesRows = (h: 2 | 3 = 3) => `<ul class="rows">${M.series.map((x) => { const first = x.episodes ? byId(x.episodes[0]?.main ?? "") : byId(x.pieces?.[0] ?? "");
+  return `<li><a class="row" href="#/series/${x.id}"><img src="${poster(first)}" alt="" loading="lazy"><div><h${h} class="row-title">${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h${h}><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`; }).join("")}</ul>`;
 function home() {
   const film = byId("rotliStory"), n = stats();
   main.innerHTML = `<section class="hero">
       <h1>Rotli, <span class="ink">drawn in code.</span></h1>
-      <p class="lede">This is Rotli's studio. Every film, episode, carousel and card here is drawn frame by frame in code, and everything that made them is open: the briefs, the prompts, the agent runs and the tools that make them again.</p>
+      <p class="lede">Rotli is the calm notes app for your Mac. This is its studio: every film, episode, carousel and card here is drawn frame by frame in code, and everything that made them is open: the briefs, the prompts, the agent runs and the tools that make them again.</p>
       <div class="ctas"><a class="button lg" href="#/piece/rotliStory">Watch the film</a><a class="button ghost lg" href="#/library">Browse the library</a></div>
       <p class="fine">Open source · MIT · ${n.pieces} pieces, ${n.minutes.toFixed(0)} minutes of film</p>
     </section>
@@ -109,7 +118,7 @@ function home() {
 function library() {
   const n = stats();
   main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Library</nav><header class="page-head"><h1>Library</h1><p>Every piece, grouped by series. ${n.pieces} pieces · ${n.episodes} episodes · ${n.minutes.toFixed(1)} minutes of video · ${n.goldens} goldens.</p></header>
-    ${seriesRows()}
+    ${seriesRows(2)}
     <p class="foot">Manifest built ${new Date(M.generated).toLocaleString()}${STATIC ? " · a read-only snapshot of the studio." : ` · <button class="link" id="rebuild">Rebuild</button> after rendering or editing <code>pieces.json</code> / <code>series.json</code>.`}</p>`;
   if (!STATIC) $("#rebuild").onclick = async () => { M = await json<Manifest>("/api/motion/manifest", { method: "POST" }); route(); };
 }
@@ -119,10 +128,11 @@ type Post = { platform: string; url: string; date: string; text: string; pieces:
 async function posts() {
   const data = await json<{ posts: Post[] }>(m("posts.json"));
   const when = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Posts</nav><header class="page-head"><h1>Posts</h1><p>Where the studio's work has been published. Each entry is a link to the post on its platform, with the pieces it shares. Only the owner's accounts can be linked (<code>bun scripts/link-post.ts &lt;url&gt;</code>), and a post reaches this page only through an owner push.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Posts</nav><header class="page-head"><h1>Posts</h1><p>Where the studio's work has been published. Each entry links to the post on its platform, with the pieces it shares.</p>
+    <details class="maintainer"><summary>How a post gets here</summary><p>Only links to the owner's own accounts are accepted: <code>bun scripts/link-post.ts &lt;url&gt; [--piece &lt;id&gt;]</code> checks the URL against the account patterns in <code>publish/posts.json</code>, and the change reaches this page only through a push by the repository owner. The check is on the link's account handle; the post itself stays on its platform.</p></details></header>
     ${data.posts.length ? `<ul class="posts">${data.posts.map((p) => `<li class="post"><time datetime="${esc(p.date)}">${esc(when(p.date))}</time>
       <div><p class="post-text">${p.text ? esc(p.text) : `A post on ${esc(p.platform)}`}</p>${p.pieces.length ? `<div class="post-pieces">${p.pieces.map((id) => { const pc = byId(id); return pc ? `<a href="#/piece/${pc.id}"><img src="${poster(pc)}" alt="" loading="lazy"><span>${esc(pc.title ?? pc.id)}</span></a>` : ""; }).join("")}</div>` : ""}</div>
-      <a class="button ghost" href="${esc(p.url)}" target="_blank" rel="noreferrer">Open on ${esc(p.platform)}</a></li>`).join("")}</ul>` : `<p class="empty">Nothing linked yet.</p>`}`;
+      ${/^https:\/\//.test(p.url) ? `<a class="button ghost" href="${esc(p.url)}" target="_blank" rel="noreferrer">Open on ${esc(p.platform)}</a>` : ""}</li>`).join("")}</ul>` : `<p class="empty">Nothing linked yet.</p>`}`;
 }
 
 // ---------------------------------------------------------------- sound: the studio's music and effects, with their prompts
@@ -130,11 +140,11 @@ async function sound() {
   const cat = await json<{ made: string; sounds: { id: string; kind: string; title: string; use: string; prompt: string; file: string; seconds: number }[] }>("/sound/catalog.json");
   main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
     <ul class="sounds">${cat.sounds.map((x) => `<li class="sound" id="sound-${esc(x.id)}"><div class="sound-head"><h2>${esc(x.title)}</h2><p class="meta">${x.kind === "music" ? "music · loops" : "effect"} · ${x.seconds.toFixed(1)} s · ${esc(x.use)}</p></div>
-      <audio controls preload="none" src="/${esc(x.file)}"></audio>
+      <audio controls preload="none" src="/${esc(x.file)}" aria-label="Play ${esc(x.title)}"></audio>
       <details><summary>The prompt</summary><div class="doc" data-prompt="${esc(x.prompt)}"></div></details>
       <p class="meta"><a class="link" href="/${esc(x.prompt)}" target="_blank">${esc(x.prompt)}</a> · <a class="link" href="/${esc(x.file)}" download>Download ${esc(x.id)}.m4a</a></p></li>`).join("")}</ul>
     <p class="foot">${esc(cat.made)}.</p>`;
-  main.querySelectorAll<HTMLElement>("[data-prompt]").forEach((el) => { void text(`/${el.dataset.prompt}`).then((t) => (el.innerHTML = markdown(t))); });
+  main.querySelectorAll<HTMLElement>("[data-prompt]").forEach((el) => { void text(`/${el.dataset.prompt}`).then((t) => (el.innerHTML = embedded(embedded(markdown(t))))).catch(failed(el)); });
 }
 
 // ---------------------------------------------------------------- series
@@ -158,13 +168,21 @@ function series(id: string) {
 }
 
 // ---------------------------------------------------------------- piece
+/** a slide's description: cover, the beat it was cut from (derive spec), or the closing card */
+const sentences = (...parts: (string | undefined)[]) => parts.filter(Boolean).map((x) => x!.trim()).map((x, i, all) => (i < all.length - 1 && !/[.!?:]$/.test(x) ? `${x}.` : x)).join(" ");
+function slideAlt(p: Piece, ep: Piece | undefined, i: number, n: number): string {
+  const spec = ep?.derive, title = p.title ?? ep?.title ?? p.id;
+  if (p.role === "single" && spec) return `${title}: ${sentences(spec.single.title, spec.single.sub)}`;
+  if (p.role === "carousel" && spec) { if (i === 0) return `Slide 1 of ${n}, cover: ${title}`; if (i === n - 1) return `Slide ${n} of ${n}: closing card, rotli.co`; const b = spec.slides[i - 1]; if (b) return `Slide ${i + 1} of ${n}: ${sentences(b.title, b.sub)}`; }
+  return n > 1 ? `Slide ${i + 1} of ${n} of ${title}: ${p.about ?? ""}` : `${title}: ${p.about ?? ""}`;
+}
 async function piece(id: string) {
   const p = byId(id); if (!p) return notFound();
   const x = seriesOf(p.series), ep = x?.episodes?.find((e) => e.code === p.episode), main_ = ep ? byId(ep.main ?? "") : undefined;
-  const cutTabs = ep ? `<div class="cut-tabs" role="tablist">${[["episode", ep.main], ["vertical", ep.cuts.vertical], ["carousel", ep.cuts.carousel], ["single", ep.cuts.single]].filter(([, v]) => v).map(([k, v]) => `<a role="tab" href="#/piece/${v}" aria-selected="${v === p.id}">${k === "episode" ? "Episode" : k === "single" ? "Card" : k![0]!.toUpperCase() + k!.slice(1)}</a>`).join("")}</div>` : "";
+  const cutTabs = ep ? `<nav class="cut-tabs" aria-label="Formats of this episode">${[["episode", ep.main], ["vertical", ep.cuts.vertical], ["carousel", ep.cuts.carousel], ["single", ep.cuts.single]].filter(([, v]) => v).map(([k, v]) => `<a href="#/piece/${v}"${v === p.id ? ' aria-current="page"' : ""}>${k === "episode" ? "Episode" : k === "single" ? "Card" : k![0]!.toUpperCase() + k!.slice(1)}</a>`).join("")}</nav>` : "";
   const media = p.kind === "video" && p.video
     ? `<div class="player" style="--ar:${p.meta ? `${p.meta.W}/${p.meta.H}` : "16/9"}"><video id="video" controls preload="metadata" playsinline src="${m(p.video.file)}" poster="${poster(p)}"></video></div>`
-    : p.slides?.length ? `<div class="slides">${p.slides.map((f, i) => `<a href="${s(f)}" target="_blank"><img src="${s(f)}" alt="slide ${i + 1}" loading="lazy"><span>${i + 1}</span></a>`).join("")}</div>`
+    : p.slides?.length ? `<div class="slides">${p.slides.map((f, i) => `<a href="${s(f)}" target="_blank"><img src="${s(f)}" alt="${esc(slideAlt(p, main_, i, p.slides!.length))}" loading="lazy"><span aria-hidden="true">${i + 1}</span></a>`).join("")}</div>`
     : `<p class="empty">Not rendered yet: <code>node tools/studio.mjs render ${esc(p.id)}</code></p>`;
   const facts: [string, string][] = [
     ["Kind", `${p.kind} · ${p.format}`], ...(p.meta ? [["Size", `${p.meta.W} × ${p.meta.H}`] as [string, string], ["Length", p.kind === "video" ? `${secs(p.meta.durationFrames)} · ${p.meta.durationFrames} frames @ ${p.meta.fps} fps` : `${p.shots.length} slide(s)`] as [string, string]] : []),
@@ -183,11 +201,11 @@ async function piece(id: string) {
   const video = main.querySelector<HTMLVideoElement>("#video");
   if (p.kind === "video" && p.meta) {
     const D = p.meta.durationFrames;
-    body("breakdown")!.innerHTML = `<div class="timeline">${p.shots.map((sh) => `<button style="flex:${sh.end - sh.start}" data-seek="${sh.start}" title="${esc(sh.id)} · ${tc(sh.start)}–${tc(sh.end)}"><span>${esc(sh.id)}</span></button>`).join("")}<i class="playhead" id="playhead"></i></div>
+    body("breakdown")!.innerHTML = `<div class="timeline">${p.shots.map((sh) => `<button style="flex:${sh.end - sh.start}" data-seek="${sh.start}" aria-label="Seek to ${esc(sh.id)}, ${tc(sh.start)}" title="${esc(sh.id)} · ${tc(sh.start)}–${tc(sh.end)}"><span>${esc(sh.id)}</span></button>`).join("")}<i class="playhead" id="playhead"></i></div>
       <div class="scenes">${p.shots.map((sh, i) => { const mid = Math.floor((sh.start + sh.end) / 2);
-        return `<article class="scene"><button class="frame" style="aspect-ratio:${p.meta!.W}/${p.meta!.H}" data-seek="${sh.start}"><img src="/api/motion/thumb/${p.slug}/${mid}.jpg" alt="" loading="lazy"></button>
+        return `<article class="scene"><button class="frame" style="aspect-ratio:${p.meta!.W}/${p.meta!.H}" data-seek="${sh.start}" aria-label="Seek to scene ${i + 1}, ${esc(sh.id)}, at ${tc(sh.start)}"><img src="/api/motion/thumb/${p.slug}/${mid}.jpg" alt="" loading="lazy"></button>
         <div><b>${i + 1}. ${esc(sh.id)}</b><small>${tc(sh.start)} – ${tc(sh.end)} · ${secs(sh.end - sh.start)} · frames ${sh.start}–${sh.end - 1}</small>${sh.template ? `<p>${esc(sh.template)}</p>` : ""}${STATIC ? "" : `<a class="link" href="/api/motion/frame/${p.id}/${mid}.png" target="_blank">Exact frame ${mid} (full size render)</a>`}</div></article>`; }).join("")}</div>`;
-    main.querySelectorAll<HTMLElement>("[data-seek]").forEach((b) => (b.onclick = () => { if (video) { video.currentTime = Number(b.dataset.seek) / 30 + 0.001; video.scrollIntoView({ block: "nearest", behavior: "smooth" }); } }));
+    main.querySelectorAll<HTMLElement>("[data-seek]").forEach((b) => (b.onclick = () => { if (video) { video.currentTime = Number(b.dataset.seek) / 30 + 0.001; video.scrollIntoView({ block: "nearest", behavior: smooth() }); } }));
     const head = $("#playhead"); video?.addEventListener("timeupdate", () => (head.style.left = `${Math.min(100, ((video.currentTime * 30) / D) * 100)}%`));
   } else body("breakdown")!.innerHTML = p.slides?.length ? `<p class="muted">${p.slides.length} slide(s) exported to <code>exports/${esc(p.slug)}/${esc(p.format)}/</code>${p.caption ? "; caption below." : "."}</p>${p.caption ? `<blockquote>${esc(p.caption)}</blockquote>` : ""}` : `<p class="muted">No exports yet.</p>`;
   // cuts: how each vertical beat / slide / card is cut from the episode (source frame + crop box)
@@ -206,19 +224,21 @@ async function piece(id: string) {
     body("brief")!.innerHTML = `<dl class="facts wide">${[["Logline", b.logline], ["Setup", st.setup], ["Turn", st.turn], ["Payoff", st.payoff], ["Token", b.token], ["Atmosphere", b.atmosphere], ["Visits", ([] as string[]).concat((b.visits as string[]) ?? []).join(", ")], ["Style", b.style], ["Cast", ([] as string[]).concat((b.cast as string[]) ?? []).join(" · ")], ["Music", typeof b.music === "string" ? b.music : JSON.stringify(b.music)], ["Next", b.next]].filter(([, v]) => v).map(([k, v]) => `<dt>${k}</dt><dd>${esc(String(v))}</dd>`).join("")}</dl>
       <h3>Claims (every caption must come from these)</h3><div class="table"><table><thead><tr><th>Claim</th><th>Source</th></tr></thead><tbody>${feats.map((f) => `<tr><td>${esc(f.claim)}</td><td>${esc(f.source)}</td></tr>`).join("")}</tbody></table></div>
       <h3>Scenes</h3><div class="table"><table><thead><tr><th>Scene</th><th>Frames</th><th>Template</th></tr></thead><tbody>${scenes.map((sc) => `<tr><td>${esc(sc.id)}</td><td>${sc.len} (${secs(sc.len)})</td><td>${esc(sc.template)}</td></tr>`).join("")}</tbody></table></div>
-      <p><a class="link" href="${m(briefFile)}" target="_blank">${esc(briefFile)}</a></p>`; }).catch((e) => (body("brief")!.textContent = String(e)));
+      <p><a class="link" href="${m(briefFile)}" target="_blank">${esc(briefFile)}</a></p>`; }).catch(failed(body("brief")));
   const promptFile = p.prompt ?? main_?.prompt;
-  if (promptFile) text(m(promptFile)).then((t) => (body("prompt")!.innerHTML = `<p class="muted">Generated by <code>tools/brief-to-prompt.mjs</code> from the brief: the preamble that worked, plus this episode. <a class="link" href="${m(promptFile)}" target="_blank">${esc(promptFile)}</a></p><div class="doc">${markdown(t)}</div>`));
+  if (promptFile) text(m(promptFile)).then((t) => (body("prompt")!.innerHTML = `<p class="muted">Generated by <code>tools/brief-to-prompt.mjs</code> from the brief: the preamble that worked, plus this episode. <a class="link" href="${m(promptFile)}" target="_blank">${esc(promptFile)}</a></p><div class="doc">${embedded(markdown(t))}</div>`)).catch(failed(body("prompt")));
   const run = p.run ?? main_?.run;
-  if (run) text(m(run.file)).then((t) => (body("run")!.innerHTML = `<div class="doc">${markdown(t)}</div>`));
+  if (run) text(m(run.file)).then((t) => (body("run")!.innerHTML = `<div class="doc">${embedded(markdown(t))}</div>`)).catch(failed(body("run")));
   body("source")!.innerHTML = p.module ? `<p class="muted"><a class="link" href="${m(p.module)}" target="_blank">${esc(p.module)}</a> · host <a class="link" href="${m(p.host)}" target="_blank">${esc(p.host)}</a></p><pre class="code" id="code">Loading…</pre>` : `<p class="muted">No module.</p>`;
-  if (p.module) text(m(p.module)).then((t) => ($("#code").innerHTML = t.split("\n").map((l, i) => `<span class="ln">${i + 1}</span>${esc(l)}`).join("\n")));
+  if (p.module) text(m(p.module)).then((t) => ($("#code").innerHTML = t.split("\n").map((l, i) => `<span class="ln">${i + 1}</span>${esc(l)}`).join("\n"))).catch(failed(main.querySelector("#code")));
   const files = [["Module", p.module], ["Host page", p.host], ["Brief", briefFile], ["Prompt", promptFile], ["Agent run", run?.file], ["Golden", p.golden?.file], ["Render", p.video?.file], ["Poster", p.video?.poster ?? undefined]].filter(([, v]) => v) as [string, string][];
   body("files")!.innerHTML = `<dl class="facts wide">${files.map(([k, v]) => `<dt>${k}</dt><dd><a class="link" href="${fileUrl(v)}" target="_blank">${esc(v)}</a></dd>`).join("")}${p.slides?.length ? `<dt>Exports</dt><dd><code>${esc(p.slides[0]!.replace(/\/[^/]+$/, "/"))}</code></dd>` : ""}${p.video ? `<dt>Render sha256</dt><dd><code>${p.video.sha}…</code></dd>` : ""}</dl>
     <p class="actions">${p.golden && !STATIC ? `<button class="ghost" id="verify">Verify golden now</button>` : ""}<span id="verify-out" class="muted"></span></p>
     <p class="muted">Re-make it: <code>node tools/studio.mjs render ${esc(p.id)} &amp;&amp; node tools/studio.mjs check ${esc(p.id)} &amp;&amp; node tools/golden.mjs ${esc(p.id)}</code> (from <code>motion/</code>).</p>`;
   const vb = main.querySelector<HTMLButtonElement>("#verify");
-  if (vb) vb.onclick = async () => { vb.disabled = true; $("#verify-out").textContent = "Rendering the golden frames… (up to a minute)"; const r = await json<{ ok: boolean; output: string }>(`/api/motion/verify/${p.id}`, { method: "POST" }); if (r.ok) cue("done"); $("#verify-out").innerHTML = `${r.ok ? chip("SAME", "ok") : chip("DIFFERS", "bad")} <code>${esc(r.output)}</code>`; vb.disabled = false; };
+  if (vb) vb.onclick = async () => { vb.disabled = true; $("#verify-out").textContent = "Rendering the golden frames… (up to a minute)";
+    try { const r = await json<{ ok: boolean; output: string }>(`/api/motion/verify/${p.id}`, { method: "POST" }); if (r.ok) cue("done"); $("#verify-out").innerHTML = `${r.ok ? chip("SAME", "ok") : chip("DIFFERS", "bad")} <code>${esc(r.output)}</code>`; }
+    catch (e) { failed(main.querySelector("#verify-out"))(e); } finally { vb.disabled = false; } };
 }
 
 // ---------------------------------------------------------------- brand
@@ -248,7 +268,7 @@ async function docPage(title: string, intro: string, docs: Doc[], active?: strin
     <article class="doc" id="doc"><p class="muted">Loading…</p></article></div>`;
   const url = current.path.startsWith("skill:") ? "" : fileUrl(current.path);
   const body = current.path.startsWith("skill:") ? (await json<{ name: string; where: string; path: string; text: string }[]>(api("skills"))).find((k) => `skill:${k.where}:${k.name}` === current.path)?.text ?? "" : await text(url).catch((e) => `**Could not load:** ${e}`);
-  $("#doc").innerHTML = `<p class="doc-path"><code>${esc(current.path.replace(/^skill:(\w+):/, "$1 skill: "))}</code>${url ? ` · <a class="link" href="${url}" target="_blank">raw</a>` : ""}</p>${/(\.(json|ts|mjs|py)|LICENSE|NOTICE)$/.test(current.path) ? `<pre class="code">${esc(body)}</pre>` : markdown(body)}`;
+  $("#doc").innerHTML = `<p class="doc-path"><code>${esc(current.path.replace(/^skill:(\w+):/, "$1 skill: "))}</code>${url ? ` · <a class="link" href="${url}" target="_blank">raw</a>` : ""}</p>${/(\.(json|ts|mjs|py)|LICENSE|NOTICE)$/.test(current.path) ? `<pre class="code">${esc(body)}</pre>` : embedded(markdown(body))}`;
 }
 const param = (k: string) => new URLSearchParams(location.hash.split("?")[1] ?? "").get(k) ?? undefined;
 
@@ -271,7 +291,8 @@ async function runs() {
 }
 async function skills() {
   const all = await json<{ name: string; where: string; path: string }[]>(api("skills"));
-  await docPage("Skills", "The instructions agents follow here. Studio skills live in <code>.claude/skills/</code>; the two global ones are listed read-only (<code>brand-motion-studio</code> is a pointer back into the studio; <code>anidoodle</code> is the third-party skill whose engine the room vendored).", [
+  const globals = all.filter((k) => k.where !== "studio").length;
+  await docPage("Skills", `The instructions agents follow here. They live in <code>.claude/skills/</code>, where Claude Code finds them.${globals ? ` ${globals} global skill(s) this studio relies on are listed read-only.` : ""} The render engine's own skill is anidoodle (credited under Docs &amp; licences).`, [
     { label: "AGENTS.md (studio guide)", path: "../AGENTS.md", group: "Studio" }, ...all.map((k) => ({ label: k.name, path: `skill:${k.where}:${k.name}`, group: k.where === "studio" ? "Studio" : "Global (read-only)" })),
   ], param("doc"));
 }
@@ -305,13 +326,14 @@ async function isolation(fresh = false) {
 // ---------------------------------------------------------------- router
 function notFound() { main.innerHTML = `<p class="empty">Nothing here. <a class="link" href="#/">Back to the studio</a>.</p>`; }
 async function route() {
+  const g = ++gen;
   const h = location.hash || "#/", [path] = h.split("?"), parts = path!.replace(/^#\/?/, "").split("/");
   stopPlayers?.(); stopPlayers = null;
-  if (routed) cue(parts[0] === "piece" ? "open" : "page"); routed = true;
+  const turned = routed; if (turned) cue(parts[0] === "piece" ? "open" : "page"); routed = true;
   const pieceId = parts[0] === "piece" ? parts[1] : undefined;
   renderNav(pieceId ? `#/series/${byId(pieceId)?.series ?? ""}` : path!, pieceId);
   document.body.classList.toggle("is-home", !parts[0]);
-  document.querySelectorAll<HTMLAnchorElement>(".topnav a").forEach((a) => a.toggleAttribute("aria-current", path!.startsWith(a.getAttribute("href")!)));
+  document.querySelectorAll<HTMLAnchorElement>(".topnav a").forEach((a) => { if (path!.startsWith(a.getAttribute("href")!)) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
   try {
     if (!parts[0]) { home(); stopPlayers = mountFilmPlayers(main); }
     else if (parts[0] === "library") library();
@@ -328,15 +350,19 @@ async function route() {
     else if (parts[0] === "doc") await doc(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "isolation") await isolation();
     else notFound();
-  } catch (e) { main.innerHTML = `<p class="error">${esc(String(e))}</p>`; }
+  } catch (e) { if (e instanceof Stale || g !== gen) return; main.innerHTML = `<p class="error">Could not load this page: ${esc(String(e))}. <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; }
+  if (turned && !h.includes("#sec-")) { const h1 = main.querySelector<HTMLElement>("h1"); if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); } }
   if (!h.includes("#sec-")) main.scrollTo?.(0, 0);
   document.title = parts[0] ? `${main.querySelector("h1")?.textContent?.trim() ?? "rotli"} · rotli studio` : "rotli studio";
 }
 let routed = false; // the first render is not a page turn
 // in-page section links (#sec-…) must not trigger the router
-document.addEventListener("click", (e) => { const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: "smooth" }); });
+document.addEventListener("click", (e) => {
+  const skip = (e.target as HTMLElement).closest<HTMLAnchorElement>("a.skip"); if (skip) { e.preventDefault(); main.focus(); return; }
+  const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: smooth() }); });
 window.addEventListener("hashchange", route);
-M = await json<Manifest>(api("manifest"));
+try { M = await json<Manifest>(api("manifest")); }
+catch (e) { main.innerHTML = `<p class="error">The studio could not load its catalogue (${esc(String(e))}). <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; throw e; }
 mountSound(document.getElementById("sound-toggle") as HTMLButtonElement);
 if (STATIC) document.getElementById("create-link")?.remove(); // the content editor only runs on the Mac
 route();

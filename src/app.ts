@@ -32,6 +32,8 @@ function el<K extends keyof HTMLElementTagNameMap>(
 let post: Post;
 let selected = 0;
 let dirty = false;
+// every edit bumps `revision`; a save clears `dirty` only if no edit happened while it was in flight
+let revision = 0, savedRevision = 0;
 let libraryItems: LibraryItem[] = [];
 const frames: HTMLIFrameElement[] = [];
 
@@ -56,6 +58,7 @@ function status(text: string): void {
 }
 
 function markDirty(): void {
+  revision++;
   dirty = true;
   status("Unsaved changes");
 }
@@ -69,18 +72,22 @@ async function listPosts(): Promise<{ slug: string; title: string }[]> {
 async function loadPost(slug: string): Promise<void> {
   post = await (await fetch(`/api/posts/${slug}`)).json();
   selected = 0;
-  dirty = false;
+  dirty = false; revision = savedRevision = 0;
   localStorage.setItem("studio:last", slug);
   status("");
   renderAll();
 }
 
-async function savePost(): Promise<void> {
-  const res = await fetch(`/api/posts/${post.slug}`, { method: "PUT", body: JSON.stringify(post) });
-  if (!res.ok) return status("Could not save");
-  dirty = false;
-  status(`Saved ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`);
+/** Save the current post; true only when the server stored it. */
+async function savePost(): Promise<boolean> {
+  const rev = revision;
+  const res = await fetch(`/api/posts/${post.slug}`, { method: "PUT", body: JSON.stringify(post) }).catch(() => null);
+  if (!res?.ok) { status("Could not save"); return false; }
+  savedRevision = Math.max(savedRevision, rev);
+  dirty = revision !== savedRevision;
+  status(dirty ? "Unsaved changes" : `Saved ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`);
   await fillPostSelect();
+  return true;
 }
 
 async function fillPostSelect(): Promise<void> {
@@ -91,6 +98,7 @@ async function fillPostSelect(): Promise<void> {
 }
 
 async function createPost(from?: Post): Promise<void> {
+  if (!from && dirty && !confirm("Discard unsaved changes?")) return; // a duplicate keeps the unsaved edits in the copy
   const title = prompt("Name the new post", from ? `${from.title} (copy)` : "New post");
   if (!title) return;
   const existing = new Set((await listPosts()).map((p) => p.slug));
@@ -106,7 +114,7 @@ async function createPost(from?: Post): Promise<void> {
         captions: { instagram: "", x: "", linkedin: "" },
         slides: [blankSlide()],
       };
-  selected = 0;
+  selected = 0; revision = savedRevision = 0; dirty = false;
   await savePost();
   renderAll();
 }
@@ -426,11 +434,15 @@ function openExport(): void {
 async function runExport(): Promise<void> {
   const formats = [...document.querySelectorAll<HTMLInputElement>("#export-formats input:checked")].map((i) => i.value);
   if (!formats.length) return;
-  if (dirty) await savePost();
-  const result = $("#export-result");
+  const result = $("#export-result"), go = $<HTMLButtonElement>("#export-go");
+  // export renders what is on disk: never export a post whose save failed
+  if (dirty && !(await savePost())) return void result.replaceChildren(el("p", { textContent: "Could not save the post, so nothing was exported. Your changes are still here." }));
+  go.disabled = true;
   result.replaceChildren(el("p", { textContent: "Rendering…" }));
-  const res = await fetch(`/api/export/${post.slug}`, { method: "POST", body: JSON.stringify({ formats }) });
-  const data = await res.json();
+  let res: Response, data: { error?: string; files: string[] };
+  try { res = await fetch(`/api/export/${post.slug}`, { method: "POST", body: JSON.stringify({ formats }) }); data = await res.json(); }
+  catch { return void result.replaceChildren(el("p", { textContent: "Export failed: the studio server did not answer." })); }
+  finally { go.disabled = false; }
   if (!res.ok) return void result.replaceChildren(el("p", { textContent: data.error ?? "Export failed" }));
   result.replaceChildren(
     el("p", { textContent: `${data.files.length} files written.` }),

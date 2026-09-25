@@ -125,6 +125,8 @@ textarea { min-height: 5.5rem; resize: vertical; line-height: 1.45; }
 }
 .slide-list li:hover { background: var(--surface-2); }
 .slide-list li[aria-current='true'] { background: var(--tint); }
+/* muted on --tint is 4.33:1 (under AA): a selected row's secondary text goes full contrast */
+.slide-list li[aria-current='true'] .num, .slide-list li[aria-current='true'] .what span, .slide-list li[aria-current='true'] .row-actions button { color: var(--text); }
 .slide-list .num { color: var(--muted); font-variant-numeric: tabular-nums; font-size: 0.8rem; }
 .slide-list .what { overflow: hidden; }
 .slide-list .what b { display: block; font-size: 0.8rem; }

@@ -1,9 +1,9 @@
 // The Motion room's server side: read-only views of motion/ (and the studio docs around it) for the
 // studio site. Nothing here edits a piece; the only writes are caches under motion/out/ (the manifest,
 // scene thumbnails, exact frame renders) and those are regenerable and gitignored.
-import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
 import { homedir } from "node:os";
-import { extname, join, normalize, relative } from "node:path";
+import { extname, isAbsolute, join, normalize, relative, sep } from "node:path";
 
 const ROOT = join(import.meta.dir, "../..");
 const MOTION = join(ROOT, "motion");
@@ -14,13 +14,27 @@ const MOTION_OPEN = new Set(["out", "golden", "season", "workflows", "brand", "s
 const STUDIO_OPEN = new Set(["launch", ".claude", "AGENTS.md", "README.md", "LICENSE", "NOTICE", "films", "scripts", "exports", "library"]);
 const TEXT = new Set([".ts", ".mjs", ".js", ".py", ".md", ".txt", ".json", ".sh", ".css", ".html"]);
 
-/** A file under `base` whose first path segment is allowed, or null. */
-function allowed(base: string, open: Set<string>, rel: string): string | null {
-  const clean = decodeURIComponent(rel).replace(/^\/+/, "");
-  const top = clean.split("/")[0] ?? "";
-  if (!open.has(top) || clean.split("/").includes("node_modules")) return null;
-  const file = normalize(join(base, clean));
-  return relative(base, file).startsWith("..") ? null : file;
+// The public inventory: a file is servable only if git tracks it (or it sits in a generated-output folder),
+// it lies under an allowed top-level name, and no path segment is a dotfile or node_modules. The request
+// path is decoded and normalized BEFORE any check, and the real path must stay inside the studio.
+const GENERATED = ["motion/out/", "exports/"];
+let tracked: { at: number; files: Set<string> } | null = null;
+const trackedFiles = () => {
+  if (!tracked || Date.now() - tracked.at > 15_000) tracked = { at: Date.now(), files: new Set(Bun.spawnSync(["git", "ls-files", "-z"], { cwd: ROOT }).stdout.toString().split("\0").filter(Boolean)) };
+  return tracked.files;
+};
+/** The file a request may read under `base`, or null. Exported for tests. */
+export function allowed(base: string, open: Set<string>, rel: string, files: Set<string> = trackedFiles()): string | null {
+  let clean: string; try { clean = decodeURIComponent(rel); } catch { return null; } // malformed encoding
+  if (clean.includes("\0")) return null;
+  const file = normalize(join(base, clean)), inBase = relative(base, file), inRoot = relative(ROOT, file);
+  if (!inBase || inBase.startsWith("..") || isAbsolute(inBase) || inRoot.startsWith("..")) return null;
+  const segs = inBase.split(sep);
+  if (!open.has(segs[0]!) || segs.some((x) => x === "node_modules" || (x.startsWith(".") && x !== ".claude"))) return null;
+  const repoPath = inRoot.split(sep).join("/");
+  if (!files.has(repoPath) && !GENERATED.some((g) => repoPath.startsWith(g))) return null;
+  try { if (relative(realpathSync(ROOT), realpathSync(file)).startsWith("..")) return null; } catch { return null; } // symlinks may not leave
+  return file;
 }
 
 /** Serve a file; video honours Range so the player can seek through large renders. */
@@ -28,7 +42,7 @@ function serve(req: Request, file: string | null): Response {
   if (!file || !existsSync(file) || !statSync(file).isFile()) return new Response("Not found", { status: 404 });
   const f = Bun.file(file), size = f.size, ext = extname(file).toLowerCase();
   const type = TEXT.has(ext) ? `${ext === ".json" ? "application/json" : "text/plain"}; charset=utf-8` : f.type;
-  const headers: Record<string, string> = { "content-type": type, "accept-ranges": "bytes", "cache-control": "no-store" };
+  const headers: Record<string, string> = { "content-type": type, "accept-ranges": "bytes", "cache-control": "no-store", "x-content-type-options": "nosniff" };
   const range = req.headers.get("range")?.match(/bytes=(\d*)-(\d*)/);
   if (!range) return new Response(f, { headers: { ...headers, "content-length": String(size) } });
   const start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
@@ -47,8 +61,13 @@ const run = async (cmd: string[], cwd: string, timeoutMs = 120_000) => {
 
 // ---------------------------------------------------------------- the manifest (rebuilt when its inputs change)
 const MANIFEST = join(OUT, "manifest.json");
-const manifestInputs = () => [join(MOTION, "pieces.json"), join(MOTION, "series.json"), join(MOTION, "workflows/runs/runs.json"), join(OUT, "video"), join(MOTION, "golden"), join(MOTION, "season/episodes")];
-const stale = () => !existsSync(MANIFEST) || manifestInputs().some((p) => existsSync(p) && statSync(p).mtimeMs > statSync(MANIFEST).mtimeMs);
+/** the newest modification time under these paths (files and folders, recursively; skips node_modules) */
+const newest = (paths: string[]): number => { let t = 0; const walk = (p: string) => { if (!existsSync(p)) return; const st = statSync(p); t = Math.max(t, st.mtimeMs); if (st.isDirectory()) for (const e of readdirSync(p)) if (e !== "node_modules" && e !== "out") walk(join(p, e)); }; paths.forEach(walk); return t; };
+// everything the manifest is derived from: catalogue, series, runs, goldens, briefs, brand, piece source, renders
+const MANIFEST_INPUTS = () => [join(MOTION, "pieces.json"), join(MOTION, "series.json"), join(MOTION, "workflows"), join(MOTION, "golden"), join(MOTION, "season"), join(MOTION, "brand"), join(MOTION, "src"), join(OUT, "video")];
+let stamp: { at: number; t: number } | null = null;
+const inputsStamp = () => { if (!stamp || Date.now() - stamp.at > 3000) stamp = { at: Date.now(), t: newest(MANIFEST_INPUTS()) }; return stamp.t; };
+const stale = () => !existsSync(MANIFEST) || inputsStamp() > statSync(MANIFEST).mtimeMs;
 let building: Promise<unknown> | null = null;
 async function manifest(force = false): Promise<Response> {
   if (force || stale()) { building ??= run(["node", "tools/manifest.mjs"], MOTION).finally(() => (building = null)); const r = (await building) as { code: number; err: string }; if (r?.code) return Response.json({ error: r.err }, { status: 500 }); }
@@ -86,7 +105,8 @@ async function fullPoster(slug: string, frame: number): Promise<Response> {
 }
 async function exactFrame(id: string, frame: number): Promise<Response> {
   const dir = join(OUT, "frames", id), file = join(dir, `f${String(frame).padStart(4, "0")}.png`);
-  if (!existsSync(file)) { const r = await run(["node", "tools/frames.mjs", id, String(frame), "--out", `out/frames/${id}`], MOTION); if (r.code || !existsSync(file)) return new Response(r.err || "render failed", { status: 500 }); }
+  // re-render when any piece source changed since this frame was cached (a frame depends on shared code too)
+  if (!existsSync(file) || statSync(file).mtimeMs < newest([join(MOTION, "src"), join(MOTION, "brand")])) { const r = await run(["node", "tools/frames.mjs", id, String(frame), "--out", `out/frames/${id}`], MOTION); if (r.code || !existsSync(file)) return new Response(r.err || "render failed", { status: 500 }); }
   return new Response(Bun.file(file), { headers: { "content-type": "image/png", "cache-control": "no-store" } });
 }
 
@@ -99,7 +119,7 @@ const header = (file: string) => {
 };
 export function tools() {
   const list = (dir: string, base: string, re: RegExp) => (existsSync(dir) ? readdirSync(dir).filter((f) => re.test(f)).sort().map((f) => ({ file: `${base}/${f}`, about: header(join(dir, f)) || pyDoc(join(dir, f)) })) : []);
-  return [...list(join(MOTION, "tools"), "motion/tools", /\.(mjs|py)$/), ...list(join(ROOT, "scripts"), "scripts", /\.ts$/)];
+  return [...list(join(MOTION, "tools"), "motion/tools", /\.(mjs|py)$/), ...list(join(ROOT, "sound/tools"), "sound/tools", /\.ts$/), ...list(join(ROOT, "scripts"), "scripts", /\.ts$/)];
 }
 const pyDoc = (file: string) => (file.endsWith(".py") ? (readFileSync(file, "utf8").match(/"""([\s\S]*?)"""/)?.[1] ?? "").trim() : "");
 export function skills({ global = true } = {}) {

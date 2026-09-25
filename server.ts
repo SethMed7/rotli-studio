@@ -1,6 +1,7 @@
 // rotli studio: a local-only server (127.0.0.1) for the asset library, the
 // post editor, slide rendering, and PNG export. Posts are plain JSON files in
 // posts/; exports land in exports/<slug>/<format>/. Nothing leaves this Mac.
+import type { BunRequest } from "bun";
 import { existsSync, mkdirSync, readdirSync, statSync, unlinkSync, writeFileSync } from "node:fs";
 import { extname, join, normalize, relative } from "node:path";
 
@@ -17,11 +18,13 @@ const STATIC = join(ROOT, "static");
 mkdirSync(join(LIBRARY, "uploads"), { recursive: true });
 mkdirSync(POSTS, { recursive: true });
 
-const IMAGE_TYPES = new Set([".png", ".jpg", ".jpeg", ".webp", ".svg", ".gif"]);
+// raster only: an uploaded SVG could carry script and run on the studio's origin
+const IMAGE_TYPES = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif"]);
 
 /** A file under `base`, or null if the path tries to leave it. */
 function inside(base: string, rel: string): string | null {
-  const file = normalize(join(base, decodeURIComponent(rel)));
+  let clean: string; try { clean = decodeURIComponent(rel); } catch { return null; } // malformed encoding
+  const file = normalize(join(base, clean));
   return relative(base, file).startsWith("..") ? null : file;
 }
 
@@ -61,10 +64,19 @@ async function bundle(entry: string): Promise<Response> {
 
 const json = (data: unknown, status = 200) => Response.json(data, { status });
 
+// Loopback is the boundary: every route also requires a local Host header, which closes DNS rebinding (a
+// foreign site pointing its name at 127.0.0.1 would send its own Host).
+type Handler = (req: never, server?: never) => Response | Promise<Response>;
+const LOCAL_HOSTS = new Set([`127.0.0.1:${PORT}`, `localhost:${PORT}`]);
+const guard = (h: Handler): Handler => ((req: Request, srv?: never) => (LOCAL_HOSTS.has(req.headers.get("host") ?? "") ? (h as (r: Request, s?: never) => Response | Promise<Response>)(req, srv) : new Response("Forbidden host", { status: 403 }))) as Handler;
+function localOnly<T>(routes: T): T {
+  return Object.fromEntries(Object.entries(routes as Record<string, unknown>).map(([path, v]) => [path, typeof v === "function" ? guard(v as Handler) : Object.fromEntries(Object.entries(v as Record<string, Handler>).map(([m, h]) => [m, guard(h)]))])) as T;
+}
+
 const server = Bun.serve({
   hostname: HOST,
   port: PORT,
-  routes: {
+  routes: localOnly({
     // the studio's home is the Motion room's landing; the content editor lives at /create, and /posts is the
     // list of published posts (a page of the Motion room)
     "/": () => serveFile(join(STATIC, "motion.html")),
@@ -76,14 +88,19 @@ const server = Bun.serve({
     "/build/render.js": () => bundle("render.ts"),
     "/build/motion.js": () => bundle("motion/app.ts"),
     ...motionRoutes,
-    "/static/*": (req) => serveFile(inside(STATIC, new URL(req.url).pathname.slice("/static/".length))),
-    "/library/*": (req) => serveFile(inside(LIBRARY, new URL(req.url).pathname.slice("/library/".length))),
-    "/exports/*": (req) => serveFile(inside(EXPORTS_DIR, new URL(req.url).pathname.slice("/exports/".length))),
+    "/static/*": (req: Request) => serveFile(inside(STATIC, new URL(req.url).pathname.slice("/static/".length))),
+    "/library/*": (req: Request) => {
+      const res = serveFile(inside(LIBRARY, new URL(req.url).pathname.slice("/library/".length)));
+      // uploads are user files: never let one run as a document on this origin
+      if (new URL(req.url).pathname.startsWith("/library/uploads/")) { res.headers.set("content-security-policy", "sandbox; default-src 'none'"); res.headers.set("x-content-type-options", "nosniff"); }
+      return res;
+    },
+    "/exports/*": (req: Request) => serveFile(inside(EXPORTS_DIR, new URL(req.url).pathname.slice("/exports/".length))),
 
     "/api/library": () => json(library()),
 
     "/api/upload": {
-      POST: async (req) => {
+      POST: async (req: Request) => {
         const form = await req.formData();
         const saved: string[] = [];
         for (const value of form.getAll("file")) {
@@ -110,11 +127,11 @@ const server = Bun.serve({
     },
 
     "/api/posts/:slug": {
-      GET: async (req) => {
+      GET: async (req: BunRequest<"/api/posts/:slug">) => {
         const post = await readPost(req.params.slug);
         return post ? json(post) : json({ error: "No such post" }, 404);
       },
-      PUT: async (req) => {
+      PUT: async (req: BunRequest<"/api/posts/:slug">) => {
         const file = postFile(req.params.slug);
         if (!file) return json({ error: "Bad slug" }, 400);
         const post = (await req.json()) as Post;
@@ -122,7 +139,7 @@ const server = Bun.serve({
         writeFileSync(file, `${JSON.stringify(post, null, 2)}\n`);
         return json({ ok: true });
       },
-      DELETE: (req) => {
+      DELETE: (req: BunRequest<"/api/posts/:slug">) => {
         const file = postFile(req.params.slug);
         if (file && existsSync(file)) unlinkSync(file);
         return json({ ok: true });
@@ -130,10 +147,11 @@ const server = Bun.serve({
     },
 
     "/api/export/:slug": {
-      POST: async (req) => {
+      POST: async (req: BunRequest<"/api/export/:slug">) => {
         const post = await readPost(req.params.slug);
         if (!post) return json({ error: "Save the post first" }, 404);
-        const body = (await req.json().catch(() => ({}))) as { formats?: FormatId[] };
+        const text = await req.text(); let body: { formats?: FormatId[] } = {};
+        if (text) { try { body = JSON.parse(text); } catch { return json({ error: "Bad JSON" }, 400); } }
         const formats = (body.formats ?? [post.format]).filter((f) => f in FORMATS);
         const { dir, files } = await exportPost(server.url.origin, post, formats);
         return json({
@@ -144,14 +162,14 @@ const server = Bun.serve({
     },
 
     "/api/reveal/:slug": {
-      POST: (req) => {
+      POST: (req: BunRequest<"/api/reveal/:slug">) => {
         const dir = join(EXPORTS_DIR, req.params.slug);
         if (!/^[a-z0-9-]+$/.test(req.params.slug) || !existsSync(dir)) return json({ error: "Nothing exported yet" }, 404);
         Bun.spawn(["open", dir]);
         return json({ ok: true });
       },
     },
-  },
+  }),
   fetch: () => new Response("Not found", { status: 404 }),
 });
 
