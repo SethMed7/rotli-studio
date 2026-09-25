@@ -4,6 +4,9 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## 2026-09-25
 
+- **Prompt library:** a portable prompt for every study, written from its brief with no tie to this repository,
+  ready to copy into Claude. Every prompt (agent and portable) and every document has a Copy button.
+- **Four more studies:** Kinetic Poster, Particle Word, Data Story and Shape Morph.
 - **Downloads:** every piece page can download its video, its poster, or all its slides as one zip named ready to
   post, and copy its caption. A new **Carousels** page lists every carousel and card, newest first.
 - **Behind the Film:** a 7-slide carousel on how the 60-second film was drawn in code.

@@ -54,5 +54,11 @@
  ],
  "sizes": "Vertical is primary (captions top third, the UI centre, platform-safe margins). Landscape puts the phone and cards on the left half and the captions on the right.",
  "sound": "beatScore soft at 100 bpm: ticks on every chat bubble and card landing, whooshes into the countdown and the payoff, a hit when the slot appears, the sign-off under the end card.",
- "teaches": "Captions that arrive with the rhythm carry a silent autoplay. UI as the set: cards with shadow read as depth without any 3D."
+ "teaches": "Captions that arrive with the rhythm carry a silent autoplay. UI as the set: cards with shadow read as depth without any 3D.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for UI, JetBrains Mono for small labels",
+  "style": "Floating UI on a soft stone ground: white cards with large soft shadows, a phone mockup, a deep-green countdown stack and faint concentric rings. Serif captions arrive word by word in mixed sizes, one key word in the accent green italic. No gradients: depth comes from shadow only.",
+  "sound": "a soft four-chord loop at 100 bpm with ticks on every chat bubble and card landing, a rising swell into the countdown and the payoff, a hit when the slot appears, and a bell sign-off under the end card.",
+  "sizes": "the phone and cards take the left half and the captions the right."
+ }
 }

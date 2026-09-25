@@ -764,6 +764,70 @@
    "format": "ig-portrait",
    "about": "Seven slides: how the 60-second film was drawn in code, from the brief and the prompt to the goldens and the soundtrack, and where all of it is open.",
    "caption": "How we drew Rotli's 60-second film in code, in 7 slides. Every frame is a function: a brief, a prompt, Claude Opus 5.5 on the open-source anidoodle engine, hashes that catch a changed pixel, and a soundtrack written sample by sample. All of it is open: studio.rotli.co"
+  },
+  {
+   "id": "kineticPoster",
+   "kind": "video",
+   "slug": "kinetic-poster",
+   "format": "film",
+   "length": "12 s",
+   "about": "Study 06 · Kinetic Poster: type only, full bleed on signal orange, outline-to-fill words, marquee rows and colour-flash cards."
+  },
+  {
+   "id": "kineticPosterVertical",
+   "kind": "video",
+   "slug": "kinetic-poster-vertical",
+   "format": "story",
+   "length": "12 s",
+   "about": "Study 06 · Kinetic Poster, designed for vertical: one word per line, taller marquee rows."
+  },
+  {
+   "id": "particleWord",
+   "kind": "video",
+   "slug": "particle-word",
+   "format": "film",
+   "length": "12 s",
+   "about": "Study 07 · Particle Word: dust becomes a word, a point-cloud sphere with orbit rings, a wave, and one bright point."
+  },
+  {
+   "id": "particleWordSquare",
+   "kind": "video",
+   "slug": "particle-word-square",
+   "format": "ig-square",
+   "length": "12 s",
+   "about": "Study 07 · Particle Word, designed for square: the word on two lines."
+  },
+  {
+   "id": "dataStory",
+   "kind": "video",
+   "slug": "data-story",
+   "format": "film",
+   "length": "15 s",
+   "about": "Study 08 · Data Story: a dark dashboard whose widgets animate their own data, numbers rolling like odometers."
+  },
+  {
+   "id": "dataStoryVertical",
+   "kind": "video",
+   "slug": "data-story-vertical",
+   "format": "story",
+   "length": "15 s",
+   "about": "Study 08 · Data Story, designed for vertical: one column, the headline figure on top."
+  },
+  {
+   "id": "shapeMorph",
+   "kind": "video",
+   "slug": "shape-morph",
+   "format": "ig-square",
+   "length": "8 s loop",
+   "about": "Study 09 · Shape Morph: one shape becomes every primitive over a reactive dot grid, seamless at 60 fps."
+  },
+  {
+   "id": "shapeMorphLandscape",
+   "kind": "video",
+   "slug": "shape-morph-landscape",
+   "format": "film",
+   "length": "8 s loop",
+   "about": "Study 09 · Shape Morph, designed for landscape: the shape's name on the left, a step indicator on the right."
   }
  ]
 }

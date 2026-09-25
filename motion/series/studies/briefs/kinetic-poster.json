@@ -1,0 +1,64 @@
+{
+ "id": "kinetic-poster",
+ "no": 6,
+ "title": "Kinetic Poster",
+ "module": "src/canvas-core/studies/kineticPoster.ts",
+ "pieces": {
+  "landscape": "kineticPoster",
+  "vertical": "kineticPosterVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 60,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "signal",
+ "style": "Type only, full bleed. A saturated signal-orange ground, near-black type set huge and tight, outline letters that fill solid as they land, an italic word for emphasis, a marquee of repeating rows, and hard colour-flash title cards (blue, black, paper). Motion blur on fast moves.",
+ "learnsFrom": "Kinetic-type reels made with code: big words as the whole picture, outline-to-fill reveals, marquee rows, colour-flash cards cut on the beat.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: 'FIND' slams in from the left, letters overshooting into place, a thin rule draws under it"
+  },
+  {
+   "from": 60,
+   "to": 180,
+   "what": "'ONE' drops in as outline letters that fill solid one by one; 'HOUR.' follows in italic, the full stop in the accent blue"
+  },
+  {
+   "from": 180,
+   "to": 300,
+   "what": "the three words shear and stack into a tight block; the block scales past the frame, leaving only the full stop"
+  },
+  {
+   "from": 300,
+   "to": 420,
+   "what": "a marquee: five rows of 'NO MORE BACK AND FORTH' scroll in alternating directions, outline and solid rows interleaved"
+  },
+  {
+   "from": 420,
+   "to": 540,
+   "what": "colour-flash cards on each beat: blue 'ASK', black 'MATCH', paper 'BOOK', each word landing with a squash"
+  },
+  {
+   "from": 540,
+   "to": 660,
+   "what": "all three words fly into a line 'ASK · MATCH · BOOK.' that settles; a counter ticks 12 → 1 beside it"
+  },
+  {
+   "from": 660,
+   "to": 720,
+   "what": "sign-off: 'Oriel.' in the huge type on the orange, 'find a time that works for everyone' in small italic under it"
+  }
+ ],
+ "sizes": "Vertical stacks the words one per line at a larger size and runs the marquee rows taller.",
+ "sound": "beatScore drive at 120 bpm: a hit on every slam and colour card, whooshes into the stack and the marquee, the sign-off under the name.",
+ "teaches": "Type can be the whole picture: size, weight, outline and colour changes carry the story, and every change lands on a beat.",
+ "portable": {
+  "fonts": "Inter (800 and 400 italic)",
+  "style": "Type only, full bleed. A saturated orange ground, near-black type set huge and tight, outline letters that fill solid as they land, an italic word for emphasis, a marquee of repeating rows moving in alternating directions, and hard colour-flash title cards (blue, black, paper) cut on the beat. Add motion blur on fast moves by averaging several draws inside the shutter.",
+  "sound": "a driving loop at 120 bpm with a hit on every slam and colour card, rising noise into the stack and the marquee, and a short sign-off under the name.",
+  "sizes": "stack the words one per line at a larger size and run the marquee rows taller."
+ }
+}

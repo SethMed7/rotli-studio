@@ -49,5 +49,11 @@
  ],
  "sizes": "Landscape is primary (lanes run left to right). Vertical turns the week to run top to bottom and stacks the people across the top.",
  "sound": "beatScore soft at 90 bpm: pencil scratches as ticks while strokes draw, a hit when the answer box lands, the sign-off with the stamp.",
- "teaches": "Drawing-on is its own motion language: stroke order is the story."
+ "teaches": "Drawing-on is its own motion language: stroke order is the story.",
+ "portable": {
+  "fonts": "JetBrains Mono for labels; draw the headings as single-stroke capitals",
+  "style": "A blueprint: pale lines on deep blue, a fine grid, hand-drawn strokes that draw themselves on in the order a hand would make them, mono labels and one warm accent for the answer. The camera pans across one large drawing.",
+  "sound": "a soft loop at 90 bpm with pencil-scratch ticks as strokes draw, a hit when the answer box lands, and a sign-off with the stamp.",
+  "sizes": "the week runs top to bottom and the people stand across the top."
+ }
 }

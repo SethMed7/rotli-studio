@@ -49,5 +49,10 @@
  ],
  "sizes": "Portrait 4:5 is primary; the square re-composes each slide (illustration beside the words where the portrait stacks them).",
  "sound": "none (a carousel is stills)",
- "teaches": "Texture is a style: the same kit that animates can print. Each slide is one frame (frame i*15+14 is exported)."
+ "teaches": "Texture is a style: the same kit that animates can print. Each slide is one frame (frame i*15+14 is exported).",
+ "portable": {
+  "fonts": "Inter (800, squeezed horizontally to read condensed), Instrument Serif Italic, JetBrains Mono",
+  "style": "A risograph print: two inks (a deep blue and a fluorescent pink, yellow as a rare third) overprinted with multiply blending and a slight misregistration, halftone dot fields, paper grain and big, tight headlines. Illustrations are simple hand-cut shapes with slightly wobbly edges.",
+  "sizes": "the square puts the illustration beside the words where the portrait stacks them."
+ }
 }

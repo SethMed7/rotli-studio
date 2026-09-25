@@ -193,8 +193,48 @@
    "tokens": 225599,
    "minutes": 20.2,
    "file": "workflows/runs/sketchExplainer.md"
+  },
+  {
+   "piece": "kineticPoster",
+   "description": "Build study: Kinetic Poster",
+   "launched": "2026-09-25 18:52",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 211302,
+   "minutes": 16.9,
+   "file": "workflows/runs/kineticPoster.md"
+  },
+  {
+   "piece": "particleWord",
+   "description": "Build study: Particle Word",
+   "launched": "2026-09-25 18:52",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 194240,
+   "minutes": 12.7,
+   "file": "workflows/runs/particleWord.md"
+  },
+  {
+   "piece": "dataStory",
+   "description": "Build study: Data Story",
+   "launched": "2026-09-25 18:52",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 199203,
+   "minutes": 14.9,
+   "file": "workflows/runs/dataStory.md"
+  },
+  {
+   "piece": "shapeMorph",
+   "description": "Build study: Shape Morph",
+   "launched": "2026-09-25 18:52",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 158853,
+   "minutes": 12.6,
+   "file": "workflows/runs/shapeMorph.md"
   }
  ],
  "reviews": 4,
- "requests": 26
+ "requests": 31
 }

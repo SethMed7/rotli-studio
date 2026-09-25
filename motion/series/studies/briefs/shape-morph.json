@@ -1,0 +1,55 @@
+{
+ "id": "shape-morph",
+ "no": 9,
+ "title": "Shape Morph",
+ "module": "src/canvas-core/studies/shapeMorph.ts",
+ "pieces": {
+  "square": "shapeMorph",
+  "landscape": "shapeMorphLandscape"
+ },
+ "primary": "square",
+ "kind": "video",
+ "fps": 60,
+ "bpm": 120,
+ "frames": 480,
+ "palette": "mono",
+ "style": "Geometry on a pale ground with a dot grid: one solid shape morphs circle → square → triangle → star → circle, rotating a little on each change, with three small coloured satellites orbiting it and a soft shadow. The dot grid ripples outward on each morph. A seamless loop.",
+ "learnsFrom": "Shape-morph moments in code-made reels: a primitive that becomes every other primitive, satellites and a reactive dot grid.",
+ "story": [
+  {
+   "from": 0,
+   "to": 120,
+   "what": "a circle breathes at the centre; three satellites (accent red, blue, ink) orbit it; the dot grid pulses once"
+  },
+  {
+   "from": 120,
+   "to": 240,
+   "what": "the circle snaps into a square with a quarter turn and an overshoot; the grid ripples outward from it"
+  },
+  {
+   "from": 240,
+   "to": 330,
+   "what": "the square folds into a triangle; the satellites change orbit direction"
+  },
+  {
+   "from": 330,
+   "to": 420,
+   "what": "the triangle bursts into a five-point star, the satellites flung wider, then pulled back"
+  },
+  {
+   "from": 420,
+   "to": 480,
+   "what": "the star softens back into the circle; everything returns to its first position so frame 479 flows into frame 0"
+  }
+ ],
+ "sizes": "Landscape keeps the shape centred and adds the current shape's name in small mono on the left and a four-step indicator on the right.",
+ "sound": "beatScore soft with loop:true at 120 bpm (tails wrap), a tick on each morph.",
+ "teaches": "Morph between shapes by sampling each outline at the same number of points and interpolating point by point; spring the interpolation, not the points.",
+ "portable": {
+  "fonts": "JetBrains Mono",
+  "loop": true,
+  "style": "Geometry on a pale ground with a dot grid: one solid near-black shape morphs circle → square → triangle → star → circle, rotating a little on each change, with three small coloured satellites orbiting it and a soft shadow beneath. Sample every outline at the same number of points and interpolate point by point with a spring. The dot grid ripples outward on each morph.",
+  "sound": "a soft loop at 120 bpm whose tails wrap around the end, with a tick on each morph.",
+  "sizes": "keep the shape centred, name the current shape in small mono on the left and show a four-step indicator on the right."
+ }
+}

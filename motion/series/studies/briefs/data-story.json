@@ -1,0 +1,59 @@
+{
+ "id": "data-story",
+ "no": 8,
+ "title": "Data Story",
+ "module": "src/canvas-core/studies/dataStory.ts",
+ "pieces": {
+  "landscape": "dataStory",
+  "vertical": "dataStoryVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 450,
+ "palette": "graphite",
+ "style": "A dark dashboard: a grid of rounded widgets on graphite, each animating its own data (a switch, a bar chart that re-sorts, a count-up percentage, a donut, a line chart that draws on, a live blob). Numbers roll like odometers. Coral accent for the headline figure, mint for good news.",
+ "learnsFrom": "UI and data-viz moments in code-made reels: a grid of widgets that animate together, numbers that count up, charts that draw on.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: the grid assembles, each widget springing in from its corner on a stagger; the big number reads 0%"
+  },
+  {
+   "from": 60,
+   "to": 150,
+   "what": "'Meetings found this week': the headline figure counts up to 92% while a bar chart of the weekdays rises"
+  },
+  {
+   "from": 150,
+   "to": 240,
+   "what": "a switch turns on ('Auto-book'), the bars re-sort from most to least free, and the figure climbs to 98%"
+  },
+  {
+   "from": 240,
+   "to": 330,
+   "what": "a line chart of 'hours saved' draws on with a dot riding its head; a donut fills to 3 of 4 teams"
+  },
+  {
+   "from": 330,
+   "to": 390,
+   "what": "the camera pushes into the headline widget until 98% fills the frame"
+  },
+  {
+   "from": 390,
+   "to": 450,
+   "what": "sign-off: 'Oriel' with 'hours given back' and the figure '14 h' in mint"
+  }
+ ],
+ "sizes": "Vertical stacks the widgets in one column with the headline figure on top, larger.",
+ "sound": "beatScore drive at 120 bpm with ticks as numbers roll, a hit on the switch and on 98%, and the sign-off under the name.",
+ "teaches": "Data motion is honest when numbers move with the shapes that show them: every figure tweens from the same clock as its chart.",
+ "portable": {
+  "fonts": "Inter (400, 600, 800 with tabular numbers) and JetBrains Mono",
+  "style": "A dark dashboard: a grid of rounded widgets on graphite, each animating its own data (a switch, a bar chart that re-sorts, a count-up percentage, a donut, a line chart that draws on, a live blob). Numbers roll like odometers. A coral accent for the headline figure and mint for good news. All data is invented and fixed, so every render is the same.",
+  "sound": "a driving loop at 120 bpm with ticks as numbers roll, a hit on the switch and on the top figure, and a short sign-off.",
+  "sizes": "stack the widgets in one column with the headline figure on top, larger."
+ }
+}

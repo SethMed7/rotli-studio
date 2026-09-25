@@ -69,7 +69,7 @@ export function toggle(
     t = Math.max(0, Math.min(1, on01));
   card(ctx, x, y, w, h, { r: h / 2, fill: t > 0.5 ? o.on : o.off });
   ctx.save();
-  ctx.globalAlpha = t < 0.5 ? t * 2 : 1;
+  ctx.globalAlpha *= t < 0.5 ? t * 2 : 1; // multiply: a parent fade must still apply
   card(ctx, x, y, w, h, { r: h / 2, fill: o.on });
   ctx.restore();
   const k = h * 0.8,

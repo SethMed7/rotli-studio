@@ -1,0 +1,59 @@
+{
+ "id": "particle-word",
+ "no": 7,
+ "title": "Particle Word",
+ "module": "src/canvas-core/studies/particleWord.ts",
+ "pieces": {
+  "landscape": "particleWord",
+  "square": "particleWordSquare"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 60,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "deep",
+ "style": "Generative: thousands of particles on a deep navy ground. Dust drifts, finds its places inside the letters of a word, releases into a 3D point-cloud sphere with orbit rings, becomes a flowing wave surface, and gathers into one bright point. One warm accent for a few particles and the rings.",
+ "learnsFrom": "Particle systems in code-made reels: a word assembled from dust, point clouds with orbit rings, a wave surface.",
+ "story": [
+  {
+   "from": 0,
+   "to": 120,
+   "what": "hook: a field of drifting dust with depth (near particles larger and brighter); a single accent particle crosses the frame"
+  },
+  {
+   "from": 120,
+   "to": 270,
+   "what": "the dust streams into the letters of 'ORIEL', each particle on its own delay, until the word is legible and softly shimmering"
+  },
+  {
+   "from": 270,
+   "to": 420,
+   "what": "the word breaks apart into a rotating 3D point-cloud sphere; two thin accent orbit rings tilt around it"
+  },
+  {
+   "from": 420,
+   "to": 570,
+   "what": "the sphere unrolls into a wave surface of points seen in perspective, rippling toward the viewer"
+  },
+  {
+   "from": 570,
+   "to": 660,
+   "what": "the wave folds into a vortex and every particle collapses into one bright point"
+  },
+  {
+   "from": 660,
+   "to": 720,
+   "what": "sign-off: the point opens into a small ring; 'Oriel' fades up beneath it with 'every hour, found'"
+  }
+ ],
+ "sizes": "Square frames the word on two lines ('ORI' over 'EL') and keeps the sphere and wave centred.",
+ "sound": "beatScore soft at 120 bpm with a whoosh into each change of form, a hit when the word is complete, and the sign-off under the ring.",
+ "teaches": "Give every particle a home in each form and one clock of its own; morphing is then just interpolation between homes with staggered springs.",
+ "portable": {
+  "fonts": "Inter (300 and 600)",
+  "style": "Generative: several thousand particles on a deep navy ground. Dust drifts in depth (near particles larger and brighter), finds its places inside the letters of a word (sample the word's pixels from an offscreen canvas), releases into a rotating 3D point-cloud sphere with two tilted orbit rings, becomes a rippling wave surface in perspective, and gathers into one bright point. One warm accent for a few particles and the rings. Seed the randomness so every render is identical.",
+  "sound": "a soft loop at 120 bpm with a whoosh into each change of form, a hit when the word is complete, and a short sign-off.",
+  "sizes": "set the word on two lines and keep the sphere and wave centred."
+ }
+}

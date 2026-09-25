@@ -10,6 +10,14 @@ if (!file) {
   process.exit(2);
 }
 const b = JSON.parse(readFileSync(file, "utf8"));
+// the engine refuses a beat that is not a whole number of frames; catch it in the brief, before an agent starts
+const beat = (60 / b.bpm) * b.fps;
+if (!Number.isInteger(beat)) {
+  console.error(
+    `${file}: ${b.bpm} bpm at ${b.fps} fps is a ${beat.toFixed(2)}-frame beat; pick a tempo that divides evenly`,
+  );
+  process.exit(1);
+}
 const pieces = Object.entries(b.pieces)
   .map(([size, id]) => `\`${id}\` (${size})`)
   .join(", ");

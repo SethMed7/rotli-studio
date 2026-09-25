@@ -59,5 +59,11 @@
  ],
  "sizes": "Vertical re-stacks: content scales up and each section is named large in the serif above the action.",
  "sound": "beatScore drive at 120 bpm: drums enter with the type; hits on type, interface and space; whooshes into type, particles and sign-off; ticks on the switch and the check; a three-note sign-off under the wordmark.",
- "teaches": "A reel is a list of techniques joined by one object (the dot). Continuity beats variety: every section is born from the last one's final shape."
+ "teaches": "A reel is a list of techniques joined by one object (the dot). Continuity beats variety: every section is born from the last one's final shape.",
+ "portable": {
+  "fonts": "Inter (800), Instrument Serif Italic, JetBrains Mono",
+  "style": "A dark ground with one accent colour, small mono labels in the corners (a title, the size, a running timecode, the section name) and a faint dot grid. Sans-serif for statements, a serif italic for feeling. Add motion blur by drawing each frame several times inside the shutter and averaging.",
+  "sound": "a four-chord minor loop at 120 bpm (pad, bass, plucked arpeggio, kick and hats from the type section), hits on the big cuts, rising noise into sections, soft ticks on the switch and the check, and a three-note bell sign-off under the lockup.",
+  "sizes": "the content scales up and each section is named large in the serif above the action."
+ }
 }

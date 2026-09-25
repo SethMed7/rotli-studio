@@ -44,5 +44,12 @@
  ],
  "sizes": "Square is primary. Landscape keeps the shape centred and adds the state name in small mono to the left and a four-dot state indicator to the right.",
  "sound": "beatScore soft with loop:true at 120 bpm (tails wrap); ticks on the press and the check.",
- "teaches": "A loop is a closed path in state space: key every property on springs, end on the first key, and prove the seam."
+ "teaches": "A loop is a closed path in state space: key every property on springs, end on the first key, and prove the seam.",
+ "portable": {
+  "fonts": "Inter (600) and JetBrains Mono",
+  "loop": true,
+  "style": "One rounded shape on a pale ground, an indigo accent, a soft floor shadow and a cursor. Every property of the shape (width, height, corner radius, colour, fill) is keyed on springs, and the last key equals the first so the loop closes.",
+  "sound": "a soft loop at 120 bpm whose tails wrap around the end, with ticks on the press and the check.",
+  "sizes": "the shape stays centred; the current state is named in small mono on the left and a four-dot state indicator sits on the right."
+ }
 }

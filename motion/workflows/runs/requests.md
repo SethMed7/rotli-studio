@@ -121,3 +121,25 @@ What was asked, in the owner's words. Everything in the motion room traces back 
 ## 26. 2026-09-25 15:09 UTC
 
 > I trust your dicision making for now go ahead and make all changes keep here then fire locally then when done I will review the actual finish then give my thoughts
+
+## 27. 2026-09-25 16:13 UTC
+
+> releasd all of this to main now
+
+## 28. 2026-09-25 16:21 UTC
+
+> yes deploy it and set up the CI/CD for auto deploy on merging to main
+
+## 29. 2026-09-25 16:23 UTC · sent mid-turn
+
+> Also lets brand the read me and create proper contriubute md agent md etc. what ever is needed
+
+## 30. 2026-09-25 18:33 UTC
+
+> Lets add in the studio download options so that I can dowload things when trying to post then also organize things have place for carousels that is just carousel slide possts. Then go ahead and also add to this I posted something today here - https://x.com/RotliCo/status/2103515910841467301?s=20 - just reciew this and then tell me what to post next that was 2 hours ago I will post now a carousel so lets generate something and get it in studio.
+
+## 31. 2026-09-25 18:41 UTC · sent mid-turn
+
+> When done with these changes then lets work on more studies analyze this and then use grok 4.7 to look through x find a bunch of videos analyze them and lets add more different styles and modes to our study. Then lets also have a copy button for the prompts. We also need to create independent prompts that can get similar style and value then the study but not tied to any specifc folder/thing bound to rotli something someone can just coy and give to claude then mess with
+> 
+> [Attached file "claude_motion_reel.mp4" is saved at: <a local folder>]

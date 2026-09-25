@@ -113,6 +113,8 @@ for (const p of pieces) {
     e.title = study.b.title;
     e.logline = study.b.teaches;
     e.style = study.b.palette;
+    const portable = `series/studies/portable/${study.b.id}.md`;
+    if (existsSync(join(ROOM, portable))) e.portable = portable;
     const pf = `series/studies/prompts/${study.b.id}.prompt.md`;
     if (existsSync(join(ROOM, pf))) e.prompt = pf;
   }

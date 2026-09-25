@@ -367,3 +367,8 @@ h1:focus { outline: none; } /* focus lands on the page heading after navigation;
 @media (max-width: 700px) { .strip img { height: 11rem; } }
 button.button { font: inherit; cursor: pointer; }
 .piece-top > div { min-width: 0; } /* the media column must shrink, or a strip of slides widens the page */
+
+/* ---- prompts: shown whole, in mono, ready to copy */
+pre.prompt { white-space: pre-wrap; font: 0.85rem/1.55 ui-monospace, "SF Mono", Menlo, monospace; background: var(--surface-2); border: 1px solid var(--border); border-radius: 0.6rem; padding: 1rem 1.2rem; max-height: 32rem; overflow: auto; }
+.prompts .row { align-items: start; }
+.prompts details { margin-top: 0.8rem; }
