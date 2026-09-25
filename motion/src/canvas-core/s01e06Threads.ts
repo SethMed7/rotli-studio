@@ -1,4 +1,4 @@
-// SEASON ONE · 06 — THREADS (60 s). Brief: season/episodes/s01e06.json
+// SEASON ONE · 06 — THREADS (60 s). Brief: series/season-one/episodes/s01e06.json
 // Setup: notes sit like huts along the tide line, unconnected; the quokka pins Trip ideas (the token) on the
 // middle hut and thinks: link. Turn (links): it strings [[links]] as ropes between the huts; each tied rope pulls
 // taut and lights up; the rope to a hut that doesn't exist yet (Snorkel spots) hangs slack in the sand: inert.

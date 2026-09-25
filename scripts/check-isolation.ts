@@ -34,6 +34,8 @@ const DECLARED_READS: Record<string, string> = {
   "motion/tools/detect.mjs": "looks for a Playwright browser in the user's cache (a tool, not a product)",
   "motion/brand/themes.json": "records which rotli files its tokens were computed from (provenance text, not a path it opens)",
   "src/motion/routes.ts": "shows the two global skills' SKILL.md read-only on the Skills page",
+  "scripts/lib/privacy.ts": "reads only the home folder's NAME, to find and refuse it in published text (opens nothing)",
+  "motion/tools/extract-runs.mjs": "reads only the home folder's NAME, to redact it from recovered transcripts (opens nothing there)",
   "scripts/check-isolation.ts": "this audit",
 };
 const SKIP = new Set(["node_modules", ".git", "target", "dist", "build", ".astro", ".turbo", ".next", ".cache", ".tmp", "coverage"]);
@@ -71,16 +73,16 @@ const home = (p: string) => p.replace(HOME, "~");
 
 // ---------------------------------------------------------------- 2. studio renders found anywhere else
 // Only what the studio MADE counts: renders and exports. Brand assets and app captures flow the other way
-// (product -> studio library/films) on purpose, so a product file equal to one of those is not a leak.
+// (product -> studio library/archive) on purpose, so a product file equal to one of those is not a leak.
 const studioMedia = new Map<number, { file: string; sha?: string }[]>(), studioNames = new Set<string>();
-const outputs = [join(MOTION, "out"), join(STUDIO, "exports"), ...(existsSync(join(STUDIO, "films")) ? readdirSync(join(STUDIO, "films")).flatMap((d) => ["out", "renders"].map((o) => join(STUDIO, "films", d, o))) : [])];
+const outputs = [join(MOTION, "out"), join(STUDIO, "exports"), ...(existsSync(join(STUDIO, "archive/films")) ? readdirSync(join(STUDIO, "archive/films")).flatMap((d) => ["out", "renders"].map((o) => join(STUDIO, "archive/films", d, o))) : [])];
 for (const dir of outputs) for (const f of walk(dir)) {
   if (!MEDIA.has(extname(f).toLowerCase())) continue; const s = statSync(f).size; if (s < 20_000) continue;
   (studioMedia.get(s) ?? studioMedia.set(s, []).get(s)!).push({ file: f }); studioNames.add(basename(f).replace(/\.\w+$/, ""));
 }
 const slugs = new Set<string>(JSON.parse(readFileSync(join(MOTION, "pieces.json"), "utf8")).pieces.map((p: { slug: string }) => p.slug));
 // pieces the owner chose to publish into a product: reported, but as intent rather than a leak
-const published = new Set<string>(existsSync(join(MOTION, "published.json")) ? JSON.parse(readFileSync(join(MOTION, "published.json"), "utf8")).published.map((p: { slug: string }) => p.slug) : []);
+const published = new Set<string>(existsSync(join(STUDIO, "publish/placements.json")) ? JSON.parse(readFileSync(join(STUDIO, "publish/placements.json"), "utf8")).published.map((p: { slug: string }) => p.slug) : []);
 const stemOf = (f: string) => basename(f).replace(/\.\w+$/, "").replace(/-(poster|thumb)$/, "");
 const worktrees = PRODUCTS.flatMap((p) => (git(p, "worktree", "list", "--porcelain") ?? "").split("\n").filter((l) => l.startsWith("worktree ")).map((l) => l.slice(9))).filter((w, i, a) => a.indexOf(w) === i);
 const trees = [...new Set([...PRODUCTS.filter(existsSync), ...worktrees])];
@@ -114,8 +116,8 @@ const trees = [...new Set([...PRODUCTS.filter(existsSync), ...worktrees])];
       const files = (git(p, "ls-tree", "-r", "--name-only", b) ?? "").split("\n").filter((f) => MEDIA.has(extname(f).toLowerCase()) && slugs.has(stemOf(f)));
       const undeclared = files.filter((f) => !published.has(stemOf(f))), deploys = ["origin/main", "origin/dev"].includes(b);
       const merged = git(p, "log", "-1", "--format=%h %ad %s", "--date=short", b, "--", ...new Set(files.map((f) => f.replace(/\/[^/]+$/, "")))) ?? "";
-      if (undeclared.length) add(deploys ? "FAIL" : "WARN", `remote branch ${b} of ${home(p)} carries ${undeclared.length} file(s) named after studio pieces${deploys ? " — this branch deploys" : " (not merged into main or dev)"}; last change: ${merged}. Declare them in motion/published.json if publishing them was intended`, undeclared.slice(0, 40));
-      if (files.length > undeclared.length) add("INFO", `remote branch ${b}: ${files.length - undeclared.length} file(s) published on purpose (motion/published.json)`);
+      if (undeclared.length) add(deploys ? "FAIL" : "WARN", `remote branch ${b} of ${home(p)} carries ${undeclared.length} file(s) named after studio pieces${deploys ? " — this branch deploys" : " (not merged into main or dev)"}; last change: ${merged}. Declare them in publish/placements.json if publishing them was intended`, undeclared.slice(0, 40));
+      if (files.length > undeclared.length) add("INFO", `remote branch ${b}: ${files.length - undeclared.length} file(s) published on purpose (publish/placements.json)`);
     }
     if (!leaks.length) add("PASS", `no remote branch of ${home(p)} carries studio pieces`);
   }
@@ -146,15 +148,15 @@ const trees = [...new Set([...PRODUCTS.filter(existsSync), ...worktrees])];
   const add = check("residue", "Nothing the studio made sits inside a product folder, even gitignored");
   let any = false;
   // ~/rotli/marketing/ was the studio's old home inside the product repo (gitignored). Anything left there is
-  // compared file-by-file (path + size) with the studio's films/: a full match means it is a leftover copy.
+  // compared file-by-file (path + size) with the studio's archive/films/: a full match means it is a leftover copy.
   const legacy = join(HOME, "rotli/marketing");
   if (existsSync(legacy)) for (const name of readdirSync(legacy).filter((n) => !n.startsWith("."))) {
-    const p = join(legacy, name), twin = [join(STUDIO, "films/launch-film", name), join(STUDIO, "films", name)].find(existsSync);
+    const p = join(legacy, name), twin = [join(STUDIO, "archive/films/launch-film", name), join(STUDIO, "archive/films", name)].find(existsSync);
     const files = [...walk(p)], missing = twin ? files.filter((f) => { const t = join(twin, relative(p, f)); return !existsSync(t) || statSync(t).size !== statSync(f).size; }) : files;
     add("WARN", `${home(p)} (gitignored now): ${missing.length ? `${missing.length} of ${files.length} file(s) exist ONLY here` : `all ${files.length} file(s) are already in the studio at ${home(twin!)}`}`, [`${mb(size(p))}${missing.length ? ` · e.g. ${missing.slice(0, 3).map((f) => relative(p, f)).join(", ")}` : " · safe to delete: a leftover copy"}`]);
     any = true;
   }
-  const harness = join(HOME, "rotli/tmp/companion-harness");
+  const harness = join(HOME, "rotli/tmp/studio-companions");
   if (existsSync(harness)) { any = true; add("WARN", `${home(harness)} exists: the companion render harness should be deleted after each run`); }
   const scratch = readdirSync("/tmp").filter((d) => /^(disc-|anidoodle|qf-|qsheet|ov$|k\d+$|v\d+b?$)/.test(d));
   if (scratch.length) add("INFO", `${scratch.length} scratch folder(s) in /tmp from studio work (outside every product; safe to delete)`, scratch.map((d) => `/tmp/${d}`));
@@ -169,7 +171,7 @@ if (!process.argv.includes("--offline")) {
       const res = await fetch(url, { signal: AbortSignal.timeout(8000), headers: { "user-agent": "rotli-studio isolation check" } }), html = await res.text();
       const refs = [...new Set([...html.matchAll(/["'(]([^"'()\s]+\.(?:mp4|webm|mov|webp|jpg|png))/g)].map((m) => m[1] ?? ""))].filter((u) => slugs.has(basename(u).replace(/\.\w+$/, "").replace(/-(poster|thumb)$/, "")) || studioNames.has(basename(u).replace(/\.\w+$/, "")));
       const undeclared = refs.filter((u) => !published.has(stemOf(u)));
-      if (undeclared.length) add("WARN", `${url} serves ${undeclared.length} file(s) named like studio pieces (not declared in motion/published.json)`, undeclared);
+      if (undeclared.length) add("WARN", `${url} serves ${undeclared.length} file(s) named like studio pieces (not declared in publish/placements.json)`, undeclared);
       else add("PASS", `${url} (HTTP ${res.status}) serves no undeclared studio media${refs.length ? ` (${refs.length} published on purpose)` : ""}`);
     } catch (e) { add("INFO", `${url} not reachable: ${(e as Error).message}`); }
   }
@@ -213,3 +215,4 @@ else {
   console.log(`isolation: ${summary.status}  (studio ${summary.studio}; products ${summary.products.join(", ")}; worktrees ${summary.worktrees.length})`);
   for (const c of summary.checks) { console.log(`\n[${c.status}] ${c.title}`); for (const f of c.findings) { console.log(`  ${f.level.padEnd(4)} ${f.text}`); for (const e of (f.evidence ?? []).slice(0, 12)) console.log(`         ${e}`); if ((f.evidence?.length ?? 0) > 12) console.log(`         … ${f.evidence!.length - 12} more`); } }
 }
+if (summary.status === "FAIL") process.exit(1);

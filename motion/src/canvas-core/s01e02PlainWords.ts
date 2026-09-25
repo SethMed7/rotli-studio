@@ -1,4 +1,4 @@
-// SEASON ONE · 02 — PLAIN WORDS. (60 s). Brief: season/episodes/s01e02.json
+// SEASON ONE · 02 — PLAIN WORDS. (60 s). Brief: series/season-one/episodes/s01e02.json
 // Setup: At the morning desk the quokka writes in plain Markdown.
 // Turn: Each line blooms as it's typed: tasks tick, a choice picks, a switch flips, a table fills, a Mermaid fence draws the ferry route.
 // Payoff: Aa → Raw markdown: it was plain text the whole time.

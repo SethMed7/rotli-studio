@@ -1,5 +1,5 @@
 // Register a Season episode and its three derivatives in pieces.json from its brief (idempotent):
-//   node tools/add-story.mjs season/episodes/s01e01.json
+//   node tools/add-story.mjs series/season-one/episodes/s01e01.json
 import { readFileSync, writeFileSync } from "node:fs";
 const b = JSON.parse(readFileSync(process.argv[2], "utf8")), base = b.id.replace(/^(s\d+e\d+).*/, "$1"), f = JSON.parse(readFileSync("pieces.json", "utf8"));
 const caption = `${b.logline} ${b.features.map((x) => x.claim).slice(0, 2).join(" ")} rotli.co`;

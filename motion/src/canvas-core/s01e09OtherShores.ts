@@ -1,4 +1,4 @@
-// SEASON ONE · 09 — OTHER SHORES. (60 s). Brief: season/episodes/s01e09.json
+// SEASON ONE · 09 — OTHER SHORES. (60 s). Brief: series/season-one/episodes/s01e09.json
 // Setup: A friend across the water has a browser and an old folder of Markdown notes.
 // Turn: Rotli Web opens a real folder in Chrome, Edge or Arc; the Helper brings Firefox, Zen and Brave. Back home on its Mac, the quokka shows how Rotli's first run inspects an old folder without writing anything, then opens it in place or imports a copy.
 // Payoff: Two islands, one way of working, every note still in its own folder.

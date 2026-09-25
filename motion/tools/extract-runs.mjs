@@ -6,14 +6,19 @@
 // Writes workflows/runs/<pieceId>.md (prompt → follow-ups → report, with model, tokens, minutes),
 // workflows/runs/reviews.md (the frame-review prompts sent to other models), workflows/runs/requests.md
 // (the owner's requests, in order) and workflows/runs/runs.json (the index the studio site reads).
-// Re-running is safe: it rewrites these files from the transcripts and touches nothing else.
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+// Re-running is safe: it rewrites these files from the transcripts and touches nothing else. Pass every
+// transcript that built the current runs (runs.json lists them as sources); leaving one out is refused.
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOM = resolve(dirname(fileURLToPath(import.meta.url)), ".."), OUT = join(ROOM, "workflows/runs");
-const files = process.argv.slice(2); if (!files.length) { console.error("usage: node tools/extract-runs.mjs <session.jsonl> [...]"); process.exit(1); }
+const files = process.argv.slice(2).filter((a) => a !== "--replace"); if (!files.length) { console.error("usage: node tools/extract-runs.mjs <session.jsonl> [...] [--replace]"); process.exit(1); }
+// the outputs are rebuilt from exactly the transcripts given, so leaving one out would silently drop its runs
+const before = existsSync(join(OUT, "runs.json")) ? JSON.parse(readFileSync(join(OUT, "runs.json"), "utf8")).sources ?? [] : [];
+const dropped = before.filter((s) => !files.some((f) => basename(f) === s));
+if (dropped.length && !process.argv.includes("--replace")) { console.error(`refused: runs.json was built from ${dropped.join(", ")} too; pass every transcript again (or --replace to drop them knowingly)`); process.exit(2); }
 const ids = JSON.parse(readFileSync(join(ROOM, "pieces.json"), "utf8")).pieces.map((p) => p.id);
 
 // "Build episode 02 Folder" -> ep02Folder · "Build S01E03 The Workshop" -> s01e03Workshop

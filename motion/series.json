@@ -8,8 +8,8 @@
    "prefix": "s01e",
    "shape": "10 story episodes · 60 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
    "logline": "A quokka arrives on a quiet island with its thoughts blowing everywhere, learns to keep them, and as the seasons turn everything it made is still there, in plain files.",
-   "docs": ["season/bible.md", "workflows/README.md", "workflows/agent-preamble.md", "workflows/review-checklist.md"],
-   "schedule": "../launch/rotli-launch-month.md",
+   "docs": ["series/season-one/bible.md", "workflows/README.md", "workflows/agent-preamble.md", "workflows/review-checklist.md"],
+   "schedule": "../docs/launch/rotli-launch-month.md",
    "sealed": false
   },
   {
@@ -19,8 +19,8 @@
    "prefix": "ep",
    "shape": "8 feature explainers · 30 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
    "logline": "One feature per episode, shown in the app: title, demo, end card. The launch month's backbone.",
-   "docs": ["README.md", ".claude/skills/motion-room/SKILL.md"],
-   "schedule": "../launch/rotli-launch-month.md",
+   "docs": ["README.md", "../.claude/skills/motion-room/SKILL.md"],
+   "schedule": "../docs/launch/rotli-launch-month.md",
    "sealed": false
   },
   {
@@ -30,7 +30,7 @@
    "pieces": ["rotliStory", "teaser15", "heroFilm", "linkedinCard", "xCard"],
    "shape": "the 60 s film (sealed) · its 15 s vertical recut · hero and social cards from its sunset",
    "logline": "The first film: the quokka on Rottnest, from the ferry to the sunset. It is locked; its golden must always print SAME.",
-   "docs": ["README.md"],
+   "docs": ["series/the-film/story.md", "series/the-film/score.txt", "README.md"],
    "sealed": true
   },
   {

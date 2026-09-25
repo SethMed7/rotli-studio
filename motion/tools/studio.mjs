@@ -6,12 +6,12 @@
 //   node tools/studio.mjs check [id|all]       dead-air scan of rendered videos (no identical consecutive frames)
 //   node tools/studio.mjs catalog              out/index.html: every piece, playable, with its files
 import { execFileSync, spawnSync } from "node:child_process";
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), ".."), EXPORTS = resolve(ROOT, "..", "exports");
 const P = JSON.parse(readFileSync(join(ROOT, "pieces.json"), "utf8")).pieces, [cmd = "list", which = "all"] = process.argv.slice(2);
-const pick = () => (which === "all" ? P : P.filter((p) => p.id === which || p.slug === which));
+const pick = () => { const got = which === "all" ? P : P.filter((p) => p.id === which || p.slug === which); if (!got.length) { console.error(`no piece matches "${which}" (an id or slug from pieces.json, or all)`); process.exit(2); } return got; };
 const node = (args) => { const r = spawnSync("node", args, { cwd: ROOT, stdio: "inherit" }); if (r.status) process.exitCode = r.status; return r.status; };
 const videoOut = (p) => join(ROOT, "out", "video", `${p.slug}.mp4`), slideDir = (p) => join(EXPORTS, p.slug, p.format);
 
@@ -22,6 +22,7 @@ if (cmd === "render") for (const p of pick()) {
   const { buildPage } = await import("./build-page.mjs"), { detect } = await import("./detect.mjs"), pw = await import("./adapters/playwright.mjs");
   const page = await buildPage({ entry: `src/hosts/page-${p.id}.ts`, out: join(ROOT, "dist", `${p.id}.html`), title: p.id });
   const s = await pw.open(detect(), page.out, { scale: 1, workers: 1 }), meta = await s.info(), dir = slideDir(p); mkdirSync(dir, { recursive: true });
+  for (const f of readdirSync(dir)) if (/^\d+\.png$/.test(f)) rmSync(join(dir, f)); // a shorter carousel must not keep old trailing slides
   const n = meta.durationFrames / 15; for (let i = 0; i < n; i++) { const f = await s.frame(i * 15 + 14, 0); writeFileSync(join(dir, `${String(i + 1).padStart(2, "0")}.png`), f.png); }
   await s.close(); if (p.caption) writeFileSync(join(EXPORTS, p.slug, "captions.md"), `# ${p.slug}\n\n${p.caption}\n`);
   console.log(`${p.id}: ${n} image(s) -> ${relative(ROOT, dir)}`);

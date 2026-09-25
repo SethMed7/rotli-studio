@@ -3,27 +3,32 @@
 Everything below is a command. The data (briefs) and the instructions (the preamble) are files, so an
 episode can be rebuilt byte for byte, or re-made by a new agent from the same prompt.
 
+Every series keeps its own material together: `series/<series-id>/` holds the bible, the briefs and the prompts
+(the Season One prompts were regenerated when they moved there on 2026-09-25; only the paths changed, and the
+verbatim prompts the agents received are in `runs/`).
+
 ## Make a story episode (Season One shape)
 
 ```sh
 # 1. the brief is the contract: story, atmosphere, style, cast, feature claims (sourced), scene list
-$EDITOR season/episodes/s01eNN.json            # copy an existing one; scenes must sum to 1800 frames
+$EDITOR series/season-one/episodes/s01eNN.json            # copy an existing one; scenes must sum to 1800 frames
 # 2. the prompt: the preamble that worked, plus the brief (deterministic)
-node tools/brief-to-prompt.mjs season/episodes/s01eNN.json > workflows/prompts/s01eNN.prompt.md
+node tools/brief-to-prompt.mjs series/season-one/episodes/s01eNN.json > series/season-one/prompts/s01eNN.prompt.md
 # 3. build: hand that prompt to an agent (Claude Code Agent tool, `codex exec` with the prompt on stdin), or follow it yourself.
-#    The first step it takes: node tools/new-episode.mjs season/episodes/s01eNN.json  (a runnable stub)
+#    The first step it takes: node tools/new-episode.mjs series/season-one/episodes/s01eNN.json  (a runnable stub)
 # 4. review: workflows/review-checklist.md
 # 5. ship
 node tools/derive-modules.mjs <id> "Title line|Second line" <word-to-underline>
-node tools/add-story.mjs season/episodes/s01eNN.json
+node tools/add-story.mjs series/season-one/episodes/s01eNN.json
 node tools/studio.mjs render <id>  && node tools/studio.mjs check <id>  && node tools/studio.mjs golden <id> --record
 node tools/studio.mjs catalog
 ```
 
 ## Make a new season
 
-1. Write `season/bible.md` for it: three-sentence arc, token, cast, feature map (each episode owns *new* features).
-2. One brief per episode (the Season One briefs are the template).
+1. Make `series/<series-id>/` with a `bible.md`: three-sentence arc, token, cast, feature map (each episode owns *new* features).
+2. One brief per episode in `series/<series-id>/episodes/` (the Season One briefs are the template), and add the series to
+   `series.json`. Prompts go in `series/<series-id>/prompts/`.
 3. Pick atmospheres from `src/canvas-core/studio/atmospheres.ts`, or add one there (a family, a ground, ambient life, a music
    preset). Adding one is additive: run `golden all` after.
 4. Fan out in waves of 4–5 agents with the generated prompts; review every sheet yourself before registering.

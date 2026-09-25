@@ -11,3 +11,15 @@ This repository includes software from anidoodle:
 
 anidoodle's files, its unmodified LICENSE and NOTICE, and the list of files Rotli contributors
 changed are in motion/third_party/anidoodle/. Source: https://github.com/alexgreensh/anidoodle
+
+Fonts (library/fonts/ and motion/assets/fonts/, copied by scripts/sync-library.ts):
+
+  Baloo 2
+  Copyright 2019 The Baloo 2 Project Authors (https://github.com/EkType/Baloo2)
+  Licensed under the SIL Open Font License, Version 1.1 (OFL-Baloo2.txt beside each copy).
+  The font is not covered by this repository's MIT licence.
+
+  General Sans
+  Copyright 2017-2021 Indian Type Foundry. All rights reserved. General Sans is a trademark of the
+  Indian Type Foundry (ITF), distributed by Fontshare under its terms (https://fontshare.com/terms).
+  The font is not covered by this repository's MIT licence.

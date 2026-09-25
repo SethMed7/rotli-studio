@@ -7,7 +7,7 @@ description: Take the rotli studio motion room as a foundation for ANOTHER produ
 
 **Run the guided flow: the global `brand-motion-studio` skill** (`~/.claude/skills/brand-motion-studio/SKILL.md`).
 It asks the owner questions (Opus plus AskUserQuestion) around these deterministic tools. Why it's
-shaped that way, and what is still Rotli-shaped: `motion/EVALUATION.md`.
+shaped that way, and what is still Rotli-shaped: `docs/evaluation.md`.
 
 The short version, if you are doing it by hand:
 
@@ -23,4 +23,4 @@ The short version, if you are doing it by hand:
    draw nothing).
 5. Font files only with the owner's licence confirmation. Captions only from the product's own site.
 6. Still Rotli-specific: `rotli/island.ts` and the `island-*`/`harbour-day`/`night-vault` atmospheres, the
-   quokka rig, and `studio/ui.ts`'s notes-app window. Replace per product (see EVALUATION.md).
+   quokka rig, and `studio/ui.ts`'s notes-app window. Replace per product (see `docs/evaluation.md`).

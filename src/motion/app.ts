@@ -23,7 +23,7 @@ type Manifest = { generated: string; pieces: Piece[]; series: Series[] };
 
 // STATIC: the hosted, read-only snapshot (scripts/export-site.ts). No server: API answers are .json files,
 // and anything that renders, verifies or audits on this Mac is left out.
-const STATIC = (window as unknown as { STUDIO_STATIC?: boolean }).STUDIO_STATIC === true;
+const STATIC = document.querySelector("meta[name='studio-static']") !== null;
 const api = (name: string) => (STATIC ? `/api/motion/${name}.json` : `/api/motion/${name}`);
 const $ = (s: string) => document.querySelector<HTMLElement>(s)!;
 const main = $("#main"), nav = $("#nav");
@@ -36,7 +36,7 @@ class Stale extends Error {}
 const text = async (url: string) => { const g = gen, r = await fetch(url); if (!r.ok) throw new Error(`${r.status} ${url}`); const t = await r.text(); if (g !== gen) throw new Stale(); return t; };
 const json = async <T>(url: string, init?: RequestInit) => { const g = gen, r = await fetch(url, init); if (!r.ok) throw new Error(`${r.status} ${url}`); const v = (await r.json()) as T; if (g !== gen) throw new Stale(); return v; };
 /** a section that failed to load says so (and a stale one says nothing) */
-const failed = (el: HTMLElement | null) => (e: unknown) => { if (!(e instanceof Stale) && el) el.innerHTML = `<p class="error">Could not load this: ${esc(String(e))}. <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; };
+const failed = (el: HTMLElement | null) => (e: unknown) => { if (!(e instanceof Stale) && el) el.innerHTML = `<p class="error">Could not load this: ${esc(String(e))}. <button class="link retry" type="button">Retry</button></p>`; };
 const smooth = (): ScrollBehavior => (matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth");
 /** Markdown shown inside a page that already has its h1: every heading steps down one level */
 const embedded = (html: string) => html.replace(/<(\/?)h([1-5])(\b[^>]*)>/g, (_, slash: string, n: string, rest: string) => `<${slash}h${Number(n) + 1}${rest}>`);
@@ -126,7 +126,7 @@ function library() {
 // ---------------------------------------------------------------- posts: what has been published, as links
 type Post = { platform: string; url: string; date: string; text: string; pieces: string[] };
 async function posts() {
-  const data = await json<{ posts: Post[] }>(m("posts.json"));
+  const data = await json<{ posts: Post[] }>(s("publish/posts.json"));
   const when = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
   main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Posts</nav><header class="page-head"><h1>Posts</h1><p>Where the studio's work has been published. Each entry links to the post on its platform, with the pieces it shares.</p>
     <details class="maintainer"><summary>How a post gets here</summary><p>Only links to the owner's own accounts are accepted: <code>bun scripts/link-post.ts &lt;url&gt; [--piece &lt;id&gt;]</code> checks the URL against the account patterns in <code>publish/posts.json</code>, and the change reaches this page only through a push by the repository owner. The check is on the link's account handle; the post itself stays on its platform.</p></details></header>
@@ -276,9 +276,9 @@ async function workflows() {
   const prompts = M.series.flatMap((x) => (x.episodes ?? []).map((e) => byId(e.main ?? "")?.prompt).filter(Boolean)) as string[];
   const briefs = M.pieces.filter((p) => p.brief).map((p) => p.brief!) ;
   await docPage("Workflows & prompts", "How any piece is made, and made again. A brief (JSON) plus the preamble becomes the agent prompt, deterministically; the review checklist gates every sheet.", [
-    { label: "How to make a piece", path: "workflows/README.md", group: "Process" }, { label: "Agent preamble", path: "workflows/agent-preamble.md", group: "Process" }, { label: "Review checklist", path: "workflows/review-checklist.md", group: "Process" }, { label: "Season One bible", path: "season/bible.md", group: "Process" },
-    ...prompts.map((p) => ({ label: p.replace(/^workflows\/prompts\//, "").replace(".prompt.md", " prompt"), path: p, group: "Episode prompts" })),
-    ...briefs.map((b) => ({ label: b.replace(/^season\/episodes\//, "").replace(".json", " brief"), path: b, group: "Episode briefs" })),
+    { label: "How to make a piece", path: "workflows/README.md", group: "Process" }, { label: "Agent preamble", path: "workflows/agent-preamble.md", group: "Process" }, { label: "Review checklist", path: "workflows/review-checklist.md", group: "Process" }, { label: "Season One bible", path: "series/season-one/bible.md", group: "Process" },
+    ...prompts.map((p) => ({ label: p.replace(/^series\/[\w-]+\/prompts\//, "").replace(".prompt.md", " prompt"), path: p, group: "Episode prompts" })),
+    ...briefs.map((b) => ({ label: b.replace(/^series\/[\w-]+\/episodes\//, "").replace(".json", " brief"), path: b, group: "Episode briefs" })),
   ], param("doc"));
 }
 async function runs() {
@@ -303,8 +303,9 @@ async function tools() {
 }
 async function docs() {
   await docPage("Docs & licences", "What the studio is, what it proved, what's still Rotli-shaped, and the licences it ships under.", [
-    { label: "Evaluation", path: "EVALUATION.md", group: "Motion room" }, { label: "Motion room README", path: "README.md", group: "Motion room" }, { label: "Launch month plan", path: "../launch/rotli-launch-month.md", group: "Motion room" },
-    { label: "Studio README", path: "../README.md", group: "Studio" }, { label: "Films", path: "../films/README.md", group: "Studio" },
+    { label: "Evaluation: what ports to other products", path: "../docs/evaluation.md", group: "Motion room" }, { label: "Motion room README", path: "README.md", group: "Motion room" }, { label: "Launch month plan", path: "../docs/launch/rotli-launch-month.md", group: "Motion room" },
+    { label: "Studio README", path: "../README.md", group: "Studio" }, { label: "Architecture", path: "../ARCHITECTURE.md", group: "Studio" }, { label: "Design rules", path: "../DESIGN.md", group: "Studio" }, { label: "Archive (first films)", path: "../archive/README.md", group: "Studio" },
+    { label: "Codex review 2026-09-25: triage", path: "../docs/reviews/2026-09-25-codex-astra/triage.md", group: "Reviews" }, { label: "Security review", path: "../docs/reviews/2026-09-25-codex-astra/security.md", group: "Reviews" }, { label: "Architecture review", path: "../docs/reviews/2026-09-25-codex-astra/architecture.md", group: "Reviews" }, { label: "Product and UX review", path: "../docs/reviews/2026-09-25-codex-astra/product.md", group: "Reviews" },
     { label: "Licence (MIT)", path: "../LICENSE", group: "Licences" }, { label: "NOTICE", path: "../NOTICE", group: "Licences" }, { label: "anidoodle (Apache-2.0): attribution", path: "third_party/anidoodle/README.md", group: "Licences" }, { label: "anidoodle LICENSE", path: "third_party/anidoodle/LICENSE", group: "Licences" },
   ], param("doc"));
 }
@@ -350,7 +351,7 @@ async function route() {
     else if (parts[0] === "doc") await doc(decodeURIComponent(parts.slice(1).join("/")));
     else if (parts[0] === "isolation") await isolation();
     else notFound();
-  } catch (e) { if (e instanceof Stale || g !== gen) return; main.innerHTML = `<p class="error">Could not load this page: ${esc(String(e))}. <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; }
+  } catch (e) { if (e instanceof Stale || g !== gen) return; main.innerHTML = `<p class="error">Could not load this page: ${esc(String(e))}. <button class="link retry" type="button">Retry</button></p>`; }
   if (turned && !h.includes("#sec-")) { const h1 = main.querySelector<HTMLElement>("h1"); if (h1) { h1.tabIndex = -1; h1.focus({ preventScroll: true }); } }
   if (!h.includes("#sec-")) main.scrollTo?.(0, 0);
   document.title = parts[0] ? `${main.querySelector("h1")?.textContent?.trim() ?? "rotli"} · rotli studio` : "rotli studio";
@@ -358,11 +359,12 @@ async function route() {
 let routed = false; // the first render is not a page turn
 // in-page section links (#sec-…) must not trigger the router
 document.addEventListener("click", (e) => {
+  if ((e.target as HTMLElement).closest("button.retry")) { location.reload(); return; } // no inline handlers: the hosted CSP forbids them
   const skip = (e.target as HTMLElement).closest<HTMLAnchorElement>("a.skip"); if (skip) { e.preventDefault(); main.focus(); return; }
   const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: smooth() }); });
 window.addEventListener("hashchange", route);
 try { M = await json<Manifest>(api("manifest")); }
-catch (e) { main.innerHTML = `<p class="error">The studio could not load its catalogue (${esc(String(e))}). <button class="link" type="button" onclick="location.reload()">Retry</button></p>`; throw e; }
+catch (e) { main.innerHTML = `<p class="error">The studio could not load its catalogue (${esc(String(e))}). <button class="link retry" type="button">Retry</button></p>`; throw e; }
 mountSound(document.getElementById("sound-toggle") as HTMLButtonElement);
 if (STATIC) document.getElementById("create-link")?.remove(); // the content editor only runs on the Mac
 route();

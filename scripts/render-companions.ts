@@ -15,7 +15,13 @@ const spec = JSON.parse(readFileSync(join(import.meta.dir, "..", "motion", "bran
 const outDir = join(import.meta.dir, "..", "library", "companion-looks");
 const harness = join(source, "tmp", "studio-companions");
 const PORT = 5198;
-mkdirSync(harness, { recursive: true }); mkdirSync(outDir, { recursive: true });
+// the harness is the one thing this studio ever writes inside the product checkout (its gitignored tmp/, because
+// Vite must serve the product's own source); a folder already there is not ours to overwrite or delete
+if (existsSync(harness)) { console.error(`refused: ${harness} already exists; remove it by hand if it is a leftover of this script`); process.exit(2); }
+mkdirSync(outDir, { recursive: true });
+let vite: ReturnType<typeof Bun.spawn> | null = null;
+try {
+mkdirSync(harness, { recursive: true });
 const styles = ["base", "app", "notes", "editor", "render", "command", "quick", "onboarding", "board", "memex"].map((s) => `import "../../src/styles/${s}.css";`).join("\n");
 writeFileSync(join(harness, "index.html"), `<!doctype html><html data-theme="light"><head><meta charset="utf-8"><style>html,body{margin:0;background:transparent!important}#root{display:inline-block}</style></head><body><div id="root"></div><script type="module" src="./main.tsx"></script></body></html>`);
 writeFileSync(join(harness, "main.tsx"), `${styles}
@@ -26,8 +32,7 @@ const q = new URLSearchParams(location.search);
 useUiStore.setState({ quokkaCompanionEnabled: true, quokkaAccessoryHue: Number(q.get("hue") ?? 38), quokkaLineColor: "auto" } as never);
 ReactDOM.createRoot(document.getElementById("root")!).render(<div id="cell" style={{ width: ${spec.size}, height: ${spec.size} }}><Character name={q.get("pose") as never} size={${spec.size}} treatment={q.get("style") as never} accessory={q.get("accessory") as never} alwaysVisible /></div>);
 `);
-const vite = Bun.spawn(["bunx", "vite", "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"], { cwd: source, stdout: "pipe", stderr: "pipe" });
-try {
+vite = Bun.spawn(["bunx", "vite", "--port", String(PORT), "--strictPort", "--host", "127.0.0.1"], { cwd: source, stdout: "pipe", stderr: "pipe" });
   for (let i = 0; i < 60; i++) { try { if ((await fetch(`http://127.0.0.1:${PORT}/tmp/studio-companions/index.html`)).ok) break; } catch {} await Bun.sleep(500); }
   const browser = await chromium.launch(), page = await browser.newPage({ viewport: { width: spec.size + 40, height: spec.size + 40 } });
   for (const look of spec.looks) {
@@ -40,6 +45,6 @@ try {
   }
   await browser.close();
 } finally {
-  vite.kill(); rmSync(harness, { recursive: true, force: true });
+  vite?.kill(); rmSync(harness, { recursive: true, force: true }); // setup failures clean up too
 }
 console.log(`companions: ${spec.looks.length} looks -> ${outDir}`);

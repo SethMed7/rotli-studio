@@ -51,4 +51,5 @@ mkdirSync(join(library, "uploads"), { recursive: true });
 console.log(`library: ${copied} files from ${source}`);
 
 // The twelve theme environments come from the app's CSS, computed in Chromium.
-Bun.spawnSync(["bun", join(import.meta.dir, "sync-themes.ts"), source], { stdout: "inherit", stderr: "inherit" });
+const themes = Bun.spawnSync(["bun", join(import.meta.dir, "sync-themes.ts"), source], { stdout: "inherit", stderr: "inherit" });
+if (themes.exitCode !== 0) { console.error(`sync-themes failed (exit ${themes.exitCode})`); process.exit(themes.exitCode ?? 1); }

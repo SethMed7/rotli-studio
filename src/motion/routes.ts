@@ -10,8 +10,8 @@ const MOTION = join(ROOT, "motion");
 const OUT = join(MOTION, "out");
 
 // What the site may read. Top-level names only; everything under them is allowed, nothing else is.
-const MOTION_OPEN = new Set(["out", "golden", "season", "workflows", "brand", "src", "tools", "examples", "assets", "third_party", "pieces.json", "series.json", "posts.json", "README.md", "EVALUATION.md", "package.json"]);
-const STUDIO_OPEN = new Set(["launch", ".claude", "AGENTS.md", "README.md", "LICENSE", "NOTICE", "films", "scripts", "exports", "library"]);
+const MOTION_OPEN = new Set(["out", "golden", "series", "workflows", "brand", "src", "tools", "assets", "third_party", "pieces.json", "series.json", "README.md", "package.json"]);
+const STUDIO_OPEN = new Set([".claude", "AGENTS.md", "ARCHITECTURE.md", "DESIGN.md", "README.md", "LICENSE", "NOTICE", "archive", "docs", "publish", "scripts", "sound", "exports", "library"]);
 const TEXT = new Set([".ts", ".mjs", ".js", ".py", ".md", ".txt", ".json", ".sh", ".css", ".html"]);
 
 // The public inventory: a file is servable only if git tracks it (or it sits in a generated-output folder),
@@ -64,7 +64,7 @@ const MANIFEST = join(OUT, "manifest.json");
 /** the newest modification time under these paths (files and folders, recursively; skips node_modules) */
 const newest = (paths: string[]): number => { let t = 0; const walk = (p: string) => { if (!existsSync(p)) return; const st = statSync(p); t = Math.max(t, st.mtimeMs); if (st.isDirectory()) for (const e of readdirSync(p)) if (e !== "node_modules" && e !== "out") walk(join(p, e)); }; paths.forEach(walk); return t; };
 // everything the manifest is derived from: catalogue, series, runs, goldens, briefs, brand, piece source, renders
-const MANIFEST_INPUTS = () => [join(MOTION, "pieces.json"), join(MOTION, "series.json"), join(MOTION, "workflows"), join(MOTION, "golden"), join(MOTION, "season"), join(MOTION, "brand"), join(MOTION, "src"), join(OUT, "video")];
+const MANIFEST_INPUTS = () => [join(MOTION, "pieces.json"), join(MOTION, "series.json"), join(MOTION, "workflows"), join(MOTION, "golden"), join(MOTION, "series"), join(MOTION, "brand"), join(MOTION, "src"), join(OUT, "video")];
 let stamp: { at: number; t: number } | null = null;
 const inputsStamp = () => { if (!stamp || Date.now() - stamp.at > 3000) stamp = { at: Date.now(), t: newest(MANIFEST_INPUTS()) }; return stamp.t; };
 const stale = () => !existsSync(MANIFEST) || inputsStamp() > statSync(MANIFEST).mtimeMs;

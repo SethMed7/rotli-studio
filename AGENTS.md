@@ -4,7 +4,7 @@ Rotli's media studio, **open source** (MIT) at github.com/SethMed7/rotli-studio,
 rotli repo: the repository is public. Write synthetic data only; never a home path (use `~` or
 `/Users/example`), personal email, device name, vault content, Keychain value or real screenshot; client and
 private names stay in the gitignored `deploy/private-markers.local.txt`. `bun run check:public` (gitleaks over
-history + tracked-file scan) runs as the pre-push hook and must pass. The hosted Motion room snapshot is
+history + a scan of the pushed commits' files) runs as the pre-push hook and must pass. The hosted Motion room snapshot is
 https://studio.rotli.co (deploy/README.md).
 
 Branches: only the owner can create, update, delete or force-push `main`, `dev` and `release*` (GitHub ruleset
@@ -12,7 +12,7 @@ Branches: only the owner can create, update, delete or force-push `main`, `dev` 
 as the owner and never edit rulesets. Two rooms:
 
 - **Create** (`server.ts`, `src/`, `posts/`, `static/`): the content editor (HTML social templates, PNG export) at
-  `/create`. **Posts** is different: the Motion room page listing published posts as links (`motion/posts.json`,
+  `/create`. **Posts** is different: the Motion room page listing published posts as links (`publish/posts.json`,
   added only with `bun scripts/link-post.ts <url>`, which accepts the owner's accounts only).
 - **Motion room** (`motion/`): code-drawn films, shorts, carousels and stills. Read
   `.claude/skills/motion-room/SKILL.md` before touching it; `.claude/skills/repurpose-brand/SKILL.md`
@@ -24,7 +24,10 @@ tools and the isolation audit (`bun scripts/check-isolation.ts`).
 
 Isolation: nothing the studio makes is written into a product folder (~/rotli and any other product; the list is the gitignored deploy/products.local.txt). Product
 repos are READ (brand sources, declared in the audit). Publishing a piece into a product is the owner's
-decision and is declared in `motion/published.json`.
+decision and is declared in `publish/placements.json`.
+
+Where things go: `ARCHITECTURE.md` gives every kind of thing exactly one home (series material in
+`motion/series/<id>/`, publishing records in `publish/`, docs in `docs/`); add a row there before inventing a new place.
 
 Rules: do not commit unless asked; never change a sealed piece's pixels (`node motion/tools/studio.mjs golden all`
 must print SAME); claims must match rotli.co; the quokka and themes come from the rotli app, never hand-drawn.

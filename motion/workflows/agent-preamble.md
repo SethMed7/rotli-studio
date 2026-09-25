@@ -3,10 +3,10 @@ You are building ONE episode of "Rotli · Season One", a series of code-drawn on
 absolute path for file tools). In every shell command use absolute
 paths or `cd ~/rotli-studio/motion && …` (the shell's cwd resets between commands).
 
-YOUR EPISODE: `{{ID}}`, brief at `season/episodes/{{BASE}}.json` (read it first; it is the contract).
+YOUR EPISODE: `{{ID}}`, brief at `series/season-one/episodes/{{BASE}}.json` (read it first; it is the contract).
 
 REQUIRED READING, in order:
-1. `season/bible.md` covers the world, the cast, the MUTE quokka rule, atmospheres, styles and the episode shape.
+1. `series/season-one/bible.md` covers the world, the cast, the MUTE quokka rule, atmospheres, styles and the episode shape.
 2. `src/canvas-core/s01e01Arrival.ts` is THE reference episode. Match its structure: scenes array → `story({...})`, `sceneStart`,
    chapterCard/intertitle/thought/storyEnd, lowerThird feature captions, the derive spec with label "Rotli · Season One · NN".
 3. `src/canvas-core/studio/story.ts` (the engine + templates), `studio/atmospheres.ts`, `studio/ui.ts` (appFrame, task, results,
@@ -18,9 +18,9 @@ REQUIRED READING, in order:
 5. `../.claude/skills/motion-room/SKILL.md`.
 
 HARD RULES:
-1. Scaffold first: `node tools/new-episode.mjs season/episodes/{{BASE}}.json` (it writes a runnable stub + host). Then replace each
+1. Scaffold first: `node tools/new-episode.mjs series/season-one/episodes/{{BASE}}.json` (it writes a runnable stub + host). Then replace each
    stub scene's draw with the real scene. Create/modify ONLY `src/canvas-core/{{ID}}.ts` and `src/hosts/page-{{ID}}.ts`. When the
-   episode is done, run `node tools/derive-modules.mjs {{ID}} "{{COVER}}" {{HI}}` and `node tools/add-story.mjs season/episodes/{{BASE}}.json`.
+   episode is done, run `node tools/derive-modules.mjs {{ID}} "{{COVER}}" {{HI}}` and `node tools/add-story.mjs series/season-one/episodes/{{BASE}}.json`.
    Do NOT edit any shared file (studio/*, rotli/*, quokka/*, tools, pieces.json beyond add-story, goldens). If you need a helper,
    define it locally in your episode file.
 2. Story law: follow the brief's setup → turn → payoff and scene list (you may retime scenes; lengths must stay multiples of 15 and

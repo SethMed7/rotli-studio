@@ -11,7 +11,7 @@ their evidence, and ask the owner only the questions evidence can't answer. Each
 file on disk and a picture the owner has approved, so the flow can stop and resume at any phase.
 
 **Work dir:** `~/<product>-studio/` (ask if unsure). All commands run with Node/npm inside `motion/`.
-Read `~/rotli-studio/motion/EVALUATION.md` once: it lists what ports cleanly and what doesn't.
+Read `~/rotli-studio/docs/evaluation.md` once: it lists what ports cleanly and what doesn't.
 
 ## Laws (these hold in every phase)
 
@@ -93,12 +93,12 @@ Write `claims.md` (feature → sentence → source URL). Every caption in every 
 ## Phase 5: Plan
 
 Depending on the goal:
-- **Season:** `season/bible.md` in the Rotli shape (three-sentence arc, a recurring token, cast and
+- **Season:** `series/season-one/bible.md` in the Rotli shape (three-sentence arc, a recurring token, cast and
   rules, world and places, atmospheres, styles, episode map where each episode owns *new* features),
-  then one `season/episodes/<id>.json` brief per episode (copy the Rotli briefs' shape; scenes are
+  then one `series/season-one/episodes/<id>.json` brief per episode (copy the Rotli briefs' shape; scenes are
   multiples of 15 and sum to 1800).
 - **Launch month:** a dated calendar (`launch/<p>-launch-month.md`, shaped like
-  `~/rotli-studio/launch/rotli-launch-month.md`): what goes when and why, per channel, with the piece id.
+  `~/rotli-studio/docs/launch/rotli-launch-month.md`): what goes when and why, per channel, with the piece id.
 - **Atmospheres:** re-skin the ones in `studio/atmospheres.ts`. Each is a family, a ground, ambient
   life and a music key. Rename island/lighthouse ones to the product's world, or drop them.
 

@@ -1,4 +1,0 @@
-{
- "note": "Pieces the owner has DELIBERATELY published into a product (e.g. rotli.co's site/public/media). The isolation audit (scripts/check-isolation.ts) reports copies of these as 'published on purpose' instead of a leak. Add an entry only after deciding to publish: { \"slug\": \"ep01-write\", \"where\": \"rotli site, site/public/media/story\", \"decided\": \"YYYY-MM-DD\", \"pr\": \"#85\" }.",
- "published": []
-}

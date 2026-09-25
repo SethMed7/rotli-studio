@@ -82,12 +82,12 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 - `check` fails on dead air: any 15-frame window where every frame changes < 0.5 % of pixels
   (anidoodle's standard). UI holds pass because of `drift` (the living camera) and `host` (the corner
   quokka); single identical frames are reported but allowed.
-- The launch calendar that schedules all of this: `launch/rotli-launch-month.md`.
+- The launch calendar that schedules all of this: `docs/launch/rotli-launch-month.md`.
 
 ## Season One: story episodes (60 s, `studio/story.ts`)
 
-- The bible is `season/bible.md`, the briefs are `season/episodes/s01eNN.json` (story, atmosphere, style, cast,
-  sourced claims, scenes summing to 1800), and the prompts are `workflows/prompts/` (from `tools/brief-to-prompt.mjs`).
+- The bible is `series/season-one/bible.md`, the briefs are `series/season-one/episodes/s01eNN.json` (story, atmosphere, style, cast,
+  sourced claims, scenes summing to 1800), and the prompts are `series/season-one/prompts/` (from `tools/brief-to-prompt.mjs`).
   The process is in `workflows/README.md` and review is `workflows/review-checklist.md`.
 - Templates: `intertitle`, `chapterCard` (`line` for the line style), `thought` (pictograms; the quokka never
   speaks), `librarian`, `lineQuokka`, `storyEnd`. Moods: `studio/atmospheres.ts`.
@@ -98,7 +98,7 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 
 ## The studio site and the audit
 
-- `http://127.0.0.1:4500/motion` shows everything read-only. After adding pieces, runs or series, rebuild
+- `http://127.0.0.1:4500/` shows everything read-only. After adding pieces, runs or series, rebuild
   its data: `node tools/manifest.mjs` (the site also rebuilds when `pieces.json`/`series.json`/renders change).
 - Every new piece belongs to a series in `series.json` (the manifest lists unassigned ones).
 - After agent waves, copy their prompts and reports into the studio:
@@ -107,7 +107,7 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 
 ## Other products
 
-`repurpose-brand` → the global `brand-motion-studio` Q&A skill. `EVALUATION.md` says what ports.
+`repurpose-brand` → the global `brand-motion-studio` Q&A skill. `docs/evaluation.md` says what ports.
 
 ## Known traps
 
@@ -117,6 +117,6 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 - `hopAlong` treats identical consecutive waypoints as a hold, not a hop.
 - `render-companions.ts` needs `--host 127.0.0.1` for rotli's Vite; its harness lives in the
   rotli checkout's gitignored `tmp/` and is deleted after.
-- The original first film project is archived at `films/quokka-film-original/` (moved out of the rotli
+- The original first film project is archived at `archive/films/quokka-film-original/` (moved out of the rotli
   repo 2026-09-24); the motion room is canonical and its `out/video/rotli-story.mp4` is byte-identical.
 - Nothing the studio makes may land in a product repo: `bun scripts/check-isolation.ts` proves it.

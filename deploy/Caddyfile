@@ -12,6 +12,8 @@
 		Referrer-Policy "no-referrer"
 		X-Content-Type-Options "nosniff"
 		X-Frame-Options "DENY"
+		# only the snapshot's own files run or load; no inline script (the page is marked by a meta tag instead)
+		Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'"
 		-Server
 	}
 	# source and docs are shown as text, never executed or downloaded as video/mp2t

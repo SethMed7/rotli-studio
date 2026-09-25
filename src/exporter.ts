@@ -1,7 +1,7 @@
 // Export a post to PNGs at each format's exact pixel size, plus a captions
 // file, by opening /render for every slide in headless Chromium. The browser
 // is the playwright-core build already cached on this Mac.
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 import { chromium } from "playwright-core";
@@ -15,6 +15,9 @@ export async function exportPost(
   post: Post,
   formats: FormatId[] = [post.format],
 ): Promise<{ dir: string; files: string[] }> {
+  // exports/<slug>/ is shared with the Motion room's carousels and cards; a post may never replace one of them
+  const motionSlugs = new Set((JSON.parse(readFileSync(join(import.meta.dir, "..", "motion", "pieces.json"), "utf8")).pieces as { slug: string }[]).map((p) => p.slug));
+  if (motionSlugs.has(post.slug)) throw new Error(`"${post.slug}" is a Motion room piece's slug; rename the post so its export cannot overwrite that piece`);
   const dir = join(EXPORTS_DIR, post.slug);
   const files: string[] = [];
   const browser = await chromium.launch();

@@ -1,4 +1,4 @@
-// SEASON ONE · 07 — ASK THE ISLAND. (60 s). Brief: season/episodes/s01e07.json
+// SEASON ONE · 07 — ASK THE ISLAND. (60 s). Brief: series/season-one/episodes/s01e07.json
 // Setup: Evening, and the quokka can't remember what's left before the trip.
 // Turn: It opens Chat: an on-device model reads the vault and answers from what's actually there, naming the notes it read.
 // Payoff: The answer keeps Conversation notes, the chat is saved as Markdown, and a PDF of the plan is filed beside it.

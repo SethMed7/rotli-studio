@@ -1,4 +1,4 @@
-// SEASON ONE · 03 — THE WORKSHOP. (60 s). Brief: season/episodes/s01e03.json
+// SEASON ONE · 03 — THE WORKSHOP. (60 s). Brief: series/season-one/episodes/s01e03.json
 // Setup: The quokka needs a map of the island and a letter for the ferry office.
 // Turn: It sketches the map on an Excalidraw board and writes the letter in a Word document, right beside its notes.
 // Payoff: Both are saved in their own formats, as the same ordinary files any other app reads.

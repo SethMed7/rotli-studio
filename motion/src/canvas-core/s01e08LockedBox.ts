@@ -1,4 +1,4 @@
-// SEASON ONE · 08 — THE LOCKED BOX. (60 s). Brief: season/episodes/s01e08.json
+// SEASON ONE · 08 — THE LOCKED BOX. (60 s). Brief: series/season-one/episodes/s01e08.json
 // Setup: Rain at night; the quokka keeps its passport note somewhere safe.
 // Turn: It marks the note secure: remote clouds knock and are turned away at the door; the on-device friend may read it. A pasted secret is caught on its own. A locked note can be read by every model and edited by none.
 // Payoff: Warm inside. The weather stays outside.

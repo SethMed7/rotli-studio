@@ -1,4 +1,4 @@
-// SEASON ONE · 01 — ARRIVAL (60 s). Brief: season/episodes/s01e01.json
+// SEASON ONE · 01 — ARRIVAL (60 s). Brief: series/season-one/episodes/s01e01.json
 // Setup: at dawn the quokka steps off the ferry; thoughts drift past on the sea wind like loose pages.
 // Turn (frame 555): it presses ⌥C and the first thought (Trip ideas, the season's token) lands in its
 // satchel, Captures. Payoff: at the hut, ⌥Space opens a calm window where every caught thought waits.

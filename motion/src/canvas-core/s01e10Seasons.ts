@@ -1,4 +1,4 @@
-// SEASON ONE · 10 — SEASONS. (60 s). Brief: season/episodes/s01e10.json
+// SEASON ONE · 10 — SEASONS. (60 s). Brief: series/season-one/episodes/s01e10.json
 // Setup: The island turns through its seasons: each of Rotli's six theme families, light and dark.
 // Turn: The quokka tries on colours, glasses, a hat (or turns the companion off); a new friend opens the Welcome folder's nine lessons and the guided tour.
 // Payoff: At sunset the quokka and the Librarian look out over the island: everything kept.

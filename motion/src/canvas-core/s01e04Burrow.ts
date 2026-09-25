@@ -1,4 +1,4 @@
-// SEASON ONE · 04 — THE BURROW. (60 s). Brief: season/episodes/s01e04.json
+// SEASON ONE · 04 — THE BURROW. (60 s). Brief: series/season-one/episodes/s01e04.json
 // Setup: wind picks up in the grove; the quokka's papers blow out of the hut; it catches Trip ideas and thinks: a folder.
 // Turn (dig): it digs a burrow: one folder (Island/) holding notes/, chats/, storage/ and a .rotli/ it can rebuild;
 // Trip ideas is filed into notes/. In the app, Remove from Main keeps the file; Delete moves it to trash inside the vault.

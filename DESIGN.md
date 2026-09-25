@@ -37,4 +37,4 @@ Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast a
 - Do check 1440, 1280 and 390 px for overlap and horizontal overflow (`motion/.ui-check.mjs` pattern) before
   shipping UI.
 - Don't add cards, eyebrows (tiny caps labels above headings), shadows, or a second accent.
-- Don't loop motion behind text; the landing film only plays when asked.
+- Don't loop motion behind text; the landing film plays once, muted, only when it is on screen (never under reduced motion or Save-Data), and sound is always the visitor's click.

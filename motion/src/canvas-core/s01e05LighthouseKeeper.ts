@@ -1,4 +1,4 @@
-// SEASON ONE · 05 — THE LIGHTHOUSE KEEPER. (60 s). Brief: season/episodes/s01e05.json
+// SEASON ONE · 05 — THE LIGHTHOUSE KEEPER. (60 s). Brief: series/season-one/episodes/s01e05.json
 // Setup: night falls; the quokka arrives with a satchel full of Captures, yawns, sets the pile down and sleeps.
 // Turn (keeper 215 → filing 20): the Librarian (the Fern quokka in glasses) gathers the pile, climbs to the
 // lighthouse balcony, and files each note into an area of the Library with a tag, a summary and links.

@@ -1,0 +1,59 @@
+{
+ "note": "Pieces the owner has DELIBERATELY published into a product (e.g. rotli.co's site/public/media). The isolation audit (scripts/check-isolation.ts) reports copies of these as 'published on purpose' instead of a leak. Add an entry only after deciding to publish: { \"slug\": \"ep01-write\", \"where\": \"rotli site, site/public/media/story\", \"decided\": \"YYYY-MM-DD\", \"pr\": \"#85\" }.",
+ "published": [
+  {
+   "slug": "rotli-story",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep01-write",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep02-folder",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep03-habits",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep04-yours",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep05-librarian",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep06-chat",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep07-secure",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  },
+  {
+   "slug": "ep08-web",
+   "where": "rotli site, site/public/media/story (film, poster, thumb)",
+   "decided": "2026-09-24",
+   "pr": "#85"
+  }
+ ]
+}

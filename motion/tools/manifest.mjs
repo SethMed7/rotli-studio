@@ -9,7 +9,7 @@
 // its error instead of stopping the run.
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
-import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -18,7 +18,7 @@ const read = (p) => JSON.parse(readFileSync(join(ROOM, p), "utf8"));
 const rel = (p) => relative(ROOM, p);
 const pieces = read("pieces.json").pieces, series = read("series.json").series;
 const runs = existsSync(join(ROOM, "workflows/runs/runs.json")) ? read("workflows/runs/runs.json").runs : [];
-const briefs = Object.fromEntries(readdirSync(join(ROOM, "season/episodes")).filter((f) => f.endsWith(".json")).map((f) => { const b = read(`season/episodes/${f}`); return [b.id, { ...b, file: `season/episodes/${f}` }]; }));
+const briefs = Object.fromEntries(readdirSync(join(ROOM, "series/season-one/episodes")).filter((f) => f.endsWith(".json")).map((f) => { const b = read(`series/season-one/episodes/${f}`); return [b.id, { ...b, file: `series/season-one/episodes/${f}` }]; }));
 
 // id -> module, from the host's import line (the same file the renderer bundles)
 const moduleOf = (id) => { const host = join(ROOM, "src/hosts", `page-${id}.ts`); if (!existsSync(host)) return null; const m = readFileSync(host, "utf8").match(/from "\.\.\/canvas-core\/([\w/]+)"/); return m ? `src/canvas-core/${m[1]}.ts` : null; };
@@ -56,7 +56,7 @@ for (const p of pieces) {
   if (brief && role === "episode") { e.brief = brief.file; e.title = [].concat(brief.title).join(" "); e.logline = brief.logline; e.atmosphere = brief.atmosphere; e.style = brief.style; e.features = brief.features; e.next = brief.next;
     for (const s of e.shots) { const sc = brief.scenes?.find((x) => x.id === s.id); if (sc) s.template = sc.template; } }
   if (role === "episode" && !brief) e.title = (p.about ?? "").split(": ").slice(1).join(": ") || p.id;
-  const promptFile = ep && `workflows/prompts/${ep}.prompt.md`; if (role === "episode" && promptFile && existsSync(join(ROOM, promptFile))) e.prompt = promptFile;
+  const promptFile = ep && `series/season-one/prompts/${ep}.prompt.md`; if (role === "episode" && promptFile && existsSync(join(ROOM, promptFile))) e.prompt = promptFile;
   const run = runs.find((r) => r.piece === p.id); if (run) e.run = run;
   const g = join(ROOM, "golden", `${p.id}.json`); if (existsSync(g)) { const gj = JSON.parse(readFileSync(g, "utf8")); e.golden = { file: rel(g), frames: Object.keys(gj.hashes ?? {}).length, audio: !!gj.audio }; }
   const vid = join(ROOM, "out/video", `${p.slug}.mp4`), poster = join(ROOM, "out/video", `${p.slug}.jpg`);
@@ -77,6 +77,7 @@ const bySeries = series.map((s) => {
   return { ...s, episodes: eps };
 });
 const manifest = { generated: new Date().toISOString(), room: "motion", pieces: out, series: bySeries, unassigned: out.filter((e) => !e.series).map((e) => e.id) };
+mkdirSync(join(ROOM, "out"), { recursive: true }); // a clean checkout has no out/ yet
 writeFileSync(join(ROOM, "out/manifest.json"), JSON.stringify(manifest, null, 1));
 const bad = out.filter((e) => e.error);
 console.log(`manifest: ${out.length} pieces · ${bySeries.length} series · ${bad.length} import errors · unassigned ${manifest.unassigned.length} -> out/manifest.json`);

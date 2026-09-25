@@ -1,4 +1,4 @@
-// Render the exact agent prompt for an episode from its brief:  node tools/brief-to-prompt.mjs season/episodes/s01e02.json
+// Render the exact agent prompt for an episode from its brief:  node tools/brief-to-prompt.mjs series/season-one/episodes/s01e02.json
 // = workflows/agent-preamble.md (the proven instructions) + the episode section built from the brief. Deterministic:
 // the same brief always yields the same prompt, so any episode can be rebuilt or re-made by re-running this.
 import { readFileSync } from "node:fs";

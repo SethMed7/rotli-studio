@@ -12,7 +12,10 @@
     "sync:companions": "bun scripts/render-companions.ts",
     "motion": "cd motion && node tools/studio.mjs",
     "check:public": "bun scripts/check-public.ts",
-    "check:isolation": "bun scripts/check-isolation.ts"
+    "check:isolation": "bun scripts/check-isolation.ts",
+    "check:third-party": "cd motion && node tools/third-party-inventory.mjs --check",
+    "check:sound": "bun sound/tools/render.ts --check",
+    "export:site": "bun scripts/export-site.ts"
   },
   "dependencies": {
     "playwright-core": "1.62.1"

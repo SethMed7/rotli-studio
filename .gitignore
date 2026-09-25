@@ -2,13 +2,13 @@ node_modules/
 exports/
 .DS_Store
 # Film renders, footage-derived assets, and snapshots are regenerable and heavy;
-# the nested .gitignore files in films/*/ already cover them, this is the backstop.
-films/**/renders/
-films/**/assets/
-films/**/snapshots/
-films/**/out/
-films/**/*.mp4
-films/**/*.mov
+# the nested .gitignore files in archive/films/*/ already cover them, this is the backstop.
+archive/films/**/renders/
+archive/films/**/assets/
+archive/films/**/snapshots/
+archive/films/**/out/
+archive/films/**/*.mp4
+archive/films/**/*.mov
 
 # motion room: renders and builds are regenerable
 motion/out/
@@ -17,6 +17,7 @@ motion/.tmp/
 
 # hosted snapshot build (bun scripts/export-site.ts)
 site-dist/
+site-dist.staging/
 
 # names kept out of public copies (never committed)
 deploy/*.local.txt
@@ -26,3 +27,6 @@ local/
 
 # sound masters (regenerable: bun sound/tools/render.ts)
 sound/out/
+
+# scratch space for local harnesses (never published)
+tmp/

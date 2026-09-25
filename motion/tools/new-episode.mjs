@@ -1,4 +1,4 @@
-// Scaffold a Season episode from its brief:  node tools/new-episode.mjs season/episodes/s01e02.json
+// Scaffold a Season episode from its brief:  node tools/new-episode.mjs series/season-one/episodes/s01e02.json
 // Writes src/canvas-core/<id>.ts (a RUNNABLE stub: one scene per brief scene, each drawing its template
 // note as an intertitle, the chapter card and end card already real) and src/hosts/page-<id>.ts.
 // Refuses to overwrite an existing episode. The builder (a person or an agent) replaces each stub draw.
@@ -8,7 +8,7 @@ if (existsSync(file)) { console.error(`${file} exists; refusing to overwrite`); 
 const scene = (sc) => sc.id === "chapter" ? `const chapter: Scene = { id: "chapter", len: ${sc.len}, draw: (ctx, env, s) => chapterCard(ctx, env, s, { no: ${b.no}, title: ${JSON.stringify(b.title)}, pose: "base" }) };`
   : sc.id === "end" ? `const end: Scene = { id: "end", len: ${sc.len}, draw: (ctx, env, s) => storyEnd(ctx, env, s, { next: ${JSON.stringify(b.next || undefined)} }) };`
   : `const ${sc.id}: Scene = { id: "${sc.id}", len: ${sc.len}, draw: (ctx, env, s) => {\n  // TODO (${sc.template})\n  intertitle(ctx, s, [${JSON.stringify(sc.id)}], { sub: ${JSON.stringify(sc.template)} }); host(ctx, env, s.f, { dark: s.dark });\n} };`;
-writeFileSync(file, `// SEASON ONE · ${String(b.no).padStart(2, "0")} — ${b.title.join(" ").toUpperCase()} (60 s). Brief: season/episodes/${base}.json
+writeFileSync(file, `// SEASON ONE · ${String(b.no).padStart(2, "0")} — ${b.title.join(" ").toUpperCase()} (60 s). Brief: series/season-one/episodes/${base}.json
 // Setup: ${b.story.setup}
 // Turn: ${b.story.turn}
 // Payoff: ${b.story.payoff}

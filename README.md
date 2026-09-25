@@ -79,7 +79,7 @@ report, cost), source and golden; plus the brand, atmospheres, workflows, skills
   `node motion/tools/extract-runs.mjs <session.jsonl>`.
 - `bun scripts/check-isolation.ts` proves nothing the studio makes sits in a product repo, worktree,
   branch or live site (read-only; `--json`, `--offline`). Pieces published on purpose go in
-  `motion/published.json`.
+  `publish/placements.json`.
 
 `bun run motion list` (or `cd motion && node tools/studio.mjs …`). Details: `motion/README.md` and
 `.claude/skills/motion-room/SKILL.md`. `bun run sync:themes` / `bun run sync:companions`
@@ -87,8 +87,5 @@ refresh the theme table and the companion looks from the rotli checkout.
 
 ## Files
 
-`server.ts` (routes, library, posts, export) · `src/model.ts` (formats,
-themes, templates, post schema) · `src/templates.ts` + `static/slide.css`
-(slide rendering) · `src/app.ts` + `static/app.*` (the editor) ·
-`src/exporter.ts` (Playwright PNG export) · `posts/` · `library/` · `exports/`
-(ignored by git).
+Where everything lives, and where anything new goes, is [`ARCHITECTURE.md`](ARCHITECTURE.md): one row per
+kind of thing (rooms, series, prompts, skills, sounds, publishing records, docs, archive).

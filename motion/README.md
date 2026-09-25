@@ -28,18 +28,19 @@ open out/index.html                                    # the room: every piece, 
 the episode's own frames by `studio/derive.ts`: `ep01Write` (Markdown renders as you type) ·
 `ep02Folder` (one folder, every way out) · `ep03Habits` (⌥Space, ⌘K, wikilinks, views) · `ep04Yours`
 (themes + companion) · `ep05Librarian` · `ep06Chat` · `ep07Secure` · `ep08Web`. The month-long launch
-calendar that schedules all of it is `../launch/rotli-launch-month.md`; the one-glance sheet is
+calendar that schedules all of it is `../docs/launch/rotli-launch-month.md`; the one-glance sheet is
 `out/series-overview.png`.
 
 **Season One: "The Island Keeps Everything"** (ten 60 s story episodes, `s01e01Arrival` …
-`s01e10Seasons`, each with a vertical, carousel and card). The bible is `season/bible.md`, the briefs are
-`season/episodes/`, and the reproducible prompts are `workflows/`. The sheet is `out/season-one-overview.png`.
+`s01e10Seasons`, each with a vertical, carousel and card). The bible is `series/season-one/bible.md`, the briefs are
+`series/season-one/episodes/`, the reproducible prompts are `series/season-one/prompts/`, and
+the process is `workflows/`. The sheet is `out/season-one-overview.png`.
 
-**Other products:** `EVALUATION.md` (what ports, what doesn't) and the `brand-motion-studio` Q&A skill,
+**Other products:** `../docs/evaluation.md` (what ports, what doesn't) and the `brand-motion-studio` Q&A skill,
 driving `tools/discover.mjs` → `propose-brand.mjs` → `new-studio.mjs`.
 
 Videos land in `out/video/`; images land in the studio's `../exports/<slug>/<format>/NN.png`
-(with `captions.md`), next to the posts room's exports.
+(with `captions.md`), next to Create's exports.
 
 ## Layout
 
