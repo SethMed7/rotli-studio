@@ -1,0 +1,79 @@
+{
+ "id": "s01e05LighthouseKeeper",
+ "no": 5,
+ "slug": "s01e05-lighthouse-keeper",
+ "title": [
+  "The lighthouse",
+  "keeper."
+ ],
+ "logline": "While the quokka sleeps, someone files the day away.",
+ "story": {
+  "setup": "Night falls with a satchel full of Captures.",
+  "turn": "The Librarian (the Fern quokka in glasses) climbs the lighthouse and files each note into the Library: an area, a summary, tags, links.",
+  "payoff": "Morning: everything is in place, every word exactly as the quokka wrote it, and any move can be undone."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "night-vault",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka",
+  "the Librarian"
+ ],
+ "features": [
+  {
+   "claim": "The Librarian files each note into an area of the Library, adds a summary and tags, and records what it did with a guarded undo.",
+   "source": "README.md"
+  },
+  {
+   "claim": "It uses an on-device model by default, or a Claude, ChatGPT, or Gemini client you have already signed in to.",
+   "source": "README.md"
+  },
+  {
+   "claim": "It changes a note's location and metadata only, never the words you wrote.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Prefer no AI at all? Choose a raw vault, and the Librarian never runs.",
+   "source": "README.md"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 240,
+   "template": "story: night, quokka yawns, thought: moon"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "keeper",
+   "len": 300,
+   "template": "story: the Librarian appears (sprite)"
+  },
+  {
+   "id": "filing",
+   "len": 480,
+   "template": "diagram: notes fly to People/Projects/Research with tags + summary"
+  },
+  {
+   "id": "morning",
+   "len": 420,
+   "template": "appDemo: words unchanged + guarded undo"
+  },
+  {
+   "id": "end",
+   "len": 240,
+   "template": "intertitle + storyEnd"
+  }
+ ],
+ "music": {
+  "key": 2,
+  "melody": 2
+ },
+ "next": "Threads",
+ "length": "60 s (1800 frames)"
+}

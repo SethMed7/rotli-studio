@@ -1,0 +1,81 @@
+{
+ "id": "s01e04Burrow",
+ "no": 4,
+ "slug": "s01e04-burrow",
+ "title": [
+  "The burrow."
+ ],
+ "logline": "A storm tests where the quokka keeps things.",
+ "story": {
+  "setup": "Wind picks up; the quokka's papers need a home.",
+  "turn": "It digs a burrow: one folder, notes, chats, storage, and a .rotli it can rebuild. Removing a note from Main keeps the file; Delete only moves it to the Trash inside the vault.",
+  "payoff": "The storm takes the hut; the burrow keeps every file. Nothing leaves the disk until you choose Empty Trash."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "grove-burrow",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "One folder is your vault: plain Markdown in one folder you choose.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Remove from Main takes a note out of view; the file stays in your vault.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Delete moves it to Trash inside the vault. Nothing leaves your disk until you choose Empty Trash.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Files, at the foot of the sidebar, browses the vault folder the way Finder does.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Delete the app and the work still makes sense.",
+   "source": "rotli.co /features"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 240,
+   "template": "story: wind, papers, thought: folder"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "dig",
+   "len": 390,
+   "template": "diagram: the burrow as a folder tree"
+  },
+  {
+   "id": "remove",
+   "len": 360,
+   "template": "appDemo: Remove from Main → still in vault; Delete → Trash"
+  },
+  {
+   "id": "storm",
+   "len": 450,
+   "template": "story: storm takes the hut, burrow stays"
+  },
+  {
+   "id": "end",
+   "len": 240,
+   "template": "intertitle + storyEnd"
+  }
+ ],
+ "music": {
+  "key": 7,
+  "melody": 0
+ },
+ "next": "The Lighthouse Keeper",
+ "length": "60 s (1800 frames)"
+}

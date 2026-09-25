@@ -1,0 +1,139 @@
+{
+ "note": "Looks rendered from rotli's REAL <Character> component (src/components/character.tsx) by scripts/render-companions.ts. Pose/style/accessory names are the app's own. The Librarian (Season One) is the Fern quokka in glasses: *-green-glasses.",
+ "size": 1024,
+ "accessoryHue": 38,
+ "looks": [
+  {
+   "id": "base-line",
+   "pose": "base",
+   "style": "line",
+   "accessory": "none"
+  },
+  {
+   "id": "base-cocoa",
+   "pose": "base",
+   "style": "cocoa",
+   "accessory": "none"
+  },
+  {
+   "id": "base-green",
+   "pose": "base",
+   "style": "green",
+   "accessory": "none"
+  },
+  {
+   "id": "base-ocean",
+   "pose": "base",
+   "style": "ocean",
+   "accessory": "none"
+  },
+  {
+   "id": "base-iris",
+   "pose": "base",
+   "style": "iris",
+   "accessory": "none"
+  },
+  {
+   "id": "base-berry",
+   "pose": "base",
+   "style": "berry",
+   "accessory": "none"
+  },
+  {
+   "id": "base-amber",
+   "pose": "base",
+   "style": "amber",
+   "accessory": "none"
+  },
+  {
+   "id": "base-cocoa-glasses",
+   "pose": "base",
+   "style": "cocoa",
+   "accessory": "glasses"
+  },
+  {
+   "id": "base-cocoa-hat",
+   "pose": "base",
+   "style": "cocoa",
+   "accessory": "bucket-hat"
+  },
+  {
+   "id": "waving-berry-hat",
+   "pose": "waving",
+   "style": "berry",
+   "accessory": "bucket-hat"
+  },
+  {
+   "id": "waving-green-glasses",
+   "pose": "waving",
+   "style": "green",
+   "accessory": "glasses"
+  },
+  {
+   "id": "thoughtful-iris-glasses",
+   "pose": "thoughtful",
+   "style": "iris",
+   "accessory": "glasses"
+  },
+  {
+   "id": "celebrating-ocean-hat",
+   "pose": "celebrating",
+   "style": "ocean",
+   "accessory": "bucket-hat"
+  },
+  {
+   "id": "walking-amber-glasses",
+   "pose": "walking",
+   "style": "amber",
+   "accessory": "glasses"
+  },
+  {
+   "id": "listening-cocoa-hat",
+   "pose": "listening",
+   "style": "cocoa",
+   "accessory": "bucket-hat"
+  },
+  {
+   "id": "waving-cocoa",
+   "pose": "waving",
+   "style": "cocoa",
+   "accessory": "none"
+  },
+  {
+   "id": "celebrating-cocoa",
+   "pose": "celebrating",
+   "style": "cocoa",
+   "accessory": "none"
+  },
+  {
+   "id": "base-green-glasses",
+   "pose": "base",
+   "style": "green",
+   "accessory": "glasses"
+  },
+  {
+   "id": "thoughtful-green-glasses",
+   "pose": "thoughtful",
+   "style": "green",
+   "accessory": "glasses"
+  },
+  {
+   "id": "listening-green-glasses",
+   "pose": "listening",
+   "style": "green",
+   "accessory": "glasses"
+  },
+  {
+   "id": "knowledge-green-glasses",
+   "pose": "knowledge",
+   "style": "green",
+   "accessory": "glasses"
+  },
+  {
+   "id": "celebrating-green-glasses",
+   "pose": "celebrating",
+   "style": "green",
+   "accessory": "glasses"
+  }
+ ]
+}

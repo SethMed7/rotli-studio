@@ -1,0 +1,11 @@
+{
+ "piece": "ep06Single",
+ "W": 1080,
+ "H": 1350,
+ "frames": 15,
+ "audio": null,
+ "hashes": {
+  "0": "405791a5aa5cc1443c810b48bf1d1282",
+  "14": "9aa91ed774ceda81cd9a9b18e0a9949d"
+ }
+}

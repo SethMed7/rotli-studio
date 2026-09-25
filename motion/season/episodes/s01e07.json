@@ -1,0 +1,86 @@
+{
+ "id": "s01e07AskTheIsland",
+ "no": 7,
+ "slug": "s01e07-ask-the-island",
+ "title": [
+  "Ask the island."
+ ],
+ "logline": "At dusk the quokka asks a question and the island answers from its own notes.",
+ "story": {
+  "setup": "Evening, and the quokka can't remember what's left before the trip.",
+  "turn": "It opens Chat: an on-device model reads the vault and answers from what's actually there, naming the notes it read.",
+  "payoff": "The answer keeps Conversation notes, the chat is saved as Markdown, and a PDF of the plan is filed beside it."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "iris-dusk",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "Chat reads the vault you are in, or the note you started it from, and answers from what is actually there.",
+   "source": "rotli.co /features"
+  },
+  {
+   "claim": "On-device by default, or through an official Claude Code, Codex, or Cursor client already installed on your Mac.",
+   "source": "README.md"
+  },
+  {
+   "claim": "After every reply, rotli rewrites a short Conversation notes section. The chat itself is saved as Markdown too.",
+   "source": "rotli.co /features"
+  },
+  {
+   "claim": "In the Mac app it can also make a Word document, a PDF, or a board, filed beside the chat.",
+   "source": "rotli.co /features"
+  },
+  {
+   "claim": "Flip the globe for a web lookup.",
+   "source": "README.md"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 210,
+   "template": "story: dusk, thought: question"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "ask",
+   "len": 450,
+   "template": "appDemo: chat question → grounded answer with read chips"
+  },
+  {
+   "id": "notes",
+   "len": 390,
+   "template": "appDemo: Conversation notes + saved as .md"
+  },
+  {
+   "id": "pdf",
+   "len": 300,
+   "template": "appDemo: PDF filed beside the chat"
+  },
+  {
+   "id": "payoff",
+   "len": 210,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 5,
+  "melody": 2
+ },
+ "next": "The Locked Box",
+ "length": "60 s (1800 frames)"
+}

@@ -1,0 +1,18 @@
+{
+ "piece": "ep05Carousel",
+ "W": 1080,
+ "H": 1350,
+ "frames": 90,
+ "audio": null,
+ "hashes": {
+  "0": "e8fd58f35b52aab1af6b64010c51cfe3",
+  "14": "af419a8a8263776d1fc2c6b6c9fb31cb",
+  "29": "f3ecc37c4893be7b5f940ee7ceac1193",
+  "30": "01ab997dd4f8a8e115b0969b66a16d61",
+  "44": "e700715ab7dfeb82e99c919293481d85",
+  "59": "0c4e3426d192bd8aa1f264089102b994",
+  "60": "ff8d46a89608163b1ab48f58c594a1e4",
+  "74": "b2f05a18fae8581cdf4cbf0d34b5a9a8",
+  "89": "dd0d3d64e3ed1e98e22e05c874f4d96e"
+ }
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "tasks-that-stay-text",
+  "title": "Tasks that stay text",
+  "format": "ig-square",
+  "counter": true,
+  "captions": {
+    "instagram": "Tasks that stay text.\n\nIn rotli, - [x] is done, - [/] is in progress, and - [ ] is open. Click a box and the Markdown file changes, so your tasks travel with the note into any other editor.\n\nrotli.co\n\n#notes #markdown #localfirst #productivity #macapps",
+    "x": "In rotli, tasks are plain Markdown: - [x] done, - [/] in progress, - [ ] open. Click a box and the file changes.\n\nrotli.co",
+    "linkedin": "A small thing we care about in rotli: tasks are just text.\n\n- [x] is done, - [/] is in progress, - [ ] is open. Click a checkbox and the Markdown file on disk changes, so your tasks travel with the note into any other editor, and nothing is locked in a database.\n\nrotli.co"
+  },
+  "slides": [
+    {
+      "template": "note",
+      "theme": "light",
+      "fields": {
+        "headline": "Tasks that\nstay text.",
+        "title": "Launch week",
+        "lines": "## This week\n- [x] Pick a launch date\n- [/] Update the pricing page\n- [ ] Record the demo\nCheck a box and the file changes."
+      }
+    },
+    {
+      "template": "markdown",
+      "theme": "warm",
+      "fields": {
+        "headline": "Same note, on disk.",
+        "lines": "## This week\n- [x] Pick a launch date\n- [/] Update the pricing page\n- [ ] Record the demo"
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Plain text.\nReal tasks.",
+        "subline": "Free. No account. Works offline.",
+        "url": "rotli.co",
+        "primary": "Download for Mac",
+        "secondary": "Open in your browser"
+      }
+    }
+  ]
+}

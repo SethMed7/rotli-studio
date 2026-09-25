@@ -1,0 +1,18 @@
+{
+ "piece": "ep01Carousel",
+ "W": 1080,
+ "H": 1350,
+ "frames": 90,
+ "audio": null,
+ "hashes": {
+  "0": "d92afe66f13e551a522823bb8269c871",
+  "14": "6c6f94fe62ae6dfc4df0e690beb47a67",
+  "29": "6f6e53a4f3607e23fd2028f8fbfa4084",
+  "30": "439ee81970a6dbd4be4f4df89f3cf70c",
+  "44": "83ecab4c96294ecb26bd3fd5e6a5c57f",
+  "59": "2547f398d1bff3006323bf8ff61d24db",
+  "60": "ca9a6d0e33d1c2620befd16712d749d4",
+  "74": "130afd829ff5be2f6d3402dbf1fc2853",
+  "89": "ff84f1b7d144648648f9cf90a6de044f"
+ }
+}

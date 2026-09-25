@@ -1,0 +1,1 @@
+export { xCard } from "./stills";

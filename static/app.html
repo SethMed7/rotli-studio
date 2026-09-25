@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rotli studio</title>
+    <link rel="icon" href="/library/logo/_logo.svg" />
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <header class="bar">
+      <div class="bar-brand"><span class="bar-mark" id="bar-mark"></span><b>rotli</b> studio</div>
+      <nav class="tabs" role="tablist" aria-label="Studio">
+        <button role="tab" id="tab-create" aria-selected="true">Create</button>
+        <button role="tab" id="tab-library" aria-selected="false">Library</button>
+      </nav>
+      <a class="ghost-button" href="/motion">Motion room</a>
+      <div class="bar-post">
+        <label class="sr" for="post-select">Post</label>
+        <select id="post-select"></select>
+        <button id="new-post" class="ghost">New post</button>
+        <button id="duplicate-post" class="ghost">Duplicate</button>
+      </div>
+      <div class="bar-actions">
+        <span id="status" class="status" role="status"></span>
+        <button id="save" class="ghost" title="⌘S">Save</button>
+        <button id="export" class="primary">Export PNGs</button>
+      </div>
+    </header>
+
+    <main id="view-create" class="create">
+      <aside class="slides-panel">
+        <label class="field">
+          <span>Post title</span>
+          <input id="post-title" type="text" />
+        </label>
+        <label class="field">
+          <span>Format</span>
+          <select id="post-format"></select>
+        </label>
+        <label class="check"><input id="post-counter" type="checkbox" /> Show slide numbers</label>
+        <h2>Slides</h2>
+        <ol id="slide-list" class="slide-list"></ol>
+        <div class="add-slide">
+          <select id="add-template" aria-label="Template for the new slide"></select>
+          <button id="add-slide" class="ghost">Add slide</button>
+        </div>
+      </aside>
+
+      <section class="stage" aria-label="Slides preview">
+        <div id="strip" class="strip"></div>
+        <p class="stage-hint">Click a slide to edit it. Previews are exact: exports render the same page at full size.</p>
+      </section>
+
+      <aside class="inspector">
+        <div id="inspector"></div>
+        <h2>Captions</h2>
+        <div id="captions"></div>
+      </aside>
+    </main>
+
+    <main id="view-library" class="library" hidden>
+      <div class="library-head">
+        <div>
+          <h1>Library</h1>
+          <p>Brand assets synced from the rotli repo (<code>bun run sync</code>) plus your uploads. Click an image to copy its path; drop files here to upload.</p>
+        </div>
+        <label class="upload ghost-button">Upload images<input id="upload" type="file" accept="image/*" multiple hidden /></label>
+      </div>
+      <div id="library"></div>
+    </main>
+
+    <dialog id="picker" class="picker">
+      <form method="dialog" class="picker-head">
+        <h2>Choose an image</h2>
+        <button class="ghost" value="cancel">Close</button>
+      </form>
+      <div id="picker-grid"></div>
+    </dialog>
+
+    <dialog id="export-dialog" class="export-dialog">
+      <form method="dialog">
+        <h2>Export PNGs</h2>
+        <p>Each format renders every slide at its exact size into <code>exports/&lt;post&gt;/&lt;format&gt;/</code>, with a captions file.</p>
+        <div id="export-formats"></div>
+        <div class="dialog-actions">
+          <button class="ghost" value="cancel">Cancel</button>
+          <button id="export-go" class="primary" value="go">Export</button>
+        </div>
+      </form>
+      <div id="export-result"></div>
+    </dialog>
+
+    <script type="module" src="/build/app.js"></script>
+  </body>
+</html>

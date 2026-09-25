@@ -1,0 +1,86 @@
+{
+ "id": "s01e10Seasons",
+ "no": 10,
+ "slug": "s01e10-seasons",
+ "title": [
+  "Seasons."
+ ],
+ "logline": "A year on the island in one minute: everything changes colour, nothing gets lost.",
+ "story": {
+  "setup": "The island turns through its seasons: each of Rotli's six theme families, light and dark.",
+  "turn": "The quokka tries on colours, glasses, a hat (or turns the companion off); a new friend opens the Welcome folder's nine lessons and the guided tour.",
+  "payoff": "At sunset the quokka and the Librarian look out over the island: everything kept."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "island-sunset",
+ "visits": [
+  "linen-morning",
+  "paper-studio",
+  "ocean-tide",
+  "grove-burrow",
+  "iris-dusk",
+  "midnight-rain"
+ ],
+ "style": "flat",
+ "cast": [
+  "the quokka",
+  "the Librarian"
+ ],
+ "features": [
+  {
+   "claim": "Six theme families, each with a tuned light and dark environment.",
+   "source": "rotli.co landing (Make it yours)"
+  },
+  {
+   "claim": "Pick a body colour, black or white linework, a mood and pose, and glasses or a bucket hat in any colour. Turn the companion off and it appears only during onboarding.",
+   "source": "rotli.co landing (Make it yours)"
+  },
+  {
+   "claim": "The Welcome folder holds nine short lessons, plus a guided tour of the real controls. Settings → General → Show me around runs it again.",
+   "source": "README.md"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 180,
+   "template": "story: sunset opening, thought: sun"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "seasons",
+   "len": 480,
+   "template": "montage: the six families as seasons (visits every atmosphere)"
+  },
+  {
+   "id": "looks",
+   "len": 360,
+   "template": "looks parade (companion sprites)"
+  },
+  {
+   "id": "welcome",
+   "len": 300,
+   "template": "appDemo: Welcome folder + Show me around"
+  },
+  {
+   "id": "finale",
+   "len": 240,
+   "template": "story: quokka + Librarian at sunset"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd (no next: season end)"
+  }
+ ],
+ "music": {
+  "key": 2,
+  "melody": 2
+ },
+ "next": "",
+ "length": "60 s (1800 frames)"
+}

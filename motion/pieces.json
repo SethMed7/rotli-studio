@@ -1,0 +1,669 @@
+{
+ "note": "The studio's catalogue. kind: video (MP4 + poster) | carousel (one PNG per shot) | still (one PNG). sealed pieces are golden-locked and must never change: run `node tools/studio.mjs golden` after touching anything shared.",
+ "pieces": [
+  {
+   "id": "rotliStory",
+   "kind": "video",
+   "slug": "rotli-story",
+   "format": "film",
+   "sealed": true,
+   "length": "60 s",
+   "about": "The long-form story: the quokka on Rottnest, ⌥Space, one folder, the Librarian, secure notes, chat, sunset."
+  },
+  {
+   "id": "teaser15",
+   "kind": "video",
+   "slug": "teaser-15",
+   "format": "story",
+   "length": "15 s",
+   "about": "Vertical recut of the film under big captions (works muted)."
+  },
+  {
+   "id": "dressUp",
+   "kind": "video",
+   "slug": "dress-up",
+   "format": "story",
+   "length": "16 s",
+   "about": "Make it yours: the seven companion colors, glasses, bucket hat, a parade of looks."
+  },
+  {
+   "id": "themesLoop",
+   "kind": "video",
+   "slug": "six-themes",
+   "format": "story",
+   "length": "20 s",
+   "about": "The frame becomes each of the twelve theme environments, then a grid of all of them."
+  },
+  {
+   "id": "howRotliWorks",
+   "kind": "carousel",
+   "slug": "how-rotli-works",
+   "format": "ig-portrait",
+   "about": "Seven slides: meet Rotli, just write, one folder, the Librarian, secure, chat, make it yours.",
+   "caption": "Rotli is a calm notes app for your Mac. Every note is a plain Markdown file in one folder you own; a Librarian files it without rewriting a word, secure notes never reach a remote model, and chat answers from what is actually in your vault. rotli.co"
+  },
+  {
+   "id": "posterLineup",
+   "kind": "still",
+   "slug": "seven-quokkas",
+   "format": "ig-portrait",
+   "about": "The seven companion colors as the app draws them.",
+   "caption": "Seven quokkas. One is yours. Pick a color, add a hat or glasses. rotli.co"
+  },
+  {
+   "id": "themeGrid",
+   "kind": "still",
+   "slug": "six-themes",
+   "format": "ig-square",
+   "about": "All twelve theme environments.",
+   "caption": "Six themes, each tuned for light and dark. rotli.co"
+  },
+  {
+   "id": "linkedinCard",
+   "kind": "still",
+   "slug": "rotli-card",
+   "format": "linkedin",
+   "about": "The sunset lockup at LinkedIn size.",
+   "caption": "Room to think. Files you keep. rotli.co"
+  },
+  {
+   "id": "xCard",
+   "kind": "still",
+   "slug": "rotli-card",
+   "format": "x-post",
+   "about": "The sunset lockup at X size.",
+   "caption": "Room to think. Files you keep. rotli.co"
+  },
+  {
+   "id": "heroFilm",
+   "kind": "still",
+   "slug": "rotli-hero",
+   "format": "film",
+   "about": "16:9 hero: the lockup over the sunset."
+  },
+  {
+   "id": "ep01Carousel",
+   "kind": "carousel",
+   "slug": "ep01-write",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 01: cover, four beats, closing card.",
+   "caption": "Type Markdown and it renders as you go. Click a result and the file changes. Aa shows the plain text underneath. Rotli is free, no account, works offline. rotli.co"
+  },
+  {
+   "id": "ep01Single",
+   "kind": "still",
+   "slug": "ep01-write-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 01.",
+   "caption": "Type Markdown and it renders as you go. Click a result and the file changes. Aa shows the plain text underneath. Rotli is free, no account, works offline. rotli.co"
+  },
+  {
+   "id": "ep01Vertical",
+   "kind": "video",
+   "slug": "ep01-write-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 01."
+  },
+  {
+   "id": "ep01Write",
+   "kind": "video",
+   "slug": "ep01-write",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 01: Write in Markdown. See it rendered."
+  },
+  {
+   "id": "ep02Carousel",
+   "kind": "carousel",
+   "slug": "ep02-folder",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 02: cover, four beats, closing card.",
+   "caption": "Your vault is an ordinary folder you pick. Notes are Markdown, chats are Markdown, and Rotli's own metadata is rebuildable. Open your work in other apps, back it up your way, and delete the app: the work still makes sense. rotli.co"
+  },
+  {
+   "id": "ep02Folder",
+   "kind": "video",
+   "slug": "ep02-folder",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 02: One folder. Every way out stays open."
+  },
+  {
+   "id": "ep02Single",
+   "kind": "still",
+   "slug": "ep02-folder-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 02.",
+   "caption": "Your vault is an ordinary folder you pick. Notes are Markdown, chats are Markdown, and Rotli's own metadata is rebuildable. Open your work in other apps, back it up your way, and delete the app: the work still makes sense. rotli.co"
+  },
+  {
+   "id": "ep02Vertical",
+   "kind": "video",
+   "slug": "ep02-folder-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 02."
+  },
+  {
+   "id": "ep03Carousel",
+   "kind": "carousel",
+   "slug": "ep03-habits",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 03: cover, four beats, closing card.",
+   "caption": "⌥Space opens or hides Rotli from anywhere on your Mac. ⌘K searches titles and text across the whole vault, best match first. Wikilinks connect notes, and a link to nothing looks inert. Main and named views arrange the same files without copying them. rotli.co"
+  },
+  {
+   "id": "ep03Habits",
+   "kind": "video",
+   "slug": "ep03-habits",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 03: Small habits: ⌥Space, ⌘K, wikilinks, views."
+  },
+  {
+   "id": "ep03Single",
+   "kind": "still",
+   "slug": "ep03-habits-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 03.",
+   "caption": "⌥Space opens or hides Rotli from anywhere on your Mac. ⌘K searches titles and text across the whole vault, best match first. Wikilinks connect notes, and a link to nothing looks inert. Main and named views arrange the same files without copying them. rotli.co"
+  },
+  {
+   "id": "ep03Vertical",
+   "kind": "video",
+   "slug": "ep03-habits-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 03."
+  },
+  {
+   "id": "ep04Carousel",
+   "kind": "carousel",
+   "slug": "ep04-yours",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 04: cover, four beats, closing card.",
+   "caption": "Six themes, each tuned for light and dark. A companion with seven colors, glasses and a bucket hat, or switch it off. rotli.co"
+  },
+  {
+   "id": "ep04Single",
+   "kind": "still",
+   "slug": "ep04-yours-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 04.",
+   "caption": "Six themes, each tuned for light and dark. A companion with seven colors, glasses and a bucket hat, or switch it off. rotli.co"
+  },
+  {
+   "id": "ep04Vertical",
+   "kind": "video",
+   "slug": "ep04-yours-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 04."
+  },
+  {
+   "id": "ep04Yours",
+   "kind": "video",
+   "slug": "ep04-yours",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 04: Six themes, seven quokkas, or none."
+  },
+  {
+   "id": "ep05Carousel",
+   "kind": "carousel",
+   "slug": "ep05-librarian",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 05: cover, four beats, closing card.",
+   "caption": "Turn it on and new notes get tags, summaries, links, and a place in your Library while you keep working in Main. It never edits your words. Turn it off and the folder is still a complete workspace. rotli.co"
+  },
+  {
+   "id": "ep05Librarian",
+   "kind": "video",
+   "slug": "ep05-librarian",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 05: A Librarian that files, never rewrites."
+  },
+  {
+   "id": "ep05Single",
+   "kind": "still",
+   "slug": "ep05-librarian-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 05.",
+   "caption": "Turn it on and new notes get tags, summaries, links, and a place in your Library while you keep working in Main. It never edits your words. Turn it off and the folder is still a complete workspace. rotli.co"
+  },
+  {
+   "id": "ep05Vertical",
+   "kind": "video",
+   "slug": "ep05-librarian-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 05."
+  },
+  {
+   "id": "ep06Carousel",
+   "kind": "carousel",
+   "slug": "ep06-chat",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 06: cover, four beats, closing card.",
+   "caption": "Chat reads the vault you are in and answers from what is actually there. After every reply it keeps Conversation notes, and the chat itself is saved as Markdown. In the Mac app it can file a PDF, a Word document, or a board beside the chat. rotli.co"
+  },
+  {
+   "id": "ep06Chat",
+   "kind": "video",
+   "slug": "ep06-chat",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 06: Ask your notes."
+  },
+  {
+   "id": "ep06Single",
+   "kind": "still",
+   "slug": "ep06-chat-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 06.",
+   "caption": "Chat reads the vault you are in and answers from what is actually there. After every reply it keeps Conversation notes, and the chat itself is saved as Markdown. In the Mac app it can file a PDF, a Word document, or a board beside the chat. rotli.co"
+  },
+  {
+   "id": "ep06Vertical",
+   "kind": "video",
+   "slug": "ep06-chat-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 06."
+  },
+  {
+   "id": "ep07Carousel",
+   "kind": "carousel",
+   "slug": "ep07-secure",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 07: cover, four beats, closing card.",
+   "caption": "No account, no tracking. Leave AI off, run a model on your Mac, or connect the tools you already use. Secure notes never reach a remote model; locked notes can't be edited by any. rotli.co"
+  },
+  {
+   "id": "ep07Secure",
+   "kind": "video",
+   "slug": "ep07-secure",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 07: AI is invited in. It does not own the house."
+  },
+  {
+   "id": "ep07Single",
+   "kind": "still",
+   "slug": "ep07-secure-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 07.",
+   "caption": "No account, no tracking. Leave AI off, run a model on your Mac, or connect the tools you already use. Secure notes never reach a remote model; locked notes can't be edited by any. rotli.co"
+  },
+  {
+   "id": "ep07Vertical",
+   "kind": "video",
+   "slug": "ep07-secure-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 07."
+  },
+  {
+   "id": "ep08Carousel",
+   "kind": "carousel",
+   "slug": "ep08-web",
+   "format": "ig-portrait",
+   "about": "Carousel of episode 08: cover, four beats, closing card.",
+   "caption": "No Mac? Rotli Web is the same editor, folders, tasks and links in your browser, working in a real folder on your computer. Chrome, Edge and Arc open it directly; Rotli Helper brings Firefox, Zen and Brave. rotli.co"
+  },
+  {
+   "id": "ep08Single",
+   "kind": "still",
+   "slug": "ep08-web-card",
+   "format": "ig-portrait",
+   "about": "Card for episode 08.",
+   "caption": "No Mac? Rotli Web is the same editor, folders, tasks and links in your browser, working in a real folder on your computer. Chrome, Edge and Arc open it directly; Rotli Helper brings Firefox, Zen and Brave. rotli.co"
+  },
+  {
+   "id": "ep08Vertical",
+   "kind": "video",
+   "slug": "ep08-web-vertical",
+   "format": "story",
+   "length": "~18 s",
+   "about": "Vertical cut of episode 08."
+  },
+  {
+   "id": "ep08Web",
+   "kind": "video",
+   "slug": "ep08-web",
+   "format": "film",
+   "length": "30 s",
+   "about": "Rotli in 30 seconds · 08: Your folder, in your browser."
+  },
+  {
+   "id": "atmosphereReel",
+   "kind": "video",
+   "slug": "atmosphere-reel",
+   "format": "film",
+   "length": "30 s",
+   "about": "The template library, seen: every atmosphere for 3 s, each showing a different story template."
+  },
+  {
+   "id": "s01e01Arrival",
+   "kind": "video",
+   "slug": "s01e01-arrival",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 01 Arrival. The quokka reaches the island and learns to catch a thought before it blows away."
+  },
+  {
+   "id": "s01e01Vertical",
+   "kind": "video",
+   "slug": "s01e01-arrival-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 01."
+  },
+  {
+   "id": "s01e01Carousel",
+   "kind": "carousel",
+   "slug": "s01e01-arrival",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 01.",
+   "caption": "The quokka reaches the island and learns to catch a thought before it blows away. Quick capture with ⌥C from anywhere; the thought lands in Captures and gets filed later. Open or hide rotli from anywhere on your Mac. rotli.co"
+  },
+  {
+   "id": "s01e01Single",
+   "kind": "still",
+   "slug": "s01e01-arrival-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 01.",
+   "caption": "The quokka reaches the island and learns to catch a thought before it blows away. Quick capture with ⌥C from anywhere; the thought lands in Captures and gets filed later. Open or hide rotli from anywhere on your Mac. rotli.co"
+  },
+  {
+   "id": "s01e02PlainWords",
+   "kind": "video",
+   "slug": "s01e02-plain-words",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 02 Plain words. The quokka writes its trip plan and every line quietly becomes what it means."
+  },
+  {
+   "id": "s01e02Vertical",
+   "kind": "video",
+   "slug": "s01e02-plain-words-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 02."
+  },
+  {
+   "id": "s01e02Carousel",
+   "kind": "carousel",
+   "slug": "s01e02-plain-words",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 02.",
+   "caption": "The quokka writes its trip plan and every line quietly becomes what it means. Hybrid Markdown shows raw syntax only on the line you are editing. Lists, checkboxes, choices, switches, tables, wikilinks, and Mermaid diagrams render in place. rotli.co"
+  },
+  {
+   "id": "s01e02Single",
+   "kind": "still",
+   "slug": "s01e02-plain-words-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 02.",
+   "caption": "The quokka writes its trip plan and every line quietly becomes what it means. Hybrid Markdown shows raw syntax only on the line you are editing. Lists, checkboxes, choices, switches, tables, wikilinks, and Mermaid diagrams render in place. rotli.co"
+  },
+  {
+   "id": "s01e03Workshop",
+   "kind": "video",
+   "slug": "s01e03-workshop",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 03 The workshop. The quokka makes things that aren't notes, and they stay ordinary files."
+  },
+  {
+   "id": "s01e03Vertical",
+   "kind": "video",
+   "slug": "s01e03-workshop-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 03."
+  },
+  {
+   "id": "s01e03Carousel",
+   "kind": "carousel",
+   "slug": "s01e03-workshop",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 03.",
+   "caption": "The quokka makes things that aren't notes, and they stay ordinary files. Word documents (.docx) and Excalidraw boards open and save in their own formats, alongside your notes. Sketch on an Excalidraw canvas saved as an ordinary .excalidraw file. rotli.co"
+  },
+  {
+   "id": "s01e03Single",
+   "kind": "still",
+   "slug": "s01e03-workshop-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 03.",
+   "caption": "The quokka makes things that aren't notes, and they stay ordinary files. Word documents (.docx) and Excalidraw boards open and save in their own formats, alongside your notes. Sketch on an Excalidraw canvas saved as an ordinary .excalidraw file. rotli.co"
+  },
+  {
+   "id": "s01e04Burrow",
+   "kind": "video",
+   "slug": "s01e04-burrow",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 04 The burrow. A storm tests where the quokka keeps things."
+  },
+  {
+   "id": "s01e04Vertical",
+   "kind": "video",
+   "slug": "s01e04-burrow-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 04."
+  },
+  {
+   "id": "s01e04Carousel",
+   "kind": "carousel",
+   "slug": "s01e04-burrow",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 04.",
+   "caption": "A storm tests where the quokka keeps things. One folder is your vault: plain Markdown in one folder you choose. Remove from Main takes a note out of view; the file stays in your vault. rotli.co"
+  },
+  {
+   "id": "s01e04Single",
+   "kind": "still",
+   "slug": "s01e04-burrow-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 04.",
+   "caption": "A storm tests where the quokka keeps things. One folder is your vault: plain Markdown in one folder you choose. Remove from Main takes a note out of view; the file stays in your vault. rotli.co"
+  },
+  {
+   "id": "s01e05LighthouseKeeper",
+   "kind": "video",
+   "slug": "s01e05-lighthouse-keeper",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 05 The lighthouse keeper. While the quokka sleeps, someone files the day away."
+  },
+  {
+   "id": "s01e05Vertical",
+   "kind": "video",
+   "slug": "s01e05-lighthouse-keeper-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 05."
+  },
+  {
+   "id": "s01e05Carousel",
+   "kind": "carousel",
+   "slug": "s01e05-lighthouse-keeper",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 05.",
+   "caption": "While the quokka sleeps, someone files the day away. The Librarian files each note into an area of the Library, adds a summary and tags, and records what it did with a guarded undo. It uses an on-device model by default, or a Claude, ChatGPT, or Gemini client you have already signed in to. rotli.co"
+  },
+  {
+   "id": "s01e05Single",
+   "kind": "still",
+   "slug": "s01e05-lighthouse-keeper-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 05.",
+   "caption": "While the quokka sleeps, someone files the day away. The Librarian files each note into an area of the Library, adds a summary and tags, and records what it did with a guarded undo. It uses an on-device model by default, or a Claude, ChatGPT, or Gemini client you have already signed in to. rotli.co"
+  },
+  {
+   "id": "s01e06Threads",
+   "kind": "video",
+   "slug": "s01e06-threads",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 06 Threads. The quokka ties its island together, one link at a time."
+  },
+  {
+   "id": "s01e06Vertical",
+   "kind": "video",
+   "slug": "s01e06-threads-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 06."
+  },
+  {
+   "id": "s01e06Carousel",
+   "kind": "carousel",
+   "slug": "s01e06-threads",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 06.",
+   "caption": "The quokka ties its island together, one link at a time. Wikilinks connect notes. A link to nothing looks inert, never live. ⌘K finds every note, file, chat, and action. ⌘T starts a note and ⌘N chooses what a new tab becomes. rotli.co"
+  },
+  {
+   "id": "s01e06Single",
+   "kind": "still",
+   "slug": "s01e06-threads-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 06.",
+   "caption": "The quokka ties its island together, one link at a time. Wikilinks connect notes. A link to nothing looks inert, never live. ⌘K finds every note, file, chat, and action. ⌘T starts a note and ⌘N chooses what a new tab becomes. rotli.co"
+  },
+  {
+   "id": "s01e07AskTheIsland",
+   "kind": "video",
+   "slug": "s01e07-ask-the-island",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 07 Ask the island. At dusk the quokka asks a question and the island answers from its own notes."
+  },
+  {
+   "id": "s01e07Vertical",
+   "kind": "video",
+   "slug": "s01e07-ask-the-island-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 07."
+  },
+  {
+   "id": "s01e07Carousel",
+   "kind": "carousel",
+   "slug": "s01e07-ask-the-island",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 07.",
+   "caption": "At dusk the quokka asks a question and the island answers from its own notes. Chat reads the vault you are in, or the note you started it from, and answers from what is actually there. On-device by default, or through an official Claude Code, Codex, or Cursor client already installed on your Mac. rotli.co"
+  },
+  {
+   "id": "s01e07Single",
+   "kind": "still",
+   "slug": "s01e07-ask-the-island-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 07.",
+   "caption": "At dusk the quokka asks a question and the island answers from its own notes. Chat reads the vault you are in, or the note you started it from, and answers from what is actually there. On-device by default, or through an official Claude Code, Codex, or Cursor client already installed on your Mac. rotli.co"
+  },
+  {
+   "id": "s01e08LockedBox",
+   "kind": "video",
+   "slug": "s01e08-locked-box",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 08 The locked box. Some things stay in the house, whoever knocks."
+  },
+  {
+   "id": "s01e08Vertical",
+   "kind": "video",
+   "slug": "s01e08-locked-box-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 08."
+  },
+  {
+   "id": "s01e08Carousel",
+   "kind": "carousel",
+   "slug": "s01e08-locked-box",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 08.",
+   "caption": "Some things stay in the house, whoever knocks. Mark a note secure and Rotli moves it to wiki/_secure/ and keeps it away from remote models and web lookups; the Librarian leaves it alone. Rotli also recognizes common secret shapes (API keys, private keys, card and identity numbers) and treats them the same way. rotli.co"
+  },
+  {
+   "id": "s01e08Single",
+   "kind": "still",
+   "slug": "s01e08-locked-box-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 08.",
+   "caption": "Some things stay in the house, whoever knocks. Mark a note secure and Rotli moves it to wiki/_secure/ and keeps it away from remote models and web lookups; the Librarian leaves it alone. Rotli also recognizes common secret shapes (API keys, private keys, card and identity numbers) and treats them the same way. rotli.co"
+  },
+  {
+   "id": "s01e09OtherShores",
+   "kind": "video",
+   "slug": "s01e09-other-shores",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 09 Other shores. The quokka's friend lives on another island, with a browser and an old folder of notes."
+  },
+  {
+   "id": "s01e09Vertical",
+   "kind": "video",
+   "slug": "s01e09-other-shores-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 09."
+  },
+  {
+   "id": "s01e09Carousel",
+   "kind": "carousel",
+   "slug": "s01e09-other-shores",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 09.",
+   "caption": "The quokka's friend lives on another island, with a browser and an old folder of notes. The same editor, folders, tasks, and links in your browser, working in a real folder on your computer. Chrome, Edge, and Arc open the folder directly; Safari and phones aren't supported yet. Rotli Helper: a small program for Mac, Windows, and Linux. It lets Firefox, Zen, and Brave use your folder. rotli.co"
+  },
+  {
+   "id": "s01e09Single",
+   "kind": "still",
+   "slug": "s01e09-other-shores-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 09.",
+   "caption": "The quokka's friend lives on another island, with a browser and an old folder of notes. The same editor, folders, tasks, and links in your browser, working in a real folder on your computer. Chrome, Edge, and Arc open the folder directly; Safari and phones aren't supported yet. Rotli Helper: a small program for Mac, Windows, and Linux. It lets Firefox, Zen, and Brave use your folder. rotli.co"
+  },
+  {
+   "id": "s01e10Seasons",
+   "kind": "video",
+   "slug": "s01e10-seasons",
+   "format": "film",
+   "length": "60 s",
+   "about": "Season One · 10 Seasons. A year on the island in one minute: everything changes colour, nothing gets lost."
+  },
+  {
+   "id": "s01e10Vertical",
+   "kind": "video",
+   "slug": "s01e10-seasons-vertical",
+   "format": "story",
+   "length": "~30 s",
+   "about": "Vertical cut of Season One · 10."
+  },
+  {
+   "id": "s01e10Carousel",
+   "kind": "carousel",
+   "slug": "s01e10-seasons",
+   "format": "ig-portrait",
+   "about": "Carousel of Season One · 10.",
+   "caption": "A year on the island in one minute: everything changes colour, nothing gets lost. Six theme families, each with a tuned light and dark environment. Pick a body colour, black or white linework, a mood and pose, and glasses or a bucket hat in any colour. Turn the companion off and it appears only during onboarding. rotli.co"
+  },
+  {
+   "id": "s01e10Single",
+   "kind": "still",
+   "slug": "s01e10-seasons-card",
+   "format": "ig-portrait",
+   "about": "Card for Season One · 10.",
+   "caption": "A year on the island in one minute: everything changes colour, nothing gets lost. Six theme families, each with a tuned light and dark environment. Pick a body colour, black or white linework, a mood and pose, and glasses or a bucket hat in any colour. Turn the companion off and it appears only during onboarding. rotli.co"
+  }
+ ]
+}

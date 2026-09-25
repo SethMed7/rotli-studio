@@ -1,0 +1,160 @@
+{
+ "note": "Agent runs recovered from Claude Code transcripts. Regenerate with tools/extract-runs.mjs.",
+ "sources": [
+  "6f834591-5513-4f19-a058-1af9a5cdd8f7.jsonl"
+ ],
+ "runs": [
+  {
+   "piece": "ep02Folder",
+   "description": "Build episode 02 Folder",
+   "launched": "2026-09-24 15:31",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 167316,
+   "minutes": 15.1,
+   "file": "workflows/runs/ep02Folder.md"
+  },
+  {
+   "piece": "ep03Habits",
+   "description": "Build episode 03 Habits",
+   "launched": "2026-09-24 15:31",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 206896,
+   "minutes": 23.1,
+   "file": "workflows/runs/ep03Habits.md"
+  },
+  {
+   "piece": "ep05Librarian",
+   "description": "Build episode 05 Librarian",
+   "launched": "2026-09-24 15:31",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 161831,
+   "minutes": 12.1,
+   "file": "workflows/runs/ep05Librarian.md"
+  },
+  {
+   "piece": "ep06Chat",
+   "description": "Build episode 06 Chat",
+   "launched": "2026-09-24 15:31",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 2,
+   "tokens": 349946,
+   "minutes": 13,
+   "file": "workflows/runs/ep06Chat.md"
+  },
+  {
+   "piece": "ep07Secure",
+   "description": "Build episode 07 Secure",
+   "launched": "2026-09-24 15:32",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 189206,
+   "minutes": 12.9,
+   "file": "workflows/runs/ep07Secure.md"
+  },
+  {
+   "piece": "ep08Web",
+   "description": "Build episode 08 Web",
+   "launched": "2026-09-24 15:32",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 161719,
+   "minutes": 13,
+   "file": "workflows/runs/ep08Web.md"
+  },
+  {
+   "piece": "s01e02PlainWords",
+   "description": "Build S01E02 Plain Words",
+   "launched": "2026-09-24 17:08",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 198543,
+   "minutes": 11.5,
+   "file": "workflows/runs/s01e02PlainWords.md"
+  },
+  {
+   "piece": "s01e03Workshop",
+   "description": "Build S01E03 The Workshop",
+   "launched": "2026-09-24 17:08",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 161167,
+   "minutes": 6.6,
+   "file": "workflows/runs/s01e03Workshop.md"
+  },
+  {
+   "piece": "s01e04Burrow",
+   "description": "Build S01E04 The Burrow",
+   "launched": "2026-09-24 17:08",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 213754,
+   "minutes": 9.7,
+   "file": "workflows/runs/s01e04Burrow.md"
+  },
+  {
+   "piece": "s01e05LighthouseKeeper",
+   "description": "Build S01E05 Lighthouse Keeper",
+   "launched": "2026-09-24 17:08",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 228372,
+   "minutes": 9.9,
+   "file": "workflows/runs/s01e05LighthouseKeeper.md"
+  },
+  {
+   "piece": "s01e06Threads",
+   "description": "Build S01E06 Threads",
+   "launched": "2026-09-24 17:20",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 197891,
+   "minutes": 12.4,
+   "file": "workflows/runs/s01e06Threads.md"
+  },
+  {
+   "piece": "s01e07AskTheIsland",
+   "description": "Build S01E07 Ask the Island",
+   "launched": "2026-09-24 17:20",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 200071,
+   "minutes": 7.3,
+   "file": "workflows/runs/s01e07AskTheIsland.md"
+  },
+  {
+   "piece": "s01e08LockedBox",
+   "description": "Build S01E08 The Locked Box",
+   "launched": "2026-09-24 17:20",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 228781,
+   "minutes": 13.3,
+   "file": "workflows/runs/s01e08LockedBox.md"
+  },
+  {
+   "piece": "s01e09OtherShores",
+   "description": "Build S01E09 Other Shores",
+   "launched": "2026-09-24 17:20",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 470051,
+   "minutes": 15.7,
+   "file": "workflows/runs/s01e09OtherShores.md"
+  },
+  {
+   "piece": "s01e10Seasons",
+   "description": "Build S01E10 Seasons finale",
+   "launched": "2026-09-24 17:20",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 206262,
+   "minutes": 14.9,
+   "file": "workflows/runs/s01e10Seasons.md"
+  }
+ ],
+ "reviews": 4,
+ "requests": 14
+}

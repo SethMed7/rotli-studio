@@ -1,0 +1,82 @@
+{
+ "id": "s01e06Threads",
+ "no": 6,
+ "slug": "s01e06-threads",
+ "title": [
+  "Threads."
+ ],
+ "logline": "The quokka ties its island together, one link at a time.",
+ "story": {
+  "setup": "Notes sit like huts along the tide line, unconnected.",
+  "turn": "It strings [[links]] between them; a rope to a hut that doesn't exist yet hangs slack (a link to nothing looks inert). ⌘K finds any note, file, chat or action.",
+  "payoff": "Views arrange the same huts two ways without moving a single one; panes put two side by side."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "ocean-tide",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "Wikilinks connect notes. A link to nothing looks inert, never live.",
+   "source": "rotli.co /features"
+  },
+  {
+   "claim": "⌘K finds every note, file, chat, and action. ⌘T starts a note and ⌘N chooses what a new tab becomes.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Panes and tabs split with ⌘D and ⌘⇧D; every hotkey can be rebound.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Main and named views arrange the same files without copying them.",
+   "source": "rotli.co /features"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 210,
+   "template": "story: huts on the tide line, thought: link"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "links",
+   "len": 420,
+   "template": "story/diagram: ropes between huts; slack rope = inert"
+  },
+  {
+   "id": "search",
+   "len": 360,
+   "template": "appDemo: ⌘K ranked results"
+  },
+  {
+   "id": "views",
+   "len": 360,
+   "template": "appDemo: Main + named view + ⌘D split"
+  },
+  {
+   "id": "payoff",
+   "len": 210,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 7,
+  "melody": 1
+ },
+ "next": "Ask the Island",
+ "length": "60 s (1800 frames)"
+}

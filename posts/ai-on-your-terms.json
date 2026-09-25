@@ -1,0 +1,51 @@
+{
+  "slug": "ai-on-your-terms",
+  "title": "AI on your terms",
+  "format": "ig-portrait",
+  "counter": true,
+  "captions": {
+    "instagram": "AI is invited in. It doesn't own the house.\n\nIn rotli you decide, note by note, what AI may see:\n• Mark a note secure and no remote model ever sees it, not even the title.\n• Lock a note and every model can read it, but none can edit it.\n• On-device models run on your Mac with no network.\n\nSecure is an AI access rule, not encryption: the note stays a plain file protected by your Mac account and FileVault.\n\nThe full policy, in plain language: rotli.co/privacy\n\n#notes #markdown #localfirst #privacy #macapps",
+    "x": "In rotli, secure notes never reach a remote model. Not even the title.\n\nLocked notes: every model can read them, none can edit them.\n\nThe whole policy, in plain language: rotli.co/privacy",
+    "linkedin": "How should a notes app handle AI? Our answer in rotli: per note, and enforced by the app rather than left to the model.\n\n• Secure: never sent to a remote model, not even the title. On-device models can still read it unless you turn that off.\n• Locked: every model may read it; no model may edit it.\n\nSecure is an AI access rule, not encryption; the note is still a plain file protected by your Mac account and FileVault. We wrote the full policy in plain language, with the reason behind each rule: rotli.co/privacy"
+  },
+  "slides": [
+    {
+      "template": "statement",
+      "theme": "dark",
+      "fields": {
+        "headline": "AI is invited in.\nIt doesn’t own the house.",
+        "subline": "You decide, note by note, what AI may read and what it may change.",
+        "pattern": "on"
+      }
+    },
+    {
+      "template": "points",
+      "theme": "light",
+      "fields": {
+        "headline": "Two switches,\none right-click away.",
+        "lines": "Mark secure — Never sent to a remote model. Not even the title.\nLock — Every model can read it. None can edit it.\nOn-device models — Run on your Mac and read secure notes, unless you say no.\nEnforced by rotli — Checked in the app before anything reaches a model.",
+        "image": "/library/quokka-line/stays_local.svg"
+      }
+    },
+    {
+      "template": "note",
+      "theme": "warm",
+      "fields": {
+        "headline": "Secure is a rule,\nnot a vault.",
+        "title": "Salary review",
+        "lines": "## Before Friday\n- [ ] Target range and talking points\nMarked secure: remote AI never sees this note.\nIt’s still a plain file, protected by your Mac account and FileVault."
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Privacy you\ncan read.",
+        "subline": "The full policy, in plain language.",
+        "url": "rotli.co/privacy",
+        "primary": "Read how it works",
+        "secondary": "Download for Mac"
+      }
+    }
+  ]
+}

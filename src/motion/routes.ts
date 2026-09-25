@@ -1,0 +1,142 @@
+// The Motion room's server side: read-only views of motion/ (and the studio docs around it) for the
+// studio site. Nothing here edits a piece; the only writes are caches under motion/out/ (the manifest,
+// scene thumbnails, exact frame renders) and those are regenerable and gitignored.
+import { existsSync, mkdirSync, readdirSync, readFileSync, statSync } from "node:fs";
+import { homedir } from "node:os";
+import { extname, join, normalize, relative } from "node:path";
+
+const ROOT = join(import.meta.dir, "../..");
+const MOTION = join(ROOT, "motion");
+const OUT = join(MOTION, "out");
+
+// What the site may read. Top-level names only; everything under them is allowed, nothing else is.
+const MOTION_OPEN = new Set(["out", "golden", "season", "workflows", "brand", "src", "tools", "examples", "assets", "third_party", "pieces.json", "series.json", "README.md", "EVALUATION.md", "package.json"]);
+const STUDIO_OPEN = new Set(["launch", ".claude", "AGENTS.md", "README.md", "LICENSE", "NOTICE", "films", "scripts", "exports", "library"]);
+const TEXT = new Set([".ts", ".mjs", ".js", ".py", ".md", ".txt", ".json", ".sh", ".css", ".html"]);
+
+/** A file under `base` whose first path segment is allowed, or null. */
+function allowed(base: string, open: Set<string>, rel: string): string | null {
+  const clean = decodeURIComponent(rel).replace(/^\/+/, "");
+  const top = clean.split("/")[0] ?? "";
+  if (!open.has(top) || clean.split("/").includes("node_modules")) return null;
+  const file = normalize(join(base, clean));
+  return relative(base, file).startsWith("..") ? null : file;
+}
+
+/** Serve a file; video honours Range so the player can seek through large renders. */
+function serve(req: Request, file: string | null): Response {
+  if (!file || !existsSync(file) || !statSync(file).isFile()) return new Response("Not found", { status: 404 });
+  const f = Bun.file(file), size = f.size, ext = extname(file).toLowerCase();
+  const type = TEXT.has(ext) ? `${ext === ".json" ? "application/json" : "text/plain"}; charset=utf-8` : f.type;
+  const headers: Record<string, string> = { "content-type": type, "accept-ranges": "bytes", "cache-control": "no-store" };
+  const range = req.headers.get("range")?.match(/bytes=(\d*)-(\d*)/);
+  if (!range) return new Response(f, { headers: { ...headers, "content-length": String(size) } });
+  const start = range[1] ? Number(range[1]) : Math.max(0, size - Number(range[2]));
+  const end = range[1] && range[2] ? Math.min(Number(range[2]), size - 1) : size - 1;
+  if (start >= size || start > end) return new Response(null, { status: 416, headers: { "content-range": `bytes */${size}` } });
+  return new Response(f.slice(start, end + 1), { status: 206, headers: { ...headers, "content-range": `bytes ${start}-${end}/${size}`, "content-length": String(end - start + 1) } });
+}
+
+const run = async (cmd: string[], cwd: string, timeoutMs = 120_000) => {
+  const p = Bun.spawn(cmd, { cwd, stdout: "pipe", stderr: "pipe" });
+  const timer = setTimeout(() => p.kill(), timeoutMs);
+  const [out, err, code] = await Promise.all([new Response(p.stdout).text(), new Response(p.stderr).text(), p.exited]);
+  clearTimeout(timer);
+  return { code, out, err };
+};
+
+// ---------------------------------------------------------------- the manifest (rebuilt when its inputs change)
+const MANIFEST = join(OUT, "manifest.json");
+const manifestInputs = () => [join(MOTION, "pieces.json"), join(MOTION, "series.json"), join(MOTION, "workflows/runs/runs.json"), join(OUT, "video"), join(MOTION, "golden"), join(MOTION, "season/episodes")];
+const stale = () => !existsSync(MANIFEST) || manifestInputs().some((p) => existsSync(p) && statSync(p).mtimeMs > statSync(MANIFEST).mtimeMs);
+let building: Promise<unknown> | null = null;
+async function manifest(force = false): Promise<Response> {
+  if (force || stale()) { building ??= run(["node", "tools/manifest.mjs"], MOTION).finally(() => (building = null)); const r = (await building) as { code: number; err: string }; if (r?.code) return Response.json({ error: r.err }, { status: 500 }); }
+  return new Response(Bun.file(MANIFEST), { headers: { "content-type": "application/json", "cache-control": "no-store" } });
+}
+
+// ---------------------------------------------------------------- scene thumbnails (ffmpeg from the render) and exact frames
+const SLUG = /^[a-z0-9-]{1,80}$/, ID = /^[A-Za-z0-9]{1,60}$/;
+async function thumb(slug: string, frame: number): Promise<Response> {
+  const video = join(OUT, "video", `${slug}.mp4`), dir = join(OUT, "thumbs", slug), file = join(dir, `${frame}.jpg`);
+  if (!existsSync(video)) return new Response("No render", { status: 404 });
+  if (!existsSync(file) || statSync(file).mtimeMs < statSync(video).mtimeMs) {
+    mkdirSync(dir, { recursive: true });
+    const r = await run(["ffmpeg", "-y", "-loglevel", "error", "-ss", (frame / 30).toFixed(3), "-i", video, "-frames:v", "1", "-vf", "scale=640:-2", "-q:v", "4", file], MOTION, 30_000);
+    if (r.code) return new Response(r.err, { status: 500 });
+  }
+  return new Response(Bun.file(file), { headers: { "content-type": "image/jpeg", "cache-control": "no-store" } });
+}
+async function exactFrame(id: string, frame: number): Promise<Response> {
+  const dir = join(OUT, "frames", id), file = join(dir, `f${String(frame).padStart(4, "0")}.png`);
+  if (!existsSync(file)) { const r = await run(["node", "tools/frames.mjs", id, String(frame), "--out", `out/frames/${id}`], MOTION); if (r.code || !existsSync(file)) return new Response(r.err || "render failed", { status: 500 }); }
+  return new Response(Bun.file(file), { headers: { "content-type": "image/png", "cache-control": "no-store" } });
+}
+
+// ---------------------------------------------------------------- docs the site lists
+/** A tool's opening comment block: its own usage notes. */
+const header = (file: string) => {
+  const lines = readFileSync(file, "utf8").split("\n"), out: string[] = [];
+  for (const l of lines.slice(lines[0]?.startsWith("#!") ? 1 : 0)) { if (!/^\s*(\/\/|\*|\/\*)/.test(l)) break; out.push(l.replace(/^\s*(\/\/ ?|\/\*\*? ?|\* ?)/, "")); }
+  return out.join("\n").trim();
+};
+export function tools() {
+  const list = (dir: string, base: string, re: RegExp) => (existsSync(dir) ? readdirSync(dir).filter((f) => re.test(f)).sort().map((f) => ({ file: `${base}/${f}`, about: header(join(dir, f)) || pyDoc(join(dir, f)) })) : []);
+  return [...list(join(MOTION, "tools"), "motion/tools", /\.(mjs|py)$/), ...list(join(ROOT, "scripts"), "scripts", /\.ts$/)];
+}
+const pyDoc = (file: string) => (file.endsWith(".py") ? (readFileSync(file, "utf8").match(/"""([\s\S]*?)"""/)?.[1] ?? "").trim() : "");
+export function skills({ global = true } = {}) {
+  const dir = join(ROOT, ".claude/skills");
+  const mine = existsSync(dir) ? readdirSync(dir).filter((d) => existsSync(join(dir, d, "SKILL.md"))).map((d) => ({ name: d, where: "studio", path: `.claude/skills/${d}/SKILL.md`, text: readFileSync(join(dir, d, "SKILL.md"), "utf8") })) : [];
+  // global skills the studio depends on: shown read-only, never served as files
+  if (!global) return mine;
+  const others = ["brand-motion-studio", "anidoodle"].map((d) => join(homedir(), ".claude/skills", d, "SKILL.md")).filter(existsSync)
+    .map((f) => ({ name: f.split("/").at(-2)!, where: "global", path: f.replace(homedir(), "~"), text: readFileSync(f, "utf8") }));
+  return [...mine, ...others];
+}
+export function atmospheres() {
+  const src = readFileSync(join(MOTION, "src/canvas-core/studio/atmospheres.ts"), "utf8");
+  return [...src.matchAll(/"([\w-]+)": \{ id: "[\w-]+", label: "([^"]+)", family: "(\w+)", dark: (true|false), drift: ([\d.]+), why: "([^"]+)"[\s\S]*?score: \{ key: (\d+), melody: (\d)/g)]
+    .map((m) => ({ id: m[1], label: m[2], family: m[3], dark: m[4] === "true", drift: Number(m[5]), why: m[6], key: Number(m[7]), melody: Number(m[8]) }));
+}
+
+export const looks = () => { const d = join(ROOT, "library/companion-looks"); return existsSync(d) ? readdirSync(d).filter((f) => f.endsWith(".png")) : []; };
+
+// ---------------------------------------------------------------- isolation (cached; the audit walks the product repos)
+let isolation: { at: number; body: string } | null = null;
+async function isolationReport(fresh: boolean): Promise<Response> {
+  if (fresh || !isolation || Date.now() - isolation.at > 10 * 60_000) {
+    const r = await run(["bun", "scripts/check-isolation.ts", "--json"], ROOT, 180_000);
+    if (r.code) return Response.json({ error: r.err || "audit failed" }, { status: 500 });
+    isolation = { at: Date.now(), body: r.out };
+  }
+  return new Response(isolation.body, { headers: { "content-type": "application/json", "cache-control": "no-store" } });
+}
+
+const num = (s: string | undefined) => { const n = Number(s); return Number.isInteger(n) && n >= 0 && n < 100_000 ? n : null; };
+const path = (req: Request, prefix: string) => new URL(req.url).pathname.slice(prefix.length);
+
+export const motionRoutes = {
+  "/motion": () => new Response(Bun.file(join(ROOT, "static/motion.html")), { headers: { "cache-control": "no-store" } }),
+  "/m/*": (req: Request) => serve(req, allowed(MOTION, MOTION_OPEN, path(req, "/m/"))),
+  "/s/*": (req: Request) => serve(req, allowed(ROOT, STUDIO_OPEN, path(req, "/s/"))),
+  "/api/motion/manifest": { GET: () => manifest(), POST: () => manifest(true) },
+  "/api/motion/thumb/:slug/:frame": (req: Request & { params: { slug: string; frame: string } }) => {
+    const f = num(req.params.frame.replace(/\.jpg$/, "")); return SLUG.test(req.params.slug) && f !== null ? thumb(req.params.slug, f) : new Response("Bad request", { status: 400 });
+  },
+  "/api/motion/frame/:id/:frame": (req: Request & { params: { id: string; frame: string } }) => {
+    const f = num(req.params.frame.replace(/\.png$/, "")); return ID.test(req.params.id) && f !== null ? exactFrame(req.params.id, f) : new Response("Bad request", { status: 400 });
+  },
+  "/api/motion/verify/:id": {
+    POST: async (req: Request & { params: { id: string } }) => {
+      if (!ID.test(req.params.id)) return new Response("Bad request", { status: 400 });
+      const r = await run(["node", "tools/golden.mjs", req.params.id], MOTION, 600_000);
+      return Response.json({ ok: r.code === 0 && /SAME, audio SAME/.test(r.out), output: (r.out + r.err).trim().split("\n").slice(-3).join("\n") });
+    },
+  },
+  "/api/motion/tools": () => Response.json(tools()),
+  "/api/motion/skills": () => Response.json(skills()),
+  "/api/motion/atmospheres": () => Response.json(atmospheres()),
+  "/api/motion/looks": () => Response.json(looks()),
+  "/api/motion/isolation": (req: Request) => isolationReport(new URL(req.url).searchParams.has("fresh")),
+};

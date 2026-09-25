@@ -1,0 +1,1 @@
+export { linkedinCard } from "./stills";

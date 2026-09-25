@@ -1,0 +1,11 @@
+{
+ "piece": "posterLineup",
+ "W": 1080,
+ "H": 1350,
+ "frames": 15,
+ "audio": null,
+ "hashes": {
+  "0": "66dc65ed17c27493eb171800f16258cd",
+  "14": "f3c7be4bd7c03028381d7f94193a8ec1"
+ }
+}

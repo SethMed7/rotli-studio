@@ -1,0 +1,74 @@
+{
+ "id": "s01e03Workshop",
+ "no": 3,
+ "slug": "s01e03-workshop",
+ "title": [
+  "The workshop."
+ ],
+ "logline": "The quokka makes things that aren't notes, and they stay ordinary files.",
+ "story": {
+  "setup": "The quokka needs a map of the island and a letter for the ferry office.",
+  "turn": "It sketches the map on an Excalidraw board and writes the letter in a Word document, right beside its notes.",
+  "payoff": "Both are saved in their own formats, as the same ordinary files any other app reads."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "paper-studio",
+ "visits": [],
+ "style": "line",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "Word documents (.docx) and Excalidraw boards open and save in their own formats, alongside your notes.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Sketch on an Excalidraw canvas saved as an ordinary .excalidraw file.",
+   "source": "rotli.co landing (Formats)"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 210,
+   "template": "story: drafting table, thought: board"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "board",
+   "len": 450,
+   "template": "appDemo: board canvas: island map drawn stroke by stroke"
+  },
+  {
+   "id": "doc",
+   "len": 420,
+   "template": "appDemo: Word document page, letter typed"
+  },
+  {
+   "id": "files",
+   "len": 390,
+   "template": "diagram: file list with .md, .excalidraw, .docx side by side"
+  },
+  {
+   "id": "payoff",
+   "len": 90,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 5,
+  "melody": 1
+ },
+ "next": "The Burrow",
+ "length": "60 s (1800 frames)"
+}

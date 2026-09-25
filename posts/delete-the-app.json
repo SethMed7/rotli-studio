@@ -1,0 +1,23 @@
+{
+  "slug": "delete-the-app",
+  "title": "Delete the app. Keep every word.",
+  "format": "x-post",
+  "counter": false,
+  "captions": {
+    "instagram": "Delete the app. Keep every word.\n\nEvery rotli note is a plain Markdown file in a folder you own. rotli.co\n\n#notes #markdown #localfirst #privacy #macapps",
+    "x": "Delete the app. Keep every word.\n\nEvery rotli note is a plain Markdown file in a folder you own.\n\nrotli.co",
+    "linkedin": "Delete the app. Keep every word. Every rotli note is a plain Markdown file in a folder you own. rotli.co"
+  },
+  "slides": [
+    {
+      "template": "statement",
+      "theme": "light",
+      "fields": {
+        "headline": "Delete the app.\nKeep every word.",
+        "subline": "Every rotli note is a plain Markdown file in a folder you own.",
+        "image": "/library/quokka-cocoa/waving.webp",
+        "pattern": "on"
+      }
+    }
+  ]
+}

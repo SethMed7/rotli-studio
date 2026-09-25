@@ -1,0 +1,394 @@
+/* Slide styles: the rotli brand at social sizes. Tokens are the site's
+   (src/brand/tokens/colors.json); everything is sized in container units
+   (cqmin = 1% of the slide's shorter side), so every template fits every
+   format. Flat material, like the app: no shadows, glows, or blur. */
+@font-face { font-family: 'General Sans'; src: url('/library/fonts/GeneralSans-Regular.woff2') format('woff2'); font-weight: 400; }
+@font-face { font-family: 'General Sans'; src: url('/library/fonts/GeneralSans-Medium.woff2') format('woff2'); font-weight: 500; }
+@font-face { font-family: 'General Sans'; src: url('/library/fonts/GeneralSans-Semibold.woff2') format('woff2'); font-weight: 600; }
+@font-face { font-family: 'Baloo 2'; src: url('/library/fonts/Baloo2-600.ttf') format('truetype'); font-weight: 600; }
+
+.slide {
+  --ground: #f8f2e9;
+  --surface: #fbf6ee;
+  --paper: #ffffff;
+  --surface-2: #f1e7d8;
+  --tint: #f2d6c2;
+  --text: #3a3028;
+  --muted: #6e6155;
+  --border: #cdb8a1;
+  --hairline: #e2d3c1;
+  --accent: #c97e62;
+  --accent-text: #8f4e37;
+  --pattern-ink: #3a3028;
+  position: relative;
+  overflow: hidden;
+  container-type: size;
+  background: var(--ground);
+  color: var(--text);
+  font-family: 'General Sans', -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+.slide * { box-sizing: border-box; }
+.slide.theme-warm { --ground: #f1e7d8; --surface: #f8f2e9; --surface-2: #e9dccb; }
+.slide.theme-dark {
+  --ground: #241d18;
+  --surface: #302720;
+  --paper: #302720;
+  --surface-2: #392f28;
+  --tint: #f2d6c2;
+  --text: #f1e7da;
+  --muted: #c6b7a7;
+  --border: #4b3c31;
+  --hairline: #3d3229;
+  --accent-text: #e3a88f;
+  --pattern-ink: #f1e7da;
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 7cqmin 7cqmin 5cqmin;
+}
+
+/* The faint icon tile, shaped from the hero pattern's own strokes. */
+.pattern {
+  position: absolute;
+  inset: 0;
+  background-color: var(--pattern-ink);
+  /* Tile ∩ vignette: the icons fade out behind the words. */
+  mask-image: url('/library/patterns/hero-pattern.svg'), radial-gradient(ellipse 62% 56% at 50% 45%, transparent 40%, #000 95%);
+  mask-size: 22cqmin 22cqmin, 100% 100%;
+  mask-repeat: repeat, no-repeat;
+  mask-composite: intersect;
+}
+.pattern.soft { opacity: 0.8; }
+
+.stack {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3.2cqmin;
+  min-height: 0;
+}
+.stack.center {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.display {
+  margin: 0;
+  font-size: 12.5cqmin;
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+.h1 {
+  margin: 0;
+  font-size: 8.4cqmin;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+.display, .h1 { text-wrap: balance; }
+.lede {
+  text-wrap: balance;
+  max-width: 34ch;
+  margin: 0;
+  color: var(--muted);
+  font-size: 3.9cqmin;
+  line-height: 1.4;
+}
+.o-wide .display { font-size: 13.5cqmin; }
+.o-wide .lede { max-width: 44ch; }
+
+/* Brand footer: the line mark, the wordmark, the carousel counter. */
+.brand {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.4cqmin;
+  margin-top: 3cqmin;
+  color: var(--text);
+}
+.brand .mark { width: 5.2cqmin; height: 5.2cqmin; display: block; }
+.brand .mark svg { width: 100%; height: 100%; display: block; }
+.brand .word {
+  font-family: 'Baloo 2', 'General Sans', sans-serif;
+  font-size: 4.4cqmin;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  line-height: 1;
+  transform: translateY(0.3cqmin);
+}
+.counter {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 2.8cqmin;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Statement: the character peeks up from behind the footer. */
+/* Centered on the bottom edge, between the wordmark and the counter. */
+.peek {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 28cqmin;
+  height: auto;
+  transform: translate(-50%, 10%);
+}
+
+/* Product shot: a framed capture that takes the remaining height. */
+.product .shot {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  margin: 1cqmin 0 0;
+}
+.shot-img {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
+  border: 0.25cqmin solid var(--border);
+  border-radius: 2cqmin;
+  background: var(--paper);
+}
+.product figcaption {
+  margin-top: 1.6cqmin;
+  color: var(--muted);
+  font-size: 2.8cqmin;
+}
+.o-wide .product { display: grid; grid-template-columns: 0.8fr 1.2fr; grid-template-rows: auto auto 1fr; column-gap: 5cqmin; }
+.o-wide .product .h1,
+.o-wide .product .lede { grid-column: 1; }
+.o-wide .product .shot { grid-column: 2; grid-row: 1 / 4; margin: 0; }
+
+/* Note: rotli's editor, drawn. */
+.paper {
+  flex: 1;
+  min-height: 0;
+  padding: 5cqmin 6cqmin;
+  border: 0.25cqmin solid var(--border);
+  border-radius: 2.4cqmin;
+  background: var(--paper);
+  overflow: hidden;
+}
+:where(.note p) { margin: 0; }
+.n-title {
+  margin-bottom: 2.6cqmin;
+  font-size: 5.4cqmin;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.n-h {
+  margin: 2.8cqmin 0 1.4cqmin;
+  font-size: 4.1cqmin;
+  font-weight: 600;
+}
+.n-text {
+  margin-bottom: 1.4cqmin;
+  color: var(--text);
+  font-size: 3.3cqmin;
+  line-height: 1.45;
+}
+.n-task {
+  display: flex;
+  align-items: center;
+  gap: 1.8cqmin;
+  margin-bottom: 1.3cqmin;
+  font-size: 3.5cqmin;
+  line-height: 1.35;
+}
+.n-task .box {
+  flex: none;
+  position: relative;
+  width: 3.3cqmin;
+  height: 3.3cqmin;
+  border: 0.3cqmin solid var(--muted);
+  border-radius: 0.7cqmin;
+  overflow: hidden;
+}
+.n-task.done .box { border-color: var(--accent); background: var(--accent); }
+.n-task.done span:last-child { color: var(--muted); text-decoration: line-through; }
+.n-task.doing .box { border-color: var(--accent); }
+.n-task.doing .box::after {
+  content: '';
+  position: absolute;
+  inset: 0 50% 0 0;
+  background: var(--tint);
+}
+.theme-dark .n-task.doing .box::after { background: var(--accent); opacity: 0.55; }
+
+/* Markdown ↔ rendered: the raw source beside the drawn note. */
+.pair {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 2.4cqmin;
+}
+.o-wide .pair { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+.pane {
+  min-height: 0;
+  padding: 3.6cqmin 4.4cqmin;
+  border: 0.25cqmin solid var(--border);
+  border-radius: 2.4cqmin;
+  background: #241d18;
+  color: #f1e7da;
+  overflow: hidden;
+}
+.paper-pane { background: var(--paper); color: var(--text); }
+.pane-label {
+  margin: 0 0 2cqmin;
+  font-size: 2.5cqmin;
+  font-weight: 600;
+  opacity: 0.7;
+}
+.raw {
+  margin: 0;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 2.9cqmin;
+  line-height: 1.65;
+  white-space: pre-wrap;
+}
+.r-line { display: block; }
+.raw .m { color: #f2d6c2; font-weight: 400; }
+.paper-pane .n-task { font-size: 3.1cqmin; }
+.paper-pane .n-h { margin-top: 1.6cqmin; font-size: 3.6cqmin; }
+.paper-pane .n-text { font-size: 3cqmin; }
+
+/* Points: short titled lines with hairlines, no boxes. */
+.points {
+  display: grid;
+  gap: 0;
+  margin: 1cqmin 0 0;
+  padding: 0;
+  list-style: none;
+}
+.points li {
+  display: grid;
+  gap: 0.8cqmin;
+  padding: 2.6cqmin 0;
+  border-top: 0.2cqmin solid var(--border);
+}
+.points b { font-size: 4.2cqmin; font-weight: 600; letter-spacing: -0.015em; }
+.points span { color: var(--muted); font-size: 3.2cqmin; line-height: 1.4; max-width: 40ch; }
+.o-wide .points { grid-template-columns: repeat(2, 1fr); column-gap: 5cqmin; }
+.corner {
+  position: absolute;
+  right: 6cqmin;
+  bottom: 12cqmin;
+  width: 18cqmin;
+  height: auto;
+}
+
+/* Quokka: the character is the picture. */
+.hero-char { width: 52cqmin; height: auto; max-height: 55%; object-fit: contain; }
+.o-wide .hero-char { width: 44cqmin; }
+
+/* Call to action: buttons drawn in the site's button grammar. */
+.buttons { display: flex; flex-wrap: wrap; justify-content: center; gap: 2cqmin; margin-top: 1cqmin; }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 2.2cqmin 4cqmin;
+  border-radius: 1.6cqmin;
+  font-size: 3.4cqmin;
+  font-weight: 600;
+}
+.btn.primary { background: var(--text); color: var(--ground); }
+.btn.secondary { border: 0.25cqmin solid var(--border); color: var(--text); }
+.url { margin: 1cqmin 0 0; color: var(--accent-text); font-size: 3.6cqmin; font-weight: 600; }
+
+/* Chat: your question on the right in the chat tint, the answer on the left. */
+.chat-card {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3.4cqmin;
+  padding: 5cqmin 5.5cqmin;
+  border: 0.25cqmin solid var(--border);
+  border-radius: 2.4cqmin;
+  background: var(--paper);
+  overflow: hidden;
+}
+.bubble {
+  align-self: flex-end;
+  max-width: 82%;
+  margin: 0;
+  padding: 2cqmin 3cqmin;
+  border-radius: 2.2cqmin;
+  background: var(--tint);
+  color: #3a3028;
+  font-size: 3.3cqmin;
+  line-height: 1.4;
+}
+.answer p { margin: 0; }
+.answer .c-label { margin-top: 2.2cqmin; font-size: 3.4cqmin; font-weight: 600; }
+.answer .c-label:first-child { margin-top: 0; }
+.answer .c-bullet {
+  position: relative;
+  margin-top: 1cqmin;
+  padding-left: 3.2cqmin;
+  font-size: 3.3cqmin;
+  line-height: 1.4;
+}
+.answer .c-bullet::before {
+  content: '';
+  position: absolute;
+  left: 0.8cqmin;
+  top: 0.62em;
+  width: 1cqmin;
+  height: 1cqmin;
+  border-radius: 50%;
+  background: currentColor;
+}
+.answer .c-text { margin-top: 1.4cqmin; font-size: 3.3cqmin; line-height: 1.45; }
+.small-print { margin: 0; color: var(--muted); font-size: 2.8cqmin; }
+.o-wide .chat-slide { display: grid; grid-template-columns: 0.8fr 1.2fr; grid-template-rows: 1fr auto; column-gap: 5cqmin; }
+.o-wide .chat-slide .h1 { grid-column: 1; align-self: center; }
+.o-wide .chat-slide .chat-card { grid-column: 2; grid-row: 1; }
+.o-wide .chat-slide .small-print { grid-column: 2; }
+
+/* Terminal: commands on the cocoa ground, like the site's install blocks. */
+.term {
+  margin: 1.5cqmin 0 0;
+  border-radius: 2.4cqmin;
+  overflow: hidden;
+  background: #241d18;
+  color: #f1e7da;
+}
+.theme-dark .term { border: 0.25cqmin solid var(--border); }
+.term figcaption {
+  padding: 2.2cqmin 3.6cqmin;
+  border-bottom: 0.2cqmin solid #4b3c31;
+  color: #c6b7a7;
+  font-size: 2.7cqmin;
+  font-weight: 600;
+}
+.term pre {
+  margin: 0;
+  padding: 3.4cqmin 3.6cqmin 3.8cqmin;
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 2.8cqmin;
+  line-height: 1.75;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+.t-line { display: block; }
+.t-prompt { color: #f2d6c2; font-weight: 400; }
+.t-comment { color: #c6b7a7; }
+.terminal-slide .small-print { margin-top: -0.6cqmin; }
+.o-wide .terminal-slide { display: grid; grid-template-columns: 0.85fr 1.15fr; grid-template-rows: auto auto 1fr auto; column-gap: 5cqmin; }
+.o-wide .terminal-slide .h1, .o-wide .terminal-slide .lede { grid-column: 1; }
+.o-wide .terminal-slide .term { grid-column: 2; grid-row: 1 / 4; margin: auto 0; }
+.o-wide .terminal-slide .small-print { grid-column: 2; }

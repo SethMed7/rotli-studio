@@ -1,0 +1,11 @@
+{
+ "piece": "heroFilm",
+ "W": 1920,
+ "H": 1080,
+ "frames": 15,
+ "audio": null,
+ "hashes": {
+  "0": "7c5d580e2ad81a63e4d6f64799dfd285",
+  "14": "7c5d580e2ad81a63e4d6f64799dfd285"
+ }
+}

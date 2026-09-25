@@ -1,0 +1,51 @@
+{
+  "slug": "meet-the-quokka",
+  "title": "Meet the quokka",
+  "format": "ig-portrait",
+  "counter": true,
+  "captions": {
+    "instagram": "Why a quokka? rotli is short for Rottnest, the island off Western Australia where quokkas live.\n\nIn rotli the quokka is an optional companion: pick a body color, black or white linework, a mood and pose, and glasses or a bucket hat in any color. Or turn it off and it only appears during onboarding.\n\nrotli.co\n\n#quokka #notes #macapps #design",
+    "x": "Why a quokka? rotli is short for Rottnest, the island quokkas call home.\n\nThe companion is optional, and yours to style.\n\nrotli.co",
+    "linkedin": "The story behind the name: rotli is short for Rottnest, the island off Western Australia where quokkas live. Quokkas are famous for looking like they can't stop smiling, and that's the feeling we want rotli to have: a workspace that feels good to be in.\n\nThe quokka companion is optional and yours to style, and the notes are always the point. rotli.co"
+  },
+  "slides": [
+    {
+      "template": "quokka",
+      "theme": "light",
+      "fields": {
+        "image": "/library/companions/cocoa-celebrating.webp",
+        "headline": "Why a quokka?",
+        "subline": "rotli is short for Rottnest, the island quokkas call home."
+      }
+    },
+    {
+      "template": "quokka",
+      "theme": "warm",
+      "fields": {
+        "image": "/library/companions/fern-glasses-waving.webp",
+        "headline": "Make it yours.",
+        "subline": "Body color, linework, mood, and glasses or a bucket hat."
+      }
+    },
+    {
+      "template": "quokka",
+      "theme": "light",
+      "fields": {
+        "image": "/library/companions/ocean-bucket-hat-content.webp",
+        "headline": "Or turn it off.",
+        "subline": "The companion is optional. Your notes are the point."
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Room to think.\nFiles you keep.",
+        "subline": "Free. No account. Works offline.",
+        "url": "rotli.co",
+        "primary": "Download for Mac",
+        "secondary": "Open in your browser"
+      }
+    }
+  ]
+}

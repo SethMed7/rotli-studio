@@ -1,0 +1,89 @@
+{
+  "product": "Rotli",
+  "wordmark": "Rotli",
+  "tagline": "Room to think. Files you keep.",
+  "url": "rotli.co",
+  "platform": "for Mac",
+  "cta": "Free for Mac",
+  "promise": "Free · No account · Works offline",
+  "voice": "calm, warm, direct; claims must match rotli.co/features and /privacy",
+  "fonts": {
+    "ui": "'General Sans', sans-serif",
+    "word": "'Baloo 2', sans-serif",
+    "mono": "Menlo, 'SF Mono', monospace",
+    "files": [
+      {
+        "spec": "General Sans@400",
+        "file": "assets/fonts/GeneralSans-Regular.woff2",
+        "sha256": "1336dc6137440a94f87d883bcc3ee26bdbd580606d61e89e6e530757d9328886"
+      },
+      {
+        "spec": "General Sans@500",
+        "file": "assets/fonts/GeneralSans-Medium.woff2",
+        "sha256": "0168813e5da4bb7fcbffbe1305cc4932220772ff26c0488c5d62e28f579aa5ae"
+      },
+      {
+        "spec": "General Sans@600",
+        "file": "assets/fonts/GeneralSans-Semibold.woff2",
+        "sha256": "225c2c18bd1cebdd9c4aedc07201d5a5fd086f44d5418c09bce308a0832ccfcf"
+      },
+      {
+        "spec": "Baloo 2@600",
+        "file": "assets/fonts/Baloo2-600.ttf",
+        "sha256": "bfe5daa261c709de7747da5d996c7b3750134fe53c5582aa1bf26d64ecd0d9dc"
+      }
+    ],
+    "note": "mono is the macOS system mono (as in the app): renders are reproducible on macOS"
+  },
+  "palette": {
+    "linen": "#f8f2e9",
+    "surface": "#ffffff",
+    "surface2": "#f1e7d8",
+    "peach": "#f2d6c2",
+    "border": "#e7dbc9",
+    "cocoa": "#3a3028",
+    "ink": "#2b231d",
+    "muted": "#6e6155",
+    "clay": "#c97e62",
+    "clayText": "#8f4e37",
+    "olive": "#8d9a76",
+    "oliveText": "#5f6b49",
+    "oliveBright": "#a9b78f",
+    "blue": "#2f6f9e",
+    "night": "#241d18",
+    "nightSurface": "#2e2620",
+    "nightSurface2": "#392f28",
+    "nightText": "#f1e7da",
+    "nightMuted": "#b7a593",
+    "nightBorder": "#4a3d33",
+    "sea": "#7fcfc6",
+    "seaDeep": "#3fa3a6",
+    "seaLine": "#e9fbf6",
+    "sand": "#f1e3c4",
+    "limestone": "#e6d3ad",
+    "lake": "#f0a7a0",
+    "bush": "#8d9a76",
+    "bushDark": "#6d7a58",
+    "sky": "#fbf3e6",
+    "badge": "#d8503f"
+  },
+  "themes": "brand/themes.json",
+  "character": {
+    "name": "the quokka",
+    "poses": "src/canvas-core/quokka/poses.ts (tools/import-quokka.py)",
+    "looks": "brand/companions.json -> ../library/companion-looks (scripts/render-companions.ts)",
+    "styles": {
+      "line": "Line",
+      "cocoa": "Cocoa",
+      "green": "Fern",
+      "ocean": "Ocean",
+      "iris": "Iris",
+      "berry": "Berry",
+      "amber": "Amber"
+    },
+    "accessories": {
+      "glasses": "glasses",
+      "bucket-hat": "bucket hat"
+    }
+  }
+}

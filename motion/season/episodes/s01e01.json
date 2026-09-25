@@ -1,0 +1,74 @@
+{
+ "id": "s01e01Arrival",
+ "no": 1,
+ "slug": "s01e01-arrival",
+ "title": [
+  "Arrival."
+ ],
+ "logline": "The quokka reaches the island and learns to catch a thought before it blows away.",
+ "story": {
+  "setup": "At dawn the quokka steps off the ferry; thoughts drift past on the sea wind like loose pages.",
+  "turn": "It presses ⌥C: the first thought (Trip ideas) lands safely in its satchel, Captures.",
+  "payoff": "At the hut, ⌥Space opens a calm window where every caught thought waits to be filed later."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "island-dawn",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "Quick capture with ⌥C from anywhere; the thought lands in Captures and gets filed later.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Open or hide rotli from anywhere on your Mac.",
+   "source": "rotli.co /features"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 270,
+   "template": "story: ferry + drifting thoughts"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "catch",
+   "len": 450,
+   "template": "story + keys ⌥C + thought bubbles (note)"
+  },
+  {
+   "id": "captures",
+   "len": 420,
+   "template": "appDemo: Captures list fills"
+  },
+  {
+   "id": "hut",
+   "len": 330,
+   "template": "story + keys ⌥Space open/hide"
+  },
+  {
+   "id": "payoff",
+   "len": 90,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 0,
+  "melody": 0
+ },
+ "next": "Plain Words",
+ "length": "60 s (1800 frames)"
+}

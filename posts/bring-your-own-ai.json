@@ -1,0 +1,63 @@
+{
+  "slug": "bring-your-own-ai",
+  "title": "Bring the AI you already pay for",
+  "format": "ig-portrait",
+  "counter": true,
+  "captions": {
+    "instagram": "Bring the AI you already pay for.\n\nInstall Claude Code, Codex, or Cursor in Terminal and sign in, exactly as its maker describes. rotli then talks to that tool directly on your Mac, the same way you would from Terminal.\n\nrotli never signs in for you, never reads the tool's login files, and never stores its credentials. Prefer nothing leaving your Mac? Pick an on-device model.\n\nrotli.co/features\n\n#notes #markdown #localfirst #ai #macapps",
+    "x": "rotli works with the AI you already pay for: install Claude Code, Codex, or Cursor in Terminal, sign in, and rotli talks to it directly.\n\nNo keys pasted. No credentials stored.\n\nrotli.co/features",
+    "linkedin": "We didn't want rotli to sit between you and your AI provider.\n\nSo rotli uses each company's own published command-line tool. You install Claude Code, Codex, or Cursor in Terminal and sign in exactly as its maker describes; rotli then runs that tool on your Mac and passes it your message.\n\n• rotli never signs in on your behalf, reads the tool's login files, or stores its credentials.\n• Your plan is used the way its company intends: no workaround, no shared account.\n• In the browser, Rotli Helper runs the same tools on your own computer.\n\nOr skip all of it and use an on-device model. rotli.co/features"
+  },
+  "slides": [
+    {
+      "template": "statement",
+      "theme": "light",
+      "fields": {
+        "headline": "Bring your\nown AI.",
+        "subline": "rotli connects to the Claude Code, Codex, or Cursor you already pay for, the way you’d use them in Terminal.",
+        "image": "/library/quokka-cocoa/ai_chat.webp",
+        "pattern": "on"
+      }
+    },
+    {
+      "template": "terminal",
+      "theme": "light",
+      "fields": {
+        "headline": "Install it.\nSign in. Done.",
+        "subline": "Your AI tool, set up exactly the way its maker describes.",
+        "title": "Claude Code · Anthropic",
+        "lines": "npm install -g @anthropic-ai/claude-code\nclaude auth login",
+        "caption": "Codex: brew install codex, then codex login."
+      }
+    },
+    {
+      "template": "points",
+      "theme": "dark",
+      "fields": {
+        "headline": "rotli never holds\nyour keys.",
+        "lines": "No sign-in for you — You sign in to the tool yourself.\nNo login files read — rotli never reads the tool’s credentials.\nNo shared account — Your plan, used the way its company intends.\nOr stay on your Mac — Choose an on-device model instead."
+      }
+    },
+    {
+      "template": "chat",
+      "theme": "light",
+      "fields": {
+        "headline": "Then just ask.",
+        "question": "What did I already ship, and what’s next on my Q4 launch plan?",
+        "answer": "Shipped:\n- Mac beta\nIn progress:\n- Update pricing page\nStill to do:\n- Record the demo (owner: Maya)",
+        "caption": "A real reply in rotli, answered from a demo vault’s notes."
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Your AI.\nYour notes.",
+        "subline": "In the browser, Rotli Helper runs the same tools on your computer.",
+        "url": "rotli.co/features",
+        "primary": "Download for Mac",
+        "secondary": "Open in your browser"
+      }
+    }
+  ]
+}

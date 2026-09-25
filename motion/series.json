@@ -1,0 +1,67 @@
+{
+ "note": "How the motion room is organised: every piece belongs to one series. Episode series group each episode with the cuts derived from it (vertical, carousel, card) by id prefix. The studio site and tools/manifest.mjs read this; pieces.json stays the render catalogue.",
+ "series": [
+  {
+   "id": "season-one",
+   "title": "Season One: The Island Keeps Everything",
+   "kind": "episodes",
+   "prefix": "s01e",
+   "shape": "10 story episodes · 60 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
+   "logline": "A quokka arrives on a quiet island with its thoughts blowing everywhere, learns to keep them, and as the seasons turn everything it made is still there, in plain files.",
+   "docs": ["season/bible.md", "workflows/README.md", "workflows/agent-preamble.md", "workflows/review-checklist.md"],
+   "schedule": "../launch/rotli-launch-month.md",
+   "sealed": false
+  },
+  {
+   "id": "in-30-seconds",
+   "title": "Rotli in 30 seconds",
+   "kind": "episodes",
+   "prefix": "ep",
+   "shape": "8 feature explainers · 30 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
+   "logline": "One feature per episode, shown in the app: title, demo, end card. The launch month's backbone.",
+   "docs": ["README.md", ".claude/skills/motion-room/SKILL.md"],
+   "schedule": "../launch/rotli-launch-month.md",
+   "sealed": false
+  },
+  {
+   "id": "the-film",
+   "title": "The Rotli Story",
+   "kind": "set",
+   "pieces": ["rotliStory", "teaser15", "heroFilm", "linkedinCard", "xCard"],
+   "shape": "the 60 s film (sealed) · its 15 s vertical recut · hero and social cards from its sunset",
+   "logline": "The first film: the quokka on Rottnest, from the ferry to the sunset. It is locked; its golden must always print SAME.",
+   "docs": ["README.md"],
+   "sealed": true
+  },
+  {
+   "id": "make-it-yours",
+   "title": "Make it yours",
+   "kind": "set",
+   "pieces": ["dressUp", "themesLoop", "posterLineup", "themeGrid"],
+   "shape": "vertical shorts and stills about looks: seven companion colours, twelve theme environments",
+   "logline": "The companion and the themes, drawn from the app's real <Character> and theme tokens.",
+   "docs": [],
+   "sealed": false
+  },
+  {
+   "id": "explainers",
+   "title": "Explainers",
+   "kind": "set",
+   "pieces": ["howRotliWorks"],
+   "shape": "standalone carousels",
+   "logline": "How Rotli works in seven slides.",
+   "docs": [],
+   "sealed": false
+  },
+  {
+   "id": "templates",
+   "title": "Template library",
+   "kind": "set",
+   "pieces": ["atmosphereReel"],
+   "shape": "reference reels for the building blocks",
+   "logline": "Every atmosphere for three seconds: the moods any new piece starts from.",
+   "docs": ["src/canvas-core/studio/atmospheres.ts", "src/canvas-core/studio/story.ts"],
+   "sealed": false
+  }
+ ]
+}

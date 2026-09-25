@@ -1,0 +1,25 @@
+{
+  "name": "rotli-studio",
+  "private": true,
+  "type": "module",
+  "description": "Rotli's open-source media studio: the motion room (code-drawn films, story seasons, verticals, carousels), social post templates, and the launch plan.",
+  "scripts": {
+    "start": "bun server.ts",
+    "sync": "bun scripts/sync-library.ts",
+    "export": "bun scripts/export-post.ts",
+    "check": "tsc --noEmit",
+    "sync:themes": "bun scripts/sync-themes.ts",
+    "sync:companions": "bun scripts/render-companions.ts",
+    "motion": "cd motion && node tools/studio.mjs",
+    "check:public": "bun scripts/check-public.ts",
+    "check:isolation": "bun scripts/check-isolation.ts"
+  },
+  "dependencies": {
+    "playwright-core": "1.62.1"
+  },
+  "devDependencies": {
+    "@types/bun": "1.3.4",
+    "typescript": "6.0.3"
+  },
+  "license": "MIT"
+}

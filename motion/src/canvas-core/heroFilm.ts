@@ -1,0 +1,1 @@
+export { heroFilm } from "./stills";

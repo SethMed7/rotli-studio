@@ -1,0 +1,51 @@
+{
+  "slug": "your-notes-are-files",
+  "title": "Your notes are files",
+  "format": "ig-portrait",
+  "counter": true,
+  "captions": {
+    "instagram": "Most notes apps keep your writing inside their service. rotli starts from the other end: every note is a plain Markdown file in one folder you choose.\n\nOpen it in any editor. Back it up however you already back things up. Delete rotli and every word is still there.\n\nFree, no account, works offline: rotli.co\n\n#notes #markdown #localfirst #privacy #macapps",
+    "x": "Delete the app. Keep every word.\n\nrotli keeps every note as a plain Markdown file in one folder you choose. Open it anywhere, back it up your way, no export ritual.\n\nrotli.co",
+    "linkedin": "A notes app should never be the only way to reach your notes.\n\nrotli keeps every note as a plain Markdown file in one folder you choose, and its own settings and indexes are rebuildable. That means:\n• Your notes open in any Markdown editor.\n• You back them up the way you already back things up.\n• If you ever delete rotli, the folder is still full of readable notes.\n\nFree, no account, and it works offline. rotli.co"
+  },
+  "slides": [
+    {
+      "template": "statement",
+      "theme": "light",
+      "fields": {
+        "headline": "Delete the app.\nKeep every word.",
+        "subline": "rotli keeps every note as a plain Markdown file in one folder you choose.",
+        "image": "/library/quokka-cocoa/notes.webp",
+        "pattern": "on"
+      }
+    },
+    {
+      "template": "markdown",
+      "theme": "warm",
+      "fields": {
+        "headline": "What you see\nis what’s on disk.",
+        "lines": "## Reading list\n- [x] Ink & Switch: local-first software\n- [/] A CRDT primer\n- [ ] Notes on offline sync\nOpen it in any editor."
+      }
+    },
+    {
+      "template": "points",
+      "theme": "light",
+      "fields": {
+        "headline": "One folder.\nEvery way out stays open.",
+        "lines": "Open it anywhere — Any Markdown editor reads your notes.\nBack it up your way — Time Machine, a sync service, git. No export.\nTurn the AI off — A folder of Markdown is still a complete workspace.",
+        "image": "/library/quokka-line/base.svg"
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Your notes,\nin your folder.",
+        "subline": "Free. No account. Works offline.",
+        "url": "rotli.co",
+        "primary": "Download for Mac",
+        "secondary": "Open in your browser"
+      }
+    }
+  ]
+}

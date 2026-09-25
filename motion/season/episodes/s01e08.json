@@ -1,0 +1,84 @@
+{
+ "id": "s01e08LockedBox",
+ "no": 8,
+ "slug": "s01e08-locked-box",
+ "title": [
+  "The locked box."
+ ],
+ "logline": "Some things stay in the house, whoever knocks.",
+ "story": {
+  "setup": "Rain at night; the quokka keeps its passport note somewhere safe.",
+  "turn": "It marks the note secure: remote clouds knock and are turned away at the door; the on-device friend may read it. A pasted secret is caught on its own. A locked note can be read by every model and edited by none.",
+  "payoff": "Warm inside. The weather stays outside."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "midnight-rain",
+ "visits": [],
+ "style": "line",
+ "cast": [
+  "the quokka",
+  "the clouds (remote models)",
+  "the chip (on-device model)"
+ ],
+ "features": [
+  {
+   "claim": "Mark a note secure and Rotli moves it to wiki/_secure/ and keeps it away from remote models and web lookups; the Librarian leaves it alone.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Rotli also recognizes common secret shapes (API keys, private keys, card and identity numbers) and treats them the same way.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Remote models never see secure content; on-device models can, unless you turn that off.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Want AI to stop touching a note? Lock it. Every model can still read it; none can edit it.",
+   "source": "rotli.co /features"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 240,
+   "template": "story: rain, line-art quokka at the window, thought: lock"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "secure",
+   "len": 420,
+   "template": "story: clouds knock, turned away; chip reads"
+  },
+  {
+   "id": "shapes",
+   "len": 330,
+   "template": "appDemo: a fake key is caught"
+  },
+  {
+   "id": "lock",
+   "len": 330,
+   "template": "appDemo: locked note refuses an edit"
+  },
+  {
+   "id": "payoff",
+   "len": 240,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 2,
+  "melody": 0
+ },
+ "next": "Other Shores",
+ "length": "60 s (1800 frames)"
+}

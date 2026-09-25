@@ -1,0 +1,32 @@
+120 bpm · 30 fps · bar = 60 frames · triplet eighths (5 frames) · C major, lifts to D major at frame 1560
+
+bar  1  f   0  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody]
+bar  2  f  60  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody]  hops@68 hops@84 hops@102
+bar  3  f 120  I (C)     0:G5 3:E5 6:C5 8:D5 10:E5           [melody, bass]  badges@172
+bar  4  f 180  V (G)     0:D5 3:B4 6:G5                      [melody, bass]  badges@180 badges@188 badges@196 badges@204 badges@212 badges@220 badges@228 badges@236
+bar  5  f 240  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass]  badges@244 badges@252 badges@260
+bar  6  f 300  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker]  hops@330 turn@300 typing@322 typing@340 typing@350
+bar  7  f 360  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody, bass, arp + kick + shaker]  typing@368 typing@380 typing@394 typing@400 typing@416 plinks@378
+bar  8  f 420  I (C)     0:G5 3:E5 6:C5 8:D5 10:E5           [melody, bass, arp + kick + shaker]  typing@426 typing@438 typing@472 typing@474 plinks@462 plinks@476
+bar  9  f 480  V (G)     0:D5 3:B4 6:G5                      [melody, bass, arp + kick + shaker]  hops@532 plinks@488 plinks@498
+bar 10  f 540  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker]  plinks@564 plinks@580 plinks@594 thumps@564
+bar 11  f 600  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody, bass, arp + kick + shaker]  plinks@608 plinks@622 plinks@636
+bar 12  f 660  V (G)     0:B5 3:G5 6:D5 9:G5                 [melody, bass, arp + kick + shaker]
+bar 13  f 720  I (C)     0:E5 3:D5 6:C5                      [melody, bass, arp + kick + shaker, octave sparkle]  plinks@764
+bar 14  f 780  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker, octave sparkle]  plinks@782 plinks@800 plinks@818 plinks@836
+bar 15  f 840  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody, bass, arp + kick + shaker, octave sparkle]  plinks@854
+bar 16  f 900  I (C)     0:G5 3:E5 6:C5 8:D5 10:E5           [melody, bass, arp + kick + shaker, octave sparkle]
+bar 17  f 960  V (G)     0:D5 3:B4 6:G5                      [melody, bass, arp + kick + shaker, octave sparkle]  plinks@966 plinks@973 plinks@980 plinks@987 plinks@994
+bar 18  f1020  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker, octave sparkle]  plinks@1060 thumps@1060
+bar 19  f1080  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody, bass, arp + kick + shaker, octave sparkle]  plinks@1110 thumps@1110
+bar 20  f1140  V (G)     0:B5 3:G5 6:D5 9:G5                 [melody, bass, arp + kick + shaker, octave sparkle]  plinks@1186
+bar 21  f1200  I (C)     0:E5 3:D5 6:C5                      [melody, bass, arp + kick + shaker, octave sparkle]  plinks@1200 boings@1238 boings@1254
+bar 22  f1260  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker, octave sparkle]  boings@1270 checks@1290
+bar 23  f1320  IV (F)    0:A5 3:F5 6:A5 9:C6                 [melody, bass, arp + kick + shaker, octave sparkle]  typing@1360
+bar 24  f1380  I (C)     0:G5 3:E5 6:C5 8:D5 10:E5           [melody, bass, arp + kick + shaker, octave sparkle]  typing@1384
+bar 25  f1440  V (G)     0:D5 3:B4 6:G5                      [melody, bass, arp + kick + shaker, octave sparkle]  plinks@1480 plinks@1488
+bar 26  f1500  I (C)     0:E5 3:G5 6:C6 9:G5                 [melody, bass, arp + kick + shaker, octave sparkle]  checks@1510
+bar 27  f1560  I (D)     0:F#5 3:A5 6:D6 9:A5                [melody, bass, arp + kick + shaker, octave sparkle]  hops@1576 hops@1592 plinks@1590
+bar 28  f1620  IV (G)    0:B5 3:G5 6:B5 9:D6                 [melody, bass, arp + kick + shaker, octave sparkle]  bell@1620 shutter@1660
+bar 29  f1680  I (D)     0:A5 3:F#5 6:D5 8:E5 10:F#5         [melody, bass, arp + kick + shaker, octave sparkle]
+bar 30  f1740  I (D)     —  [final chord + bell]  final@1740

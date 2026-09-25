@@ -1,0 +1,87 @@
+{
+ "id": "s01e02PlainWords",
+ "no": 2,
+ "slug": "s01e02-plain-words",
+ "title": [
+  "Plain words."
+ ],
+ "logline": "The quokka writes its trip plan and every line quietly becomes what it means.",
+ "story": {
+  "setup": "At the morning desk the quokka writes in plain Markdown.",
+  "turn": "Each line blooms as it's typed: tasks tick, a choice picks, a switch flips, a table fills, a Mermaid fence draws the ferry route.",
+  "payoff": "Aa → Raw markdown: it was plain text the whole time."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "linen-morning",
+ "visits": [],
+ "style": "paper",
+ "cast": [
+  "the quokka"
+ ],
+ "features": [
+  {
+   "claim": "Hybrid Markdown shows raw syntax only on the line you are editing.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Lists, checkboxes, choices, switches, tables, wikilinks, and Mermaid diagrams render in place.",
+   "source": "README.md"
+  },
+  {
+   "claim": "Tasks, choices, tables, diagrams, and math draw themselves as you type, and every one of them is plain text.",
+   "source": "rotli.co /features"
+  },
+  {
+   "claim": "Aa → Raw markdown switches views in place.",
+   "source": "rotli.co /features"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 210,
+   "template": "story: quokka at desk, thought: note"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "tasks",
+   "len": 360,
+   "template": "appDemo: raw line → rendered (caret line stays raw)"
+  },
+  {
+   "id": "choices",
+   "len": 330,
+   "template": "appDemo: choice + switch + table"
+  },
+  {
+   "id": "diagram",
+   "len": 330,
+   "template": "appDemo: mermaid fence draws a route; math renders"
+  },
+  {
+   "id": "raw",
+   "len": 240,
+   "template": "appDemo: Aa flip"
+  },
+  {
+   "id": "payoff",
+   "len": 90,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 0,
+  "melody": 1
+ },
+ "next": "The Workshop",
+ "length": "60 s (1800 frames)"
+}

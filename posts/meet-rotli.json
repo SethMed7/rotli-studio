@@ -1,0 +1,60 @@
+{
+  "slug": "meet-rotli",
+  "title": "Meet rotli",
+  "format": "ig-portrait",
+  "counter": true,
+  "captions": {
+    "instagram": "Meet rotli: a calm notes app for your Mac.\n\nEvery note is a plain Markdown file in a folder you own. Tasks, choices, tables, and diagrams draw themselves as you type, and chat can answer from your own notes, with AI only when you ask for it.\n\nSecure notes never reach a remote model. Locked notes can be read by AI, never edited.\n\nFree. No account. Works offline.\nDownload for Mac, or open it in your browser: rotli.co\n\n#notes #markdown #localfirst #productivity #macapps",
+    "x": "Meet rotli: a calm notes app for your Mac.\n\nEvery note is a plain Markdown file in a folder you own, and AI only sees what you let it see.\n\nFree, no account, works offline.\nrotli.co",
+    "linkedin": "Meet rotli, a calm, local-first notes app for the Mac.\n\nMost notes apps keep your writing inside their service. rotli starts from the other end: every note is a plain Markdown file in one folder you choose, so your work opens in any editor and outlasts any app, including this one.\n\nWhat that looks like day to day:\n• Tasks, choices, tables, and diagrams render as you type, and stay plain text on disk.\n• Chat answers from your own notes, using a model on your Mac or the AI tools you already use.\n• You decide what AI may see: secure notes never reach a remote model, and locked notes can't be edited by any.\n\nFree, no account, and it works offline. On your Mac, or in any browser at rotli.co."
+  },
+  "slides": [
+    {
+      "template": "statement",
+      "theme": "light",
+      "fields": {
+        "headline": "Room to think.\nFiles you keep.",
+        "subline": "rotli is a calm notes app for your Mac. Every note is a plain Markdown file in a folder you own.",
+        "image": "/library/quokka-cocoa/waving.webp",
+        "pattern": "on"
+      }
+    },
+    {
+      "template": "markdown",
+      "theme": "warm",
+      "fields": {
+        "headline": "Write in Markdown.\nSee it rendered.",
+        "lines": "## This week\n- [x] Pick a folder for my notes\n- [/] Move my reading list over\n- [ ] Ask chat about the launch plan\nEverything stays a plain .md file."
+      }
+    },
+    {
+      "template": "chat",
+      "theme": "light",
+      "fields": {
+        "headline": "Chat that reads\nyour notes.",
+        "question": "What did I already ship, and what’s next on my Q4 launch plan?",
+        "answer": "Shipped:\n- Mac beta\nIn progress:\n- Update pricing page\nStill to do:\n- Record the demo (owner: Maya)",
+        "caption": "A real reply in rotli, answered from a demo vault’s notes."
+      }
+    },
+    {
+      "template": "points",
+      "theme": "dark",
+      "fields": {
+        "headline": "AI is invited in.\nIt doesn’t own the house.",
+        "lines": "No account — Nothing to sign up for. No analytics, no ads.\nYour folder — Notes are plain Markdown you can open anywhere.\nSecure notes — Never sent to a remote model. Not even the title.\nLocked notes — Every model can read them. None can edit them."
+      }
+    },
+    {
+      "template": "cta",
+      "theme": "light",
+      "fields": {
+        "headline": "Free.\nNo account.\nWorks offline.",
+        "subline": "On your Mac, or in any browser.",
+        "url": "rotli.co",
+        "primary": "Download for Mac",
+        "secondary": "Open in your browser"
+      }
+    }
+  ]
+}

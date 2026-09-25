@@ -1,0 +1,79 @@
+{
+ "id": "s01e09OtherShores",
+ "no": 9,
+ "slug": "s01e09-other-shores",
+ "title": [
+  "Other shores."
+ ],
+ "logline": "The quokka's friend lives on another island, with a browser and an old folder of notes.",
+ "story": {
+  "setup": "A friend across the water has a browser and an old folder of Markdown notes.",
+  "turn": "Rotli Web opens a real folder in Chrome, Edge or Arc; the Helper brings Firefox, Zen and Brave. Back home on its Mac, the quokka shows how Rotli's first run inspects an old folder without writing anything, then opens it in place or imports a copy.",
+  "payoff": "Two islands, one way of working, every note still in its own folder."
+ },
+ "token": "the Trip ideas note",
+ "atmosphere": "harbour-day",
+ "visits": [],
+ "style": "flat",
+ "cast": [
+  "the quokka",
+  "a friend (a second quokka, Ocean)"
+ ],
+ "features": [
+  {
+   "claim": "The same editor, folders, tasks, and links in your browser, working in a real folder on your computer. Chrome, Edge, and Arc open the folder directly; Safari and phones aren't supported yet.",
+   "source": "rotli.co landing (Everywhere)"
+  },
+  {
+   "claim": "Rotli Helper: a small program for Mac, Windows, and Linux. It lets Firefox, Zen, and Brave use your folder.",
+   "source": "rotli.co landing (Everywhere)"
+  },
+  {
+   "claim": "Already have an Obsidian, ZenNotes, or plain Markdown folder? Rotli for Mac's first run can inspect it without writing anything, then open it in place or import a copy.",
+   "source": "README.md"
+  }
+ ],
+ "scenes": [
+  {
+   "id": "cold",
+   "len": 240,
+   "template": "story: ferry to the other island, thought: globe"
+  },
+  {
+   "id": "chapter",
+   "len": 120,
+   "template": "chapterCard"
+  },
+  {
+   "id": "web",
+   "len": 390,
+   "template": "appDemo: browser opens a real folder"
+  },
+  {
+   "id": "helper",
+   "len": 300,
+   "template": "diagram: Helper bridge (Firefox, Zen, Brave)"
+  },
+  {
+   "id": "import",
+   "len": 420,
+   "template": "appDemo: inspect without writing → open in place / import a copy"
+  },
+  {
+   "id": "payoff",
+   "len": 210,
+   "template": "intertitle"
+  },
+  {
+   "id": "end",
+   "len": 120,
+   "template": "storyEnd"
+  }
+ ],
+ "music": {
+  "key": 7,
+  "melody": 0
+ },
+ "next": "Seasons",
+ "length": "60 s (1800 frames)"
+}

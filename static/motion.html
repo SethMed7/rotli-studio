@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>rotli studio · motion</title>
+    <link rel="icon" href="/library/logo/_logo.svg" />
+    <link rel="stylesheet" href="/static/app.css" />
+    <link rel="stylesheet" href="/static/motion.css" />
+  </head>
+  <body class="motion-body">
+    <header class="bar">
+      <div class="bar-brand"><img class="bar-mark" src="/library/logo/_logo.svg" alt="" /><b>rotli</b> studio</div>
+      <nav class="rooms" aria-label="Studio rooms">
+        <a href="/motion" aria-current="page">Motion</a>
+        <a href="/">Posts &amp; library</a>
+      </nav>
+      <p class="bar-note">Local only · 127.0.0.1 · read-only view of <code>motion/</code></p>
+    </header>
+    <div class="motion">
+      <nav id="nav" class="side" aria-label="Motion room"></nav>
+      <main id="main" class="motion-main"><p class="empty">Loading the manifest…</p></main>
+    </div>
+    <script type="module" src="/build/motion.js"></script>
+  </body>
+</html>

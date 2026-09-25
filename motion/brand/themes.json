@@ -1,0 +1,257 @@
+{
+ "source": "~/rotli/src/styles/themes.css + src/brand/tokens/colors.css",
+ "themes": [
+  {
+   "id": "light",
+   "family": "Rotli",
+   "mode": "light",
+   "label": "Rotli Light",
+   "roles": {
+    "ground": "#f8f2e9",
+    "surface": "#ffffff",
+    "surface-2": "#f1e7d8",
+    "tint": "#f2d6c2",
+    "text": "#3a3028",
+    "text-muted": "#6e6155",
+    "border": "#e7dbc9",
+    "accent": "#c97e62",
+    "accent-text": "#8f4e37",
+    "on-accent": "#ffffff",
+    "success": "#8d9a76",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#2f6f9e"
+   }
+  },
+  {
+   "id": "dark",
+   "family": "Rotli",
+   "mode": "dark",
+   "label": "Rotli Dark",
+   "roles": {
+    "ground": "#241d18",
+    "surface": "#2e2620",
+    "surface-2": "#392f28",
+    "tint": "#3e332b",
+    "text": "#f1e7da",
+    "text-muted": "#b7a593",
+    "border": "#3d3229",
+    "accent": "#c97e62",
+    "accent-text": "#c97e62",
+    "on-accent": "#241d18",
+    "success": "#8d9a76",
+    "failure": "#e58b8b",
+    "syntax-blue": "#78b7e3"
+   }
+  },
+  {
+   "id": "paper",
+   "family": "Paper & Charcoal",
+   "mode": "light",
+   "label": "Paper",
+   "roles": {
+    "ground": "#fafaf9",
+    "surface": "#ffffff",
+    "surface-2": "#f5f5f4",
+    "tint": "#ececea",
+    "text": "#161616",
+    "text-muted": "#6b6b68",
+    "border": "#e6e6e3",
+    "accent": "#161616",
+    "accent-text": "#161616",
+    "on-accent": "#ffffff",
+    "success": "#6b6b68",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#256d9f"
+   }
+  },
+  {
+   "id": "charcoal",
+   "family": "Paper & Charcoal",
+   "mode": "dark",
+   "label": "Charcoal",
+   "roles": {
+    "ground": "#161616",
+    "surface": "#1f1e1c",
+    "surface-2": "#2a2825",
+    "tint": "#33312d",
+    "text": "#e9e7e2",
+    "text-muted": "#a8a49c",
+    "border": "#2e2c29",
+    "accent": "#e9e7e2",
+    "accent-text": "#e9e7e2",
+    "on-accent": "#161616",
+    "success": "#a8a49c",
+    "failure": "#e58b8b",
+    "syntax-blue": "#78b7e3"
+   }
+  },
+  {
+   "id": "ocean-light",
+   "family": "Ocean",
+   "mode": "light",
+   "label": "Ocean Light",
+   "roles": {
+    "ground": "#dfebf3",
+    "surface": "#f3f8fb",
+    "surface-2": "#d3e3ee",
+    "tint": "#c4d9e7",
+    "text": "#18272f",
+    "text-muted": "#4c6470",
+    "border": "#b4cbd9",
+    "accent": "#2e6e91",
+    "accent-text": "#285f7e",
+    "on-accent": "#ffffff",
+    "success": "#507b66",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#285f7e"
+   }
+  },
+  {
+   "id": "ocean-dark",
+   "family": "Ocean",
+   "mode": "dark",
+   "label": "Ocean Dark",
+   "roles": {
+    "ground": "#0e171d",
+    "surface": "#152229",
+    "surface-2": "#1c2d35",
+    "tint": "#213843",
+    "text": "#e7f0f4",
+    "text-muted": "#a1b6c0",
+    "border": "#263a43",
+    "accent": "#70b2d7",
+    "accent-text": "#86c2e0",
+    "on-accent": "#0e171d",
+    "success": "#8cc4a5",
+    "failure": "#e58b8b",
+    "syntax-blue": "#86c2e0"
+   }
+  },
+  {
+   "id": "grove-light",
+   "family": "Grove",
+   "mode": "light",
+   "label": "Grove Light",
+   "roles": {
+    "ground": "#e3eee4",
+    "surface": "#f3f9f4",
+    "surface-2": "#d5e5d8",
+    "tint": "#c6dbca",
+    "text": "#1d2c23",
+    "text-muted": "#54685b",
+    "border": "#b7cfbc",
+    "accent": "#427a55",
+    "accent-text": "#386c49",
+    "on-accent": "#ffffff",
+    "success": "#427a55",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#3f6c7c"
+   }
+  },
+  {
+   "id": "grove-dark",
+   "family": "Grove",
+   "mode": "dark",
+   "label": "Grove Dark",
+   "roles": {
+    "ground": "#101814",
+    "surface": "#17221b",
+    "surface-2": "#1f2d24",
+    "tint": "#26382c",
+    "text": "#e7efe9",
+    "text-muted": "#a4b5a8",
+    "border": "#2a3b30",
+    "accent": "#82be96",
+    "accent-text": "#95caa6",
+    "on-accent": "#101814",
+    "success": "#82be96",
+    "failure": "#e58b8b",
+    "syntax-blue": "#8bbdcc"
+   }
+  },
+  {
+   "id": "iris-light",
+   "family": "Iris",
+   "mode": "light",
+   "label": "Iris Light",
+   "roles": {
+    "ground": "#e9e4f2",
+    "surface": "#f6f4fa",
+    "surface-2": "#ddd5ec",
+    "tint": "#d1c7e4",
+    "text": "#282334",
+    "text-muted": "#5f5670",
+    "border": "#c3b8d8",
+    "accent": "#6b58a5",
+    "accent-text": "#5e4c96",
+    "on-accent": "#ffffff",
+    "success": "#557966",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#3f628a"
+   }
+  },
+  {
+   "id": "iris-dark",
+   "family": "Iris",
+   "mode": "dark",
+   "label": "Iris Dark",
+   "roles": {
+    "ground": "#15121d",
+    "surface": "#1d1927",
+    "surface-2": "#272133",
+    "tint": "#30283f",
+    "text": "#eeeaf5",
+    "text-muted": "#b2a8c1",
+    "border": "#342d42",
+    "accent": "#ad9ae3",
+    "accent-text": "#bcace9",
+    "on-accent": "#15121d",
+    "success": "#90b8a0",
+    "failure": "#e58b8b",
+    "syntax-blue": "#8bb7df"
+   }
+  },
+  {
+   "id": "midnight-light",
+   "family": "Midnight",
+   "mode": "light",
+   "label": "Midnight Light",
+   "roles": {
+    "ground": "#f0f2f5",
+    "surface": "#fbfcfd",
+    "surface-2": "#e7eaee",
+    "tint": "#dde1e7",
+    "text": "#181b20",
+    "text-muted": "#565f6b",
+    "border": "#ccd2da",
+    "accent": "#364152",
+    "accent-text": "#2e3745",
+    "on-accent": "#ffffff",
+    "success": "#587565",
+    "failure": "#9f3d3d",
+    "syntax-blue": "#315f86"
+   }
+  },
+  {
+   "id": "midnight-dark",
+   "family": "Midnight",
+   "mode": "dark",
+   "label": "Midnight Dark",
+   "roles": {
+    "ground": "#050607",
+    "surface": "#0b0d0f",
+    "surface-2": "#121519",
+    "tint": "#191d22",
+    "text": "#f1f3f5",
+    "text-muted": "#a4aab2",
+    "border": "#20252b",
+    "accent": "#cfd5dc",
+    "accent-text": "#e1e5e9",
+    "on-accent": "#08090a",
+    "success": "#91b49c",
+    "failure": "#e58b8b",
+    "syntax-blue": "#82bce3"
+   }
+  }
+ ]
+}
