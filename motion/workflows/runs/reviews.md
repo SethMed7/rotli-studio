@@ -17,7 +17,7 @@ agy -p "$(cat /tmp/qf-review-prompt.txt)" --mode plan --sandbox --dangerously-sk
 ## 2026-09-24 12:38 · Save memory note; confirm repo untouched
 
 ```sh
-cat > ~/.claude/projects/-Users-example-rotli/memory/project_quokka_story_film_2026_09_24.md <<'EOF'
+cat > <a local folder> <<'EOF'
 ---
 name: project_quokka_story_film_2026_09_24
 description: 2026-09-24 code-drawn 60s Rotli story film (quokka on Rottnest) in marketing/quokka-film/ on the anidoodle engine — gitignored, uncommitted; traps + how to re-render
@@ -25,7 +25,7 @@ metadata:
   type: project
 ---
 
-Built after Addy Osmani's "Opus 5.5 drew each frame in JS" post (x.com/addyosmani/status/2103009037164110327, fetched via api.fxtwitter.com since x.com 402s). `marketing/quokka-film/` = own npm project (NOT bun) scaffolded from github.com/alexgreensh/anidoodle (cloned to /tmp only; NOT installed to ~/.claude/skills — offer it). 9 shots, 1800 frames, renders in ~15 s: `node tools/render.mjs rotliStory --out out/rotli-story.mp4`. Outputs in `out/` (mp4, offline html, poster, contact sheet). Nothing committed; `/marketing/` is gitignored.
+Built after Addy Osmani's "Opus 5.5 drew each frame in JS" post (x.com/addyosmani/status/2103009037164110327, fetched via api.fxtwitter.com since x.com 402s). `marketing/quokka-film/` = own npm project (NOT bun) scaffolded from github.com/alexgreensh/anidoodle (cloned to /tmp only; NOT installed to <a local folder> — offer it). 9 shots, 1800 frames, renders in ~15 s: `node tools/render.mjs rotliStory --out out/rotli-story.mp4`. Outputs in `out/` (mp4, offline html, poster, contact sheet). Nothing committed; `/marketing/` is gitignored.
 
 **Why:** Seth wanted a storytelling film with a true character using his quokka assets + Rottnest hints, isolated from the app.
 
@@ -36,7 +36,7 @@ Built after Addy Osmani's "Opus 5.5 drew each frame in JS" post (x.com/addyosman
 - hopAlong: identical consecutive waypoints = hold (fixed bug: used to hop).
 Related: [[project_launch_promo_hyperframes_2026_09_09]].
 EOF
-cd ~/.claude/projects/-Users-example-rotli/memory && python3 - <<'EOF'
+cd <a local folder> && python3 - <<'EOF'
 p='MEMORY.md'; s=open(p).read()
 line="- [2026-09-24: code-drawn 60s quokka story film in marketing/quokka-film/ (anidoodle engine) — uncommitted, gitignored](project_quokka_story_film_2026_09_24.md) — gemini CLI dead → use agy (frames only, no audio); brand fonts = expected gate FAILs\n"
 open(p,'w').write(line+s)
@@ -130,7 +130,7 @@ description: Take the rotli studio motion room as a foundation for ANOTHER produ
 The engine, tools and piece shapes are product-agnostic. Everything that says "Rotli" lives
 behind a small seam. Copy, don't fork in place: Rotli's room keeps its sealed goldens.
 
-1. **Copy the room:** `cp -R motion ~/<product>-studio/motion` (skip `node_modules`, `out`,
+1. **Copy the room:** `cp -R motion <a local folder>` (skip `node_modules`, `out`,
    `dist`, `golden`), then `npm install` there. Start with empty `golden/`.
 2. **Brand seam: `brand/brand.json`.** Product name, wordmark, tagline, url, platform, voice,
    `palette` (the same key names the kit reads: linen, surface, cocoa, ink, clay, peach, olive,

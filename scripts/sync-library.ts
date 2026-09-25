@@ -23,7 +23,11 @@ const shelves: { shelf: string; from: string; match: RegExp }[] = [
   { shelf: "captures", from: "site/public", match: /^rotli-(app-.+|playground|web).+\.(png|webp)$/ },
   { shelf: "themes", from: "site/public/themes", match: /\.webp$/ },
   { shelf: "patterns", from: "site/public", match: /^hero-pattern\.svg$/ },
-  { shelf: "fonts", from: "src/brand/fonts", match: /^(GeneralSans-(Regular|Medium|Semibold)\.woff2|Baloo2-600\.ttf)$/ },
+  {
+    shelf: "fonts",
+    from: "src/brand/fonts",
+    match: /^(GeneralSans-(Regular|Medium|Semibold)\.woff2|Baloo2-600\.ttf)$/,
+  },
   { shelf: "colors", from: "src/brand/tokens", match: /^colors\.json$/ },
 ];
 
@@ -51,5 +55,11 @@ mkdirSync(join(library, "uploads"), { recursive: true });
 console.log(`library: ${copied} files from ${source}`);
 
 // The twelve theme environments come from the app's CSS, computed in Chromium.
-const themes = Bun.spawnSync(["bun", join(import.meta.dir, "sync-themes.ts"), source], { stdout: "inherit", stderr: "inherit" });
-if (themes.exitCode !== 0) { console.error(`sync-themes failed (exit ${themes.exitCode})`); process.exit(themes.exitCode ?? 1); }
+const themes = Bun.spawnSync(["bun", join(import.meta.dir, "sync-themes.ts"), source], {
+  stdout: "inherit",
+  stderr: "inherit",
+});
+if (themes.exitCode !== 0) {
+  console.error(`sync-themes failed (exit ${themes.exitCode})`);
+  process.exit(themes.exitCode ?? 1);
+}

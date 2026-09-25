@@ -1,0 +1,53 @@
+{
+ "id": "print-carousel",
+ "no": 4,
+ "title": "Print Carousel",
+ "module": "src/canvas-core/studies/printCarousel.ts",
+ "pieces": {
+  "portrait": "printCarousel",
+  "square": "printCarouselSquare"
+ },
+ "primary": "portrait",
+ "kind": "carousel",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 90,
+ "palette": "riso",
+ "style": "Risograph print: two inks (riso blue and fluorescent pink, yellow as a rare third) overprinted with a slight misregistration, halftone fields, paper grain, big condensed-feeling type set tight. Use the engine's own print styles (src/canvas-core/styles/riso.ts, print.ts) where they fit.",
+ "learnsFrom": "Printed zines and riso posters: texture and overprint instead of screens.",
+ "story": [
+  {
+   "from": 0,
+   "to": 15,
+   "what": "cover: 'Five rules for calmer meetings' with a big halftone circle (a clock face) and 'Oriel' small at the foot"
+  },
+  {
+   "from": 15,
+   "to": 30,
+   "what": "1. Start with the outcome. (an arrow into a target)"
+  },
+  {
+   "from": 30,
+   "to": 45,
+   "what": "2. Invite fewer people. (three figures, one chair)"
+  },
+  {
+   "from": 45,
+   "to": 60,
+   "what": "3. Half the time you planned. (a clock cut in half)"
+  },
+  {
+   "from": 60,
+   "to": 75,
+   "what": "4. Write it down, then leave. (a note and an open door)"
+  },
+  {
+   "from": 75,
+   "to": 90,
+   "what": "5. Let the calendar do the asking. (a calendar with a single highlighted hour) + 'oriel.example'"
+  }
+ ],
+ "sizes": "Portrait 4:5 is primary; the square re-composes each slide (illustration beside the words where the portrait stacks them).",
+ "sound": "none (a carousel is stills)",
+ "teaches": "Texture is a style: the same kit that animates can print. Each slide is one frame (frame i*15+14 is exported)."
+}

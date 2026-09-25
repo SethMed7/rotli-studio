@@ -1,0 +1,58 @@
+{
+ "id": "vertical-app-ad",
+ "no": 2,
+ "title": "Vertical App Ad",
+ "module": "src/canvas-core/studies/verticalAppAd.ts",
+ "pieces": {
+  "vertical": "verticalAppAd",
+  "landscape": "verticalAppAdLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 100,
+ "frames": 900,
+ "palette": "sage",
+ "style": "Floating UI on a soft stone ground: white cards with large soft shadows, a phone mockup, a deep-green countdown stack, concentric rings. Serif captions arrive word by word, mixed sizes, one key word in the accent green italic. No gradients; depth from shadow only.",
+ "learnsFrom": "The creator-explainer app ad format (a presenter with floating UI and word-by-word captions). This study keeps the UI set and the caption rhythm and replaces the presenter with the product itself: no people, no real brands.",
+ "story": [
+  {
+   "from": 0,
+   "to": 72,
+   "what": "hook: 'Finding one hour' fills the screen in the serif, 'one hour' in accent italic; small calendar cards orbit on concentric rings"
+  },
+  {
+   "from": 72,
+   "to": 216,
+   "what": "problem: a phone shows a group chat stacking up ('Tuesday?', 'Can't. Wed?', 'Thu after 3?' …); a counter ticks up to 12; caption: 'takes twelve messages.'"
+  },
+  {
+   "from": 216,
+   "to": 360,
+   "what": "turn: a 3-2-1 stack of deep-green cards counts down and lifts away to reveal Oriel's app icon; a prompt card types 'Find an hour with Ana, Ben and Kai next week.'"
+  },
+  {
+   "from": 360,
+   "to": 576,
+   "what": "work: three rows of availability (Mon–Fri) slide in as floating cards; the overlap lights up; a slot card pops: 'Thu 3:00–4:00'. Captions: 'It reads three calendars,' 'finds the overlap,' 'and holds the time.'"
+  },
+  {
+   "from": 576,
+   "to": 720,
+   "what": "done: an invite card flies out; three avatars get a check one by one; a toast says 'Everyone's in.'"
+  },
+  {
+   "from": 720,
+   "to": 828,
+   "what": "payoff: kinetic serif 'One message.' then 'Not twelve.' in mixed sizes, the second line in the accent"
+  },
+  {
+   "from": 828,
+   "to": 900,
+   "what": "end card: the Oriel mark + wordmark, 'oriel.example' and a small line 'A fictional product, drawn in code.'"
+  }
+ ],
+ "sizes": "Vertical is primary (captions top third, the UI centre, platform-safe margins). Landscape puts the phone and cards on the left half and the captions on the right.",
+ "sound": "beatScore soft at 100 bpm: ticks on every chat bubble and card landing, whooshes into the countdown and the payoff, a hit when the slot appears, the sign-off under the end card.",
+ "teaches": "Captions that arrive with the rhythm carry a silent autoplay. UI as the set: cards with shadow read as depth without any 3D."
+}

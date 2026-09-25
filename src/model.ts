@@ -27,7 +27,16 @@ export interface Field {
   hint?: string;
 }
 
-export type TemplateId = "statement" | "product" | "chat" | "terminal" | "note" | "markdown" | "points" | "quokka" | "cta";
+export type TemplateId =
+  | "statement"
+  | "product"
+  | "chat"
+  | "terminal"
+  | "note"
+  | "markdown"
+  | "points"
+  | "quokka"
+  | "cta";
 
 export const TEMPLATES: Record<TemplateId, { label: string; description: string; fields: Field[] }> = {
   statement: {
@@ -72,7 +81,12 @@ export const TEMPLATES: Record<TemplateId, { label: string; description: string;
       { key: "headline", label: "Headline", type: "textarea" },
       { key: "subline", label: "Subline", type: "textarea" },
       { key: "title", label: "Window title", type: "text", hint: "e.g. Claude Code · Anthropic" },
-      { key: "lines", label: "Lines", type: "lines", hint: "Each line is a command ($ is added). Start a line with # for a comment." },
+      {
+        key: "lines",
+        label: "Lines",
+        type: "lines",
+        hint: "Each line is a command ($ is added). Start a line with # for a comment.",
+      },
       { key: "caption", label: "Small print", type: "text" },
     ],
   },

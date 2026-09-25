@@ -1,0 +1,51 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  // The studio's own code is formatted by oxfmt (bun run fmt). Left alone on purpose: third-party files the
+  // studio never changed (anidoodle upstream, listed below so they stay byte-identical to their release), the
+  // archive, generated output, recorded agent runs and reviews, and data files (JSON, Markdown) whose
+  // layout tools write. Import sorting is OFF: some modules run code at load (a piece picks its theme family),
+  // so reordering imports could change evaluation order and pixels.
+  "printWidth": 120,
+  "sortImports": false,
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    "node_modules/",
+    "**/node_modules/",
+    "archive/",
+    "site-dist/",
+    "site-dist.staging/",
+    "exports/",
+    "local/",
+    "tmp/",
+    "motion/out/",
+    "motion/dist/",
+    "motion/golden/",
+    "motion/third_party/",
+    "motion/workflows/runs/",
+    "sound/out/",
+    "docs/reviews/",
+    "**/*.json",
+    "**/*.md",
+    "**/*.css",
+    "**/*.html",
+    "**/*.py",
+    "motion/package.json",
+    "motion/src/canvas-core/core.ts",
+    "motion/tools/adapters/README.md",
+    "motion/tools/adapters/html-player.mjs",
+    "motion/tools/adapters/hyperframes.mjs",
+    "motion/tools/adapters/playwright.mjs",
+    "motion/tools/adapters/remotion.mjs",
+    "motion/tools/adapters/remotion/canvas.tsx",
+    "motion/tools/deadair.mjs",
+    "motion/tools/detect.mjs",
+    "motion/tools/emit.mjs",
+    "motion/tools/gate.mjs",
+    "motion/tools/render.mjs",
+    "motion/tools/scaffold.mjs",
+    "motion/tools/snap.mjs",
+    "motion/tools/still.mjs",
+    "motion/tools/verify-frame-adapter.mjs",
+    "motion/tsconfig.json"
+  ]
+}

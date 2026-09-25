@@ -153,8 +153,48 @@
    "tokens": 206262,
    "minutes": 14.9,
    "file": "workflows/runs/s01e10Seasons.md"
+  },
+  {
+   "piece": "verticalAppAd",
+   "description": "Build study: Vertical App Ad",
+   "launched": "2026-09-25 15:26",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 217576,
+   "minutes": 20.7,
+   "file": "workflows/runs/verticalAppAd.md"
+  },
+  {
+   "piece": "oneShapeLoop",
+   "description": "Build study: One-Shape Loop",
+   "launched": "2026-09-25 15:26",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 156207,
+   "minutes": 12.5,
+   "file": "workflows/runs/oneShapeLoop.md"
+  },
+  {
+   "piece": "printCarousel",
+   "description": "Build study: Print Carousel",
+   "launched": "2026-09-25 15:26",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 195751,
+   "minutes": 12.6,
+   "file": "workflows/runs/printCarousel.md"
+  },
+  {
+   "piece": "sketchExplainer",
+   "description": "Build study: Sketch Explainer",
+   "launched": "2026-09-25 15:26",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 225599,
+   "minutes": 20.2,
+   "file": "workflows/runs/sketchExplainer.md"
   }
  ],
  "reviews": 4,
- "requests": 14
+ "requests": 26
 }

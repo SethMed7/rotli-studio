@@ -33,7 +33,8 @@ let post: Post;
 let selected = 0;
 let dirty = false;
 // every edit bumps `revision`; a save clears `dirty` only if no edit happened while it was in flight
-let revision = 0, savedRevision = 0;
+let revision = 0,
+  savedRevision = 0;
 let libraryItems: LibraryItem[] = [];
 const frames: HTMLIFrameElement[] = [];
 
@@ -72,7 +73,8 @@ async function listPosts(): Promise<{ slug: string; title: string }[]> {
 async function loadPost(slug: string): Promise<void> {
   post = await (await fetch(`/api/posts/${slug}`)).json();
   selected = 0;
-  dirty = false; revision = savedRevision = 0;
+  dirty = false;
+  revision = savedRevision = 0;
   localStorage.setItem("studio:last", slug);
   status("");
   renderAll();
@@ -82,10 +84,15 @@ async function loadPost(slug: string): Promise<void> {
 async function savePost(): Promise<boolean> {
   const rev = revision;
   const res = await fetch(`/api/posts/${post.slug}`, { method: "PUT", body: JSON.stringify(post) }).catch(() => null);
-  if (!res?.ok) { status("Could not save"); return false; }
+  if (!res?.ok) {
+    status("Could not save");
+    return false;
+  }
   savedRevision = Math.max(savedRevision, rev);
   dirty = revision !== savedRevision;
-  status(dirty ? "Unsaved changes" : `Saved ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`);
+  status(
+    dirty ? "Unsaved changes" : `Saved ${new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" })}`,
+  );
   await fillPostSelect();
   return true;
 }
@@ -114,7 +121,9 @@ async function createPost(from?: Post): Promise<void> {
         captions: { instagram: "", x: "", linkedin: "" },
         slides: [blankSlide()],
       };
-  selected = 0; revision = savedRevision = 0; dirty = false;
+  selected = 0;
+  revision = savedRevision = 0;
+  dirty = false;
   await savePost();
   renderAll();
 }
@@ -145,14 +154,51 @@ function renderSlideList(): void {
         "li",
         {},
         el("span", { className: "num", textContent: String(i + 1) }),
-        el("span", { className: "what" }, el("b", { textContent: TEMPLATES[slide.template].label }), el("span", { textContent: summary(slide) })),
+        el(
+          "span",
+          { className: "what" },
+          el("b", { textContent: TEMPLATES[slide.template].label }),
+          el("span", { textContent: summary(slide) }),
+        ),
         el(
           "span",
           { className: "row-actions" },
-          el("button", { title: "Move up", ariaLabel: "Move slide up", textContent: "↑", onclick: (e: MouseEvent) => { e.stopPropagation(); move(i, -1); } }),
-          el("button", { title: "Move down", ariaLabel: "Move slide down", textContent: "↓", onclick: (e: MouseEvent) => { e.stopPropagation(); move(i, 1); } }),
-          el("button", { title: "Duplicate", ariaLabel: "Duplicate slide", textContent: "⧉", onclick: (e: MouseEvent) => { e.stopPropagation(); duplicate(i); } }),
-          el("button", { title: "Delete", ariaLabel: "Delete slide", textContent: "×", onclick: (e: MouseEvent) => { e.stopPropagation(); remove(i); } }),
+          el("button", {
+            title: "Move up",
+            ariaLabel: "Move slide up",
+            textContent: "↑",
+            onclick: (e: MouseEvent) => {
+              e.stopPropagation();
+              move(i, -1);
+            },
+          }),
+          el("button", {
+            title: "Move down",
+            ariaLabel: "Move slide down",
+            textContent: "↓",
+            onclick: (e: MouseEvent) => {
+              e.stopPropagation();
+              move(i, 1);
+            },
+          }),
+          el("button", {
+            title: "Duplicate",
+            ariaLabel: "Duplicate slide",
+            textContent: "⧉",
+            onclick: (e: MouseEvent) => {
+              e.stopPropagation();
+              duplicate(i);
+            },
+          }),
+          el("button", {
+            title: "Delete",
+            ariaLabel: "Delete slide",
+            textContent: "×",
+            onclick: (e: MouseEvent) => {
+              e.stopPropagation();
+              remove(i);
+            },
+          }),
         ),
       );
       row.setAttribute("aria-current", String(i === selected));
@@ -180,7 +226,12 @@ function renderStrip(): void {
       frame.style.transform = `scale(${scale})`;
       frame.dataset.index = String(i);
       frames.push(frame);
-      const wrap = el("button", { className: "thumb", ariaLabel: `Edit slide ${i + 1}`, onclick: () => select(i) }, frame, el("span", { className: "n", textContent: String(i + 1) }));
+      const wrap = el(
+        "button",
+        { className: "thumb", ariaLabel: `Edit slide ${i + 1}`, onclick: () => select(i) },
+        frame,
+        el("span", { className: "n", textContent: String(i + 1) }),
+      );
       wrap.style.width = `${w * scale}px`;
       wrap.style.height = `${h * scale}px`;
       wrap.setAttribute("aria-current", String(i === selected));
@@ -212,7 +263,9 @@ function refreshAll(): void {
 function select(i: number): void {
   selected = i;
   document.querySelectorAll<HTMLElement>(".thumb").forEach((t, n) => t.setAttribute("aria-current", String(n === i)));
-  document.querySelectorAll<HTMLElement>("#slide-list li").forEach((t, n) => t.setAttribute("aria-current", String(n === i)));
+  document
+    .querySelectorAll<HTMLElement>("#slide-list li")
+    .forEach((t, n) => t.setAttribute("aria-current", String(n === i)));
   document.querySelectorAll(".thumb")[i]?.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
   renderInspector();
 }
@@ -259,10 +312,28 @@ function fieldInput(field: Field, slide: Slide): HTMLElement {
   }
   if (field.type === "image") {
     const preview = el("span", { className: "preview" });
-    const paint = () => (preview.style.backgroundImage = slide.fields[field.key] ? `url("${slide.fields[field.key]}")` : "none");
+    const paint = () =>
+      (preview.style.backgroundImage = slide.fields[field.key] ? `url("${slide.fields[field.key]}")` : "none");
     paint();
-    const choose = el("button", { className: "ghost", type: "button", textContent: "Choose…", onclick: () => pickImage((url) => { update(url); paint(); }) });
-    const clear = el("button", { className: "ghost", type: "button", textContent: "Remove", onclick: () => { update(""); paint(); } });
+    const choose = el("button", {
+      className: "ghost",
+      type: "button",
+      textContent: "Choose…",
+      onclick: () =>
+        pickImage((url) => {
+          update(url);
+          paint();
+        }),
+    });
+    const clear = el("button", {
+      className: "ghost",
+      type: "button",
+      textContent: "Remove",
+      onclick: () => {
+        update("");
+        paint();
+      },
+    });
     return el(
       "div",
       { className: "field" },
@@ -276,7 +347,13 @@ function fieldInput(field: Field, slide: Slide): HTMLElement {
       ? el("input", { type: "text", value })
       : el("textarea", { value, rows: field.type === "lines" ? 8 : 3 });
   input.oninput = () => update(input.value);
-  return el("label", { className: "field" }, el("span", { textContent: field.label }), input, ...(field.hint ? [el("small", { textContent: field.hint })] : []));
+  return el(
+    "label",
+    { className: "field" },
+    el("span", { textContent: field.label }),
+    input,
+    ...(field.hint ? [el("small", { textContent: field.hint })] : []),
+  );
 }
 
 function renderInspector(): void {
@@ -285,17 +362,41 @@ function renderInspector(): void {
   if (!slide) return host.replaceChildren();
   const template = el(
     "select",
-    { onchange: () => { slide.template = template.value as TemplateId; markDirty(); sendSlide(selected); renderSlideList(); renderInspector(); } },
-    ...Object.entries(TEMPLATES).map(([id, t]) => el("option", { value: id, textContent: t.label, selected: id === slide.template })),
+    {
+      onchange: () => {
+        slide.template = template.value as TemplateId;
+        markDirty();
+        sendSlide(selected);
+        renderSlideList();
+        renderInspector();
+      },
+    },
+    ...Object.entries(TEMPLATES).map(([id, t]) =>
+      el("option", { value: id, textContent: t.label, selected: id === slide.template }),
+    ),
   );
   const theme = el(
     "select",
-    { onchange: () => { slide.theme = theme.value as ThemeId; markDirty(); sendSlide(selected); } },
-    ...Object.entries(THEMES).map(([id, label]) => el("option", { value: id, textContent: label, selected: id === slide.theme })),
+    {
+      onchange: () => {
+        slide.theme = theme.value as ThemeId;
+        markDirty();
+        sendSlide(selected);
+      },
+    },
+    ...Object.entries(THEMES).map(([id, label]) =>
+      el("option", { value: id, textContent: label, selected: id === slide.theme }),
+    ),
   );
   host.replaceChildren(
     el("h2", { textContent: `Slide ${selected + 1}` }),
-    el("label", { className: "field" }, el("span", { textContent: "Template" }), template, el("small", { textContent: TEMPLATES[slide.template].description })),
+    el(
+      "label",
+      { className: "field" },
+      el("span", { textContent: "Template" }),
+      template,
+      el("small", { textContent: TEMPLATES[slide.template].description }),
+    ),
     el("label", { className: "field" }, el("span", { textContent: "Background" }), theme),
     ...TEMPLATES[slide.template].fields.map((field) => fieldInput(field, slide)),
   );
@@ -312,7 +413,11 @@ function renderCaptions(): void {
         count.textContent = `${area.value.length} / ${limit}`;
         count.classList.toggle("over", area.value.length > limit);
       };
-      area.oninput = () => { post.captions[network] = area.value; markDirty(); paint(); };
+      area.oninput = () => {
+        post.captions[network] = area.value;
+        markDirty();
+        paint();
+      };
       paint();
       const label = { instagram: "Instagram", x: "X", linkedin: "LinkedIn" }[network];
       return el("label", { className: "field" }, el("span", { textContent: label }), area, count);
@@ -339,14 +444,23 @@ function shelfSection(shelf: string, items: LibraryItem[], onPick: (item: Librar
     grid.append(
       el(
         "button",
-        { className: `tile${shelf === "quokka-line" || shelf === "logo" ? " line" : ""}`, title: item.url, onclick: () => onPick(item) },
+        {
+          className: `tile${shelf === "quokka-line" || shelf === "logo" ? " line" : ""}`,
+          title: item.url,
+          onclick: () => onPick(item),
+        },
         img,
         el("b", { textContent: item.name }),
         el("small", { textContent: `${Math.max(1, Math.round(item.bytes / 1024))} KB` }),
       ),
     );
   }
-  return el("section", { className: "shelf" }, el("h2", {}, SHELF_LABELS[shelf] ?? shelf, el("span", { textContent: ` · ${items.length}` })), grid);
+  return el(
+    "section",
+    { className: "shelf" },
+    el("h2", {}, SHELF_LABELS[shelf] ?? shelf, el("span", { textContent: ` · ${items.length}` })),
+    grid,
+  );
 }
 
 function byShelf(filter: (item: LibraryItem) => boolean): [string, LibraryItem[]][] {
@@ -369,13 +483,28 @@ async function renderLibrary(): Promise<void> {
   }
   const colors = libraryItems.find((i) => i.shelf === "colors");
   if (colors) {
-    const tokens = (await (await fetch(colors.url)).json()) as { core: Record<string, string>; supporting: Record<string, string> };
+    const tokens = (await (await fetch(colors.url)).json()) as {
+      core: Record<string, string>;
+      supporting: Record<string, string>;
+    };
     const swatches = el("div", { className: "swatches" });
     for (const [name, hex] of Object.entries({ ...tokens.core, ...tokens.supporting })) {
       const chip = el("div");
       chip.style.background = hex;
       swatches.append(
-        el("button", { className: "swatch", title: `Copy ${hex}`, onclick: () => { void navigator.clipboard.writeText(hex); status(`Copied ${hex}`); } }, chip, el("p", {}, `${name} `, el("code", { textContent: hex }))),
+        el(
+          "button",
+          {
+            className: "swatch",
+            title: `Copy ${hex}`,
+            onclick: () => {
+              void navigator.clipboard.writeText(hex);
+              status(`Copied ${hex}`);
+            },
+          },
+          chip,
+          el("p", {}, `${name} `, el("code", { textContent: hex })),
+        ),
       );
     }
     sections.push(el("section", { className: "shelf" }, el("h2", { textContent: "Colors" }), swatches));
@@ -385,9 +514,21 @@ async function renderLibrary(): Promise<void> {
       "section",
       { className: "shelf" },
       el("h2", { textContent: "Fonts" }),
-      el("div", { className: "grid wide" },
-        el("div", { className: "font-sample" }, el("p", { textContent: "rotli", className: "sample-wordmark" }), el("small", { textContent: "Baloo 2 SemiBold · the wordmark only" })),
-        el("div", { className: "font-sample" }, el("p", { textContent: "Room to think.", className: "sample-body" }), el("small", { textContent: "General Sans · Regular, Medium, Semibold" })),
+      el(
+        "div",
+        { className: "grid wide" },
+        el(
+          "div",
+          { className: "font-sample" },
+          el("p", { textContent: "rotli", className: "sample-wordmark" }),
+          el("small", { textContent: "Baloo 2 SemiBold · the wordmark only" }),
+        ),
+        el(
+          "div",
+          { className: "font-sample" },
+          el("p", { textContent: "Room to think.", className: "sample-body" }),
+          el("small", { textContent: "General Sans · Regular, Medium, Semibold" }),
+        ),
       ),
     ),
   );
@@ -424,7 +565,12 @@ function openExport(): void {
   const host = $("#export-formats");
   host.replaceChildren(
     ...(Object.entries(FORMATS) as [FormatId, (typeof FORMATS)[FormatId]][]).map(([id, f]) =>
-      el("label", { className: "check" }, el("input", { type: "checkbox", value: id, checked: id === post.format }), `${f.label} · ${f.w} × ${f.h}`),
+      el(
+        "label",
+        { className: "check" },
+        el("input", { type: "checkbox", value: id, checked: id === post.format }),
+        `${f.label} · ${f.w} × ${f.h}`,
+      ),
     ),
   );
   $("#export-result").replaceChildren();
@@ -434,20 +580,44 @@ function openExport(): void {
 async function runExport(): Promise<void> {
   const formats = [...document.querySelectorAll<HTMLInputElement>("#export-formats input:checked")].map((i) => i.value);
   if (!formats.length) return;
-  const result = $("#export-result"), go = $<HTMLButtonElement>("#export-go");
+  const result = $("#export-result"),
+    go = $<HTMLButtonElement>("#export-go");
   // export renders what is on disk: never export a post whose save failed
-  if (dirty && !(await savePost())) return void result.replaceChildren(el("p", { textContent: "Could not save the post, so nothing was exported. Your changes are still here." }));
+  if (dirty && !(await savePost()))
+    return void result.replaceChildren(
+      el("p", { textContent: "Could not save the post, so nothing was exported. Your changes are still here." }),
+    );
   go.disabled = true;
   result.replaceChildren(el("p", { textContent: "Rendering…" }));
   let res: Response, data: { error?: string; files: string[] };
-  try { res = await fetch(`/api/export/${post.slug}`, { method: "POST", body: JSON.stringify({ formats }) }); data = await res.json(); }
-  catch { return void result.replaceChildren(el("p", { textContent: "Export failed: the studio server did not answer." })); }
-  finally { go.disabled = false; }
+  try {
+    res = await fetch(`/api/export/${post.slug}`, { method: "POST", body: JSON.stringify({ formats }) });
+    data = await res.json();
+  } catch {
+    return void result.replaceChildren(el("p", { textContent: "Export failed: the studio server did not answer." }));
+  } finally {
+    go.disabled = false;
+  }
   if (!res.ok) return void result.replaceChildren(el("p", { textContent: data.error ?? "Export failed" }));
   result.replaceChildren(
     el("p", { textContent: `${data.files.length} files written.` }),
-    el("ul", {}, ...data.files.map((f: string) => el("li", {}, el("a", { href: f, target: "_blank", textContent: decodeURIComponent(f.replace("/exports/", "")) })))),
-    el("button", { className: "ghost", type: "button", textContent: "Show in Finder", onclick: () => fetch(`/api/reveal/${post.slug}`, { method: "POST" }) }),
+    el(
+      "ul",
+      {},
+      ...data.files.map((f: string) =>
+        el(
+          "li",
+          {},
+          el("a", { href: f, target: "_blank", textContent: decodeURIComponent(f.replace("/exports/", "")) }),
+        ),
+      ),
+    ),
+    el("button", {
+      className: "ghost",
+      type: "button",
+      textContent: "Show in Finder",
+      onclick: () => fetch(`/api/reveal/${post.slug}`, { method: "POST" }),
+    }),
   );
   status("Exported");
 }
@@ -473,17 +643,32 @@ async function boot(): Promise<void> {
   $("#tab-create").onclick = () => showTab("create");
   $("#tab-library").onclick = () => showTab("library");
   $<HTMLSelectElement>("#post-select").onchange = (e) => {
-    if (dirty && !confirm("Discard unsaved changes?")) return void ($<HTMLSelectElement>("#post-select").value = post.slug);
+    if (dirty && !confirm("Discard unsaved changes?"))
+      return void ($<HTMLSelectElement>("#post-select").value = post.slug);
     void loadPost((e.target as HTMLSelectElement).value);
   };
   $("#new-post").onclick = () => void createPost();
   $("#duplicate-post").onclick = () => void createPost(post);
   $("#save").onclick = () => void savePost();
   $("#export").onclick = openExport;
-  $("#export-go").onclick = (e) => { e.preventDefault(); void runExport(); };
-  $<HTMLInputElement>("#post-title").oninput = (e) => { post.title = (e.target as HTMLInputElement).value; markDirty(); };
-  $<HTMLSelectElement>("#post-format").onchange = (e) => { post.format = (e.target as HTMLSelectElement).value as FormatId; markDirty(); renderStrip(); };
-  $<HTMLInputElement>("#post-counter").onchange = (e) => { post.counter = (e.target as HTMLInputElement).checked; markDirty(); refreshAll(); };
+  $("#export-go").onclick = (e) => {
+    e.preventDefault();
+    void runExport();
+  };
+  $<HTMLInputElement>("#post-title").oninput = (e) => {
+    post.title = (e.target as HTMLInputElement).value;
+    markDirty();
+  };
+  $<HTMLSelectElement>("#post-format").onchange = (e) => {
+    post.format = (e.target as HTMLSelectElement).value as FormatId;
+    markDirty();
+    renderStrip();
+  };
+  $<HTMLInputElement>("#post-counter").onchange = (e) => {
+    post.counter = (e.target as HTMLInputElement).checked;
+    markDirty();
+    refreshAll();
+  };
   $("#add-slide").onclick = () => {
     const slide = blankSlide($<HTMLSelectElement>("#add-template").value as TemplateId);
     if (slide.template !== "statement") slide.fields = { headline: "A new slide" };
@@ -494,15 +679,30 @@ async function boot(): Promise<void> {
   };
   $<HTMLInputElement>("#upload").onchange = (e) => void upload((e.target as HTMLInputElement).files ?? []);
   const libraryView = $("#view-library");
-  libraryView.ondragover = (e) => { e.preventDefault(); libraryView.classList.add("dragging"); };
+  libraryView.ondragover = (e) => {
+    e.preventDefault();
+    libraryView.classList.add("dragging");
+  };
   libraryView.ondragleave = () => libraryView.classList.remove("dragging");
-  libraryView.ondrop = (e) => { e.preventDefault(); libraryView.classList.remove("dragging"); if (e.dataTransfer?.files.length) void upload(e.dataTransfer.files); };
+  libraryView.ondrop = (e) => {
+    e.preventDefault();
+    libraryView.classList.remove("dragging");
+    if (e.dataTransfer?.files.length) void upload(e.dataTransfer.files);
+  };
   window.addEventListener("keydown", (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === "s") { e.preventDefault(); void savePost(); }
+    if ((e.metaKey || e.ctrlKey) && e.key === "s") {
+      e.preventDefault();
+      void savePost();
+    }
   });
-  window.addEventListener("beforeunload", (e) => { if (dirty) e.preventDefault(); });
+  window.addEventListener("beforeunload", (e) => {
+    if (dirty) e.preventDefault();
+  });
   let resize = 0;
-  window.addEventListener("resize", () => { clearTimeout(resize); resize = window.setTimeout(renderStrip, 150); });
+  window.addEventListener("resize", () => {
+    clearTimeout(resize);
+    resize = window.setTimeout(renderStrip, 150);
+  });
 
   await fillPostSelect();
   const posts = await listPosts();

@@ -16,7 +16,10 @@ something, find its row below. If no row fits, add a row here in the same change
 | Create's saved posts (drafts) | `posts/<slug>.json` | Editable content, never published by the snapshot. |
 | Create's PNG exports | `exports/` (gitignored) | Local output only. |
 | **Motion room** (the engine) | `motion/src/canvas-core/core.ts`, `film.ts`, `studio/` | Pure `renderFrame(frame)` + `audio()`. |
-| Rotli-specific building blocks | `motion/src/canvas-core/rotli/`, `quokka/` | Island props, score, the quokka rig. |
+| Rotli-specific building blocks | `motion/src/canvas-core/rotli/`, `quokka/`, `studio/` | Island props, score, the quokka rig, the story engine and atmospheres. Read `brand/`. |
+| **Brand-neutral kit** | `motion/src/canvas-core/kit/` | Sizes, springs and easing, type, UI, depth, motion blur, a beat score. Reads only a brand pack, never Rotli's. |
+| **Brand packs** | `motion/brand/packs/<id>/` | `pack.json` (product, palettes, fonts with sha256) + `fonts/` with their licences. `studio` is the neutral pack. |
+| **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. |
 | Render styles (from anidoodle) | `motion/src/canvas-core/styles/` | gallery, drafting, print, riso, storybook, lettering. |
 | Engine examples (from anidoodle) | `motion/src/canvas-core/examples/` | Reference pieces; not part of any series. |
 | **Piece sources** | `motion/src/canvas-core/<pieceId>.ts` + `motion/src/hosts/page-<pieceId>.ts` | The host's import line is the piece's module. |
@@ -25,7 +28,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | How pieces are made | `motion/workflows/` | `README.md` (process), `agent-preamble.md`, `review-checklist.md`. |
 | Agent runs (what built each piece) | `motion/workflows/runs/` | Recovered by `motion/tools/extract-runs.mjs`; redacted. |
 | Goldens (pixel/audio fingerprints) | `motion/golden/<pieceId>.json` | `node motion/tools/studio.mjs golden all` must print SAME. |
-| Brand data | `motion/brand/` (`brand.json`, `themes.json`, `companions.json`) | Synced from the rotli app on purpose, never hand-edited. |
+| Rotli's brand data | `motion/brand/` (`brand.json`, `themes.json`, `companions.json`) | Rotli's own pack, synced from the rotli app on purpose, never hand-edited. |
 | Brand fonts for renders | `motion/assets/fonts/` | See the licence notes in `NOTICE`. |
 | Motion tools | `motion/tools/*.mjs` | Run with Node from `motion/`. Each has a usage header. |
 | Motion renders | `motion/out/` (gitignored) | Videos, posters, thumbnails, the manifest. |
@@ -36,8 +39,9 @@ something, find its row below. If no row fits, add a row here in the same change
 | Hosting | `deploy/` | Caddy + Dockerfile + `README.md`; `*.local.txt` are private and gitignored. |
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
 | Agent rules | `AGENTS.md` | Read first. |
+| Contributing and quality gates | `CONTRIBUTING.md`, `scripts/verify.ts`, `.oxlintrc.json`, `.oxfmtrc.json` | `bun run verify` runs every gate; `bun run lint`, `bun run fmt`. |
 | Design rules for the site | `DESIGN.md` | |
-| Docs | `docs/` | `evaluation.md` (what ports to other products), `launch/` (the launch calendar), `reviews/<date>-<reviewer>/` (external reviews, their prompts and the triage), `proposals/` (plans awaiting the owner). |
+| Docs | `docs/` | `use-it-for-your-product.md` (start here to adapt the studio), `evaluation.md` (what ports to other products), `launch/` (the launch calendar), `reviews/<date>-<reviewer>/` (external reviews, their prompts and the triage), `proposals/` (plans awaiting the owner). |
 | Licences | `LICENSE` (MIT), `NOTICE`, `motion/third_party/anidoodle/` | Apache-2.0 attribution for the engine. |
 | Archive | `archive/` | Frozen earlier projects (`films/`); read-only history, never built. |
 | Local-only material | `local/`, `tmp/` (gitignored) | Nothing here is ever published. |
@@ -60,6 +64,10 @@ something, find its row below. If no row fits, add a row here in the same change
 - **A piece:** source + host in `motion/src/`, register it in `pieces.json`, assign it to a series in
   `series.json`, render, check, record its golden. See `motion/workflows/README.md`.
 - **A series:** a `series.json` entry plus `motion/series/<series-id>/` for its bible, briefs and prompts.
+- **A study** (or any brand-neutral piece): a brief in `motion/series/studies/briefs/`, its prompt from
+  `node motion/tools/study-prompt.mjs <brief>`, a module in `motion/src/canvas-core/studies/` built on `kit/` and a
+  pack; register each size in `pieces.json`. See `docs/use-it-for-your-product.md`.
+- **A brand pack:** copy `motion/brand/packs/studio/`, replace fonts (with licences), hashes and palettes.
 - **A sound:** a recipe in `sound/src/recipes.ts`, its prompt in `sound/prompts/<id>.md`, then
   `bun sound/tools/render.ts`.
 - **A skill:** `.claude/skills/<name>/SKILL.md`; it appears on the site's Skills page automatically.

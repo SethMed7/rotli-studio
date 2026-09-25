@@ -1,0 +1,46 @@
+{
+  // oxlint: the correctness category as errors, over the studio's own code (bun run lint). Upstream anidoodle
+  // files the studio never changed are ignored like the archive and generated output.
+  "plugins": [
+    "typescript",
+    "unicorn",
+    "oxc"
+  ],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": [
+    "node_modules/",
+    "**/node_modules/",
+    "archive/",
+    "site-dist/",
+    "site-dist.staging/",
+    "exports/",
+    "local/",
+    "tmp/",
+    "motion/out/",
+    "motion/dist/",
+    "motion/golden/",
+    "motion/third_party/",
+    "motion/workflows/runs/",
+    "motion/package.json",
+    "motion/src/canvas-core/core.ts",
+    "motion/tools/adapters/README.md",
+    "motion/tools/adapters/html-player.mjs",
+    "motion/tools/adapters/hyperframes.mjs",
+    "motion/tools/adapters/playwright.mjs",
+    "motion/tools/adapters/remotion.mjs",
+    "motion/tools/adapters/remotion/canvas.tsx",
+    "motion/tools/deadair.mjs",
+    "motion/tools/detect.mjs",
+    "motion/tools/emit.mjs",
+    "motion/tools/gate.mjs",
+    "motion/tools/render.mjs",
+    "motion/tools/scaffold.mjs",
+    "motion/tools/snap.mjs",
+    "motion/tools/still.mjs",
+    "motion/tools/verify-frame-adapter.mjs",
+    "motion/tsconfig.json"
+  ],
+  "rules": {}
+}

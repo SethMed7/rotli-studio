@@ -10,13 +10,13 @@ import { score } from "./rotli/score";
 const CUT: [string, number, number, (f0: number) => Shot["draw"]][] = [
   ["ferry", 0, 150, shotFerry],
   ["noise", 150, 300, shotNoise],
-  ["write", 300, 510, shotWrite],       // the turn: ⌥Space lands on frame 300
+  ["write", 300, 510, shotWrite], // the turn: ⌥Space lands on frame 300
   ["vault", 510, 720, shotVault],
   ["librarian", 720, 960, shotLibrarian],
   ["views", 960, 1140, shotViews],
   ["secure", 1140, 1350, shotSecure],
   ["chat", 1350, 1560, shotChat],
-  ["sunset", 1560, 1800, shotSunset],   // bell on 1620, final tonic on 1740
+  ["sunset", 1560, 1800, shotSunset], // bell on 1620, final tonic on 1740
 ];
 const DURATION = 1800;
 

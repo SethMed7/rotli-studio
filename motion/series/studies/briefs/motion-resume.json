@@ -1,0 +1,63 @@
+{
+ "id": "motion-resume",
+ "no": 1,
+ "title": "Motion Résumé",
+ "module": "src/canvas-core/studies/motionResume.ts",
+ "pieces": {
+  "landscape": "motionResume",
+  "vertical": "motionResumeVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 60,
+ "bpm": 120,
+ "frames": 900,
+ "palette": "night",
+ "style": "Dark ground, one accent (the pack's night palette), small mono HUD labels, a faint dot grid. Sans for statements, the serif italic for feeling. Motion blur (4 subframes, 180° shutter).",
+ "learnsFrom": "A public 15 s reel Opus 5.5 made from one prompt (https://x.com/darel023/status/2103424524297420829): show technique as the content, one accent, cut on the music. Nothing from it is copied: every shape and word here is new.",
+ "story": [
+  {
+   "from": 0,
+   "to": 90,
+   "what": "hook: an accent dot lands with an overshoot and rings once, then slides to the start of a curve"
+  },
+  {
+   "from": 90,
+   "to": 210,
+   "what": "easing: a cubic-bezier curve with live handles morphs linear → ease-out → overshoot; a dot rides it and a rail reads its value"
+  },
+  {
+   "from": 210,
+   "to": 390,
+   "what": "type: motion (letters rise), timing (letters drop), feeling (serif italic scales in); every i is dotted with the accent; feeling folds into the dot"
+  },
+  {
+   "from": 390,
+   "to": 510,
+   "what": "interface: the dot becomes a switch, the switch turns on and opens into a 'Render complete' toast with a drawn check"
+  },
+  {
+   "from": 510,
+   "to": 630,
+   "what": "data: a velocity bell of 17 bars becomes a position curve; one bar carries the accent"
+  },
+  {
+   "from": 630,
+   "to": 750,
+   "what": "space: an isometric block field with a wave and a ring of accent blocks, slow push-in"
+  },
+  {
+   "from": 750,
+   "to": 840,
+   "what": "particles: a 3,200-point spiral tilts toward the camera and falls into one point"
+  },
+  {
+   "from": 840,
+   "to": 900,
+   "what": "sign-off: the point becomes the full stop of the Oriel wordmark; 'Motion study 01 — designing the in-between'"
+  }
+ ],
+ "sizes": "Vertical re-stacks: content scales up and each section is named large in the serif above the action.",
+ "sound": "beatScore drive at 120 bpm: drums enter with the type; hits on type, interface and space; whooshes into type, particles and sign-off; ticks on the switch and the check; a three-note sign-off under the wordmark.",
+ "teaches": "A reel is a list of techniques joined by one object (the dot). Continuity beats variety: every section is born from the last one's final shape."
+}

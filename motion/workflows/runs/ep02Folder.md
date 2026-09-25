@@ -56,7 +56,7 @@ The ep02Folder episode is built and passes the updated dead-air check: `identica
 No shared files were edited and nothing was committed. I didn't run `studio.mjs render all` or `golden`.
 
 **Episode shape:** 900 frames, with the title card to frame 90, the demo to 780 and the end card to 900. The story runs:
-1. The Rotli window sits beside a Finder-like "My vault" window at `~/Documents/My vault`. Rows pop in for `wiki/`, `chats/`, `storage/` and `.rotli/`, and "Markdown" tags appear on the notes and on the chat.
+1. The Rotli window sits beside a Finder-like "My vault" window at `<a local folder> vault`. Rows pop in for `wiki/`, `chats/`, `storage/` and `.rotli/`, and "Markdown" tags appear on the notes and on the chat.
 2. The camera pushes in to 1.18× on `.rotli/`, labelled "settings and indexes rotli can rebuild".
 3. The pointer double-clicks `trip-plan.md` and it opens in a generic "Text editor" as plain Markdown. A "same file · trip-plan.md" chip sits above both windows.
 4. The vault folder backs up to three copies, labelled Time Machine, a sync service and git.

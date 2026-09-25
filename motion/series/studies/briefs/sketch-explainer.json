@@ -1,0 +1,53 @@
+{
+ "id": "sketch-explainer",
+ "no": 5,
+ "title": "Sketch Explainer",
+ "module": "src/canvas-core/studies/sketchExplainer.ts",
+ "pieces": {
+  "landscape": "sketchExplainer",
+  "vertical": "sketchExplainerVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 90,
+ "frames": 600,
+ "palette": "blueprint",
+ "style": "A blueprint: pale lines on deep blue, a fine grid, hand-drawn strokes that draw themselves on (use the engine's pencil/Gfx strokes or stroke-dash reveals), mono hand labels, one warm accent for the answer. The camera pans across one large drawing.",
+ "learnsFrom": "Technical explainer sketches and pen-plotter drawings.",
+ "story": [
+  {
+   "from": 0,
+   "to": 80,
+   "what": "title draws itself: 'How a meeting finds its time' with an underline"
+  },
+  {
+   "from": 80,
+   "to": 200,
+   "what": "three people are sketched (Ana, Ben, Kai), each with a lane"
+  },
+  {
+   "from": 200,
+   "to": 340,
+   "what": "each lane fills with busy blocks (hatched) across Mon–Fri; the camera pans along the week"
+  },
+  {
+   "from": 340,
+   "to": 460,
+   "what": "a vertical scan line sweeps; where all three lanes are free it leaves an accent box: Thu 3:00"
+  },
+  {
+   "from": 460,
+   "to": 560,
+   "what": "the box lifts into an invite drawn in line: 'Thu 3:00–4:00 · Ana, Ben, Kai'; arrows to the three people, each gets a check"
+  },
+  {
+   "from": 560,
+   "to": 600,
+   "what": "pull back to the whole sheet; stamp 'ORIEL · fictional · drawn in code'"
+  }
+ ],
+ "sizes": "Landscape is primary (lanes run left to right). Vertical turns the week to run top to bottom and stacks the people across the top.",
+ "sound": "beatScore soft at 90 bpm: pencil scratches as ticks while strokes draw, a hit when the answer box lands, the sign-off with the stamp.",
+ "teaches": "Drawing-on is its own motion language: stroke order is the story."
+}

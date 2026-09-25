@@ -16,32 +16,81 @@ export const filmPlayer = (src: string, poster: string, label: string) => `<figu
 
 /** Wire every player under `root`; returns a stop function (the router calls it when the page changes). */
 export function mountFilmPlayers(root: HTMLElement): () => void {
-  const quiet = matchMedia("(prefers-reduced-motion: reduce)").matches || (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
+  const quiet =
+    matchMedia("(prefers-reduced-motion: reduce)").matches ||
+    (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData === true;
   const observers: IntersectionObserver[] = [];
   for (const player of root.querySelectorAll<HTMLElement>("[data-player]")) {
     const video = player.querySelector("video")!;
-    if (quiet) { video.preload = "metadata"; continue; } // a poster with native controls
-    const bar = player.querySelector<HTMLElement>(".player-bar")!, sound = bar.querySelector<HTMLButtonElement>(".player-sound")!;
-    const pause = bar.querySelector<HTMLButtonElement>(".player-pause")!, replay = bar.querySelector<HTMLButtonElement>(".player-replay")!;
-    video.controls = false; video.muted = true; bar.hidden = false;
-    let userPaused = false, visible = false, started = false, pausedByScroll = false, beat: ReturnType<typeof setTimeout> | undefined;
-    const sync = () => { player.classList.toggle("is-paused", video.paused); pause.setAttribute("aria-label", video.paused ? "Play the film" : "Pause the film"); };
-    video.addEventListener("play", sync); video.addEventListener("pause", sync);
-    video.addEventListener("ended", () => { sound.hidden = true; pause.hidden = true; replay.hidden = false; }); // rest on the last frame
-    const handOver = () => { bar.hidden = true; video.muted = false; video.controls = true; video.currentTime = 0; void video.play(); };
-    sound.addEventListener("click", handOver); replay.addEventListener("click", handOver);
-    pause.addEventListener("click", () => { userPaused = !video.paused; if (video.paused) void video.play(); else video.pause(); });
+    if (quiet) {
+      video.preload = "metadata";
+      continue;
+    } // a poster with native controls
+    const bar = player.querySelector<HTMLElement>(".player-bar")!,
+      sound = bar.querySelector<HTMLButtonElement>(".player-sound")!;
+    const pause = bar.querySelector<HTMLButtonElement>(".player-pause")!,
+      replay = bar.querySelector<HTMLButtonElement>(".player-replay")!;
+    video.controls = false;
+    video.muted = true;
+    bar.hidden = false;
+    let userPaused = false,
+      visible = false,
+      started = false,
+      pausedByScroll = false,
+      beat: ReturnType<typeof setTimeout> | undefined;
+    const sync = () => {
+      player.classList.toggle("is-paused", video.paused);
+      pause.setAttribute("aria-label", video.paused ? "Play the film" : "Pause the film");
+    };
+    video.addEventListener("play", sync);
+    video.addEventListener("pause", sync);
+    video.addEventListener("ended", () => {
+      sound.hidden = true;
+      pause.hidden = true;
+      replay.hidden = false;
+    }); // rest on the last frame
+    const handOver = () => {
+      bar.hidden = true;
+      video.muted = false;
+      video.controls = true;
+      video.currentTime = 0;
+      void video.play();
+    };
+    sound.addEventListener("click", handOver);
+    replay.addEventListener("click", handOver);
+    pause.addEventListener("click", () => {
+      userPaused = !video.paused;
+      if (video.paused) void video.play();
+      else video.pause();
+    });
     const autoplay = () => {
       if (!visible || userPaused || video.ended || (started && !pausedByScroll)) return;
-      started = true; pausedByScroll = false;
-      void video.play().catch(() => { bar.hidden = true; video.controls = true; }); // autoplay refused: poster + controls
+      started = true;
+      pausedByScroll = false;
+      void video.play().catch(() => {
+        bar.hidden = true;
+        video.controls = true;
+      }); // autoplay refused: poster + controls
     };
-    const io = new IntersectionObserver(([entry]) => {
-      visible = !!entry?.isIntersecting; clearTimeout(beat);
-      if (visible) { if (video.preload !== "auto") video.preload = "auto"; beat = setTimeout(autoplay, started ? 0 : 700); }
-      else if (!video.paused) { pausedByScroll = true; video.pause(); }
-    }, { threshold: 0.35 });
-    io.observe(video); observers.push(io);
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        visible = !!entry?.isIntersecting;
+        clearTimeout(beat);
+        if (visible) {
+          if (video.preload !== "auto") video.preload = "auto";
+          beat = setTimeout(autoplay, started ? 0 : 700);
+        } else if (!video.paused) {
+          pausedByScroll = true;
+          video.pause();
+        }
+      },
+      { threshold: 0.35 },
+    );
+    io.observe(video);
+    observers.push(io);
   }
-  return () => { for (const io of observers) io.disconnect(); for (const v of root.querySelectorAll("video")) v.pause(); };
+  return () => {
+    for (const io of observers) io.disconnect();
+    for (const v of root.querySelectorAll("video")) v.pause();
+  };
 }

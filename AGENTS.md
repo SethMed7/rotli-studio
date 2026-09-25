@@ -29,5 +29,10 @@ decision and is declared in `publish/placements.json`.
 Where things go: `ARCHITECTURE.md` gives every kind of thing exactly one home (series material in
 `motion/series/<id>/`, publishing records in `publish/`, docs in `docs/`); add a row there before inventing a new place.
 
+Studies (`motion/series/studies/`, `motion/src/canvas-core/studies/`) are brand-neutral pieces for the fictional
+Oriel on the brand-neutral kit (`motion/src/canvas-core/kit/`) and a pack (`motion/brand/packs/`); they never import
+Rotli's kit or brand. `bun run verify` runs every gate (typechecks, oxlint, oxfmt, public gate, inventory, sound,
+goldens); run `bun run fmt` before committing code.
+
 Rules: do not commit unless asked; never change a sealed piece's pixels (`node motion/tools/studio.mjs golden all`
 must print SAME); claims must match rotli.co; the quokka and themes come from the rotli app, never hand-drawn.

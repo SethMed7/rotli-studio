@@ -1,0 +1,94 @@
+{
+ "id": "studio",
+ "name": "Studio (neutral)",
+ "note": "A brand-neutral pack for the studies and for anyone adapting the studio. Oriel is a FICTIONAL product (a scheduling assistant that finds a time that works for everyone); its name, url and claims are invented for the studies. Fonts are OFL (licences beside them), subset to Latin and instanced to static weights with fontTools. Copy this folder to make your own pack; pieces import the pack they use.",
+ "product": "Oriel",
+ "url": "oriel.example",
+ "fonts": {
+  "sans": "Inter",
+  "serif": "Instrument Serif",
+  "italic": "Instrument Serif Italic",
+  "mono": "JetBrains Mono",
+  "files": [
+   {
+    "spec": "Inter@400",
+    "file": "brand/packs/studio/fonts/Inter-400.ttf",
+    "sha256": "f65aaf446d86ebb0824e755c11e89e580591f827fb8502e1afc5ba4acae426ed"
+   },
+   {
+    "spec": "Inter@600",
+    "file": "brand/packs/studio/fonts/Inter-600.ttf",
+    "sha256": "67357095b109b60cf1b92c36aa514ba6031625a14c00bf7f4028874f0c82c1ce"
+   },
+   {
+    "spec": "Inter@800",
+    "file": "brand/packs/studio/fonts/Inter-800.ttf",
+    "sha256": "fa34891fb8727490e49bc6c0dbfe50a33e450b052960e25f5c48fc520bc0052d"
+   },
+   {
+    "spec": "Instrument Serif@400",
+    "file": "brand/packs/studio/fonts/InstrumentSerif-Regular.ttf",
+    "sha256": "2c87b63da423e6ac40143de224d4fdcb1a6da5ac2b8362d565d6d52838eed36a"
+   },
+   {
+    "spec": "Instrument Serif Italic@400",
+    "file": "brand/packs/studio/fonts/InstrumentSerif-Italic.ttf",
+    "sha256": "6be7de7a6a9eb7d15ff49facf2f14ed98405a64a1ebd8df763a8165366c25620"
+   },
+   {
+    "spec": "JetBrains Mono@500",
+    "file": "brand/packs/studio/fonts/JetBrainsMono-500.ttf",
+    "sha256": "ef397b9327e0307e35b77eb9950ef2baaa833f636f504600b212f9753fede917"
+   }
+  ]
+ },
+ "palettes": {
+  "night": {
+   "ground": "#0d0d10",
+   "surface": "#17171c",
+   "ink": "#f3efe8",
+   "muted": "#77746f",
+   "line": "#2b2b33",
+   "accent": "#ff4b2b",
+   "accent2": "#ffb199"
+  },
+  "sage": {
+   "ground": "#ebeae4",
+   "surface": "#ffffff",
+   "ink": "#1b2a22",
+   "muted": "#7c8680",
+   "line": "#d6d8d2",
+   "accent": "#2f8f5b",
+   "accent2": "#cfe8d8",
+   "deep": "#153a2a"
+  },
+  "loop": {
+   "ground": "#f3f1ee",
+   "surface": "#ffffff",
+   "ink": "#15151a",
+   "muted": "#8a8791",
+   "line": "#e2dfe8",
+   "accent": "#5146e5",
+   "accent2": "#e5e2ff"
+  },
+  "riso": {
+   "ground": "#f3eee2",
+   "surface": "#fbf8f0",
+   "ink": "#1f3a8a",
+   "muted": "#6b7aa6",
+   "line": "#d9d2c1",
+   "accent": "#ff4f7b",
+   "accent2": "#ffcf33"
+  },
+  "blueprint": {
+   "ground": "#0f2b4c",
+   "surface": "#143760",
+   "ink": "#eaf2ff",
+   "muted": "#8fb0d6",
+   "line": "#3d6a9e",
+   "accent": "#ffd166",
+   "accent2": "#7fd1ff"
+  }
+ },
+ "tagline": "Find a time that works for everyone."
+}

@@ -5,11 +5,7 @@ import { FORMATS, type FormatId, type Slide } from "./model";
 const MARK = `<svg viewBox="0 0 64 64" aria-hidden="true" class="mark-fallback"></svg>`;
 
 export function esc(text: string | undefined): string {
-  return (text ?? "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+  return (text ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
 /** A display headline that fits its longest line to the slide width
@@ -204,7 +200,8 @@ export function renderSlide(
 ): string {
   const { w, h } = FORMATS[format];
   const orientation = w / h > 1.15 ? "wide" : h / w > 1.4 ? "tall" : "boxy";
-  const counter = options.counter && options.total > 1 ? `<span class="counter">${options.index + 1} / ${options.total}</span>` : "";
+  const counter =
+    options.counter && options.total > 1 ? `<span class="counter">${options.index + 1} / ${options.total}</span>` : "";
   return `
     <div class="slide t-${slide.template} theme-${slide.theme} o-${orientation}" style="width:${w}px;height:${h}px">
       <div class="frame">

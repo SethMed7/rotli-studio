@@ -8,18 +8,26 @@
    "prefix": "s01e",
    "shape": "10 story episodes · 60 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
    "logline": "A quokka arrives on a quiet island with its thoughts blowing everywhere, learns to keep them, and as the seasons turn everything it made is still there, in plain files.",
-   "docs": ["series/season-one/bible.md", "workflows/README.md", "workflows/agent-preamble.md", "workflows/review-checklist.md"],
+   "docs": [
+    "series/season-one/bible.md",
+    "workflows/README.md",
+    "workflows/agent-preamble.md",
+    "workflows/review-checklist.md"
+   ],
    "schedule": "../docs/launch/rotli-launch-month.md",
    "sealed": false
   },
   {
    "id": "in-30-seconds",
-   "title": "Rotli in 30 seconds",
+   "title": "Rotli in 30 Seconds",
    "kind": "episodes",
    "prefix": "ep",
    "shape": "8 feature explainers · 30 s · 1920×1080, each with a 9:16 vertical, a 4:5 carousel and a 4:5 card",
    "logline": "One feature per episode, shown in the app: title, demo, end card. The launch month's backbone.",
-   "docs": ["README.md", "../.claude/skills/motion-room/SKILL.md"],
+   "docs": [
+    "README.md",
+    "../.claude/skills/motion-room/SKILL.md"
+   ],
    "schedule": "../docs/launch/rotli-launch-month.md",
    "sealed": false
   },
@@ -27,17 +35,32 @@
    "id": "the-film",
    "title": "The Rotli Story",
    "kind": "set",
-   "pieces": ["rotliStory", "teaser15", "heroFilm", "linkedinCard", "xCard"],
+   "pieces": [
+    "rotliStory",
+    "teaser15",
+    "heroFilm",
+    "linkedinCard",
+    "xCard"
+   ],
    "shape": "the 60 s film (sealed) · its 15 s vertical recut · hero and social cards from its sunset",
    "logline": "The first film: the quokka on Rottnest, from the ferry to the sunset. It is locked; its golden must always print SAME.",
-   "docs": ["series/the-film/story.md", "series/the-film/score.txt", "README.md"],
+   "docs": [
+    "series/the-film/story.md",
+    "series/the-film/score.txt",
+    "README.md"
+   ],
    "sealed": true
   },
   {
    "id": "make-it-yours",
-   "title": "Make it yours",
+   "title": "Looks and Themes",
    "kind": "set",
-   "pieces": ["dressUp", "themesLoop", "posterLineup", "themeGrid"],
+   "pieces": [
+    "dressUp",
+    "themesLoop",
+    "posterLineup",
+    "themeGrid"
+   ],
    "shape": "vertical shorts and stills about looks: seven companion colours, twelve theme environments",
    "logline": "The companion and the themes, drawn from the app's real <Character> and theme tokens.",
    "docs": [],
@@ -45,9 +68,11 @@
   },
   {
    "id": "explainers",
-   "title": "Explainers",
+   "title": "Carousels",
    "kind": "set",
-   "pieces": ["howRotliWorks"],
+   "pieces": [
+    "howRotliWorks"
+   ],
    "shape": "standalone carousels",
    "logline": "How Rotli works in seven slides.",
    "docs": [],
@@ -55,12 +80,30 @@
   },
   {
    "id": "templates",
-   "title": "Template library",
+   "title": "Atmosphere Reel",
    "kind": "set",
-   "pieces": ["atmosphereReel"],
+   "pieces": [
+    "atmosphereReel"
+   ],
    "shape": "reference reels for the building blocks",
    "logline": "Every atmosphere for three seconds: the moods any new piece starts from.",
-   "docs": ["src/canvas-core/studio/atmospheres.ts", "src/canvas-core/studio/story.ts"],
+   "docs": [
+    "src/canvas-core/studio/atmospheres.ts",
+    "src/canvas-core/studio/story.ts"
+   ],
+   "sealed": false
+  },
+  {
+   "id": "studies",
+   "title": "Studies",
+   "kind": "studies",
+   "shape": "5 original pieces for a fictional product, each in two sizes: landscape, vertical, square or portrait",
+   "logline": "The studio is not only Rotli's. Other styles, other motion, every size: each study has its brief, its exact prompt and its render, so you can learn the studio here before pointing it at your own product.",
+   "docs": [
+    "series/studies/bible.md",
+    "workflows/study-preamble.md",
+    "brand/packs/studio/pack.json"
+   ],
    "sealed": false
   }
  ]

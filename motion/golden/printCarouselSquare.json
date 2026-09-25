@@ -1,0 +1,18 @@
+{
+ "piece": "printCarouselSquare",
+ "W": 1080,
+ "H": 1080,
+ "frames": 90,
+ "audio": null,
+ "hashes": {
+  "0": "73f56b541d55d622d63f27d8f07d5250",
+  "14": "fda4daf039e22810aa2e913bf9aa8f4c",
+  "29": "533c169289512f561c6226720198a418",
+  "30": "77406ba8c4ae3589138ea3d3e3c12195",
+  "44": "1cd5c2a984724ace461cf15ad499f0bc",
+  "59": "0781d1d5aa6a08062f49ad1bf2c2a7c5",
+  "60": "a2c935922be297fcd172c787ae20d53e",
+  "74": "0eca482692e5ad96ba3551028987c0a3",
+  "89": "05d23f3d54ce013ce8be63ba5b1db857"
+ }
+}

@@ -664,6 +664,86 @@
    "format": "ig-portrait",
    "about": "Card for Season One · 10.",
    "caption": "A year on the island in one minute: everything changes colour, nothing gets lost. Six theme families, each with a tuned light and dark environment. Pick a body colour, black or white linework, a mood and pose, and glasses or a bucket hat in any colour. Turn the companion off and it appears only during onboarding. rotli.co"
+  },
+  {
+   "id": "motionResume",
+   "kind": "video",
+   "slug": "motion-resume",
+   "format": "film",
+   "length": "15 s",
+   "about": "Study 01 · Motion Résumé: a motion designer's reel for a fictional studio, one accent on a dark ground, 60 fps with motion blur."
+  },
+  {
+   "id": "motionResumeVertical",
+   "kind": "video",
+   "slug": "motion-resume-vertical",
+   "format": "story",
+   "length": "15 s",
+   "about": "Study 01 · Motion Résumé, designed for vertical: the same reel re-stacked, each section named in the serif."
+  },
+  {
+   "id": "verticalAppAd",
+   "kind": "video",
+   "slug": "vertical-app-ad",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 02 · Vertical App Ad: floating UI and word-by-word serif captions for a fictional scheduling app, made for Reels and Shorts."
+  },
+  {
+   "id": "verticalAppAdLandscape",
+   "kind": "video",
+   "slug": "vertical-app-ad-landscape",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 02 · Vertical App Ad, designed for landscape: the UI on the left, the captions on the right."
+  },
+  {
+   "id": "oneShapeLoop",
+   "kind": "video",
+   "slug": "one-shape-loop",
+   "format": "ig-square",
+   "length": "8 s loop",
+   "about": "Study 03 · One-Shape Loop: one shape becomes every state of a booking, on springs, seamless at 60 fps."
+  },
+  {
+   "id": "oneShapeLoopLandscape",
+   "kind": "video",
+   "slug": "one-shape-loop-landscape",
+   "format": "film",
+   "length": "8 s loop",
+   "about": "Study 03 · One-Shape Loop, designed for landscape: the state named on the left, a state indicator on the right."
+  },
+  {
+   "id": "printCarousel",
+   "kind": "carousel",
+   "slug": "print-carousel",
+   "format": "ig-portrait",
+   "about": "Study 04 · Print Carousel: five rules for calmer meetings, risograph overprint, halftones and grain.",
+   "caption": "Five rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
+  },
+  {
+   "id": "printCarouselSquare",
+   "kind": "carousel",
+   "slug": "print-carousel-square",
+   "format": "ig-square",
+   "about": "Study 04 · Print Carousel, re-composed for square: the picture beside the words.",
+   "caption": "Five rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
+  },
+  {
+   "id": "sketchExplainer",
+   "kind": "video",
+   "slug": "sketch-explainer",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 05 · Sketch Explainer: a blueprint that draws itself on and works out a meeting time from three calendars."
+  },
+  {
+   "id": "sketchExplainerVertical",
+   "kind": "video",
+   "slug": "sketch-explainer-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 05 · Sketch Explainer, designed for vertical: the week runs top to bottom, the people across the top."
   }
  ]
 }

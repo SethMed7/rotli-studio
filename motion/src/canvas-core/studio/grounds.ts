@@ -18,20 +18,55 @@ const GLYPHS: [number, number, number, string][] = [
 let paths: { x: number; y: number; r: number; p: Path2D }[] | null = null;
 
 /** the file field: tile 240px (the site's), glyph stroke in `ink` at `alpha`, drifting down-left */
-export const fileField = (ctx: Ctx, f: number, o: { w?: number; h?: number; ink?: string; alpha?: number; tile?: number; drift?: number } = {}) => {
-  const w = o.w ?? 1920, h = o.h ?? 1080, T = o.tile ?? 240, k = T / 220, d = o.drift ?? 0.35, ox = -((f * d) % T), oy = (f * d * 0.6) % T;
+export const fileField = (
+  ctx: Ctx,
+  f: number,
+  o: { w?: number; h?: number; ink?: string; alpha?: number; tile?: number; drift?: number } = {},
+) => {
+  const w = o.w ?? 1920,
+    h = o.h ?? 1080,
+    T = o.tile ?? 240,
+    k = T / 220,
+    d = o.drift ?? 0.35,
+    ox = -((f * d) % T),
+    oy = (f * d * 0.6) % T;
   if ((BRAND as { pattern?: string | null }).pattern === null) return; // a brand without a pattern gets plain grounds
   paths ??= GLYPHS.map(([x, y, r, d]) => ({ x, y, r: (r * Math.PI) / 180, p: new Path2D(d) }));
-  ctx.save(); ctx.strokeStyle = o.ink ?? C.cocoa; ctx.globalAlpha *= o.alpha ?? 0.09; ctx.lineWidth = 1.6; ctx.lineJoin = "round"; ctx.lineCap = "round";
-  for (let ty = -T + oy; ty < h + T; ty += T) for (let tx = -T + ox; tx < w + T; tx += T) for (const g of paths!) {
-    ctx.save(); ctx.translate(tx + g.x * k, ty + g.y * k); ctx.rotate(g.r); ctx.scale(k, k); ctx.stroke(g.p); ctx.restore();
-  }
+  ctx.save();
+  ctx.strokeStyle = o.ink ?? C.cocoa;
+  ctx.globalAlpha *= o.alpha ?? 0.09;
+  ctx.lineWidth = 1.6;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  for (let ty = -T + oy; ty < h + T; ty += T)
+    for (let tx = -T + ox; tx < w + T; tx += T)
+      for (const g of paths!) {
+        ctx.save();
+        ctx.translate(tx + g.x * k, ty + g.y * k);
+        ctx.rotate(g.r);
+        ctx.scale(k, k);
+        ctx.stroke(g.p);
+        ctx.restore();
+      }
   ctx.restore();
 };
 export type GroundKind = "base" | "band" | "deep";
 /** a solid environment, optionally with the file field. deep = the family's dark ground */
-export const envGround = (ctx: Ctx, f: number, kind: GroundKind, o: { w?: number; h?: number; field?: boolean; fieldAlpha?: number } = {}) => {
-  const w = o.w ?? 1920, h = o.h ?? 1080;
-  ctx.fillStyle = kind === "deep" ? C.night : kind === "band" ? C.surface2 : C.linen; ctx.fillRect(-160, -160, w + 320, h + 320);
-  if (o.field !== false) fileField(ctx, f, { w, h, ink: kind === "deep" ? C.nightText : C.cocoa, alpha: o.fieldAlpha ?? (kind === "deep" ? 0.07 : 0.09) });
+export const envGround = (
+  ctx: Ctx,
+  f: number,
+  kind: GroundKind,
+  o: { w?: number; h?: number; field?: boolean; fieldAlpha?: number } = {},
+) => {
+  const w = o.w ?? 1920,
+    h = o.h ?? 1080;
+  ctx.fillStyle = kind === "deep" ? C.night : kind === "band" ? C.surface2 : C.linen;
+  ctx.fillRect(-160, -160, w + 320, h + 320);
+  if (o.field !== false)
+    fileField(ctx, f, {
+      w,
+      h,
+      ink: kind === "deep" ? C.nightText : C.cocoa,
+      alpha: o.fieldAlpha ?? (kind === "deep" ? 0.07 : 0.09),
+    });
 };

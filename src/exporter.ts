@@ -16,8 +16,17 @@ export async function exportPost(
   formats: FormatId[] = [post.format],
 ): Promise<{ dir: string; files: string[] }> {
   // exports/<slug>/ is shared with the Motion room's carousels and cards; a post may never replace one of them
-  const motionSlugs = new Set((JSON.parse(readFileSync(join(import.meta.dir, "..", "motion", "pieces.json"), "utf8")).pieces as { slug: string }[]).map((p) => p.slug));
-  if (motionSlugs.has(post.slug)) throw new Error(`"${post.slug}" is a Motion room piece's slug; rename the post so its export cannot overwrite that piece`);
+  const motionSlugs = new Set(
+    (
+      JSON.parse(readFileSync(join(import.meta.dir, "..", "motion", "pieces.json"), "utf8")).pieces as {
+        slug: string;
+      }[]
+    ).map((p) => p.slug),
+  );
+  if (motionSlugs.has(post.slug))
+    throw new Error(
+      `"${post.slug}" is a Motion room piece's slug; rename the post so its export cannot overwrite that piece`,
+    );
   const dir = join(EXPORTS_DIR, post.slug);
   const files: string[] = [];
   const browser = await chromium.launch();

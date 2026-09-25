@@ -15,13 +15,19 @@
     "check:isolation": "bun scripts/check-isolation.ts",
     "check:third-party": "cd motion && node tools/third-party-inventory.mjs --check",
     "check:sound": "bun sound/tools/render.ts --check",
-    "export:site": "bun scripts/export-site.ts"
+    "export:site": "bun scripts/export-site.ts",
+    "lint": "oxlint -c .oxlintrc.json --deny-warnings .",
+    "fmt": "oxfmt .",
+    "fmt:check": "oxfmt --check .",
+    "verify": "bun scripts/verify.ts"
   },
   "dependencies": {
     "playwright-core": "1.62.1"
   },
   "devDependencies": {
     "@types/bun": "1.3.4",
+    "oxfmt": "^0.70.0",
+    "oxlint": "^1.85.0",
     "typescript": "6.0.3"
   },
   "license": "MIT"

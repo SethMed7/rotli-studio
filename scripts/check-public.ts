@@ -13,25 +13,47 @@ import { join } from "node:path";
 import { baseRules, isText, markerRules, scan } from "./lib/privacy";
 
 const ROOT = join(import.meta.dir, "..");
-const git = (args: string[]) => { const r = Bun.spawnSync(["git", ...args], { cwd: ROOT, stdout: "pipe", stderr: "pipe" }); if (r.exitCode) throw new Error(`git ${args.join(" ")}: ${r.stderr.toString()}`); return r.stdout; };
+const git = (args: string[]) => {
+  const r = Bun.spawnSync(["git", ...args], { cwd: ROOT, stdout: "pipe", stderr: "pipe" });
+  if (r.exitCode) throw new Error(`git ${args.join(" ")}: ${r.stderr.toString()}`);
+  return r.stdout;
+};
 const problems: string[] = [];
 
-const leaks = Bun.spawnSync(["gitleaks", "git", "--no-banner", "--redact", "--exit-code", "3", "."], { cwd: ROOT, stdout: "pipe", stderr: "pipe" });
+const leaks = Bun.spawnSync(["gitleaks", "git", "--no-banner", "--redact", "--exit-code", "3", "."], {
+  cwd: ROOT,
+  stdout: "pipe",
+  stderr: "pipe",
+});
 if (leaks.exitCode === 3) problems.push(`gitleaks found secrets in history:\n${leaks.stdout}${leaks.stderr}`);
-else if (leaks.exitCode !== 0) problems.push(`gitleaks did not run (${leaks.exitCode}): install it with \`brew install gitleaks\``);
+else if (leaks.exitCode !== 0)
+  problems.push(`gitleaks did not run (${leaks.exitCode}): install it with \`brew install gitleaks\``);
 
 const rules = [...baseRules(), ...markerRules(ROOT, { required: false })];
 const commits = process.argv.slice(2).filter((a) => /^[0-9a-f]{7,40}$/.test(a));
 let scanned = 0;
 for (const rev of commits.length ? commits : ["HEAD"]) {
-  const entries = git(["ls-tree", "-r", "-z", rev]).toString().split("\0").filter(Boolean).map((l) => { const [meta, path] = l.split("\t"); return { sha: meta!.split(" ")[2]!, path: path! }; });
+  const entries = git(["ls-tree", "-r", "-z", rev])
+    .toString()
+    .split("\0")
+    .filter(Boolean)
+    .map((l) => {
+      const [meta, path] = l.split("\t");
+      return { sha: meta!.split(" ")[2]!, path: path! };
+    });
   for (const { sha, path } of entries) {
-    for (const hit of scan(path, rules)) problems.push(`${rev.slice(0, 8)} file name ${path}: ${hit.replace(/^\d+: /, "")}`);
+    for (const hit of scan(path, rules))
+      problems.push(`${rev.slice(0, 8)} file name ${path}: ${hit.replace(/^\d+: /, "")}`);
     const bytes = git(["cat-file", "blob", sha]);
     if (!isText(bytes)) continue;
     scanned++;
     for (const hit of scan(new TextDecoder().decode(bytes), rules)) problems.push(`${rev.slice(0, 8)} ${path}:${hit}`);
   }
 }
-if (problems.length) { console.error(`check-public: FAIL (${problems.length})\n  ${problems.slice(0, 60).join("\n  ")}`); process.exit(1); }
-console.log(`check-public: PASS · gitleaks clean over history · ${scanned} committed text files free of secrets, home paths, personal emails and private names`);
+if (problems.length) {
+  console.error(`check-public: FAIL (${problems.length})\n  ${problems.slice(0, 60).join("\n  ")}`);
+  process.exit(1);
+}
+console.log(
+  `check-public: PASS · gitleaks clean over history · ${scanned} committed text files free of secrets, home paths, personal emails and private names`,
+);

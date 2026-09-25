@@ -1,0 +1,48 @@
+{
+ "id": "one-shape-loop",
+ "no": 3,
+ "title": "One-Shape Loop",
+ "module": "src/canvas-core/studies/oneShapeLoop.ts",
+ "pieces": {
+  "square": "oneShapeLoop",
+  "landscape": "oneShapeLoopLandscape"
+ },
+ "primary": "square",
+ "kind": "video",
+ "fps": 60,
+ "bpm": 120,
+ "frames": 480,
+ "palette": "loop",
+ "style": "One rounded shape on a pale ground, the indigo accent, a soft floor shadow and a cursor. Springs only (kit track with loop=480) so the last frame flows into the first.",
+ "learnsFrom": "UI-morph loops: a single element that becomes every state of an interaction.",
+ "story": [
+  {
+   "from": 0,
+   "to": 120,
+   "what": "a 'Schedule' pill button breathes; a cursor glides in and presses it (scale dips, a ripple)"
+  },
+  {
+   "from": 120,
+   "to": 240,
+   "what": "the pill collapses into a circle and becomes a spinner (an arc chasing itself)"
+  },
+  {
+   "from": 240,
+   "to": 330,
+   "what": "the spinner closes into a solid circle and a check draws itself"
+  },
+  {
+   "from": 330,
+   "to": 420,
+   "what": "the circle stretches into a card: 'Thu 3:00 · Booked' with a small calendar glyph"
+  },
+  {
+   "from": 420,
+   "to": 480,
+   "what": "the card folds back into the pill; the cursor leaves: frame 479 flows into frame 0"
+  }
+ ],
+ "sizes": "Square is primary. Landscape keeps the shape centred and adds the state name in small mono to the left and a four-dot state indicator to the right.",
+ "sound": "beatScore soft with loop:true at 120 bpm (tails wrap); ticks on the press and the check.",
+ "teaches": "A loop is a closed path in state space: key every property on springs, end on the first key, and prove the seam."
+}

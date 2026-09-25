@@ -105,6 +105,14 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
   `node tools/extract-runs.mjs ~/.claude/projects/<project>/<session>.jsonl`.
 - `bun ../scripts/check-isolation.ts` before handing off: the studio writes only inside `~/rotli-studio`.
 
+## Studies (brand-neutral pieces)
+
+- `series/studies/` holds the bible, one brief per study and the prompts (`tools/study-prompt.mjs <brief>`; rules in
+  `workflows/study-preamble.md`). Modules live in `src/canvas-core/studies/`, one Film per size from `make(size, id)`.
+- They build on `src/canvas-core/kit/` (sizes, springs, type, UI, depth, motion blur, beat score) and a pack in
+  `brand/packs/<id>/`; they never import `rotli/`, `studio/` or `brand/brand.json`.
+- Verify: contact sheets, `tools/still-frames.mjs` (fps-aware), `tools/loop-seam.mjs` for loops, about −16 LUFS.
+
 ## Other products
 
 `repurpose-brand` → the global `brand-motion-studio` Q&A skill. `docs/evaluation.md` says what ports.

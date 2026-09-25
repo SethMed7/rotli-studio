@@ -12,7 +12,9 @@ a { color: inherit; }
 .brand img { width: 24px; height: 24px; }
 .brand b { font-family: 'Baloo 2', sans-serif; font-size: 1.3rem; font-weight: 600; line-height: 1; }
 .brand span { color: var(--muted); }
-.topnav { display: flex; gap: 1.5rem; }
+/* the landing has no sidebar, so only there does the top bar carry the three ways in */
+.topnav { display: none; gap: 1.5rem; }
+.is-home .topnav { display: flex; }
 .topnav a, .top-link { color: var(--muted); text-decoration: none; font-weight: 500; }
 .topnav a:hover, .top-link:hover, .topnav a[aria-current='page'] { color: var(--text); }
 .top-right { margin-left: auto; display: flex; align-items: center; gap: 1.25rem; }
@@ -304,7 +306,7 @@ h1:focus { outline: none; } /* focus lands on the page heading after navigation;
   .families li > b { grid-column: 1 / -1; }
 }
 @media (max-width: 860px) {
-  .topnav { display: none; }
+  .topnav, .is-home .topnav { display: none; }
   .shell { grid-template-columns: 1fr; grid-template-rows: auto minmax(0, 1fr); }
   .side { display: flex; align-items: center; gap: 0.25rem; overflow-x: auto; padding: 0.5rem; border-right: 0; border-bottom: 1px solid var(--border); }
   .side .group { display: contents; }
@@ -332,3 +334,16 @@ h1:focus { outline: none; } /* focus lands on the page heading after navigation;
 .swatch { border: 0; border-radius: 0; background: none; overflow: visible; padding: 0; }
 /* muted on --tint is 4.33:1 (under AA): the active row's secondary text goes full contrast */
 .side a[aria-current='page'] small, .side a[aria-current='page'] .num, .doc-list a[aria-current='page'] { color: var(--text); }
+
+/* ---- series pager, size filters, "beyond Rotli" */
+.pager { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.4rem 1.25rem; margin: 0 0 0.75rem; font-size: 0.9rem; color: var(--muted); }
+.pager span { margin-right: auto; }
+.pager a { color: var(--text); text-decoration: none; font-weight: 500; }
+.pager a:hover { color: var(--accent-text); }
+.filters { flex-wrap: wrap; margin-bottom: 2rem; }
+.filters a { font-weight: 500; }
+.filters a small { color: var(--muted); font-weight: 400; margin-left: 0.2rem; font-variant-numeric: tabular-nums; }
+.beyond { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.beyond h2 { margin: 0 0 0.4rem; }
+.beyond p, .beyond-line { margin: 0; color: var(--muted); }
+.beyond-line { margin-top: 1.5rem; }

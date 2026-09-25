@@ -23,7 +23,12 @@ const IMAGE_TYPES = new Set([".png", ".jpg", ".jpeg", ".webp", ".gif"]);
 
 /** A file under `base`, or null if the path tries to leave it. */
 function inside(base: string, rel: string): string | null {
-  let clean: string; try { clean = decodeURIComponent(rel); } catch { return null; } // malformed encoding
+  let clean: string;
+  try {
+    clean = decodeURIComponent(rel);
+  } catch {
+    return null;
+  } // malformed encoding
   const file = normalize(join(base, clean));
   return relative(base, file).startsWith("..") ? null : file;
 }
@@ -68,9 +73,20 @@ const json = (data: unknown, status = 200) => Response.json(data, { status });
 // foreign site pointing its name at 127.0.0.1 would send its own Host).
 type Handler = (req: never, server?: never) => Response | Promise<Response>;
 const LOCAL_HOSTS = new Set([`127.0.0.1:${PORT}`, `localhost:${PORT}`]);
-const guard = (h: Handler): Handler => ((req: Request, srv?: never) => (LOCAL_HOSTS.has(req.headers.get("host") ?? "") ? (h as (r: Request, s?: never) => Response | Promise<Response>)(req, srv) : new Response("Forbidden host", { status: 403 }))) as Handler;
+const guard = (h: Handler): Handler =>
+  ((req: Request, srv?: never) =>
+    LOCAL_HOSTS.has(req.headers.get("host") ?? "")
+      ? (h as (r: Request, s?: never) => Response | Promise<Response>)(req, srv)
+      : new Response("Forbidden host", { status: 403 })) as Handler;
 function localOnly<T>(routes: T): T {
-  return Object.fromEntries(Object.entries(routes as Record<string, unknown>).map(([path, v]) => [path, typeof v === "function" ? guard(v as Handler) : Object.fromEntries(Object.entries(v as Record<string, Handler>).map(([m, h]) => [m, guard(h)]))])) as T;
+  return Object.fromEntries(
+    Object.entries(routes as Record<string, unknown>).map(([path, v]) => [
+      path,
+      typeof v === "function"
+        ? guard(v as Handler)
+        : Object.fromEntries(Object.entries(v as Record<string, Handler>).map(([m, h]) => [m, guard(h)])),
+    ]),
+  ) as T;
 }
 
 const server = Bun.serve({
@@ -92,7 +108,10 @@ const server = Bun.serve({
     "/library/*": (req: Request) => {
       const res = serveFile(inside(LIBRARY, new URL(req.url).pathname.slice("/library/".length)));
       // uploads are user files: never let one run as a document on this origin
-      if (new URL(req.url).pathname.startsWith("/library/uploads/")) { res.headers.set("content-security-policy", "sandbox; default-src 'none'"); res.headers.set("x-content-type-options", "nosniff"); }
+      if (new URL(req.url).pathname.startsWith("/library/uploads/")) {
+        res.headers.set("content-security-policy", "sandbox; default-src 'none'");
+        res.headers.set("x-content-type-options", "nosniff");
+      }
       return res;
     },
     "/exports/*": (req: Request) => serveFile(inside(EXPORTS_DIR, new URL(req.url).pathname.slice("/exports/".length))),
@@ -150,13 +169,22 @@ const server = Bun.serve({
       POST: async (req: BunRequest<"/api/export/:slug">) => {
         const post = await readPost(req.params.slug);
         if (!post) return json({ error: "Save the post first" }, 404);
-        const text = await req.text(); let body: { formats?: FormatId[] } = {};
-        if (text) { try { body = JSON.parse(text); } catch { return json({ error: "Bad JSON" }, 400); } }
+        const text = await req.text();
+        let body: { formats?: FormatId[] } = {};
+        if (text) {
+          try {
+            body = JSON.parse(text);
+          } catch {
+            return json({ error: "Bad JSON" }, 400);
+          }
+        }
         const formats = (body.formats ?? [post.format]).filter((f) => f in FORMATS);
         const { dir, files } = await exportPost(server.url.origin, post, formats);
         return json({
           dir,
-          files: files.map((file) => `/exports/${relative(EXPORTS_DIR, file).split("/").map(encodeURIComponent).join("/")}`),
+          files: files.map(
+            (file) => `/exports/${relative(EXPORTS_DIR, file).split("/").map(encodeURIComponent).join("/")}`,
+          ),
         });
       },
     },
@@ -164,7 +192,8 @@ const server = Bun.serve({
     "/api/reveal/:slug": {
       POST: (req: BunRequest<"/api/reveal/:slug">) => {
         const dir = join(EXPORTS_DIR, req.params.slug);
-        if (!/^[a-z0-9-]+$/.test(req.params.slug) || !existsSync(dir)) return json({ error: "Nothing exported yet" }, 404);
+        if (!/^[a-z0-9-]+$/.test(req.params.slug) || !existsSync(dir))
+          return json({ error: "Nothing exported yet" }, 404);
         Bun.spawn(["open", dir]);
         return json({ ok: true });
       },

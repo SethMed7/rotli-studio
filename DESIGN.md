@@ -24,9 +24,12 @@ page h1 up to 2.75rem, both 600 with tight tracking; body 14-16px.
 Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast and one-pixel hairlines.
 
 ## Components
-- **The Sidebar Tree:** Home, Library, then groups (Films, How it's made, About) separated by a hairline and
-  named in sentence case. The open series lists its episodes as an indented tree; the current item is a
-  `--tint` row, never a checkmark.
+- **The Sidebar:** flat. Home, then three sections under a hairline and a small muted name: **Watch** (Library,
+  Series, Studies), **Make** (Create, Brand kit, Sound, Prompts & briefs, Agent runs, Skills, Tools) and **Open
+  source** (Use it for your product, Published, Docs & licences, Isolation audit). Exactly one row is highlighted
+  (tinted, never a checkmark); nothing expands inline. Episodes and study sizes live on their own pages, with a
+  pager ("5 of 10", previous / next) and a segmented control for cuts or sizes. The top bar carries section links
+  only on the landing, where there is no sidebar. Titles are short nouns, the same in the menu, the crumb and the h1.
 - **Rows, not cards:** series, episodes, tools and audit findings are rows divided by hairlines.
 - **Where a border is allowed:** media (posters, frames, the player), swatches, and the segmented tab control.
   Nothing else gets a box.
@@ -34,7 +37,7 @@ Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast a
 
 ## Do's and Don'ts
 - Do use rotli.co's wording for any claim about Rotli; never name a private or client product.
-- Do check 1440, 1280 and 390 px for overlap and horizontal overflow (`motion/.ui-check.mjs` pattern) before
+- Do check 1440, 1280 and 390 px for overlap and horizontal overflow (`motion/tools/ui-check.mjs`) before
   shipping UI.
 - Don't add cards, eyebrows (tiny caps labels above headings), shadows, or a second accent.
 - Don't loop motion behind text; the landing film plays once, muted, only when it is on screen (never under reduced motion or Save-Data), and sound is always the visitor's click.
