@@ -2,6 +2,7 @@
 // brief and prompt that asked for it, the agent run that built it, its source and its golden. Plus the
 // brand, workflows, skills, tools, docs and the isolation audit. Read-only; hash-routed.
 import { esc, markdown } from "./md";
+import { filmPlayer, mountFilmPlayers } from "./player";
 
 type Shot = { id: string; start: number; end: number; template?: string };
 type Beat = { frame: number; crop: { x: number; y: number; w: number; h: number }; title: string; sub?: string; hi?: string; len?: number };
@@ -51,13 +52,16 @@ function renderNav(route: string, pieceId?: string) {
     return `<div class="tree">${items.map((it) => `<a href="#/piece/${it.id}" ${pieceId && it.ids.includes(pieceId) ? 'aria-current="page"' : ""}>${it.num ? `<span class="num">${it.num}</span>` : ""}<span>${esc(it.label)}</span></a>`).join("")}</div>`;
   };
   const group = (name: string, body: string) => `<div class="group"><span class="group-name">${name}</span>${body}</div>`;
-  nav.innerHTML = `${link("#/", "Home")}${link("#/library", "Library", M.pieces.length)}
+  nav.innerHTML = `${link("#/", "Home")}${link("#/library", "Library", M.pieces.length)}${link("#/posts", "Posts")}
     ${group("Films", M.series.map((x) => link(`#/series/${x.id}`, x.title.replace(/:.*/, ""), x.episodes ? x.episodes.length : x.pieces?.length) + tree(x)).join(""))}
     ${group("How it's made", `${link("#/brand", "Brand & atmospheres")}${link("#/workflows", "Workflows & prompts")}${link("#/runs", "Agent runs", M.pieces.filter((p) => p.run).length)}${link("#/skills", "Skills")}${link("#/tools", "Tools")}`)}
     ${group("About", `${link("#/docs", "Docs & licences")}${link("#/isolation", "Isolation audit")}`)}`;
 }
 
 // ---------------------------------------------------------------- home: the landing page
+// the landing poster: the island at the ferry, full size (the scene thumbnails are only 640 px wide)
+export const HERO_POSTER_FRAME = 45;
+let stopPlayers: (() => void) | null = null;
 const stats = () => { const vids = M.pieces.filter((p) => p.kind === "video" && p.meta); return { pieces: M.pieces.length, episodes: M.series.reduce((a, x) => a + (x.episodes?.length ?? 0), 0), minutes: vids.reduce((a, p) => a + p.meta!.durationFrames / 30, 0) / 60, goldens: M.pieces.filter((p) => p.golden).length, runs: M.pieces.filter((p) => p.run).length }; };
 const seriesRows = () => `<ul class="rows">${M.series.map((x) => { const first = x.episodes ? byId(x.episodes[0]?.main ?? "") : byId(x.pieces?.[0] ?? "");
   return `<li><a class="row" href="#/series/${x.id}"><img src="${poster(first)}" alt="" loading="lazy"><div><h3>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h3><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`; }).join("")}</ul>`;
@@ -69,8 +73,8 @@ function home() {
       <div class="ctas"><a class="button lg" href="#/piece/rotliStory">Watch the film</a><a class="button ghost lg" href="#/library">Browse the library</a></div>
       <p class="fine">Open source · MIT · ${n.pieces} pieces, ${n.minutes.toFixed(0)} minutes of film</p>
     </section>
-    ${film?.video ? `<figure class="film"><div class="player" style="--ar:16/9"><video controls preload="metadata" playsinline src="${m(film.video.file)}" poster="${poster(film)}" aria-label="The Rotli Story, a 60-second film"></video></div>
-      <figcaption><span><b>The Rotli Story</b> · 60 s · a quokka on Rottnest, from the ferry to the sunset</span><a class="link" href="#/piece/rotliStory">Scene by scene →</a></figcaption></figure>` : ""}
+    ${film?.video ? `<section class="film">${filmPlayer(m(film.video.file), `/api/motion/poster/${film.slug}/${HERO_POSTER_FRAME}.jpg`, "The Rotli Story: a 60-second film of a quokka on Rottnest, from the ferry to the sunset")}
+      <p class="film-caption"><span><b>The Rotli Story</b> · 60 s · a quokka on Rottnest, from the ferry to the sunset</span><a class="link" href="#/piece/rotliStory">Scene by scene →</a></p></section>` : ""}
     <section class="band tinted"><div class="inner">
       <h2>Everything we've made, by series.</h2>
       <p class="intro">Each series groups its episodes with the cuts made from them: a vertical for Reels and Shorts, a carousel and a card. Open any piece to see its scenes, the brief behind it and the run that built it.</p>
@@ -107,6 +111,17 @@ function library() {
     ${seriesRows()}
     <p class="foot">Manifest built ${new Date(M.generated).toLocaleString()}${STATIC ? " · a read-only snapshot of the studio." : ` · <button class="link" id="rebuild">Rebuild</button> after rendering or editing <code>pieces.json</code> / <code>series.json</code>.`}</p>`;
   if (!STATIC) $("#rebuild").onclick = async () => { M = await json<Manifest>("/api/motion/manifest", { method: "POST" }); route(); };
+}
+
+// ---------------------------------------------------------------- posts: what has been published, as links
+type Post = { platform: string; url: string; date: string; text: string; pieces: string[] };
+async function posts() {
+  const data = await json<{ posts: Post[] }>(m("posts.json"));
+  const when = (d: string) => new Date(`${d}T12:00:00Z`).toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Posts</nav><header class="page-head"><h1>Posts</h1><p>Where the studio's work has been published. Each entry is a link to the post on its platform, with the pieces it shares. Only the owner's accounts can be linked (<code>bun scripts/link-post.ts &lt;url&gt;</code>), and a post reaches this page only through an owner push.</p></header>
+    ${data.posts.length ? `<ul class="posts">${data.posts.map((p) => `<li class="post"><time datetime="${esc(p.date)}">${esc(when(p.date))}</time>
+      <div><p class="post-text">${p.text ? esc(p.text) : `A post on ${esc(p.platform)}`}</p>${p.pieces.length ? `<div class="post-pieces">${p.pieces.map((id) => { const pc = byId(id); return pc ? `<a href="#/piece/${pc.id}"><img src="${poster(pc)}" alt="" loading="lazy"><span>${esc(pc.title ?? pc.id)}</span></a>` : ""; }).join("")}</div>` : ""}</div>
+      <a class="button ghost" href="${esc(p.url)}" target="_blank" rel="noreferrer">Open on ${esc(p.platform)}</a></li>`).join("")}</ul>` : `<p class="empty">Nothing linked yet.</p>`}`;
 }
 
 // ---------------------------------------------------------------- series
@@ -278,13 +293,15 @@ async function isolation(fresh = false) {
 function notFound() { main.innerHTML = `<p class="empty">Nothing here. <a class="link" href="#/">Back to the studio</a>.</p>`; }
 async function route() {
   const h = location.hash || "#/", [path] = h.split("?"), parts = path!.replace(/^#\/?/, "").split("/");
+  stopPlayers?.(); stopPlayers = null;
   const pieceId = parts[0] === "piece" ? parts[1] : undefined;
   renderNav(pieceId ? `#/series/${byId(pieceId)?.series ?? ""}` : path!, pieceId);
   document.body.classList.toggle("is-home", !parts[0]);
   document.querySelectorAll<HTMLAnchorElement>(".topnav a").forEach((a) => a.toggleAttribute("aria-current", path!.startsWith(a.getAttribute("href")!)));
   try {
-    if (!parts[0]) home();
+    if (!parts[0]) { home(); stopPlayers = mountFilmPlayers(main); }
     else if (parts[0] === "library") library();
+    else if (parts[0] === "posts") await posts();
     else if (parts[0] === "series") series(parts[1] ?? "");
     else if (parts[0] === "piece") await piece(parts[1] ?? "");
     else if (parts[0] === "brand") await brand();
@@ -304,5 +321,5 @@ async function route() {
 document.addEventListener("click", (e) => { const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: "smooth" }); });
 window.addEventListener("hashchange", route);
 M = await json<Manifest>(api("manifest"));
-if (STATIC) document.getElementById("posts-link")?.remove(); // the posts editor only runs on the Mac
+if (STATIC) document.getElementById("create-link")?.remove(); // the content editor only runs on the Mac
 route();

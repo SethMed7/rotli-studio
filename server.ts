@@ -65,9 +65,11 @@ const server = Bun.serve({
   hostname: HOST,
   port: PORT,
   routes: {
-    // the studio's home is the Motion room's landing; the posts editor lives at /posts
+    // the studio's home is the Motion room's landing; the content editor lives at /create, and /posts is the
+    // list of published posts (a page of the Motion room)
     "/": () => serveFile(join(STATIC, "motion.html")),
-    "/posts": () => serveFile(join(STATIC, "app.html")),
+    "/create": () => serveFile(join(STATIC, "app.html")),
+    "/posts": () => Response.redirect("/#/posts", 302),
     "/favicon.ico": () => serveFile(join(LIBRARY, "logo", "favicon.ico")),
     "/render": () => serveFile(join(STATIC, "render.html")),
     "/build/app.js": () => bundle("app.ts"),

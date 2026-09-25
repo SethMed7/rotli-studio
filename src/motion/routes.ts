@@ -10,7 +10,7 @@ const MOTION = join(ROOT, "motion");
 const OUT = join(MOTION, "out");
 
 // What the site may read. Top-level names only; everything under them is allowed, nothing else is.
-const MOTION_OPEN = new Set(["out", "golden", "season", "workflows", "brand", "src", "tools", "examples", "assets", "third_party", "pieces.json", "series.json", "README.md", "EVALUATION.md", "package.json"]);
+const MOTION_OPEN = new Set(["out", "golden", "season", "workflows", "brand", "src", "tools", "examples", "assets", "third_party", "pieces.json", "series.json", "posts.json", "README.md", "EVALUATION.md", "package.json"]);
 const STUDIO_OPEN = new Set(["launch", ".claude", "AGENTS.md", "README.md", "LICENSE", "NOTICE", "films", "scripts", "exports", "library"]);
 const TEXT = new Set([".ts", ".mjs", ".js", ".py", ".md", ".txt", ".json", ".sh", ".css", ".html"]);
 
@@ -57,12 +57,29 @@ async function manifest(force = false): Promise<Response> {
 
 // ---------------------------------------------------------------- scene thumbnails (ffmpeg from the render) and exact frames
 const SLUG = /^[a-z0-9-]{1,80}$/, ID = /^[A-Za-z0-9]{1,60}$/;
+// Scene thumbnails and posters, from the master render: 1280 px on the long side (sharp at 2-4x on any
+// row, card or crop box), Lanczos scaling, high-quality JPEG. One definition, used by the local server and
+// the hosted export (scripts/export-site.ts). THUMB_DIR changes whenever the recipe does, so no stale soft
+// thumbnails are reused.
+export const THUMB_DIR = "thumbs-1280";
+export const thumbArgs = (video: string, frame: number, out: string) => ["ffmpeg", "-y", "-loglevel", "error", "-ss", (frame / 30).toFixed(3), "-i", video, "-frames:v", "1", "-vf", "scale='if(gt(iw,ih),1280,-2)':'if(gt(iw,ih),-2,1280)':flags=lanczos", "-q:v", "3", out];
 async function thumb(slug: string, frame: number): Promise<Response> {
-  const video = join(OUT, "video", `${slug}.mp4`), dir = join(OUT, "thumbs", slug), file = join(dir, `${frame}.jpg`);
+  const video = join(OUT, "video", `${slug}.mp4`), dir = join(OUT, THUMB_DIR, slug), file = join(dir, `${frame}.jpg`);
   if (!existsSync(video)) return new Response("No render", { status: 404 });
   if (!existsSync(file) || statSync(file).mtimeMs < statSync(video).mtimeMs) {
     mkdirSync(dir, { recursive: true });
-    const r = await run(["ffmpeg", "-y", "-loglevel", "error", "-ss", (frame / 30).toFixed(3), "-i", video, "-frames:v", "1", "-vf", "scale=640:-2", "-q:v", "4", file], MOTION, 30_000);
+    const r = await run(thumbArgs(video, frame, file), MOTION, 30_000);
+    if (r.code) return new Response(r.err, { status: 500 });
+  }
+  return new Response(Bun.file(file), { headers: { "content-type": "image/jpeg", "cache-control": "no-store" } });
+}
+/** A full-size still from the render (the landing poster): 1920 wide, high-quality JPEG, cached. */
+async function fullPoster(slug: string, frame: number): Promise<Response> {
+  const video = join(OUT, "video", `${slug}.mp4`), dir = join(OUT, "posters", slug), file = join(dir, `${frame}.jpg`);
+  if (!existsSync(video)) return new Response("No render", { status: 404 });
+  if (!existsSync(file) || statSync(file).mtimeMs < statSync(video).mtimeMs) {
+    mkdirSync(dir, { recursive: true });
+    const r = await run(["ffmpeg", "-y", "-loglevel", "error", "-ss", (frame / 30).toFixed(3), "-i", video, "-frames:v", "1", "-vf", "scale=1920:-2", "-q:v", "2", file], MOTION, 30_000);
     if (r.code) return new Response(r.err, { status: 500 });
   }
   return new Response(Bun.file(file), { headers: { "content-type": "image/jpeg", "cache-control": "no-store" } });
@@ -123,6 +140,9 @@ export const motionRoutes = {
   "/api/motion/manifest": { GET: () => manifest(), POST: () => manifest(true) },
   "/api/motion/thumb/:slug/:frame": (req: Request & { params: { slug: string; frame: string } }) => {
     const f = num(req.params.frame.replace(/\.jpg$/, "")); return SLUG.test(req.params.slug) && f !== null ? thumb(req.params.slug, f) : new Response("Bad request", { status: 400 });
+  },
+  "/api/motion/poster/:slug/:frame": (req: Request & { params: { slug: string; frame: string } }) => {
+    const f = num(req.params.frame.replace(/\.jpg$/, "")); return SLUG.test(req.params.slug) && f !== null ? fullPoster(req.params.slug, f) : new Response("Bad request", { status: 400 });
   },
   "/api/motion/frame/:id/:frame": (req: Request & { params: { id: string; frame: string } }) => {
     const f = num(req.params.frame.replace(/\.png$/, "")); return ID.test(req.params.id) && f !== null ? exactFrame(req.params.id, f) : new Response("Bad request", { status: 400 });

@@ -11,12 +11,14 @@ Branches: only the owner can create, update, delete or force-push `main`, `dev` 
 "Owner-only pushes"); `main` and `dev` can never be deleted or force-pushed ("Main and dev integrity"). Agents push
 as the owner and never edit rulesets. Two rooms:
 
-- **Posts** (`server.ts`, `src/`, `posts/`, `static/`): HTML social templates, `bun start` → :4500. See README.md.
+- **Create** (`server.ts`, `src/`, `posts/`, `static/`): the content editor (HTML social templates, PNG export) at
+  `/create`. **Posts** is different: the Motion room page listing published posts as links (`motion/posts.json`,
+  added only with `bun scripts/link-post.ts <url>`, which accepts the owner's accounts only).
 - **Motion room** (`motion/`): code-drawn films, shorts, carousels and stills. Read
   `.claude/skills/motion-room/SKILL.md` before touching it; `.claude/skills/repurpose-brand/SKILL.md`
   to reuse it for another product.
 
-The studio site (`bun start` → http://127.0.0.1:4500/, posts editor at /posts; UI rules in DESIGN.md) is the read-only map of the motion room:
+The studio site (`bun start` → http://127.0.0.1:4500/, the content editor at /create, published posts at /#/posts; UI rules in DESIGN.md) is the read-only map of the motion room:
 series (`motion/series.json`), pieces, briefs, prompts, agent runs (`motion/workflows/runs/`), skills,
 tools and the isolation audit (`bun scripts/check-isolation.ts`).
 
