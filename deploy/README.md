@@ -3,7 +3,28 @@
 The Motion room (`/` on the local server) is published as a **static, read-only snapshot** on its own
 Railway project, **rotli-studio**, at https://studio.rotli.co. It is unlisted (noindex, robots disallow, not
 linked from rotli.co) and shares nothing with the rotli-site service: separate project, separate domain.
-Deploying is the owner's call, each time.
+## How it deploys
+
+**Automatically, on every push to `main`** (`.github/workflows/deploy.yml`): the gates run (`bun run verify --fast`),
+then the job fetches the published renders, builds the snapshot exactly as below and uploads it to Railway, then
+waits until studio.rotli.co serves the new build. Only the owner can push to `main` (branch rules), so only the owner
+deploys. Secrets: `RAILWAY_TOKEN` (a project token scoped to `rotli-studio` production) and `PRIVATE_MARKERS` (the
+private-name list, the same text as the gitignored `deploy/private-markers.local.txt`).
+
+**Renders live outside git.** Videos, web copies, thumbnails and slides are published as assets of the `studio-media`
+GitHub release by `scripts/media.ts`, from the Mac that renders:
+
+```sh
+node motion/tools/studio.mjs render <id>   # render new or changed pieces
+bun scripts/media.ts status                # what changed since the last publish
+bun scripts/media.ts publish               # builds the snapshot, uploads only the parts that changed
+git push origin main                       # the workflow deploys
+```
+
+If piece sources change without a media publish, the workflow warns and deploys the published renders. A piece with no
+published render fails the build (the export refuses an incomplete snapshot).
+
+**By hand** (the same build, from this Mac):
 
 ```sh
 bun scripts/export-site.ts        # site-dist/: pages + web videos + thumbnails + Dockerfile + Caddyfile

@@ -37,6 +37,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | Studio scripts | `scripts/*.ts` (+ `scripts/lib/`) | Run with Bun from the root: sync, export, audits, link-post. |
 | **Publishing records** | `publish/` | `posts.json` (the owner's published posts, links only, via `scripts/link-post.ts`) and `placements.json` (studio pieces placed in a product on purpose). |
 | Hosting | `deploy/` | Caddy + Dockerfile + `README.md`; `*.local.txt` are private and gitignored. |
+| Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts` | Push to `main` → gates → fetch the published renders → build → Railway. Renders are release assets (`studio-media`), not git. |
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
 | Agent rules | `AGENTS.md` | Read first. |
 | Contributing and quality gates | `CONTRIBUTING.md`, `scripts/verify.ts`, `.oxlintrc.json`, `.oxfmtrc.json` | `bun run verify` runs every gate; `bun run lint`, `bun run fmt`. |
