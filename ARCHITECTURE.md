@@ -37,7 +37,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
 | Agent rules | `AGENTS.md` | Read first. |
 | Design rules for the site | `DESIGN.md` | |
-| Docs | `docs/` | `evaluation.md` (what ports to other products), `launch/` (the launch calendar), `reviews/<date>-<reviewer>/` (external reviews, their prompts and the triage). |
+| Docs | `docs/` | `evaluation.md` (what ports to other products), `launch/` (the launch calendar), `reviews/<date>-<reviewer>/` (external reviews, their prompts and the triage), `proposals/` (plans awaiting the owner). |
 | Licences | `LICENSE` (MIT), `NOTICE`, `motion/third_party/anidoodle/` | Apache-2.0 attribution for the engine. |
 | Archive | `archive/` | Frozen earlier projects (`films/`); read-only history, never built. |
 | Local-only material | `local/`, `tmp/` (gitignored) | Nothing here is ever published. |
