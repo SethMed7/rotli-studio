@@ -1,0 +1,10 @@
+# Only the owner approves changes; a merge to main deploys studio.rotli.co.
+* @SethMed7
+
+# Deploys, secrets and hosting stay with the owner even if ownership is ever widened.
+/.github/ @SethMed7
+/deploy/ @SethMed7
+/scripts/export-site.ts @SethMed7
+/scripts/media.ts @SethMed7
+/scripts/check-public.ts @SethMed7
+/scripts/lib/privacy.ts @SethMed7

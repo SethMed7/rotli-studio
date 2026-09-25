@@ -39,7 +39,9 @@ something, find its row below. If no row fits, add a row here in the same change
 | Hosting | `deploy/` | Caddy + Dockerfile + `README.md`; `*.local.txt` are private and gitignored. |
 | Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts` | Push to `main` → gates → fetch the published renders → build → Railway. Renders are release assets (`studio-media`), not git. |
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
-| Agent rules | `AGENTS.md` | Read first. |
+| Front door and project docs | `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `docs/media/` | The README's images live in `docs/media/`. |
+| Agent rules | `AGENTS.md` (+ `CLAUDE.md`, which imports it) | Read first. |
+| Repository settings in files | `.github/` (`CODEOWNERS`, `pull_request_template.md`, `workflows/`) | Owner-only review; the deploy workflow. |
 | Contributing and quality gates | `CONTRIBUTING.md`, `scripts/verify.ts`, `.oxlintrc.json`, `.oxfmtrc.json` | `bun run verify` runs every gate; `bun run lint`, `bun run fmt`. |
 | Design rules for the site | `DESIGN.md` | |
 | Docs | `docs/` | `use-it-for-your-product.md` (start here to adapt the studio), `evaluation.md` (what ports to other products), `launch/` (the launch calendar), `reviews/<date>-<reviewer>/` (external reviews, their prompts and the triage), `proposals/` (plans awaiting the owner). |

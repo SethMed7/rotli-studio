@@ -177,6 +177,8 @@ const STUDIO_PUBLIC = [
   "AGENTS.md",
   "ARCHITECTURE.md",
   "CONTRIBUTING.md",
+  "CHANGELOG.md",
+  "SECURITY.md",
   "DESIGN.md",
   "README.md",
   "LICENSE",

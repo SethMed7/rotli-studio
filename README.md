@@ -1,91 +1,113 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/media/quokka-waving.inv.svg">
+  <img src="docs/media/quokka-waving.svg" alt="The Rotli quokka, waving hello" width="120">
+</picture>
+
 # rotli studio
 
-A **local-only** social media studio for rotli: the brand asset library,
-templates that fit every social format, posts you can edit and save, and PNG
-export at exact platform sizes. It is not a product: the editor server listens on `127.0.0.1` only.
-This repository is **open source (MIT)** and public, under the same rules as the rotli repo: synthetic
-data only, no personal paths or emails, and `bun run check:public` before every push (it is the pre-push
-hook). The motion room vendors the anidoodle engine (Copyright 2026 Alex Greenshpun) under Apache-2.0:
-its licence, NOTICE and the list of files we changed are in `motion/third_party/anidoodle/`; see `NOTICE`.
-The hosted, read-only Motion room lives at <https://studio.rotli.co>; see `deploy/README.md`.
+### Films drawn in code. Every prompt kept.
 
-## Open it
+The open-source studio behind Rotli's films, story episodes, shorts and carousels. Every frame is a
+function in code, every piece keeps the brief, the prompt and the agent run that made it, and nothing
+about the engine is Rotli-only.
 
-Double-click **`Open rotli studio.command`**, or:
+[**Watch at studio.rotli.co**](https://studio.rotli.co) &nbsp;·&nbsp; [rotli.co](https://rotli.co)
+&nbsp;·&nbsp; MIT licence
+
+<br>
+
+<img src="docs/media/studio-mosaic.jpg" alt="Six frames from the studio: The Rotli Story, the Season One lighthouse episode, the Motion Résumé study, the Sketch Explainer blueprint, the Vertical App Ad and the One-Shape Loop" width="900">
+
+</div>
+
+---
+
+## What's here
+
+| Series | What it is |
+|---|---|
+| **The Rotli Story** | The first film: a quokka on Rottnest, from the ferry to the sunset. 60 s, sealed. |
+| **Season One: The Island Keeps Everything** | Ten one-minute story episodes, each cut into a vertical, a carousel and a card. |
+| **Rotli in 30 Seconds** | Eight feature explainers, one feature each, shown in the app. |
+| **Looks and Themes** | Shorts and stills about the companion's looks and the app's theme environments. |
+| **Carousels** | Standalone carousels, such as how Rotli works in seven slides. |
+| **Atmosphere Reel** | Every mood a scene can be set in, three seconds each. |
+| **Studies** | Five pieces for a fictional product, **Oriel**, in other styles and every size. They show the studio is not only Rotli's. |
+
+Every piece opens down to its scenes, the cuts made from it, its brief, its exact prompt, the agent run
+that built it (prompt, follow-ups, report, cost), its source and its golden: the hashes that prove it
+still renders the same pixels.
+
+## How a piece is made
+
+1. **A brief.** A JSON file holds the story, the look, the scenes and every claim a caption may make.
+2. **A prompt.** The brief plus a shared preamble becomes the agent's prompt, deterministically.
+3. **A build.** The piece is drawn in code on the studio's engine (by a person or an agent), checked on
+   contact sheets as it goes.
+4. **A review.** No dead air, no overlaps, claims that match the product, loudness around −16 LUFS.
+5. **A golden.** Sampled frames and the audio are hashed, so any later change shows exactly what moved.
+
+Sound is composed in code too: the studio's own music and effects live in [`sound/`](sound/) with the prompt
+for each one.
+
+## Use it for your product
+
+Point the studio at your own brand with a **brand pack** (palettes, fonts with their licences) and the
+brand-neutral kit: sizes as data (landscape, vertical, square, portrait), springs, kinetic type, UI, depth,
+motion blur and a beat score. Start with the five studies and
+[`docs/use-it-for-your-product.md`](docs/use-it-for-your-product.md).
+
+## Run it
+
+Needs [Bun](https://bun.sh), Node 20+, `ffmpeg` and a Playwright Chromium.
 
 ```sh
-cd ~/rotli-studio
-bun start              # http://127.0.0.1:4500
+bun install
+(cd motion && npm install)
+bun start                     # http://127.0.0.1:4500
 ```
 
-## Make a post
+Or double-click **`Open rotli studio.command`** on a Mac. The server listens on `127.0.0.1` only.
 
-1. **New post** (or **Duplicate** an existing one) and pick a **Format**.
-2. Add slides. Each slide has a **template** and a **background**:
-   - **Statement:** a big line over the icon pattern, with an optional quokka.
-   - **Product shot:** a headline over a real capture.
-   - **Chat:** a question and answer drawn in rotli's chat style (legible at any size).
-   - **Note:** a note drawn the way rotli renders tasks and headings.
-   - **Markdown ↔ rendered:** the same lines as raw Markdown and as rotli draws them.
-   - **Points:** up to four short titled points.
-   - **Quokka:** a character with one line.
-   - **Call to action:** the closing card with the ways in.
-3. Write the captions (Instagram, X, and LinkedIn, with live character counts).
-4. **Save** (⌘S) writes `posts/<slug>.json`. **Export PNGs** renders every
-   slide into `exports/<slug>/<format>/NN.png` plus `captions.md`.
+```sh
+cd motion
+node tools/studio.mjs list                 # every piece
+node tools/studio.mjs render <id>          # render one (video, or carousel slides)
+node tools/studio.mjs golden <id>          # prove it still renders the same
+cd .. && bun run verify                    # every gate the studio has
+```
 
-Every template adapts to every format, so one post exports as an Instagram
-carousel, a story, an X image, and a LinkedIn image. From the terminal:
-`bun run export <slug> [ig-portrait ig-square story x-post linkedin]`.
+## Create: social posts from templates
 
-| Format | Size |
-| --- | --- |
-| Instagram portrait (4:5) | 1080 × 1350 |
-| Instagram square | 1080 × 1080 |
-| Story / Reel cover | 1080 × 1920 |
-| X landscape | 1600 × 900 |
-| LinkedIn | 1200 × 627 |
+`/create` is a separate editor for posts built from HTML templates: statements, product shots, chat, notes,
+Markdown side by side, points, a quokka, a call to action. Every template fits every format, and **Export
+PNGs** writes each slide at its exact size (Instagram 4:5 and 1:1, Story 9:16, X 16:9, LinkedIn). Saved posts
+are `posts/<slug>.json`; the brand library in `library/` is a snapshot of rotli's (refresh it with
+`bun run sync`).
 
-## The library
+## Open, all the way down
 
-`library/` is a snapshot of rotli's brand: the line-art and filled quokkas,
-companion looks, logos, product and theme captures, the icon pattern, fonts,
-and colors. Refresh it from a rotli checkout with `bun run sync [path]`
-(default `~/rotli`; pull `dev` there first so the current site captures are present). Images you drop on the Library view (or upload)
-land in `library/uploads/`.
+- **MIT** for the studio. The render engine began as [anidoodle](https://github.com/alexgreensh/anidoodle)
+  by Alex Greenshpun (Apache-2.0): its licence, NOTICE and the generated list of every file we changed are in
+  [`motion/third_party/anidoodle/`](motion/third_party/anidoodle/). Fonts keep their own licences
+  ([`NOTICE`](NOTICE)).
+- **Public by design.** Synthetic data only. A privacy gate (`bun run check:public`) scans every pushed commit
+  for secrets, personal paths, emails and private names, and the hosted snapshot is scanned again before it
+  is built.
+- **Deployed on merge.** Every push to `main` runs the gates and deploys [studio.rotli.co](https://studio.rotli.co)
+  ([`deploy/README.md`](deploy/README.md)).
 
-## Rules the templates keep
+## Where to read next
 
-- Brand: Rotli Light tokens, General Sans, the Baloo 2 wordmark (lowercase
-  "rotli"), flat surfaces with no shadows or glows.
-- Claims match the product: check a slide's wording against the site's
-  /features and /privacy pages before posting.
-- Captures are real app UI on synthetic demo data, never a live vault.
-
-## Motion room
-
-`motion/` makes content by code instead of templates: the film, two episode series (Season One,
-Rotli in 30 seconds) with their vertical/carousel/card cuts, shorts, carousels and stills, with the
-real Rotli quokka and the app's twelve themes. **The studio's home is <http://127.0.0.1:4500/>** (the
-content editor is at `/create`; **Posts** (`/#/posts`) lists published posts as links, added with
-`bun scripts/link-post.ts <url> [--piece <id>]` for the owner's accounts only; `/motion` still works): every series and episode, each piece broken down to its
-scenes, cuts (source frame + crop), brief, prompt, the agent run that built it (prompt, follow-ups,
-report, cost), source and golden; plus the brand, atmospheres, workflows, skills, tools, docs and the
-**isolation audit**. It is read-only; the Motion room's server side is `src/motion/routes.ts`.
-
-- Series are defined in `motion/series.json`; `node motion/tools/manifest.mjs` builds
-  `motion/out/manifest.json` (the site rebuilds it when inputs change).
-- Agent runs are recovered from a Claude Code transcript into `motion/workflows/runs/` by
-  `node motion/tools/extract-runs.mjs <session.jsonl>`.
-- `bun scripts/check-isolation.ts` proves nothing the studio makes sits in a product repo, worktree,
-  branch or live site (read-only; `--json`, `--offline`). Pieces published on purpose go in
-  `publish/placements.json`.
-
-`bun run motion list` (or `cd motion && node tools/studio.mjs …`). Details: `motion/README.md` and
-`.claude/skills/motion-room/SKILL.md`. `bun run sync:themes` / `bun run sync:companions`
-refresh the theme table and the companion looks from the rotli checkout.
-
-## Files
-
-Where everything lives, and where anything new goes, is [`ARCHITECTURE.md`](ARCHITECTURE.md): one row per
-kind of thing (rooms, series, prompts, skills, sounds, publishing records, docs, archive).
+| Doc | For |
+|---|---|
+| [`ARCHITECTURE.md`](ARCHITECTURE.md) | Where every kind of thing lives, and where anything new goes. |
+| [`CONTRIBUTING.md`](CONTRIBUTING.md) | Setup, the gates, and what a good change looks like. |
+| [`AGENTS.md`](AGENTS.md) | The rules AI agents follow here. |
+| [`DESIGN.md`](DESIGN.md) | How the studio site looks and behaves. |
+| [`motion/README.md`](motion/README.md) | The motion room: engine, tools, series. |
+| [`docs/use-it-for-your-product.md`](docs/use-it-for-your-product.md) | Adapting the studio to your brand. |
+| [`SECURITY.md`](SECURITY.md) | Reporting a problem privately. |
+| [`CHANGELOG.md`](CHANGELOG.md) | What changed, and when. |

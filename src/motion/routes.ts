@@ -30,6 +30,8 @@ const STUDIO_OPEN = new Set([
   "AGENTS.md",
   "ARCHITECTURE.md",
   "CONTRIBUTING.md",
+  "CHANGELOG.md",
+  "SECURITY.md",
   "DESIGN.md",
   "README.md",
   "LICENSE",
