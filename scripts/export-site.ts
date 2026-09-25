@@ -27,7 +27,12 @@ const manifest = JSON.parse(readFileSync(join(MOTION, "out/manifest.json"), "utf
 // ---- the page, its styles, script and brand assets (same absolute paths as the local server)
 const html = readFileSync(join(ROOT, "static/motion.html"), "utf8").replace("<head>", '<head>\n    <meta name="robots" content="noindex, nofollow" />\n    <script>window.STUDIO_STATIC = true;</script>');
 writeFileSync(join(PUB, "index.html"), html);
-for (const f of ["app.css", "motion.css"]) put(join(PUB, "static", f), join(ROOT, "static", f));
+// stylesheets get content-hashed names too: Cloudflare caches .css for hours, and a stale stylesheet under a
+// new page breaks the layout (seen 2026-09-25)
+const hashName = (name: string, body: string | Buffer) => name.replace(/\.(\w+)$/, `.${new Bun.CryptoHasher("sha256").update(body).digest("hex").slice(0, 12)}.$1`);
+let pageHtml = readFileSync(join(PUB, "index.html"), "utf8");
+for (const f of ["app.css", "motion.css"]) { const body = readFileSync(join(ROOT, "static", f)), hashed = hashName(f, body); put(join(PUB, "static", hashed), join(ROOT, "static", f)); pageHtml = pageHtml.replace(`href="/static/${f}"`, `href="/static/${hashed}"`); }
+writeFileSync(join(PUB, "index.html"), pageHtml);
 const bundle = await Bun.build({ entrypoints: [join(ROOT, "src/motion/app.ts")], target: "browser", format: "esm", minify: true });
 if (!bundle.success) throw new Error(bundle.logs.map(String).join("\n"));
 // content-hashed name: a CDN (Cloudflare fronts studio.rotli.co) can never serve a stale script to a new page
@@ -36,6 +41,8 @@ mkdirSync(join(PUB, "build"), { recursive: true }); writeFileSync(join(PUB, "bui
 writeFileSync(join(PUB, "index.html"), readFileSync(join(PUB, "index.html"), "utf8").replace('src="/build/motion.js"', `src="/build/${jsName}"`));
 for (const f of walk(join(ROOT, "library/fonts"))) put(join(PUB, relative(ROOT, f)), f);
 put(join(PUB, "library/logo/_logo.svg"), join(ROOT, "library/logo/_logo.svg"));
+for (const f of readdirSync(join(ROOT, "library/logo")).filter((n) => n.startsWith("favicon"))) put(join(PUB, "library/logo", f), join(ROOT, "library/logo", f));
+put(join(PUB, "favicon.ico"), join(ROOT, "library/logo/favicon.ico"));
 writeFileSync(join(PUB, "robots.txt"), "User-agent: *\nDisallow: /\n");
 
 // ---- API answers as files

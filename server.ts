@@ -68,6 +68,7 @@ const server = Bun.serve({
     // the studio's home is the Motion room's landing; the posts editor lives at /posts
     "/": () => serveFile(join(STATIC, "motion.html")),
     "/posts": () => serveFile(join(STATIC, "app.html")),
+    "/favicon.ico": () => serveFile(join(LIBRARY, "logo", "favicon.ico")),
     "/render": () => serveFile(join(STATIC, "render.html")),
     "/build/app.js": () => bundle("app.ts"),
     "/build/render.js": () => bundle("render.ts"),

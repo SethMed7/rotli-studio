@@ -8,7 +8,7 @@ const b = await chromium.launch(); const problems = [];
 for (const w of widths) {
   const p = await b.newPage({ viewport: { width: w, height: 900 } });
   p.on("console", (m) => m.type() === "error" && problems.push(`[${w}] console: ${m.text()}`)); p.on("pageerror", (e) => problems.push(`[${w}] pageerror: ${e}`)); p.on("response", (r) => r.status() >= 400 && !r.url().includes("favicon") && problems.push(`[${w}] ${r.status()} ${r.url()}`));
-  for (const h of [...pages, "POSTS"]) {
+  for (const h of [...pages, ...(B.includes("127.0.0.1") ? ["POSTS"] : [])]) {
     await p.goto(h === "POSTS" ? B + "/posts" : B + "/" + h, { waitUntil: "networkidle" }); await p.waitForTimeout(h === "#/isolation" ? 14000 : 700);
     const r = await p.evaluate(() => {
       const out = [], vis = (el) => { const s = getComputedStyle(el), r = el.getBoundingClientRect(); return s.visibility !== "hidden" && s.display !== "none" && r.width > 1 && r.height > 1; };

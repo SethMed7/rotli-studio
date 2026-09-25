@@ -20,9 +20,9 @@
 	@media path *.mp4 *.jpg *.png *.woff2 *.ttf *.svg
 	header @media Cache-Control "public, max-age=3600"
 	# pages, data and docs must never be served stale by the CDN (a removed file has to disappear)
-	@fresh not path *.mp4 *.jpg *.png *.woff2 *.ttf *.svg /build/*
+	@fresh not path *.mp4 *.jpg *.png *.woff2 *.ttf *.svg /build/* /static/*
 	header @fresh Cache-Control "no-store"
-	@hashed path /build/*
+	@hashed path /build/* /static/*
 	header @hashed Cache-Control "public, max-age=31536000, immutable"
 
 	rewrite /motion /index.html
