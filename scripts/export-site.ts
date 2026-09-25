@@ -31,20 +31,25 @@ writeFileSync(join(PUB, "index.html"), html);
 // new page breaks the layout (seen 2026-09-25)
 const hashName = (name: string, body: string | Buffer) => name.replace(/\.(\w+)$/, `.${new Bun.CryptoHasher("sha256").update(body).digest("hex").slice(0, 12)}.$1`);
 let pageHtml = readFileSync(join(PUB, "index.html"), "utf8");
-for (const f of ["app.css", "motion.css"]) { const body = readFileSync(join(ROOT, "static", f)), hashed = hashName(f, body); put(join(PUB, "static", hashed), join(ROOT, "static", f)); pageHtml = pageHtml.replace(`href="/static/${f}"`, `href="/static/${hashed}"`); }
-writeFileSync(join(PUB, "index.html"), pageHtml);
+
 const bundle = await Bun.build({ entrypoints: [join(ROOT, "src/motion/app.ts")], target: "browser", format: "esm", minify: true });
 if (!bundle.success) throw new Error(bundle.logs.map(String).join("\n"));
 // content-hashed name: a CDN (Cloudflare fronts studio.rotli.co) can never serve a stale script to a new page
 const js = await bundle.outputs[0]!.text(), jsName = `motion.${new Bun.CryptoHasher("sha256").update(js).digest("hex").slice(0, 12)}.js`;
 mkdirSync(join(PUB, "build"), { recursive: true }); writeFileSync(join(PUB, "build", jsName), js);
-writeFileSync(join(PUB, "index.html"), readFileSync(join(PUB, "index.html"), "utf8").replace('src="/build/motion.js"', `src="/build/${jsName}"`));
+pageHtml = pageHtml.replace('src="/build/motion.js"', `src="/build/${jsName}"`); // written once, after the stylesheets
 for (const f of walk(join(ROOT, "library/fonts"))) put(join(PUB, relative(ROOT, f)), f);
 put(join(PUB, "library/logo/_logo.svg"), join(ROOT, "library/logo/_logo.svg"));
 for (const f of readdirSync(join(ROOT, "library/logo")).filter((n) => n.startsWith("favicon"))) put(join(PUB, "library/logo", f), join(ROOT, "library/logo", f));
 put(join(PUB, "favicon.ico"), join(ROOT, "library/logo/favicon.ico"));
-for (const f of readdirSync(join(ROOT, "library/patterns"))) put(join(PUB, "library/patterns", f), join(ROOT, "library/patterns", f));
+// images the stylesheet points at get hashed names too, rewritten into the CSS before it is hashed
+const cssAssets: [string, string][] = [];
+for (const f of readdirSync(join(ROOT, "library/patterns"))) { const body = readFileSync(join(ROOT, "library/patterns", f)), hashed = hashName(f, body); put(join(PUB, "library/patterns", hashed), join(ROOT, "library/patterns", f)); cssAssets.push([`/library/patterns/${f}`, `/library/patterns/${hashed}`]); }
 writeFileSync(join(PUB, "robots.txt"), "User-agent: *\nDisallow: /\n");
+
+// stylesheets: rewrite their asset URLs to the hashed names, then hash the stylesheets themselves
+for (const f of ["app.css", "motion.css"]) { let body = readFileSync(join(ROOT, "static", f), "utf8"); for (const [from, to] of cssAssets) body = body.replaceAll(from, to); const hashed = hashName(f, body); mkdirSync(join(PUB, "static"), { recursive: true }); writeFileSync(join(PUB, "static", hashed), body); pageHtml = pageHtml.replace(`href="/static/${f}"`, `href="/static/${hashed}"`); }
+writeFileSync(join(PUB, "index.html"), pageHtml);
 
 // ---- API answers as files
 const apiDir = join(PUB, "api/motion"); mkdirSync(apiDir, { recursive: true });

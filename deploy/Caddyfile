@@ -27,4 +27,10 @@
 
 	rewrite /motion /index.html
 	file_server
+
+	# a miss must never be cached by the CDN (Cloudflare kept a 404 for hours on 2026-09-25)
+	handle_errors {
+		header Cache-Control "no-store"
+		respond "{err.status_code} {err.status_text}" {err.status_code}
+	}
 }
