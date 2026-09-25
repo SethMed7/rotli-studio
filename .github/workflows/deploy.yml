@@ -39,6 +39,8 @@ jobs:
           PRIVATE_MARKERS: ${{ secrets.PRIVATE_MARKERS }}
       - name: Gates (typechecks, lint, format, public-repo gate, anidoodle inventory, sound)
         run: bun run verify --fast
+        env:
+          STUDIO_MAINTAINER: ${{ secrets.STUDIO_MAINTAINER }}
 
   deploy:
     needs: verify
@@ -69,6 +71,8 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Build the snapshot (inventory, staging, privacy scan)
         run: bun scripts/export-site.ts
+        env:
+          STUDIO_MAINTAINER: ${{ secrets.STUDIO_MAINTAINER }}
       - name: Deploy to Railway
         working-directory: site-dist
         run: railway up --ci --no-gitignore --service studio

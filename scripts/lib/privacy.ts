@@ -5,8 +5,11 @@ import { homedir } from "node:os";
 import { basename, join } from "node:path";
 
 export type Rule = [RegExp, string];
-const HOME = homedir(),
-  USER = basename(HOME);
+// The maintainer's home and user name are what must never leak. On the maintainer's Mac they are this machine's;
+// in CI (a runner's home is not the maintainer's) the name comes from STUDIO_MAINTAINER, a repository secret.
+const CI = !!process.env.CI,
+  HOME = CI ? null : homedir(),
+  USER = process.env.STUDIO_MAINTAINER || (CI ? null : basename(homedir()));
 const escape = (s: string) => s.replace(/[.*+?^${}()|[\]\\/]/g, "\\$&");
 
 /** Built-in rules: secrets, identity numbers, personal paths and emails, private memex folders. */
@@ -17,8 +20,8 @@ export const baseRules = (): Rule[] => [
   [/\bAKIA[0-9A-Z]{16}\b/, "an AWS key"],
   [/\b(?!078-05-1120)\d{3}-\d{2}-\d{4}\b/, "an SSN-shaped number (use 078-05-1120)"],
   [/(password|passwd)\s*[:=]\s*\S{6,}/i, "a password"],
-  [new RegExp(escape(HOME)), "the maintainer's home path"],
-  [new RegExp(`\\b${escape(USER)}\\b`, "i"), "the maintainer's user name"],
+  ...(HOME ? [[new RegExp(escape(HOME)), "the maintainer's home path"] as Rule] : []),
+  ...(USER ? [[new RegExp(`\\b${escape(USER)}\\b`, "i"), "the maintainer's user name"] as Rule] : []),
   [/\/Users\/(?!example\b)[a-z][\w.-]+\//, "a real /Users/<name>/ path (use /Users/example or ~)"],
   [
     /[\w.+-]+@(?!example\.(com|org)\b|users\.noreply\.github\.com\b|anthropic\.com\b)[A-Za-z][\w-]*(\.[A-Za-z][\w-]*)*\.[A-Za-z]{2,}\b/,

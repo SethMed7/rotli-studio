@@ -9,7 +9,8 @@ linked from rotli.co) and shares nothing with the rotli-site service: separate p
 then the job fetches the published renders, builds the snapshot exactly as below and uploads it to Railway, then
 waits until studio.rotli.co serves the new build. Only the owner can push to `main` (branch rules), so only the owner
 deploys. Secrets: `RAILWAY_TOKEN` (a project token scoped to `rotli-studio` production) and `PRIVATE_MARKERS` (the
-private-name list, the same text as the gitignored `deploy/private-markers.local.txt`).
+private-name list, the same text as the gitignored `deploy/private-markers.local.txt`) and `STUDIO_MAINTAINER`
+(the maintainer's user name, which the privacy rules refuse; a CI runner's own home and name are not the maintainer's).
 
 **Renders live outside git.** Videos, web copies, thumbnails and slides are published as assets of the `studio-media`
 GitHub release by `scripts/media.ts`, from the Mac that renders:
