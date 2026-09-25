@@ -168,6 +168,12 @@ function renderNav(active: string) {
     group(
       "Watch",
       link("library", "#/library", "Library", M.pieces.length) +
+        link(
+          "carousels",
+          "#/carousels",
+          "Carousels",
+          M.pieces.filter((p) => p.kind !== "video" && p.slides?.length).length,
+        ) +
         link("series", "#/series", "Series", M.series.filter((x) => x.kind !== "studies").length) +
         link("studies", "#/series/studies", "Studies", studies),
     ) +
@@ -310,6 +316,41 @@ function pieceTitle(p: Piece) {
     return `${ep?.title.replace(/\.$/, "") ?? p.id} · ${cut[p.role]}`;
   }
   return p.title ?? p.id;
+}
+// ---------------------------------------------------------------- downloads: everything needed to post a piece
+const zipUrl = (p: Piece) => `/api/motion/zip/${p.slug}.zip`;
+function downloads(p: Piece) {
+  const items: string[] = [];
+  if (p.video) {
+    const size = p.meta ? `${p.meta.W} × ${p.meta.H}` : "";
+    items.push(
+      `<a class="button" href="${m(p.video.file)}" download="${esc(p.slug)}.mp4">Download video <small>${esc(size)} · ${mb(p.video.bytes)}</small></a>`,
+    );
+    if (p.video.poster)
+      items.push(`<a class="button ghost" href="${m(p.video.poster)}" download="${esc(p.slug)}.jpg">Poster</a>`);
+  }
+  if (p.slides?.length)
+    items.push(
+      `<a class="button" href="${zipUrl(p)}" download="${esc(p.slug)}.zip">Download ${p.slides.length > 1 ? `all ${p.slides.length} slides` : "image"} <small>.zip</small></a>`,
+    );
+  if (p.caption)
+    items.push(`<button class="button ghost copy" type="button" data-copy="${esc(p.caption)}">Copy caption</button>`);
+  return items.length ? `<div class="downloads">${items.join("")}</div>` : "";
+}
+// ---------------------------------------------------------------- carousels: every slide post, ready to download
+function carousels() {
+  const list = M.pieces.filter((p) => p.kind !== "video" && p.slides?.length).reverse(); // newest first
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Carousels</nav><header class="page-head"><h1>Carousels</h1><p>Every carousel and card, newest first, with its slides, its caption and one download for the lot. ${list.length} posts.</p></header>
+    <ul class="carousels">${list
+      .map(
+        (p) => `<li>
+          <div class="carousel-head"><h2><a href="#/piece/${p.id}">${esc(pieceTitle(p))}</a></h2><p class="meta">${esc([p.size ? SIZE_LABEL[p.size] : p.format, `${p.slides!.length} ${p.slides!.length === 1 ? "image" : "slides"}`, seriesOf(p.series)?.title.replace(/:.*/, "")].filter(Boolean).join(" · "))}</p></div>
+          <div class="strip">${p.slides!.map((f, i) => `<a href="${s(f)}" download="${esc(p.slug)}-${String(i + 1).padStart(2, "0")}.png" title="Download slide ${i + 1}"><img src="${s(f)}" alt="${esc(slideAlt(p, byId(seriesOf(p.series)?.episodes?.find((e) => e.code === p.episode)?.main ?? ""), i, p.slides!.length))}" loading="lazy"></a>`).join("")}</div>
+          ${p.caption ? `<p class="caption">${esc(p.caption)}</p>` : ""}
+          ${downloads(p)}
+        </li>`,
+      )
+      .join("")}</ul>`;
 }
 // ---------------------------------------------------------------- series: the index of Rotli's series
 function seriesIndex() {
@@ -560,7 +601,7 @@ async function piece(id: string) {
   ];
   main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › ${x ? `<a href="#/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} · ${esc(ep.title)}` : esc(p.title ?? p.id)}</nav>
     <header class="page-head piece-head">${pager}<h1>${esc(p.title ?? (ep ? `${ep.title}` : p.id))}${p.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(p.logline ?? p.about ?? "")}</p>${p.error ? `<p class="error">Import error: ${esc(p.error)}</p>` : ""}</header>
-    ${cutTabs}<div class="piece-top">${media}<dl class="facts">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>
+    ${cutTabs}<div class="piece-top"><div>${media}${downloads(p)}</div><dl class="facts">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>
     <nav class="section-tabs">${sections.map(([k, v]) => `<a href="#sec-${k}">${v}</a>`).join("")}</nav>
     ${sections.map(([k, v]) => `<section id="sec-${k}" class="sec"><h2>${v}</h2><div class="sec-body" data-sec="${k}"><p class="muted">Loading…</p></div></section>`).join("")}`;
   const body = (k: string) => main.querySelector<HTMLElement>(`[data-sec="${k}"]`);
@@ -1064,6 +1105,7 @@ async function route() {
       home();
       stopPlayers = mountFilmPlayers(main);
     } else if (parts[0] === "library") library();
+    else if (parts[0] === "carousels") carousels();
     else if (parts[0] === "posts") await posts();
     else if (parts[0] === "sound") await sound();
     else if (parts[0] === "series") {
@@ -1099,6 +1141,17 @@ async function route() {
 let routed = false; // the first render is not a page turn
 // in-page section links (#sec-…) must not trigger the router
 document.addEventListener("click", (e) => {
+  const copy = (e.target as HTMLElement).closest<HTMLButtonElement>("button.copy");
+  if (copy) {
+    void navigator.clipboard.writeText(copy.dataset.copy ?? "").then(
+      () => {
+        copy.textContent = "Copied";
+        setTimeout(() => (copy.textContent = "Copy caption"), 1600);
+      },
+      () => (copy.textContent = "Copy failed"),
+    );
+    return;
+  }
   if ((e.target as HTMLElement).closest("button.retry")) {
     location.reload();
     return;

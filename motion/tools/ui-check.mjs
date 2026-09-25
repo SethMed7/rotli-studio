@@ -7,6 +7,8 @@ const B = process.argv[2] ?? "http://127.0.0.1:4501",
 const pages = [
   "#/",
   "#/library",
+  "#/carousels",
+  "#/piece/behindTheFilm",
   "#/library?size=vertical",
   "#/series",
   "#/series/studies",
@@ -46,6 +48,24 @@ for (const w of widths) {
           return s.visibility !== "hidden" && s.display !== "none" && r.width > 1 && r.height > 1;
         };
       const root = document.querySelector("#main") ?? document.body;
+      // the part of an element you can actually see: clipped by every scrolling or clipping ancestor (a strip of
+      // slides scrolled sideways does not overlap the column next to it)
+      const shown = (el) => {
+        let r = el.getBoundingClientRect(),
+          box = { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+        for (let a = el.parentElement; a && a !== document.body; a = a.parentElement) {
+          const s = getComputedStyle(a);
+          if (s.overflowX === "visible" && s.overflowY === "visible") continue;
+          const c = a.getBoundingClientRect();
+          box = {
+            left: Math.max(box.left, c.left),
+            top: Math.max(box.top, c.top),
+            right: Math.min(box.right, c.right),
+            bottom: Math.min(box.bottom, c.bottom),
+          };
+        }
+        return box;
+      };
       if (document.documentElement.scrollWidth > window.innerWidth + 1)
         out.push(`page overflows horizontally: ${document.documentElement.scrollWidth} > ${window.innerWidth}`);
       if (root.scrollWidth > root.clientWidth + 1)
@@ -61,8 +81,8 @@ for (const w of widths) {
             c = els[j];
           if (a.contains(c) || c.contains(a)) continue;
           if (a.closest("[data-player]") && a.closest("[data-player]") === c.closest("[data-player]")) continue;
-          /* overlay controls sit on the film by design */ const ra = a.getBoundingClientRect(),
-            rc = c.getBoundingClientRect();
+          /* overlay controls sit on the film by design */ const ra = shown(a),
+            rc = shown(c);
           const ix = Math.min(ra.right, rc.right) - Math.max(ra.left, rc.left),
             iy = Math.min(ra.bottom, rc.bottom) - Math.max(ra.top, rc.top);
           if (ix > 3 && iy > 3)

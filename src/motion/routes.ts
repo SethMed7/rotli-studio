@@ -1,7 +1,16 @@
 // The Motion room's server side: read-only views of motion/ (and the studio docs around it) for the
 // studio site. Nothing here edits a piece; the only writes are caches under motion/out/ (the manifest,
 // scene thumbnails, exact frame renders) and those are regenerable and gitignored.
-import { existsSync, mkdirSync, readdirSync, readFileSync, realpathSync, statSync } from "node:fs";
+import {
+  copyFileSync,
+  existsSync,
+  mkdirSync,
+  readdirSync,
+  readFileSync,
+  realpathSync,
+  rmSync,
+  statSync,
+} from "node:fs";
 import { homedir } from "node:os";
 import { extname, isAbsolute, join, normalize, relative, sep } from "node:path";
 
@@ -197,6 +206,37 @@ export const thumbArgs = (video: string, frame: number, out: string, fps = 30) =
   "3",
   out,
 ];
+/**
+ * Every slide of a carousel (or the one image of a still) in one zip, named `<slug>-01.png`… so a download is ready
+ * to post. The same bytes locally (/api/motion/zip/<slug>.zip) and in the hosted snapshot (written by the export).
+ */
+export function slidesZip(slug: string): Uint8Array | null {
+  const piece = (
+    JSON.parse(readFileSync(join(MOTION, "pieces.json"), "utf8")).pieces as {
+      slug: string;
+      kind: string;
+      format: string;
+    }[]
+  ).find((p) => p.slug === slug && p.kind !== "video");
+  if (!piece) return null;
+  const dir = join(ROOT, "exports", slug, piece.format);
+  const slides = existsSync(dir)
+    ? readdirSync(dir)
+        .filter((f) => /^\d+\.png$/.test(f))
+        .sort()
+    : [];
+  if (!slides.length) return null;
+  const tmp = join(ROOT, "tmp/zips", slug);
+  rmSync(tmp, { recursive: true, force: true });
+  mkdirSync(tmp, { recursive: true });
+  const names = slides.map((f) => {
+    copyFileSync(join(dir, f), join(tmp, `${slug}-${f}`));
+    return `${slug}-${f}`;
+  });
+  const r = Bun.spawnSync(["zip", "-q", "-X", "-", ...names], { cwd: tmp, stdout: "pipe", stderr: "pipe" });
+  rmSync(tmp, { recursive: true, force: true });
+  return r.exitCode === 0 ? r.stdout : null;
+}
 /** a render's own frame rate (studies run at 60 fps), read once per render with ffprobe */
 const rates = new Map<string, number>();
 export function videoFps(video: string): number {
@@ -381,6 +421,19 @@ export const motionRoutes = {
     return SLUG.test(req.params.slug) && f !== null
       ? thumb(req.params.slug, f)
       : new Response("Bad request", { status: 400 });
+  },
+  "/api/motion/zip/:file": (req: Request & { params: { file: string } }) => {
+    const slug = req.params.file.replace(/\.zip$/, ""),
+      zip = SLUG.test(slug) ? slidesZip(slug) : null;
+    return zip
+      ? new Response(new Uint8Array(zip), {
+          headers: {
+            "content-type": "application/zip",
+            "content-disposition": `attachment; filename="${slug}.zip"`,
+            "cache-control": "no-store",
+          },
+        })
+      : new Response("No slides", { status: 404 });
   },
   "/api/motion/poster/:slug/:frame": (req: Request & { params: { slug: string; frame: string } }) => {
     const f = num(req.params.frame.replace(/\.jpg$/, ""));

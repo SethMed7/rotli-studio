@@ -4,9 +4,22 @@
   {
    "platform": "X",
    "match": "^https://(x|twitter)\\.com/iamsethmedina/status/(\\d{5,25})(\\?.*)?$"
+  },
+  {
+   "platform": "X",
+   "match": "^https://(x|twitter)\\.com/RotliCo/status/(\\d{5,25})(\\?.*)?$"
   }
  ],
  "posts": [
+  {
+   "platform": "X",
+   "url": "https://x.com/RotliCo/status/2103515910841467301",
+   "date": "2026-09-25",
+   "text": "Here's what Rotli feels like in 60 seconds. A local-first workspace where every note is a plain file you own. Made with Claude Opus 5.5; prompts and creation open at studio.rotli.co.",
+   "pieces": [
+    "rotliStory"
+   ]
+  },
   {
    "platform": "X",
    "url": "https://x.com/iamsethmedina/status/2103240071625465945",

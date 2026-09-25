@@ -3,6 +3,7 @@
  "pieces": [
   {
    "id": "rotliStory",
+   "title": "The Rotli Story",
    "kind": "video",
    "slug": "rotli-story",
    "format": "film",
@@ -12,6 +13,7 @@
   },
   {
    "id": "teaser15",
+   "title": "The Rotli Story, 15-Second Teaser",
    "kind": "video",
    "slug": "teaser-15",
    "format": "story",
@@ -20,6 +22,7 @@
   },
   {
    "id": "dressUp",
+   "title": "Dress Up",
    "kind": "video",
    "slug": "dress-up",
    "format": "story",
@@ -28,6 +31,7 @@
   },
   {
    "id": "themesLoop",
+   "title": "Twelve Themes",
    "kind": "video",
    "slug": "six-themes",
    "format": "story",
@@ -36,6 +40,7 @@
   },
   {
    "id": "howRotliWorks",
+   "title": "How Rotli Works",
    "kind": "carousel",
    "slug": "how-rotli-works",
    "format": "ig-portrait",
@@ -44,6 +49,7 @@
   },
   {
    "id": "posterLineup",
+   "title": "Seven Companions",
    "kind": "still",
    "slug": "seven-quokkas",
    "format": "ig-portrait",
@@ -52,6 +58,7 @@
   },
   {
    "id": "themeGrid",
+   "title": "Theme Grid",
    "kind": "still",
    "slug": "six-themes",
    "format": "ig-square",
@@ -60,6 +67,7 @@
   },
   {
    "id": "linkedinCard",
+   "title": "LinkedIn Card",
    "kind": "still",
    "slug": "rotli-card",
    "format": "linkedin",
@@ -68,6 +76,7 @@
   },
   {
    "id": "xCard",
+   "title": "X Card",
    "kind": "still",
    "slug": "rotli-card",
    "format": "x-post",
@@ -76,6 +85,7 @@
   },
   {
    "id": "heroFilm",
+   "title": "Hero Still",
    "kind": "still",
    "slug": "rotli-hero",
    "format": "film",
@@ -339,6 +349,7 @@
   },
   {
    "id": "atmosphereReel",
+   "title": "Atmosphere Reel",
    "kind": "video",
    "slug": "atmosphere-reel",
    "format": "film",
@@ -744,6 +755,15 @@
    "format": "story",
    "length": "20 s",
    "about": "Study 05 · Sketch Explainer, designed for vertical: the week runs top to bottom, the people across the top."
+  },
+  {
+   "id": "behindTheFilm",
+   "title": "Behind the Film",
+   "kind": "carousel",
+   "slug": "behind-the-film",
+   "format": "ig-portrait",
+   "about": "Seven slides: how the 60-second film was drawn in code, from the brief and the prompt to the goldens and the soundtrack, and where all of it is open.",
+   "caption": "How we drew Rotli's 60-second film in code, in 7 slides. Every frame is a function: a brief, a prompt, Claude Opus 5.5 on the open-source anidoodle engine, hashes that catch a changed pixel, and a soundtrack written sample by sample. All of it is open: studio.rotli.co"
   }
  ]
 }

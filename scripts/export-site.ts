@@ -28,7 +28,7 @@ import {
 } from "node:fs";
 import { dirname, join, relative } from "node:path";
 
-import { THUMB_DIR, atmospheres, looks, skills, thumbArgs, tools, videoFps } from "../src/motion/routes";
+import { THUMB_DIR, atmospheres, looks, skills, slidesZip, thumbArgs, tools, videoFps } from "../src/motion/routes";
 import { pieceIds, readPosts, validatePosts } from "./lib/posts";
 import { baseRules, isText, markerRules, scan } from "./lib/privacy";
 
@@ -255,6 +255,15 @@ await pool(vids, 3, async (p) => {
   p.video!.bytes = bytes.length;
   p.video!.sha = hash(bytes).slice(0, 16);
 });
+
+// ---- one zip per carousel or still, ready to post (the same builder as the local server)
+for (const p of manifest.pieces.filter((x) => x.kind !== "video")) {
+  const zip = slidesZip(p.slug);
+  if (zip) {
+    mkdirSync(join(PUB, "api/motion/zip"), { recursive: true });
+    writeFileSync(join(PUB, "api/motion/zip", `${p.slug}.zip`), zip);
+  }
+}
 
 // ---- API answers as files
 const apiDir = join(PUB, "api/motion");

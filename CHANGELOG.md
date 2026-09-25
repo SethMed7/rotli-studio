@@ -4,6 +4,10 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## 2026-09-25
 
+- **Downloads:** every piece page can download its video, its poster, or all its slides as one zip named ready to
+  post, and copy its caption. A new **Carousels** page lists every carousel and card, newest first.
+- **Behind the Film:** a 7-slide carousel on how the 60-second film was drawn in code.
+- **Published** now includes posts from @RotliCo; standalone pieces have real titles.
 - **Studies:** five brand-neutral pieces for a fictional product (Oriel), each in two sizes: Motion Résumé
   (60 fps, motion blur), Vertical App Ad, One-Shape Loop (seamless), Print Carousel (riso) and Sketch Explainer
   (blueprint). Each keeps its brief, exact prompt, agent run and golden.
