@@ -2,7 +2,11 @@
 
 Two asks: (1) a left menu that is calm and easy to use, with every title chosen on purpose; (2) parts of the
 studio that are clearly **not only for Rotli**: other styles, other motion, other sizes (landscape and reels),
-each with its prompt and its video, without dropping quality. Nothing here is built yet.
+each with its prompt and its video, without dropping quality.
+
+**Status (2026-09-25): built, as proposed.** The owner delegated the four decisions: the menu and titles below, the five
+studies, ideas re-implemented as new MIT code (no files copied), and captions without a synthetic voice. See the
+Studies series, `docs/use-it-for-your-product.md` and `bun run verify`.
 
 ## What was evaluated
 
