@@ -159,6 +159,9 @@ export interface Post {
   slides: Slide[];
 }
 
+/** A carousel posts as-is, and an X post takes at most four images. */
+export const MAX_SLIDES = 4;
+
 export const CAPTION_LIMITS: Record<keyof Post["captions"], number> = {
   instagram: 2200,
   x: 280,

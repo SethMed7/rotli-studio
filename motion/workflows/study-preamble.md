@@ -14,8 +14,9 @@ REQUIRED READING, in order:
 3. The brand-neutral kit, `src/canvas-core/kit/`: `pack.ts` (usePack, palettes, faces), `sizes.ts` (SIZES, layout),
    `motion.ts` (clamp, lerp, prog, window01, ease, bezier, spring, track with loop, phase), `type.ts` (text, measure,
    letters, timed), `ui.ts` (rr, card, phone, toggle, check), `depth.ts` (iso, block, blockGrid, project, spiral),
-   `blur.ts` (motionBlur), `score.ts` (beatScore).
-4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; palettes night, sage, loop, riso, blueprint;
+   `blur.ts` (motionBlur), `score.ts` (beatScore), `captions.ts` (ladder: the explainer-reel caption, words stacked in
+   mixed sizes with one accent italic key word, arriving one at a time).
+4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; use the palette your brief names;
    faces Inter, Instrument Serif, Instrument Serif Italic, JetBrains Mono).
 5. Only if your brief names them: `src/canvas-core/styles/` (riso, print, drafting, storybook…) and `src/canvas-core/core.ts`
    (Gfx, PENCIL/RISOLINE media, halftone, rng, fractal). Read their headers, not every line.

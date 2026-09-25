@@ -75,7 +75,7 @@
     "behindTheFilm"
    ],
    "shape": "standalone carousels, 4:5",
-   "logline": "How Rotli works in seven slides, and how its film was drawn in code.",
+   "logline": "How Rotli works in four slides, and how its film was drawn in code.",
    "docs": [],
    "sealed": false
   },
@@ -98,7 +98,7 @@
    "id": "studies",
    "title": "Studies",
    "kind": "studies",
-   "shape": "5 original pieces for a fictional product, each in two sizes: landscape, vertical, square or portrait",
+   "shape": "21 original pieces for a fictional product, each in two sizes: landscape, vertical, square or portrait",
    "logline": "The studio is not only Rotli's. Other styles, other motion, every size: each study has its brief, its exact prompt and its render, so you can learn the studio here before pointing it at your own product.",
    "docs": [
     "series/studies/bible.md",

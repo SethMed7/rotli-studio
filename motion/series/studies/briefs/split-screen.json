@@ -1,0 +1,59 @@
+{
+ "id": "split-screen",
+ "no": 20,
+ "title": "Before / After",
+ "module": "src/canvas-core/studies/splitScreen.ts",
+ "pieces": {
+  "vertical": "splitScreen",
+  "landscape": "splitScreenLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 660,
+ "palette": "butter",
+ "style": "Split screen: the same scene shown twice, BEFORE (cluttered, off-kilter, a warm alarm colour) and AFTER (calm, aligned, the cool colour), divided by a line that wipes, tilts and finally sweeps all the way across so AFTER takes the whole frame. The same objects exist on both sides, so the change is obvious. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a before/after reveal built from the same objects, a wipe that carries the argument.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: a vertical divider draws down the middle; labels 'Before' and 'After' pop in"
+  },
+  {
+   "from": 60,
+   "to": 210,
+   "what": "BEFORE: a desk with a messy week, 9 meeting blocks overlapping; AFTER: the same week with 4 blocks and 2 focus blocks"
+  },
+  {
+   "from": 210,
+   "to": 345,
+   "what": "the divider slides left and right like a comparison slider, revealing each side in turn"
+  },
+  {
+   "from": 345,
+   "to": 480,
+   "what": "BEFORE: an inbox with 31 threads; AFTER: one card 'Thu 15:00 booked'"
+  },
+  {
+   "from": 480,
+   "to": 600,
+   "what": "the divider sweeps fully across; AFTER takes the frame; everything settles into place with a spring"
+  },
+  {
+   "from": 600,
+   "to": 660,
+   "what": "sign-off: 'Oriel' with the caption 'same week, calmer'"
+  }
+ ],
+ "sizes": "Landscape splits left and right; vertical splits top and bottom (the divider is horizontal).",
+ "sound": "beatScore soft at 120 bpm with a slide sound on each divider move, a hit on the full sweep and the sign-off.",
+ "teaches": "A before/after works when both sides share objects: the eye compares the same thing in two states.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "Split screen: the same scene shown twice, BEFORE (cluttered, off-kilter, a warm alarm colour) and AFTER (calm, aligned, a cool colour), divided by a line that wipes, tilts and finally sweeps all the way across so AFTER takes the whole frame. The same objects exist on both sides, so the change is obvious. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a slide sound on each divider move, a hit on the full sweep and a short sign-off.",
+  "sizes": "split top and bottom instead of left and right (the divider is horizontal)."
+ }
+}

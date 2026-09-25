@@ -1,0 +1,59 @@
+{
+ "id": "layer-stack",
+ "no": 10,
+ "title": "Layer Stack",
+ "module": "src/canvas-core/studies/layerStack.ts",
+ "pieces": {
+  "vertical": "layerStack",
+  "square": "layerStackSquare"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "cobalt",
+ "style": "Isometric infographic: three thick isometric slabs, each with a question mark, float in a stack over a sunburst of thin rays; they separate, get named, and lock together. Each layer opens into its own small isometric scene. Flat colour, a soft shadow under each slab. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): isometric slabs that separate and assemble, sunburst rays behind the hero object, a node diagram with orbit ellipses, giant step numerals.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: three isometric slabs drop into a stack over a spinning sunburst; each shows a '?'. Caption: 'The three-layer calendar.'"
+  },
+  {
+   "from": 60,
+   "to": 180,
+   "what": "layer 1 lifts out and turns into a small isometric desk with a calendar block; caption 'Layer 1 · the ask'; a cursor types 'an hour with Ana and Ben'"
+  },
+  {
+   "from": 180,
+   "to": 330,
+   "what": "layer 2 becomes a node diagram: four agent nodes linked by dotted lines that draw on, two thin orbit ellipses wrap them; caption 'Layer 2 · the agents'"
+  },
+  {
+   "from": 330,
+   "to": 480,
+   "what": "layer 3 becomes a dark square with a starburst of connected points (memory); caption 'Layer 3 · what they remember'"
+  },
+  {
+   "from": 480,
+   "to": 630,
+   "what": "the three layers fly back into the stack and lock with a click; the '?' marks flip to ticks; the rays speed up"
+  },
+  {
+   "from": 630,
+   "to": 720,
+   "what": "sign-off: 'Oriel' on the top slab, 'three layers, one calm week' as a caption ladder"
+  }
+ ],
+ "sizes": "Square keeps the stack centred and moves captions above it; vertical stacks captions in the top third.",
+ "sound": "beatScore soft at 120 bpm with a thump when slabs land, ticks as lines draw, a hit when the stack locks, and the sign-off.",
+ "teaches": "An abstract idea reads as architecture: give each concept a solid object, then let the objects stack, separate and lock.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "Isometric infographic: three thick isometric slabs, each with a question mark, float in a stack over a sunburst of thin rays; they separate, get named, and lock together, and each layer opens into its own small isometric scene. Flat colour, a soft shadow under each slab. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a thump when slabs land, ticks as lines draw, a hit when the stack locks, and a short sign-off.",
+  "sizes": "keep the stack centred and move the captions above it."
+ }
+}

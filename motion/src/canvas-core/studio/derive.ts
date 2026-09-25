@@ -1,6 +1,6 @@
-// DERIVATIVES: one landscape episode becomes a 9:16 vertical cut, a 4:5 carousel and a 4:5 single,
-// all by re-rendering the episode's own frames (studio/reframe) under the series captions. The
-// aesthetic cannot drift between formats because it is literally the same drawing.
+// DERIVATIVES: one landscape episode becomes a 9:16 vertical cut, a 4:5 carousel (at most four slides:
+// one X post) and a 4:5 single, all by re-rendering the episode's own frames (studio/reframe) under the
+// series captions. The aesthetic cannot drift between formats because it is literally the same drawing.
 import type { Ctx, Env } from "../core";
 import type { Film } from "../film";
 import { BRAND, C, HAS_CHARACTER, fillRR, measure, seg, text } from "../rotli/kit";
@@ -136,51 +136,93 @@ export const verticalCut = (id: string, ep: Film, d: DeriveSpec): Film => {
   };
 };
 
-/** 4:5 carousel: a cover, one slide per beat, and the closing card */
+/** X shows a four-image post as a 2×2 grid, each image cropped toward its centre to about 2:1: at 1080 wide
+ *  that is y 405…945 of 1350. Every slide keeps its key line (and the heart of its frame) inside this band. */
+const X_BAND = { top: 405, bottom: 945 };
+/** at most four images (an X post takes four); m > 4 beats are sampled evenly, first and last always kept */
+const carouselBeats = (d: DeriveSpec): Beat[] => {
+  const all = d.slides.length ? d.slides : [d.single],
+    n = Math.min(4, all.length);
+  return Array.from({ length: n }, (_, i) => all[n === 1 ? 0 : Math.round((i * (all.length - 1)) / (n - 1))]);
+};
+
+/** 4:5 carousel, at most four slides: the cover carries beat 1, the middle slides one beat each, and the last
+ *  carries the final beat with the closing card folded in as a deep band (lockup + promise) across its foot */
 export const carousel = (id: string, ep: Film, d: DeriveSpec, cover: { title: string[]; hi?: string }): Film => {
   const [W, H] = FORMATS["ig-portrait"],
-    n = d.slides.length + 2;
+    beats = carouselBeats(d),
+    n = beats.length,
+    bandTop = H - 300, // the close band: lockup, tagline, url + promise, dots
+    tagY = X_BAND.top - 200; // the episode tag heads every slide, above the band X keeps
+  const beatLine = (ctx: Ctx, l: number, b: Beat, y: number, size: number, subSize: number) => {
+    caption(ctx, [b.title], W / 2, y, 1, l, {
+      size: measure(ctx, b.title, size, 600) > 960 ? size * 0.8 : size,
+      hi: b.hi,
+    });
+    if (b.sub)
+      text(ctx, b.sub, W / 2, y + subSize * 2, { size: subSize, weight: 500, align: "center", color: C.muted });
+    return y + (b.sub ? subSize * 2 : 0);
+  };
   const draw = (ctx: Ctx, i: number, l: number, env: Env) => {
     home(ep);
     ctx.setTransform(env.scale, 0, 0, env.scale, 0, 0);
+    const last = i === n - 1,
+      b = beats[i];
     // the site's section rhythm: the cover is the hero (base + file field), beats alternate band and base, the close is the deep band
-    envGround(ctx, l, i === n - 1 ? "deep" : i === 0 ? "base" : i % 2 ? "band" : "base", {
-      w: W,
-      h: H,
-      field: i === 0 || i === n - 1,
-    });
+    envGround(ctx, l, i === 0 ? "base" : i % 2 ? "band" : "base", { w: W, h: H, field: i === 0 });
+    if (last) {
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(-160, bandTop, W + 320, H - bandTop + 160);
+      ctx.clip();
+      envGround(ctx, l, "deep", { w: W, h: H, field: true });
+      ctx.restore();
+    }
     for (let k = 0; k < n; k++) {
-      ctx.fillStyle = k === i ? C.clay : i === n - 1 ? C.nightBorder : C.border;
+      ctx.fillStyle = k === i ? C.clay : last ? C.nightBorder : C.border;
       ctx.beginPath();
       ctx.arc(W / 2 + (k - (n - 1) / 2) * 30, H - 56, k === i ? 9 : 7, 0, 6.29);
       ctx.fill();
     }
+    const floor = last ? bandTop - 36 : i === 0 ? H - 170 : H - 120; // the frame's lowest edge
     if (i === 0) {
-      const size = Math.min(96, Math.floor((96 * 960) / Math.max(...cover.title.map((t) => measure(ctx, t, 96, 600))))),
-        lead = size * 1.14;
-      tag(ctx, d.label ?? d.no, W / 2, 150);
-      caption(ctx, cover.title, W / 2, 330 + size * 0.7, 1, l, { size, hi: cover.hi });
-      const top = 330 + size * 0.7 + cover.title.length * lead - lead * 0.5;
-      framed(ctx, env, ep, d.single, 90, top, 900, 0, 1130 - top);
-      fillRR(ctx, W - 250, H - 150, 190, 64, 32, C.surface, C.ink, 3);
-      text(ctx, "swipe →", W - 155, H - 106, { size: 28, weight: 600, align: "center" });
-      return;
+      // cover: tag · episode title (in the X band) · beat 1's line · beat 1's frame · swipe chip
+      const long = cover.title.length >= 3, // a three-line title steps down so beat 1's frame keeps its room
+        max = long ? 80 : 96,
+        size = Math.min(max, Math.floor((max * 960) / Math.max(...cover.title.map((t) => measure(ctx, t, max, 600))))),
+        lead = size * 1.14,
+        y0 = X_BAND.top + 30 + size * 0.72; // the title's cap line sits just inside the band's top edge
+      tag(ctx, d.label ?? d.no, W / 2, tagY);
+      caption(ctx, cover.title, W / 2, y0, 1, l, { size, hi: cover.hi });
+      const by = y0 + (cover.title.length - 1) * lead + (long ? 90 : 104),
+        keepSub = floor - (by + 60 + 44) >= 340; // beat 1's sub gives way before its frame shrinks to a thumbnail
+      const y1 = beatLine(ctx, l, keepSub ? b : { ...b, sub: undefined }, by, 44, 30);
+      framed(ctx, env, ep, b, 90, y1 + 44, 900, 0, floor - y1 - 44);
+      if (!last) {
+        fillRR(ctx, W - 250, H - 128, 190, 64, 32, C.surface, C.ink, 3);
+        text(ctx, "swipe →", W - 155, H - 84, { size: 28, weight: 600, align: "center" });
+      }
+    } else {
+      // a beat: tag above the band, its line on the band's top edge, its frame filling the middle
+      tag(ctx, d.label ?? d.no, W / 2, tagY);
+      const y1 = beatLine(ctx, l, b, X_BAND.top + 82, 72, 34);
+      const top = y1 + (last ? 40 : 50),
+        room = floor - top,
+        h = Math.min(room, (960 * b.crop.h) / b.crop.w);
+      framed(ctx, env, ep, b, 60, top + Math.min(40, (room - h) / 2), 960, 0, room);
     }
-    if (i === n - 1) {
-      lockup(ctx, W / 2, 470, 1, l, { s: 0.85, ink: C.nightText });
-      text(ctx, (BRAND as { promise?: string }).promise ?? BRAND.tagline, W / 2, 760, {
-        size: 36,
-        weight: 600,
-        align: "center",
-        color: C.nightText,
-      });
-      lineQuokka(ctx, W / 2, 1210, 330, C.nightText);
-      return;
+    if (last) {
+      // the closing card, folded in: the lockup (mark + wordmark), the tagline, then url and the promise
+      lockup(ctx, W / 2, bandTop + 106, 1, l, { s: 0.52, ink: C.nightText, tagline: false, url: false });
+      text(ctx, BRAND.tagline, W / 2, bandTop + 162, { size: 34, weight: 600, align: "center", color: C.nightText });
+      text(
+        ctx,
+        [BRAND.url, (BRAND as { promise?: string }).promise].filter(Boolean).join("  ·  "),
+        W / 2,
+        bandTop + 208,
+        { size: 28, weight: 500, align: "center", color: C.nightText, alpha: 0.82 },
+      );
     }
-    const b = d.slides[i - 1];
-    caption(ctx, [b.title], W / 2, 190, 1, l, { size: measure(ctx, b.title, 72, 600) > 960 ? 58 : 72, hi: b.hi });
-    if (b.sub) text(ctx, b.sub, W / 2, 270, { size: 34, weight: 500, align: "center", color: C.muted });
-    framed(ctx, env, ep, b, 60, 340, 960, 0, 880);
   };
   return {
     meta: { title: id, W, H, fps: 30, bpm: 120, durationFrames: n * 15, raster: "cpu" },

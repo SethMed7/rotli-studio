@@ -2,6 +2,7 @@
 // strip, write captions, save to posts/<slug>.json, and export PNGs.
 import {
   CAPTION_LIMITS,
+  MAX_SLIDES,
   FORMATS,
   TEMPLATES,
   THEMES,
@@ -139,6 +140,13 @@ function renderAll(): void {
   renderStrip();
   renderInspector();
   renderCaptions();
+  $<HTMLButtonElement>("#add-slide").disabled = post.slides.length >= MAX_SLIDES;
+}
+/** refuse a fifth slide: X takes at most four images in one post */
+function full(): boolean {
+  if (post.slides.length < MAX_SLIDES) return false;
+  status(`A post has at most ${MAX_SLIDES} slides (the most X takes in one post).`);
+  return true;
 }
 
 function summary(slide: Slide): string {
@@ -281,6 +289,7 @@ function move(i: number, by: number): void {
 }
 
 function duplicate(i: number): void {
+  if (full()) return;
   post.slides.splice(i + 1, 0, structuredClone(post.slides[i]!));
   selected = i + 1;
   markDirty();
@@ -670,6 +679,7 @@ async function boot(): Promise<void> {
     refreshAll();
   };
   $("#add-slide").onclick = () => {
+    if (full()) return;
     const slide = blankSlide($<HTMLSelectElement>("#add-template").value as TemplateId);
     if (slide.template !== "statement") slide.fields = { headline: "A new slide" };
     post.slides.splice(selected + 1, 0, slide);

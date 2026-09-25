@@ -1,8 +1,11 @@
-// STUDY 04 · PRINT CAROUSEL (6 slides, 30 fps, 120 bpm). A risograph zine for a fictional scheduling product:
-// "Five rules for calmer meetings", a cover and five rules, each slide one beat long. Two inks (blue and
+// STUDY 04 · PRINT CAROUSEL (4 slides, 30 fps, 120 bpm). A risograph zine for a fictional scheduling product:
+// "Three rules for calmer meetings", a cover and three rules, each slide one beat long (four is the most images
+// one X post takes). Two inks (blue and
 // fluorescent pink, yellow as a rare third) print on their own drums, overprint with multiply, sit a hair out
 // of register, and pick up the drum's pinholes and mottle; the sheet's grain goes over everything.
-// One source, designed for portrait (words above, picture below) and square (picture beside the words).
+// One source, designed for portrait (words above, picture below) and square (picture beside the words). X shows
+// a four-image post as a 2 × 2 grid that crops each image to a ~2:1 band through its centre, so each slide keeps
+// its numeral, headline and the heart of its picture in that middle band (portrait y 405–945, square 270–810).
 // Brief: series/studies/briefs/print-carousel.json · prompt: series/studies/prompts/print-carousel.prompt.md
 //
 // The whole carousel is one continuous function paint(F) of a (fractional) frame F; the shots only name the
@@ -23,7 +26,7 @@ const P_ = usePack(PACK),
   F_ = P_.face;
 const FPS = 30,
   BPM = 120,
-  N = 90,
+  N = 60,
   BEAT = 15; // a beat is 15 frames: one slide per beat
 // the inks, all from the pack: the key drum is blue, the screen drum pink, yellow the rare third
 const INK = { blue: C.ink, pink: C.accent, yellow: C.accent2 },
@@ -39,7 +42,8 @@ type Art = {
   pink?: (c: Ctx, t: number) => void;
   blue?: (c: Ctx, t: number) => void;
 };
-type Slide = { id: string; no: string; title: string[]; note: string; art: Art };
+/** `note` is set as one line beside the square's headline, and as a stacked caption beside the portrait's picture */
+type Slide = { id: string; no: string; title: string[]; note: string[]; art: Art };
 
 // ---- the drawing helpers every slide shares (local art space is a 600 × 600 box around 0, 0)
 const circle = (c: Ctx, x: number, y: number, r: number) => {
@@ -247,7 +251,6 @@ const figure =
     c.closePath();
   };
 const people: Art = {
-  dy: -40, // the group is shorter than the box: centre it
   pink: (c, t) => {
     // one chair: a seat, a back and two legs, printed flat in pink
     const k = land(t, 2, 3, 0.62),
@@ -287,179 +290,119 @@ const people: Art = {
   },
 };
 
-const halfClock: Art = {
-  pink: (c, t) => {
-    const cutp = ease.inOutCubic(prog(t, 2, 10)),
-      R = 250;
-    // the half you keep: solid ink, 00 to 30
-    c.save();
-    c.beginPath();
-    c.moveTo(6, -R);
-    c.arc(6, 0, R, -Math.PI / 2, Math.PI / 2);
-    c.closePath();
-    c.fillStyle = INK.pink;
-    c.fill();
-    c.restore();
-    // the half you give back: slides off and fades to a screen
-    c.save();
-    c.translate(-cutp * 70, cutp * 26);
+// a clock cut in half, drawn at its real radius R about (ox, oy) (never scaled: the ink widths and the screen
+// pitch stay a riso's); the left half, the time you give back, slides off and fades to a screen
+const halfClock = (R: number, ox: number, oy: number): Required<Pick<Art, "pink" | "blue">> => {
+  const w = Math.max(0.64, R / 250), // ink widths follow the size, down to a floor that still prints
+    gap = 6 * w;
+  const give = (c: Ctx, cutp: number) => {
+    c.translate(-cutp * R * 0.3, -cutp * R * 0.12);
     c.rotate(-cutp * 0.16);
-    screen(
-      c,
-      [-R - 10, -R - 10, 10, R + 10],
-      11,
-      15,
-      () => lerp(1, 0.4, cutp),
-      INK.pink,
-      () => {
-        c.beginPath();
-        c.moveTo(-6, -R);
-        c.arc(-6, 0, R, -Math.PI / 2, Math.PI / 2, true);
-        c.closePath();
-      },
-    );
-    c.restore();
-  },
-  blue: (c, t) => {
-    const cutp = ease.inOutCubic(prog(t, 2, 10)),
-      R = 250,
-      sweep = land(t, 3, 1.8, 0.8);
-    // the ticks travel with their half
-    for (let i = 0; i < 12; i++) {
-      if (i % 6 === 0) continue; // the cut takes 00 and 30; the labels keep them
-      const a = (i / 12) * Math.PI * 2 - Math.PI / 2,
-        left = Math.cos(a) < 0,
-        big = i % 3 === 0;
+  };
+  return {
+    pink: (c, t) => {
+      const cutp = ease.inOutCubic(prog(t, 2, 10));
       c.save();
-      if (left) {
-        c.translate(-cutp * 70, cutp * 26);
-        c.rotate(-cutp * 0.16);
-      }
-      const ox = left ? -6 : 6,
-        r0 = R * (big ? 0.7 : 0.8),
-        r1 = R * 0.9;
-      bar(
-        c,
-        [ox + Math.cos(a) * r0, Math.sin(a) * r0],
-        [ox + Math.cos(a) * r1, Math.sin(a) * r1],
-        big ? 22 : 10,
-        INK.blue,
-      );
-      c.restore();
-    }
-    // the minute hand sweeps the kept half, 00 to 30, printing a screen of the time it covers
-    const a = -Math.PI / 2 + sweep * (25 / 30) * Math.PI; // twenty-five minutes of the thirty
-    if (sweep > 0.01)
+      c.translate(ox, oy);
+      // the half you keep: solid ink, 00 to 30
+      c.beginPath();
+      c.moveTo(gap, -R);
+      c.arc(gap, 0, R, -Math.PI / 2, Math.PI / 2);
+      c.closePath();
+      c.fillStyle = INK.pink;
+      c.fill();
+      // the half you give back
+      give(c, cutp);
       screen(
         c,
-        [0, -R, R + 10, R],
-        9,
-        45,
-        () => 0.42,
-        INK.blue,
+        [-R - 10, -R - 10, 10, R + 10],
+        11,
+        15,
+        () => lerp(1, 0.4, cutp),
+        INK.pink,
         () => {
           c.beginPath();
-          c.moveTo(6, 0);
-          c.arc(6, 0, R * 0.62, -Math.PI / 2, a);
+          c.moveTo(-gap, -R);
+          c.arc(-gap, 0, R, -Math.PI / 2, Math.PI / 2, true);
           c.closePath();
         },
       );
-    bar(c, [6, 0], [6 + Math.cos(a) * R * 0.74, Math.sin(a) * R * 0.74], 20, INK.blue);
-    disc(c, 6, 0, 24, INK.blue);
-    // the cut, and what it leaves
-    c.save();
-    c.setLineDash([22, 16]);
-    c.lineWidth = 7;
-    c.strokeStyle = INK.blue;
-    c.beginPath();
-    c.moveTo(-30 * cutp, -R - 40);
-    c.lineTo(-30 * cutp, R + 40);
-    c.stroke();
-    c.restore();
-    // one label, at the top of the cut (the portrait keeps its words above the lower margin)
-    text(c, "00–25", 20, -R - 18, { size: 32, family: F_.mono, weight: 500, color: INK.blue, alpha: prog(t, 4, 9) });
-  },
+      c.restore();
+    },
+    blue: (c, t) => {
+      const cutp = ease.inOutCubic(prog(t, 2, 10)),
+        sweep = land(t, 3, 1.8, 0.8);
+      c.save();
+      c.translate(ox, oy);
+      // the ticks travel with their half
+      for (let i = 0; i < 12; i++) {
+        if (i % 6 === 0) continue; // the cut takes 00 and 30
+        const a = (i / 12) * Math.PI * 2 - Math.PI / 2,
+          left = Math.cos(a) < 0,
+          big = i % 3 === 0;
+        c.save();
+        if (left) give(c, cutp);
+        const x = left ? -gap : gap,
+          r0 = R * (big ? 0.7 : 0.8),
+          r1 = R * 0.9;
+        bar(
+          c,
+          [x + Math.cos(a) * r0, Math.sin(a) * r0],
+          [x + Math.cos(a) * r1, Math.sin(a) * r1],
+          (big ? 22 : 10) * w,
+          INK.blue,
+        );
+        c.restore();
+      }
+      // the minute hand sweeps the kept half, printing a screen of the twenty-five minutes it covers
+      const a = -Math.PI / 2 + sweep * (25 / 30) * Math.PI;
+      if (sweep > 0.01)
+        screen(
+          c,
+          [0, -R, R + 10, R],
+          9,
+          45,
+          () => 0.42,
+          INK.blue,
+          () => {
+            c.beginPath();
+            c.moveTo(gap, 0);
+            c.arc(gap, 0, R * 0.62, -Math.PI / 2, a);
+            c.closePath();
+          },
+        );
+      bar(c, [gap, 0], [gap + Math.cos(a) * R * 0.74, Math.sin(a) * R * 0.74], 20 * w, INK.blue);
+      disc(c, gap, 0, 24 * w, INK.blue);
+      // the cut
+      c.setLineDash([22 * w, 16 * w]);
+      c.lineWidth = 7 * w;
+      c.strokeStyle = INK.blue;
+      c.beginPath();
+      c.moveTo(-R * 0.12 * cutp, -R * 1.14);
+      c.lineTo(-R * 0.12 * cutp, R * 1.14);
+      c.stroke();
+      c.restore();
+    },
+  };
 };
 
-const doorway: Art = {
+// rule 2 in one picture: three figures and one chair on the floor, a wall clock cut in half above the chair
+const CLOCK2 = halfClock(112, 196, -214),
+  GROUP2: P = [16, 22]; // the people shift down to leave the clock its wall; the two left out step aside
+const fewerHalf: Art = {
+  dy: 44, // the picture runs from the clock's top (-326) to the floor (238): centre it
   pink: (c, t) => {
-    // light through the doorway, and on the floor in front of it
-    const open = ease.inOutCubic(prog(t, 1, 11));
-    screen(
-      c,
-      [-20, -240, 230, 220],
-      10,
-      15,
-      (_x, y) => open * (0.55 + (0.35 * (y + 240)) / 460),
-      INK.pink,
-      () => {
-        c.beginPath();
-        c.rect(-20, -240, 250, 460);
-      },
-    );
-    screen(
-      c,
-      [-80, 220, 300, 290],
-      10,
-      15,
-      (x, y) => open * clamp(0.75 - (y - 220) / 90 - Math.abs(x - 105) / 400),
-      INK.pink,
-      () => {
-        c.beginPath();
-        c.moveTo(-20, 220);
-        c.lineTo(230, 220);
-        c.lineTo(300, 290);
-        c.lineTo(-90, 290);
-        c.closePath();
-      },
-    );
-    // a strip of tape on the note
+    CLOCK2.pink(c, t);
     c.save();
-    c.translate(-180, -60);
-    c.rotate(-0.1);
-    box(c, -44, -14, 44, 14, INK.pink);
+    c.translate(...GROUP2);
+    people.pink!(c, t);
     c.restore();
   },
   blue: (c, t) => {
-    const open = ease.inOutCubic(prog(t, 1, 11)),
-      th = open * 1.95; // the door swings toward us, past square
-    // the frame
-    box(c, -36, -258, 246, -238, INK.blue);
-    box(c, -36, -258, -18, 222, INK.blue);
-    box(c, 228, -258, 246, 222, INK.blue);
-    box(c, -120, 220, 300, 230, INK.blue);
-    // the leaf, hinged on the right post, in perspective as it opens
-    const hx = 228,
-      w = 248,
-      fx = hx - w * Math.cos(th),
-      grow = 26 * Math.sin(th);
-    fillPts(
-      c,
-      straight([
-        [hx, -238],
-        [fx, -238 - grow],
-        [fx, 220 + grow],
-        [hx, 220],
-      ]),
-      INK.blue,
-    );
+    CLOCK2.blue(c, t);
     c.save();
-    c.globalCompositeOperation = "destination-out";
-    circle(c, lerp(hx, fx, 0.86), -10, 12);
-    c.fill();
-    c.restore();
-    // the note, written as we watch
-    c.save();
-    c.translate(-180, 30);
-    c.rotate(-0.06);
-    c.lineWidth = 6;
-    c.strokeStyle = INK.blue;
-    rr(c, -96, -96, 192, 232, 8);
-    c.stroke();
-    [138, 150, 112, 144, 92].forEach((len, i) => {
-      const k = ease.outCubic(prog(t, 1 + i * 1.6, 3 + i * 1.6));
-      if (k > 0.01) bar(c, [-66, -52 + i * 36], [-66 + len * k, -52 + i * 36], 9, INK.blue);
-    });
+    c.translate(...GROUP2);
+    people.blue!(c, t);
     c.restore();
   },
 };
@@ -533,7 +476,7 @@ const calendar: Art = {
     c.restore();
     ["M", "T", "W", "T", "F"].forEach((d, i) =>
       text(c, d, x0 + (i + 0.5) * (w / 5), y0 + head + 38, {
-        size: 32,
+        size: 36, // 26 px on the page at the portrait's art scale
         family: F_.mono,
         weight: 500,
         color: INK.blue,
@@ -605,34 +548,26 @@ const calendar: Art = {
 };
 
 const SLIDES: Slide[] = [
-  { id: "cover", no: "", title: ["Five rules", "for calmer", "meetings."], note: "", art: cover },
+  { id: "cover", no: "", title: ["Three rules", "for calmer", "meetings."], note: [], art: cover },
   {
     id: "outcome",
     no: "1",
     title: ["Start", "with the", "outcome."],
-    note: "Put the decision in the invite.",
+    note: ["Put the decision", "in the invite."],
     art: target,
   },
-  { id: "fewer", no: "2", title: ["Invite", "fewer", "people."], note: "Everyone else gets the notes.", art: people },
   {
-    id: "half",
-    no: "3",
-    title: ["Half the", "time you", "planned."],
-    note: "Book twenty-five. The work fits.",
-    art: halfClock,
-  },
-  {
-    id: "leave",
-    no: "4",
-    title: ["Write it", "down, then", "leave."],
-    note: "Notes out before the chairs cool.",
-    art: doorway,
+    id: "fewer",
+    no: "2",
+    title: ["Invite fewer,", "for half", "the time."],
+    note: ["Book twenty-five.", "The rest get notes."],
+    art: fewerHalf,
   },
   {
     id: "calendar",
-    no: "5",
+    no: "3",
     title: ["Let the", "calendar do", "the asking."],
-    note: "Oriel finds the hour for everyone.",
+    note: ["Oriel finds the", "hour for everyone."],
     art: calendar,
   },
 ];
@@ -645,39 +580,46 @@ export function make(size: Size, id: string): Film {
   // the words never do); square sets the picture beside the words
   const D = tall
     ? {
-        // portrait: numeral beside the words, the words over the picture (which may run into the lower margin)
-        art: { x: W / 2, y: 1046 * u, k: 0.82 },
-        num: { x: safe.x, size: 300 * u, beside: true },
-        col: { x: safe.x + 196 * u, w: W - 2 * safe.x - 196 * u },
-        head: 124 * u,
-        note: 36 * u,
+        // portrait: numeral beside the words, the words over the picture (which may run into the lower margin).
+        // The words hang from the top of X's centre band (y 405) and the picture's heart sits low in it, so the
+        // grid cell shows the rule and its picture; the note is a caption in the margin beside the picture, and
+        // the paper above the words is the poster's breathing room.
+        art: { x: 700 * u, y: 876 * u, k: 0.66 },
+        num: { x: safe.x, size: 272 * u, beside: true },
+        col: { x: safe.x + 180 * u, w: W - 2 * safe.x - 180 * u },
+        head: 96 * u,
+        note: 34 * u,
+        cap: { x: safe.x, y: 834 * u, gap: 44 * u } as { x: number; y: number; gap: number } | null,
         folio: safe.top + 22 * u,
-        top: safe.top + 72 * u,
+        top: 414 * u,
         mid: 0,
         cover: {
-          art: { x: W / 2 + 90 * u, y: 1048 * u, k: 0.86 },
-          top: safe.top + 72 * u,
-          size: 172 * u,
+          art: { x: 800 * u, y: 944 * u, k: 0.72 },
+          top: 414 * u,
+          size: 140 * u,
           w: W - 2 * safe.x,
           note: [] as string[],
         },
       }
     : {
-        // square: the picture on the left, the numeral stacked over the words on the right
-        art: { x: 300 * u, y: 560 * u, k: 0.76 },
+        // square: the picture on the left, the numeral stacked over the words on the right, both centred on
+        // X's centre band (y 270–810)
+        art: { x: 300 * u, y: 540 * u, k: 0.76 },
         num: { x: 596 * u, size: 190 * u, beside: false },
         col: { x: 596 * u, w: W - safe.x - 596 * u },
         head: 96 * u,
         note: 30 * u,
+        cap: null,
         folio: safe.top + 40 * u,
         top: 0,
-        mid: 560 * u,
+        mid: 540 * u,
         cover: {
-          art: { x: 742 * u, y: 752 * u, k: 0.8 },
-          top: 158 * u,
-          size: 124 * u,
-          w: W - 2 * safe.x,
-          note: ["Five small habits", "that give the", "week back."],
+          // the cover sets the clock beside the title, both on the band
+          art: { x: 812 * u, y: 540 * u, k: 0.6 },
+          top: 300 * u,
+          size: 120 * u,
+          w: 520 * u,
+          note: ["Three small habits", "that give the", "week back."],
         },
       };
   const mono =
@@ -704,7 +646,11 @@ export function make(size: Size, id: string): Film {
       n = s.title.length - 1;
     // portrait hangs the words from the top of the safe area; square centres the stack beside the picture
     const tall_ =
-      D.num.size * 0.72 + 34 * u + size * 0.72 + n * lead + D.note * 1.9 + (s.id === "calendar" ? D.note * 1.7 : 0);
+      D.num.size * 0.72 +
+      34 * u +
+      size * 0.72 +
+      n * lead +
+      (D.cap ? 0 : D.note * 1.9 + (s.id === "calendar" ? D.note * 1.7 : 0));
     const top = D.num.beside ? D.top : D.mid - tall_ / 2,
       numBase = top + D.num.size * 0.72;
     const y0 = D.num.beside ? top + size * 0.72 : numBase + 34 * u + size * 0.72;
@@ -714,8 +660,8 @@ export function make(size: Size, id: string): Film {
   // ---- the words of a slide (the blue drum; the numeral prints on the pink drum)
   const words = (c: Ctx, s: Slide, t: number, idx: number) => {
     // running head: what this is, and where you are in it
-    mono(idx ? "FIVE RULES FOR CALMER MEETINGS" : "A FIELD GUIDE FROM ORIEL", safe.x, D.folio)(c);
-    mono(idx ? `${idx} / 5` : "NO. 04", W - safe.x, D.folio, "right")(c);
+    mono(idx ? "THREE RULES FOR CALMER MEETINGS" : "A FIELD GUIDE FROM ORIEL", safe.x, D.folio)(c);
+    mono(idx ? `${idx} / ${SLIDES.length - 1}` : "NO. 04", W - safe.x, D.folio, "right")(c);
     if (!idx) {
       // the cover: the title set big, 'Oriel' small at the foot of the words
       const size = fit(c, s.title, D.cover.size, D.cover.w),
@@ -742,9 +688,15 @@ export function make(size: Size, id: string): Film {
     }
     const b = block(c, s);
     s.title.forEach((ln, i) => cond(c, ln, D.col.x, b.y0 + i * b.lead, headO(b.size), land(t, 1 + i * 1.5, 3.4, 0.8)));
-    text(c, s.note, D.col.x, b.note, { size: D.note, family: F_.italic, color: INK.blue, alpha: prog(t, 5, 10) });
-    if (idx === 5)
-      text(c, P_.url, D.col.x, b.note + D.note * 1.7, {
+    const note = { size: D.note, family: F_.italic, color: INK.blue, alpha: prog(t, 5, 10) },
+      cap = D.cap;
+    if (cap) s.note.forEach((ln, i) => text(c, ln, cap.x, cap.y + i * cap.gap, note));
+    else text(c, s.note.join(" "), D.col.x, b.note, note);
+    const urlAt: P = cap
+      ? [cap.x, cap.y + (s.note.length - 1) * cap.gap + D.note * 1.7]
+      : [D.col.x, b.note + D.note * 1.7];
+    if (s.id === "calendar")
+      text(c, P_.url, urlAt[0], urlAt[1], {
         size: 26 * u,
         family: F_.mono,
         weight: 500,

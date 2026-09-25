@@ -44,7 +44,7 @@
    "kind": "carousel",
    "slug": "how-rotli-works",
    "format": "ig-portrait",
-   "about": "Seven slides: meet Rotli, just write, one folder, the Librarian, secure, chat, make it yours.",
+   "about": "Four slides: meet Rotli; just write in one folder you own; the Librarian, secure notes and chat; make it yours.",
    "caption": "Rotli is a calm notes app for your Mac. Every note is a plain Markdown file in one folder you own; a Librarian files it without rewriting a word, secure notes never reach a remote model, and chat answers from what is actually in your vault. rotli.co"
   },
   {
@@ -92,11 +92,29 @@
    "about": "16:9 hero: the lockup over the sunset."
   },
   {
+   "id": "studioCard",
+   "title": "Studio Link Card",
+   "kind": "still",
+   "slug": "studio-card",
+   "format": "og",
+   "about": "The link preview for studio.rotli.co (1200 × 630): the island at sunset, prints of real pieces on a line over the bay.",
+   "caption": "Films, stories and 21 studies, drawn in code. studio.rotli.co"
+  },
+  {
+   "id": "studioTeaser",
+   "title": "Studio Teaser",
+   "kind": "video",
+   "slug": "studio-teaser",
+   "format": "og-video",
+   "length": "8 s loop",
+   "about": "The looping link-preview video (1280 × 720): the same island alive, the prints cycling through clips of real pieces."
+  },
+  {
    "id": "ep01Carousel",
    "kind": "carousel",
    "slug": "ep01-write",
    "format": "ig-portrait",
-   "about": "Carousel of episode 01: cover, four beats, closing card.",
+   "about": "Carousel of episode 01: four slides, one beat each, the last signed rotli.co.",
    "caption": "Type Markdown and it renders as you go. Click a result and the file changes. Aa shows the plain text underneath. Rotli is free, no account, works offline. rotli.co"
   },
   {
@@ -128,7 +146,7 @@
    "kind": "carousel",
    "slug": "ep02-folder",
    "format": "ig-portrait",
-   "about": "Carousel of episode 02: cover, four beats, closing card.",
+   "about": "Carousel of episode 02: four slides, one beat each, the last signed rotli.co.",
    "caption": "Your vault is an ordinary folder you pick. Notes are Markdown, chats are Markdown, and Rotli's own metadata is rebuildable. Open your work in other apps, back it up your way, and delete the app: the work still makes sense. rotli.co"
   },
   {
@@ -160,7 +178,7 @@
    "kind": "carousel",
    "slug": "ep03-habits",
    "format": "ig-portrait",
-   "about": "Carousel of episode 03: cover, four beats, closing card.",
+   "about": "Carousel of episode 03: four slides, one beat each, the last signed rotli.co.",
    "caption": "⌥Space opens or hides Rotli from anywhere on your Mac. ⌘K searches titles and text across the whole vault, best match first. Wikilinks connect notes, and a link to nothing looks inert. Main and named views arrange the same files without copying them. rotli.co"
   },
   {
@@ -192,7 +210,7 @@
    "kind": "carousel",
    "slug": "ep04-yours",
    "format": "ig-portrait",
-   "about": "Carousel of episode 04: cover, four beats, closing card.",
+   "about": "Carousel of episode 04: four slides, one beat each, the last signed rotli.co.",
    "caption": "Six themes, each tuned for light and dark. A companion with seven colors, glasses and a bucket hat, or switch it off. rotli.co"
   },
   {
@@ -224,7 +242,7 @@
    "kind": "carousel",
    "slug": "ep05-librarian",
    "format": "ig-portrait",
-   "about": "Carousel of episode 05: cover, four beats, closing card.",
+   "about": "Carousel of episode 05: four slides, one beat each, the last signed rotli.co.",
    "caption": "Turn it on and new notes get tags, summaries, links, and a place in your Library while you keep working in Main. It never edits your words. Turn it off and the folder is still a complete workspace. rotli.co"
   },
   {
@@ -256,7 +274,7 @@
    "kind": "carousel",
    "slug": "ep06-chat",
    "format": "ig-portrait",
-   "about": "Carousel of episode 06: cover, four beats, closing card.",
+   "about": "Carousel of episode 06: four slides, one beat each, the last signed rotli.co.",
    "caption": "Chat reads the vault you are in and answers from what is actually there. After every reply it keeps Conversation notes, and the chat itself is saved as Markdown. In the Mac app it can file a PDF, a Word document, or a board beside the chat. rotli.co"
   },
   {
@@ -288,7 +306,7 @@
    "kind": "carousel",
    "slug": "ep07-secure",
    "format": "ig-portrait",
-   "about": "Carousel of episode 07: cover, four beats, closing card.",
+   "about": "Carousel of episode 07: four slides, one beat each, the last signed rotli.co.",
    "caption": "No account, no tracking. Leave AI off, run a model on your Mac, or connect the tools you already use. Secure notes never reach a remote model; locked notes can't be edited by any. rotli.co"
   },
   {
@@ -320,7 +338,7 @@
    "kind": "carousel",
    "slug": "ep08-web",
    "format": "ig-portrait",
-   "about": "Carousel of episode 08: cover, four beats, closing card.",
+   "about": "Carousel of episode 08: four slides, one beat each, the last signed rotli.co.",
    "caption": "No Mac? Rotli Web is the same editor, folders, tasks and links in your browser, working in a real folder on your computer. Chrome, Edge and Arc open it directly; Rotli Helper brings Firefox, Zen and Brave. rotli.co"
   },
   {
@@ -729,16 +747,16 @@
    "kind": "carousel",
    "slug": "print-carousel",
    "format": "ig-portrait",
-   "about": "Study 04 · Print Carousel: five rules for calmer meetings, risograph overprint, halftones and grain.",
-   "caption": "Five rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
+   "about": "Study 04 · Print Carousel: three rules for calmer meetings in four slides, risograph overprint, halftones and grain, composed so X's four-image grid keeps each rule and its picture.",
+   "caption": "Three rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
   },
   {
    "id": "printCarouselSquare",
    "kind": "carousel",
    "slug": "print-carousel-square",
    "format": "ig-square",
-   "about": "Study 04 · Print Carousel, re-composed for square: the picture beside the words.",
-   "caption": "Five rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
+   "about": "Study 04 · Print Carousel, re-composed for square: the picture beside the words, every slide centred for X's four-image grid.",
+   "caption": "Three rules for calmer meetings, printed in two inks. A study drawn in code for a fictional product, Oriel."
   },
   {
    "id": "sketchExplainer",
@@ -762,8 +780,8 @@
    "kind": "carousel",
    "slug": "behind-the-film",
    "format": "ig-portrait",
-   "about": "Seven slides: how the 60-second film was drawn in code, from the brief and the prompt to the goldens and the soundtrack, and where all of it is open.",
-   "caption": "How we drew Rotli's 60-second film in code, in 7 slides. Every frame is a function: a brief, a prompt, Claude Opus 5.5 on the open-source anidoodle engine, hashes that catch a changed pixel, and a soundtrack written sample by sample. All of it is open: studio.rotli.co"
+   "about": "Four slides: how the 60-second film was drawn in code, from the brief and the agent to the goldens and the soundtrack, and where all of it is open.",
+   "caption": "How we drew Rotli's 60-second film in code, in 4 slides. Every frame is a function: a brief, a prompt, Claude Opus 5.5 on the open-source anidoodle engine, hashes that catch a changed pixel, and a soundtrack written sample by sample. All of it is open: studio.rotli.co"
   },
   {
    "id": "kineticPoster",
@@ -828,6 +846,198 @@
    "format": "film",
    "length": "8 s loop",
    "about": "Study 09 · Shape Morph, designed for landscape: the shape's name on the left, a step indicator on the right."
+  },
+  {
+   "id": "layerStack",
+   "kind": "video",
+   "slug": "layer-stack",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 10 · Layer Stack: isometric slabs stack into a product over a sunburst, a node map and a memory starburst, with serif caption ladders."
+  },
+  {
+   "id": "layerStackSquare",
+   "kind": "video",
+   "slug": "layer-stack-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 10 · Layer Stack, designed for square: the stack centred, captions above it."
+  },
+  {
+   "id": "pixelParable",
+   "kind": "video",
+   "slug": "pixel-parable",
+   "format": "story",
+   "length": "25 s",
+   "about": "Study 11 · Pixel Parable: an 8-bit office parable, an icon swarm and a pixel serpent, with crisp UI cut-ins."
+  },
+  {
+   "id": "pixelParableLandscape",
+   "kind": "video",
+   "slug": "pixel-parable-landscape",
+   "format": "film",
+   "length": "25 s",
+   "about": "Study 11 · Pixel Parable, designed for landscape: the office widens so the team and the manager share one frame."
+  },
+  {
+   "id": "mascotTrack",
+   "kind": "video",
+   "slug": "mascot-track",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 12 · Mascot Track: a robot mascot and one metaphor, build the track, then race the road to the checkpoint."
+  },
+  {
+   "id": "mascotTrackSquare",
+   "kind": "video",
+   "slug": "mascot-track-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 12 · Mascot Track, designed for square: the mascot larger, captions above, a tighter road."
+  },
+  {
+   "id": "annotatedUi",
+   "kind": "video",
+   "slug": "annotated-ui",
+   "format": "story",
+   "length": "23 s",
+   "about": "Study 13 · Annotated UI: hand-drawn circles, arrows and highlights mark up a live invite, then the fix rebuilds it."
+  },
+  {
+   "id": "annotatedUiLandscape",
+   "kind": "video",
+   "slug": "annotated-ui-landscape",
+   "format": "film",
+   "length": "23 s",
+   "about": "Study 13 · Annotated UI, designed for landscape: the invite on the left, annotations and captions on the right."
+  },
+  {
+   "id": "numberedSteps",
+   "kind": "video",
+   "slug": "numbered-steps",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 14 · Numbered Steps: giant numerals morph from step to step, each with its own scene, ending on a comment call to action."
+  },
+  {
+   "id": "numberedStepsSquare",
+   "kind": "video",
+   "slug": "numbered-steps-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 14 · Numbered Steps, designed for square: the numeral left, the words right."
+  },
+  {
+   "id": "paperCollage",
+   "kind": "video",
+   "slug": "paper-collage",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 15 · Paper Collage: torn kraft paper, paper hands and stop-motion timing press the missing piece into the week."
+  },
+  {
+   "id": "paperCollageLandscape",
+   "kind": "video",
+   "slug": "paper-collage-landscape",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 15 · Paper Collage, designed for landscape: the calendar stays left while the computer, portraits and captions change on the right."
+  },
+  {
+   "id": "agentNetwork",
+   "kind": "video",
+   "slug": "agent-network",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 16 · Agent Network: four agents pass packets along dotted edges, a conflict resolves in orbit, and a handoff log prints every hop."
+  },
+  {
+   "id": "agentNetworkVertical",
+   "kind": "video",
+   "slug": "agent-network-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 16 · Agent Network, designed for vertical: the network in the upper two thirds, the log panel below."
+  },
+  {
+   "id": "dotMatrix",
+   "kind": "video",
+   "slug": "dot-matrix",
+   "format": "ig-square",
+   "length": "20 s",
+   "about": "Study 17 · Dot Matrix: one fixed grid of dots becomes lettering, a filling month, a clock and a ring, only by growing and changing colour."
+  },
+  {
+   "id": "dotMatrixVertical",
+   "kind": "video",
+   "slug": "dot-matrix-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 17 · Dot Matrix, designed for vertical: a taller grid, the month in two blocks, lettering on two lines."
+  },
+  {
+   "id": "feedStorm",
+   "kind": "video",
+   "slug": "feed-storm",
+   "format": "story",
+   "length": "23 s",
+   "about": "Study 18 · Feed Storm: a notification feed floods to 47, a cursor sweeps it down to three, and they fold into one decision."
+  },
+  {
+   "id": "feedStormLandscape",
+   "kind": "video",
+   "slug": "feed-storm-landscape",
+   "format": "film",
+   "length": "23 s",
+   "about": "Study 18 · Feed Storm, designed for landscape: the feed on the left third, the decision card and captions on the right."
+  },
+  {
+   "id": "offerCards",
+   "kind": "video",
+   "slug": "offer-cards",
+   "format": "story",
+   "length": "21 s",
+   "about": "Study 19 · Offer Cards: plan cards fan, compare and flip, ending on a comment call to action."
+  },
+  {
+   "id": "offerCardsPortrait",
+   "kind": "video",
+   "slug": "offer-cards-portrait",
+   "format": "ig-portrait",
+   "length": "21 s",
+   "about": "Study 19 · Offer Cards, designed for portrait (4:5): the cards side by side, the setup fee as an equation."
+  },
+  {
+   "id": "splitScreen",
+   "kind": "video",
+   "slug": "split-screen",
+   "format": "story",
+   "length": "22 s",
+   "about": "Study 20 · Before / After: one week in two states behind a sweeping divider, crowded and warm on one side, calm on the other."
+  },
+  {
+   "id": "splitScreenLandscape",
+   "kind": "video",
+   "slug": "split-screen-landscape",
+   "format": "film",
+   "length": "22 s",
+   "about": "Study 20 · Before / After, designed for landscape: the divider is vertical, captions in side columns."
+  },
+  {
+   "id": "morphLaunch",
+   "kind": "video",
+   "slug": "morph-launch",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 21 · Morph Launch: a product launch in one continuous take, caption to glass prompt to dot to mark to app window, read with depth of field, at 60 fps."
+  },
+  {
+   "id": "morphLaunchVertical",
+   "kind": "video",
+   "slug": "morph-launch-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 21 · Morph Launch, designed for vertical: two-line captions, a phone-width window, the tiles in one column."
   }
  ]
 }

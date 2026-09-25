@@ -110,6 +110,9 @@ const manifest = JSON.parse(readFileSync(join(MOTION, "out/manifest.json"), "utf
   const broken = manifest.pieces.filter((p) => p.error).map((p) => `${p.id}: ${p.error}`),
     unrendered = manifest.pieces.filter((p) => p.kind === "video" && !p.video).map((p) => p.id);
   if (broken.length) fail(`pieces that do not load:\n  ${broken.join("\n  ")}`);
+  // a carousel is posted as-is, and an X post takes at most four images
+  const long = manifest.pieces.filter((p) => p.kind === "carousel" && p.shots.length > 4).map((p) => p.id);
+  if (long.length) fail(`carousels over four slides (an X post takes four images): ${long.join(" ")}`);
   if (unrendered.length)
     fail(`videos not rendered yet (node motion/tools/studio.mjs render <id>): ${unrendered.join(" ")}`);
 }
@@ -153,8 +156,34 @@ for (const f of ["app.css", "motion.css"]) {
   writeFileSync(join(PUB, "static", hashed), body);
   pageHtml = pageHtml.replace(`href="/static/${f}"`, `href="/static/${hashed}"`);
 }
+// the link preview (static/motion.html's og:/twitter: tags): the studioCard still and the studioTeaser loop, under
+// hashed names so a platform that caches cards by URL picks up a new render
+for (const [from, tag] of [
+  [join(ROOT, "exports/studio-card/og/01.png"), "/og/studio-card.png"],
+  [join(ROOT, "motion/out/video/studio-teaser.mp4"), "/og/studio-teaser.mp4"],
+] as const) {
+  if (!existsSync(from))
+    fail(`link preview not rendered: ${relative(ROOT, from)} (node motion/tools/studio.mjs render)`);
+  const hashed = hashName(tag, readFileSync(from));
+  put(join(PUB, hashed), from);
+  pageHtml = pageHtml.replaceAll(`https://studio.rotli.co${tag}`, `https://studio.rotli.co${hashed}`);
+}
 writeFileSync(join(PUB, "index.html"), pageHtml);
-writeFileSync(join(PUB, "robots.txt"), "User-agent: *\nDisallow: /\n");
+// unlisted for search, but link-preview crawlers may read the page so a shared link shows its card and loop
+const PREVIEW_BOTS = [
+  "Twitterbot",
+  "facebookexternalhit",
+  "Slackbot",
+  "Slackbot-LinkExpanding",
+  "Discordbot",
+  "LinkedInBot",
+  "TelegramBot",
+  "WhatsApp",
+];
+writeFileSync(
+  join(PUB, "robots.txt"),
+  `${PREVIEW_BOTS.map((b) => `User-agent: ${b}\nAllow: /\n`).join("\n")}\nUser-agent: *\nDisallow: /\n`,
+);
 // the studio's sounds (served at /sound/…, like the local server): catalog, web copies, prompts
 for (const f of [...trackedUnder("sound/web"), ...trackedUnder("sound/prompts"), "sound/catalog.json"])
   put(join(PUB, f), join(ROOT, f));

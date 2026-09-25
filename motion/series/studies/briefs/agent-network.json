@@ -1,0 +1,59 @@
+{
+ "id": "agent-network",
+ "no": 16,
+ "title": "Agent Network",
+ "module": "src/canvas-core/studies/agentNetwork.ts",
+ "pieces": {
+  "landscape": "agentNetwork",
+  "vertical": "agentNetworkVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "terminal",
+ "style": "A system map: agents are nodes (circles with a small glyph and a mono label) on a dark ground; dotted edges draw between them; messages travel along edges as small glowing packets; thin orbit ellipses spin around the busiest node; a log panel prints each handoff in mono. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a node diagram with dotted connections and orbit ellipses around a hub, handoffs between agents, a dark square with a starburst of connections.",
+ "story": [
+  {
+   "from": 0,
+   "to": 75,
+   "what": "hook: one node blinks on, labelled 'request: one hour, four people'"
+  },
+  {
+   "from": 75,
+   "to": 225,
+   "what": "four agent nodes appear (Calendar, People, Rooms, Notes) and dotted edges draw to the hub"
+  },
+  {
+   "from": 225,
+   "to": 405,
+   "what": "packets travel: hub → Calendar → People (conflict!) → Calendar; the log prints each handoff"
+  },
+  {
+   "from": 405,
+   "to": 555,
+   "what": "orbit ellipses spin up around the hub as it resolves; one packet turns yellow: 'Thu 15:00'"
+  },
+  {
+   "from": 555,
+   "to": 660,
+   "what": "all nodes flash green in sequence; the log prints 'booked · 4/4 accepted'"
+  },
+  {
+   "from": 660,
+   "to": 720,
+   "what": "sign-off: the network collapses into a single node that becomes 'Oriel'"
+  }
+ ],
+ "sizes": "Vertical stacks the network in the upper two thirds and the log panel below.",
+ "sound": "beatScore soft at 120 bpm with a blip for every packet hop, a hit when the time resolves and the sign-off.",
+ "teaches": "A system reads when you show traffic, not boxes: let packets move along the edges and log every handoff.",
+ "portable": {
+  "fonts": "JetBrains Mono for labels and the log, Instrument Serif and Instrument Serif Italic for captions",
+  "style": "A system map: agents are nodes (circles with a small glyph and a mono label) on a dark ground; dotted edges draw between them; messages travel along edges as small glowing packets; thin orbit ellipses spin around the busiest node; a log panel prints each handoff in mono. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a blip for every packet hop, a hit when the time resolves and a short sign-off.",
+  "sizes": "stack the network in the upper two thirds and the log panel below it."
+ }
+}

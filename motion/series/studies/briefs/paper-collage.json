@@ -1,0 +1,59 @@
+{
+ "id": "paper-collage",
+ "no": 15,
+ "title": "Paper Collage",
+ "module": "src/canvas-core/studies/paperCollage.ts",
+ "pieces": {
+  "vertical": "paperCollage",
+  "landscape": "paperCollageLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "kraft",
+ "style": "Cut-paper collage on kraft paper: shapes with torn, slightly irregular edges, a paper-grain texture, drop shadows as if lifted off the page, halftone patches, two hands cut from paper that slide a puzzle piece into place, a retro computer made of paper shapes. Everything moves like stop motion (hold each pose 2 frames). Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): editorial collage: cut-out hands, a puzzle piece that completes the picture, a retro computer beside a circle, textured paper.",
+ "story": [
+  {
+   "from": 0,
+   "to": 75,
+   "what": "hook: a torn-paper headline 'The missing piece' is pasted on, letter scraps sliding into place"
+  },
+  {
+   "from": 75,
+   "to": 225,
+   "what": "a paper calendar with one torn-out hole; paper hands enter carrying the missing piece"
+  },
+  {
+   "from": 225,
+   "to": 375,
+   "what": "a retro paper computer beside a big circle; on its screen, paper scraps rearrange into 'Thu 3:00'"
+  },
+  {
+   "from": 375,
+   "to": 525,
+   "what": "three paper portraits (simple shapes) each get a paper check mark pasted on"
+  },
+  {
+   "from": 525,
+   "to": 645,
+   "what": "the hands press the puzzle piece into the calendar; it clicks, the grain shifts, confetti scraps burst"
+  },
+  {
+   "from": 645,
+   "to": 720,
+   "what": "sign-off: 'Oriel' in cut letters; caption 'the piece your week was missing'"
+  }
+ ],
+ "sizes": "Landscape spreads the collage across the page, calendar left, computer right.",
+ "sound": "beatScore soft at 120 bpm with paper rustles (short noise) on each paste, a hit when the piece clicks in and the sign-off.",
+ "teaches": "Collage is texture plus timing: irregular edges, grain and shadows sell the paper, and holding each pose for two frames sells stop motion.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "Cut-paper collage on kraft paper: shapes with torn, slightly irregular edges, paper grain, drop shadows as if lifted off the page, halftone patches, two paper hands that slide a puzzle piece into place, and a retro computer made of paper shapes. Everything moves like stop motion (hold each pose for 2 frames). Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with paper rustles on each paste, a hit when the piece clicks in and a short sign-off.",
+  "sizes": "spread the collage across the page, calendar on the left, computer on the right."
+ }
+}

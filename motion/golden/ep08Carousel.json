@@ -2,17 +2,14 @@
  "piece": "ep08Carousel",
  "W": 1080,
  "H": 1350,
- "frames": 90,
+ "frames": 60,
  "audio": null,
  "hashes": {
-  "0": "551dbf433139a9f55c131403132cbd7c",
-  "14": "f921fbf5f2dcb84361119db7800ecb3e",
-  "29": "92677bba75be89353e9c129badc4a3e7",
-  "30": "ba5eb834ceb7b32641942e988607689f",
-  "44": "2718e62fc48576187c74146c23cc435d",
-  "59": "57554e3ee3519f2cc4c3eea6df09a40d",
-  "60": "2a9eaa1d1b474174adb365fbdf2b795a",
-  "74": "e87d1e2423c6d0eb9610936eb37396b1",
-  "89": "41a9915ae6fcda2ad0d3aafc2420c92b"
+  "0": "8de60191447a830914443f476803954d",
+  "14": "c8a1ee2a6689f354cade4109ccf8a5a4",
+  "29": "b9fcf0def9af61aeb33ca407e682ed69",
+  "30": "48da4a28ecb56e9840e1a1665ff0fe3d",
+  "44": "cd39dd876178ea6c14131ec4ad7c9134",
+  "59": "b5110ff34a6b9e5e52c8e39be0a42e9f"
  }
 }

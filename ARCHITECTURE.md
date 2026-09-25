@@ -17,7 +17,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | Create's PNG exports | `exports/` (gitignored) | Local output only. |
 | **Motion room** (the engine) | `motion/src/canvas-core/core.ts`, `film.ts`, `studio/` | Pure `renderFrame(frame)` + `audio()`. |
 | Rotli-specific building blocks | `motion/src/canvas-core/rotli/`, `quokka/`, `studio/` | Island props, score, the quokka rig, the story engine and atmospheres. Read `brand/`. |
-| **Brand-neutral kit** | `motion/src/canvas-core/kit/` | Sizes, springs and easing, type, UI, depth, motion blur, a beat score. Reads only a brand pack, never Rotli's. |
+| **Brand-neutral kit** | `motion/src/canvas-core/kit/` | Sizes, springs and easing, type, caption ladders, UI, depth, motion blur, a beat score. Reads only a brand pack, never Rotli's. |
 | **Brand packs** | `motion/brand/packs/<id>/` | `pack.json` (product, palettes, fonts with sha256) + `fonts/` with their licences. `studio` is the neutral pack. |
 | **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. |
 | **Portable prompts** (copy into any model) | `motion/series/studies/portable/` | Generated from each brief by `motion/tools/portable-prompt.mjs` via `motion/workflows/portable-template.md`; no repository ties. |
@@ -38,7 +38,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | Studio scripts | `scripts/*.ts` (+ `scripts/lib/`) | Run with Bun from the root: sync, export, audits, link-post. |
 | **Publishing records** | `publish/` | `posts.json` (the owner's published posts, links only, via `scripts/link-post.ts`) and `placements.json` (studio pieces placed in a product on purpose). |
 | Hosting | `deploy/` | Caddy + Dockerfile + `README.md`; `*.local.txt` are private and gitignored. |
-| Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts` | Push to `main` → gates → fetch the published renders → build → Railway. Renders are release assets (`studio-media`), not git. |
+| Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts`, `scripts/split-site.ts` | Push to `main` → gates → fetch the published renders → build → move heavy media to the `studio-site` release → Railway builds an image that fetches them. Renders are release assets (`studio-media`), not git. |
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
 | Front door and project docs | `README.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CHANGELOG.md`, `docs/media/` | The README's images live in `docs/media/`. |
 | Agent rules | `AGENTS.md` (+ `CLAUDE.md`, which imports it) | Read first. |

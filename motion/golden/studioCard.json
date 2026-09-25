@@ -1,0 +1,11 @@
+{
+ "piece": "studioCard",
+ "W": 1200,
+ "H": 630,
+ "frames": 15,
+ "audio": null,
+ "hashes": {
+  "0": "b75d1c29480df151cbf0e9bc762742ed",
+  "14": "b75d1c29480df151cbf0e9bc762742ed"
+ }
+}

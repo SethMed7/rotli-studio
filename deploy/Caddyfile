@@ -1,4 +1,5 @@
-# rotli studio (hosted snapshot): static, read-only, unlisted. Railway sets $PORT.
+# rotli studio (hosted snapshot): static, read-only, unlisted for search (robots.txt admits only link-preview
+# bots, for the card). Railway sets $PORT.
 {
 	admin off
 }

@@ -1,0 +1,59 @@
+{
+ "id": "offer-cards",
+ "no": 19,
+ "title": "Offer Cards",
+ "module": "src/canvas-core/studies/offerCards.ts",
+ "pieces": {
+  "vertical": "offerCards",
+  "portrait": "offerCardsPortrait"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 630,
+ "palette": "plum",
+ "style": "A social-native offer reel: dark plan cards (price, three included items, a button) fan in, compare side by side, and one lifts forward; a plus sign joins a setup fee and a monthly fee; the reel ends on a big 'Comment \"hour\"' call to action with a pulsing reply bubble. Rich card shadows, confident type. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): pricing cards that fan in and compare, a setup fee plus a monthly fee, a 'Comment \"Agent\"' ending.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: caption 'How do you get paid?' in a ladder"
+  },
+  {
+   "from": 60,
+   "to": 210,
+   "what": "two plan cards fan in: 'Solo · $0' and 'Team · $8 / seat'; features tick on"
+  },
+  {
+   "from": 210,
+   "to": 360,
+   "what": "the Team card lifts forward; a '+' joins a small 'setup · $0' card; caption 'no setup, cancel anytime'"
+  },
+  {
+   "from": 360,
+   "to": 480,
+   "what": "a third card flips in: 'Pay per booking · $0.50' for occasional users"
+  },
+  {
+   "from": 480,
+   "to": 570,
+   "what": "all cards stack and slide away; a reply bubble types 'hour'"
+  },
+  {
+   "from": 570,
+   "to": 630,
+   "what": "CTA: 'Comment \"hour\" for the guide' with the bubble pulsing; 'Oriel · a fictional product' small"
+  }
+ ],
+ "sizes": "Portrait (4:5) fits two cards side by side at a smaller scale and keeps the CTA in the lower third.",
+ "sound": "beatScore soft at 120 bpm with a card-slide whoosh for each card, ticks on features, and a hit on the CTA.",
+ "teaches": "An offer is a stack of objects the viewer can compare: animate the comparison, then end on one clear action.",
+ "portable": {
+  "fonts": "Inter (400, 600, 800) for cards, Instrument Serif and Instrument Serif Italic for captions",
+  "style": "A social-native offer reel: dark plan cards (price, three included items, a button) fan in, compare side by side, and one lifts forward; a plus sign joins a setup fee and a monthly fee; the reel ends on a big 'Comment \"hour\"' call to action with a pulsing reply bubble. Rich card shadows, confident type. All prices are invented. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a slide whoosh for each card, ticks on features and a hit on the call to action.",
+  "sizes": "fit two cards side by side at a smaller scale and keep the call to action in the lower third."
+ }
+}

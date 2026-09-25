@@ -10,12 +10,29 @@ product.
 | 01 | Motion Résumé | dark, one accent, HUD, kinetic type, depth, particles, motion blur | landscape · vertical | 15 s · 60 fps |
 | 02 | Vertical App Ad | floating UI, soft shadows, word-by-word serif captions | vertical · landscape | 30 s · 30 fps |
 | 03 | One-Shape Loop | one shape morphing through an interaction, seamless | square · landscape | 8 s · 60 fps |
-| 04 | Print Carousel | risograph overprint, halftones, grain | portrait · square | 6 slides |
+| 04 | Print Carousel | risograph overprint, halftones, grain | portrait · square | 4 slides |
 | 05 | Sketch Explainer | blueprint drawing that draws itself on | landscape · vertical | 20 s · 30 fps |
 | 06 | Kinetic Poster | type only: outline-to-fill words, marquees, colour-flash cards | landscape · vertical | 12 s · 60 fps |
 | 07 | Particle Word | dust that becomes a word, a point-cloud sphere, a wave | landscape · square | 12 s · 60 fps |
 | 08 | Data Story | a dark dashboard whose widgets animate their own data | landscape · vertical | 15 s · 30 fps |
 | 09 | Shape Morph | one shape becomes every primitive over a reactive dot grid | square · landscape | 8 s · 60 fps loop |
+| 10 | Layer Stack | isometric slabs over a sunburst, a node map, a memory starburst | vertical · square | 24 s |
+| 11 | Pixel Parable | 8-bit characters, an icon swarm, a pixel serpent, crisp UI cut-ins | vertical · landscape | 25 s |
+| 12 | Mascot Track | a robot mascot and one metaphor: build the track, race the road | vertical · square | 24 s |
+| 13 | Annotated UI | hand-drawn circles, arrows and highlights on live UI | vertical · landscape | 23 s |
+| 14 | Numbered Steps | giant morphing numerals, step scenes, a comment call to action | vertical · square | 24 s |
+| 15 | Paper Collage | torn kraft paper, paper hands, stop-motion timing | vertical · landscape | 24 s |
+| 16 | Agent Network | nodes, packets on dotted edges, orbit rings, a handoff log | landscape · vertical | 24 s |
+| 17 | Dot Matrix | one dot grid: a filling calendar, dot lettering, a dot clock | square · vertical | 20 s |
+| 18 | Feed Storm | a notification feed that floods, then folds into one decision | vertical · landscape | 23 s |
+| 19 | Offer Cards | plan cards that fan and compare, a "Comment" call to action | vertical · portrait | 21 s |
+| 20 | Before / After | one scene in two states behind a sweeping divider | vertical · landscape | 22 s |
+| 21 | Morph Launch | a one-take morph chain: caption → glass prompt → dot → mark → app window, depth of field | landscape · vertical | 24 s · 60 fps |
+
+Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
+metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.
+Study 21 learns from an agent-made product launch film shared on X: one continuous take of morphs, glass and depth
+of field. Its colours, product and copy are not used.
 
 ## What every study keeps
 

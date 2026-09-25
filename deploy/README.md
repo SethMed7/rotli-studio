@@ -1,8 +1,8 @@
 # Hosting the studio snapshot
 
 The Motion room (`/` on the local server) is published as a **static, read-only snapshot** on its own
-Railway project, **rotli-studio**, at https://studio.rotli.co. It is unlisted (noindex, robots disallow, not
-linked from rotli.co) and shares nothing with the rotli-site service: separate project, separate domain.
+Railway project, **rotli-studio**, at https://studio.rotli.co. It is unlisted for search (noindex, robots disallow
+for every crawler except link-preview bots, so a shared link still shows its card and loop; not linked from rotli.co) and shares nothing with the rotli-site service: separate project, separate domain.
 ## How it deploys
 
 **Automatically, on every push to `main`** (`.github/workflows/deploy.yml`): the gates run (`bun run verify --fast`),
@@ -11,6 +11,12 @@ waits until studio.rotli.co serves the new build. Only the owner can push to `ma
 deploys. Secrets: `RAILWAY_TOKEN` (a project token scoped to `rotli-studio` production) and `PRIVATE_MARKERS` (the
 private-name list, the same text as the gitignored `deploy/private-markers.local.txt`) and `STUDIO_MAINTAINER`
 (the maintainer's user name, which the privacy rules refuse; a CI runner's own home and name are not the maintainer's).
+
+**The upload stays small.** Railway (behind Cloudflare) refuses uploads around 250 MB, so after the export
+`scripts/split-site.ts` moves the snapshot's heavy files (videos, images, zips) into one tar, attaches it to the
+`studio-site` release (named by its hash; the three newest are kept), and rewrites `site-dist/Dockerfile` to download
+that tar during the Docker build and check its sha256 before unpacking. Railway receives only pages, scripts, data and
+fonts (a few MB).
 
 **Renders live outside git.** Videos, web copies, thumbnails and slides are published as assets of the `studio-media`
 GitHub release by `scripts/media.ts`, from the Mac that renders:
@@ -32,6 +38,7 @@ published render fails the build (the export refuses an incomplete snapshot).
 
 ```sh
 bun scripts/export-site.ts        # site-dist/: pages + web videos + thumbnails + Dockerfile + Caddyfile
+bun scripts/split-site.ts          # heavy media to the studio-site release; Dockerfile fetches them
 cd site-dist && railway up --ci --no-gitignore --service studio   # (linked once: railway link -p rotli-studio)
 ```
 

@@ -143,3 +143,35 @@ What was asked, in the owner's words. Everything in the motion room traces back 
 > When done with these changes then lets work on more studies analyze this and then use grok 4.7 to look through x find a bunch of videos analyze them and lets add more different styles and modes to our study. Then lets also have a copy button for the prompts. We also need to create independent prompts that can get similar style and value then the study but not tied to any specifc folder/thing bound to rotli something someone can just coy and give to claude then mess with
 > 
 > [Attached file "claude_motion_reel.mp4" is saved at: <a local folder>]
+
+## 32. 2026-09-25 19:19 UTC
+
+> okay get everything live and give me the link for what I can post now
+
+## 33. 2026-09-25 19:49 UTC
+
+> can you see this instagram account - https://www.instagram.com/gregisenberg/
+
+## 34. 2026-09-25 19:52 UTC
+
+> Here are some videos analyze these in detaill all different styles then add to the study do not copy colors just learn different styles and try to replicate some of these an get our study to atleaset 20
+> 
+> [Attached file "3 layer AI stack 👀.mp4" is saved at: <a local folder>]
+> 
+> [Attached file "The “cobra effect” in startups.mp4" is saved at: <a local folder>]
+> 
+> [Attached file "Context for AI agents.mp4" is saved at: <a local folder>]
+> 
+> [Attached file "Comment “agent”, follow me and I’ll sends you my agent guide.mp4" is saved at: <a local folder>]
+
+## 35. 2026-09-25 20:24 UTC
+
+> lets analyze this video too - https://x.com/adipandaio/status/2103541815660228657?s=20 - see about this style
+
+## 36. 2026-09-25 20:47 UTC
+
+> We need a proper embed for studio too lets keep that in mind should match more the ocean/island them and maybe preview like videos its a studio
+
+## 37. 2026-09-25 20:53 UTC
+
+> for carousel posts also they should all be redone to max 4 images because thats what x accepts.

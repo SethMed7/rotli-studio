@@ -24,7 +24,7 @@ open out/index.html                                    # the room: every piece, 
 | `posterLineup` · `themeGrid` · `linkedinCard` · `xCard` · `heroFilm` | stills | platform sizes | lineup, theme grid, cards, hero |
 
 **The series "Rotli in 30 seconds"** (landscape, 1920×1080, 30 s each), and for every episode a
-9:16 vertical cut (`-vertical`), a 4:5 carousel (six slides) and a 4:5 card (`-card`), all cut from
+9:16 vertical cut (`-vertical`), a 4:5 carousel (four slides, one X post) and a 4:5 card (`-card`), all cut from
 the episode's own frames by `studio/derive.ts`: `ep01Write` (Markdown renders as you type) ·
 `ep02Folder` (one folder, every way out) · `ep03Habits` (⌥Space, ⌘K, wikilinks, views) · `ep04Yours`
 (themes + companion) · `ep05Librarian` · `ep06Chat` · `ep07Secure` · `ep08Web`. The month-long launch

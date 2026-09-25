@@ -1,0 +1,59 @@
+{
+ "id": "annotated-ui",
+ "no": 13,
+ "title": "Annotated UI",
+ "module": "src/canvas-core/studies/annotatedUi.ts",
+ "pieces": {
+  "vertical": "annotatedUi",
+  "landscape": "annotatedUiLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 690,
+ "palette": "slate",
+ "style": "Annotated product UI: crisp interface cards (an invite, a message thread, a settings panel) get marked up live with hand-drawn annotations: a wobbly red circle that draws itself around the problem, an arrow that swoops in, a highlighter swipe, a scribbled note in a handwriting-like stroke. The camera pushes into each annotated detail. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): UI with hand-drawn red circles around the problem, stacked complaint bubbles that scroll, a highlighted time zone, a reveal from problem to fix.",
+ "story": [
+  {
+   "from": 0,
+   "to": 75,
+   "what": "hook: a calendar invite card slides in; a red hand-drawn circle loops around '3:00 AM'; caption 'Sent at 3 a.m.?'"
+  },
+  {
+   "from": 75,
+   "to": 210,
+   "what": "zoom into the time zone line; a highlighter swipes 'UTC'; an arrow swoops to 'Ana is in Lisbon'"
+  },
+  {
+   "from": 210,
+   "to": 360,
+   "what": "complaint bubbles stack up and scroll ('who moved it?', 'I can't make it', 'wrong time again'); caption 'Every team has one.'"
+  },
+  {
+   "from": 360,
+   "to": 510,
+   "what": "the fix: the same invite rebuilds itself with 'Tue 10:00 · your time' for each person; ticks draw next to three names"
+  },
+  {
+   "from": 510,
+   "to": 615,
+   "what": "the annotations change colour from red to teal and tidy into a clean checklist"
+  },
+  {
+   "from": 615,
+   "to": 690,
+   "what": "sign-off: 'Oriel' with a hand-drawn underline; caption 'times that make sense to everyone'"
+  }
+ ],
+ "sizes": "Landscape shows the invite on the left and the annotations and captions on the right.",
+ "sound": "beatScore soft at 120 bpm with a marker squeak (short noise) as each annotation draws, pops for bubbles, a hit on the fix and the sign-off.",
+ "teaches": "Annotation turns a screenshot into an argument: draw the eye first (circle, arrow, highlight), then show the fix in the same frame.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "Annotated product UI: crisp interface cards (an invite, a message thread, a settings panel) get marked up live with hand-drawn annotations: a wobbly red circle that draws itself around the problem, an arrow that swoops in, a highlighter swipe, a scribbled note. The camera pushes into each annotated detail. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a marker squeak as each annotation draws, pops for bubbles, a hit on the fix and a short sign-off.",
+  "sizes": "show the invite on the left and the annotations and captions on the right."
+ }
+}

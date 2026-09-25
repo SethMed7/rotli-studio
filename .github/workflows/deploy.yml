@@ -47,6 +47,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     environment: production
+    permissions:
+      contents: write # upload the snapshot's media tar to the studio-site release
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -73,6 +75,10 @@ jobs:
         run: bun scripts/export-site.ts
         env:
           STUDIO_MAINTAINER: ${{ secrets.STUDIO_MAINTAINER }}
+      - name: Move the heavy media to the studio-site release (Railway's upload limit)
+        run: bun scripts/split-site.ts --keep 3
+        env:
+          GH_TOKEN: ${{ github.token }}
       - name: Deploy to Railway
         working-directory: site-dist
         run: railway up --ci --no-gitignore --service studio

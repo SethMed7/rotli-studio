@@ -62,7 +62,9 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 
 1. `src/canvas-core/<id>.ts` exporting `export const <id>: Film` (copy the nearest existing piece:
    `dressUp` = looks, `themesLoop` = themes, `teaser15` = recut of the film via `studio/reframe`,
-   `howRotliWorks` = carousel, `stills.ts` = single images).
+   `howRotliWorks` = carousel, `stills.ts` = single images). A carousel has at most four slides (an X
+   post takes four images; `export-site.ts` refuses more), and X crops each toward its centre in the
+   timeline, so keep each slide's key line near the middle.
 2. `src/hosts/page-<id>.ts` (three lines; copy one).
 3. Add it to `pieces.json` (kind, slug, format, about, caption for images).
 4. Review with `frames.mjs` sheets, then `render`, `check`, `golden <id> --record`, `catalog`.

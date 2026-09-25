@@ -1,0 +1,54 @@
+{
+ "id": "dot-matrix",
+ "no": 17,
+ "title": "Dot Matrix",
+ "module": "src/canvas-core/studies/dotMatrix.ts",
+ "pieces": {
+  "square": "dotMatrix",
+  "vertical": "dotMatrixVertical"
+ },
+ "primary": "square",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 600,
+ "palette": "cobalt",
+ "style": "Everything is made of dots on one grid: a month calendar where days fill as dots, numerals and words rendered as dot-matrix lettering, a clock whose hands are dot trails, a progress ring of dots. Dots grow, shrink and change colour; nothing else is drawn. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a calendar of dots filling up to show time passing, dot-grid lettering.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: a grid of faint dots; a wave of dots lights up and spells 'WEEK' in dot-matrix"
+  },
+  {
+   "from": 60,
+   "to": 210,
+   "what": "the dots form a month; days fill one by one as meetings (amber), quickly crowding the grid"
+  },
+  {
+   "from": 210,
+   "to": 345,
+   "what": "the crowded days pulse and empty; a few blue focus blocks remain; caption 'take back the week'"
+  },
+  {
+   "from": 345,
+   "to": 480,
+   "what": "the dots swirl into a clock face; the hour hand trails dots and stops on 3"
+  },
+  {
+   "from": 480,
+   "to": 600,
+   "what": "the dots spell 'ORIEL' then settle into a single ring; caption 'one hour, found'"
+  }
+ ],
+ "sizes": "Vertical makes the grid taller: the month runs as two stacked blocks and the lettering is set on two lines.",
+ "sound": "beatScore soft at 120 bpm with a soft tick per filled day (thinned so it never buzzes), a hit when the clock stops and the sign-off.",
+ "teaches": "One primitive, repeated, can be the whole language: decide the grid first and let every shape emerge from it.",
+ "portable": {
+  "fonts": "none for the dot lettering (draw it on the grid); Instrument Serif and Instrument Serif Italic for captions",
+  "style": "Everything is made of dots on one grid: a month calendar whose days fill as dots, numerals and words rendered as dot-matrix lettering, a clock whose hands are dot trails, a progress ring of dots. Dots grow, shrink and change colour; nothing else is drawn. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a soft tick for each filled day (never faster than the beat), a hit when the clock stops and a short sign-off.",
+  "sizes": "make the grid taller: run the month as two stacked blocks and set the lettering on two lines."
+ }
+}

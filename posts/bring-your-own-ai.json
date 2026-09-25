@@ -20,17 +20,6 @@
       }
     },
     {
-      "template": "terminal",
-      "theme": "light",
-      "fields": {
-        "headline": "Install it.\nSign in. Done.",
-        "subline": "Your AI tool, set up exactly the way its maker describes.",
-        "title": "Claude Code · Anthropic",
-        "lines": "npm install -g @anthropic-ai/claude-code\nclaude auth login",
-        "caption": "Codex: brew install codex, then codex login."
-      }
-    },
-    {
       "template": "points",
       "theme": "dark",
       "fields": {

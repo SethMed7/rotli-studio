@@ -541,10 +541,10 @@ function slideAlt(p: Piece, ep: Piece | undefined, i: number, n: number): string
     title = p.title ?? ep?.title ?? p.id;
   if (p.role === "single" && spec) return `${title}: ${sentences(spec.single.title, spec.single.sub)}`;
   if (p.role === "carousel" && spec) {
-    if (i === 0) return `Slide 1 of ${n}, cover: ${title}`;
-    if (i === n - 1) return `Slide ${n} of ${n}: closing card, rotli.co`;
-    const b = spec.slides[i - 1];
-    if (b) return `Slide ${i + 1} of ${n}: ${sentences(b.title, b.sub)}`;
+    // four slides, one beat each: the cover carries the first beat, the last carries the sign-off (studio/derive.ts)
+    const b = spec.slides[i];
+    if (b)
+      return `Slide ${i + 1} of ${n}${i === 0 ? `, cover: ${title}.` : ":"} ${sentences(b.title, b.sub)}${i === n - 1 ? " Signed rotli.co." : ""}`;
   }
   return n > 1 ? `Slide ${i + 1} of ${n} of ${title}: ${p.about ?? ""}` : `${title}: ${p.about ?? ""}`;
 }

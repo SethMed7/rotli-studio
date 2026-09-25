@@ -2,19 +2,14 @@
  "piece": "howRotliWorks",
  "W": 1080,
  "H": 1350,
- "frames": 105,
+ "frames": 60,
  "audio": null,
  "hashes": {
-  "0": "70a35d2d35acc8717c7100709c9adc56",
-  "14": "74aa6973ae0c39a36cd9f73df355bf5f",
-  "29": "85b8dca80d5bc1d7403fe872f420dd37",
-  "30": "e39768954b4b58cb2df4aafcf49e9e3d",
-  "44": "faa6c4cf29d3c0a3bee0f653b0e33968",
-  "59": "6e805316ffbd05f578a45fdcd9c1495f",
-  "60": "7ef04142da65b02a465108260b89e6dc",
-  "74": "a1d8070fd550e5cd680a3156ba1a93df",
-  "89": "34c7ac163dbe534fecada1d7e69af3bf",
-  "90": "08dd6a743f36a9ed1f0ef111a62f1e3e",
-  "104": "4e3b7dbb2e1540ada70649497ff64b63"
+  "0": "7cae41cae0e2f0e5a6f594a1838dc457",
+  "14": "172ee2a52a0ab181090d196062944d25",
+  "29": "926ccabe24d1190c459f6d21cf8bd82b",
+  "30": "fe688cd127535f906a90e676603db736",
+  "44": "84f01b67c5740e9b711d8bd545dc526b",
+  "59": "4aafc5c31e25f035cbd8633ac3a335c0"
  }
 }

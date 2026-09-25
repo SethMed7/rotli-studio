@@ -124,6 +124,87 @@
    "line": "#dcdad4",
    "accent": "#ff3d2e",
    "accent2": "#2f6bff"
+  },
+  "cobalt": {
+   "ground": "#f1f4fb",
+   "surface": "#ffffff",
+   "ink": "#0f1b3d",
+   "muted": "#6b7797",
+   "line": "#d6ddee",
+   "accent": "#ffb000",
+   "accent2": "#3d6bff",
+   "deep": "#0f1b3d"
+  },
+  "arcade": {
+   "ground": "#12163a",
+   "surface": "#1d2254",
+   "ink": "#f5f1e6",
+   "muted": "#8e93c4",
+   "line": "#2c3270",
+   "accent": "#ff4fa3",
+   "accent2": "#3ee0c5",
+   "sky": "#f3ede0",
+   "deep": "#12163a"
+  },
+  "butter": {
+   "ground": "#fff3d1",
+   "surface": "#fffaf0",
+   "ink": "#1d1d1b",
+   "muted": "#7a7466",
+   "line": "#ecdcae",
+   "accent": "#0047ff",
+   "accent2": "#ff7a1a",
+   "deep": "#1d1d1b"
+  },
+  "kraft": {
+   "ground": "#dcc6a4",
+   "surface": "#f3ead9",
+   "ink": "#2a211b",
+   "muted": "#7d6a55",
+   "line": "#c4ab86",
+   "accent": "#d7263d",
+   "accent2": "#1b7f9b",
+   "deep": "#2a211b"
+  },
+  "slate": {
+   "ground": "#e8ebef",
+   "surface": "#ffffff",
+   "ink": "#16202a",
+   "muted": "#6d7985",
+   "line": "#d2d8df",
+   "accent": "#ff2e63",
+   "accent2": "#08b6b3",
+   "deep": "#16202a"
+  },
+  "terminal": {
+   "ground": "#0b0f0c",
+   "surface": "#131a15",
+   "ink": "#d6ffd9",
+   "muted": "#5f7a63",
+   "line": "#1f2b22",
+   "accent": "#3cff7d",
+   "accent2": "#ffcc00",
+   "deep": "#0b0f0c"
+  },
+  "plum": {
+   "ground": "#fbf6ee",
+   "surface": "#ffffff",
+   "ink": "#2b1330",
+   "muted": "#8a7688",
+   "line": "#eadfe6",
+   "accent": "#7a3cff",
+   "accent2": "#ff9f1c",
+   "deep": "#2b1330"
+  },
+  "sunset": {
+   "ground": "#f6d9e4",
+   "surface": "#ffffff",
+   "ink": "#171325",
+   "muted": "#7c7390",
+   "line": "#e9dfee",
+   "accent": "#ff6a3d",
+   "accent2": "#ffc26b",
+   "deep": "#3b1e78"
   }
  },
  "tagline": "Find a time that works for everyone."

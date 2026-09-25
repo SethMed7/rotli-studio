@@ -28,16 +28,6 @@
       }
     },
     {
-      "template": "chat",
-      "theme": "light",
-      "fields": {
-        "headline": "Chat that reads\nyour notes.",
-        "question": "What did I already ship, and what’s next on my Q4 launch plan?",
-        "answer": "Shipped:\n- Mac beta\nIn progress:\n- Update pricing page\nStill to do:\n- Record the demo (owner: Maya)",
-        "caption": "A real reply in rotli, answered from a demo vault’s notes."
-      }
-    },
-    {
       "template": "points",
       "theme": "dark",
       "fields": {

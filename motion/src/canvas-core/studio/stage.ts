@@ -14,6 +14,8 @@ export const FORMATS = {
   "ig-square": [1080, 1080],
   "x-post": [1600, 900],
   linkedin: [1200, 627],
+  og: [1200, 630],
+  "og-video": [1280, 720],
 } as const;
 export type Format = keyof typeof FORMATS;
 /** the font manifest every piece embeds (build-page verifies each file's sha256 against brand.json) */

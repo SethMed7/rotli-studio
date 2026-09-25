@@ -2,17 +2,14 @@
  "piece": "printCarousel",
  "W": 1080,
  "H": 1350,
- "frames": 90,
+ "frames": 60,
  "audio": null,
  "hashes": {
-  "0": "b5871b34f884b5adeab4595890019ad2",
-  "14": "19123a77071ba2435ba24e2fa13a5555",
-  "29": "0f0de5536b6d373191ac37cb77f2a8bd",
-  "30": "871d46bb1510acff553d6ffd413dde53",
-  "44": "3fd98453be4d433d670dd10ae3ad6dc4",
-  "59": "6f3cf7c75df148176dbc6ef602c53d59",
-  "60": "4f87f7a6a0452fd9cda0ef62d0e7e8b5",
-  "74": "f9517ca04a4bab894384af7fa1b4cf00",
-  "89": "5c5b6b73cade74b7aa064c57f880890a"
+  "0": "6b34b07f02cec7d24e69ef0d18ec3ffa",
+  "14": "1f800d8f8aaa9808210b65962e3a8ed5",
+  "29": "4182e97959dd9f09d378174761695020",
+  "30": "ce0fa6b459b9e987c3b07f6e8cae5be4",
+  "44": "700711dfed8c12019d63574d50ece10a",
+  "59": "2b7d613bbb68b6d4a94b4cbf363804b3"
  }
 }

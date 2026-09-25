@@ -21,7 +21,7 @@ keep.push(
     kind: "carousel",
     slug,
     format: "ig-portrait",
-    about: `Carousel of episode ${nn}: cover, four beats, closing card.`,
+    about: `Carousel of episode ${nn}: four slides, one beat each, the last signed rotli.co.`,
     caption,
   },
   {

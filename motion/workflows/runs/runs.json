@@ -233,8 +233,128 @@
    "tokens": 158853,
    "minutes": 12.6,
    "file": "workflows/runs/shapeMorph.md"
+  },
+  {
+   "piece": "layerStack",
+   "description": "Build study: Layer Stack",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 204860,
+   "minutes": 13.6,
+   "file": "workflows/runs/layerStack.md"
+  },
+  {
+   "piece": "pixelParable",
+   "description": "Build study: Pixel Parable",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 199744,
+   "minutes": 16.9,
+   "file": "workflows/runs/pixelParable.md"
+  },
+  {
+   "piece": "mascotTrack",
+   "description": "Build study: Mascot Track",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 256688,
+   "minutes": 19.9,
+   "file": "workflows/runs/mascotTrack.md"
+  },
+  {
+   "piece": "annotatedUi",
+   "description": "Build study: Annotated UI",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 220571,
+   "minutes": 18.5,
+   "file": "workflows/runs/annotatedUi.md"
+  },
+  {
+   "piece": "numberedSteps",
+   "description": "Build study: Numbered Steps",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 207300,
+   "minutes": 14.4,
+   "file": "workflows/runs/numberedSteps.md"
+  },
+  {
+   "piece": "paperCollage",
+   "description": "Build study: Paper Collage",
+   "launched": "2026-09-25 19:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 261924,
+   "minutes": 21.5,
+   "file": "workflows/runs/paperCollage.md"
+  },
+  {
+   "piece": "agentNetwork",
+   "description": "Build study: Agent Network",
+   "launched": "2026-09-25 20:11",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 203457,
+   "minutes": 12.1,
+   "file": "workflows/runs/agentNetwork.md"
+  },
+  {
+   "piece": "dotMatrix",
+   "description": "Build study: Dot Matrix",
+   "launched": "2026-09-25 20:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 194940,
+   "minutes": 17.7,
+   "file": "workflows/runs/dotMatrix.md"
+  },
+  {
+   "piece": "feedStorm",
+   "description": "Build study: Feed Storm",
+   "launched": "2026-09-25 20:15",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 220912,
+   "minutes": 20,
+   "file": "workflows/runs/feedStorm.md"
+  },
+  {
+   "piece": "offerCards",
+   "description": "Build study: Offer Cards",
+   "launched": "2026-09-25 20:16",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 201335,
+   "minutes": 11.9,
+   "file": "workflows/runs/offerCards.md"
+  },
+  {
+   "piece": "splitScreen",
+   "description": "Build study: Before / After",
+   "launched": "2026-09-25 20:18",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 219363,
+   "minutes": 19,
+   "file": "workflows/runs/splitScreen.md"
+  },
+  {
+   "piece": "morphLaunch",
+   "description": "Build study: Morph Launch",
+   "launched": "2026-09-25 20:26",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 242180,
+   "minutes": 27.5,
+   "file": "workflows/runs/morphLaunch.md"
   }
  ],
  "reviews": 4,
- "requests": 31
+ "requests": 37
 }

@@ -4,12 +4,28 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## 2026-09-25
 
+- **Studies 10–21:** twelve more studies, 21 in all. Eleven learn from founder explainer reels (serif caption
+  ladders, one metaphor per piece): Layer Stack, Pixel Parable, Mascot Track, Annotated UI, Numbered Steps, Paper
+  Collage, Agent Network, Dot Matrix, Feed Storm, Offer Cards and Before / After. Morph Launch learns from an
+  agent-made launch film: one continuous take of morphs, glass and depth of field. Each has its brief, prompt,
+  portable prompt, two sizes and goldens; eight new palettes in the studio pack.
+- **Link preview:** a shared studio.rotli.co link shows a card of the island at sunset (1200 × 630) and, where the
+  platform plays `og:video` (Discord does; X shows the card only), a seamless looping teaser. Both are drawn in code (`studioCard`,
+  `studioTeaser`). robots.txt admits link-preview bots only; the snapshot stays unlisted for search.
+- **Carousels fit an X post:** every carousel is now at most four images, the most X takes in one post. The
+  derived episode carousels keep all four beats (the cover carries the first, the last carries the sign-off);
+  How Rotli Works, Behind the Film and the Print Carousel study are re-cut to four slides.
+- **Caption ladders** (`kit/captions.ts`): the explainer-reel caption, words stacked in mixed sizes with one
+  accent italic key word, arriving one at a time.
+- **Small deploys however large the library grows:** `scripts/split-site.ts` moves the heavy media of the hosted
+  snapshot into one sha256-checked tar on the `studio-site` release, fetched by the Docker build, so Railway
+  receives only a few MB.
 - **Prompt library:** a portable prompt for every study, written from its brief with no tie to this repository,
   ready to copy into Claude. Every prompt (agent and portable) and every document has a Copy button.
 - **Four more studies:** Kinetic Poster, Particle Word, Data Story and Shape Morph.
 - **Downloads:** every piece page can download its video, its poster, or all its slides as one zip named ready to
   post, and copy its caption. A new **Carousels** page lists every carousel and card, newest first.
-- **Behind the Film:** a 7-slide carousel on how the 60-second film was drawn in code.
+- **Behind the Film:** a carousel on how the 60-second film was drawn in code.
 - **Published** now includes posts from @RotliCo; standalone pieces have real titles.
 - **Studies:** five brand-neutral pieces for a fictional product (Oriel), each in two sizes: Motion Résumé
   (60 fps, motion blur), Vertical App Ad, One-Shape Loop (seamless), Print Carousel (riso) and Sketch Explainer

@@ -14,8 +14,9 @@ REQUIRED READING, in order:
 3. The brand-neutral kit, `src/canvas-core/kit/`: `pack.ts` (usePack, palettes, faces), `sizes.ts` (SIZES, layout),
    `motion.ts` (clamp, lerp, prog, window01, ease, bezier, spring, track with loop, phase), `type.ts` (text, measure,
    letters, timed), `ui.ts` (rr, card, phone, toggle, check), `depth.ts` (iso, block, blockGrid, project, spiral),
-   `blur.ts` (motionBlur), `score.ts` (beatScore).
-4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; palettes night, sage, loop, riso, blueprint;
+   `blur.ts` (motionBlur), `score.ts` (beatScore), `captions.ts` (ladder: the explainer-reel caption, words stacked in
+   mixed sizes with one accent italic key word, arriving one at a time).
+4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; use the palette your brief names;
    faces Inter, Instrument Serif, Instrument Serif Italic, JetBrains Mono).
 5. Only if your brief names them: `src/canvas-core/styles/` (riso, print, drafting, storybook…) and `src/canvas-core/core.ts`
    (Gfx, PENCIL/RISOLINE media, halftone, rng, fractal). Read their headers, not every line.
@@ -26,7 +27,7 @@ HARD RULES:
    piece. If you need a helper, define it in your module. Do not register the pieces; the maintainer does.
 2. Never import from `rotli/`, `studio/` or `brand/brand.json`: a study must not look or sound like Rotli. No quokka.
 3. Follow the brief's story beats and timing (you may retime inside a beat; every shot must start on the beat grid:
-   one beat = 60 / bpm × fps frames; `validate()` in film.ts refuses anything else). Frames: 90 at 30 fps.
+   one beat = 60 / bpm × fps frames; `validate()` in film.ts refuses anything else). Frames: 60 at 30 fps.
 4. Design EACH size (the brief's "sizes" note); a vertical re-stacks, it never just crops. Keep text inside `layout().safe`.
 5. Quality bar: nothing overlaps unintentionally, no text under 22 px (at 1080 short side), flat colour, depth from
    shadow only where the style allows, every hold keeps moving (a slow push-in, drift or ambient motion).
@@ -47,16 +48,14 @@ Report back: files created, the final sheet paths, still-frames / loop-seam / lo
 with more time, and anything you could not make work.
 
 --- THE STUDY (from series/studies/briefs/print-carousel.json) ---
-Print Carousel · study 04 · carousel · 90 frames at 30 fps, 120 bpm · palette "riso"
+Print Carousel · study 04 · carousel · 60 frames at 30 fps, 120 bpm · palette "riso"
 Style: Risograph print: two inks (riso blue and fluorescent pink, yellow as a rare third) overprinted with a slight misregistration, halftone fields, paper grain, big condensed-feeling type set tight. Use the engine's own print styles (src/canvas-core/styles/riso.ts, print.ts) where they fit.
 Learns from: Printed zines and riso posters: texture and overprint instead of screens.
 Beats (frames · what):
-  - 0–15 · cover: 'Five rules for calmer meetings' with a big halftone circle (a clock face) and 'Oriel' small at the foot
+  - 0–15 · cover: 'Three rules for calmer meetings' with a big halftone circle (a clock face) and 'Oriel' small at the foot
   - 15–30 · 1. Start with the outcome. (an arrow into a target)
-  - 30–45 · 2. Invite fewer people. (three figures, one chair)
-  - 45–60 · 3. Half the time you planned. (a clock cut in half)
-  - 60–75 · 4. Write it down, then leave. (a note and an open door)
-  - 75–90 · 5. Let the calendar do the asking. (a calendar with a single highlighted hour) + 'oriel.example'
+  - 30–45 · 2. Invite fewer, for half the time. (three figures, one chair, a clock cut in half)
+  - 45–60 · 3. Let the calendar do the asking. (a calendar with a single highlighted hour) + 'oriel.example'
 Sizes: Portrait 4:5 is primary; the square re-composes each slide (illustration beside the words where the portrait stacks them).
-Teaches: Texture is a style: the same kit that animates can print. Each slide is one frame (frame i*15+14 is exported).
+Teaches: Texture is a style: the same kit that animates can print. Four slides, the most X takes in one post; each slide is one frame (frame i*15+14 is exported).
 

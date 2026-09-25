@@ -1,0 +1,59 @@
+{
+ "id": "mascot-track",
+ "no": 12,
+ "title": "Mascot Track",
+ "module": "src/canvas-core/studies/mascotTrack.ts",
+ "pieces": {
+  "vertical": "mascotTrack",
+  "square": "mascotTrackSquare"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "plum",
+ "style": "A mascot-led metaphor: a soft, rounded robot mascot (two stacked rounded bodies, a visor, a tiny antenna) is a race car without a track. We build its track from concept blocks, then watch it race a top-down road, flicking finished-task chips off to the sides. Soft shadows, rounded forms, a subtle floor. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a soft robot mascot, a metaphor that carries the whole piece (F1 cars need a track), concept blocks stacking into a foundation, a top-down road with task chips flying off.",
+ "story": [
+  {
+   "from": 0,
+   "to": 75,
+   "what": "hook: the mascot bounces in and revs; caption 'Your assistant is a race car.'"
+  },
+  {
+   "from": 75,
+   "to": 195,
+   "what": "it lurches forward and stalls in a flat empty desert; caption 'with no track'"
+  },
+  {
+   "from": 195,
+   "to": 345,
+   "what": "four blocks drop and stack into a foundation under it: 'Calendars', 'Preferences', 'Rules', 'History'; caption 'Give it a track.'"
+  },
+  {
+   "from": 345,
+   "to": 510,
+   "what": "top-down: a road draws itself toward us; the mascot races down it; chips ('invite sent', 'room booked', 'agenda', 'reminder') flick off both sides"
+  },
+  {
+   "from": 510,
+   "to": 630,
+   "what": "a person figure appears at a checkpoint; the mascot stops, the person taps 'Yes' on one card; caption 'you keep the decisions that matter'"
+  },
+  {
+   "from": 630,
+   "to": 720,
+   "what": "sign-off: mascot waves beside 'Oriel'; caption 'find a time that works for everyone'"
+  }
+ ],
+ "sizes": "Square frames the mascot larger with captions above; the road scene becomes a tighter crop.",
+ "sound": "beatScore soft at 120 bpm with a rev (a rising tone) at the start, thumps as blocks land, whooshes as chips fly off, and the sign-off.",
+ "teaches": "A mascot plus one metaphor carries a whole explainer: every beat is the metaphor doing something new.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "A mascot-led metaphor: a soft, rounded robot mascot (two stacked rounded bodies, a visor, a tiny antenna) is a race car without a track; we build its track from concept blocks, then watch it race a top-down road, flicking finished-task chips off to the sides. Soft shadows, rounded forms, a subtle floor. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a soft loop at 120 bpm with a rising rev at the start, thumps as blocks land, whooshes as chips fly off and a short sign-off.",
+  "sizes": "frame the mascot larger with captions above it, and crop the road scene tighter."
+ }
+}

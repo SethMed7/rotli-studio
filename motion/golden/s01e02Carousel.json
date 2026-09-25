@@ -2,17 +2,14 @@
  "piece": "s01e02Carousel",
  "W": 1080,
  "H": 1350,
- "frames": 90,
+ "frames": 60,
  "audio": null,
  "hashes": {
-  "0": "97a691870f92a4aa5d47f8bac194fe36",
-  "14": "3dc0c63ba331fe07e1be6423f5e9b130",
-  "29": "6e96665673f0f414366a095572907b6e",
-  "30": "8d2e49addf4ca38f1f84f9ea00154fbc",
-  "44": "08fb269b7aa18c3d6917c9c8cfcda753",
-  "59": "85add45cd7a1c6f852ef56faee170217",
-  "60": "acc241de75639e529ae577c40cc75ee3",
-  "74": "932f76ca56221c230941b887c74468f6",
-  "89": "ff84f1b7d144648648f9cf90a6de044f"
+  "0": "d1c95d91a2f23324b8078d57fc187c54",
+  "14": "93da7b0726160dd89388d68a7ba9ec87",
+  "29": "66c6fdfb5ceb5e57953424021aec4d26",
+  "30": "ddb3f4f030bd55c966050f21fc1eab64",
+  "44": "3e9479c7580e5fbf5415df9134c61a93",
+  "59": "f5fa4567dc0940ce7e77af011095f2fc"
  }
 }

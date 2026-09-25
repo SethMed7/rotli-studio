@@ -1,6 +1,9 @@
-// BEHIND THE FILM: a 7-slide carousel (1080x1350) that follows the 60-second film post: how it was drawn in
-// code, and where everything that made it lives. Film frames are re-rendered crisp via studio/reframe; every
-// claim is checkable (the engine, the brief, the goldens and the studio are all public).
+// BEHIND THE FILM: a 4-slide carousel (1080x1350; X takes at most four images) that follows the 60-second
+// film post: how it was drawn in code, and where everything that made it lives. 1 the hook · 2 a brief, then an
+// agent draws it · 3 checked to the pixel, scored sample by sample · 4 all of it is open. X crops a four-image
+// post toward each image's centre, so every slide keeps its key line near the middle band (y≈405–945). Film
+// frames are re-rendered crisp via studio/reframe; every claim is checkable (the engine, the brief, the goldens
+// and the studio are all public).
 import type { Ctx, Env } from "./core";
 import type { Film } from "./film";
 import { rotliStory } from "./rotliStory";
@@ -11,7 +14,7 @@ import { reframe } from "./studio/reframe";
 import { FONTS, FORMATS } from "./studio/stage";
 
 const [W, H] = FORMATS["ig-portrait"],
-  N = 7;
+  N = 4;
 type Box = { x: number; y: number; w: number; h: number };
 const FULL: Box = { x: 0, y: 0, w: 1920, h: 1080 };
 /** a film frame in a rounded, inked frame; returns the bottom edge */
@@ -20,12 +23,6 @@ const framed = (ctx: Ctx, env: Env, f: number, crop: Box, x: number, y: number, 
   fillRR(ctx, x - 3, y - 3, w + 6, h + 6, 21, dark ? C.nightBorder : C.ink);
   reframe(ctx, env, rotliStory, f, crop, { x, y, w, h, r: 18 });
   return y + h;
-};
-const head = (ctx: Ctx, l: number, title: string, sub: string[], dark = false, hi?: string) => {
-  caption(ctx, [title], W / 2, 170, 1, l, { size: 72, color: dark ? C.nightText : C.cocoa, hi });
-  sub.forEach((s, i) =>
-    text(ctx, s, W / 2, 248 + i * 46, { size: 35, weight: 500, align: "center", color: dark ? C.nightMuted : C.muted }),
-  );
 };
 const pageNo = (ctx: Ctx, n: number, dark = false) => {
   for (let i = 0; i < N; i++) {
@@ -68,12 +65,12 @@ const waveform = () => {
 };
 
 const SLIDES: ((ctx: Ctx, l: number, env: Env) => void)[] = [
-  // 1 · the cover: the film's sunset, full bleed
+  // 1 · the cover: the film's sunset, full bleed, the title in the middle band
   (ctx, l, env) => {
     reframe(ctx, env, rotliStory, 1560, { x: 380, y: 0, w: 864, h: 1080 }, { x: 0, y: 0, w: W, h: H });
-    fillRR(ctx, 80, 110, W - 160, 300, 32, C.surface, C.ink, 3);
-    caption(ctx, ["How we drew a film", "in code."], W / 2, 210, 1, l, { size: 72, hi: "code" });
-    text(ctx, "60 seconds · every frame a function", W / 2, 370, {
+    fillRR(ctx, 80, 420, W - 160, 280, 32, C.surface, C.ink, 3);
+    caption(ctx, ["How we drew a film", "in code."], W / 2, 510, 1, l, { size: 72, hi: "code" });
+    text(ctx, "60 seconds · every frame a function", W / 2, 665, {
       size: 32,
       weight: 500,
       align: "center",
@@ -82,141 +79,100 @@ const SLIDES: ((ctx: Ctx, l: number, env: Env) => void)[] = [
     fillRR(ctx, W - 250, H - 130, 190, 70, 35, C.surface, C.ink, 3);
     text(ctx, "swipe →", W - 155, H - 83, { size: 30, weight: 600, align: "center" });
   },
-  // 2 · every frame is a function
+  // 2 · a brief (the film as data) → an agent writes the scenes → the frame it draws
   (ctx, l, env) => {
     envGround(ctx, l, "band", { w: W, h: H, field: false });
-    head(
-      ctx,
-      l,
-      "Every frame is a function.",
-      ["No timeline, no keyframes in an app.", "Code draws frame 0 to frame 1799."],
-      false,
-      "function",
-    );
-    const y = code(ctx, 70, 390, W - 140, [
-      "// the whole contract",
+    caption(ctx, ["It starts with a brief."], W / 2, 110, 1, l, { size: 56, hi: "brief" });
+    code(ctx, 70, 150, W - 140, [
+      "// the film, as data: story, scenes, claims",
+      '"scenes": ["ferry", "just write", …]',
+      '"claims": "rotli.co wording only"',
+      "// every frame is a function",
       "renderFrame(film, ctx, frame)",
-      "// same frame in, same pixels out",
-      "frame 900 → the Librarian at night",
     ]);
-    // five frames from the film, labelled with their frame numbers: three over two
-    [45, 470, 900, 1200, 1560].forEach((f, i) => {
-      const row = i < 3 ? 0 : 1,
-        col = row ? i - 3 : i,
-        w = 296,
-        x = row ? W / 2 - w - 12 + col * (w + 24) : 70 + col * (w + 24),
-        b = framed(ctx, env, f, FULL, x, y + 60 + row * 250, w);
-      text(ctx, `frame ${f}`, x + w / 2, b + 40, { size: 26, font: FONT.mono, align: "center", color: C.muted });
+    caption(ctx, ["An agent draws it."], W / 2, 532, 1, l, { size: 66, hi: "agent" });
+    ["Claude Opus 5.5 wrote each scene in code", "on the open-source anidoodle engine."].forEach((s, i) =>
+      text(ctx, s, W / 2, 596 + i * 44, { size: 34, weight: 500, align: "center", color: C.muted }),
+    );
+    framed(ctx, env, 900, FULL, 160, 690, W - 320);
+    text(ctx, "The prompts and agent runs are kept.", W / 2, 1200, {
+      size: 32,
+      weight: 600,
+      align: "center",
+      color: C.cocoa,
     });
     pageNo(ctx, 1);
   },
-  // 3 · it starts with a brief
-  (ctx, l, env) => {
-    envGround(ctx, l, "base", { w: W, h: H, field: false });
-    head(
-      ctx,
-      l,
-      "It starts with a brief.",
-      ["The story, the scenes, and every claim", "a caption is allowed to make."],
-      false,
-      "brief",
-    );
-    const y = code(ctx, 70, 390, W - 140, [
-      "// the film, as data",
-      '"story": "a quokka on Rottnest"',
-      '"scenes": ["ferry", "just write",',
-      '  "one folder", "the Librarian", …]',
-      '"claims": "rotli.co wording only"',
-    ]);
-    framed(ctx, env, 45, FULL, 150, y + 60, W - 300);
-    pageNo(ctx, 2);
-  },
-  // 4 · an agent draws it
-  (ctx, l, env) => {
-    nightGround(ctx, l, 7, W, H);
-    head(
-      ctx,
-      l,
-      "An agent draws it.",
-      ["Claude Opus 5.5 wrote each scene in code", "on the open-source anidoodle engine."],
-      true,
-      "agent",
-    );
-    framed(ctx, env, 900, { x: 700, y: 120, w: 1220, h: 900 }, 70, 380, W - 140, true);
-    fillRR(ctx, 110, 1030, W - 220, 110, 22, C.nightSurface, C.nightBorder, 2);
-    text(ctx, "The prompts and agent runs are kept.", W / 2, 1098, {
-      size: 34,
-      weight: 600,
-      align: "center",
-      color: C.nightText,
-    });
-    pageNo(ctx, 3, true);
-  },
-  // 5 · checked frame by frame
+  // 3 · checked to the pixel (light, top) and scored in code (night, bottom)
   (ctx, l, env) => {
     envGround(ctx, l, "band", { w: W, h: H, field: false });
-    head(
-      ctx,
-      l,
-      "Checked frame by frame.",
-      ["Contact sheets for the eye.", "Hashes for everything else."],
-      false,
-      "frame",
+    caption(ctx, ["Checked frame by frame."], W / 2, 105, 1, l, { size: 64, hi: "Checked" });
+    text(ctx, "Contact sheets for the eye. Hashes for everything else.", W / 2, 162, {
+      size: 32,
+      weight: 500,
+      align: "center",
+      color: C.muted,
+    });
+    [60, 470, 760, 1050, 1330, 1700].forEach((f, i) =>
+      framed(ctx, env, f, FULL, 72 + (i % 3) * 318, 200 + Math.floor(i / 3) * 187, 300),
     );
-    const frames = [60, 330, 470, 600, 760, 1050, 1200, 1380, 1700];
-    frames.forEach((f, i) => framed(ctx, env, f, FULL, 70 + (i % 3) * 318, 380 + Math.floor(i / 3) * 190, 302));
-    fillRR(ctx, 190, 985, W - 380, 96, 48, C.olive, C.ink, 3);
-    text(ctx, "golden: SAME", W / 2, 1047, {
+    fillRR(ctx, 220, 585, W - 440, 90, 45, C.olive, C.ink, 3);
+    text(ctx, "golden: SAME", W / 2, 644, {
       size: 38,
       weight: 600,
       font: FONT.mono,
       align: "center",
       color: C.surface,
     });
-    text(ctx, "If a pixel moves, the build says so.", W / 2, 1150, {
+    text(ctx, "If a pixel moves, the build says so.", W / 2, 728, {
       size: 32,
       weight: 500,
       align: "center",
-      color: C.muted,
+      color: C.cocoa,
     });
-    pageNo(ctx, 4);
-  },
-  // 6 · the sound is code too
-  (ctx, l, env) => {
+    // the night half: the film's own soundtrack as a waveform
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 775, W, H - 775);
+    ctx.clip();
     nightGround(ctx, l, 19, W, H);
-    head(
-      ctx,
-      l,
-      "The sound is code, too.",
-      ["The music box and the waves", "are written sample by sample."],
-      true,
-      "code",
-    );
+    ctx.restore();
+    caption(ctx, ["The sound is code, too."], W / 2, 855, 1, l, { size: 60, color: C.nightText, hi: "code" });
+    text(ctx, "The music box and the waves are written sample by sample.", W / 2, 905, {
+      size: 30,
+      weight: 500,
+      align: "center",
+      color: C.nightMuted,
+    });
     const w = waveform(),
       x0 = 90,
       bw = (W - 180) / w.length,
-      mid = 640;
+      mid = 1075;
     for (let i = 0; i < w.length; i++) {
-      const h = Math.max(3, w[i]! * 190);
+      const h = Math.max(3, w[i]! * 105);
       ctx.fillStyle = i % 11 === 0 ? C.clay : C.nightText;
       ctx.fillRect(x0 + i * bw, mid - h, Math.max(1.5, bw - 1.5), h * 2);
     }
-    text(ctx, "0:00", x0, mid + 250, { size: 26, font: FONT.mono, color: C.nightMuted });
-    text(ctx, "1:00", W - x0, mid + 250, { size: 26, font: FONT.mono, align: "right", color: C.nightMuted });
-    framed(ctx, env, 1560, FULL, 250, 930, W - 500, true);
-    pageNo(ctx, 5, true);
+    text(ctx, "0:00", x0, 1240, { size: 28, font: FONT.mono, color: C.nightMuted });
+    text(ctx, "1:00", W - x0, 1240, { size: 28, font: FONT.mono, align: "right", color: C.nightMuted });
+    pageNo(ctx, 2, true);
   },
-  // 7 · all of it is open
-  (ctx, l) => {
+  // 4 · all of it is open: the film's frames by number, the studio, the sign-off
+  (ctx, l, env) => {
     envGround(ctx, l, "base", { w: W, h: H });
-    caption(ctx, ["All of it is open."], W / 2, 250, 1, l, { size: 80, hi: "open" });
+    [45, 900, 1560].forEach((f, i) => {
+      const x = 72 + i * 318,
+        b = framed(ctx, env, f, FULL, x, 110, 300);
+      text(ctx, `frame ${f}`, x + 150, b + 44, { size: 28, font: FONT.mono, align: "center", color: C.muted });
+    });
+    caption(ctx, ["All of it is open."], W / 2, 490, 1, l, { size: 84, hi: "open" });
     ["The engine, the briefs, the prompts,", "the agent runs and every render."].forEach((s, i) =>
-      text(ctx, s, W / 2, 330 + i * 46, { size: 35, weight: 500, align: "center", color: C.muted }),
+      text(ctx, s, W / 2, 566 + i * 46, { size: 35, weight: 500, align: "center", color: C.muted }),
     );
-    fillRR(ctx, 150, 470, W - 300, 150, 30, C.surface, C.ink, 3);
-    text(ctx, "studio.rotli.co", W / 2, 562, { size: 54, weight: 600, align: "center", color: C.cocoa });
-    lockup(ctx, W / 2, 860, 1, l, { s: 0.85, url: true });
-    pageNo(ctx, 6);
+    fillRR(ctx, 150, 660, W - 300, 140, 30, C.surface, C.ink, 3);
+    text(ctx, "studio.rotli.co", W / 2, 748, { size: 54, weight: 600, align: "center", color: C.cocoa });
+    lockup(ctx, W / 2, 1070, 1, l, { s: 0.75, url: true });
+    pageNo(ctx, 3);
   },
 ];
 

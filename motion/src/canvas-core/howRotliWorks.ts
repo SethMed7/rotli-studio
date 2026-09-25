@@ -1,6 +1,8 @@
-// HOW ROTLI WORKS — a 7-slide Instagram carousel (1080x1350). Each slide is one shot; the export
-// takes each shot's last frame. Film footage is re-rendered crisp via studio/reframe; claims use
-// rotli.co's own wording (/features, /privacy).
+// HOW ROTLI WORKS — a 4-slide carousel (1080x1350; X takes at most four images). Each slide is one shot;
+// the export takes each shot's last frame. X shows four images as a 2x2 grid cropped toward each image's
+// centre, so every slide keeps its key line and the heart of its picture near the middle band (y≈405–945).
+// 1 meet Rotli · 2 just write, one folder you own · 3 the Librarian, secure, chat · 4 make it yours.
+// Film footage is re-rendered crisp via studio/reframe; claims use rotli.co's own wording (/features, /privacy).
 import type { Ctx, Env } from "./core";
 import type { Film } from "./film";
 import { rotliStory } from "./rotliStory";
@@ -11,7 +13,8 @@ import { drawLook } from "./studio/look";
 import { reframe } from "./studio/reframe";
 import { FONTS, FORMATS, lookAssets } from "./studio/stage";
 
-const [W, H] = FORMATS["ig-portrait"];
+const [W, H] = FORMATS["ig-portrait"],
+  N = 4;
 type Box = { x: number; y: number; w: number; h: number };
 const framed = (ctx: Ctx, env: Env, f: number, crop: Box, x: number, y: number, w: number, dark = false) => {
   const h = (w * crop.h) / crop.w;
@@ -19,25 +22,43 @@ const framed = (ctx: Ctx, env: Env, f: number, crop: Box, x: number, y: number, 
   reframe(ctx, env, rotliStory, f, crop, { x, y, w, h, r: 24 });
   return y + h;
 };
-const head = (ctx: Ctx, l: number, title: string, sub: string[], dark = false, hi?: string) => {
-  caption(ctx, [title], W / 2, 170, 1, l, { size: 76, color: dark ? C.nightText : C.cocoa, hi });
-  sub.forEach((s, i) =>
-    text(ctx, s, W / 2, 250 + i * 46, { size: 36, weight: 500, align: "center", color: dark ? C.nightMuted : C.muted }),
-  );
-};
 const pageNo = (ctx: Ctx, n: number, dark = false) => {
-  for (let i = 0; i < 7; i++) {
+  for (let i = 0; i < N; i++) {
     ctx.fillStyle = i === n ? C.clay : dark ? C.nightBorder : C.border;
     ctx.beginPath();
-    ctx.arc(W / 2 + (i - 3) * 30, H - 60, i === n ? 9 : 7, 0, 6.29);
+    ctx.arc(W / 2 + (i - (N - 1) / 2) * 30, H - 60, i === n ? 9 : 7, 0, 6.29);
     ctx.fill();
   }
 };
+/** one row of slide 3 (390 tall): a left-aligned heading and sub lines, centred beside a 4:3 film crop */
+const ROW = 390;
+const row = (
+  ctx: Ctx,
+  l: number,
+  env: Env,
+  y: number,
+  title: string[],
+  hi: string,
+  sub: string[],
+  f: number,
+  crop: Box,
+  dy = 0, // nudges the text block (the last row sits low, clear of X's centre crop)
+) => {
+  const block = 40 + (title.length - 1) * 62 + 34 + sub.length * 40,
+    y0 = y + (ROW - block) / 2 + 40 + dy;
+  caption(ctx, title, 60, y0, 1, l, { size: 54, color: C.nightText, align: "left", hi, lead: 62 });
+  sub.forEach((s, i) =>
+    text(ctx, s, 60, y0 + (title.length - 1) * 62 + 64 + i * 40, { size: 30, weight: 500, color: C.nightMuted }),
+  );
+  framed(ctx, env, f, crop, W - 60 - (ROW * 4) / 3, y, (ROW * 4) / 3, true);
+};
 const SLIDES: ((ctx: Ctx, l: number, env: Env) => void)[] = [
+  // 1 · the cover: the quokka at Thomson Bay, the title in the middle band
   (ctx, l, env) => {
-    reframe(ctx, env, rotliStory, 140, { x: 720, y: 0, w: 864, h: 1080 }, { x: 0, y: 0, w: W, h: H });
-    caption(ctx, ["Meet Rotli."], W / 2, 190, 1, l, { size: 110, hi: "Rotli" });
-    text(ctx, "A calm notes app. Your files stay yours.", W / 2, 270, {
+    reframe(ctx, env, rotliStory, 140, { x: 660, y: 160, w: 736, h: 920 }, { x: 0, y: 0, w: W, h: H });
+    fillRR(ctx, 80, 420, W - 160, 240, 32, C.surface, C.ink, 3);
+    caption(ctx, ["Meet Rotli."], W / 2, 548, 1, l, { size: 110, hi: "Rotli" });
+    text(ctx, "A calm notes app. Your files stay yours.", W / 2, 626, {
       size: 38,
       weight: 500,
       align: "center",
@@ -46,68 +67,65 @@ const SLIDES: ((ctx: Ctx, l: number, env: Env) => void)[] = [
     fillRR(ctx, W - 250, H - 130, 190, 70, 35, C.surface, C.ink, 3);
     text(ctx, "swipe →", W - 155, H - 83, { size: 30, weight: 600, align: "center" });
   },
+  // 2 · just write, into one folder you own: the note above, the folder below, the line between
   (ctx, l, env) => {
     envGround(ctx, l, "band", { w: W, h: H, field: false });
-    head(ctx, l, "Just write.", ["Markdown renders as you type.", "⌥Space opens it from anywhere."], false, "write");
-    framed(ctx, env, 505, { x: 430, y: 175, w: 1000, h: 770 }, 60, 400, 960);
+    framed(ctx, env, 505, { x: 120, y: 150, w: 1680, h: 800 }, 90, 60, 900);
+    caption(ctx, ["Just write.", "One folder you own."], W / 2, 590, 1, l, { size: 66, lead: 76, hi: "own" });
+    ["Markdown renders as you type.", "Every note is a plain file. Open it in any editor."].forEach((s, i) =>
+      text(ctx, s, W / 2, 730 + i * 44, { size: 32, weight: 500, align: "center", color: C.muted }),
+    );
+    framed(ctx, env, 710, { x: 220, y: 270, w: 1420, h: 690 }, 90, 812, 900);
     pageNo(ctx, 1);
   },
-  (ctx, l, env) => {
-    envGround(ctx, l, "base", { w: W, h: H, field: false });
-    head(ctx, l, "One folder.", ["Every note is a plain file you own.", "Open it in any editor."], false, "folder");
-    framed(ctx, env, 710, { x: 230, y: 300, w: 700, h: 560 }, 230, 360, 620);
-    framed(ctx, env, 710, { x: 985, y: 285, w: 880, h: 330 }, 90, 900, 900);
-    pageNo(ctx, 2);
-  },
+  // 3 · three rows on night: the Librarian, secure notes (the middle band), chat
   (ctx, l, env) => {
     nightGround(ctx, l, 7, W, H);
-    head(
+    row(
       ctx,
       l,
-      "A Librarian that files.",
-      ["It tags and links your notes,", "and never rewrites your words."],
-      true,
+      env,
+      45,
+      ["A Librarian", "that files."],
       "files",
+      ["It tags and links your", "notes, and never", "rewrites your words."],
+      950,
+      { x: 800, y: 215, w: 1120, h: 840 },
     );
-    framed(ctx, env, 950, { x: 840, y: 180, w: 1060, h: 860 }, 60, 390, 960, true);
-    pageNo(ctx, 3, true);
-  },
-  (ctx, l, env) => {
-    nightGround(ctx, l, 19, W, H);
-    head(ctx, l, "Secure stays home.", ["Secure notes never reach", "a remote model."], true, "home");
-    framed(ctx, env, 1330, { x: 400, y: 150, w: 1120, h: 900 }, 60, 400, 960, true);
-    pageNo(ctx, 4, true);
-  },
-  (ctx, l, env) => {
-    envGround(ctx, l, "band", { w: W, h: H, field: false });
-    head(
+    row(ctx, l, env, 460, ["Secure stays", "home."], "home", ["Secure notes never", "reach a remote model."], 1330, {
+      x: 360,
+      y: 105,
+      w: 1300,
+      h: 975,
+    });
+    row(
       ctx,
       l,
-      "Ask your notes.",
-      ["Chat reads the vault you are in", "and answers from what is there."],
-      false,
+      env,
+      875,
+      ["Ask your", "notes."],
       "notes",
+      ["Chat reads the vault", "you are in and answers", "from what is there."],
+      1540,
+      { x: 400, y: 0, w: 1440, h: 1080 },
+      30,
     );
-    framed(ctx, env, 1540, { x: 760, y: 150, w: 1040, h: 780 }, 60, 400, 960);
-    pageNo(ctx, 5);
+    pageNo(ctx, 2, true);
   },
+  // 4 · make it yours, then the sign-off
   (ctx, l, env) => {
     envGround(ctx, l, "base", { w: W, h: H });
-    lockup(ctx, W / 2, 330, 1, l, { s: 0.85 });
+    caption(ctx, ["Make it yours."], W / 2, 190, 1, l, { size: 88, hi: "yours" });
+    text(ctx, "Seven colors, a hat, glasses.", W / 2, 268, { size: 38, weight: 500, align: "center", color: C.muted });
     [
       ["waving-green-glasses", 250],
       ["celebrating-ocean-hat", 540],
       ["waving-berry-hat", 830],
     ].forEach(([id, x], i) =>
-      drawLook(ctx, env, { id: id as string, x: x as number, y: 1170, h: 560, f: l + i * 30, blink: 0 }),
+      drawLook(ctx, env, { id: id as string, x: x as number, y: 920, h: 540, f: l + i * 30, blink: 0 }),
     );
-    text(ctx, "Make it yours: seven colors, a hat, glasses.", W / 2, 1245, {
-      size: 34,
-      weight: 500,
-      align: "center",
-      color: C.muted,
-    });
-    pageNo(ctx, 6);
+    lockup(ctx, W / 2, 1100, 1, l, { s: 0.7 });
+    pageNo(ctx, 3);
   },
 ];
 export const howRotliWorks: Film = {

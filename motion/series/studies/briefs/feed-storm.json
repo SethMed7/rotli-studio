@@ -1,0 +1,59 @@
+{
+ "id": "feed-storm",
+ "no": 18,
+ "title": "Feed Storm",
+ "module": "src/canvas-core/studies/feedStorm.ts",
+ "pieces": {
+  "vertical": "feedStorm",
+  "landscape": "feedStormLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 690,
+ "palette": "slate",
+ "style": "A notification feed as weather: message bubbles and pings rain in and stack into a scrolling column, faster and faster, with motion blur on the scroll; then one calm hand (a cursor) sorts them: most fold away, three are grouped into one decision card. Clean UI, one alarm colour, one calm colour. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): complaint bubbles stacking and scrolling, a feed that overwhelms, then gets sorted into a single decision.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: a single ping drops in: 'can we move it?'; caption '47 messages'"
+  },
+  {
+   "from": 60,
+   "to": 240,
+   "what": "pings rain in and stack ('what time works?', 'I'm out Tue', 'sorry, conflict'), the column scrolling faster with motion blur; a counter climbs to 47"
+  },
+  {
+   "from": 240,
+   "to": 390,
+   "what": "everything freezes; a cursor sweeps: 44 bubbles fold away into a thin stack labelled 'handled'"
+  },
+  {
+   "from": 390,
+   "to": 540,
+   "what": "the remaining 3 slide together into one card: 'Decide: Thu 15:00 or Fri 10:00?' with two buttons"
+  },
+  {
+   "from": 540,
+   "to": 630,
+   "what": "the cursor taps 'Thu 15:00'; the card turns calm; caption 'one decision'"
+  },
+  {
+   "from": 630,
+   "to": 690,
+   "what": "sign-off: 'Oriel' with the counter now at 1"
+  }
+ ],
+ "sizes": "Landscape runs the feed on the left third and the decision card and captions on the right.",
+ "sound": "beatScore drive at 120 bpm with pops for each ping (thinned as they speed up), a whoosh on the sweep, a hit on the decision and the sign-off.",
+ "teaches": "Overwhelm is speed plus density; relief is the same objects slowing down and collapsing into one.",
+ "portable": {
+  "fonts": "Inter for the UI, Instrument Serif and Instrument Serif Italic for captions",
+  "style": "A notification feed as weather: message bubbles and pings rain in and stack into a scrolling column, faster and faster with motion blur; then a cursor sorts them: most fold away, three are grouped into one decision card. Clean UI, one alarm colour, one calm colour. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a driving loop at 120 bpm with pops for each ping (thinned as they speed up), a whoosh on the sweep, a hit on the decision and a short sign-off.",
+  "sizes": "run the feed on the left third and put the decision card and captions on the right."
+ }
+}

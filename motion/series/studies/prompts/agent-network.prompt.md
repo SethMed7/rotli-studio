@@ -1,0 +1,63 @@
+You are building ONE study for the open-source rotli studio: a piece that shows the studio works for ANY product,
+style and size, not only Rotli. Work ONLY in ~/rotli-studio/motion (a Node/npm project; use `node`, not bun; `~` is
+your home directory, expand it to an absolute path for file tools). In every shell command use absolute paths or
+`cd ~/rotli-studio/motion && …` (the shell's cwd resets between commands).
+
+YOUR STUDY: "Agent Network" (study 16), brief at `series/studies/briefs/agent-network.json` (read it first; it is the contract).
+Pieces to export from `src/canvas-core/studies/agentNetwork.ts`: `agentNetwork` (landscape), `agentNetworkVertical` (vertical). Primary size: landscape.
+
+REQUIRED READING, in order:
+1. `series/studies/bible.md`: what a study is and the rules every study keeps.
+2. `src/canvas-core/studies/motionResume.ts`: THE reference study. Match its structure: a `make(size, id)` factory
+   returning a Film, one continuous `paint(ctx, env, F)` of a fractional frame, shots that only name the sections,
+   `layout(size)` for per-size design, the pack for every colour and font, `beatScore` for sound.
+3. The brand-neutral kit, `src/canvas-core/kit/`: `pack.ts` (usePack, palettes, faces), `sizes.ts` (SIZES, layout),
+   `motion.ts` (clamp, lerp, prog, window01, ease, bezier, spring, track with loop, phase), `type.ts` (text, measure,
+   letters, timed), `ui.ts` (rr, card, phone, toggle, check), `depth.ts` (iso, block, blockGrid, project, spiral),
+   `blur.ts` (motionBlur), `score.ts` (beatScore), `captions.ts` (ladder: the explainer-reel caption, words stacked in
+   mixed sizes with one accent italic key word, arriving one at a time).
+4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; use the palette your brief names;
+   faces Inter, Instrument Serif, Instrument Serif Italic, JetBrains Mono).
+5. Only if your brief names them: `src/canvas-core/styles/` (riso, print, drafting, storybook…) and `src/canvas-core/core.ts`
+   (Gfx, PENCIL/RISOLINE media, halftone, rng, fractal). Read their headers, not every line.
+
+HARD RULES:
+1. Create/modify ONLY `src/canvas-core/studies/agentNetwork.ts` and its hosts `src/hosts/page-<pieceId>.ts` (one per piece, copy
+   `src/hosts/page-motionResume.ts`). Do NOT edit the kit, the pack, tools, pieces.json, series.json, goldens or any other
+   piece. If you need a helper, define it in your module. Do not register the pieces; the maintainer does.
+2. Never import from `rotli/`, `studio/` or `brand/brand.json`: a study must not look or sound like Rotli. No quokka.
+3. Follow the brief's story beats and timing (you may retime inside a beat; every shot must start on the beat grid:
+   one beat = 60 / bpm × fps frames; `validate()` in film.ts refuses anything else). Frames: 720 at 30 fps.
+4. Design EACH size (the brief's "sizes" note); a vertical re-stacks, it never just crops. Keep text inside `layout().safe`.
+5. Quality bar: nothing overlaps unintentionally, no text under 22 px (at 1080 short side), flat colour, depth from
+   shadow only where the style allows, every hold keeps moving (a slow push-in, drift or ambient motion).
+6. Copy is invented for the fictional product; never claim anything about a real company or person.
+7. Sound: beatScore soft at 120 bpm with a blip for every packet hop, a hit when the time resolves and the sign-off.
+
+VERIFY BY LOOKING, and iterate until right:
+- `node tools/frames.mjs <pieceId> <8–12 frames across the piece> --out /tmp/agent-network --sheet /tmp/agent-network.png --cols 6`,
+  then READ the PNG (and full frames in /tmp/agent-network/ where detail matters). Do this for EVERY size.
+- videos: `node tools/render.mjs <pieceId> --out /tmp/<pieceId>.mp4`, then `node tools/still-frames.mjs /tmp/<pieceId>.mp4`
+  must print an EMPTY `windows:` line.
+- loops: also `node tools/loop-seam.mjs /tmp/<pieceId>.mp4` must print SEAMLESS.
+- loudness (videos): `ffmpeg -nostats -i /tmp/<pieceId>.mp4 -af ebur128 -f null - 2>&1 | grep " I:"` should be about −16 LUFS.
+- `npx tsc --noEmit -p tsconfig.json` must print nothing.
+- Do not commit, do not touch ~/rotli, do not run `studio.mjs render all` or golden.
+
+Report back: files created, the final sheet paths, still-frames / loop-seam / loudness results, what you would improve
+with more time, and anything you could not make work.
+
+--- THE STUDY (from series/studies/briefs/agent-network.json) ---
+Agent Network · study 16 · video · 720 frames at 30 fps, 120 bpm · palette "terminal"
+Style: A system map: agents are nodes (circles with a small glyph and a mono label) on a dark ground; dotted edges draw between them; messages travel along edges as small glowing packets; thin orbit ellipses spin around the busiest node; a log panel prints each handoff in mono. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.
+Learns from: Founder explainer reels (Instagram, @gregisenberg's team): a node diagram with dotted connections and orbit ellipses around a hub, handoffs between agents, a dark square with a starburst of connections.
+Beats (frames · what):
+  - 0–75 · hook: one node blinks on, labelled 'request: one hour, four people'
+  - 75–225 · four agent nodes appear (Calendar, People, Rooms, Notes) and dotted edges draw to the hub
+  - 225–405 · packets travel: hub → Calendar → People (conflict!) → Calendar; the log prints each handoff
+  - 405–555 · orbit ellipses spin up around the hub as it resolves; one packet turns yellow: 'Thu 15:00'
+  - 555–660 · all nodes flash green in sequence; the log prints 'booked · 4/4 accepted'
+  - 660–720 · sign-off: the network collapses into a single node that becomes 'Oriel'
+Sizes: Vertical stacks the network in the upper two thirds and the log panel below.
+Teaches: A system reads when you show traffic, not boxes: let packets move along the edges and log every handoff.
+

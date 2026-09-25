@@ -1,0 +1,54 @@
+{
+ "id": "numbered-steps",
+ "no": 14,
+ "title": "Numbered Steps",
+ "module": "src/canvas-core/studies/numberedSteps.ts",
+ "pieces": {
+  "vertical": "numberedSteps",
+  "square": "numberedStepsSquare"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 720,
+ "palette": "butter",
+ "style": "A listicle reel: giant numerals (1, 2, 3) fill the frame on a solid colour field, each step's words stack beside the numeral, and a small illustrated icon scene demonstrates it. The numeral morphs from one to the next. Bold, flat, poster-like. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): giant step numerals with the words stacked beside them, a numbered card (1-2-3) summary, a call to action at the end.",
+ "story": [
+  {
+   "from": 0,
+   "to": 60,
+   "what": "hook: '3 steps to a calmer week' in a ladder; three dots count 1-2-3"
+  },
+  {
+   "from": 60,
+   "to": 240,
+   "what": "a giant '1' slams in; beside it 'Block your deep work'; an icon of a calendar gets three blue blocks"
+  },
+  {
+   "from": 240,
+   "to": 420,
+   "what": "the 1 morphs into a '2'; 'Batch your meetings'; scattered meeting chips gather into one afternoon"
+  },
+  {
+   "from": 420,
+   "to": 600,
+   "what": "the 2 morphs into a '3'; 'Let the calendar ask'; a chat bubble 'find an hour' turns into a booked chip"
+  },
+  {
+   "from": 600,
+   "to": 720,
+   "what": "summary card lists 1-2-3 with ticks; CTA: 'Comment \"calm\" for the checklist'; 'Oriel' small underneath"
+  }
+ ],
+ "sizes": "Square puts the numeral left and the words right at a smaller size.",
+ "sound": "beatScore drive at 120 bpm with a hit on each numeral slam, ticks on icon moves and the sign-off under the CTA.",
+ "teaches": "A listicle's structure is its animation: the numeral is the transition, so every step feels like one more beat of the same idea.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "A listicle reel: giant numerals (1, 2, 3) fill the frame on a solid colour field, each step's words stack beside the numeral, and a small illustrated icon scene demonstrates it; the numeral morphs from one to the next. Bold, flat, poster-like. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a driving loop at 120 bpm with a hit on each numeral slam, ticks on icon moves and a short sign-off under the call to action.",
+  "sizes": "put the numeral on the left and the words on the right at a smaller size."
+ }
+}

@@ -32,9 +32,9 @@ about the engine is Rotli-only.
 | **Season One: The Island Keeps Everything** | Ten one-minute story episodes, each cut into a vertical, a carousel and a card. |
 | **Rotli in 30 Seconds** | Eight feature explainers, one feature each, shown in the app. |
 | **Looks and Themes** | Shorts and stills about the companion's looks and the app's theme environments. |
-| **Explainer Carousels** | Standalone carousels: how Rotli works in seven slides, and how its film was drawn in code. |
+| **Explainer Carousels** | Standalone carousels: how Rotli works in four slides, and how its film was drawn in code. |
 | **Atmosphere Reel** | Every mood a scene can be set in, three seconds each. |
-| **Studies** | Pieces for a fictional product, **Oriel**, in other styles and every size: kinetic type, particles, data, geometry, print, blueprint, floating UI. They show the studio is not only Rotli's. |
+| **Studies** | Pieces for a fictional product, **Oriel**, in 21 styles and every size: kinetic type, particles, data, geometry, print, blueprint, floating UI, founder-explainer reels (caption ladders, isometric stacks, pixel parables, paper collage, agent maps, dot grids, before/after) and a one-take morph launch. They show the studio is not only Rotli's. |
 
 Every piece opens down to its scenes, the cuts made from it, its brief, its exact prompt, the agent run
 that built it (prompt, follow-ups, report, cost), its source and its golden: the hashes that prove it
@@ -59,8 +59,8 @@ Or skip the studio entirely: the **Prompt library** on [studio.rotli.co](https:/
 prompt for every study. Paste one into Claude and get a single HTML file in that style, with nothing to install.
 
 Point the studio at your own brand with a **brand pack** (palettes, fonts with their licences) and the
-brand-neutral kit: sizes as data (landscape, vertical, square, portrait), springs, kinetic type, UI, depth,
-motion blur and a beat score. Start with the studies and
+brand-neutral kit: sizes as data (landscape, vertical, square, portrait), springs, kinetic type, caption ladders, UI,
+depth, motion blur and a beat score. Start with the studies and
 [`docs/use-it-for-your-product.md`](docs/use-it-for-your-product.md).
 
 ## Run it

@@ -1,0 +1,59 @@
+{
+ "id": "pixel-parable",
+ "no": 11,
+ "title": "Pixel Parable",
+ "module": "src/canvas-core/studies/pixelParable.ts",
+ "pieces": {
+  "vertical": "pixelParable",
+  "landscape": "pixelParableLandscape"
+ },
+ "primary": "vertical",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 750,
+ "palette": "arcade",
+ "style": "Pixel art: 8-bit characters built from square pixels (no anti-aliasing: snap every pixel to a 6 px grid) stand on a dark ground strip under a pale sky. A cautionary tale told with pixel props, a swarm of notification icons, and a pixel serpent that coils along a path. A few crisp UI cards (not pixelated) cut in to show numbers. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
+ "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): 8-bit characters at desks on a ground strip, pixel buildings, a swarm of notification icons, a pixel snake on a path, a grid of icons flipping colour, clean UI cards cut into pixel scenes.",
+ "story": [
+  {
+   "from": 0,
+   "to": 75,
+   "what": "hook: a pixel manager stands before a team of three at desks; caption 'We rewarded meetings booked.'"
+  },
+  {
+   "from": 75,
+   "to": 210,
+   "what": "the team books meetings: calendar icons pop out of their desks in a growing swarm; a counter card ticks 12 → 240"
+  },
+  {
+   "from": 210,
+   "to": 345,
+   "what": "the calendar tower wobbles: a grid of meeting icons flips from teal to magenta one by one ('no-shows'); caption 'so they booked everything'"
+  },
+  {
+   "from": 345,
+   "to": 480,
+   "what": "a pixel serpent slides along a path through the office, eating the day; caption 'The metric became the goal.'"
+  },
+  {
+   "from": 480,
+   "to": 630,
+   "what": "the fix: a UI card shows two metrics side by side ('meetings held' and 'decisions made'), both sparklines rise; the icons flip back to teal"
+  },
+  {
+   "from": 630,
+   "to": 750,
+   "what": "sign-off: the team high-fives in pixels; 'Oriel' pixel sign rises; caption 'measure the outcome, not the count'"
+  }
+ ],
+ "sizes": "Landscape widens the office so the team and the manager share one frame; captions sit top left.",
+ "sound": "beatScore drive at 120 bpm, 8-bit flavoured (bright plucks), ticks for every icon pop, a hit when the serpent appears and the sign-off.",
+ "teaches": "Pixel art is a grid decision: snap everything to one pixel size and the style holds, even when crisp UI cuts in.",
+ "portable": {
+  "fonts": "Instrument Serif and Instrument Serif Italic for captions, Inter for labels",
+  "style": "Pixel art: 8-bit characters built from square pixels (snap every pixel to a 6 px grid, no anti-aliasing) stand on a dark ground strip under a pale sky. A cautionary tale told with pixel props, a swarm of notification icons and a pixel serpent that coils along a path. A few crisp UI cards (not pixelated) cut in to show numbers. Captions are serif word stacks in mixed sizes, one key word in an accent italic, placed beside the action and arriving word by word.",
+  "sound": "a bright 8-bit style loop at 120 bpm, ticks for every icon pop, a hit when the serpent appears and a short sign-off.",
+  "sizes": "widen the office so the team and the manager share one frame, captions top left."
+ }
+}
