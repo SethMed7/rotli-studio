@@ -14,6 +14,8 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
 
+import { slidesZip } from "../src/motion/routes";
+
 const ROOT = join(import.meta.dir, ".."),
   MOTION = join(ROOT, "motion"),
   TAG = "studio-media",
@@ -23,6 +25,8 @@ type Published = {
   commit: string;
   published: string;
   parts: Record<string, { sha: string; files: number; bytes: number }>;
+  /** one zip of slides per carousel or still, published as its own asset <slug>.zip (the hosted pages link it) */
+  zips?: Record<string, string>;
 };
 
 const sh = (cmd: string[], opts: { input?: string; allowFail?: boolean; env?: Record<string, string> } = {}) => {
@@ -125,10 +129,27 @@ if (cmd === "status" || cmd === "publish") {
     console.log(`uploading ${p.name} (${(statSync(tar).size / 1e6).toFixed(0)} MB)…`);
     sh(["gh", "release", "upload", TAG, tar, "--clobber"]);
   }
+  // slide zips: the same builder as the local server, uploaded only when a carousel's slides changed
+  const zips: Record<string, string> = {};
+  for (const p of JSON.parse(readFileSync(join(MOTION, "pieces.json"), "utf8")).pieces as {
+    slug: string;
+    kind: string;
+  }[]) {
+    if (p.kind === "video") continue;
+    const zip = slidesZip(p.slug);
+    if (!zip) continue;
+    zips[p.slug] = createHash("sha256").update(zip).digest("hex");
+    if (remote?.zips?.[p.slug] === zips[p.slug]) continue;
+    const file = join(WORK, `${p.slug}.zip`);
+    writeFileSync(file, zip);
+    sh(["gh", "release", "upload", TAG, file, "--clobber"]);
+    console.log(`uploaded ${p.slug}.zip`);
+  }
   const record: Published = {
     commit: sh(["git", "rev-parse", "HEAD"]).out.trim(),
     published: new Date().toISOString(),
     parts: Object.fromEntries(local.map((p) => [p.name, { sha: p.sha, files: p.files.length, bytes: p.bytes }])),
+    zips,
   };
   writeFileSync(join(WORK, "media.json"), JSON.stringify(record, null, 1) + "\n");
   sh(["gh", "release", "upload", TAG, join(WORK, "media.json"), "--clobber"]);

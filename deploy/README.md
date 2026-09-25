@@ -22,6 +22,9 @@ bun scripts/media.ts publish               # builds the snapshot, uploads only t
 git push origin main                       # the workflow deploys
 ```
 
+The slide zips the pages offer (one per carousel) are release assets too (`<slug>.zip`), not part of the snapshot:
+that keeps the upload under Railway's limit (Cloudflare refuses around 250 MB). The local server builds them on the fly.
+
 If piece sources change without a media publish, the workflow warns and deploys the published renders. A piece with no
 published render fails the build (the export refuses an incomplete snapshot).
 

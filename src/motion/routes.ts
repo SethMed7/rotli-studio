@@ -10,6 +10,7 @@ import {
   realpathSync,
   rmSync,
   statSync,
+  utimesSync,
 } from "node:fs";
 import { homedir } from "node:os";
 import { extname, isAbsolute, join, normalize, relative, sep } from "node:path";
@@ -231,6 +232,9 @@ export function slidesZip(slug: string): Uint8Array | null {
   mkdirSync(tmp, { recursive: true });
   const names = slides.map((f) => {
     copyFileSync(join(dir, f), join(tmp, `${slug}-${f}`));
+    // keep the slide's own time, so the same slides always make the same zip (and it is not re-uploaded)
+    const st = statSync(join(dir, f));
+    utimesSync(join(tmp, `${slug}-${f}`), st.atime, st.mtime);
     return `${slug}-${f}`;
   });
   const r = Bun.spawnSync(["zip", "-q", "-X", "-", ...names], { cwd: tmp, stdout: "pipe", stderr: "pipe" });

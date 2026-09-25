@@ -320,7 +320,11 @@ function pieceTitle(p: Piece) {
   return p.title ?? p.id;
 }
 // ---------------------------------------------------------------- downloads: everything needed to post a piece
-const zipUrl = (p: Piece) => `/api/motion/zip/${p.slug}.zip`;
+// hosted: the zips are assets of the studio-media release (scripts/media.ts); locally the server builds them
+const zipUrl = (p: Piece) =>
+  STATIC
+    ? `https://github.com/SethMed7/rotli-studio/releases/download/studio-media/${p.slug}.zip`
+    : `/api/motion/zip/${p.slug}.zip`;
 function downloads(p: Piece) {
   const items: string[] = [];
   if (p.video) {
