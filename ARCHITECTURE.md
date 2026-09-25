@@ -52,7 +52,8 @@ something, find its row below. If no row fits, add a row here in the same change
   `publish/placements.json`.
 - **The local boundary.** The server serves only git-tracked files under an allowlist (plus generated renders), on
   loopback, to the studio's own Host. Create and the isolation audit never ship in the hosted snapshot.
-- **Sealed pieces.** A sealed series (`"sealed": true` in `series.json`) is locked: its goldens must stay SAME.
+- **Sealed pieces.** A piece is sealed by `"sealed": true` on it in `pieces.json` or on its series in `series.json`.
+  Its goldens must stay SAME, and `golden.mjs --record` refuses it unless `--unseal` says the owner decided otherwise.
 
 ## Adding things
 
