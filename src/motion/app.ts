@@ -3,6 +3,7 @@
 // brand, workflows, skills, tools, docs and the isolation audit. Read-only; hash-routed.
 import { esc, markdown } from "./md";
 import { filmPlayer, mountFilmPlayers } from "./player";
+import { cue, mountSound } from "./sound";
 
 type Shot = { id: string; start: number; end: number; template?: string };
 type Beat = { frame: number; crop: { x: number; y: number; w: number; h: number }; title: string; sub?: string; hi?: string; len?: number };
@@ -54,7 +55,7 @@ function renderNav(route: string, pieceId?: string) {
   const group = (name: string, body: string) => `<div class="group"><span class="group-name">${name}</span>${body}</div>`;
   nav.innerHTML = `${link("#/", "Home")}${link("#/library", "Library", M.pieces.length)}${link("#/posts", "Posts")}
     ${group("Films", M.series.map((x) => link(`#/series/${x.id}`, x.title.replace(/:.*/, ""), x.episodes ? x.episodes.length : x.pieces?.length) + tree(x)).join(""))}
-    ${group("How it's made", `${link("#/brand", "Brand & atmospheres")}${link("#/workflows", "Workflows & prompts")}${link("#/runs", "Agent runs", M.pieces.filter((p) => p.run).length)}${link("#/skills", "Skills")}${link("#/tools", "Tools")}`)}
+    ${group("How it's made", `${link("#/brand", "Brand & atmospheres")}${link("#/sound", "Sound")}${link("#/workflows", "Workflows & prompts")}${link("#/runs", "Agent runs", M.pieces.filter((p) => p.run).length)}${link("#/skills", "Skills")}${link("#/tools", "Tools")}`)}
     ${group("About", `${link("#/docs", "Docs & licences")}${link("#/isolation", "Isolation audit")}`)}`;
 }
 
@@ -122,6 +123,18 @@ async function posts() {
     ${data.posts.length ? `<ul class="posts">${data.posts.map((p) => `<li class="post"><time datetime="${esc(p.date)}">${esc(when(p.date))}</time>
       <div><p class="post-text">${p.text ? esc(p.text) : `A post on ${esc(p.platform)}`}</p>${p.pieces.length ? `<div class="post-pieces">${p.pieces.map((id) => { const pc = byId(id); return pc ? `<a href="#/piece/${pc.id}"><img src="${poster(pc)}" alt="" loading="lazy"><span>${esc(pc.title ?? pc.id)}</span></a>` : ""; }).join("")}</div>` : ""}</div>
       <a class="button ghost" href="${esc(p.url)}" target="_blank" rel="noreferrer">Open on ${esc(p.platform)}</a></li>`).join("")}</ul>` : `<p class="empty">Nothing linked yet.</p>`}`;
+}
+
+// ---------------------------------------------------------------- sound: the studio's music and effects, with their prompts
+async function sound() {
+  const cat = await json<{ made: string; sounds: { id: string; kind: string; title: string; use: string; prompt: string; file: string; seconds: number }[] }>("/sound/catalog.json");
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
+    <ul class="sounds">${cat.sounds.map((x) => `<li class="sound" id="sound-${esc(x.id)}"><div class="sound-head"><h2>${esc(x.title)}</h2><p class="meta">${x.kind === "music" ? "music · loops" : "effect"} · ${x.seconds.toFixed(1)} s · ${esc(x.use)}</p></div>
+      <audio controls preload="none" src="/${esc(x.file)}"></audio>
+      <details><summary>The prompt</summary><div class="doc" data-prompt="${esc(x.prompt)}"></div></details>
+      <p class="meta"><a class="link" href="/${esc(x.prompt)}" target="_blank">${esc(x.prompt)}</a> · <a class="link" href="/${esc(x.file)}" download>Download ${esc(x.id)}.m4a</a></p></li>`).join("")}</ul>
+    <p class="foot">${esc(cat.made)}.</p>`;
+  main.querySelectorAll<HTMLElement>("[data-prompt]").forEach((el) => { void text(`/${el.dataset.prompt}`).then((t) => (el.innerHTML = markdown(t))); });
 }
 
 // ---------------------------------------------------------------- series
@@ -205,7 +218,7 @@ async function piece(id: string) {
     <p class="actions">${p.golden && !STATIC ? `<button class="ghost" id="verify">Verify golden now</button>` : ""}<span id="verify-out" class="muted"></span></p>
     <p class="muted">Re-make it: <code>node tools/studio.mjs render ${esc(p.id)} &amp;&amp; node tools/studio.mjs check ${esc(p.id)} &amp;&amp; node tools/golden.mjs ${esc(p.id)}</code> (from <code>motion/</code>).</p>`;
   const vb = main.querySelector<HTMLButtonElement>("#verify");
-  if (vb) vb.onclick = async () => { vb.disabled = true; $("#verify-out").textContent = "Rendering the golden frames… (up to a minute)"; const r = await json<{ ok: boolean; output: string }>(`/api/motion/verify/${p.id}`, { method: "POST" }); $("#verify-out").innerHTML = `${r.ok ? chip("SAME", "ok") : chip("DIFFERS", "bad")} <code>${esc(r.output)}</code>`; vb.disabled = false; };
+  if (vb) vb.onclick = async () => { vb.disabled = true; $("#verify-out").textContent = "Rendering the golden frames… (up to a minute)"; const r = await json<{ ok: boolean; output: string }>(`/api/motion/verify/${p.id}`, { method: "POST" }); if (r.ok) cue("done"); $("#verify-out").innerHTML = `${r.ok ? chip("SAME", "ok") : chip("DIFFERS", "bad")} <code>${esc(r.output)}</code>`; vb.disabled = false; };
 }
 
 // ---------------------------------------------------------------- brand
@@ -294,6 +307,7 @@ function notFound() { main.innerHTML = `<p class="empty">Nothing here. <a class=
 async function route() {
   const h = location.hash || "#/", [path] = h.split("?"), parts = path!.replace(/^#\/?/, "").split("/");
   stopPlayers?.(); stopPlayers = null;
+  if (routed) cue(parts[0] === "piece" ? "open" : "page"); routed = true;
   const pieceId = parts[0] === "piece" ? parts[1] : undefined;
   renderNav(pieceId ? `#/series/${byId(pieceId)?.series ?? ""}` : path!, pieceId);
   document.body.classList.toggle("is-home", !parts[0]);
@@ -302,6 +316,7 @@ async function route() {
     if (!parts[0]) { home(); stopPlayers = mountFilmPlayers(main); }
     else if (parts[0] === "library") library();
     else if (parts[0] === "posts") await posts();
+    else if (parts[0] === "sound") await sound();
     else if (parts[0] === "series") series(parts[1] ?? "");
     else if (parts[0] === "piece") await piece(parts[1] ?? "");
     else if (parts[0] === "brand") await brand();
@@ -317,9 +332,11 @@ async function route() {
   if (!h.includes("#sec-")) main.scrollTo?.(0, 0);
   document.title = parts[0] ? `${main.querySelector("h1")?.textContent?.trim() ?? "rotli"} · rotli studio` : "rotli studio";
 }
+let routed = false; // the first render is not a page turn
 // in-page section links (#sec-…) must not trigger the router
 document.addEventListener("click", (e) => { const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: "smooth" }); });
 window.addEventListener("hashchange", route);
 M = await json<Manifest>(api("manifest"));
+mountSound(document.getElementById("sound-toggle") as HTMLButtonElement);
 if (STATIC) document.getElementById("create-link")?.remove(); // the content editor only runs on the Mac
 route();

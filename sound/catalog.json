@@ -1,0 +1,66 @@
+{
+ "note": "The studio's sounds, composed in code (sound/src). Regenerate with bun sound/tools/render.ts; sha256 is of the WAV master, so a changed recipe shows up here.",
+ "made": "code-synthesized, no samples, no AI audio model; MIT like the rest of this repo",
+ "sounds": [
+  {
+   "id": "linen",
+   "kind": "music",
+   "title": "Linen",
+   "use": "the studio's music, looping quietly while sound is on",
+   "prompt": "sound/prompts/linen.md",
+   "file": "sound/web/linen.m4a",
+   "seconds": 58.18,
+   "sha256": "69e66ff7265cda0ff0661e26d4289db6230bbeaaaddc7337c1f48e2cf4205c79"
+  },
+  {
+   "id": "page",
+   "kind": "effect",
+   "title": "Page",
+   "use": "moving to another page",
+   "prompt": "sound/prompts/page.md",
+   "file": "sound/web/page.m4a",
+   "seconds": 1.2,
+   "sha256": "f1e6bf322e6b934930bed4d1d4ab11d46b75c64f4de795c28cd65c9b755c3092"
+  },
+  {
+   "id": "open",
+   "kind": "effect",
+   "title": "Open",
+   "use": "opening a piece",
+   "prompt": "sound/prompts/open.md",
+   "file": "sound/web/open.m4a",
+   "seconds": 1.8,
+   "sha256": "cdefaa1ce95707164261e18827b540ffca593504790c5b7b2140ae44caceb83b"
+  },
+  {
+   "id": "sound-on",
+   "kind": "effect",
+   "title": "Sound on",
+   "use": "turning sound on",
+   "prompt": "sound/prompts/sound-on.md",
+   "file": "sound/web/sound-on.m4a",
+   "seconds": 1.8,
+   "sha256": "27895373b0d3831d0ee95e7204930bb0f408a897152e78a51e2ed92d6de128f9"
+  },
+  {
+   "id": "sound-off",
+   "kind": "effect",
+   "title": "Sound off",
+   "use": "turning sound off",
+   "prompt": "sound/prompts/sound-off.md",
+   "file": "sound/web/sound-off.m4a",
+   "seconds": 1.6,
+   "sha256": "99c22749631a0239308002fa1eac3608e79f7489c2f897611cf3f1d3db3c3b1b"
+  },
+  {
+   "id": "done",
+   "kind": "effect",
+   "title": "Done",
+   "use": "a check that passed (a golden verified SAME)",
+   "prompt": "sound/prompts/done.md",
+   "file": "sound/web/done.m4a",
+   "seconds": 3,
+   "sha256": "b0e7895a5e633cb2afa2f2d85c44f115096a62fe015b6930e1e88ff79dffbe9f"
+  }
+ ]
+}

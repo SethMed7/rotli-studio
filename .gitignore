@@ -23,3 +23,6 @@ deploy/*.local.txt
 
 # private, never published: product dry runs, product lists (see deploy/*.local.txt)
 local/
+
+# sound masters (regenerable: bun sound/tools/render.ts)
+sound/out/

@@ -18,7 +18,7 @@ a { color: inherit; }
 .top-right { margin-left: auto; display: flex; align-items: center; gap: 1.25rem; }
 .button { display: inline-flex; align-items: center; justify-content: center; min-height: 2.5rem; padding: 0 1.1rem; border-radius: 0.6rem; border: 1px solid var(--text); background: var(--text); color: var(--ground); font-weight: 600; text-decoration: none; white-space: nowrap; }
 .button:hover { background: var(--accent-text); border-color: var(--accent-text); }
-.button.ghost { background: transparent; color: var(--text); border-color: var(--border-strong); }
+.button.ghost { background: var(--ground); color: var(--text); border-color: var(--border-strong); } /* solid: the hero pattern must never show through a label */
 .button.ghost:hover { background: var(--surface-2); }
 .button.lg { min-height: 3.1rem; padding: 0 1.5rem; font-size: 1.05rem; }
 
@@ -154,6 +154,23 @@ a.row:hover h3 { color: var(--accent-text); }
 .piece-link b { display: flex; gap: 0.5rem; align-items: center; }
 .piece-link:hover b { color: var(--accent-text); }
 .piece-link p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+/* ------------------------------------------------------------ sound */
+.sound-toggle { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.25rem; padding: 0 0.75rem; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--ground); color: var(--muted); font-weight: 600; }
+.sound-toggle svg { width: 18px; height: 18px; }
+.sound-toggle .wave { opacity: 0.35; }
+.sound-toggle:hover { color: var(--text); background: var(--surface-2); }
+.sound-toggle[aria-pressed='true'] { color: var(--text); background: var(--tint); border-color: var(--tint); }
+.sound-toggle[aria-pressed='true'] .wave { opacity: 1; }
+.sounds { list-style: none; margin: 0; padding: 0; }
+.sound { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 0.5rem 2rem; align-items: center; padding: 1.2rem 0; border-top: 1px solid var(--border); }
+.sound:last-child { border-bottom: 1px solid var(--border); }
+.sound h2 { margin: 0; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); }
+.sound audio { width: 100%; }
+.sound details, .sound > .meta { grid-column: 1 / -1; }
+.sound summary { cursor: pointer; color: var(--accent-text); font-weight: 600; }
+.sound details .doc { margin-top: 0.5rem; }
+@media (max-width: 860px) { .sound { grid-template-columns: 1fr; } .sound-toggle .label { display: none; } }
 
 /* ------------------------------------------------------------ posts */
 .posts { list-style: none; margin: 0; padding: 0; }

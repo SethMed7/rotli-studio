@@ -46,6 +46,9 @@ put(join(PUB, "favicon.ico"), join(ROOT, "library/logo/favicon.ico"));
 const cssAssets: [string, string][] = [];
 for (const f of readdirSync(join(ROOT, "library/patterns"))) { const body = readFileSync(join(ROOT, "library/patterns", f)), hashed = hashName(f, body); put(join(PUB, "library/patterns", hashed), join(ROOT, "library/patterns", f)); cssAssets.push([`/library/patterns/${f}`, `/library/patterns/${hashed}`]); }
 writeFileSync(join(PUB, "robots.txt"), "User-agent: *\nDisallow: /\n");
+// the studio's sounds: catalog, web copies, prompts (served at /sound/…, like the local server)
+for (const d of ["web", "prompts"]) for (const f of readdirSync(join(ROOT, "sound", d))) put(join(PUB, "sound", d, f), join(ROOT, "sound", d, f));
+put(join(PUB, "sound/catalog.json"), join(ROOT, "sound/catalog.json"));
 
 // stylesheets: rewrite their asset URLs to the hashed names, then hash the stylesheets themselves
 for (const f of ["app.css", "motion.css"]) { let body = readFileSync(join(ROOT, "static", f), "utf8"); for (const [from, to] of cssAssets) body = body.replaceAll(from, to); const hashed = hashName(f, body); mkdirSync(join(PUB, "static"), { recursive: true }); writeFileSync(join(PUB, "static", hashed), body); pageHtml = pageHtml.replace(`href="/static/${f}"`, `href="/static/${hashed}"`); }

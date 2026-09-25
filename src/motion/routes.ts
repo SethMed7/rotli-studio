@@ -138,6 +138,8 @@ export const motionRoutes = {
   "/m/*": (req: Request) => serve(req, allowed(MOTION, MOTION_OPEN, path(req, "/m/"))),
   "/s/*": (req: Request) => serve(req, allowed(ROOT, STUDIO_OPEN, path(req, "/s/"))),
   "/api/motion/manifest": { GET: () => manifest(), POST: () => manifest(true) },
+  // the studio's sounds: the catalog, the web copies the site plays, and each sound's prompt
+  "/sound/*": (req: Request) => serve(req, allowed(join(ROOT, "sound"), new Set(["catalog.json", "web", "prompts"]), path(req, "/sound/"))),
   "/api/motion/thumb/:slug/:frame": (req: Request & { params: { slug: string; frame: string } }) => {
     const f = num(req.params.frame.replace(/\.jpg$/, "")); return SLUG.test(req.params.slug) && f !== null ? thumb(req.params.slug, f) : new Response("Bad request", { status: 400 });
   },
