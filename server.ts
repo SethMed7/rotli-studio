@@ -65,7 +65,9 @@ const server = Bun.serve({
   hostname: HOST,
   port: PORT,
   routes: {
-    "/": () => serveFile(join(STATIC, "app.html")),
+    // the studio's home is the Motion room's landing; the posts editor lives at /posts
+    "/": () => serveFile(join(STATIC, "motion.html")),
+    "/posts": () => serveFile(join(STATIC, "app.html")),
     "/render": () => serveFile(join(STATIC, "render.html")),
     "/build/app.js": () => bundle("app.ts"),
     "/build/render.js": () => bundle("render.ts"),

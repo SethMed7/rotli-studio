@@ -16,7 +16,7 @@ as the owner and never edit rulesets. Two rooms:
   `.claude/skills/motion-room/SKILL.md` before touching it; `.claude/skills/repurpose-brand/SKILL.md`
   to reuse it for another product.
 
-The studio site (`bun start` → http://127.0.0.1:4500/motion) is the read-only map of the motion room:
+The studio site (`bun start` → http://127.0.0.1:4500/, posts editor at /posts; UI rules in DESIGN.md) is the read-only map of the motion room:
 series (`motion/series.json`), pieces, briefs, prompts, agent runs (`motion/workflows/runs/`), skills,
 tools and the isolation audit (`bun scripts/check-isolation.ts`).
 

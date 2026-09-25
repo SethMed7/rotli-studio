@@ -66,8 +66,8 @@ land in `library/uploads/`.
 
 `motion/` makes content by code instead of templates: the film, two episode series (Season One,
 Rotli in 30 seconds) with their vertical/carousel/card cuts, shorts, carousels and stills, with the
-real Rotli quokka and the app's twelve themes. **See everything at <http://127.0.0.1:4500/motion>**
-(same server, "Motion room" in the top bar): every series and episode, each piece broken down to its
+real Rotli quokka and the app's twelve themes. **The studio's home is <http://127.0.0.1:4500/>** (the
+posts editor moved to `/posts`; `/motion` still works): every series and episode, each piece broken down to its
 scenes, cuts (source frame + crop), brief, prompt, the agent run that built it (prompt, follow-ups,
 report, cost), source and golden; plus the brand, atmospheres, workflows, skills, tools, docs and the
 **isolation audit**. It is read-only; the Motion room's server side is `src/motion/routes.ts`.

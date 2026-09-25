@@ -37,28 +37,75 @@ const s = (path: string) => `/s/${path.replace(/^\.\.\//, "")}`;
 const fileUrl = (p: string) => (p.startsWith("../") ? s(p) : m(p));
 // posters: a frame from the longest scene (the render's own .jpg is its last frame, the end card)
 const poster = (p: Piece | undefined) => (!p ? "" : p.video && p.posterFrame !== undefined ? `/api/motion/thumb/${p.slug}/${p.posterFrame}.jpg` : p.video?.poster ? m(p.video.poster) : p.slides?.[0] ? s(p.slides[0]) : "");
-const epNo = (code: string) => code.replace(/^s\d\de/, "E").replace(/^ep/, "Ep ");
+const epNo = (code: string) => code.replace(/^(s\d\de|ep)/, ""); // "01" in both series
 const chip = (t: string, cls = "") => `<span class="chip ${cls}">${esc(t)}</span>`;
 const seriesOf = (id: string | null) => M.series.find((x) => x.id === id);
 
-// ---------------------------------------------------------------- nav
-function renderNav(route: string) {
-  const link = (href: string, label: string, count?: number | string) => `<a href="${href}" ${route === href || (href !== "#/" && route.startsWith(href + "/")) ? 'aria-current="page"' : ""}><span>${esc(label)}</span>${count !== undefined ? `<small>${count}</small>` : ""}</a>`;
-  nav.innerHTML = `${link("#/", "Overview")}
-    <h3>Series</h3>${M.series.map((x) => link(`#/series/${x.id}`, x.title.replace(/:.*/, ""), x.episodes ? `${x.episodes.length} ep` : x.pieces?.length)).join("")}
-    <h3>How it's made</h3>${link("#/brand", "Brand & atmospheres")}${link("#/workflows", "Workflows & prompts")}${link("#/runs", "Requests & agent runs", M.pieces.filter((p) => p.run).length)}${link("#/skills", "Skills")}${link("#/tools", "Tools")}${link("#/docs", "Docs & evaluation")}
-    <h3>Safety</h3>${link("#/isolation", "Isolation audit")}`;
+// ---------------------------------------------------------------- nav: one tree; the open series lists its episodes
+function renderNav(route: string, pieceId?: string) {
+  const here = (href: string) => route === href || (href !== "#/" && route.startsWith(href + "/")) || (href.length > 2 && route.startsWith(href + "?"));
+  const link = (href: string, label: string, count?: number | string) => `<a href="${href}" ${here(href) ? 'aria-current="page"' : ""}><span>${esc(label)}</span>${count !== undefined ? `<small>${count}</small>` : ""}</a>`;
+  const tree = (x: Series) => {
+    if (!here(`#/series/${x.id}`)) return "";
+    const items = x.episodes ? x.episodes.map((e) => ({ id: e.main ?? "", label: e.title.replace(/\.$/, ""), num: epNo(e.code), ids: [e.main, ...Object.values(e.cuts)] })) : (x.pieces ?? []).map((id) => ({ id, label: byId(id)?.title ?? id, num: "", ids: [id] }));
+    return `<div class="tree">${items.map((it) => `<a href="#/piece/${it.id}" ${pieceId && it.ids.includes(pieceId) ? 'aria-current="page"' : ""}>${it.num ? `<span class="num">${it.num}</span>` : ""}<span>${esc(it.label)}</span></a>`).join("")}</div>`;
+  };
+  const group = (name: string, body: string) => `<div class="group"><span class="group-name">${name}</span>${body}</div>`;
+  nav.innerHTML = `${link("#/", "Home")}${link("#/library", "Library", M.pieces.length)}
+    ${group("Films", M.series.map((x) => link(`#/series/${x.id}`, x.title.replace(/:.*/, ""), x.episodes ? x.episodes.length : x.pieces?.length) + tree(x)).join(""))}
+    ${group("How it's made", `${link("#/brand", "Brand & atmospheres")}${link("#/workflows", "Workflows & prompts")}${link("#/runs", "Agent runs", M.pieces.filter((p) => p.run).length)}${link("#/skills", "Skills")}${link("#/tools", "Tools")}`)}
+    ${group("About", `${link("#/docs", "Docs & licences")}${link("#/isolation", "Isolation audit")}`)}`;
 }
 
-// ---------------------------------------------------------------- overview
-function overview() {
-  const vids = M.pieces.filter((p) => p.kind === "video" && p.meta), minutes = vids.reduce((a, p) => a + p.meta!.durationFrames / 30, 0) / 60;
-  const eps = M.series.reduce((a, x) => a + (x.episodes?.length ?? 0), 0);
-  main.innerHTML = `<header class="page-head"><h1>Motion room</h1><p>Everything here is drawn by code in <code>motion/</code>: films, story episodes, vertical cuts, carousels and cards. Open a series to see its episodes; open any piece to break it down to scenes, the brief and prompt behind it, the agent run that built it, its source and its golden.</p></header>
-  <div class="stats">${[["pieces", M.pieces.length], ["series", M.series.length], ["episodes", eps], ["minutes of video", minutes.toFixed(1)], ["goldens", M.pieces.filter((p) => p.golden).length], ["agent runs", M.pieces.filter((p) => p.run).length]].map(([k, v]) => `<div><b>${v}</b><span>${k}</span></div>`).join("")}</div>
-  <div class="series-grid">${M.series.map((x) => { const first = x.episodes ? byId(x.episodes[0]?.main ?? "") : byId(x.pieces?.[0] ?? "");
-    return `<a class="series-card" href="#/series/${x.id}"><div class="frame" style="aspect-ratio:16/9"><img src="${poster(first)}" alt="" loading="lazy"></div><div class="series-card-body"><h2>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h2><p>${esc(x.logline)}</p><small>${esc(x.shape)}</small></div></a>`; }).join("")}</div>
-  <p class="foot">Manifest built ${new Date(M.generated).toLocaleString()}${STATIC ? " · a read-only snapshot of the studio on the Mac." : ` · <button class="link" id="rebuild">Rebuild</button> after rendering or editing <code>pieces.json</code> / <code>series.json</code>.`}</p>`;
+// ---------------------------------------------------------------- home: the landing page
+const stats = () => { const vids = M.pieces.filter((p) => p.kind === "video" && p.meta); return { pieces: M.pieces.length, episodes: M.series.reduce((a, x) => a + (x.episodes?.length ?? 0), 0), minutes: vids.reduce((a, p) => a + p.meta!.durationFrames / 30, 0) / 60, goldens: M.pieces.filter((p) => p.golden).length, runs: M.pieces.filter((p) => p.run).length }; };
+const seriesRows = () => `<ul class="rows">${M.series.map((x) => { const first = x.episodes ? byId(x.episodes[0]?.main ?? "") : byId(x.pieces?.[0] ?? "");
+  return `<li><a class="row" href="#/series/${x.id}"><img src="${poster(first)}" alt="" loading="lazy"><div><h3>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h3><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`; }).join("")}</ul>`;
+function home() {
+  const film = byId("rotliStory"), n = stats();
+  main.innerHTML = `<section class="hero">
+      <h1>Rotli, <span class="ink">drawn in code.</span></h1>
+      <p class="lede">This is Rotli's studio. Every film, episode, carousel and card here is drawn frame by frame in code, and everything that made them is open: the briefs, the prompts, the agent runs and the tools that make them again.</p>
+      <div class="ctas"><a class="button lg" href="#/piece/rotliStory">Watch the film</a><a class="button ghost lg" href="#/library">Browse the library</a></div>
+      <p class="fine">Open source · MIT · ${n.pieces} pieces, ${n.minutes.toFixed(0)} minutes of film</p>
+    </section>
+    ${film?.video ? `<figure class="film"><div class="player" style="--ar:16/9"><video controls preload="metadata" playsinline src="${m(film.video.file)}" poster="${poster(film)}" aria-label="The Rotli Story, a 60-second film"></video></div>
+      <figcaption><span><b>The Rotli Story</b> · 60 s · a quokka on Rottnest, from the ferry to the sunset</span><a class="link" href="#/piece/rotliStory">Scene by scene →</a></figcaption></figure>` : ""}
+    <section class="band tinted"><div class="inner">
+      <h2>Everything we've made, by series.</h2>
+      <p class="intro">Each series groups its episodes with the cuts made from them: a vertical for Reels and Shorts, a carousel and a card. Open any piece to see its scenes, the brief behind it and the run that built it.</p>
+      ${seriesRows()}
+    </div></section>
+    <section class="band deep"><div class="inner">
+      <h2>How a piece gets made.</h2>
+      <p class="intro">The same five steps for every episode, so any piece can be made again from its files.</p>
+      <ol class="steps">
+        <li><b>A brief</b><p>A JSON file holds the story, the atmosphere, the scenes and every claim a caption may make, each with its source on rotli.co.</p></li>
+        <li><b>A prompt</b><p>The brief plus a shared preamble becomes the agent's prompt, deterministically (<code>brief-to-prompt</code>).</p></li>
+        <li><b>A build</b><p>An agent draws the episode in code on the studio's engine and renders review sheets. Every run is kept, prompt and report.</p></li>
+        <li><b>A review</b><p>Every sheet is checked against the checklist: claims match the product, nothing overlaps, no dead air.</p></li>
+        <li><b>A golden</b><p>Sampled frames and the audio are hashed. After any change to shared code, the goldens prove what moved; the first film can never change.</p></li>
+      </ol>
+    </div></section>
+    <section class="band"><div class="inner split">
+      <div><h2>Open, all the way down.</h2><p class="intro">The studio is public under the MIT licence, like Rotli. The render engine began as anidoodle by Alex Greenshpun (Apache-2.0).</p>
+        <ul class="numbers"><li><b>${n.pieces}</b>pieces</li><li><b>${n.episodes}</b>episodes</li><li><b>${n.goldens}</b>goldens</li><li><b>${n.runs}</b>agent runs</li></ul></div>
+      <ul class="links">
+        <li><a href="#/workflows">Workflows &amp; prompts →</a><p>How a piece is made, and the exact prompt each episode was built from.</p></li>
+        <li><a href="#/runs">Agent runs →</a><p>Every request in the owner's words, and each agent's prompt, follow-ups and report.</p></li>
+        <li><a href="#/brand">Brand &amp; atmospheres →</a><p>The palette, type, twelve theme environments and the moods scenes are set in.</p></li>
+        <li><a href="https://github.com/SethMed7/rotli-studio" target="_blank" rel="noreferrer">Source on GitHub →</a><p>The engine, tools, skills and every piece's code.</p></li>
+      </ul>
+    </div></section>
+    <footer class="site-foot"><span>rotli studio · ${STATIC ? `snapshot of ${new Date(M.generated).toLocaleDateString()}` : "running on this Mac"}</span><span><a href="https://rotli.co" target="_blank" rel="noreferrer">rotli.co</a> · <a href="#/docs?doc=..%2FLICENSE">MIT</a> · <a href="#/docs?doc=..%2FNOTICE">Notices</a></span></footer>`;
+}
+
+// ---------------------------------------------------------------- library: every series
+function library() {
+  const n = stats();
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Library</nav><header class="page-head"><h1>Library</h1><p>Every piece, grouped by series. ${n.pieces} pieces · ${n.episodes} episodes · ${n.minutes.toFixed(1)} minutes of video · ${n.goldens} goldens.</p></header>
+    ${seriesRows()}
+    <p class="foot">Manifest built ${new Date(M.generated).toLocaleString()}${STATIC ? " · a read-only snapshot of the studio." : ` · <button class="link" id="rebuild">Rebuild</button> after rendering or editing <code>pieces.json</code> / <code>series.json</code>.`}</p>`;
   if (!STATIC) $("#rebuild").onclick = async () => { M = await json<Manifest>("/api/motion/manifest", { method: "POST" }); route(); };
 }
 
@@ -66,18 +113,19 @@ function overview() {
 function series(id: string) {
   const x = seriesOf(id); if (!x) return notFound();
   const docs = [...x.docs, ...(x.schedule ? [x.schedule] : [])];
-  const head = `<nav class="crumbs"><a href="#/">Motion</a> › ${esc(x.title)}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="muted">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="#/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
+  const head = `<nav class="crumbs"><a href="#/">Studio</a> › <a href="#/library">Library</a> › ${esc(x.title.replace(/:.*/, ""))}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="#/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
   if (x.episodes) {
     const total = x.episodes.reduce((a, e) => a + (byId(e.main ?? "")?.run?.tokens ?? 0), 0);
     main.innerHTML = head + `<ol class="episodes">${x.episodes.map((e) => { const p = byId(e.main ?? ""); if (!p) return "";
-      const cut = (k: "vertical" | "carousel" | "single", label: string) => { const c = byId(e.cuts[k] ?? ""); return c ? `<a class="cut" href="#/piece/${c.id}" title="${label}"><img src="${poster(c)}" alt="${label}" loading="lazy"><span>${label}</span></a>` : ""; };
-      return `<li class="episode"><a class="ep-poster" href="#/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><span>${epNo(e.code)}</span></a>
-        <div class="ep-body"><h2><a href="#/piece/${p.id}">${esc(e.title)}</a></h2><p>${esc(p.logline ?? p.about ?? "")}</p>
-        <div class="chips">${p.meta ? chip(secs(p.meta.durationFrames)) : ""}${p.atmosphere ? chip(p.atmosphere) : ""}${p.meta?.family ? chip(`family: ${p.meta.family}`) : ""}${p.style ? chip(`style: ${p.style}`) : ""}${p.shots.length ? chip(`${p.shots.length} scenes`) : ""}${p.run ? chip(`agent · ${(p.run.tokens / 1000).toFixed(0)}k tok · ${p.run.minutes} min`, "run") : p.id.startsWith("s01e01") || p.id.startsWith("ep01") ? chip("reference · hand-built", "run") : ""}${p.golden ? chip("golden", "ok") : chip("no golden", "warn")}</div></div>
+      const cut = (k: "vertical" | "carousel" | "single", label: string) => { const c = byId(e.cuts[k] ?? ""); return c ? `<a class="cut" href="#/piece/${c.id}"><img src="${poster(c)}" alt="${label} for ${esc(e.title)}" loading="lazy"><span>${label}</span></a>` : ""; };
+      const built = p.run ? `agent · ${(p.run.tokens / 1000).toFixed(0)}k tokens · ${p.run.minutes} min` : p.id.startsWith("s01e01") || p.id.startsWith("ep01") ? "hand-built reference" : "";
+      const bits = [p.meta ? secs(p.meta.durationFrames) : "", p.atmosphere ?? "", p.style ? `${p.style} style` : "", p.shots.length ? `${p.shots.length} scenes` : "", built, p.golden ? "golden locked" : "no golden"].filter(Boolean);
+      return `<li class="episode"><a class="ep-poster" href="#/piece/${p.id}" tabindex="-1" aria-hidden="true"><img src="${poster(p)}" alt="" loading="lazy"></a>
+        <div class="ep-body"><h2><span class="num">${epNo(e.code)}</span><a href="#/piece/${p.id}">${esc(e.title)}</a></h2><p>${esc(p.logline ?? p.about ?? "")}</p><p class="meta">${bits.map(esc).join(" · ")}</p></div>
         <div class="cuts">${cut("vertical", "9:16")}${cut("carousel", "carousel")}${cut("single", "card")}</div></li>`; }).join("")}</ol>
-      ${total ? `<p class="foot">Agent cost for this series: ${(total / 1e6).toFixed(2)}M tokens across ${x.episodes.filter((e) => byId(e.main ?? "")?.run).length} runs (episode 1 is the hand-built reference).</p>` : ""}`;
+      ${total ? `<p class="foot">Agent cost for this series: ${(total / 1e6).toFixed(2)}M tokens across ${x.episodes.filter((e) => byId(e.main ?? "")?.run).length} runs; episode 01 is the hand-built reference.</p>` : ""}`;
   } else {
-    main.innerHTML = head + `<div class="piece-grid">${(x.pieces ?? []).map((pid) => { const p = byId(pid)!; return `<a class="piece-card" href="#/piece/${p.id}"><div class="frame" style="aspect-ratio:${p.meta ? `${p.meta.W}/${p.meta.H}` : "1"}"><img src="${poster(p)}" alt="" loading="lazy"></div><b>${esc(p.id)}${p.sealed ? chip("sealed", "lock") : ""}</b><small>${esc(p.kind)} · ${esc(p.format)}${p.meta && p.kind === "video" ? ` · ${secs(p.meta.durationFrames)}` : ""}</small><p>${esc(p.about ?? "")}</p></a>`; }).join("")}</div>`;
+    main.innerHTML = head + `<div class="pieces">${(x.pieces ?? []).map((pid) => { const p = byId(pid)!; return `<a class="piece-link" href="#/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><b>${esc(p.title ?? p.id)}${p.sealed ? chip("sealed", "lock") : ""}</b><p class="meta">${esc(p.kind)} · ${esc(p.format)}${p.meta && p.kind === "video" ? ` · ${secs(p.meta.durationFrames)}` : ""}</p><p>${esc(p.about ?? "")}</p></a>`; }).join("")}</div>`;
   }
 }
 
@@ -97,7 +145,7 @@ async function piece(id: string) {
     ...(p.run ? [["Built by", `agent · ${p.run.model ?? "inherited model"} · ${p.run.tokens.toLocaleString()} tokens · ${p.run.minutes} min`] as [string, string]] : []),
   ];
   const sections: [string, string][] = [["breakdown", p.kind === "video" ? "Breakdown" : "Slides"], ...(p.derive || (main_?.derive && p.role !== "episode") ? [["cuts", "Cuts"] as [string, string]] : []), ...(p.brief || main_?.brief ? [["brief", "Brief"] as [string, string]] : []), ...(p.prompt || main_?.prompt ? [["prompt", "Prompt"] as [string, string]] : []), ...((p.run ?? main_?.run) ? [["run", "Agent run"] as [string, string]] : []), ["source", "Source"], ["files", "Files & checks"]];
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › ${x ? `<a href="#/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} ${esc(ep.title)}` : esc(p.id)}</nav>
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › ${x ? `<a href="#/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} · ${esc(ep.title)}` : esc(p.title ?? p.id)}</nav>
     <header class="page-head piece-head"><h1>${esc(p.title ?? (ep ? `${ep.title}` : p.id))}${p.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(p.logline ?? p.about ?? "")}</p>${p.error ? `<p class="error">Import error: ${esc(p.error)}</p>` : ""}</header>
     ${cutTabs}<div class="piece-top">${media}<dl class="facts">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>
     <nav class="section-tabs">${sections.map(([k, v]) => `<a href="#sec-${k}">${v}</a>`).join("")}</nav>
@@ -151,12 +199,12 @@ async function brand() {
   const looks = await json<string[]>(api("looks"));
   const fams = [...new Set(t.themes.map((x) => x.family))];
   const reel = byId("atmosphereReel");
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › Brand</nav><header class="page-head"><h1>Brand &amp; atmospheres</h1><p>The one seam a piece reads its look from: <a class="link" href="${m("brand/brand.json")}" target="_blank">brand/brand.json</a> (copy, palette, fonts with sha256 locks, character), <a class="link" href="${m("brand/themes.json")}" target="_blank">themes.json</a> (the app's twelve environments) and <a class="link" href="${m("brand/companions.json")}" target="_blank">companions.json</a>.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Brand</nav><header class="page-head"><h1>Brand &amp; atmospheres</h1><p>The one seam a piece reads its look from: <a class="link" href="${m("brand/brand.json")}" target="_blank">brand/brand.json</a> (copy, palette, fonts with sha256 locks, character), <a class="link" href="${m("brand/themes.json")}" target="_blank">themes.json</a> (the app's twelve environments) and <a class="link" href="${m("brand/companions.json")}" target="_blank">companions.json</a>.</p></header>
   <section class="sec"><h2>Copy</h2><dl class="facts wide">${["product", "wordmark", "tagline", "url", "platform", "cta", "promise", "voice"].filter((k) => b[k] !== undefined).map((k) => `<dt>${k}</dt><dd>${esc(String(b[k]))}</dd>`).join("")}</dl></section>
   <section class="sec"><h2>Palette <small>(the kit's <code>C</code>)</small></h2><div class="swatches">${Object.entries(b.palette as Record<string, string>).map(([k, v]) => `<div class="swatch"><i style="background:${esc(v)}"></i><b>${esc(k)}</b><code>${esc(v)}</code></div>`).join("")}</div></section>
   <section class="sec"><h2>Type</h2><div class="type-specimens"><p style="font-family:'General Sans';font-weight:600;letter-spacing:${b.fonts.tracking ?? -0.045}em;font-size:44px">Room to think. Files you keep.</p><p style="font-family:'Baloo 2';font-weight:600;font-size:44px">rotli</p></div>
     <div class="table"><table><thead><tr><th>Font</th><th>File</th><th>sha256 lock</th></tr></thead><tbody>${(b.fonts.files as { spec: string; file: string; sha256: string }[]).map((f) => `<tr><td>${esc(f.spec)}</td><td><code>${esc(f.file)}</code></td><td><code>${f.sha256.slice(0, 16)}…</code></td></tr>`).join("")}</tbody></table></div><p class="muted">Headline tracking ${b.fonts.tracking ?? -0.045}em (rotli.co). A render whose font file doesn't match its lock refuses to build.</p></section>
-  <section class="sec"><h2>Theme families <small>(${t.themes.length} environments)</small></h2><div class="families">${fams.map((f) => `<div class="family"><h3>${esc(f)}</h3>${t.themes.filter((x) => x.family === f).map((x) => `<div class="env" style="background:${x.roles.ground};color:${x.roles.text};border-color:${x.roles.border}"><b>${esc(x.label)}</b><span class="dots">${["surface", "surface-2", "tint", "accent", "accent-text", "success", "text-muted"].map((r) => `<i title="${r} ${x.roles[r]}" style="background:${x.roles[r]}"></i>`).join("")}</span></div>`).join("")}</div>`).join("")}</div></section>
+  <section class="sec"><h2>Theme families <small>(${t.themes.length} environments)</small></h2><ul class="families">${fams.map((f) => `<li><b>${esc(f)}</b>${t.themes.filter((x) => x.family === f).map((x) => `<div class="env" style="background:${x.roles.ground};color:${x.roles.text};border-color:${x.roles.border}"><span>${esc(x.label)}</span><span class="dots">${["surface", "surface-2", "tint", "accent", "accent-text", "success", "text-muted"].map((r) => `<i title="${r} ${x.roles[r]}" style="background:${x.roles[r]}"></i>`).join("")}</span></div>`).join("")}</li>`).join("")}</ul></section>
   <section class="sec"><h2>Atmospheres <small>(<code>studio/atmospheres.ts</code>)</small></h2>${reel?.video ? `<p><a class="link" href="#/piece/atmosphereReel">Watch the atmosphere reel</a> · <a class="link" href="${m("out/atmosphere-board.png")}" target="_blank">board</a></p>` : ""}
     <div class="table"><table><thead><tr><th>Id</th><th>Mood</th><th>Family</th><th>Ground</th><th>Music</th><th>Used for</th></tr></thead><tbody>${atm.map((a) => `<tr><td><code>${esc(a.id)}</code></td><td>${esc(a.label)}</td><td>${esc(a.family)}</td><td>${a.dark ? "deep" : "light"} · drift ${a.drift}</td><td>key +${a.key} · melody ${["tune", "walking", "lilting"][a.melody] ?? a.melody}</td><td>${esc(a.why)}</td></tr>`).join("")}</tbody></table></div></section>
   <section class="sec"><h2>Companion looks <small>(rendered from the app's real &lt;Character&gt;)</small></h2><div class="looks">${c.looks.filter((l) => looks.includes(`${l.id}.png`)).map((l) => `<figure><img src="${s(`library/companion-looks/${l.id}.png`)}" alt="" loading="lazy"><figcaption>${esc(l.id)}</figcaption></figure>`).join("")}</div><p class="muted">${c.looks.length - c.looks.filter((l) => looks.includes(`${l.id}.png`)).length} listed look(s) not rendered yet: <code>bun run sync:companions</code>.</p></section>`;
@@ -167,8 +215,8 @@ type Doc = { label: string; path: string; group?: string };
 async function docPage(title: string, intro: string, docs: Doc[], active?: string) {
   const current = docs.find((d) => d.path === active) ?? docs[0]!;
   const groups = [...new Set(docs.map((d) => d.group ?? ""))];
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › ${esc(title)}</nav><header class="page-head"><h1>${esc(title)}</h1><p>${intro}</p></header>
-    <div class="doc-layout"><aside class="doc-list">${groups.map((g) => `${g ? `<h3>${esc(g)}</h3>` : ""}${docs.filter((d) => (d.group ?? "") === g).map((d) => `<a href="${location.hash.split("?")[0]}?doc=${encodeURIComponent(d.path)}" ${d === current ? 'aria-current="page"' : ""}>${esc(d.label)}</a>`).join("")}`).join("")}</aside>
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › ${esc(title)}</nav><header class="page-head"><h1>${esc(title)}</h1><p>${intro}</p></header>
+    <div class="doc-layout"><aside class="doc-list">${groups.map((g) => `${g ? `<span class="group-name">${esc(g)}</span>` : ""}${docs.filter((d) => (d.group ?? "") === g).map((d) => `<a href="${location.hash.split("?")[0]}?doc=${encodeURIComponent(d.path)}" ${d === current ? 'aria-current="page"' : ""}>${esc(d.label)}</a>`).join("")}`).join("")}</aside>
     <article class="doc" id="doc"><p class="muted">Loading…</p></article></div>`;
   const url = current.path.startsWith("skill:") ? "" : fileUrl(current.path);
   const body = current.path.startsWith("skill:") ? (await json<{ name: string; where: string; path: string; text: string }[]>(api("skills"))).find((k) => `skill:${k.where}:${k.name}` === current.path)?.text ?? "" : await text(url).catch((e) => `**Could not load:** ${e}`);
@@ -201,12 +249,12 @@ async function skills() {
 }
 async function tools() {
   const list = await json<{ file: string; about: string }[]>(api("tools"));
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › Tools</nav><header class="page-head"><h1>Tools</h1><p>Every command in the room, with the usage notes from its own header. Motion tools run with Node from <code>motion/</code>; studio scripts run with Bun from the studio root.</p></header>
-    <div class="tools">${list.map((t) => `<article class="tool"><h3><a class="link" href="${t.file.startsWith("motion/") ? m(t.file.slice(7)) : s(t.file)}" target="_blank">${esc(t.file)}</a></h3><pre>${esc(t.about || "(no header)")}</pre></article>`).join("")}</div>`;
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Tools</nav><header class="page-head"><h1>Tools</h1><p>Every command in the studio, with the usage notes from its own header. Motion tools run with Node from <code>motion/</code>; studio scripts run with Bun from the studio root.</p></header>
+    <ul class="tools">${list.map((t) => { const lines = (t.about || "(no header)").split("\n").filter((l) => !/^Derived from anidoodle/.test(l)), [first, ...rest] = lines; return `<li><details><summary><code>${esc(t.file)}</code><span>${esc(first ?? "")}</span></summary><pre>${esc(rest.join("\n").trim() || first || "")}</pre><p class="meta"><a class="link" href="${t.file.startsWith("motion/") ? m(t.file.slice(7)) : s(t.file)}" target="_blank">Open ${esc(t.file)}</a></p></details></li>`; }).join("")}</ul>`;
 }
 async function docs() {
-  await docPage("Docs & evaluation", "What the room is, what it proved, and what's still Rotli-shaped.", [
-    { label: "Evaluation (other products)", path: "EVALUATION.md", group: "Motion room" }, { label: "Motion room README", path: "README.md", group: "Motion room" }, { label: "Launch month plan", path: "../launch/rotli-launch-month.md", group: "Motion room" },
+  await docPage("Docs & licences", "What the studio is, what it proved, what's still Rotli-shaped, and the licences it ships under.", [
+    { label: "Evaluation", path: "EVALUATION.md", group: "Motion room" }, { label: "Motion room README", path: "README.md", group: "Motion room" }, { label: "Launch month plan", path: "../launch/rotli-launch-month.md", group: "Motion room" },
     { label: "Studio README", path: "../README.md", group: "Studio" }, { label: "Films", path: "../films/README.md", group: "Studio" },
     { label: "Licence (MIT)", path: "../LICENSE", group: "Licences" }, { label: "NOTICE", path: "../NOTICE", group: "Licences" }, { label: "anidoodle (Apache-2.0): attribution", path: "third_party/anidoodle/README.md", group: "Licences" }, { label: "anidoodle LICENSE", path: "third_party/anidoodle/LICENSE", group: "Licences" },
   ], param("doc"));
@@ -215,8 +263,8 @@ async function doc(path: string) { await docPage(path.replace(/^\.\.\//, ""), ""
 
 // ---------------------------------------------------------------- isolation
 async function isolation(fresh = false) {
-  if (STATIC) { main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › Isolation</nav><header class="page-head"><h1>Isolation audit</h1><p>The audit reads the product repos, worktrees and branches on the Mac, so it only runs there: <code>bun scripts/check-isolation.ts</code>, or the Isolation page of the local studio (<code>bun start</code> → 127.0.0.1:4500/motion). This hosted copy is a static, read-only snapshot served by its own Railway project; it shares nothing with rotli.co.</p></header>`; return; }
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Motion</a> › Isolation</nav><header class="page-head"><h1>Isolation audit</h1><p>Proof that the studio's work stays in <code>~/rotli-studio</code>: its code only reads declared sources; no render sits in a product repo, worktree or branch; the live sites reference none; and what lives outside the studio does so on purpose. Read-only: <code>bun scripts/check-isolation.ts</code>.</p><p><button class="ghost" id="again">Run again</button> <span class="muted" id="when">${fresh ? "" : "Running (walks the product repos, ~10 s)…"}</span></p></header><div id="iso"></div>`;
+  if (STATIC) { main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Isolation</nav><header class="page-head"><h1>Isolation audit</h1><p>The audit reads the product repos, worktrees and branches on the Mac, so it only runs there: <code>bun scripts/check-isolation.ts</code>, or the Isolation page of the local studio (<code>bun start</code> → 127.0.0.1:4500/motion). This hosted copy is a static, read-only snapshot served by its own Railway project; it shares nothing with rotli.co.</p></header>`; return; }
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Isolation</nav><header class="page-head"><h1>Isolation audit</h1><p>Proof that the studio's work stays in <code>~/rotli-studio</code>: its code only reads declared sources; no render sits in a product repo, worktree or branch; the live sites reference none; and what lives outside the studio does so on purpose. Read-only: <code>bun scripts/check-isolation.ts</code>.</p><p><button class="ghost" id="again">Run again</button> <span class="muted" id="when">${fresh ? "" : "Running (walks the product repos, ~10 s)…"}</span></p></header><div id="iso"></div>`;
   $("#again").onclick = () => isolation(true);
   if (fresh) $("#when").textContent = "Running…";
   type Rep = { when: string; status: string; products: string[]; worktrees: string[]; checks: { title: string; status: string; findings: { level: string; text: string; evidence?: string[] }[] }[] };
@@ -227,12 +275,16 @@ async function isolation(fresh = false) {
 }
 
 // ---------------------------------------------------------------- router
-function notFound() { main.innerHTML = `<p class="empty">Nothing here. <a href="#/">Back to the overview</a>.</p>`; }
+function notFound() { main.innerHTML = `<p class="empty">Nothing here. <a class="link" href="#/">Back to the studio</a>.</p>`; }
 async function route() {
   const h = location.hash || "#/", [path] = h.split("?"), parts = path!.replace(/^#\/?/, "").split("/");
-  renderNav(path!.startsWith("#/piece/") ? `#/series/${byId(parts[1] ?? "")?.series ?? ""}` : path!);
+  const pieceId = parts[0] === "piece" ? parts[1] : undefined;
+  renderNav(pieceId ? `#/series/${byId(pieceId)?.series ?? ""}` : path!, pieceId);
+  document.body.classList.toggle("is-home", !parts[0]);
+  document.querySelectorAll<HTMLAnchorElement>(".topnav a").forEach((a) => a.toggleAttribute("aria-current", path!.startsWith(a.getAttribute("href")!)));
   try {
-    if (!parts[0]) overview();
+    if (!parts[0]) home();
+    else if (parts[0] === "library") library();
     else if (parts[0] === "series") series(parts[1] ?? "");
     else if (parts[0] === "piece") await piece(parts[1] ?? "");
     else if (parts[0] === "brand") await brand();
@@ -246,10 +298,11 @@ async function route() {
     else notFound();
   } catch (e) { main.innerHTML = `<p class="error">${esc(String(e))}</p>`; }
   if (!h.includes("#sec-")) main.scrollTo?.(0, 0);
+  document.title = parts[0] ? `${main.querySelector("h1")?.textContent?.trim() ?? "rotli"} · rotli studio` : "rotli studio";
 }
 // in-page section links (#sec-…) must not trigger the router
 document.addEventListener("click", (e) => { const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]'); if (!a) return; e.preventDefault(); document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: "smooth" }); });
 window.addEventListener("hashchange", route);
 M = await json<Manifest>(api("manifest"));
-if (STATIC) { document.querySelector('.rooms a[href="/"]')?.remove(); $(".bar-note").textContent = `Read-only snapshot · ${new Date(M.generated).toLocaleDateString()} · not linked from rotli.co`; }
+if (STATIC) document.getElementById("posts-link")?.remove(); // the posts editor only runs on the Mac
 route();
