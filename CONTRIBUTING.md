@@ -14,8 +14,8 @@ You work in your own fork and send a pull request; the owner reviews it and merg
 1. **Start with an issue** for anything bigger than a small fix
    ([templates](https://github.com/SethMed7/rotli-studio/issues/new/choose)), so we agree on the approach first. A
    leak or a security problem is reported privately (see `SECURITY.md`), never in an issue.
-2. **Fork** `SethMed7/rotli-studio` and clone your fork. Only the owner can push branches to this repository; your
-   branch lives in your fork, so only you can change it.
+2. **Fork** `SethMed7/rotli-studio` and clone your fork. Outside contributors don't have write access here, so your
+   branch lives in your fork, where only you can change it.
 3. **Branch from `main`** with a short descriptive name (`fix-carousel-crop`, `study-tide-chart`), make the change
    and run the checks below.
 4. **Open a pull request into `main`** and fill in the template. Write "Fixes #12" to close the matching issue.
