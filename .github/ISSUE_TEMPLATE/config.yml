@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem or a leak
+    url: https://github.com/SethMed7/rotli-studio/security/advisories/new
+    about: A secret, a personal path or a private name in the repository or on studio.rotli.co. Report privately.
+  - name: Adapt the studio to your own product
+    url: https://github.com/SethMed7/rotli-studio/blob/main/docs/use-it-for-your-product.md
+    about: Start here before asking how to point the motion room at another brand.
+  - name: A problem in the Rotli app itself
+    url: https://github.com/SethMed7/rotli/issues/new/choose
+    about: The studio only makes Rotli's media. App bugs go to the rotli repository.

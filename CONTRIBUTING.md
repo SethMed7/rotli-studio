@@ -5,6 +5,26 @@ Thanks for looking. The studio is open source under the MIT licence; the render 
 where things live in `ARCHITECTURE.md`, and read `docs/use-it-for-your-product.md` if you want to adapt the
 studio to your own brand. AI agents follow `AGENTS.md`.
 
+Everyone who takes part follows the [Code of Conduct](CODE_OF_CONDUCT.md).
+
+## How a contribution works
+
+You work in your own fork and send a pull request; the owner reviews it and merges it.
+
+1. **Start with an issue** for anything bigger than a small fix
+   ([templates](https://github.com/SethMed7/rotli-studio/issues/new/choose)), so we agree on the approach first. A
+   leak or a security problem is reported privately (see `SECURITY.md`), never in an issue.
+2. **Fork** `SethMed7/rotli-studio` and clone your fork. Only the owner can push branches to this repository; your
+   branch lives in your fork, so only you can change it.
+3. **Branch from `main`** with a short descriptive name (`fix-carousel-crop`, `study-tide-chart`), make the change
+   and run the checks below.
+4. **Open a pull request into `main`** and fill in the template. Write "Fixes #12" to close the matching issue.
+   Keep "Allow edits by maintainers" ticked if you are happy for the owner to push small fixes to your branch.
+5. **Review:** answer comments on the thread and push fixes to the same branch. The owner approves and merges, and
+   the merge deploys studio.rotli.co.
+
+Small, focused pull requests are reviewed fastest.
+
 ## Setup
 
 ```sh
@@ -36,7 +56,8 @@ bun run verify
 check and every golden. If you changed a piece's pixels on purpose, re-record its golden
 (`node motion/tools/studio.mjs golden <id> --record`) and say why in the pull request. Sealed pieces cannot change.
 
-Open pull requests against `main`. Only the owner can merge, and a merge to `main` deploys studio.rotli.co.
+Pull requests target `main`. The deploy workflow runs on `main`, not on pull requests, so `bun run verify` on your
+machine is the check: say in the pull request what ran. Only the owner can merge, and a merge deploys studio.rotli.co.
 
 ## What we look for
 
