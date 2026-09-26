@@ -1,0 +1,17 @@
+name: Idea
+description: A new piece, study, tool or improvement to the studio.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: What you want to make or change, and why. Links to references are welcome (credited, never copied).
+    validations:
+      required: true
+  - type: checkboxes
+    id: pr
+    attributes:
+      label: Contributing
+      options:
+        - label: I would like to open a pull request for this.

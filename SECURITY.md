@@ -18,6 +18,7 @@ synthetic reproduction. Never attach real personal data.
 | The hosted site | `scripts/export-site.ts` publishes an explicit inventory of git-tracked files and manifest-referenced media, scans every staged file with the same rules, and refuses to build without the private-name list. Caddy serves it with a strict Content-Security-Policy, `nosniff` and no framing. |
 | The local server | Binds `127.0.0.1` only, answers only its own Host (a foreign Host gets 403), serves only git-tracked files under an allowlist, and serves uploads sandboxed. |
 | Product repositories | Read-only for the studio; `bun scripts/check-isolation.ts` proves nothing is written into them. |
+| Branches and tags | GitHub rulesets (recorded in `.github/rulesets/`): only the owner deletes or force-pushes any branch, moves or deletes any tag, or updates `main`; outside contributors work in forks. |
 | Deploys | Only the owner can push `main`. The deploy workflow uses a Railway token scoped to this project; secrets live in GitHub, never in the repository. |
 
 Reviews and their triage are kept in `docs/reviews/`.

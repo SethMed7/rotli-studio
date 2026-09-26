@@ -36,7 +36,8 @@ The canonical rules for every AI agent working here (Claude Code reads it throug
 
 - Do not commit, push, deploy or publish media unless the owner asked for that change. Pushing to `main` deploys
   studio.rotli.co (`.github/workflows/deploy.yml`), so a push is a release.
-- Only the owner can update `main`, `dev` and `release*` (GitHub rulesets). Agents act as the owner and never edit
+- Only the owner can update `main`, `dev` and `release*`, delete or force-push any branch, or move any tag (GitHub
+  rulesets, recorded in `.github/rulesets/`). Agents act as the owner and never edit
   rulesets, secrets or the Railway project.
 - Do not start, stop or restart the owner's studio server (`127.0.0.1:4500`) or other long-running processes
   unless asked; use another port (`PORT=4501 bun server.ts`) for your own checks.

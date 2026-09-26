@@ -1,0 +1,41 @@
+name: Something is broken
+description: A piece, a tool, the local studio or studio.rotli.co does not work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use synthetic data only: no personal paths, emails, private names, notes or real screenshots.
+        A leak or a security problem goes to **Security → Report a vulnerability**, not here.
+  - type: dropdown
+    id: where
+    attributes:
+      label: Where
+      options:
+        - studio.rotli.co
+        - The local studio (bun start)
+        - A piece or a render (motion/)
+        - A tool or a script
+        - The docs
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what you expected, and what you saw instead. Name the piece id, page or command.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. bun start
+        2. Open…
+        3. See…
+  - type: input
+    id: system
+    attributes:
+      label: System
+      description: Your OS, browser, Bun and Node versions, and the commit you are on.
