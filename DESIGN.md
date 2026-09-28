@@ -1,7 +1,7 @@
 # rotli studio design
 
 <!-- The studio is a sibling surface of Rotli. It FOLLOWS Rotli's canon (~/rotli/DESIGN.md and rotli.co)
-     rather than re-deriving it; on any conflict Rotli's canon wins. Tokens live in static/app.css :root. -->
+     rather than re-deriving it; on any conflict Rotli's canon wins. Tokens live in static/app.css :root (shared tokens and base rules; the pages are static/motion.css). -->
 
 ## Overview
 The studio shows Rotli's code-drawn films and everything that made them, in rotli.co's language: a linen
@@ -25,7 +25,7 @@ Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast a
 
 ## Components
 - **The Sidebar:** flat. Home, then three sections under a hairline and a small muted name: **Watch** (Library,
-  Carousels, Series, Studies, Wallpapers), **Make** (Create, Brand kit, Sound, Prompts & briefs, Agent runs, Skills, Tools) and **Open
+  Carousels, Series, Studies, Wallpapers), **Make** (Brand kit, Sound, Prompts & briefs, Agent runs, Skills, Tools) and **Open
   source** (Use it for your product, Published, Docs & licences, Isolation audit). Exactly one row is highlighted
   (tinted, never a checkmark); nothing expands inline. Episodes and study sizes live on their own pages, with a
   pager ("5 of 10", previous / next) and a segmented control for cuts or sizes. The top bar carries section links

@@ -56,11 +56,9 @@ For pieces: look at contact sheets (`node motion/tools/frames.mjs <id> <frames> 
 around −16 LUFS. For the site: `node motion/tools/ui-check.mjs http://127.0.0.1:4501` (overlap, overflow, errors at
 1440, 1280 and 390 px). New renders reach the hosted site through `bun scripts/media.ts publish`.
 
-## The two rooms
+## The Motion room
 
-- **Motion room** (`motion/`, the site's pages in `src/motion/`): code-drawn films, episodes, shorts, carousels
-  and stills, grouped into series (`motion/series.json`, `motion/series/<id>/`). Agent runs are recovered from a
-  session transcript by `node motion/tools/extract-runs.mjs <session.jsonl>` (it redacts local paths).
-- **Create** (`server.ts`, `src/`, `posts/`, `static/app.*`): the post editor at `/create`, local only. Its
-  templates keep Rotli Light tokens, General Sans and the Baloo 2 wordmark (lowercase "rotli"), flat surfaces with
-  no shadows or glows, and captures of real app UI on synthetic demo data.
+`motion/`, with the site's pages in `src/motion/`: code-drawn films, episodes, shorts, carousels and stills, grouped
+into series (`motion/series.json`, `motion/series/<id>/`). Agent runs are recovered from a session transcript by
+`node motion/tools/extract-runs.mjs <session.jsonl>` (it redacts local paths). The site keeps Rotli Light tokens,
+General Sans and the Baloo 2 wordmark (lowercase "rotli"), with flat surfaces and no shadows or glows.
