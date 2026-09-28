@@ -1,0 +1,1 @@
+export { wallpapersIpad } from "./wallpapers";

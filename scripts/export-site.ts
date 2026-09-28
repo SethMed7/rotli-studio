@@ -239,6 +239,20 @@ for (const ref of media) {
   put(rel.startsWith("motion/") ? join(PUB, "m", relative("motion", rel)) : join(PUB, "s", rel), abs);
 }
 
+// ---- wallpapers: the catalogue and its small previews only; the full-size files are assets of the
+// studio-wallpapers release (scripts/media.ts) and the page links there
+const wallCatalogue = join(MOTION, "out/wallpapers/wallpapers.json");
+if (existsSync(wallCatalogue)) {
+  const cat = JSON.parse(readFileSync(wallCatalogue, "utf8")) as { wallpapers: { previews: Record<string, string> }[] };
+  put(join(PUB, "m/out/wallpapers/wallpapers.json"), wallCatalogue);
+  for (const ref of cat.wallpapers.flatMap((w) => Object.values(w.previews))) {
+    const abs = join(MOTION, ref);
+    if (!ref.startsWith("out/wallpapers/preview/") || !existsSync(abs))
+      fail(`the wallpaper catalogue references ${ref}, which is missing or not a preview`);
+    put(join(PUB, "m", ref), abs);
+  }
+}
+
 // ---- videos: web copies (same pixel size, smaller files, fast start for streaming)
 // flat vector animation holds up at CRF 33 with -tune animation (checked on the rain-heavy E08); it keeps
 // the upload under Railway's CLI limit (a 247 MB snapshot was refused with 413)

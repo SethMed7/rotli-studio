@@ -28,6 +28,11 @@ bun scripts/media.ts publish               # builds the snapshot, uploads only t
 git push origin main                       # the workflow deploys
 ```
 
+Wallpapers are the same story at a larger size: `node motion/tools/wallpapers.mjs` renders every screen,
+`media.ts publish` uploads each full-size PNG whose content changed to the `studio-wallpapers` release (the Wallpapers
+page links those files directly; GitHub counts each download), and only the catalogue and small previews travel in
+the `wallpapers` part and the snapshot.
+
 The slide zips the pages offer (one per carousel) are release assets too (`<slug>.zip`), not part of the snapshot:
 that keeps the upload under Railway's limit (Cloudflare refuses around 250 MB). The local server builds them on the fly.
 

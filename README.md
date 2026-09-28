@@ -41,6 +41,11 @@ that built it (prompt, follow-ups, report, cost), its source and its golden: the
 still renders the same pixels. Every piece downloads ready to post: the video, or all its slides in one zip,
 and its caption. The **Carousels** page gathers every slide post in one place.
 
+**Wallpapers:** eight free wallpapers (the island at morning and sunset, the lighthouse at night, and one
+for each of Ocean, Grove, Iris, Midnight and Paper), drawn by the same engine and rendered at the exact pixel size of
+each screen: Mac (5120 × 3200), Display (6016 × 3384), iPad (2752 × 2752), iPhone (1320 × 2868) and Android
+(1440 × 3200). Download them at [studio.rotli.co/#/wallpapers](https://studio.rotli.co/#/wallpapers).
+
 ## How a piece is made
 
 1. **A brief.** A JSON file holds the story, the look, the scenes and every claim a caption may make.
@@ -80,6 +85,7 @@ cd motion
 node tools/studio.mjs list                 # every piece
 node tools/studio.mjs render <id>          # render one (video, or carousel slides)
 node tools/studio.mjs golden <id>          # prove it still renders the same
+node tools/wallpapers.mjs                  # every wallpaper at every screen size
 cd .. && bun run verify                    # every gate the studio has
 ```
 

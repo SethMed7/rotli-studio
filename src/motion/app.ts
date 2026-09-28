@@ -176,7 +176,8 @@ function renderNav(active: string) {
           M.pieces.filter((p) => p.kind !== "video" && p.slides?.length).length,
         ) +
         link("series", "#/series", "Series", M.series.filter((x) => x.kind !== "studies").length) +
-        link("studies", "#/series/studies", "Studies", studies),
+        link("studies", "#/series/studies", "Studies", studies) +
+        link("wallpapers", "#/wallpapers", "Wallpapers"),
     ) +
     group(
       "Make",
@@ -383,6 +384,58 @@ function carousels() {
           ${downloads(p)}
         </li>`,
       )
+      .join("")}</ul>`;
+}
+// ---------------------------------------------------------------- wallpapers: free downloads, one screen at a time
+type WallpaperFile = { name: string; W: number; H: number; bytes: number };
+type Wallpapers = {
+  release: string;
+  screens: { id: string; label: string; fits: string; W: number; H: number }[];
+  wallpapers: {
+    id: string;
+    title: string;
+    family: string;
+    dark: boolean;
+    files: Record<string, WallpaperFile>;
+    previews: Record<string, string>;
+  }[];
+};
+const FAMILY_NAME: Record<string, string> = {
+  rotli: "Rotli",
+  paper: "Paper",
+  ocean: "Ocean",
+  grove: "Grove",
+  iris: "Iris",
+  midnight: "Midnight",
+};
+// hosted: the full-size files are assets of the studio-wallpapers release (scripts/media.ts); locally, the renders
+const wallpaperUrl = (release: string, f: WallpaperFile) =>
+  STATIC
+    ? `https://github.com/SethMed7/rotli-studio/releases/download/${release}/${f.name}`
+    : m(`out/wallpapers/full/${f.name}`);
+async function wallpapers() {
+  let W: Wallpapers;
+  try {
+    W = await json<Wallpapers>(m("out/wallpapers/wallpapers.json"));
+  } catch (e) {
+    if (e instanceof Stale || STATIC) throw e;
+    main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Wallpapers</nav><header class="page-head"><h1>Wallpapers</h1></header><p class="empty">No wallpapers rendered yet. Run <code>node tools/wallpapers.mjs</code> in <code>motion/</code>.</p>`;
+    return;
+  }
+  const narrow = matchMedia("(max-width: 700px)").matches,
+    want = param("screen") ?? (narrow ? "iphone" : "mac"),
+    screen = W.screens.find((x) => x.id === want) ?? W.screens[0]!,
+    list = W.wallpapers.filter((w) => w.files[screen.id] && w.previews[screen.id]);
+  const tab = (x: Wallpapers["screens"][number]) =>
+    `<a href="#/wallpapers?screen=${x.id}"${x.id === screen.id ? ' aria-current="page"' : ""}>${esc(x.label)}</a>`;
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Wallpapers</nav><header class="page-head"><h1>Wallpapers</h1><p>${list.length} wallpapers for your Mac, iPad and phone, drawn in code by the engine that makes the films, in Rotli's theme families. Free to download, each sized for its screen.</p></header>
+    <nav class="cut-tabs" aria-label="Screen">${W.screens.map(tab).join("")}</nav>
+    <p class="meta wallpaper-fits">${screen.W} × ${screen.H} · ${esc(screen.fits)}</p>
+    <ul class="pieces wallpapers${screen.H > screen.W ? " tall" : ""}">${list
+      .map((w) => {
+        const f = w.files[screen.id]!;
+        return `<li class="piece-link"><img src="${m(w.previews[screen.id]!)}" alt="${esc(`${w.title}: a Rotli wallpaper`)}" width="${f.W}" height="${f.H}" loading="lazy"><b>${esc(w.title)}</b><p>${esc(`${FAMILY_NAME[w.family] ?? w.family} · ${w.dark ? "dark" : "light"}`)}</p><a class="button" href="${wallpaperUrl(W.release, f)}" download="${esc(f.name)}">Download <small>${mb(f.bytes)}</small></a></li>`;
+      })
       .join("")}</ul>`;
 }
 // ---------------------------------------------------------------- series: the index of Rotli's series
@@ -1148,6 +1201,7 @@ async function route() {
       stopPlayers = mountFilmPlayers(main);
     } else if (parts[0] === "library") library();
     else if (parts[0] === "carousels") carousels();
+    else if (parts[0] === "wallpapers") await wallpapers();
     else if (parts[0] === "prompts") await promptLibrary();
     else if (parts[0] === "posts") await posts();
     else if (parts[0] === "sound") await sound();

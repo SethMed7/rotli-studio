@@ -6,6 +6,10 @@
 //   bun scripts/media.ts fetch     (CI) download every part, unpack it into the checkout, verify its content hash
 //   bun scripts/media.ts status    compare the media on this Mac with what is published
 //
+// Wallpapers (motion/tools/wallpapers.mjs) are published the same way: their catalogue and previews travel in the
+// `wallpapers` part for the site build, and each full-size PNG is its own asset of the `studio-wallpapers` release,
+// uploaded only when its content changed, so the download link a visitor gets is the file itself.
+//
 // Run `publish` after rendering new or changed pieces, before (or right after) pushing them: the site deploys the
 // published renders. Only media the site uses is published (the same inventory as scripts/export-site.ts: renders
 // of registered pieces, their web copies and thumbnails, and the slides the manifest references), and it is
@@ -19,6 +23,8 @@ import { slidesZip } from "../src/motion/routes";
 const ROOT = join(import.meta.dir, ".."),
   MOTION = join(ROOT, "motion"),
   TAG = "studio-media",
+  WALL_TAG = "studio-wallpapers",
+  WALL_DIR = join(MOTION, "out/wallpapers"),
   WORK = join(ROOT, "tmp/media");
 type Part = { name: string; files: string[] };
 type Published = {
@@ -27,6 +33,8 @@ type Published = {
   parts: Record<string, { sha: string; files: number; bytes: number }>;
   /** one zip of slides per carousel or still, published as its own asset <slug>.zip (the hosted pages link it) */
   zips?: Record<string, string>;
+  /** each full-size wallpaper's sha256, by file name, as uploaded to the studio-wallpapers release */
+  wallpapers?: Record<string, string>;
 };
 
 const sh = (cmd: string[], opts: { input?: string; allowFail?: boolean; env?: Record<string, string> } = {}) => {
@@ -70,6 +78,12 @@ function parts(): Part[] {
     { name: "web", files: walk(join(MOTION, "out/web")).map(rel) },
     { name: "thumbs", files: walk(join(MOTION, "out/thumbs-1280")).map(rel) },
     { name: "exports", files: [...slides] },
+    {
+      name: "wallpapers",
+      files: existsSync(join(WALL_DIR, "wallpapers.json"))
+        ? [join(WALL_DIR, "wallpapers.json"), ...walk(join(WALL_DIR, "preview"))].map(rel)
+        : [],
+    },
   ].map((p) => ({ ...p, files: p.files.filter((f) => existsSync(join(ROOT, f))).sort() }));
 }
 /** a part's identity: every path, size and content hash, so re-packing unchanged files never re-uploads */
@@ -103,7 +117,7 @@ if (cmd === "status" || cmd === "publish") {
   const remote = published();
   for (const p of local)
     console.log(
-      `${p.name.padEnd(8)} ${String(p.files.length).padStart(4)} files ${(p.bytes / 1e6).toFixed(0).padStart(5)} MB  ${remote?.parts[p.name]?.sha === p.sha ? "published" : "CHANGED"}`,
+      `${p.name.padEnd(10)} ${String(p.files.length).padStart(4)} files ${(p.bytes / 1e6).toFixed(0).padStart(5)} MB  ${remote?.parts[p.name]?.sha === p.sha ? "published" : "CHANGED"}`,
     );
   if (cmd === "status") process.exit(0);
   if (!sh(["gh", "release", "view", TAG], { allowFail: true }).ok)
@@ -145,11 +159,39 @@ if (cmd === "status" || cmd === "publish") {
     sh(["gh", "release", "upload", TAG, file, "--clobber"]);
     console.log(`uploaded ${p.slug}.zip`);
   }
+  // wallpapers: one asset per full-size file, uploaded only when its content changed
+  const walls: Record<string, string> = {};
+  if (existsSync(join(WALL_DIR, "wallpapers.json"))) {
+    if (!sh(["gh", "release", "view", WALL_TAG], { allowFail: true }).ok)
+      sh([
+        "gh",
+        "release",
+        "create",
+        WALL_TAG,
+        "--prerelease",
+        "--title",
+        "Rotli wallpapers",
+        "--notes",
+        "Free Rotli wallpapers for Mac, iPad, iPhone and Android, drawn in code by the studio's engine. Browse them at https://studio.rotli.co/#/wallpapers. Managed by scripts/media.ts; not a software release.",
+      ]);
+    const cat = JSON.parse(readFileSync(join(WALL_DIR, "wallpapers.json"), "utf8")) as {
+      wallpapers: { files: Record<string, { name: string; sha256: string }> }[];
+    };
+    for (const f of cat.wallpapers.flatMap((w) => Object.values(w.files))) {
+      const file = join(WALL_DIR, "full", f.name);
+      if (!existsSync(file)) throw new Error(`wallpaper ${f.name} is in the catalogue but not rendered`);
+      walls[f.name] = f.sha256;
+      if (remote?.wallpapers?.[f.name] === f.sha256) continue;
+      sh(["gh", "release", "upload", WALL_TAG, file, "--clobber"]);
+      console.log(`uploaded ${f.name}`);
+    }
+  }
   const record: Published = {
     commit: sh(["git", "rev-parse", "HEAD"]).out.trim(),
     published: new Date().toISOString(),
     parts: Object.fromEntries(local.map((p) => [p.name, { sha: p.sha, files: p.files.length, bytes: p.bytes }])),
     zips,
+    wallpapers: walls,
   };
   writeFileSync(join(WORK, "media.json"), JSON.stringify(record, null, 1) + "\n");
   sh(["gh", "release", "upload", TAG, join(WORK, "media.json"), "--clobber"]);

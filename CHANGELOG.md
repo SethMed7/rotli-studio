@@ -2,6 +2,15 @@
 
 Notable changes to the studio and to studio.rotli.co, newest first. Dates are when the change reached `main`.
 
+## Unreleased
+
+- **Wallpapers:** eight free wallpapers on a new Wallpapers page (Watch → Wallpapers): the island at morning and
+  sunset, the lighthouse at night, and one each for Ocean, Grove, Iris, Midnight and Paper. Every one is drawn in
+  code and rendered at the exact size of its screen: Mac 5120 × 3200, Display 6016 × 3384, iPad 2752 × 2752, iPhone
+  1320 × 2868 and Android 1440 × 3200. `node tools/wallpapers.mjs` renders them; `--check` (part of the full
+  `verify`) compares every file with `golden/wallpapers.json`. The downloads are assets of the `studio-wallpapers`
+  release; the site ships only previews.
+
 ## 2026-09-25
 
 - **Studies 10–21:** twelve more studies, 21 in all. Eleven learn from founder explainer reels (serif caption

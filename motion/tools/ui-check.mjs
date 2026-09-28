@@ -8,6 +8,8 @@ const pages = [
   "#/",
   "#/library",
   "#/carousels",
+  "#/wallpapers",
+  "#/wallpapers?screen=iphone",
   "#/prompts",
   "#/piece/kineticPoster",
   "#/piece/dataStoryVertical",

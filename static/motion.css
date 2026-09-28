@@ -156,6 +156,13 @@ a.row:hover .row-title { color: var(--accent-text); }
 .piece-link b { display: flex; gap: 0.5rem; align-items: center; }
 .piece-link:hover b { color: var(--accent-text); }
 .piece-link p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+.wallpaper-fits { margin: -0.5rem 0 1.5rem; }
+.wallpapers { list-style: none; padding: 0; margin: 0; }
+.wallpapers.tall { grid-template-columns: repeat(auto-fill, minmax(min(9.5rem, 40vw), 1fr)); gap: 1.5rem 1rem; }
+.wallpapers img { height: auto; aspect-ratio: auto; }
+.wallpapers.tall img { max-height: none; }
+.wallpapers .button { justify-self: start; margin-top: 0.35rem; }
+.wallpapers .button small { font-weight: 400; opacity: 0.8; margin-left: 0.35rem; }
 
 /* ------------------------------------------------------------ sound */
 .sound-toggle { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.25rem; padding: 0 0.75rem; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--ground); color: var(--muted); font-weight: 600; }
