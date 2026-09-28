@@ -117,7 +117,6 @@ if (check) {
   process.exit(drift ? 1 : 0);
 }
 const catalogue = {
-  generated: new Date().toISOString(),
   release: RELEASE,
   screens: Object.entries(WALLPAPER_SCREENS).map(([id, s]) => ({
     id,
