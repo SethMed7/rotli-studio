@@ -1,15 +1,17 @@
-// WALLPAPERS — free desktop, tablet and phone wallpapers: one film per screen and one shot per wallpaper, so
-// `node tools/wallpapers.mjs` renders every screen at its exact pixel size (WALLPAPER_SCREENS). No words on a
-// wallpaper; the quokka and the lighthouse sit low and left of centre, clear of macOS's desktop icons (top right),
-// the menu bar, the Dock and a phone's clock.
+// WALLPAPERS — the wallpaper maker's one source: screens, backgrounds, quokka looks, placement and presets, and
+// `paintWallpaper`, a pure function the site's maker (src/site/wallpaperMaker.ts) and the golden check
+// (tools/wallpapers.mjs) both call. No words on a wallpaper; the quokka stands low, clear of macOS's menu bar,
+// desktop icons (top right) and Dock, and of a phone's clock. Its looks are the app's REAL <Character>
+// (brand/wallpaper-looks.json, rendered by scripts/render-companions.ts), drawn as images, never re-drawn here.
+import LOOKS from "../../brand/wallpaper-looks.json";
 import type { Ctx, Env } from "./core";
 import type { Film } from "./film";
-import { drawQuokka, type Quokka } from "./quokka/rig";
 import { beach, farIsland, HORIZON, lighthouse, sea, sky, sun } from "./rotli/island";
 import { C } from "./rotli/kit";
 import { leaves, moon, motes, rain, stars, tide, grid } from "./studio/atmospheres";
-import { envGround, fileField } from "./studio/grounds";
-import { FAMILY_QUOKKA, FONTS, STYLE_HEX, useFamily, type Family } from "./studio/stage";
+import { envGround, fileField, fileFlight } from "./studio/grounds";
+import { drawLook } from "./studio/look";
+import { FONTS, STYLE_NAME, THEME_LIST, useFamily, type Family } from "./studio/stage";
 
 /** each screen: the pixels it ships at and the devices it fits. The design space is the same shape with its short
  *  side at 1080 (so strokes, stars and leaves read as they do in the films); the render scale maps it to `out`. */
@@ -27,7 +29,11 @@ export const designOf = (screen: WallpaperScreen) => {
     scale = Math.min(w, h) / 1080;
   return { W: w / scale, H: h / scale, scale };
 };
-type Box = { W: number; H: number; tall: boolean };
+export type Box = { W: number; H: number; tall: boolean };
+export const boxOf = (screen: WallpaperScreen): Box => {
+  const { W, H } = designOf(screen);
+  return { W, H, tall: H > W * 1.2 };
+};
 
 const F = 120; // the frame every ambient layer (clouds, stars, leaves) is frozen at
 
@@ -43,66 +49,60 @@ const island = (ctx: Ctx, b: Box, mode: "day" | "sunset", ax: number) => {
   sea(ctx, F, mode);
   beach(ctx, F, mode, mode === "sunset" ? 470 : 820);
   ctx.restore();
-  return { k, x0: (b.W - 1920 * k) * ax, y0: (b.H - 1080 * k) / 2 };
 };
 
-/** the quokka, standing where a wallpaper wants it: a share of the width and height, sized to the short side */
-const quokka = (
-  ctx: Ctx,
-  env: Env,
-  b: Box,
-  q: Omit<Quokka, "x" | "y" | "h">,
-  at: { x: number; y: number; h: number },
-) => drawQuokka(ctx, env, { blink: 0, ...q, x: b.W * at.x, y: b.H * at.y, h: Math.min(b.W, b.H) * at.h });
-
-type Wallpaper = {
+// ---------------------------------------------------------------- backgrounds
+export type Background = {
   id: string;
   title: string;
+  group: "plain" | "scene";
   family: Family;
   dark: boolean;
-  draw: (ctx: Ctx, env: Env, b: Box) => void;
+  /** drawn under the quokka */
+  draw: (ctx: Ctx, b: Box) => void;
+  /** drawn over it (rain, drifting motes) */
+  over?: (ctx: Ctx, b: Box) => void;
 };
+const familyOf = (name: string) => name.toLowerCase().split(/[^a-z]+/)[0]!;
 
-export const WALLPAPERS: Wallpaper[] = [
+/** plain: every theme environment the app ships, as its flat ground (the cleanest wallpaper there is) */
+const PLAIN: Background[] = THEME_LIST.map((t) => ({
+  id: `plain-${t.id}`,
+  title: t.label,
+  group: "plain" as const,
+  family: familyOf(t.family),
+  dark: t.mode === "dark",
+  draw: (ctx: Ctx, b: Box) => {
+    ctx.fillStyle = t.roles.ground;
+    ctx.fillRect(0, 0, b.W, b.H);
+  },
+}));
+
+const SCENES: Background[] = [
   {
     id: "island-morning",
     title: "Island, morning",
+    group: "scene",
     family: "rotli",
     dark: false,
-    draw: (ctx, env, b) => {
-      island(ctx, b, "day", b.tall ? 0.86 : b.W < b.H * 1.2 ? 0.8 : 0.5);
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "base", body: STYLE_HEX.cocoa },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.36 } : { x: 0.56, y: 0.84, h: 0.26 },
-      );
-      motes(ctx, F, b.W, b.H, C.cocoa, 10, 5, 0.12);
-    },
+    draw: (ctx, b) => island(ctx, b, "day", b.tall ? 0.86 : b.W < b.H * 1.2 ? 0.8 : 0.5),
+    over: (ctx, b) => motes(ctx, F, b.W, b.H, C.cocoa, 10, 5, 0.12),
   },
   {
     id: "island-sunset",
     title: "Island, sunset",
+    group: "scene",
     family: "rotli",
     dark: false,
-    draw: (ctx, env, b) => {
-      island(ctx, b, "sunset", b.tall ? 0.3 : 0.5);
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "waving", body: STYLE_HEX.cocoa },
-        b.tall ? { x: 0.56, y: 0.82, h: 0.34 } : { x: 0.62, y: 0.86, h: 0.24 },
-      );
-    },
+    draw: (ctx, b) => island(ctx, b, "sunset", b.tall ? 0.3 : 0.5),
   },
   {
     id: "lighthouse-night",
     title: "Night, the lighthouse",
+    group: "scene",
     family: "rotli",
     dark: true,
-    draw: (ctx, env, b) => {
+    draw: (ctx, b) => {
       envGround(ctx, F, "deep", { w: b.W, h: b.H, fieldAlpha: 0.05 });
       stars(ctx, F, b.W, b.H, C.nightText, b.tall ? 120 : 110);
       moon(ctx, b.W * (b.tall ? 0.72 : 0.36), b.H * (b.tall ? 0.24 : 0.2), 40, C.nightText, C.night);
@@ -110,127 +110,282 @@ export const WALLPAPERS: Wallpaper[] = [
       ctx.globalAlpha = 0.6;
       lighthouse(ctx, b.W * (b.tall ? 0.8 : 0.84), b.H - 40, b.tall ? 1.2 : 0.95, F, 0.55, "night");
       ctx.restore();
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "rest", body: STYLE_HEX.cocoa },
-        b.tall ? { x: 0.36, y: 0.84, h: 0.34 } : { x: 0.26, y: 0.88, h: 0.24 },
-      );
     },
   },
   {
     id: "ocean-tide",
     title: "Ocean, the tide line",
+    group: "scene",
     family: "ocean",
     dark: false,
-    draw: (ctx, env, b) => {
+    draw: (ctx, b) => {
       envGround(ctx, F, "base", { w: b.W, h: b.H });
       tide(ctx, F, b.W, b.H, C.clay, 5);
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "thoughtful", body: FAMILY_QUOKKA.ocean },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.4 } : { x: 0.3, y: 0.8, h: 0.3 },
-      );
     },
   },
   {
     id: "grove-leaves",
     title: "Grove, falling leaves",
+    group: "scene",
     family: "grove",
     dark: false,
-    draw: (ctx, env, b) => {
+    draw: (ctx, b) => {
       envGround(ctx, F, "band", { w: b.W, h: b.H });
       leaves(ctx, F, b.W, b.H, [C.olive, C.clay, C.oliveBright], b.tall ? 30 : 26);
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "listening", body: FAMILY_QUOKKA.grove },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.4 } : { x: 0.3, y: 0.82, h: 0.3 },
-      );
     },
   },
   {
     id: "iris-dusk",
     title: "Iris, dusk",
+    group: "scene",
     family: "iris",
     dark: false,
-    draw: (ctx, env, b) => {
+    draw: (ctx, b) => {
       envGround(ctx, F, "base", { w: b.W, h: b.H });
       stars(ctx, F, b.W, b.H * 0.55, C.clay, 34, 23, 1);
       moon(ctx, b.W * (b.tall ? 0.7 : 0.4), b.H * (b.tall ? 0.24 : 0.22), 46, C.peach, C.linen);
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "celebrating", body: FAMILY_QUOKKA.iris },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.4 } : { x: 0.3, y: 0.82, h: 0.3 },
-      );
     },
   },
   {
     id: "midnight-rain",
     title: "Midnight, rain",
+    group: "scene",
     family: "midnight",
     dark: true,
-    draw: (ctx, env, b) => {
-      envGround(ctx, F, "deep", { w: b.W, h: b.H, fieldAlpha: 0.05 });
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "base", body: STYLE_HEX.line },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.4 } : { x: 0.3, y: 0.82, h: 0.3 },
-      );
-      rain(ctx, F, b.W, b.H, C.nightText, b.tall ? 140 : 120);
+    draw: (ctx, b) => envGround(ctx, F, "deep", { w: b.W, h: b.H, fieldAlpha: 0.05 }),
+    over: (ctx, b) => rain(ctx, F, b.W, b.H, C.nightText, b.tall ? 140 : 120),
+  },
+  {
+    id: "files-flying",
+    title: "Files in flight",
+    group: "scene",
+    family: "rotli",
+    dark: false,
+    draw: (ctx, b) => {
+      envGround(ctx, F, "base", { w: b.W, h: b.H, field: false });
+      fileFlight(ctx, { w: b.W, h: b.H, ink: C.cocoa, seed: 11 });
+    },
+  },
+  {
+    id: "files-flying-night",
+    title: "Files in flight, night",
+    group: "scene",
+    family: "rotli",
+    dark: true,
+    draw: (ctx, b) => {
+      envGround(ctx, F, "deep", { w: b.W, h: b.H, field: false });
+      fileFlight(ctx, { w: b.W, h: b.H, ink: C.nightText, seed: 11, alpha: 0.18 });
     },
   },
   {
     id: "paper-studio",
     title: "Paper studio",
+    group: "scene",
     family: "paper",
     dark: false,
-    draw: (ctx, env, b) => {
+    draw: (ctx, b) => {
       envGround(ctx, F, "base", { w: b.W, h: b.H, field: false });
       grid(ctx, b.W, b.H, C.cocoa);
       fileField(ctx, F, { w: b.W, h: b.H, alpha: 0.06 });
-      quokka(
-        ctx,
-        env,
-        b,
-        { pose: "notes", body: STYLE_HEX.line },
-        b.tall ? { x: 0.5, y: 0.8, h: 0.4 } : { x: 0.3, y: 0.82, h: 0.3 },
-      );
     },
   },
 ];
+export const BACKGROUNDS: Background[] = [...PLAIN, ...SCENES];
+export const backgroundOf = (id: string) => BACKGROUNDS.find((x) => x.id === id) ?? BACKGROUNDS[0]!;
 
+// ---------------------------------------------------------------- the quokka
+export const EMOTIONS = LOOKS.emotions;
+export const COLOURS = LOOKS.styles.map((id) => ({ id, label: STYLE_NAME[id] ?? id }));
+export const ACCESSORIES = LOOKS.accessories;
+export type Place = "left" | "centre" | "right";
+export type Size = "small" | "medium" | "large";
+export const PLACES: Place[] = ["left", "centre", "right"];
+export const SIZES: Size[] = ["small", "medium", "large"];
+/** what it wears is coloured the app's way: oklch(70% 0.15 hue); the app's default hue is 38 */
+export const ACCESSORY_HUES = [
+  { hue: 38, label: "Tangerine" },
+  { hue: 20, label: "Coral" },
+  { hue: 85, label: "Mustard" },
+  { hue: 145, label: "Green" },
+  { hue: 200, label: "Teal" },
+  { hue: 255, label: "Blue" },
+  { hue: 300, label: "Violet" },
+  { hue: 350, label: "Pink" },
+];
+export type QuokkaSpec = { pose: string; style: string; accessory: string; hue: number; place: Place; size: Size };
+export type WallpaperSpec = { background: string; quokka: QuokkaSpec | null };
+
+/** the look file for a quokka on a background: the line style has a white-ink render for dark grounds */
+export const lookId = (q: Pick<QuokkaSpec, "pose" | "style" | "accessory">, dark: boolean) =>
+  `${q.pose}-${q.style}-${q.accessory}${dark && LOOKS.darkVariants.includes(q.style) ? "-dark" : ""}`;
+export const lookFile = (id: string) => `library/wallpaper-looks/${id}.${LOOKS.format}`;
+/** the colour mask for a filled accessory (line quokkas wear outline accessories, with no colour to change) */
+export const maskId = (q: Pick<QuokkaSpec, "pose" | "style" | "accessory">) =>
+  q.accessory !== "none" && q.style !== "line" ? `tint-${q.pose}-${q.accessory}` : null;
+
+/** oklch(L C h) -> sRGB hex (CSS Color 4's OKLab matrices), so every browser and the golden get the same colour */
+export const oklchHex = (L: number, Cc: number, h: number) => {
+  const a = Cc * Math.cos((h * Math.PI) / 180),
+    b = Cc * Math.sin((h * Math.PI) / 180);
+  const l = (L + 0.3963377774 * a + 0.2158037573 * b) ** 3,
+    m = (L - 0.1055613458 * a - 0.0638541728 * b) ** 3,
+    s = (L - 0.0894841775 * a - 1.291485548 * b) ** 3;
+  const lin = [
+    4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s,
+    -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s,
+    -0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s,
+  ];
+  return `#${lin
+    .map((c) => {
+      const v = c <= 0.0031308 ? 12.92 * c : 1.055 * Math.max(c, 0) ** (1 / 2.4) - 0.055;
+      return Math.round(Math.min(1, Math.max(0, v)) * 255)
+        .toString(16)
+        .padStart(2, "0");
+    })
+    .join("")}`;
+};
+export const accessoryHex = (hue: number) => oklchHex(0.7, 0.15, hue);
+
+/** the look with its accessory coloured: the white accessory multiplied by the hue through its mask (ink stays
+ *  black), cached per look and hue */
+const tintedLook = (env: Env, id: string, mask: string, hue: number) => {
+  const key = `tinted:${id}:${hue}`,
+    hit = env.cache.get(key) as CanvasImageSource | undefined;
+  if (hit) return hit;
+  const look = env.image?.(`look:${id}`) as (CanvasImageSource & { width: number }) | undefined,
+    m = env.image?.(`look:${mask}`);
+  if (!look || !m) throw new Error(`look ${id} or its mask ${mask} not loaded`);
+  const N = look.width,
+    L = env.canvas(N, N),
+    T = env.canvas(N, N);
+  L.ctx.drawImage(look, 0, 0);
+  T.ctx.drawImage(m, 0, 0, N, N);
+  T.ctx.globalCompositeOperation = "source-in";
+  T.ctx.fillStyle = accessoryHex(hue);
+  T.ctx.fillRect(0, 0, N, N);
+  L.ctx.globalCompositeOperation = "multiply";
+  L.ctx.drawImage(T.canvas, 0, 0);
+  env.cache.set(key, L.canvas);
+  return L.canvas;
+};
+
+// feet low on the screen and the height as a share of the short side; phones get a taller figure, set a little
+// higher (clear of the home bar), and every place stays inside the bands the header names
+const HEIGHT: Record<Size, [number, number]> = { small: [0.2, 0.3], medium: [0.27, 0.38], large: [0.36, 0.48] };
+const PLACE_X: Record<Place, [number, number]> = { left: [0.28, 0.3], centre: [0.5, 0.5], right: [0.72, 0.7] };
+export const placement = (b: Box, q: Pick<QuokkaSpec, "place" | "size">) => {
+  const t = b.tall ? 1 : 0;
+  return { x: b.W * PLACE_X[q.place][t], y: b.H * (b.tall ? 0.84 : 0.88), h: Math.min(b.W, b.H) * HEIGHT[q.size][t] };
+};
+
+/** one wallpaper, drawn in design units (the caller's ctx already carries env.scale); env.image must supply
+ *  `look:<lookId>` when the spec has a quokka */
+export const paintWallpaper = (ctx: Ctx, env: Env, spec: WallpaperSpec, b: Box) => {
+  const bg = backgroundOf(spec.background);
+  useFamily(bg.family); // every wallpaper sets its own palette first, so any order draws the same
+  bg.draw(ctx, b);
+  if (spec.quokka) {
+    const id = lookId(spec.quokka, bg.dark),
+      mask = maskId(spec.quokka),
+      tinted = mask ? tintedLook(env, id, mask, spec.quokka.hue) : null,
+      withTint: Env = tinted ? { ...env, image: (n) => (n === `look:${id}` ? tinted : env.image?.(n)) } : env;
+    drawLook(ctx, withTint, { id, ...placement(b, spec.quokka), blink: false });
+  }
+  bg.over?.(ctx, b);
+};
+
+// ---------------------------------------------------------------- presets
+const q = (pose: string, style: string, accessory: string, place: Place = "left", size: Size = "medium", hue = 38) => ({
+  pose,
+  style,
+  accessory,
+  hue,
+  place,
+  size,
+});
+export const PRESETS: { id: string; title: string; spec: WallpaperSpec }[] = [
+  {
+    id: "island-morning",
+    title: "Island, morning",
+    spec: { background: "island-morning", quokka: q("base", "cocoa", "none", "centre") },
+  },
+  {
+    id: "island-sunset",
+    title: "Island, sunset",
+    spec: { background: "island-sunset", quokka: q("waving", "cocoa", "bucket-hat", "right") },
+  },
+  {
+    id: "lighthouse-night",
+    title: "Night, the lighthouse",
+    spec: { background: "lighthouse-night", quokka: q("rest", "cocoa", "none") },
+  },
+  {
+    id: "ocean-tide",
+    title: "Ocean, the tide line",
+    spec: { background: "ocean-tide", quokka: q("thoughtful", "ocean", "glasses", "left", "medium", 20) },
+  },
+  {
+    id: "grove-leaves",
+    title: "Grove, falling leaves",
+    spec: { background: "grove-leaves", quokka: q("listening", "green", "bucket-hat") },
+  },
+  { id: "iris-dusk", title: "Iris, dusk", spec: { background: "iris-dusk", quokka: q("celebrating", "iris", "none") } },
+  {
+    id: "midnight-rain",
+    title: "Midnight, rain",
+    spec: { background: "midnight-rain", quokka: q("base", "line", "goggles") },
+  },
+  {
+    id: "paper-studio",
+    title: "Paper studio",
+    spec: { background: "paper-studio", quokka: q("base", "line", "glasses") },
+  },
+  {
+    id: "files-flying",
+    title: "Files in flight",
+    spec: { background: "files-flying", quokka: q("walking", "cocoa", "goggles", "left", "medium", 200) },
+  },
+  {
+    id: "linen",
+    title: "Linen, hello",
+    spec: { background: "plain-light", quokka: q("waving", "cocoa", "none", "centre", "small") },
+  },
+  { id: "charcoal", title: "Charcoal, nothing else", spec: { background: "plain-charcoal", quokka: null } },
+];
+
+// ---------------------------------------------------------------- films: the golden check draws every preset
 const BEAT = 15;
 const screenFilm = (screen: WallpaperScreen): Film => {
-  const { W, H } = designOf(screen),
-    b: Box = { W, H, tall: H > W * 1.2 };
+  const b = boxOf(screen),
+    ids = [
+      ...new Set(
+        PRESETS.flatMap((p) =>
+          p.spec.quokka
+            ? [lookId(p.spec.quokka, backgroundOf(p.spec.background).dark), maskId(p.spec.quokka)].filter(
+                (x): x is string => x !== null,
+              )
+            : [],
+        ),
+      ),
+    ];
   return {
     meta: {
       title: `wallpapers-${screen}`,
-      W,
-      H,
+      W: b.W,
+      H: b.H,
       fps: 30,
       bpm: 120,
-      durationFrames: WALLPAPERS.length * BEAT,
+      durationFrames: PRESETS.length * BEAT,
       raster: "cpu",
     },
-    assets: { images: {}, fonts: FONTS },
-    shots: WALLPAPERS.map((w, i) => ({
-      id: w.id,
+    assets: { images: Object.fromEntries(ids.map((id) => [`look:${id}`, `../${lookFile(id)}`])), fonts: FONTS },
+    shots: PRESETS.map((p, i) => ({
+      id: p.id,
       start: i * BEAT,
       end: (i + 1) * BEAT,
       draw: (ctx, _l, env) => {
-        useFamily(w.family); // each shot sets its own palette first, so the set renders the same in any order
         ctx.setTransform(env.scale, 0, 0, env.scale, 0, 0);
-        w.draw(ctx, env, b);
+        paintWallpaper(ctx, env, p.spec, b);
       },
     })),
   };

@@ -98,11 +98,12 @@
    "id": "studies",
    "title": "Studies",
    "kind": "studies",
-   "shape": "21 original pieces for a fictional product, each in two sizes: landscape, vertical, square or portrait",
+   "shape": "26 original pieces, each in two sizes: 24 for a fictional product (Oriel), a turtle-hosted explainer and a lyric video sung in code",
    "logline": "The studio is not only Rotli's. Other styles, other motion, every size: each study has its brief, its exact prompt and its render, so you can learn the studio here before pointing it at your own product.",
    "docs": [
     "series/studies/bible.md",
     "workflows/study-preamble.md",
+    "workflows/critique.md",
     "brand/packs/studio/pack.json"
    ],
    "sealed": false

@@ -42,6 +42,9 @@ VERIFY BY LOOKING, and iterate until right:
 - loops: also `node tools/loop-seam.mjs /tmp/<pieceId>.mp4` must print SEAMLESS.
 - loudness (videos): `ffmpeg -nostats -i /tmp/<pieceId>.mp4 -af ebur128 -f null - 2>&1 | grep " I:"` should be about −16 LUFS.
 - `npx tsc --noEmit -p tsconfig.json` must print nothing.
+- score it (videos): `node tools/critique.mjs /tmp/<pieceId>.mp4`, read all four sheets it writes, and score the piece
+  against `workflows/critique.md` (hook, readability, motion, variety, composition, accuracy, sync; 1–10 each). Fix
+  anything under 8 and re-score. Put your final scores and the problems you could not fix in your report.
 - Do not commit, do not touch ~/rotli, do not run `studio.mjs render all` or golden.
 
 Report back: files created, the final sheet paths, still-frames / loop-seam / loudness results, what you would improve

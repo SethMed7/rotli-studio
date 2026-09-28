@@ -6,11 +6,97 @@
    "id": "linen",
    "kind": "music",
    "title": "Linen",
-   "use": "the studio's music, looping quietly while sound is on",
+   "use": "the studio's theme, and the first track of the playlist",
+   "playlist": {
+    "family": "Rotli",
+    "theme": "light",
+    "bpm": 66,
+    "key": "C major"
+   },
    "prompt": "sound/prompts/linen.md",
    "file": "sound/web/linen.m4a",
    "seconds": 58.18,
    "sha256": "69e66ff7265cda0ff0661e26d4289db6230bbeaaaddc7337c1f48e2cf4205c79"
+  },
+  {
+   "id": "graphite",
+   "kind": "music",
+   "title": "Graphite",
+   "use": "the playlist's Paper & Charcoal track: the tune alone on a felt piano",
+   "playlist": {
+    "family": "Paper & Charcoal",
+    "theme": "paper",
+    "bpm": 72,
+    "key": "F major"
+   },
+   "prompt": "sound/prompts/graphite.md",
+   "file": "sound/web/graphite.m4a",
+   "seconds": 53.33,
+   "sha256": "230154c6319f5d5864a65a2ab99c72a0f1d06c07a355ec8087f91ba4a18b682d"
+  },
+  {
+   "id": "tide",
+   "kind": "music",
+   "title": "Tide",
+   "use": "the playlist's Ocean track: breathing pads, a slow marimba, surf",
+   "playlist": {
+    "family": "Ocean",
+    "theme": "ocean-light",
+    "bpm": 60,
+    "key": "D major"
+   },
+   "prompt": "sound/prompts/tide.md",
+   "file": "sound/web/tide.m4a",
+   "seconds": 64,
+   "sha256": "fded5a451d0cdd06a07e9c9631a4a45510e9dfb517a5ea9d1bec7a2a648b30bd"
+  },
+  {
+   "id": "canopy",
+   "kind": "music",
+   "title": "Canopy",
+   "use": "the playlist's Grove track: marimba, shaker, bass and birds",
+   "playlist": {
+    "family": "Grove",
+    "theme": "grove-light",
+    "bpm": 88,
+    "key": "G major"
+   },
+   "prompt": "sound/prompts/canopy.md",
+   "file": "sound/web/canopy.m4a",
+   "seconds": 65.45,
+   "sha256": "d8b7915ffca6b82365f0de0189c8e198f4615603b85eba5985b2b8a9e83161e0"
+  },
+  {
+   "id": "dusk",
+   "kind": "music",
+   "title": "Dusk",
+   "use": "the playlist's Iris track: a lo-fi groove on electric piano",
+   "playlist": {
+    "family": "Iris",
+    "theme": "iris-dark",
+    "bpm": 76,
+    "key": "E-flat major"
+   },
+   "prompt": "sound/prompts/dusk.md",
+   "file": "sound/web/dusk.m4a",
+   "seconds": 50.53,
+   "sha256": "f5144668bbcd0ff68f22f28086fb162e0646a573debe07edaada21eba85a387e"
+  },
+  {
+   "id": "lamplight",
+   "kind": "music",
+   "title": "Lamplight",
+   "use": "the playlist's Midnight track: low pads, bells and night air",
+   "playlist": {
+    "family": "Midnight",
+    "theme": "midnight-dark",
+    "bpm": 54,
+    "key": "A-flat major"
+   },
+   "prompt": "sound/prompts/lamplight.md",
+   "file": "sound/web/lamplight.m4a",
+   "seconds": 71.11,
+   "sha256": "6b86fbd0dce311b8fd365fcc0ccebdc19128fc1f3389121ff347637885fbd594"
   },
   {
    "id": "page",

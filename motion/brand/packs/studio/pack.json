@@ -205,6 +205,32 @@
    "accent": "#ff6a3d",
    "accent2": "#ffc26b",
    "deep": "#3b1e78"
+  },
+  "doodle": {
+   "ground": "#f6efe3",
+   "surface": "#ffffff",
+   "ink": "#171412",
+   "muted": "#6f675c",
+   "line": "#e3d8c6",
+   "accent": "#f2a65a",
+   "accent2": "#58b7ea",
+   "deep": "#171412",
+   "s1": "#f7b98a",
+   "s2": "#9fd6f6",
+   "s3": "#f2dc6b",
+   "s4": "#a3e2c4",
+   "s5": "#cdbcf2",
+   "s6": "#171412"
+  },
+  "clay": {
+   "ground": "#131211",
+   "surface": "#1d1b19",
+   "ink": "#f4f1ea",
+   "muted": "#8b857b",
+   "line": "#2c2926",
+   "accent": "#e07a55",
+   "accent2": "#efe4d2",
+   "deep": "#0b0a09"
   }
  },
  "tagline": "Find a time that works for everyone."

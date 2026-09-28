@@ -1,0 +1,138 @@
+{
+ "piece": "cardWall",
+ "sizes": [
+  "cardWall",
+  "cardWallVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session), after the building agent's own checks",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0.7,
+     "longestCalm": 16.1,
+     "nearStill": 37
+    },
+    "vertical": {
+     "changesPer10s": 1.3,
+     "longestCalm": 12,
+     "nearStill": 39
+    },
+    "note": "changesPer10s counts abrupt changes (punctuation), not motion. A contrast-relative version of the measure gives the same answer (1.0-1.7 per 10 s; the launch-film reference, at the same contrast, gives 4.6-10.3), so the reading is real: new content arrives every 2-4 s, but it glides in (crossfades, slides, word-by-word builds) and rarely lands with a punch."
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 6,
+    "motion": 6,
+    "variety": 7,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0",
+     "what": "the first 2.5 s are dark rings and three small dots, with no words",
+     "fix": "a faster, larger mark; the name by 1 s, the headline by 2 s"
+    },
+    {
+     "at": "00:06.0, vertical 00:11.0",
+     "what": "text ghosts: 3-4 stacked copies of 'Trip planning', 'Coffee chat' doubled",
+     "fix": "draw the text once; blur only the card body, or sample more"
+    },
+    {
+     "at": "00:03.0-00:27.0 (landscape)",
+     "what": "the sub-line, step labels, tile second lines and pill are unreadable at 360 px",
+     "fix": "at least 30 px at 1080 for every secondary line; wider tiles"
+    },
+    {
+     "at": "vertical 00:06.0",
+     "what": "'+0' overlaps the fading 'ORIEL'",
+     "fix": "enter the counter after the mark leaves"
+    },
+    {
+     "at": "00:00.0-00:03.0, 00:24.0-00:27.0 (landscape)",
+     "what": "mostly empty dark frame: tiny rings, one small row of tiles",
+     "fix": "scale the mark scene and the tile row to the frame"
+    }
+   ],
+   "agentSaw": [
+    "text ghosting as cards slow into the coverflow",
+    "the vertical headline scene centred, not at the top"
+   ],
+   "agentMissed": [
+    "the empty first 2.5 s",
+    "the unreadable secondary lines at phone size",
+    "the '+0' / 'ORIEL' overlap",
+    "the empty landscape frames"
+   ],
+   "verdict": "fix",
+   "agent": {
+    "minutes": 29.1,
+    "tokens": 254198
+   }
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session)",
+   "agent": {
+    "minutes": 45.6,
+    "tokens": 346124,
+    "note": "the same agent, resumed with the round-1 problems"
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.7,
+     "longestCalm": 16.1,
+     "nearStill": 37
+    },
+    "vertical": {
+     "changesPer10s": 2.3,
+     "longestCalm": 10,
+     "nearStill": 40
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:16.0-00:18.0",
+     "what": "the slam frames now take 1.6-2.2 s each to draw (14-step type blur over the motion-blurred wall)",
+     "fix": "none needed for quality; render time only"
+    },
+    {
+     "at": "00:24.0",
+     "what": "the 720 cut opens on 'Yours,' alone for about 4 frames before the tiles",
+     "fix": "minor"
+    }
+   ],
+   "fixed": [
+    "the mark is large on frame 0 and the headline lands at 1.8 s",
+    "card text drawn once, sharp, over a blurred body: no ghosting",
+    "secondary lines 30-42 px in landscape; tiles span the width",
+    "the counter enters after the mark leaves",
+    "four section changes are now hard cuts on the beat"
+   ],
+   "agentScores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "verdict": "ship"
+  }
+ ]
+}

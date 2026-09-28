@@ -28,10 +28,8 @@ bun scripts/media.ts publish               # builds the snapshot, uploads only t
 git push origin main                       # the workflow deploys
 ```
 
-Wallpapers are the same story at a larger size: `node motion/tools/wallpapers.mjs` renders every screen,
-`media.ts publish` uploads each full-size PNG whose content changed to the `studio-wallpapers` release (the Wallpapers
-page links those files directly; GitHub counts each download), and only the catalogue and small previews travel in
-the `wallpapers` part and the snapshot.
+Wallpapers publish nothing: the Wallpapers page draws each download in the visitor's browser, from the maker's own
+bundle and the tracked quokka looks in `library/wallpaper-looks/`, both of which the snapshot ships.
 
 The slide zips the pages offer (one per carousel) are release assets too (`<slug>.zip`), not part of the snapshot:
 that keeps the upload under Railway's limit (Cloudflare refuses around 250 MB). The local server builds them on the fly.
@@ -48,7 +46,7 @@ cd site-dist && railway up --ci --no-gitignore --service studio   # (linked once
 ```
 
 What the export publishes is an explicit inventory: git-tracked text under the paths listed in
-`scripts/export-site.ts`, only the stills and slides the manifest references (never Create's drafts in
+`scripts/export-site.ts`, only the stills and slides the manifest references (never anything else in
 `exports/`), web copies of the videos and the thumbnails the pages use. It builds into
 `site-dist.staging/`, scans **every** staged file (script bundle, styles, API answers, docs, file names)
 with the pre-push gate's rules (`scripts/lib/privacy.ts`: keys, tokens, SSN-shaped numbers, home paths,
@@ -56,7 +54,7 @@ personal emails, private memex paths and the names in the gitignored `deploy/pri
 validates `publish/posts.json`, and only then replaces `site-dist/`. A failed export changes nothing. Without
 the private-name list it refuses to build (`--no-markers` overrides it knowingly).
 
-Left out on purpose: the Create editor and every write route, exact-frame renders, golden verification and
+Left out on purpose: every write route, exact-frame renders, golden verification and
 the isolation audit (they need this Mac).
 
 The host is Caddy (`Dockerfile`, image pinned by digest; `Caddyfile`): a Content-Security-Policy that allows

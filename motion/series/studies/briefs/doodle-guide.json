@@ -1,0 +1,69 @@
+{
+  "id": "doodle-guide",
+  "no": 24,
+  "title": "Doodle Guide",
+  "module": "src/canvas-core/studies/doodleGuide.ts",
+  "pieces": {
+    "landscape": "doodleGuide",
+    "vertical": "doodleGuideVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 1080,
+  "palette": "doodle",
+  "style": "A fun explainer hosted by the owner's own mascot, a light-blue turtle in black glasses (PNGs in assets/turtle/: head, wave, peek, laptop; embed them through the Film's assets.images, as dressUp.ts embeds its look PNGs). The spine of the piece: ONE character survives many rendering styles. A round badge in the bottom-left corner (ink outline, cream fill, about 150 px at 1080) holds the turtle's head, and every section redraws it in a DIFFERENT style computed in code from the PNG: (1) pixel dither (an ordered Bayer dither to four inks, chunky 6 px cells), (2) halftone dots on a rotated grid, (3) riso two-tone (the palette's accent and accent2 as two misregistered layers with a speckle), (4) ink line (edges found from the image's luminance and alpha, drawn as black strokes on cream), (5) flat poster (three flat tones and an outline), (6) the original colours. Styles are computed from each PNG ONCE per (pose, style, size) with getImageData into offscreen canvases cached at module level, never per frame; the frame only draws the cached canvases, so it stays a pure function of the frame. The hook and the end card show the turtle large on the cream ground (the hook in pixel dither, the end card in its original colours). Each section flips to its own full-bleed colour (the palette's s1…s6 roles) on a hard cut. Headlines are Inter 600, tight, left-aligned, and the key word sits on a HIGHLIGHTER BOX: a solid rectangle in the accent behind the word, which wipes in from the left just before the word lands (on the ink section, the box is the accent and the word ink). A small JetBrains Mono section label sits top-left ('// 01 · the basics'); there is no timecode. Small token confetti (paw prints and bones, drawn in the current badge style's look) float and tumble at the edges. The dogs are drawn in code, cute and simple: a rounded body, a round head, floppy ears, a dark nose and eyes, and the COAT is the lesson: straight coats are long smooth strands, wavy coats are soft S-strokes, curly coats are tight little loops; coat colour from a small set of named doodle colours defined in the module (cream, apricot, red, chocolate, and parti as white with patches). Cards (white surface, ink 3 px outline, a hard offset shadow in ink, like a sticker) hold dogs, bars and labels. Springs on every arrival; the turtle bobs and blinks (swap between poses only at cuts; for life inside a shot, bob, tilt and squash the image slightly).",
+  "learnsFrom": "A public product explainer Opus 5.5 made from one prompt (https://x.com/achxvi/status/2104294892944097513): a dithered mascot hosting, a full-bleed colour flip for every section, the mascot's head in a round corner badge on every scene, highlighter boxes behind key words, token confetti, UI cards with bars that fill. Its character, colours, product and copy are not used; the host here is the owner's own turtle, used on the owner's request.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "hook (cream): the turtle (wave pose, pixel dither, large, right of centre) bobs up into frame and waves; confetti drifts; a small bubble 'psst…' pops beside it and goes; the headline builds on the left: 'Thinking about' / 'a [goldendoodle]?' (the bracketed word on the highlighter box)"
+    },
+    {
+      "from": 90,
+      "to": 210,
+      "what": "// 01 · the basics (s1): badge in HALFTONE; two sticker cards pop in, a Golden Retriever (straight golden coat, 'Golden Retriever') and a Poodle (tight curls, 'Poodle'); a '+' pops between them, then both slide together and become one doodle card (wavy apricot coat); headline 'Golden + Poodle' / '= [goldendoodle].'"
+    },
+    {
+      "from": 210,
+      "to": 390,
+      "what": "// 02 · generations (s2): badge in PIXEL DITHER; headline 'The letters are the' / '[family tree].'; four generation cards land one per two beats, each with a two-colour bar filling (golden share vs poodle share) and a line: 'F1 · Golden × Poodle · about half and half', 'F1B · F1 × Poodle · about three-quarters Poodle', 'F2 · F1 × F1 · coats vary most', 'Multigen · doodle × doodle, several generations'; a small doodle on each card shows the likely coat"
+    },
+    {
+      "from": 390,
+      "to": 570,
+      "what": "// 03 · coats (s3): badge in RISO; three doodles stand in a row and their coats draw on stroke by stroke: 'Straight', 'Wavy', 'Curly'; a slider under them moves from 'more Golden' to 'more Poodle' as the coats curl; headline 'More Poodle usually means' / '[curlier].' then a small line 'and, often, less shedding.'"
+    },
+    {
+      "from": 570,
+      "to": 720,
+      "what": "// 04 · sizes (s4): badge in INK LINE; four doodles line up largest to smallest against a height ruler and pop in one per beat: 'Standard · roughly 50–90 lb', 'Medium · roughly 30–45 lb', 'Mini · roughly 15–30 lb', 'Petite · under about 15 lb'; headline 'Pick a [size].'; a mono footnote 'ranges are approximate; breeders' vary'"
+    },
+    {
+      "from": 720,
+      "to": 840,
+      "what": "// 05 · colours (s5): badge in FLAT POSTER; one big doodle in the centre whose coat changes colour on each beat while named swatch chips light up in turn: 'Cream', 'Apricot', 'Red', 'Chocolate', 'Parti'; headline 'From cream to' / '[chocolate].'"
+    },
+    {
+      "from": 840,
+      "to": 960,
+      "what": "// 06 · the honest bit (s6, ink ground, cream type): badge in ORIGINAL colours; headline 'No dog is fully' / '[hypoallergenic].' then the line 'More Poodle usually means less shedding. Meet the dog first.'; a small doodle sits by the badge and sneezes once (a tiny puff)"
+    },
+    {
+      "from": 960,
+      "to": 1080,
+      "what": "end card (cream): the turtle peeks over the top of a big white sticker card (peek pose, original colours); on the card 'Which [doodle] is yours?' and a recap strip of four small chips 'F1 · F1B · F2 · Multigen'; confetti settles; a mono footer 'sizes are approximate · every dog is its own dog'; a slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the headline sits in the top third of the safe area, the turtle below it and larger in the hook; the two basics cards stack with the '+' between them; the generation cards become one column of four; the three coats stay in a row (smaller) with the slider under them; the sizes line becomes a 2×2 grid with the ruler on each; the colour chips wrap to two rows under the dog; the badge stays bottom-left above the bottom safe margin.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at the first flip (drop at frame 90), a hit on every section flip, a whoosh into the 'Golden + Poodle' merge, soft ticks for each card, chip, bar fill and coat stroke burst (thinned so they never buzz), and the sign-off at the end card.",
+  "teaches": "One character can survive any rendering style: redrawing the same host's head in a new style every section keeps the piece consistent while every scene looks new, and the same idea (one dog, many coats) is the lesson itself.",
+  "portable": {
+    "fonts": "Inter (600) for headlines and body, JetBrains Mono for the small section labels",
+    "style": "A fun explainer hosted by your own mascot image. A round badge in the bottom-left corner holds the mascot's head, and every section redraws it in a different style computed in code from the image: pixel dither (ordered Bayer, four inks), halftone dots, riso two-tone with misregistration, ink line from edges, flat poster, then the original. Compute each style once into an offscreen canvas and reuse it; never process pixels per frame. Each section flips to its own full-bleed colour on a hard cut. Headlines are tight bold sans, left-aligned, with the key word on a solid highlighter box that wipes in from the left just before the word lands. A small mono section label sits top-left. Token confetti (paw prints, bones) tumbles at the edges. Content cards look like stickers: white, thick ink outline, a hard offset ink shadow. The dogs are drawn in code, cute and simple, and their coats are the lesson: straight strands, soft waves, tight loops. The mascot opens large on a cream ground and closes peeking over a big card.",
+    "sound": "a driving loop at 120 bpm whose drums enter at the first flip, a hit on every section flip, a whoosh into the merge, soft ticks for cards, chips and bars, and a three-note sign-off.",
+    "sizes": "re-stack it: headline in the top third, cards in one column, the sizes as a 2×2 grid, the badge kept above the bottom safe margin."
+  }
+}

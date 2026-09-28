@@ -1,0 +1,139 @@
+{
+ "piece": "fivePointFive",
+ "sizes": [
+  "fivePointFive",
+  "fivePointFiveVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session), after the building agent's own checks",
+   "agent": {
+    "minutes": 35.6,
+    "tokens": 274317
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.1,
+     "longestCalm": 16,
+     "nearStill": 63
+    },
+    "vertical": {
+     "changesPer10s": 0.6,
+     "longestCalm": 29.3,
+     "nearStill": 68
+    },
+    "reference": "the lyric video it learns from: 7.1 abrupt changes per 10 s, a hard cut every 2.6 s"
+   },
+   "scores": {
+    "hook": 6,
+    "readability": 8,
+    "motion": 8,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "every line",
+     "what": "each lyric line holds one composition for its whole 2 bars (5.3 s); only the lit syllable and a drift change",
+     "fix": "a second visual beat on each line's inner bar line"
+    },
+    {
+     "at": "00:00.0-00:02.0",
+     "what": "a small prompt field on near-black is the whole hook",
+     "fix": "the field as the hero, typing from frame 0, the hum as a large waveform"
+    },
+    {
+     "at": "00:53.0-01:04.0",
+     "what": "the tag holds nearly still for about 10 s",
+     "fix": "numerals pulse on each sung 'five'; keep the last scene moving"
+    },
+    {
+     "at": "00:00.0-00:05.0 (landscape)",
+     "what": "the field sits small in a big dark frame",
+     "fix": "see the hook"
+    },
+    {
+     "at": "00:48.0-00:53.0",
+     "what": "the second 'SAME' stamp overlaps the first",
+     "fix": "land it in a clearly different place"
+    }
+   ],
+   "agentSaw": [
+    "the lock and stamp moments are brief",
+    "intelligibility of the formant voice (unverifiable without ears)"
+   ],
+   "agentMissed": [
+    "the one-composition-per-line pacing",
+    "the weak visual hook",
+    "the static tag"
+   ],
+   "notHeard": "nobody has listened to the voice; the sync score is from the syllable table and the voice stem's energy onsets, not from ears",
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session)",
+   "agent": {
+    "minutes": 56.9,
+    "tokens": 435031,
+    "note": "the same agent, resumed with the round-1 problems"
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.8,
+     "longestCalm": 5.3,
+     "nearStill": 52
+    },
+    "vertical": {
+     "changesPer10s": 3.8,
+     "longestCalm": 5.3,
+     "nearStill": 57
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:50.0 (vertical)",
+     "what": "the bridge stamp sits over the form's piece line",
+     "fix": "by design: a stamp covers what it certifies"
+    },
+    {
+     "at": "00:58.7-01:04.0",
+     "what": "the final 'made in code' hold is the longest calm (5.3 s)",
+     "fix": "deliberate ending: caret, push-in, the credit typing"
+    }
+   ],
+   "fixed": [
+    "a second visual beat on every line's inner bar line (a closer framing of the same idea)",
+    "the hook: a cream field at 60 % width typing from frame 0 over a large waveform",
+    "the tag in three framings, the numerals pulsing on each sung 'five'",
+    "larger landscape compositions",
+    "the second 'SAME' stamp on a third form, clearly apart"
+   ],
+   "goodhart": "the agent reported that its first second beats, cut on the dark ground, did not register with critique.mjs (under 18 grey levels), so it built each beat around a large bright area arriving. Read by eye, the bright areas are real content (paper, a lit surface, a clay flood), not empty flashes; the pacing number and the film improved together. Worth watching: a metric in the loop is a target.",
+   "agentScores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "verdict": "ship"
+  }
+ ]
+}

@@ -29,6 +29,25 @@ const studyBriefs = existsSync(join(ROOM, STUDY_DIR))
       .map((f) => ({ ...read(`${STUDY_DIR}/${f}`), file: `${STUDY_DIR}/${f}` }))
       .sort((a, b) => a.no - b.no)
   : [];
+// field notes: the studies' long-form write-ups, one markdown file each (series/studies/notes/<yyyy-mm-dd>-<slug>.md),
+// newest first. The title is the first "# " line, the summary the first "> " line under it.
+const NOTE_DIR = "series/studies/notes";
+const studyNotes = existsSync(join(ROOM, NOTE_DIR))
+  ? readdirSync(join(ROOM, NOTE_DIR))
+      .filter((f) => /^\d{4}-\d{2}-\d{2}-.+\.md$/.test(f))
+      .sort()
+      .reverse()
+      .map((f) => {
+        const md = readFileSync(join(ROOM, NOTE_DIR, f), "utf8");
+        return {
+          path: `${NOTE_DIR}/${f}`,
+          date: f.slice(0, 10),
+          title: md.match(/^# (.+)$/m)?.[1] ?? f,
+          summary: md.match(/^> (.+)$/m)?.[1] ?? "",
+          minutes: Math.max(1, Math.round(md.split(/\s+/).length / 230)),
+        };
+      })
+  : [];
 const studyOf = (id) => {
   for (const b of studyBriefs) for (const [size, pid] of Object.entries(b.pieces)) if (pid === id) return { b, size };
   return null;
@@ -186,6 +205,7 @@ const bySeries = series.map((s) => {
   if (s.kind === "studies")
     return {
       ...s,
+      notes: studyNotes,
       studies: studyBriefs
         .map((b) => {
           const sizes = Object.fromEntries(Object.entries(b.pieces).filter(([, id]) => mine.some((e) => e.id === id)));

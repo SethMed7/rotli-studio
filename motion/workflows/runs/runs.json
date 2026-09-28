@@ -1,7 +1,8 @@
 {
  "note": "Agent runs recovered from Claude Code transcripts. Regenerate with tools/extract-runs.mjs.",
  "sources": [
-  "6f834591-5513-4f19-a058-1af9a5cdd8f7.jsonl"
+  "6f834591-5513-4f19-a058-1af9a5cdd8f7.jsonl",
+  "d919aee8-0829-4b05-988c-37e4e6bfb3d8.jsonl"
  ],
  "runs": [
   {
@@ -353,8 +354,48 @@
    "tokens": 242180,
    "minutes": 27.5,
    "file": "workflows/runs/morphLaunch.md"
+  },
+  {
+   "piece": "cardWall",
+   "description": "Build study 22 Card Wall",
+   "launched": "2026-09-28 14:49",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 600322,
+   "minutes": 74.7,
+   "file": "workflows/runs/cardWall.md"
+  },
+  {
+   "piece": "halftoneHost",
+   "description": "Build study 23 Halftone Host",
+   "launched": "2026-09-28 14:49",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 584783,
+   "minutes": 29.6,
+   "file": "workflows/runs/halftoneHost.md"
+  },
+  {
+   "piece": "doodleGuide",
+   "description": "Build study 24 Doodle Guide",
+   "launched": "2026-09-28 15:02",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 574907,
+   "minutes": 60.5,
+   "file": "workflows/runs/doodleGuide.md"
+  },
+  {
+   "piece": "fivePointFive",
+   "description": "Build study 25 Five Point Five",
+   "launched": "2026-09-28 15:06",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 1,
+   "tokens": 709348,
+   "minutes": 92.5,
+   "file": "workflows/runs/fivePointFive.md"
   }
  ],
  "reviews": 4,
- "requests": 37
+ "requests": 47
 }

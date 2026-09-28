@@ -34,17 +34,18 @@ about the engine is Rotli-only.
 | **Looks and Themes** | Shorts and stills about the companion's looks and the app's theme environments. |
 | **Explainer Carousels** | Standalone carousels: how Rotli works in four slides, and how its film was drawn in code. |
 | **Atmosphere Reel** | Every mood a scene can be set in, three seconds each. |
-| **Studies** | Pieces for a fictional product, **Oriel**, in 21 styles and every size: kinetic type, particles, data, geometry, print, blueprint, floating UI, founder-explainer reels (caption ladders, isometric stacks, pixel parables, paper collage, agent maps, dot grids, before/after) and a one-take morph launch. They show the studio is not only Rotli's. |
+| **Studies** | Pieces for a fictional product, **Oriel**, in 24 styles and every size: kinetic type, particles, data, geometry, print, blueprint, floating UI, founder-explainer reels (caption ladders, isometric stacks, pixel parables, paper collage, agent maps, dot grids, before/after), a one-take morph launch, a card-wall launch, a halftone host and an orb-guided launch; plus a turtle-hosted explainer and a lyric video sung in code. They show the studio is not only Rotli's. The Studies page opens with **field notes**: measured, sourced write-ups of what we tried. |
 
 Every piece opens down to its scenes, the cuts made from it, its brief, its exact prompt, the agent run
 that built it (prompt, follow-ups, report, cost), its source and its golden: the hashes that prove it
 still renders the same pixels. Every piece downloads ready to post: the video, or all its slides in one zip,
 and its caption. The **Carousels** page gathers every slide post in one place.
 
-**Wallpapers:** eight free wallpapers (the island at morning and sunset, the lighthouse at night, and one
-for each of Ocean, Grove, Iris, Midnight and Paper), drawn by the same engine and rendered at the exact pixel size of
-each screen: Mac (5120 × 3200), Display (6016 × 3384), iPad (2752 × 2752), iPhone (1320 × 2868) and Android
-(1440 × 3200). Download them at [studio.rotli.co/#/wallpapers](https://studio.rotli.co/#/wallpapers).
+**Wallpapers:** make your own at [studio.rotli.co/#/wallpapers](https://studio.rotli.co/#/wallpapers). Pick a
+screen (Mac 5120 × 3200, Display 6016 × 3384, iPad 2752 × 2752, iPhone 1320 × 2868 or Android 1440 × 3200), a plain
+theme ground or a scene, and a quokka if you want one: its colour, emotion, glasses, bucket hat or goggles (and their colour), where it
+stands and how big. Or start from one of eleven presets. The engine that makes the films draws the download in your
+browser at full size.
 
 ## How a piece is made
 
@@ -56,7 +57,8 @@ each screen: Mac (5120 × 3200), Display (6016 × 3384), iPad (2752 × 2752), iP
 5. **A golden.** Sampled frames and the audio are hashed, so any later change shows exactly what moved.
 
 Sound is composed in code too: the studio's own music and effects live in [`sound/`](sound/) with the prompt
-for each one.
+for each one. The music is a playlist, one track for each of Rotli's theme families, all built on the films'
+melody.
 
 ## Use it for your product
 
@@ -85,17 +87,11 @@ cd motion
 node tools/studio.mjs list                 # every piece
 node tools/studio.mjs render <id>          # render one (video, or carousel slides)
 node tools/studio.mjs golden <id>          # prove it still renders the same
-node tools/wallpapers.mjs                  # every wallpaper at every screen size
+node tools/wallpapers.mjs --check          # every wallpaper preset still draws the same
 cd .. && bun run verify                    # every gate the studio has
 ```
 
-## Create: social posts from templates
-
-`/create` is a separate editor for posts built from HTML templates: statements, product shots, chat, notes,
-Markdown side by side, points, a quokka, a call to action. Every template fits every format, and **Export
-PNGs** writes each slide at its exact size (Instagram 4:5 and 1:1, Story 9:16, X 16:9, LinkedIn). Saved posts
-are `posts/<slug>.json`; the brand library in `library/` is a snapshot of rotli's (refresh it with
-`bun run sync`).
+The brand library in `library/` is a snapshot of rotli's (refresh it with `bun run sync`).
 
 ## Open, all the way down
 

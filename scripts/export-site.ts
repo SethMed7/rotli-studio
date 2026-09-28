@@ -137,6 +137,23 @@ const js = await bundle.outputs[0]!.text(),
 mkdirSync(join(PUB, "build"), { recursive: true });
 writeFileSync(join(PUB, "build", jsName), js);
 pageHtml = pageHtml.replace('src="/build/motion.js"', `src="/build/${jsName}"`);
+// the wallpaper maker: its own bundle, fetched only on #/wallpapers and named in a meta tag; the quokka looks it draws
+// are tracked images shipped under their own paths (it renders every download in the visitor's browser)
+const maker = await Bun.build({
+  entrypoints: [join(MOTION, "src/site/wallpaperMaker.ts")],
+  target: "browser",
+  format: "esm",
+  minify: true,
+});
+if (!maker.success) fail(maker.logs.map(String).join("\n"));
+const makerJs = await maker.outputs[0]!.text(),
+  makerName = hashName("wallpapers.js", makerJs);
+writeFileSync(join(PUB, "build", makerName), makerJs);
+pageHtml = pageHtml.replace(
+  '<meta name="studio-static" content="1" />',
+  `<meta name="studio-static" content="1" />\n    <meta name="wallpapers-js" content="/build/${makerName}" />`,
+);
+for (const f of trackedUnder("library/wallpaper-looks")) put(join(PUB, f), join(ROOT, f));
 for (const f of trackedUnder("library/fonts")) put(join(PUB, f), join(ROOT, f));
 for (const f of trackedUnder("library/logo").filter((f) => /\/(_logo\.svg|favicon[^/]*)$/.test(f)))
   put(join(PUB, f), join(ROOT, f));
@@ -237,20 +254,6 @@ for (const ref of media) {
   if (rel.startsWith("..") || !existsSync(abs))
     fail(`the manifest references ${ref}, which is missing or outside the studio`);
   put(rel.startsWith("motion/") ? join(PUB, "m", relative("motion", rel)) : join(PUB, "s", rel), abs);
-}
-
-// ---- wallpapers: the catalogue and its small previews only; the full-size files are assets of the
-// studio-wallpapers release (scripts/media.ts) and the page links there
-const wallCatalogue = join(MOTION, "out/wallpapers/wallpapers.json");
-if (existsSync(wallCatalogue)) {
-  const cat = JSON.parse(readFileSync(wallCatalogue, "utf8")) as { wallpapers: { previews: Record<string, string> }[] };
-  put(join(PUB, "m/out/wallpapers/wallpapers.json"), wallCatalogue);
-  for (const ref of cat.wallpapers.flatMap((w) => Object.values(w.previews))) {
-    const abs = join(MOTION, ref);
-    if (!ref.startsWith("out/wallpapers/preview/") || !existsSync(abs))
-      fail(`the wallpaper catalogue references ${ref}, which is missing or not a preview`);
-    put(join(PUB, "m", ref), abs);
-  }
 }
 
 // ---- videos: web copies (same pixel size, smaller files, fast start for streaming)

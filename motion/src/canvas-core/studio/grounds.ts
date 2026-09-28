@@ -2,7 +2,7 @@
 // where a surface needs texture, the site's faint FILE FIELD: the hero-pattern tile's note, folder,
 // checklist, note and chat bubble (site/public/hero-pattern.svg), stroked at 9% ink and drifting.
 // No stripes, no gradients.
-import type { Ctx } from "../core";
+import { rng, type Ctx } from "../core";
 import BRAND from "../../../brand/brand.json";
 import { C } from "../rotli/kit";
 
@@ -48,6 +48,56 @@ export const fileField = (
         ctx.stroke(g.p);
         ctx.restore();
       }
+  ctx.restore();
+};
+/** files in flight: the same glyphs scattered in depth (far ones small and faint, near ones larger with a short
+ *  streak behind them), all heading down-left like the field's drift. Seeded, so a frame always draws the same. */
+export const fileFlight = (
+  ctx: Ctx,
+  o: { w: number; h: number; ink?: string; count?: number; seed?: number; alpha?: number },
+) => {
+  if ((BRAND as { pattern?: string | null }).pattern === null) return;
+  paths ??= GLYPHS.map(([x, y, r, d]) => ({ x, y, r: (r * Math.PI) / 180, p: new Path2D(d) }));
+  const R = rng(o.seed ?? 7),
+    n = o.count ?? Math.round((o.w * o.h) / 26000),
+    dir = { x: -0.8, y: 0.6 }; // down-left, the field's drift
+  const files = Array.from({ length: n }, () => ({
+    x: R() * (o.w + 200) - 100,
+    y: R() * (o.h + 200) - 100,
+    z: R() ** 1.6, // most files far away, a few close
+    g: paths![Math.floor(R() * paths!.length)]!,
+    r: (R() - 0.5) * 0.9,
+  })).sort((a, b) => a.z - b.z);
+  ctx.save();
+  ctx.strokeStyle = o.ink ?? C.cocoa;
+  ctx.lineJoin = "round";
+  ctx.lineCap = "round";
+  for (const f of files) {
+    const k = 0.7 + f.z * 2.6,
+      a = (o.alpha ?? 0.22) * (0.35 + f.z * 0.65);
+    ctx.globalAlpha = a;
+    if (f.z > 0.45) {
+      // the streak: three short lines trailing up-right
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      for (let i = 0; i < 3; i++) {
+        const off = (i - 1) * 9 * k,
+          sx = f.x - dir.y * off - dir.x * 22 * k,
+          sy = f.y + dir.x * off - dir.y * 22 * k,
+          len = (14 + i * 5) * k;
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(sx - dir.x * len, sy - dir.y * len);
+      }
+      ctx.stroke();
+    }
+    ctx.save();
+    ctx.translate(f.x, f.y);
+    ctx.rotate(f.r);
+    ctx.scale(k, k);
+    ctx.lineWidth = 1.6 / Math.max(0.9, k * 0.7);
+    ctx.stroke(f.g.p);
+    ctx.restore();
+  }
   ctx.restore();
 };
 export type GroundKind = "base" | "band" | "deep";

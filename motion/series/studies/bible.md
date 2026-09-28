@@ -28,11 +28,27 @@ product.
 | 19 | Offer Cards | plan cards that fan and compare, a "Comment" call to action | vertical · portrait | 21 s |
 | 20 | Before / After | one scene in two states behind a sweeping divider | vertical · landscape | 22 s |
 | 21 | Morph Launch | a one-take morph chain: caption → glass prompt → dot → mark → app window, depth of field | landscape · vertical | 24 s · 60 fps |
+| 22 | Card Wall | one card repeated into a world: a coverflow, a three-step row, word slams over a card cloud, a focus pull | landscape · vertical | 30 s |
+| 23 | Halftone Host | a halftone clock host, mono chrome with a running timecode, a full-bleed flip, a bento stamped "Handled." | landscape · vertical | 20 s |
+| 24 | Doodle Guide | the owner's turtle hosts; its corner badge changes rendering style every section; highlighter words | landscape · vertical | 36 s |
+| 25 | Five Point Five | a lyric video: one syllable table drives a formant-sung voice, the lit lyric and the cuts; a new idea per line | landscape · vertical | 64 s |
+| 26 | Orb Guide | one glossy orb over a hairline grid becomes a picture, the mark, a comet line and a checkbox; typewriter lines with the next letter pre-shown | landscape · vertical | 26 s |
 
 Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
 metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.
 Study 21 learns from an agent-made product launch film shared on X: one continuous take of morphs, glass and depth
-of field. Its colours, product and copy are not used.
+of field. Its colours, product and copy are not used. Studies 22–24 learn from three more agent-made films shared on
+X: one card object repeated into a whole world (22), a halftone host with editorial chrome (23), and a host whose
+corner badge changes rendering style every section (24). Their characters, colours, products and copy are not used.
+Study 26 learns from a motion-design reel shared on X (https://x.com/amnxnet/status/2104476481154093134): one small
+orb that guides the eye through every scene over a hairline grid. Its product, photos, logo, colours and copy are not
+used.
+
+**Studies 24 and 25 are the exceptions to Oriel,** both on the owner's decision. Study 25 is a song about Opus 5.5
+making this studio; every lyric line is true of how the studio works, except the first, which quotes the trend's own
+"one prompt, one link" caption (field note 01 explains why that caption is only half true). Study 24 is hosted by the owner's own turtle mascot
+(`assets/turtle/`, all rights reserved, see `NOTICE`) and explains a real topic, goldendoodles. Every fact in it is
+hedged ("about", "roughly", "usually") and it never claims a dog is hypoallergenic.
 
 ## What every study keeps
 

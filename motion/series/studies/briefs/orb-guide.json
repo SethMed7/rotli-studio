@@ -1,0 +1,74 @@
+{
+  "id": "orb-guide",
+  "no": 26,
+  "title": "Orb Guide",
+  "module": "src/canvas-core/studies/orbGuide.ts",
+  "pieces": {
+    "landscape": "orbGuide",
+    "vertical": "orbGuideVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 780,
+  "palette": "loop",
+  "style": "A quiet, airy product launch film on a warm off-white ground where ONE small glossy orb guides the eye through every scene. The orb is the palette's accent as a sphere: a radial gradient from a light highlight (upper left, accent2 toward white) to the accent at the rim, with a soft contact shadow only when it lands; it is the only saturated thing on screen. The ground carries a hairline construction grid: a few long 1 px lines in the palette's line colour that frame the subject as a square cell, with tiny ink dots at the four intersections; the cell tightens, widens and re-centres on springs as its content changes, and the lines always run off the frame edges. Type is small and calm: Inter 400/600 in ink at modest sizes (never a slam), centred, with generous letter-spacing only on the small-caps pill. The vocabulary: (1) typewriter reveals where the NEXT letter is already visible in muted grey before it turns ink, so words resolve left to right; (2) the orb flying on a smooth arc and leaving a thin, fading comet line (1–2 px, accent2, alpha falling along its length) that sweeps through or past the type; (3) the orb growing into a square picture tile inside the grid cell (radius morphing from round to 18 px), and a tile shrinking back into a mark; (4) an outlined pill that draws itself empty, then types a small-caps label, then collapses; (5) a stack of square picture tiles that bursts into a loose ring around a centred line of text and drifts in gentle parallax, then gathers back into a stack; (6) a sentence slot where a checkbox pops in (accent square, white tick drawn on) and a vertical word roller changes the last word: the old word slides up and fades while the new one slides in from below, one per beat. Picture tiles are flat code-drawn scenes in two or three pack colours (a moon over hills, a paper plane over a sun, a mug with steam, a clock, a stack of books, a lamp, two chat bubbles, a calendar page, a leaf), never photos or faces. Everything arrives on springs; holds keep a slow push-in or drift.",
+  "learnsFrom": "A public motion-design reel by @amnxnet (https://x.com/amnxnet/status/2104476481154093134): a warm light ground with a hairline grid, one glossy orb that becomes a picture, a logo and a comet trail, typewriter lines with the next letter pre-shown in grey, an outlined pill label, a picture-tile scatter around a centred line, and a checkbox word roller. Its product, photos, logo, colours and copy are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "the orb is born: the hairline grid settles from wide to a centred square cell; a tiny orb appears at the centre and swells; the cell tightens around it; the orb morphs into a rounded square picture tile (the moon over hills) that fills the cell, which pushes in, then shrinks away into the Oriel mark"
+    },
+    {
+      "from": 90,
+      "to": 150,
+      "what": "the lockup: the grid fades; the Oriel mark sits alone; 'Oriel' types beside it with the next letter shown grey before it turns ink; the lockup drifts slightly"
+    },
+    {
+      "from": 150,
+      "to": 210,
+      "what": "the pill: the lockup clears; an empty outlined pill draws itself from the centre; 'INTRODUCING ORIEL TEAMS' types inside in small caps; the pill shrinks to a point"
+    },
+    {
+      "from": 210,
+      "to": 360,
+      "what": "the tile ring: one small tile appears, becomes a stack of three, then bursts into nine tiles in a loose ring; 'From ask to booked' types at the centre (next letter grey); the tiles drift in parallax at different depths (far ones smaller and slower); on the last beat they gather back into a stack at the centre"
+    },
+    {
+      "from": 360,
+      "to": 420,
+      "what": "the stack becomes the orb again, which breathes large and settles small"
+    },
+    {
+      "from": 420,
+      "to": 540,
+      "what": "comet lines: 'Ask. Pick. Get it booked.' types while the orb flies in on an arc from the lower left, its comet line sweeping past the words, and lifts away to the upper right; then 'With everyone, from invite to calendar.' types while the orb crosses again the other way"
+    },
+    {
+      "from": 540,
+      "to": 690,
+      "what": "the roller: 'Plan' types, then grows to 'Plan your own'; the orb drops in on a short arc and lands where the slot begins, becoming the accent checkbox with a white tick drawn on; the word roller changes one word per beat: 'Polls', 'Rotations', 'Office hours', 'And more'"
+    },
+    {
+      "from": 690,
+      "to": 750,
+      "what": "the product: the grid returns with a wide landscape cell; an Oriel app window (a flat week grid with a few booked slots in accent2 and one in the accent, a small sidebar) scales up to fill the cell and the cell widens with it, one slot pulsing as it books"
+    },
+    {
+      "from": 750,
+      "to": 780,
+      "what": "end: the window shrinks into the mark; 'Oriel' types beside it; hold with a slow push-in"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the grid cell sits in the upper-middle of the frame and is taller than wide for the app window (which becomes a phone-width day list instead of a week grid); the tile ring becomes an oval taller than wide around the centred line; long lines ('With everyone, from invite to calendar.') break onto two centred lines; the roller sentence stacks 'Plan your own' over the checkbox and rolling word; the orb's arcs run top to bottom instead of left to right.",
+  "sound": "beatScore at 120 bpm, soft and sparse (pad and a light pluck; a gentle kick enters at the tile ring, frame 210), a tiny tick on each typed letter group (not every letter: every second or third), a soft whoosh for each orb flight and for the tile burst, a pop when the orb becomes the checkbox, a tick on each roller word, and a three-note sign-off at the end card.",
+  "teaches": "One small moving element can carry a whole film: when the orb connects every scene (it becomes the picture, the mark, the comet and the checkbox), cuts disappear and the eye always knows where to look.",
+  "portable": {
+    "fonts": "Inter (400 and 600) for all type",
+    "style": "A quiet launch film on a warm off-white ground where one small glossy orb (the accent colour as a sphere: a radial gradient from a pale highlight at the upper left to the full accent at the rim) guides the eye through every scene. A hairline construction grid (a few long 1 px lines with tiny dots at the intersections) frames the subject as a square cell that tightens and widens on springs. Type is small, calm and centred. Scenes: the orb swells and morphs into a rounded picture tile inside the cell, then shrinks into a logo mark; the name types beside the mark with the next letter pre-shown in grey; an outlined pill draws itself and types a small-caps label; a stack of picture tiles bursts into a loose ring around a centred line and drifts in parallax; the orb flies on arcs leaving a thin fading comet line past typed sentences; a sentence ends in a slot where the orb lands as a checkbox and a vertical word roller changes the last word one beat at a time; an app window grows in the grid cell; the mark returns. Picture tiles are flat drawn scenes (a moon over hills, a mug, a clock), never photos or faces.",
+    "sound": "a soft sparse loop at 120 bpm with a gentle kick from the tile ring, tiny ticks as letters type, whooshes on each orb flight, a pop when the orb becomes the checkbox, a tick per roller word and a three-note sign-off.",
+    "sizes": "re-stack it: the grid cell sits in the upper middle, the tile ring becomes a tall oval, long lines break in two, the roller stacks the sentence over the checkbox and word, and the orb's arcs run top to bottom."
+  }
+}

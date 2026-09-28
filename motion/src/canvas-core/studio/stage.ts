@@ -6,7 +6,7 @@ import THEMES from "../../../brand/themes.json";
 import { C } from "../rotli/kit";
 
 export { BRAND };
-/** exact platform sizes (the studio's src/model.ts table, plus the 16:9 film) */
+/** exact platform sizes: the social formats, plus the 16:9 film */
 export const FORMATS = {
   film: [1920, 1080],
   story: [1080, 1920],
