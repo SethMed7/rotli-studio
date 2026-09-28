@@ -34,7 +34,7 @@ if (dropped.length && !process.argv.includes("--replace")) {
 const ids = JSON.parse(readFileSync(join(ROOM, "pieces.json"), "utf8")).pieces.map((p) => p.id);
 
 // "Build episode 02 Folder" -> ep02Folder · "Build S01E03 The Workshop" -> s01e03Workshop
-// studies: "Build study: <title>" maps to that study's primary piece (series/studies/briefs/*.json)
+// studies: "Build study: <title>" or "Build study 22 <title>" maps to that study's primary piece (series/studies/briefs/*.json)
 const STUDY_BRIEFS = join(ROOM, "series/studies/briefs");
 const studies = existsSync(STUDY_BRIEFS)
   ? readdirSync(STUDY_BRIEFS)
@@ -43,7 +43,7 @@ const studies = existsSync(STUDY_BRIEFS)
   : [];
 const pieceFor = (desc) => {
   const study = desc
-    .match(/^Build study: (.+)$/i)?.[1]
+    .match(/^Build study(?: \d+)?:? (.+)$/i)?.[1]
     ?.trim()
     .toLowerCase();
   if (study) {
@@ -59,8 +59,18 @@ const textOf = (c) => (typeof c === "string" ? c : Array.isArray(c) ? c.map((x) 
 // public repo rules: no home path, no user name, no machine-specific temp paths in anything written
 const HOME = homedir(),
   USER = basename(HOME);
+// the private-name list (clients, private products) the privacy gate refuses; gitignored, so absent in a fork
+const MARKERS = join(ROOM, "../deploy/private-markers.local.txt");
+const privateNames = existsSync(MARKERS)
+  ? readFileSync(MARKERS, "utf8")
+      .split("\n")
+      .map((l) => l.trim())
+      .filter((l) => l && !l.startsWith("#"))
+      .map((n) => new RegExp(n.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s*"), "gi"))
+  : [];
 const redact = (s) =>
-  String(s)
+  privateNames
+    .reduce((t, re) => t.replace(re, "<a private name>"), String(s))
     .replaceAll(HOME, "~")
     .replace(/\/private\/tmp\/claude-\d+\/[^\s)`'"]*/g, "<session-tmp>")
     .replaceAll(`-Users-${USER}-`, "-Users-example-")
@@ -142,9 +152,14 @@ for (const file of files) {
         });
       }
     }
-    // the owner's own words: typed turns (text only, no tool results) and messages queued while a turn ran
+    // the owner's own words: typed turns (text, perhaps with a pasted screenshot; never tool results) and messages
+    // queued while a turn ran. The screenshot itself is not kept; redact() leaves "[a screenshot was attached]".
     const typed =
-      o.type === "user" && !o.isMeta && Array.isArray(m.content) && m.content.every((c) => c.type === "text")
+      o.type === "user" &&
+      !o.isMeta &&
+      Array.isArray(m.content) &&
+      m.content.some((c) => c.type === "text") &&
+      m.content.every((c) => c.type === "text" || c.type === "image")
         ? textOf(m.content)
         : typeof m.content === "string" && o.type === "user" && !o.isMeta
           ? m.content

@@ -1,0 +1,25 @@
+{
+  "note": "The quokkas the wallpaper maker offers, rendered from rotli's REAL <Character> (src/components/character.tsx) by scripts/render-companions.ts --spec motion/brand/wallpaper-looks.json. Pose, style and accessory ids are the app's own; the labels are the maker's. Every emotion × colour × accessory is rendered, and the colours listed in darkVariants are rendered again under the dark theme (the line style draws white ink there). Tintable: filled accessories are rendered white and tint-<pose>-<accessory> holds where their colour goes, so the maker multiplies in any accessory hue with the app's own oklch(70% 0.15 hue). Separate from companions.json on purpose: those 22 looks back sealed pieces' goldens.",
+  "size": 1024,
+  "accessoryHue": 38,
+  "out": "library/wallpaper-looks",
+  "format": "webp",
+  "tintable": true,
+  "emotions": [
+    { "pose": "base", "label": "Calm" },
+    { "pose": "waving", "label": "Hello" },
+    { "pose": "celebrating", "label": "Happy" },
+    { "pose": "thoughtful", "label": "Thinking" },
+    { "pose": "listening", "label": "Curious" },
+    { "pose": "rest", "label": "Sleepy" },
+    { "pose": "walking", "label": "Out for a walk" }
+  ],
+  "styles": ["cocoa", "green", "ocean", "iris", "berry", "amber", "line"],
+  "accessories": [
+    { "id": "none", "label": "None" },
+    { "id": "glasses", "label": "Glasses" },
+    { "id": "bucket-hat", "label": "Bucket hat" },
+    { "id": "goggles", "label": "Goggles" }
+  ],
+  "darkVariants": ["line"]
+}

@@ -6,6 +6,9 @@
 //   bun scripts/media.ts fetch     (CI) download every part, unpack it into the checkout, verify its content hash
 //   bun scripts/media.ts status    compare the media on this Mac with what is published
 //
+// Wallpapers publish nothing here: the site's maker draws each download in the visitor's browser from the
+// tracked look images (library/wallpaper-looks/), which the site build ships like any other tracked file.
+//
 // Run `publish` after rendering new or changed pieces, before (or right after) pushing them: the site deploys the
 // published renders. Only media the site uses is published (the same inventory as scripts/export-site.ts: renders
 // of registered pieces, their web copies and thumbnails, and the slides the manifest references), and it is
@@ -103,7 +106,7 @@ if (cmd === "status" || cmd === "publish") {
   const remote = published();
   for (const p of local)
     console.log(
-      `${p.name.padEnd(8)} ${String(p.files.length).padStart(4)} files ${(p.bytes / 1e6).toFixed(0).padStart(5)} MB  ${remote?.parts[p.name]?.sha === p.sha ? "published" : "CHANGED"}`,
+      `${p.name.padEnd(10)} ${String(p.files.length).padStart(4)} files ${(p.bytes / 1e6).toFixed(0).padStart(5)} MB  ${remote?.parts[p.name]?.sha === p.sha ? "published" : "CHANGED"}`,
     );
   if (cmd === "status") process.exit(0);
   if (!sh(["gh", "release", "view", TAG], { allowFail: true }).ok)

@@ -1,0 +1,64 @@
+{
+  "id": "halftone-host",
+  "no": 23,
+  "title": "Halftone Host",
+  "module": "src/canvas-core/studies/halftoneHost.ts",
+  "pieces": {
+    "landscape": "halftoneHost",
+    "vertical": "halftoneHostVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 600,
+  "palette": "mono",
+  "style": "An editorial explainer hosted by a halftone character. The host is an ORIGINAL mascot: a round alarm clock with two bells on top, a small hammer between them, two stubby feet, a face made of two round eyes that blink and a small mouth, and hands on its dial that point to show mood. It is modelled as shaded 3D forms (spheres and cylinders lit from the top left, computed per point, not painted gradients) and then rendered THROUGH a dot screen: draw its tone field into an offscreen canvas, then paint ink dots on a rotated grid whose radius follows the tone (core.ts `halftone` does exactly this), so it reads like a newspaper photo of a toy. Everything else is flat and crisp: an off-white page, ink type, ONE colour (the palette accent) used for a full-bleed scene flip, the key word and the call to action. Type: Inter 600 headlines, tight, with one key word per headline in Instrument Serif Italic, larger, with a hand-drawn underline stroke that draws itself. Editorial chrome in JetBrains Mono, small and muted, on every scene: top-left the section ('// 01 — hook', '// 02 — problem', '// 03 — product', '// 04 — handled', '// 05 — flow'), top-right a running timecode ('ORIEL  00:00:04:12', counting real frames). Cuts are hard (a scene flip is one frame) and the host carries across them. Objects inside product cards are small halftone renders too (a calendar block, headphones, a suitcase), so the dot screen is the film's texture. One scene is a bento of six live widgets on a light grid; one is a single word smeared by horizontal motion blur on black (kit/blur.ts).",
+  "learnsFrom": "A public 15 s product film Opus 5.5 made in 15 minutes (https://x.com/achxvi/status/2103918792845963545): a halftone-rendered 3D mascot as the host, mono editorial chrome with a running timecode, one accent colour for a full-bleed flip and a handwritten key word, a phone mockup build, a bento of live widgets stamped 'handled'. Its character, colours, product and copy are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "// 01 — hook: the clock host hops in from the right on the off-white page and settles, blinking; a small speech bubble 'psst…' pops beside it and goes; the headline builds on the left: 'Got a week that' then 'won't *fit*?' with the italic word underlined by a hand stroke"
+    },
+    {
+      "from": 90,
+      "to": 180,
+      "what": "// 02 — problem: a hard flip to full-bleed accent; the host sits bottom-left, its dial hands drooping; three white cards pop in one per beat, each a halftone object with a mono tag and a line: 'Meetings · 14 this week', 'Focus · 2 hours left', 'Travel · Thu to Mon'"
+    },
+    {
+      "from": 180,
+      "to": 270,
+      "what": "// 03 — product: back to white; a phone outline draws itself on the right and fills with a simple Oriel screen (a request field, three suggested slots); the headline builds: 'Oriel turns it into' / 'a plan' / 'in *minutes*.'; the host peeks from behind the phone"
+    },
+    {
+      "from": 270,
+      "to": 300,
+      "what": "a one-second slam on black: 'One sentence.' in huge white type slides in with heavy horizontal motion blur and snaps sharp"
+    },
+    {
+      "from": 300,
+      "to": 450,
+      "what": "// 04 — handled: a 3×2 bento of light cards on a faint grid, each alive: the request typing ('find 45 min with Ana and Kai'); the host in a tile blinking; a Mon–Fri availability row filling dot by dot; 'Conflicts 3 → 0' counting down; 'Invites 0/4 → 4/4' with ticks; a small bar chart 'Hours back' rising; then a hand-drawn accent circle sweeps round the whole bento and a tilted stamp 'Handled.' (serif italic in an accent outline box) slams in"
+    },
+    {
+      "from": 450,
+      "to": 540,
+      "what": "// 05 — flow: a hard flip to black; 'You *decide*.' builds large on the left in off-white, then 'We arrange.' beneath in muted grey; the host stands on the right, its dial hands now pointing up, bells ringing with small motion lines"
+    },
+    {
+      "from": 540,
+      "to": 600,
+      "what": "end card on the off-white page: the wordmark 'Oriel' in huge Instrument Serif with the host peeking over its top edge and winking; the line 'The calendar that meets you *halfway*.'; an accent pill 'Start free' beside 'oriel.example' in mono; a mono footer 'free to start · any calendar · no install'"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the headline sits in the top third and the host below it (larger), the three problem cards stack in a column, the phone fills the lower half with the headline above, the bento becomes 2×3, 'You decide.' stacks over the host, the wordmark end card centres with the pill beneath. The mono chrome stays in the safe area's corners.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at the first flip (drop at frame 90), a hit on each hard flip and on the 'Handled.' stamp, a whoosh into the motion-blurred slam, soft ticks for the speech bubble, each card, each typed letter (thinned) and each filling dot, and the sign-off at the end card.",
+  "teaches": "A texture can be the brand: rendering the host and every object through one dot screen makes a cheap 3D look like print, and mono chrome with a running timecode makes a short piece read as edited, not generated.",
+  "portable": {
+    "fonts": "Inter (600) for headlines and body, Instrument Serif Italic for one key word per headline and the stamp, JetBrains Mono for the chrome",
+    "style": "An editorial explainer hosted by an original halftone character: a round alarm clock with two bells, a hammer, stubby feet, blinking eyes and dial hands that show its mood. Model it as shaded 3D forms (spheres and cylinders lit from the top left, computed per point), draw that tone into an offscreen canvas, then paint ink dots on a rotated grid whose radius follows the tone, so it reads like a newspaper photo of a toy. Everything else is flat and crisp: an off-white page, ink type, one accent colour for a full-bleed scene flip, the key word and the call to action. Headlines are tight bold sans with one larger italic serif key word underlined by a hand-drawn stroke that draws itself. Small mono chrome on every scene: the section top-left ('// 01 — hook') and a running timecode top-right. Cuts are hard and the host carries across them. Scenes: the hook with a 'psst…' bubble, a full-bleed accent flip with three product cards holding small halftone objects, a phone mockup that draws itself, a one-second word slam on black with horizontal motion blur, a bento of six live widgets that a hand-drawn circle sweeps round before a tilted 'Handled.' stamp lands, a black 'You decide. We arrange.' scene, and a serif wordmark end card with the host peeking over it.",
+    "sound": "a driving loop at 120 bpm whose drums enter at the first flip, a hit on each hard flip and on the stamp, a whoosh into the blurred slam, soft ticks for bubbles, cards, typed letters and filling dots, and a three-note sign-off.",
+    "sizes": "re-stack it: headline in the top third with the host below, the cards in one column, the phone in the lower half, the bento 2×3, the wordmark centred with the pill beneath."
+  }
+}

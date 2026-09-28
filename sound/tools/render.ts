@@ -3,6 +3,7 @@
 //   bun sound/tools/render.ts            render everything
 //   bun sound/tools/render.ts --check    write nothing; exit 1 if a recipe no longer matches catalog.json
 //
+// Music with a `playlist` entry is a track of the studio's playlist (one per theme family).
 // Writes sound/out/<id>.wav (48 kHz 16-bit masters, gitignored, regenerable), sound/web/<id>.m4a (AAC web
 // copies the site plays, committed) and sound/catalog.json (id, kind, title, use, prompt, duration, sha256).
 // Every sound must have its prompt in sound/prompts/<id>.md; the render stops if one is missing.
@@ -91,6 +92,7 @@ for (const r of RECIPES) {
     kind: r.kind,
     title: r.title,
     use: r.use,
+    ...(r.playlist ? { playlist: r.playlist } : {}),
     prompt: `sound/prompts/${r.id}.md`,
     file: `sound/web/${r.id}.m4a`,
     seconds: Math.round(seconds * 100) / 100,

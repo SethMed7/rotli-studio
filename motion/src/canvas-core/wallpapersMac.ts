@@ -1,0 +1,1 @@
+export { wallpapersMac } from "./wallpapers";

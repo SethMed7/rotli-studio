@@ -137,6 +137,23 @@ const js = await bundle.outputs[0]!.text(),
 mkdirSync(join(PUB, "build"), { recursive: true });
 writeFileSync(join(PUB, "build", jsName), js);
 pageHtml = pageHtml.replace('src="/build/motion.js"', `src="/build/${jsName}"`);
+// the wallpaper maker: its own bundle, fetched only on #/wallpapers and named in a meta tag; the quokka looks it draws
+// are tracked images shipped under their own paths (it renders every download in the visitor's browser)
+const maker = await Bun.build({
+  entrypoints: [join(MOTION, "src/site/wallpaperMaker.ts")],
+  target: "browser",
+  format: "esm",
+  minify: true,
+});
+if (!maker.success) fail(maker.logs.map(String).join("\n"));
+const makerJs = await maker.outputs[0]!.text(),
+  makerName = hashName("wallpapers.js", makerJs);
+writeFileSync(join(PUB, "build", makerName), makerJs);
+pageHtml = pageHtml.replace(
+  '<meta name="studio-static" content="1" />',
+  `<meta name="studio-static" content="1" />\n    <meta name="wallpapers-js" content="/build/${makerName}" />`,
+);
+for (const f of trackedUnder("library/wallpaper-looks")) put(join(PUB, f), join(ROOT, f));
 for (const f of trackedUnder("library/fonts")) put(join(PUB, f), join(ROOT, f));
 for (const f of trackedUnder("library/logo").filter((f) => /\/(_logo\.svg|favicon[^/]*)$/.test(f)))
   put(join(PUB, f), join(ROOT, f));

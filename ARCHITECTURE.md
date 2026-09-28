@@ -1,6 +1,6 @@
 # Architecture: where everything lives
 
-The studio is one repository with two rooms (**Create** and the **Motion room**), a **sound** kit, and the
+The studio is one repository: the **Motion room**, a **sound** kit, and the
 tooling that publishes a read-only snapshot. Every kind of thing has exactly one home; if you are adding
 something, find its row below. If no row fits, add a row here in the same change.
 
@@ -8,17 +8,19 @@ something, find its row below. If no row fits, add a row here in the same change
 
 | What | Where | Notes |
 |---|---|---|
-| **The studio site (server)** | `server.ts` | Bun, `127.0.0.1:4500`, Host-checked. `/` = Motion room, `/create` = Create. |
+| **The studio site (server)** | `server.ts` | Bun, `127.0.0.1:4500`, Host-checked. `/` = the Motion room. |
 | Motion room site: pages | `src/motion/app.ts`, `player.ts`, `sound.ts`, `md.ts` | Hash routes; bundled by `server.ts`. |
 | Motion room site: server side | `src/motion/routes.ts` | Manifest, files (`/m/*`, `/s/*` = git-tracked allowlist), posters, verify. |
-| Site HTML and CSS | `static/motion.*` (Motion room), `static/app.*` + `slide.css` (Create) | UI rules: `DESIGN.md`. |
-| **Create** (the content editor) | `src/app.ts`, `src/model.ts`, `src/templates.ts`, `src/exporter.ts` | HTML social templates → PNG. |
-| Create's saved posts (drafts) | `posts/<slug>.json` | Editable content, never published by the snapshot. |
-| Create's PNG exports | `exports/` (gitignored) | Local output only. |
+| Site HTML and CSS | `static/motion.*`, with the shared tokens and base rules in `static/app.css` | UI rules: `DESIGN.md`. |
+| Rendered stills and carousel slides | `exports/<slug>/<format>/` (gitignored) | Local output of `studio.mjs render`. |
 | **Motion room** (the engine) | `motion/src/canvas-core/core.ts`, `film.ts`, `studio/` | Pure `renderFrame(frame)` + `audio()`. |
 | Rotli-specific building blocks | `motion/src/canvas-core/rotli/`, `quokka/`, `studio/` | Island props, score, the quokka rig, the story engine and atmospheres. Read `brand/`. |
 | **Brand-neutral kit** | `motion/src/canvas-core/kit/` | Sizes, springs and easing, type, caption ladders, UI, depth, motion blur, a beat score. Reads only a brand pack, never Rotli's. |
 | **Brand packs** | `motion/brand/packs/<id>/` | `pack.json` (product, palettes, fonts with sha256) + `fonts/` with their licences. `studio` is the neutral pack. |
+| **Wallpapers** | `motion/src/canvas-core/wallpapers.ts` (+ one shim and host per screen) | The maker's one source: screens (`WALLPAPER_SCREENS`: exact output pixels), backgrounds (plain theme grounds and scenes), quokka placement, presets, and `paintWallpaper`, drawn with the short side at 1080 and scaled to the device. Not pieces. |
+| The wallpaper maker (site page) | `motion/src/site/wallpaperMaker.ts` | `#/wallpapers`: screen → background → quokka → download, drawn in the visitor's browser. Its own bundle (`/build/wallpapers.js`), loaded only on that page. |
+| Wallpaper quokka looks | `motion/brand/wallpaper-looks.json` → `library/wallpaper-looks/*.webp` | Every emotion × colour × accessory, rendered from the app's real `<Character>` by `scripts/render-companions.ts --spec`; lossless WebP. Filled accessories are white with a `tint-<pose>-<accessory>` colour mask beside them, so the maker colours them. |
+| Wallpaper golden | `motion/tools/wallpapers.mjs`, `motion/golden/wallpapers.json` | Every preset on every screen through `paintWallpaper`; `--check` proves nothing moved. |
 | **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. |
 | **Portable prompts** (copy into any model) | `motion/series/studies/portable/` | Generated from each brief by `motion/tools/portable-prompt.mjs` via `motion/workflows/portable-template.md`; no repository ties. |
 | Render styles (from anidoodle) | `motion/src/canvas-core/styles/` | gallery, drafting, print, riso, storybook, lettering. |
@@ -26,22 +28,26 @@ something, find its row below. If no row fits, add a row here in the same change
 | **Piece sources** | `motion/src/canvas-core/<pieceId>.ts` + `motion/src/hosts/page-<pieceId>.ts` | The host's import line is the piece's module. |
 | The catalogue | `motion/pieces.json` | Every piece: id, kind, slug, format, caption. |
 | **Series** | `motion/series.json` + `motion/series/<series-id>/` | One folder per series: `bible.md`, `episodes/*.json` (briefs), `prompts/*.prompt.md`, and any series notes (e.g. `the-film/story.md`, `score.txt`). |
-| How pieces are made | `motion/workflows/` | `README.md` (process), `agent-preamble.md`, `review-checklist.md`. |
+| How pieces are made | `motion/workflows/` | `README.md` (process), `agent-preamble.md`, `review-checklist.md`, `critique.md` (the scored critique: seven criteria, 8+ to ship). |
+| Critique records | `motion/series/studies/critiques/<pieceId>.json` | One file per piece, a round per critique: pacing numbers, scores, problems with timestamps, what the building agent saw and missed. Sheets come from `motion/tools/critique.mjs`. |
+| **Field notes** (the studies' blog) | `motion/series/studies/notes/<yyyy-mm-dd>-<slug>.md` | Long-form, sourced write-ups of what we tried and measured. Title = the first `# ` line, summary = the first `> ` line; the manifest lists them on the Studies page, newest first; each opens at `#/note/<file>`. |
 | Agent runs (what built each piece) | `motion/workflows/runs/` | Recovered by `motion/tools/extract-runs.mjs`; redacted. |
 | Goldens (pixel/audio fingerprints) | `motion/golden/<pieceId>.json` | `node motion/tools/studio.mjs golden all` must print SAME. |
 | Rotli's brand data | `motion/brand/` (`brand.json`, `themes.json`, `companions.json`) | Rotli's own pack, synced from the rotli app on purpose, never hand-edited. |
 | Brand fonts for renders | `motion/assets/fonts/` | See the licence notes in `NOTICE`. |
+| The owner's turtle | `motion/assets/turtle/` | Four poses of the maintainer's personal mascot, downscaled from their portfolio, used only by the Doodle Guide study. All rights reserved, not MIT (`NOTICE`). |
 | Motion tools | `motion/tools/*.mjs` | Run with Node from `motion/`. Each has a usage header. |
 | Motion renders | `motion/out/` (gitignored) | Videos, posters, thumbnails, the manifest. |
-| **Sound** | `sound/` | `src/` (synth + recipes), `prompts/` (one per sound), `tools/render.ts`, `web/` (committed AAC), `catalog.json`, `out/` (gitignored WAV masters). |
+| **Sound** | `sound/` | `src/` (synth + recipes), `prompts/` (one per sound), `tools/render.ts`, `web/` (committed AAC), `catalog.json`, `out/` (gitignored WAV masters). Music with a `playlist` entry (family, theme, key, bpm) is a track of the studio's playlist, one per theme family, all mastered to −21 LUFS; `src/motion/sound.ts` plays it through. |
 | **Library** (shared assets) | `library/` | Logo + favicons, fonts, patterns, themes, companion looks, captures, uploads. |
 | Studio scripts | `scripts/*.ts` (+ `scripts/lib/`) | Run with Bun from the root: sync, export, audits, link-post. |
 | **Publishing records** | `publish/` | `posts.json` (the owner's published posts, links only, via `scripts/link-post.ts`) and `placements.json` (studio pieces placed in a product on purpose). |
 | Hosting | `deploy/` | Caddy + Dockerfile + `README.md`; `*.local.txt` are private and gitignored. |
-| Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts`, `scripts/split-site.ts` | Push to `main` → gates → fetch the published renders → build → move heavy media to the `studio-site` release → Railway builds an image that fetches them. Renders are release assets (`studio-media`), not git. |
+| Continuous deployment | `.github/workflows/deploy.yml`, `scripts/media.ts`, `scripts/split-site.ts` | Push to `main` → gates → fetch the published renders → build → move heavy media to the `studio-site` release → Railway builds an image that fetches them. Renders are release assets (`studio-media`), not git. Full-size wallpapers are assets of their own release, `studio-wallpapers`, which the Wallpapers page links; only their previews are in the snapshot. |
 | Skills (agent instructions) | `.claude/skills/<name>/SKILL.md` | `motion-room`, `repurpose-brand`, `brand-motion-studio`. |
 | Front door and project docs | `README.md`, `CONTRIBUTING.md`, `CODE_OF_CONDUCT.md`, `SECURITY.md`, `CHANGELOG.md`, `docs/media/` | The README's images live in `docs/media/`. |
 | Agent rules | `AGENTS.md` (+ `CLAUDE.md`, which imports it) | Read first. |
+| Editor project icon | `t3.json` | Points T3 Code at `library/logo/favicon-192.png`, the studio's favicon, so the project shows the quokka. |
 | Repository settings in files | `.github/` (`CODEOWNERS`, `pull_request_template.md`, `ISSUE_TEMPLATE/`, `rulesets/`, `workflows/`) | Owner-only review; the deploy workflow. `rulesets/` records the live GitHub rulesets (only the owner deletes or force-pushes any branch, moves or deletes any tag, or updates `main`); change them on GitHub and here together. |
 | Contributing and quality gates | `CONTRIBUTING.md`, `scripts/verify.ts`, `.oxlintrc.json`, `.oxfmtrc.json` | `bun run verify` runs every gate; `bun run lint`, `bun run fmt`. |
 | Design rules for the site | `DESIGN.md` | |

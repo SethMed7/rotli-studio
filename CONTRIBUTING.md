@@ -73,6 +73,7 @@ machine is the check: say in the pull request what ran. Only the owner can merge
 Renders are not in git. After rendering new or changed pieces, publish them so the deploy can use them:
 
 ```sh
+node motion/tools/wallpapers.mjs # after changing a wallpaper or the drawing code they share
 bun scripts/media.ts status      # what changed since the last publish
 bun scripts/media.ts publish     # build the snapshot here and upload the changed parts
 ```

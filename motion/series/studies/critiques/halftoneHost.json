@@ -1,0 +1,128 @@
+{
+ "piece": "halftoneHost",
+ "sizes": [
+  "halftoneHost",
+  "halftoneHostVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session), after the building agent's own checks",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3,
+     "longestCalm": 5,
+     "nearStill": 34
+    },
+    "vertical": {
+     "changesPer10s": 4,
+     "longestCalm": 5,
+     "nearStill": 35
+    }
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:09.0",
+     "what": "the motion-blurred 'One sentence.' slam shows discrete ghost copies, not a smear",
+     "fix": "sample the shutter densely enough that copies sit under about 2 px apart"
+    },
+    {
+     "at": "all",
+     "what": "the dial hands form a V between the eyes that reads as a beak at small sizes",
+     "fix": "short thin hands from a boss below the mouth, so eyes and mouth read first"
+    },
+    {
+     "at": "00:00.0",
+     "what": "no words until about 1.5 s: the hook shows only the host",
+     "fix": "land the first words by about 0.5 s"
+    },
+    {
+     "at": "00:12.0 (vertical)",
+     "what": "the 'Handled.' stamp covers the availability line and the invites label",
+     "fix": "place it over empty space or a tile edge"
+    },
+    {
+     "at": "00:07.0 (vertical)",
+     "what": "the phone is a large empty white slab while the headline builds",
+     "fix": "fill it earlier or shorten it"
+    }
+   ],
+   "agentSaw": [
+    "the stamp covering text",
+    "the busy face at small sizes"
+   ],
+   "agentMissed": [
+    "the ghosting in the motion blur",
+    "the empty first 1.5 s",
+    "the empty phone"
+   ],
+   "verdict": "fix",
+   "agent": {
+    "minutes": 23.8,
+    "tokens": 262123
+   }
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session)",
+   "agent": {
+    "minutes": 5.8,
+    "tokens": 322660,
+    "note": "the same agent, resumed with the round-1 problems"
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3,
+     "longestCalm": 5,
+     "nearStill": 39
+    },
+    "vertical": {
+     "changesPer10s": 4,
+     "longestCalm": 5,
+     "nearStill": 39
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:10.0-00:15.0",
+     "what": "the bento is one five-second stretch with no single big change (the widgets keep animating)",
+     "fix": "a punch-in at about 12 s if variety drops"
+    },
+    {
+     "at": "00:18.0",
+     "what": "the wordmark's dotless ı has no dot for a few frames before the host rises",
+     "fix": "none needed; reads as the host arriving"
+    }
+   ],
+   "fixed": [
+    "the slam is an analytic smear, copies under 1.5 px apart",
+    "the dial hands pivot below the mouth; the eyes and mouth read first",
+    "'Got' lands at 0.2 s",
+    "the stamp covers no text",
+    "the vertical phone is full by 00:07",
+    "the cut to the end card no longer lands on an empty page (found by the agent in fast-2.png)"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

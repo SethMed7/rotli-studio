@@ -133,6 +133,14 @@ a.row:hover .row-title { color: var(--accent-text); }
 .row p { margin: 0.3rem 0 0; color: var(--muted); max-width: 42rem; }
 .row .go { color: var(--muted); font-size: 1.2rem; }
 .band .rows { margin-top: 2rem; }
+.notes .row { grid-template-columns: 11rem minmax(0, 1fr) auto; }
+.notes > h2 { flex-wrap: wrap; row-gap: 0.2rem; }
+.doc.note { max-width: 52rem; }
+.doc.note h1 { font-size: clamp(1.9rem, 3.2vw, 2.75rem); letter-spacing: -0.045em; line-height: 1.1; margin: 0.5rem 0 1rem; }
+.doc.note h2 { margin-top: 2.5rem; }
+.doc.note blockquote { margin: 0 0 1.5rem; padding: 0; border: 0; font-size: 1.15rem; color: var(--text); }
+.sec-head { margin: 2.5rem 0 1rem; font-size: 1.35rem; letter-spacing: -0.02em; color: var(--text); }
+@media (max-width: 860px) { .notes .row { grid-template-columns: minmax(0, 1fr) auto; } .notes .row > .meta { grid-column: 1 / -1; } }
 
 /* ------------------------------------------------------------ episodes (a series page) */
 .episodes { list-style: none; margin: 0; padding: 0; }
@@ -156,6 +164,52 @@ a.row:hover .row-title { color: var(--accent-text); }
 .piece-link b { display: flex; gap: 0.5rem; align-items: center; }
 .piece-link:hover b { color: var(--accent-text); }
 .piece-link p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+/* ------------------------------------------------------------ wallpapers: the maker */
+.wp-presets { margin-bottom: 2rem; }
+.wp-presets h2, .wp-steps h2 { margin: 0 0 0.75rem; font-size: 1.05rem; color: var(--text); letter-spacing: -0.01em; }
+.wp-preset-row { list-style: none; margin: 0; padding: 0 0 0.25rem; display: flex; gap: 0.75rem; overflow-x: auto; }
+.wp-preset { display: grid; gap: 0.35rem; justify-items: start; padding: 0.35rem; border: 1px solid transparent; border-radius: 0.6rem; background: none; color: var(--text); font-size: 0.8rem; text-align: left; }
+.wp-preset canvas { width: 10rem; height: auto; border-radius: 0.35rem; border: 1px solid var(--border); background: var(--surface-2); }
+.wp-preset-row.tall .wp-preset canvas { width: 5.5rem; }
+.wp-preset:hover { background: var(--surface-2); }
+.wp-preset[aria-current='true'] { background: var(--tint); }
+.wp-maker { display: grid; grid-template-columns: minmax(0, 26rem) minmax(0, 1fr); gap: 2.5rem; align-items: start; }
+.wp-maker.tall { grid-template-columns: minmax(0, 30rem) minmax(0, 22rem); }
+.wp-steps { display: grid; gap: 0; }
+.wp-steps > section { padding: 1.25rem 0; border-top: 1px solid var(--border); }
+.wp-steps > section:first-child { border-top: 0; padding-top: 0; }
+.wp-fits { margin: 0.6rem 0 0; }
+.wp-note { margin: 0.6rem 0 0; min-height: 1.3em; }
+.wp-preview { position: sticky; top: 1.5rem; margin: 0; }
+.wp-preview canvas { display: block; width: 100%; height: auto; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--surface-2); }
+/* segmented choices: native radios, the current one on the ground colour, never a checkmark */
+.seg, .wp-swatches, .wp-scenes, .wp-colours { position: relative; margin: 0 0 0.9rem; padding: 0; border: 0; min-width: 0; } /* positioned: its hidden legend and radios stay inside the page's scroller */
+.seg legend, .wp-swatches legend, .wp-scenes legend, .wp-colours legend { padding: 0; margin-bottom: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.seg-track { display: inline-flex; flex-wrap: wrap; gap: 0.25rem; padding: 3px; border-radius: 0.6rem; background: var(--surface-2); }
+.seg-opt { position: relative; }
+/* the radio sits over its own option (inside a positioned parent), so focusing it never scrolls the window */
+.seg input, .wp-swatch input, .wp-scene input, .wp-colour input { position: absolute; inset: 0; margin: 0; opacity: 0; width: 100%; height: 100%; pointer-events: none; }
+.seg-opt span { display: block; padding: 0.3rem 0.8rem; border-radius: 0.45rem; font-weight: 600; font-size: 0.85rem; color: var(--muted); cursor: pointer; }
+.seg-opt input:checked + span { background: var(--ground); color: var(--text); }
+.seg-opt input:focus-visible + span, .wp-swatch input:focus-visible ~ canvas, .wp-scene input:focus-visible ~ canvas, .wp-colour input:focus-visible + .dot { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.wp-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr)); gap: 0.5rem; }
+.wp-swatch, .wp-scene, .wp-colour { position: relative; display: grid; gap: 0.3rem; justify-items: start; padding: 0.3rem; border-radius: 0.55rem; font-size: 0.78rem; color: var(--text); cursor: pointer; }
+.wp-swatch canvas { width: 100%; aspect-ratio: 1; height: auto; border-radius: 0.35rem; border: 1px solid var(--border); }
+.wp-scenes { display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: 0.5rem; }
+.wp-scene canvas { width: 100%; height: auto; border-radius: 0.35rem; border: 1px solid var(--border); background: var(--surface-2); }
+.wp-colours { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+.wp-colours[hidden] { display: none; }
+.wp-colour { grid-auto-flow: column; align-items: center; justify-items: center; }
+.wp-colour .dot { width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--dot); border: 1px solid var(--border-strong); }
+.wp-colour .dot.line { background: var(--ground); border: 2px solid var(--text); } /* the line quokka: ink only */
+.wp-colour .dot.line.dark { background: var(--deep); border-color: var(--deep-text); }
+.wp-swatch:hover, .wp-scene:hover, .wp-colour:hover { background: var(--surface-2); }
+.wp-swatch:has(input:checked), .wp-scene:has(input:checked), .wp-colour:has(input:checked) { background: var(--tint); }
+@media (max-width: 900px) {
+  .wp-maker, .wp-maker.tall { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
+  .wp-preview { position: static; order: -1; }
+  .wp-maker.tall .wp-preview { max-width: 16rem; }
+}
 
 /* ------------------------------------------------------------ sound */
 .sound-toggle { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 2.25rem; padding: 0 0.75rem; border: 1px solid var(--border-strong); border-radius: 999px; background: var(--ground); color: var(--muted); font-weight: 600; }
@@ -167,8 +221,15 @@ a.row:hover .row-title { color: var(--accent-text); }
 .sounds { list-style: none; margin: 0; padding: 0; }
 .sound { display: grid; grid-template-columns: minmax(0, 1fr) 22rem; gap: 0.5rem 2rem; align-items: center; padding: 1.2rem 0; border-top: 1px solid var(--border); }
 .sound:last-child { border-bottom: 1px solid var(--border); }
-.sound h2 { margin: 0; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); }
+.sound h3 { margin: 0; font-size: 1.2rem; letter-spacing: -0.02em; color: var(--text); }
+.sound-head p { margin: 0.25rem 0 0; }
+.sound-play { display: grid; gap: 0.5rem; justify-items: start; }
 .sound audio { width: 100%; }
+.sound .family { display: inline-flex; align-items: center; gap: 0.2rem; }
+.sound .family i { width: 0.8rem; height: 0.8rem; border-radius: 50%; border: 1px solid var(--border-strong); }
+.sound .family i + i { margin-left: -0.35rem; }
+.sound .family i:last-of-type { margin-right: 0.3rem; }
+.sound-play .button[aria-pressed='true'] { background: var(--tint); border-color: var(--tint); }
 .sound details, .sound > .meta { grid-column: 1 / -1; }
 .sound summary { cursor: pointer; color: var(--accent-text); font-weight: 600; }
 .sound details .doc { margin-top: 0.5rem; }

@@ -12,4 +12,5 @@ sine with two partials (music box). Reverb 32%. Peak -9 dBFS. The tail is folded
 loop point is silent-free and seamless.
 
 **Plays.** Only when sound is turned on in the top bar; it fades out whenever a film plays with sound
-and back in when the film stops.
+and back in when the film stops. It is the first track of the studio's playlist (one track per Rotli theme
+family; the others are on the Sound page).

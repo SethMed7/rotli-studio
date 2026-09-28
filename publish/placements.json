@@ -54,6 +54,12 @@
    "where": "rotli site, site/public/media/story (film, poster, thumb)",
    "decided": "2026-09-24",
    "pr": "#85"
+  },
+  {
+   "slug": "rotli-playlist",
+   "where": "rotli app, public/ambient (the six playlist tracks: linen, graphite, tide, canopy, dusk, lamplight; Settings → Ambient audio)",
+   "decided": "2026-09-28",
+   "pr": "rotli feat/ambient-audio (local)"
   }
  ]
 }

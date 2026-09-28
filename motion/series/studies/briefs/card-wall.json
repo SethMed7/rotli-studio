@@ -1,0 +1,69 @@
+{
+  "id": "card-wall",
+  "no": 22,
+  "title": "Card Wall",
+  "module": "src/canvas-core/studies/cardWall.ts",
+  "pieces": {
+    "landscape": "cardWall",
+    "vertical": "cardWallVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 900,
+  "palette": "deep",
+  "style": "A consumer launch film built from ONE object: a tall rounded card (a meeting template: a flat code-drawn illustration on top, a small tag chip in the top-left corner, a title strip at the bottom) repeated into a whole world. The ground is a slow aurora: three or four huge soft colour fields (the palette's accent2, accent at low alpha, surface and ground) drifting and breathing, with a faint field of tiny star specks that twinkle. Headlines are big, tight Inter 600 with ONE word per line set in Instrument Serif Italic in the accent, gradient-free. The vocabulary: (1) a mark that assembles itself from orbiting dots inside two thin concentric rings, then the name tracks out letter-spaced beside it; (2) a 3D coverflow of cards (perspective by scaling and skewing each card toward the edges, the centre card lifted, larger and tagged), sliding one card per beat; (3) a connected step row, Pick → Add → Done, where a curved line with a travelling dot links three cards and a spark burst marks the last; (4) word slams, one word scaling down from huge to size over a cloud of tilted cards scattered in depth (far cards smaller and blurred); (5) a depth-of-field pull, where the whole wall goes heavily blurred and one card racks into focus beside a two-line headline; (6) a row of four glassy feature tiles (a rounded icon square in the accent, a bold line, a small muted line) filling in one per beat; (7) an end card where the mark and the headline return over the card wall faded to 25 %, with a pill call to action. The cards' illustrations are simple flat scenes drawn in code (a coffee cup with steam, a sun over a desk, a clock face, two chat bubbles, a whiteboard, a plane over clouds, a candle and a cake, a stack of books), each in two or three pack colours, never photos or faces. Blur without ctx.filter: draw into a small offscreen canvas and scale it back up. Springs on every arrival; nothing sits still.",
+  "learnsFrom": "A public launch film Opus 5.5 made from one prompt and one link (https://x.com/samongaro_/status/2104511685029507390): one card object repeated into a coverflow, a connected three-step row, word slams over a scattered card cloud, a depth-of-field pull, feature tiles filling on the beat, an aurora ground. Its colours, product, photos and copy are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "the mark: two thin rings breathe on the aurora; three dots orbit inside and gather into the Oriel mark; the rings dissolve outward; 'ORIEL' tracks out letter-spaced beside it"
+    },
+    {
+      "from": 90,
+      "to": 180,
+      "what": "the headline: mark and name rise to the top; 'Book what's *easy*.' lands word by word (the italic word in the accent); small chips float around it on springs ('Popular', 'New', 'Tonight'); the sub-line 'Pick a template. Add your people. Done in seconds.'"
+    },
+    {
+      "from": 180,
+      "to": 330,
+      "what": "the coverflow: seven cards slide in from the right as a 3D coverflow and step one card per beat; the headline above counts '+40 templates', then changes to 'More every *week*.'; the centre card's tag reads 'Popular' or 'New'"
+    },
+    {
+      "from": 330,
+      "to": 480,
+      "what": "Pick → Add → Done: 'Pick' over a template card that a pointer taps (a check pops on its corner); a curved line draws to 'Add' and a card of three stacked avatar circles ('3 people added'); the line draws on to 'Done.' in the accent and a result card (the week grid with one slot lit) with a spark burst; labels under each: 'a template', 'your people', 'in seconds'"
+    },
+    {
+      "from": 480,
+      "to": 600,
+      "what": "word slams over the card cloud: tilted cards scatter in depth and drift; 'No back-and-forth.' slams in huge and settles; the cloud swirls and 'Just *ask*.' slams in the same way"
+    },
+    {
+      "from": 600,
+      "to": 720,
+      "what": "the depth-of-field pull: the whole wall blurs heavily; one card racks into sharp focus on the right, tilting gently; the headline on the left builds 'That meeting,' then 'with *everyone* in it.'"
+    },
+    {
+      "from": 720,
+      "to": 810,
+      "what": "four feature tiles fill in one per beat under 'Yours, and only *yours*.': 'Private by default · Your calendar stays yours', 'Only you see it · No shared feed', 'Nothing to install · Works in the browser', 'Cancel anytime · Keep what you booked'; a line under them: 'Free to start. Pay only when your team grows.'"
+    },
+    {
+      "from": 810,
+      "to": 900,
+      "what": "end card: the card wall drifts faded behind; the mark and 'ORIEL' return, 'Book what's *easy*.' and a pill 'Start free at oriel.example'; a slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the headline wraps to two or three lines near the top of the safe area, the coverflow shows three cards (the centre one larger), Pick → Add → Done becomes a vertical column with the curved line running down between the cards, the depth-of-field pull puts the headline above the focused card, the four feature tiles become a 2×2 grid, the end card's pill sits above the bottom safe margin.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at the coverflow (drop at frame 180; pad and pluck only before it), a whoosh into the coverflow and into each word slam, a hit on each slam and on 'Done.', a soft tick on every coverflow step, check and feature tile, and the sign-off at the end card.",
+  "teaches": "One object, repeated, becomes a whole visual world: when every scene is made of the same card (a coverflow, a step, a cloud, a focused hero), the film feels designed even with no footage. Depth of field decides what to read.",
+  "portable": {
+    "fonts": "Inter (400 and 600) for headlines and body, Instrument Serif Italic for one accent word per headline",
+    "style": "A consumer launch film built from ONE object, a tall rounded card (a flat drawn illustration on top, a small tag chip in its corner, a title strip at the bottom), repeated into a whole world over a slow aurora ground (huge soft colour fields drifting, faint twinkling star specks). Headlines are big tight sans with one word in an italic serif in the accent colour. Scenes: a mark assembling from orbiting dots inside two thin rings; a 3D coverflow of cards stepping one per beat, the centre card lifted and tagged; a Pick → Add → Done row linked by a curved line with a travelling dot and a spark burst on the last step; word slams scaling down from huge over a cloud of tilted cards scattered in depth; a depth-of-field pull where the wall blurs and one card racks into focus beside a two-line headline; four feature tiles filling in one per beat; an end card with the mark, the headline and a pill call to action over the faded wall. Illustrations are simple flat code-drawn scenes, never photos or faces. Blur by drawing into a small offscreen canvas and scaling it back up (Safari has no ctx.filter).",
+    "sound": "a soft loop at 120 bpm whose drums enter at the coverflow, whooshes into the coverflow and each word slam, a hit on every slam, soft ticks on each card step, check and tile, and a three-note sign-off.",
+    "sizes": "re-stack it: headlines wrap to two or three lines at the top, the coverflow shows three cards, the three steps run down a column, the feature tiles become a 2×2 grid."
+  }
+}

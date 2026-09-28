@@ -1038,6 +1038,86 @@
    "format": "story",
    "length": "24 s",
    "about": "Study 21 · Morph Launch, designed for vertical: two-line captions, a phone-width window, the tiles in one column."
+  },
+  {
+   "id": "cardWall",
+   "kind": "video",
+   "slug": "card-wall",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 22 · Card Wall: one card object repeated into a whole world: a coverflow, a Pick → Add → Done row, word slams over a card cloud, a depth-of-field pull and feature tiles, over a slow aurora."
+  },
+  {
+   "id": "cardWallVertical",
+   "kind": "video",
+   "slug": "card-wall-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 22 · Card Wall, designed for vertical: three-card coverflow, the steps down a column, the tiles in a 2 × 2 grid."
+  },
+  {
+   "id": "halftoneHost",
+   "kind": "video",
+   "slug": "halftone-host",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 23 · Halftone Host: an original alarm-clock host rendered through a dot screen, mono chrome with a running timecode, a full-bleed flip, a bento stamped \"Handled.\""
+  },
+  {
+   "id": "halftoneHostVertical",
+   "kind": "video",
+   "slug": "halftone-host-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 23 · Halftone Host, designed for vertical: the headline over a larger host, the cards in one column, the bento 2 × 3."
+  },
+  {
+   "id": "doodleGuide",
+   "kind": "video",
+   "slug": "doodle-guide",
+   "format": "film",
+   "length": "36 s",
+   "about": "Study 24 · Doodle Guide: the owner's turtle explains goldendoodle generations, coats, sizes and colours; its corner badge is redrawn in a new rendering style every section (pixel dither, halftone, riso, ink line, flat poster, original)."
+  },
+  {
+   "id": "doodleGuideVertical",
+   "kind": "video",
+   "slug": "doodle-guide-vertical",
+   "format": "story",
+   "length": "36 s",
+   "about": "Study 24 · Doodle Guide, designed for vertical: the cards in one column, the sizes as a 2 × 2 grid, the badge above the bottom margin."
+  },
+  {
+   "id": "fivePointFive",
+   "kind": "video",
+   "slug": "five-point-five",
+   "format": "film",
+   "length": "64 s",
+   "about": "Study 25 · Five Point Five: a lyric video for a short song about Opus 5.5 making this studio. One syllable table drives a formant-synthesized voice, the lit lyric and the cuts; no samples, no voice model."
+  },
+  {
+   "id": "fivePointFiveVertical",
+   "kind": "video",
+   "slug": "five-point-five-vertical",
+   "format": "story",
+   "length": "64 s",
+   "about": "Study 25 · Five Point Five, designed for vertical: each lyric line wraps in the upper half, its picture below."
+  },
+  {
+   "id": "orbGuide",
+   "kind": "video",
+   "slug": "orb-guide",
+   "format": "film",
+   "length": "26 s",
+   "about": "Study 26 · Orb Guide: one small glossy orb carries a quiet launch film over a hairline grid. It becomes a picture, the mark, a comet line past typed sentences and the checkbox of a word roller."
+  },
+  {
+   "id": "orbGuideVertical",
+   "kind": "video",
+   "slug": "orb-guide-vertical",
+   "format": "story",
+   "length": "26 s",
+   "about": "Study 26 · Orb Guide, designed for vertical: the grid cell in the upper middle, the tile ring as a tall oval, the orb's arcs running top to bottom."
   }
  ]
 }

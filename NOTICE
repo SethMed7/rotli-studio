@@ -23,3 +23,9 @@ Fonts (library/fonts/ and motion/assets/fonts/, copied by scripts/sync-library.t
   Copyright 2017-2021 Indian Type Foundry. All rights reserved. General Sans is a trademark of the
   Indian Type Foundry (ITF), distributed by Fontshare under its terms (https://fontshare.com/terms).
   The font is not covered by this repository's MIT licence.
+
+The turtle (motion/assets/turtle/, used by the Doodle Guide study):
+
+  The light-blue turtle in glasses is the maintainer's personal mascot.
+  Copyright (c) 2026 Seth Medina. All rights reserved.
+  The images are not covered by this repository's MIT licence; they may not be reused outside this repository.

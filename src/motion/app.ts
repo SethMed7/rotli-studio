@@ -3,7 +3,7 @@
 // brand, workflows, skills, tools, docs and the isolation audit. Read-only; hash-routed.
 import { esc, markdown } from "./md";
 import { filmPlayer, mountFilmPlayers } from "./player";
-import { cue, mountSound } from "./sound";
+import { chooseTrack, cue, mountSound, nowPlaying } from "./sound";
 
 type Shot = { id: string; start: number; end: number; template?: string };
 type Beat = {
@@ -84,6 +84,8 @@ type Series = {
   episodes?: Episode[];
   pieces?: string[];
   studies?: Study[];
+  /** the studies' field notes (series/studies/notes/), newest first */
+  notes?: { path: string; date: string; title: string; summary: string; minutes: number }[];
 };
 type Size = "landscape" | "vertical" | "square" | "portrait";
 const SIZE_LABEL: Record<Size, string> = {
@@ -156,6 +158,8 @@ const poster = (p: Piece | undefined) =>
 const epNo = (code: string) => code.replace(/^(s\d\de|ep)/, ""); // "01" in both series
 const chip = (t: string, cls = "") => `<span class="chip ${cls}">${esc(t)}</span>`;
 const seriesOf = (id: string | null) => M.series.find((x) => x.id === id);
+/** "21 studies": counted from the manifest, so the copy never goes stale */
+const studyCount = () => `${seriesOf("studies")?.studies?.length ?? 0} studies`;
 
 // ---------------------------------------------------------------- nav: one tree; the open series lists its episodes
 function renderNav(active: string) {
@@ -176,12 +180,12 @@ function renderNav(active: string) {
           M.pieces.filter((p) => p.kind !== "video" && p.slides?.length).length,
         ) +
         link("series", "#/series", "Series", M.series.filter((x) => x.kind !== "studies").length) +
-        link("studies", "#/series/studies", "Studies", studies),
+        link("studies", "#/series/studies", "Studies", studies) +
+        link("wallpapers", "#/wallpapers", "Wallpapers"),
     ) +
     group(
       "Make",
-      (STATIC ? "" : link("create", "/create", "Create")) +
-        link("brand", "#/brand", "Brand kit") +
+      link("brand", "#/brand", "Brand kit") +
         link("sound", "#/sound", "Sound") +
         link("workflows", "#/workflows", "Prompts & briefs") +
         link("runs", "#/runs", "Agent runs", M.pieces.filter((p) => p.run).length) +
@@ -204,6 +208,7 @@ function navKey(parts: string[]) {
   if (a === "series") return b === "studies" ? "studies" : "series";
   if (a === "piece") return byId(b)?.series === "studies" ? "studies" : "series";
   if (a === "doc") return "docs";
+  if (a === "note") return "studies";
   return a;
 }
 
@@ -252,7 +257,7 @@ function home() {
       <h2>Everything we've made, by series.</h2>
       <p class="intro">Each series groups its episodes with the cuts made from them: a vertical for Reels and Shorts, a carousel and a card. Open any piece to see its scenes, the brief behind it and the run that built it.</p>
       ${seriesRows()}
-      <p class="beyond-line">Not only Rotli: the same studio in five other styles and every size, for a fictional product. <a class="link" href="#/series/studies">See the studies →</a></p>
+      <p class="beyond-line">Not only Rotli: the same studio in ${studyCount()}, each its own style in every size, for a fictional product. <a class="link" href="#/series/studies">See the studies →</a></p>
     </div></section>
     <section class="band deep"><div class="inner">
       <h2>How a piece gets made.</h2>
@@ -385,11 +390,20 @@ function carousels() {
       )
       .join("")}</ul>`;
 }
+// ---------------------------------------------------------------- wallpapers: free downloads, one screen at a time
+// ---------------------------------------------------------------- wallpapers: the maker (motion/src/site/wallpaperMaker.ts)
+// its own bundle, fetched only here: locally the server builds /build/wallpapers.js; the snapshot names its hashed
+// copy in a meta tag
+async function wallpapers() {
+  const url = document.querySelector<HTMLMetaElement>("meta[name='wallpapers-js']")?.content ?? "/build/wallpapers.js";
+  const { mountWallpapers } = (await import(url)) as { mountWallpapers: (main: HTMLElement, narrow: boolean) => void };
+  mountWallpapers(main, matchMedia("(max-width: 700px)").matches);
+}
 // ---------------------------------------------------------------- series: the index of Rotli's series
 function seriesIndex() {
   main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Series</nav><header class="page-head"><h1>Series</h1><p>Rotli's films and the cuts made from them, series by series.</p></header>
     ${seriesRows(2)}
-    <section class="beyond"><h2>Beyond Rotli</h2><p>The same studio, pointed at a fictional product in five other styles and every size. <a class="link" href="#/series/studies">Studies →</a></p></section>`;
+    <section class="beyond"><h2>Beyond Rotli</h2><p>The same studio, pointed at a fictional product in ${studyCount()}, each its own style in every size. <a class="link" href="#/series/studies">Studies →</a></p></section>`;
 }
 
 // ---------------------------------------------------------------- posts: what has been published, as links
@@ -424,24 +438,54 @@ async function posts() {
     }`;
 }
 
-// ---------------------------------------------------------------- sound: the studio's music and effects, with their prompts
+// ---------------------------------------------------------------- sound: the studio's playlist and effects, with their prompts
+type SoundEntry = {
+  id: string;
+  kind: string;
+  title: string;
+  use: string;
+  prompt: string;
+  file: string;
+  seconds: number;
+  playlist?: { family: string; theme: string; bpm: number; key: string };
+};
+// the Sound page's "Play in the studio" buttons follow the player, wherever the change came from
+addEventListener("studio-track", () => markPlaying());
+function markPlaying() {
+  const { track, playing } = nowPlaying();
+  main.querySelectorAll<HTMLButtonElement>("button[data-track]").forEach((b) => {
+    const on = playing && b.dataset.track === track;
+    b.setAttribute("aria-pressed", String(on));
+    b.textContent = on ? "Playing in the studio" : "Play in the studio";
+  });
+}
 async function sound() {
-  const cat = await json<{
-    made: string;
-    sounds: { id: string; kind: string; title: string; use: string; prompt: string; file: string; seconds: number }[];
-  }>("/sound/catalog.json");
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
-    <ul class="sounds">${cat.sounds
-      .map(
-        (
-          x,
-        ) => `<li class="sound" id="sound-${esc(x.id)}"><div class="sound-head"><h2>${esc(x.title)}</h2><p class="meta">${x.kind === "music" ? "music · loops" : "effect"} · ${x.seconds.toFixed(1)} s · ${esc(x.use)}</p></div>
-      <audio controls preload="none" src="/${esc(x.file)}" aria-label="Play ${esc(x.title)}"></audio>
+  const [cat, themes] = await Promise.all([
+    json<{ made: string; sounds: SoundEntry[] }>("/sound/catalog.json"),
+    json<{ themes: { id: string; roles: Record<string, string> }[] }>(m("brand/themes.json")),
+  ]);
+  const row = (x: SoundEntry) => {
+    const pl = x.playlist,
+      th = pl && themes.themes.find((t) => t.id === pl.theme);
+    const meta = pl
+      ? `<span class="family">${th ? `<i style="background:${esc(th.roles.ground!)}"></i><i style="background:${esc(th.roles.accent!)}"></i>` : ""}${esc(pl.family)}</span> · ${esc(pl.key)} · ${pl.bpm} bpm · ${x.seconds.toFixed(0)} s, loops`
+      : `effect · ${x.seconds.toFixed(1)} s · ${esc(x.use)}`;
+    return `<li class="sound" id="sound-${esc(x.id)}"><div class="sound-head"><h3>${esc(x.title)}</h3><p class="meta">${meta}</p>${pl ? `<p class="muted">${esc(x.use.replace(/^the playlist's [^:]+: /, ""))}</p>` : ""}</div>
+      <div class="sound-play"><audio controls preload="none" src="/${esc(x.file)}" aria-label="Play ${esc(x.title)}"></audio>${pl ? `<button class="button ghost" type="button" data-track="${esc(x.id)}" aria-pressed="false">Play in the studio</button>` : ""}</div>
       <details><summary>The prompt</summary><div class="doc" data-prompt="${esc(x.prompt)}"></div></details>
-      <p class="meta"><a class="link" href="/${esc(x.prompt)}" target="_blank">${esc(x.prompt)}</a> · <a class="link" href="/${esc(x.file)}" download>Download ${esc(x.id)}.m4a</a></p></li>`,
-      )
-      .join("")}</ul>
+      <p class="meta"><a class="link" href="/${esc(x.prompt)}" target="_blank">${esc(x.prompt)}</a> · <a class="link" href="/${esc(x.file)}" download>Download ${esc(x.id)}.m4a</a></p></li>`;
+  };
+  const music = cat.sounds.filter((x) => x.kind === "music"),
+    fx = cat.sounds.filter((x) => x.kind !== "music");
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
+    <section class="sec"><h2>Playlist <small>(${music.length} tracks, one for each theme family)</small></h2><p class="muted">Every track is built on the films' phrase and music-box melody, in its own key, tempo, instruments and room, and mastered to the same loudness. With sound on, each track plays twice and the next one fades in; <b>Play in the studio</b> starts from any of them. Blossom, the app's seventh family, gets its track when its theme is synced into the studio.</p>
+    <ul class="sounds">${music.map(row).join("")}</ul></section>
+    <section class="sec"><h2>Effects</h2><ul class="sounds">${fx.map(row).join("")}</ul></section>
     <p class="foot">${esc(cat.made)}.</p>`;
+  main
+    .querySelectorAll<HTMLButtonElement>("button[data-track]")
+    .forEach((b) => b.addEventListener("click", () => chooseTrack(b.dataset.track!)));
+  markPlaying();
   main.querySelectorAll<HTMLElement>("[data-prompt]").forEach((el) => {
     void text(`/${el.dataset.prompt}`)
       .then((t) => (el.innerHTML = embedded(embedded(markdown(t)))))
@@ -456,8 +500,17 @@ function series(id: string) {
   const docs = [...x.docs, ...(x.schedule ? [x.schedule] : [])];
   const head = `<nav class="crumbs"><a href="#/">Studio</a> › ${x.kind === "studies" ? "" : `<a href="#/series">Series</a> › `}${esc(x.title.replace(/:.*/, ""))}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="#/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
   if (x.studies) {
+    const notes = x.notes?.length
+      ? `<section class="sec notes"><h2>Field notes <small>(what we tried, measured and learned)</small></h2><ul class="rows">${x.notes
+          .map(
+            (n) =>
+              `<li><a class="row" href="#/note/${encodeURIComponent(n.path.split("/").pop()!)}"><span class="meta">${esc(n.date)} · ${n.minutes} min read</span><div><h3 class="row-title">${esc(n.title)}</h3><p>${esc(n.summary)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`,
+          )
+          .join("")}</ul></section><h2 class="sec-head">The studies</h2>`
+      : "";
     main.innerHTML =
       head +
+      notes +
       `<ol class="episodes">${x.studies
         .map((st) => {
           const p = byId(st.primary);
@@ -1082,6 +1135,18 @@ async function docs() {
     param("doc"),
   );
 }
+/** a field note (series/studies/notes/<file>.md): an article under Studies, the markdown's own title as the page's */
+async function note(file: string) {
+  const path = `series/studies/notes/${file}`,
+    meta = seriesOf("studies")?.notes?.find((n) => n.path === path);
+  if (!meta) return notFound();
+  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › <a href="#/series/studies">Studies</a> › Field notes</nav><article class="doc note" id="doc"><p class="muted">Loading…</p></article>`;
+  const body = await text(m(path)).catch((e) => `**Could not load:** ${e}`);
+  // a note is its own page, so its "# " title stays the page's h1 (other docs sit under a page title and are demoted)
+  $("#doc").innerHTML =
+    markdown(body) +
+    `<p class="doc-path"><a class="link" href="${m(path)}" target="_blank">${esc(path)}</a> · <button class="link copy" type="button" data-label="Copy" data-copy="${esc(body)}">Copy the markdown</button></p>`;
+}
 async function doc(path: string) {
   await docPage(path.replace(/^\.\.\//, ""), "", [{ label: path, path }], path);
 }
@@ -1148,6 +1213,7 @@ async function route() {
       stopPlayers = mountFilmPlayers(main);
     } else if (parts[0] === "library") library();
     else if (parts[0] === "carousels") carousels();
+    else if (parts[0] === "wallpapers") await wallpapers();
     else if (parts[0] === "prompts") await promptLibrary();
     else if (parts[0] === "posts") await posts();
     else if (parts[0] === "sound") await sound();
@@ -1163,6 +1229,7 @@ async function route() {
     else if (parts[0] === "tools") await tools();
     else if (parts[0] === "docs") await docs();
     else if (parts[0] === "doc") await doc(decodeURIComponent(parts.slice(1).join("/")));
+    else if (parts[0] === "note") await note(decodeURIComponent(parts[1] ?? ""));
     else if (parts[0] === "isolation") await isolation();
     else notFound();
   } catch (e) {
@@ -1218,5 +1285,4 @@ try {
   throw e;
 }
 mountSound(document.getElementById("sound-toggle") as HTMLButtonElement);
-if (STATIC) document.getElementById("create-link")?.remove(); // the content editor only runs on the Mac
 route();

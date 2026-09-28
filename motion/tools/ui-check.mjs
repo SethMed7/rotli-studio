@@ -8,6 +8,8 @@ const pages = [
   "#/",
   "#/library",
   "#/carousels",
+  "#/wallpapers",
+  "#/wallpapers?screen=iphone",
   "#/prompts",
   "#/piece/kineticPoster",
   "#/piece/dataStoryVertical",
@@ -40,8 +42,8 @@ for (const w of widths) {
     "response",
     (r) => r.status() >= 400 && !r.url().includes("favicon") && problems.push(`[${w}] ${r.status()} ${r.url()}`),
   );
-  for (const h of [...pages, ...(B.includes("127.0.0.1") ? ["POSTS"] : [])]) {
-    await p.goto(h === "POSTS" ? B + "/create" : B + "/" + h, { waitUntil: "load" });
+  for (const h of pages) {
+    await p.goto(B + "/" + h, { waitUntil: "load" });
     await p.waitForTimeout(h === "#/isolation" ? 14000 : 1200);
     const r = await p.evaluate(() => {
       const out = [],
@@ -106,8 +108,7 @@ for (const w of widths) {
         "#/library",
         "#/tools",
         "#/brand",
-      ].includes(h) ||
-      h === "POSTS"
+      ].includes(h)
     )
       await p.screenshot({ path: `/tmp/ui-${w}-${h.replace(/[^a-z0-9]+/gi, "_")}.png` });
   }

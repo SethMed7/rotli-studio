@@ -1,0 +1,140 @@
+{
+ "piece": "doodleGuide",
+ "sizes": [
+  "doodleGuide",
+  "doodleGuideVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session), after the building agent's own checks",
+   "agent": {
+    "minutes": 24.9,
+    "tokens": 242391
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.4,
+     "longestCalm": 10,
+     "nearStill": 64
+    },
+    "vertical": {
+     "changesPer10s": 1.7,
+     "longestCalm": 10,
+     "nearStill": 61
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 6,
+    "motion": 8,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:03.0, 00:07.0, 00:13.0, 00:19.0, 00:24.0, 00:28.0",
+     "what": "every section opens on 8-12 frames of an empty colour field before anything arrives",
+     "fix": "content moving on the cut frame; carry the badge or a card across the flip"
+    },
+    {
+     "at": "00:09.0-00:12.5, 00:16.0-00:19.0",
+     "what": "long static holds after the last card lands (64 % of frames near-still)",
+     "fix": "one more beat of life per hold: bars refill, the slider nudges, a dog blinks"
+    },
+    {
+     "at": "all (landscape)",
+     "what": "content small and clustered top-left, half the frame empty; card lines unreadable at 360 px",
+     "fix": "scale each section to the frame; secondary lines at least 30 px at 1080"
+    },
+    {
+     "at": "00:28.0-00:32.0 (landscape)",
+     "what": "the honest bit leaves the right half empty",
+     "fix": "the sneezing doodle large on the right"
+    },
+    {
+     "at": "00:28.0-00:32.0",
+     "what": "ink outlines vanish on the ink ground",
+     "fix": "cream outlines on that section"
+    }
+   ],
+   "agentSaw": [
+    "ink outlines vanishing on the ink section",
+    "the honest bit's empty right half",
+    "the riso badge light at vertical scale"
+   ],
+   "agentMissed": [
+    "the empty colour field after every flip",
+    "the long static holds",
+    "landscape text unreadable at phone size"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (maintainer session)",
+   "agent": {
+    "minutes": 35.6,
+    "tokens": 332516,
+    "note": "the same agent, resumed with the round-1 problems"
+   },
+   "pace": {
+    "landscape": {
+     "changesPer10s": 4.2,
+     "longestCalm": 4.5,
+     "nearStill": 37
+    },
+    "vertical": {
+     "changesPer10s": 4.2,
+     "longestCalm": 4.5,
+     "nearStill": 47
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:22.5 (landscape)",
+     "what": "the sizes close-up crops the Mini label's weight at the frame edge",
+     "fix": "minor; reads as a deliberate zoom"
+    },
+    {
+     "at": "close-ups",
+     "what": "the badge sits over zoomed content",
+     "fix": "minor"
+    }
+   ],
+   "fixed": [
+    "content moves on every cut frame; the badge spins into its new style on the flip",
+    "every hold has a beat of life (bars refill, hops, the slider nudges)",
+    "landscape content scaled to the frame; secondary lines 30-46 px",
+    "the sneezing doodle large on the right of the honest bit",
+    "cream outlines on the ink section"
+   ],
+   "unasked": [
+    "one two-beat close-up cut per long section, added by the agent to punctuate the holds"
+   ],
+   "agentScores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "verdict": "ship"
+  }
+ ]
+}
