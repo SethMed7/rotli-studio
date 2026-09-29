@@ -7,7 +7,7 @@ for every crawler except link-preview bots, so a shared link still shows its car
 
 **Automatically, on every push to `main`** (`.github/workflows/deploy.yml`): the gates run (`bun run verify --fast`),
 then the job fetches the published renders, builds the snapshot exactly as below and uploads it to Railway, then
-waits (up to 20 minutes) until studio.rotli.co serves the new build. The upload is `railway up --detach`: streaming
+waits (up to 20 minutes) until studio.rotli.co serves the new build (its manifest's `generated` stamp, which every export changes). The upload is `railway up --detach`: streaming
 the build log with `--ci` failed the job whenever Railway queued the build for more than a minute, although the build
 itself went on to succeed, so the live check is the proof that a deploy landed. Only the owner can push to `main` (branch rules), so only the owner
 deploys. Secrets: `RAILWAY_TOKEN` (a project token scoped to `rotli-studio` production) and `PRIVATE_MARKERS` (the
