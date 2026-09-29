@@ -1,0 +1,146 @@
+{
+  "id": "literal-type",
+  "no": 51,
+  "title": "Literal Type",
+  "module": "src/canvas-core/studies/literalType.ts",
+  "pieces": {
+    "landscape": "literalType",
+    "vertical": "literalTypeVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 120,
+  "frames": 1920,
+  "palette": "mono",
+  "family": "type",
+  "subject": "oriel",
+  "style": "Seven words, each of which DOES what it says, played as one continuous take with no cuts: every prop becomes the next scene's first shape. PAPER AND INK ONLY: the palette's ground is the paper and its ink the ink for the first three quarters; at the flip (frame 1440) they swap, so ink becomes the ground and ground the type (the palette has no dark key: ink IS the night). accent and accent2 are never used, not even for a highlight: emphasis is only weight (outline letter vs solid), value (muted vs ink), size and position. muted is for ghost and outline letters, dashed cluster outlines, axis labels, leader-line annotations and the HUD, never for a line that matters; wireframe fills are ink at 6–14% alpha over the ground (after the flip, ground at 8–16% over ink). THE DRAFTING GRID: a square construction grid under everything, 48 px minor lines (ink at 5% alpha, 1 px) and a major line every fourth (ink at 10%), running off every edge; after the flip, ground at 6% and 12% over ink. THE CAMERA: one camera transform over the whole world, grid included: a slow roll between −2.5° and +2.5° and a scale drift between 1.00 and 1.05 on long sine periods (about 7 s and 11 s), so the grid is visibly tilted in most frames and holds never freeze; plus two big moves: an accelerating zoom-through (scale k^t, about ×14 in 30 frames) and the ball falling at the lens. THE HUD sits OUTSIDE the camera, top right inside the safe area, JetBrains Mono 500 at 24 px in muted: a live readout 'ss.cc s   frame nnnn   120 bpm' computed from F every frame (texture, not a line that matters). TYPE: two families only. Each WORD is Instrument Serif 400 at 170–190 px at 1080 (never under 150), default tracking, ink; outline letters are the same glyphs stroked 2 px with no fill. Everything technical is JetBrains Mono 500: the TYPED CAPTION under each word at 44 px (it types left to right at 2 frames per character, and a solid block cursor, a drawn rectangle about 0.6 em × 1 em, blinks 15 frames on and 15 off and stays after the line completes until the section leaves); counters, labels, leader-line annotations, axis labels and ruler readouts at 28–32 px (texture). EVERY WORD ENTERS ITS OWN WAY, and the entrance is the meaning (placed along a tangled path, dropped in like data, typed as outlines, spaced by a ruler, darkened by votes, filled by a ball, carried round a ring, dropped by a moving dot); never the same fade twice. PROPS are drafting-style line drawings: ink hairlines 2–3 px with round joins, flat fills, rounded corners 10–28 px; a crosshair is a 2 px ring with four short ticks; leader lines are 1.5 px with a 5 px dot at the anchor; dashed outlines use a 6/6 dash. The only shadow is one very soft flat offset under the phone (ink at 6%, 10 px down, no blur filter). MOTION: letters and props land on springs with a small overshoot (about 6%), the camera eases in-out, the zoom-through and the fall-at-the-lens are exponential, the ball flies on true parabolas with squash (1.4 × 0.7 for 3 frames at contact) and stretch along its velocity near contact, and onion-skin ghosts of the ball (1.5 px muted rings every 6 frames over the last 36) trace its arcs. Every section lands its payoff on a named beat and then HOLDS while its caption types; the camera drift keeps the hold alive. GLYPH LAW: the pack's JetBrains Mono has → ↑ × · but no U+2212 minus and no ✓, and Instrument Serif has no arrows: write time zones with an ASCII hyphen ('UTC-5'), draw every tick mark, the block cursor, the resize handle arrows and the placeholder X as strokes and rects. Any frame is computed from F alone: path progress, letter placements and rotations come from seeded hashes, never Math.random.",
+  "learnsFrom": "A motion-design film by @yanliudesign shared on X (https://x.com/yanliudesign/status/2104758344305246506), which its maker says was made entirely with Claude: seven words that each act out their meaning with one line-drawn prop, zero cuts (each prop becomes the next scene's first shape: a zoom through a square, a crosshair that turns into a phone, a button that collapses into a ball, a ball that falls into the lens and turns the film dark), a display serif for the word and a monospace for everything technical, typed captions with a block cursor, a tilted drafting grid under a rolling camera, a live seconds/frame/bpm readout, and pure black and white with one inversion. Its seven words, its subtitles, its 'product design' subject, its wireframe, browser and matrix content, its greys, its fonts and its sound are not used; the words, props and copy here are Oriel's and invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 30,
+      "what": "hook, 'Everyone': on frame 0 a large rotated serif 'E' (about 180 px, −18°) is already on screen beside a small start ring, and the cursor (a drawn arrow) has begun a looping ink path from it; the mono counter beside the cursor reads '1 reply'; by frame 20 the 'v' has popped in on a spring further along the path"
+    },
+    {
+      "from": 30,
+      "to": 150,
+      "what": "the tangle: the cursor keeps drawing a looping, doubling-back path across the frame toward a small outlined square at the right labelled 'booked', placing the remaining letters 'e', 'r', 'y', 'o', 'n', 'e' one per 20 frames (30, 50, 70, 90, 110, 130), each at a seeded rotation (±35°) and a seeded offset from the path; the counter beside the cursor steps with each letter placed ('2 replies' at the 'v', then '4', '5', '7', '9', '10', '12 replies'), and the path reaches the square at 140"
+    },
+    {
+      "from": 150,
+      "to": 210,
+      "what": "the snap (lands on 150, a hit): the path pulls straight like a string drawn tight, into one baseline from the start ring to the 'booked' square, and the eight letters spring upright onto it as the word 'Everyone' at about 180 px; the counter fades; the caption types beneath: '12 replies, now one link.'"
+    },
+    {
+      "from": 210,
+      "to": 240,
+      "what": "zoom-through: the camera accelerates into the 'booked' square at the right end of the baseline (exponential scale, about ×14); the word streaks past to the left and fades; the square's outline grows to become the next scene's frame"
+    },
+    {
+      "from": 240,
+      "to": 360,
+      "what": "'Overlap': the square frame (about 640 px) settles centre-right on a spring; above it the letters of 'Overlap' drop in from above one per 4 frames with a small bounce, like data points; inside the frame a time axis '09' to '18' (mono) runs along the bottom and four rows are labelled 'ana', 'kai', 'mo', 'lee' at the left; one row per beat (270, 300, 330, 360), that person's free time slides in as solid ink bars with gaps where they are busy; where all the rows so far are free, a vertical band darkens a step"
+    },
+    {
+      "from": 360,
+      "to": 450,
+      "what": "the lock (lands on 360, a hit): a crosshair, already flying in on an arc during 330–360, locks as the fourth row lands on the one band where all four rows are free, which fills solid ink; everything else in the frame drops to muted dashed outlines; a leader line labels it 'all 4 free · 14:00'; at the same beat the letters of 'Overlap' slide together until each neighbour overlaps the next, and every overlap is knocked out in the ground colour, so the word shows its own overlaps; the caption types: 'Where everyone is free.'"
+    },
+    {
+      "from": 450,
+      "to": 480,
+      "what": "everything fades but the crosshair, which glides to the centre while its ring stretches into a tall rounded rectangle: the outline of a phone (about 300 × 620 px)"
+    },
+    {
+      "from": 480,
+      "to": 570,
+      "what": "'Zones' (the drop, 480): the phone outline settles; the word 'Zones' types in to its left as OUTLINE letters (2 px strokes, no fill), one letter per 6 frames; inside the phone a wireframe day view builds line by line: a header bar, a placeholder avatar with a drawn X, and five outlined time-slot rows; the drawn cursor clicks the third row (a tick)"
+    },
+    {
+      "from": 570,
+      "to": 690,
+      "what": "the fill (lands on 570, a hit): in one frame the wireframe becomes solid (flat ink-alpha fills, the clicked slot solid ink) and 'Zones' fills solid at the same moment; then the phone tilts to an isometric view and explodes upward into three stacked copies of the day view (springs from 600, the layers staggered 5 frames apart), with leader lines to labels on the right: 'ana · UTC-5 · 09:00', 'kai · UTC+0 · 14:00', 'mo · UTC+1 · 15:00'; a vertical ink line draws down through all three layers at the same slot (lands on 630, a tick, once all three layers have settled); the caption types: 'Three zones, one slot.'"
+    },
+    {
+      "from": 690,
+      "to": 720,
+      "what": "the layers collapse back into the phone, which rights itself and grows tall; the letters of 'Zones' tumble away to the left, rotating and fading; the phone frame dissolves and its slot list stays, stretching into a tall day column"
+    },
+    {
+      "from": 720,
+      "to": 870,
+      "what": "'Buffer': the day column (about 360 × 760 px) holds five back-to-back meeting blocks touching with no gap, flat ink-alpha fills with a solid ink left edge and mono labels 'standup', '1:1', 'review', 'sync', 'plan'; to its left 'Buffer' sits at 180 px with its letters touching; a drawn drag handle on the column pulls down, and one beat at a time (750, 780, 810, 840) the next of the four gaps opens between two blocks, top to bottom, while a ruler on the right counts up with them: '0 min' before the first, then '4 min', '6 min', '8 min', '10 min' as the handle drags every gap wider together; the word's letter-spacing opens in exact proportion to the gap, so 'B u f f e r' breathes with the blocks (a tick per gap)"
+    },
+    {
+      "from": 870,
+      "to": 930,
+      "what": "lands on 870 (a hit): the ruler reads '10 min' and a small bracket marks each gap; the caption types: 'Ten minutes between meetings.'; meanwhile the camera begins to push toward the top block, whose title is the next word, 'Poll', in muted serif"
+    },
+    {
+      "from": 930,
+      "to": 960,
+      "what": "contain and reveal: the camera pushes into the top block until its edges leave the frame; the column and 'Buffer' fall away; the muted serif 'Poll' is left centred at 190 px"
+    },
+    {
+      "from": 960,
+      "to": 1110,
+      "what": "'Poll': the word sits in muted grey; under it three outlined mono pills pop in one per 10 frames: 'Tue 10:00', 'Wed 15:00', 'Thu 14:00'; votes arrive one per beat (990 ana → Thu, 1020 kai → Wed, 1050 mo → Thu, 1080 lee → Thu): a small ink dot drops under the chosen pill while a 3 px focus ring hops to that pill, and a thin meter under the word fills '1/4', '2/4', '3/4', '4/4'; with each vote the word steps one quarter of the way from muted to ink (a tick per vote)"
+    },
+    {
+      "from": 1110,
+      "to": 1170,
+      "what": "the win (lands on 1110, a hit): 'Thu 14:00' fills solid ink with ground-coloured text, the other two pills drop to muted dashed outlines, and the word, now full ink, springs up to about 1.15×; the caption types: 'Let them pick.'"
+    },
+    {
+      "from": 1170,
+      "to": 1200,
+      "what": "the winning pill collapses: its width shrinks to a circle, then to a 40 px solid ink ball, which hops off the pill to the right on a parabola; the rest of the scene fades"
+    },
+    {
+      "from": 1200,
+      "to": 1380,
+      "what": "'Nudge': the word sits as ghost OUTLINE letters in muted; the ball lands on the 'N' on the first beat and then bounces letter to letter, one contact per beat (1230 'N', 1260 'u', 1290 'd', 1320 'g', 1350 'e'); on each contact it squashes and the letter under it fills solid ink with a 5 px dip and spring back (a tick per contact); onion-skin rings trace the arcs; two leader-line annotations draw on above in mono: '1 day before' to the first contact and '10 min before' to the fourth; the caption types: 'Reminders that land.'"
+    },
+    {
+      "from": 1380,
+      "to": 1440,
+      "what": "the flip: the ball bounces high off the 'e' and falls toward the lens, growing exponentially from 40 px until it covers the whole frame in ink at 1440 (a whoosh ends and a hit lands on 1440); the letters of 'Nudge' are flung outward along the growing ball's edge and vanish"
+    },
+    {
+      "from": 1440,
+      "to": 1530,
+      "what": "'Rotate' (dark from here: ground is the palette's ink, type is its ground): a ring about 560 px across with 24 hour ticks and a centre crosshair draws on; four dots sit on it labelled 'ana', 'kai', 'mo', 'lee'; the letters of 'Rotate' ride once around the outside of the ring as circular text, then peel off it and set flat above the ring at 180 px (lands on 1530, a tick)"
+    },
+    {
+      "from": 1530,
+      "to": 1620,
+      "what": "the turns: a solid wedge labelled 'late slot · 21:00' steps around the ring one person per beat (1530 ana, 1560 kai, 1590 mo, 1620 lee), the ring snapping 90° each step with a small overshoot (a tick each); a mono log under the ring types one entry per step: 'wk 1 ana', 'wk 2 kai', 'wk 3 mo', 'wk 4 lee'; the caption types: 'The late slot takes turns.'; the fourth step lands as a hit"
+    },
+    {
+      "from": 1620,
+      "to": 1680,
+      "what": "collapse: the ticks, dots, wedge and log converge into the centre as one ground-coloured dot; the letters of 'Rotate' squash into their baseline and vanish"
+    },
+    {
+      "from": 1680,
+      "to": 1800,
+      "what": "end: the dot sweeps left to right along a shallow arc, trailing a chain of smaller dots, and drops the letters of 'Oriel.' one at a time (each springs up from where a trail dot lands) at about 200 px in the ground colour; then the tagline types beneath at 44 px: 'Find a time that works for everyone.' with the block cursor"
+    },
+    {
+      "from": 1800,
+      "to": 1920,
+      "what": "the index: a row draws in along the bottom of the safe area, one cell per 12 frames: a hairline rule, a small muted number and the word in mono at 30 px: '01 Everyone', '02 Overlap', '03 Zones', '04 Buffer', '05 Poll', '06 Nudge', '07 Rotate' (a tick per cell); 'oriel.example' sits under the tagline at 44 px; a large faint ring drifts across behind the lockup and the camera pushes in slowly; the cursor keeps blinking"
+    }
+  ],
+  "sizes": "Readability first: every word is at least 150 px at 1080 on the short side and every typed caption and the tagline are 44 px; counters, axis labels, leader-line annotations, ruler readouts, pill labels (32 px) and the index (30 px) are secondary, and the HUD (24 px) is texture. Vertical (1080 × 1920) re-stacks rather than crops, each scene as word in the upper third, prop in the middle, caption beneath: the 'Everyone' path winds down the frame in S-curves from a start ring at the top to the 'booked' square at the bottom, and the snapped baseline is horizontal and centred (the zoom-through still dives into the square); the 'Overlap' frame is about 860 px square with the word above; 'Zones' sits above the phone, and the exploded layers' labels go below the stack instead of to the right; 'Buffer' sits above a taller day column (about 420 × 1000 px) with the ruler at its right, and the word's opened tracking is capped so it stays inside the safe width; the three 'Poll' pills stack in a column; 'Nudge' fits at 170 px with the ball's arcs a little taller; the 'Rotate' ring is about 780 px; the end lockup stacks 'Oriel.' over a tagline broken into two centred lines ('Find a time that' / 'works for everyone.'), and the index becomes two columns (01–04, 05–07). The HUD stays top right inside the safe area. Any line that would fall under 44 px at the vertical's width wraps instead.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at 'Zones' (drop at 480), no key change; hits at 150 (the snap), 360 (the lock), 570 (the fill), 870 (ten minutes), 1110 (the win), 1440 (the flip) and 1620 (the fourth turn); whooshes ending at 240 (the zoom-through), 480 (crosshair to phone), 720, 960 (into the block), 1200 and 1440 (the ball at the lens); ticks for each letter placed on the path, each Overlap row, the click, the pierce at 630, each Buffer gap, each vote, each ball contact, each ring step and each index cell, and one tick for every third typed character (thinned so it never buzzes); the three-note sign-off at 1860. Measure it and set the gain for about −16 LUFS (the reference sits at −13.4).",
+  "teaches": "When every word performs its own meaning with one prop, and each prop becomes the next scene's first shape, a list of seven words plays as one continuous film: the copy is the storyboard, and the transitions are match cuts through objects rather than cuts.",
+  "portable": {
+    "fonts": "Instrument Serif (400) for the seven words and the end word; JetBrains Mono (500) for the typed captions, labels, annotations, the HUD and the index",
+    "style": "Seven words for an imaginary scheduling product, Oriel, each of which does what it says, played as one continuous take with no cuts: every prop becomes the next scene's first shape. Pure black and white: black ink on warm off-white paper for three quarters of the film, then inverted (white on black) after a ball falls into the lens; no accent colour at all, emphasis only by outline vs solid letters, grey vs black, size and position. A faint square drafting grid runs under everything, and one camera slowly rolls (±2.5°) and drifts over the whole world, grid included, so the grid is visibly tilted; a live readout of seconds, frame number and bpm sits fixed in the top-right corner in small grey mono. Each word is a large regular-weight serif (about 180 px at 1080); everything technical is monospace: a typed caption under each word (44 px, typed left to right with a blinking solid block cursor), counters, axis labels, leader-line annotations. Props are drafting-style line drawings with flat fills. Every word enters its own way: 'Everyone' is placed letter by letter along a tangled cursor path with a rising reply counter, then snaps straight ('12 replies, now one link.'); a zoom-through into the 'booked' square turns it into a chart frame where four people's free time slides in and a crosshair locks on the one slot all four share, while the letters of 'Overlap' slide until they overlap ('Where everyone is free.'); the crosshair turns into a phone where 'Zones' types as outline letters over a wireframe day view, both fill solid, and the phone explodes into three isometric layers for three time zones pierced by one line ('Three zones, one slot.'); the slot list becomes a day column where gaps open between back-to-back meetings while the letters of 'Buffer' spread by the same amount ('Ten minutes between meetings.'); the camera dives into the top meeting to find 'Poll' in grey, which darkens with each of four votes until 'Thu 14:00' wins ('Let them pick.'); the winning pill shrinks into a ball that bounces along the ghost letters of 'Nudge', filling each on contact ('Reminders that land.'); the ball falls into the lens and turns the film black; 'Rotate' rides round a clock ring while a 'late slot' wedge takes turns among four people ('The late slot takes turns.'); everything collapses to a dot that drops 'Oriel.' letter by letter over the tagline 'Find a time that works for everyone.' and an index row of the seven words.",
+    "sound": "a driving loop at 120 bpm whose drums enter when the phone appears, a hit on each payoff (the snap, the lock, the fill, the ten-minute gap, the winning vote, the flip to black, the last turn), whooshes into each transition, thinned ticks for letters, votes, bounces and typed text, and a three-note sign-off.",
+    "sizes": "re-stack it for vertical: word in the upper third, prop in the middle, caption beneath; the tangled path winds down the frame, the exploded layers are labelled below, the poll pills stack, the day column grows taller, the tagline breaks into two lines and the index becomes two columns."
+  }
+}

@@ -1,0 +1,144 @@
+{
+ "piece": "literalType",
+ "sizes": [
+  "literalType",
+  "literalTypeVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0.3,
+     "longestCalm": 23.9,
+     "nearStill": 51
+    },
+    "vertical": {
+     "changesPer10s": 0.3,
+     "longestCalm": 23.9,
+     "nearStill": 49
+    }
+   },
+   "scores": {
+    "hook": 6,
+    "readability": 7,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:01.0",
+     "what": "the hook is a lone rotated 'E', a start ring, a thin path stub and a 30 px '1 reply': in the vertical the frame is empty below the top quarter, and nothing lands until the 'v' at 0.2 s and the 'e' at 0.5 s",
+     "fix": "pre-roll the tangle so frame 0 is already a dense path with four letters placed (the fourth popping on frame 0), then one letter per beat (30, 60, 90, 120), with the counter already at '5 replies'"
+    },
+    {
+     "at": "00:08.0-00:10.0, 00:20.0-00:22.0",
+     "what": "the outline 'Zones' and the ghost 'Nudge' are 2 px strokes (muted for Nudge): at 360 px on a phone they are under half a pixel and nearly vanish, so the fill payoff has nothing to fill from",
+     "fix": "stroke the outline and ghost letters at 5 px (Nudge keeps the muted colour; emphasis stays weight, not value), a deliberate departure from the brief's 2 px"
+    },
+    {
+     "at": "00:03.6, 00:15.6-00:16.0, 00:23.6-00:24.0",
+     "what": "the zoom-through (5 samples), the dive into the top block (3) and the ball falling at the lens (3) show discrete ghost copies, not a smear: 'sync sync', '10 min 10 min', a doubled 'uffer', 'yone' in stacked copies, a stepped grey rim on the growing ball",
+     "fix": "sample those three shots at 12 subframes"
+    },
+    {
+     "at": "00:15.8 (vertical)",
+     "what": "'Buffer' rides the dive and slides across the 'Poll' block, two serif words on top of each other for about 8 frames",
+     "fix": "fade the word on its own 10 frames from the start of the dive"
+    },
+    {
+     "at": "00:02.5 (vertical)",
+     "what": "the last placed 'e' and the '12 replies' counter sit on top of the 'booked' square and its label",
+     "fix": "comes with the re-timed path; check it after the hook fix"
+    },
+    {
+     "at": "00:10.5-00:11.5 (vertical)",
+     "what": "the exploded Zones stack is about 430 px wide and its three labels are 28 px under it: the payoff 'three zones, one slot' is a small diagram at phone size",
+     "fix": "secondary; the caption carries the line"
+    },
+    {
+     "at": "all",
+     "what": "pace.json cannot see a continuous take (0.3 changes/10 s, 23.9 s calm); by the sheet a new element lands every 1-2 s and a word every 4 s, so variety is judged from the sheet",
+     "fix": "none; a tool limit for one-take pieces"
+    }
+   ],
+   "agentSaw": [
+    "the quiet first 1.5 s (the 180 px 'E', the path and a counter) and the sparse vertical opening frame",
+    "the 2 px muted ghost 'Nudge' and outlined 'Zones' are faint at phone size",
+    "the vertical's exploded Zones stack is small",
+    "the 'Everyone' path is less of a tangle than intended",
+    "pace.json reads 0.3 changes/10 s and a 23.9 s calm for one continuous take"
+   ],
+   "agentMissed": [
+    "discrete ghost copies in the zoom-through, the dive and the fall at the lens (the blur is under-sampled)",
+    "'Buffer' crosses over the 'Poll' block during the vertical's dive",
+    "the last 'e' and the '12 replies' counter collide with the 'booked' square in the vertical",
+    "the ghost 'Nudge' sits half off the vertical's right edge while the camera pans to it"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0.3,
+     "longestCalm": 23.9,
+     "nearStill": 52
+    },
+    "vertical": {
+     "changesPer10s": 0.3,
+     "longestCalm": 23.9,
+     "nearStill": 50
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "at": "00:00.0 (vertical)",
+     "what": "frame 0 is now a tangle with three letters and a fourth popping, but only in the upper half: below it there is only the booked square until the path winds down at about 1 s. Nearer 7.5 than 8 on the vertical alone",
+     "fix": "none this round"
+    },
+    {
+     "at": "00:10.5-00:11.5 (vertical)",
+     "what": "the exploded Zones stack is still about 430 px wide with 28 px labels under it; the caption carries the line",
+     "fix": "none this round; a bigger stack would crowd the caption"
+    },
+    {
+     "at": "00:19.9 (vertical)",
+     "what": "the ghost Nudge fades in while the camera is still panning, so for about 10 frames it sits half off the right edge",
+     "fix": "none needed; it reads as the camera arriving"
+    },
+    {
+     "at": "00:14.5",
+     "what": "the ruler already reads 10 min from 00:14.0, so the hit at 00:14.5 lands only the brackets and the readout growing from 32 to 44 px",
+     "fix": "none; faithful to the brief cue table"
+    }
+   ],
+   "fixed": [
+    "the hook is pre-rolled: frame 0 is a drawn tangle with E, v and e placed and the r popping on frame 0 under a small camera punch; y, o, n and e land one per beat (30, 60, 90, 120) with a tick and a punch each; the counter starts at 5 replies",
+    "the letters sit at searched positions along the path, at least 210 px apart in both sizes, so no two letters stack and the last e no longer lands on the booked square; the counter fades before the cursor reaches it",
+    "the outline Zones and the ghost Nudge are stroked at 5 px (a deliberate departure from the brief 2 px): both read at 360 px",
+    "the zoom-through, the dive and the fall at the lens blur at 12 subframes: a smear, no discrete copies",
+    "Buffer fades on its own 10 frames at the dive, so it no longer crosses the Poll block in the vertical",
+    "the snap is stiffer (the string and the letters spring at about 3.5 Hz, a 1-frame stagger): Everyone sits on its baseline by about 00:02.7 instead of 00:02.9",
+    "the ring steps are keyed 4 frames earlier so each 90 degree turn arrives on its beat (1560, 1590, 1620)"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}
