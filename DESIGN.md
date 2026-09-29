@@ -7,7 +7,8 @@
 The studio shows Rotli's code-drawn films, the studies that take the same engine past Rotli, and everything that made
 them, in rotli.co's language: a linen ground, the faint studio pattern behind the hero (cameras, a clapperboard, film,
 keyframes on a motion curve; `library/patterns/studio-pattern.svg`, studio-owned, drawn in the same hairline as
-Rotli's synced file pattern), General Sans 600 headlines at -0.045em with a clay
+Rotli's synced file pattern), which fades out behind the headline and intro so it frames the words and never sits
+under them, General Sans 600 headlines at -0.045em with a clay
 underline on the key words, deep bands for emphasis, and hairline-separated lists. Home (`#/`) is a landing
 page; every other route is the app shell (top bar, one sidebar tree, content).
 
