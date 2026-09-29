@@ -2,7 +2,7 @@
 
 The rest of the studio is Rotli's. **Studies** show that the engine is not: each one is an original piece in a
 different motion technique, shipped in at least two sizes, and the place to learn the studio before pointing it at
-your own product. There are 54. Each brief names its **family** (how the site groups it) and its **subject**:
+your own product. There are 55. Each brief names its **family** (how the site groups it) and its **subject**:
 
 - **Oriel** (`"subject": "oriel"`). Oriel is **imaginary**: a scheduling assistant that finds a time that works for
   everyone, invented so a study can show a product without claiming anything about a real one. It has no website,
@@ -68,6 +68,7 @@ your own product. There are 54. Each brief names its **family** (how the site gr
 | 52 | Gouache Storybook | an opaque-gouache picture book, scenes painted on with broad brush ribbons (fun) | landscape · vertical | 30 s · 24 fps |
 | 53 | Burrow Days | a comic-book-rendered short: halftone shadows, misregistration for depth, on twos (fun) | landscape · vertical | 48 s · 24 fps |
 | 54 | Two-Part Harmony | a music video: two pixel critters sing a duet about Opus 5.5 and Sonnet 5.5 (real topic) | landscape · vertical | 120 s |
+| 55 | Zoomies | an anime chase shot from the grass: two dogs, bunnies, smears, an impact frame, an innocent sit (fun) | landscape · vertical | 30 s |
 
 Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
 metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.

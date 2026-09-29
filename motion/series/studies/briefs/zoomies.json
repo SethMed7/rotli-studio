@@ -1,0 +1,86 @@
+{
+  "id": "zoomies",
+  "no": 55,
+  "title": "Zoomies",
+  "module": "src/canvas-core/studies/zoomies.ts",
+  "pieces": {
+    "landscape": "zoomies",
+    "vertical": "zoomiesVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 900,
+  "palette": "yard (local: the cast and the yard are colour constants in the module; the pack gives only the type)",
+  "family": "character",
+  "subject": "fun",
+  "style": "An anime-style action short drawn entirely by code: flat cel colour, one shadow tone per shape, no outlines, a camera that lives down in the grass. THE CAST is two small curly-coated dogs on one rig with two looks, drawn from the owner's reference photos (the photos are not in the repository): the red one (apricot-red, shaved smooth body and legs, a fluffy mop of a head, long wavy ears, a lighter beard, a white bib, a blue collar) and the parti one (white, apricot ears and eye patches, a curly white topknot, a pink tongue that is always a little out, a silver tag). What makes them read as these dogs is the silhouette: smooth shaved bodies against fluffy heads, long curly ears and plume tails. Curls are unions of small circles round an ellipse (never spikes). The rig has four views: a profile whose rotary gallop is closed-form in the stride phase (spine flex e = cos 2πp sets every leg angle, the body stretch and the bob; the far legs trail the near ones), a run straight at the lens (one paw reaching up at the lens while the other plants), a face-on sit, and a face-on head for close-ups (locked-on eyes: a warm iris ring round a wide pupil and a big shine). The bunnies are cottontails in profile (squash and stretch in the hop, ears back in the air) and sitting face on (nose twitch, chew). THE CAMERA borrows the reference's action grammar, never its content: a low lens in the grass with foreground blades, shots that look down the lawn in closed-form perspective (scale = k / Z), a side-on tracking shot with parallax layers, a 180-degree shutter by subframes on the fast shots, speed lines, manga focus lines, a whip pan, a slow-motion burst (time remapped inside the shot), a two-frame black-and-cream impact frame that inverts, a face-filling close-up, and a comedy freeze. Holds keep breathing (a push-in, blinks, panting, a wagging tail). Type is one word at the end, 'zoomies.' in Instrument Serif Italic, in ink, centred in the sky.",
+  "learnsFrom": "An AI-generated anime cat 'Zoomies' short shared on X by Kōda (https://x.com/aimikoda/status/2104474150215578011, made with Midjourney and Seedance): about forty cuts in 30 s, a low lens, fur smears across the frame, a knocked-over object in slow motion, a face-filling close-up, a scramble through a room and an innocent sit at the end, all carried by foley rather than music. Its cat, rooms, colours, gags and footage are not used; the dogs, the yard, the bunnies, the leaf pile and the collision are original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 75,
+      "what": "peek: a low lens in the grass; a bunny nibbles clover big in the foreground; on the wicker bench behind it two dozy dogs sit; at 30 both heads snap round, ears up; at 45 a glint in all four eyes; at 60 a cut to the bunny's face as it freezes, ears straight up; a push-in throughout"
+    },
+    {
+      "from": 75,
+      "to": 105,
+      "what": "lock-on: both faces fill the frame over manga focus lines on a sunny ground, pupils going wide, a glint at 90"
+    },
+    {
+      "from": 105,
+      "to": 165,
+      "what": "launch: the bunny bolts across the foreground; the dogs leap off the bench and run straight at the lens until a paw fills the frame; white fur smears across the lens into the next shot"
+    },
+    {
+      "from": 165,
+      "to": 285,
+      "what": "chase: side on, the camera racing with them over parallax layers; the bunny leads, then vaults straight over their heads; they skid in a cloud of dust, turn with a hop and bolt back as the frame whips round"
+    },
+    {
+      "from": 285,
+      "to": 375,
+      "what": "leaves: a tidy leaf pile under a tree; the bunny dives in; the dogs go straight through at full speed and the burst plays in slow motion (closed-form ballistics with drag, in remapped time); the bunny is left sitting in the flattened heap wearing a leaf, then hops off"
+    },
+    {
+      "from": 375,
+      "to": 450,
+      "what": "split: two bunnies run at the lens, split left and right and cut back across each other; each dog takes one, and the two dogs converge in the middle, eyes widening as they see each other"
+    },
+    {
+      "from": 450,
+      "to": 510,
+      "what": "tumble: a four-frame impact frame (silhouettes, focus lines, a star, the palette inverting), then a cartoon scuffle cloud rolling across the lawn with legs, ears and tails poking out on threes and stars orbiting; two bunnies watch from the foreground, chewing; the cloud bursts"
+    },
+    {
+      "from": 510,
+      "to": 555,
+      "what": "face: the parti one fills the frame, shakes off the dust with her eyes squeezed shut, then pops them wide, tongue flapping, ears flying, and bolts out of frame"
+    },
+    {
+      "from": 555,
+      "to": 690,
+      "what": "laps: the bunnies forgotten, the dogs chase each other round the yard on a closed-form ellipse (the red one overtakes halfway), leaving a dust trail, the bunnies now the audience on the bench; at 615 a cut down into the grass where each dog tears past the lens at full size, one each way, then back to the laps at 645"
+    },
+    {
+      "from": 690,
+      "to": 735,
+      "what": "skid: both run at the lens and brake, grass and dirt fanning up from the planted paws, stopping with a bounce right at the camera"
+    },
+    {
+      "from": 735,
+      "to": 900,
+      "what": "sit: both dogs sit side by side in the wreckage (scattered leaves, divots, the rake knocked flat, a leaf stuck on the red one's head), panting then innocent; a bunny hops in and sits right between them; their eyes slide towards it; a glint; the bunny bolts at 853 and both heads snap after it; 'zoomies.' lands at 861; they are gone at 881, leaving dust and the title"
+    }
+  ],
+  "sizes": "Vertical re-stacks: horizons sit higher and the ground drops further, so the cast lands in the middle third with tall foreground grass framing the bottom; the lock-on stacks the two faces one above the other; the side-on chase keeps both dogs large across the lower middle; the laps use a narrower ellipse; the sit puts the dogs at the frame's edges with the bunny between them and the title in the top safe area. Landscape (primary): a wide low frame, characters large, the title centred in the sky.",
+  "sound": "Foley-led, synthesised in the module (not beatScore): a four-footfall gallop patter on every run, band-passed noise whooshes that end on the cuts, formant barks and yips, crunches for nibbling and leaves, a cartoon spring for the head-snaps and the bunny, bells for the glints, a bonk and a crash on the impact frame, a whistle riser into it, a scuffle with barks and tweeting birds, a skid, panting, a garden wind bed with birdsong in the quiet shots, and a pizzicato bed in F at 120 bpm that drops out for the slow motion and the impact and pitches down on the skid; a four-note pluck sting on the title. About −16 LUFS.",
+  "teaches": "A character film is a rig plus a camera: two looks on one closed-form rig give you a cast, and the energy comes from where you put the lens (low, close, moving) and when you cut, not from how much you draw.",
+  "portable": {
+    "fonts": "Instrument Serif Italic for the one end title",
+    "style": "An anime-style action short drawn with Canvas 2D: flat cel colour with one shadow tone, no outlines, a low camera in the grass. Two small curly-coated dogs on one rig with two looks (an apricot-red one with a white bib, and a white one with apricot ears and eye patches and her tongue out): smooth shaved bodies, fluffy curly heads, long wavy ears and plume tails, curls drawn as unions of small circles. A closed-form gallop (every leg angle from the stride phase), a run straight at the lens, a face-on sit and a big face-on head for close-ups. Cottontail bunnies that squash and stretch. Shots: a peek from the grass, a lock-on over manga focus lines, a launch at the lens with a fur smear, a side-on parallax chase with a vault and a skid, a leaf pile burst in slow motion, a split-and-collide, an impact frame, a scuffle cloud, a face-filling close-up, laps of the yard with a near pass, a skid stop, and an innocent sit that ends with the bunny bolting and one word, 'zoomies.'.",
+    "sound": "foley-led: paw patter on every run, whooshes on the cuts, barks and yips, leaf crunches, a cartoon spring, a bonk on the impact, a scuffle with tweeting birds, a skid, panting, a garden wind and birdsong bed, and a light pizzicato groove that drops out for the slow motion and the impact.",
+    "sizes": "re-stack it for vertical: higher horizons with tall foreground grass, the two faces stacked in the lock-on, a narrower laps ellipse, and the title in the top safe area."
+  }
+}
