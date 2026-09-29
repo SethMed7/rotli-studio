@@ -21,8 +21,10 @@ The canonical rules for every AI agent working here (Claude Code reads it throug
   what makes renders reproducible and goldens meaningful.
 - **Sealed pieces never change.** `node motion/tools/studio.mjs golden all` must print `GOLDEN: all N piece(s) SAME`.
   Re-record a golden only when a piece's pixels changed on purpose, and never a sealed one without the owner.
-- **Claims are true.** Rotli's captions use rotli.co's wording (its /features and /privacy pages). Studies use the
-  fictional Oriel precisely so they claim nothing real. References are credited by link, never copied or committed.
+- **Claims are true.** Rotli's captions use rotli.co's wording (its /features and /privacy pages). Each study's brief
+  names its `subject`: `oriel` studies advertise Oriel, a product we invented so they claim nothing real; `learn`
+  studies state only the facts in the brief's `facts`, each with its source, hedged as the source hedges; `fun`
+  studies name nothing real. References are credited by link, never copied or committed.
 - **Rotli's look comes from the app.** The quokka, its looks and the theme tokens are synced from the rotli
   checkout, never hand-drawn. Studies never import Rotli's kit (`rotli/`, `studio/`) or `brand/brand.json`; they
   use `motion/src/canvas-core/kit/` and a pack in `motion/brand/packs/`.

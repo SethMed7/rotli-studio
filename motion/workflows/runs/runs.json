@@ -2,7 +2,7 @@
  "note": "Agent runs recovered from Claude Code transcripts. Regenerate with tools/extract-runs.mjs.",
  "sources": [
   "6f834591-5513-4f19-a058-1af9a5cdd8f7.jsonl",
-  "d919aee8-0829-4b05-988c-37e4e6bfb3d8.jsonl",
+  "d919aee8-0829-4b05-988c-37e4e6bfb3d8.jsonl@2026-09-28T16:45",
   "c74bb602-6202-4ec5-8b02-3569895eeb14.jsonl"
  ],
  "runs": [
