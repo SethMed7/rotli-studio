@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "plum",
+ "family": "character",
+ "subject": "oriel",
  "style": "A mascot-led metaphor: a soft, rounded robot mascot (two stacked rounded bodies, a visor, a tiny antenna) is a race car without a track. We build its track from concept blocks, then watch it race a top-down road, flicking finished-task chips off to the sides. Soft shadows, rounded forms, a subtle floor. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a soft robot mascot, a metaphor that carries the whole piece (F1 cars need a track), concept blocks stacking into a foundation, a top-down road with task chips flying off.",
  "story": [

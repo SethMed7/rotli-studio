@@ -1,0 +1,66 @@
+{
+  "id": "shadow-puppet",
+  "no": 36,
+  "title": "Shadow Puppet",
+  "module": "src/canvas-core/studies/shadowPuppet.ts",
+  "pieces": {
+    "landscape": "shadowPuppet",
+    "vertical": "shadowPuppetVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 90,
+  "frames": 900,
+  "palette": "lantern",
+  "family": "character",
+  "subject": "fun",
+  "style": "A silhouette film in the 1920s cut-out manner: black articulated paper figures and lacy black scenery against a glowing, backlit, colour-tinted ground, telling an original fable. THE GLOW: the ground is a radial gradient from the surface colour (hot centre, slightly above middle) through the scene's tint to the tint darkened 35% at the corners, as if a lamp shone up through glass and paper; each scene has its own tint (s1 amber for dusk, s2 blue for night, s3 rose for dawn), changed on a slow 20-frame cross-dissolve, never a hard cut. A soft film life sits on top: a global brightness flicker of ±2% and a 1 px gate weave, both stepped every second frame from a seeded hash of the frame, never random at render time. THE PUPPETS are rigs, not drawings: each figure (a fox, an owl, a hare) is a tree of separate ink parts (body, head, jaw, ears, a three-segment tail, four legs of two segments each for the fox and hare, wings of two segments for the owl), each part a filled path with its own pivot, joined at HINGES that only ROTATE; draw each part with ctx.save/translate/rotate from its parent. All joint angles are closed-form functions of time (a walk cycle is thigh = 24° · sin(ωt + φ), shin = 20° · max(0, sin(ωt + φ + 0.6)), with φ offset per leg; a head turn is an eased angle between two poses). Puppets move 'on twos' (quantise time for the rigs to every second frame) for the hand-animated feel; the glow and flicker run every frame. THE LACE: the silhouettes carry cut-out detail made with even-odd fills: an eye hole, a row of small crescents along the fox's tail, a filigree of leaf holes in every tree, a zig-zag grass fringe along the bottom edge, curling tendrils on the frame corners. Scenery sits on three planes: a far plane in ink at 0.35 alpha (the shaded tracing-paper look), a middle plane at 0.7 and the near plane in pure ink; planes drift at different speeds when the view pans, so the flat scene has depth. THE MOON is the one light object: a disc in surface colour with a 1 px accent2 ring. Captions are silent-film cards inside the picture: a band at the bottom (surface colour at 0.92 alpha, an ornamental cut-paper ink border with small curls) holding Instrument Serif 44 px ink text, one sentence per scene, fading in over 10 frames; opening and closing intertitles are full cards with the same ornamental border. No colour but the tints, ink and the moon.",
+  "learnsFrom": "Lotte Reiniger's silhouette films, above all The Adventures of Prince Achmed (1926): figures cut from card and paper in many separate pieces joined with lead wire, animated frame by frame on backlit planes of glass, silhouettes placed on stacked planes for depth, and colour-tinted film stock (https://en.wikipedia.org/wiki/Lotte_Reiniger; The Conversation, https://theconversation.com/before-walt-disney-there-was-lotte-reiniger-the-story-of-the-worlds-first-animated-feature-125091). Her characters, stories, designs and intertitles are not used; the fable is original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 100,
+      "what": "opening card: an ornamental cut-paper border draws itself around the amber glow; the title card reads 'The Fox Who Borrowed the Moon'; the glow flickers gently"
+    },
+    {
+      "from": 100,
+      "to": 240,
+      "what": "dusk (s1 amber): a lacy wood on three planes; the view pans slowly right; the fox trots in on a walk cycle, stops at a pond and turns her head up at the moon, then down at its reflection; card: 'A fox wanted a light of her own.'"
+    },
+    {
+      "from": 240,
+      "to": 400,
+      "what": "the borrowing: the fox lifts a jointed lantern on a pole and dips it in the pond; the reflection slides into the lantern, which now glows, and the moon in the sky shrinks to nothing; she trots off swinging it; card: 'So she borrowed the moon.'"
+    },
+    {
+      "from": 400,
+      "to": 560,
+      "what": "the dark (the tint dissolves to s2 night blue and the glow dims): an owl misjudges its branch and flaps; a hare hops, stops and turns in circles; only the fox's lantern makes a small warm circle; she stops, and her ears droop; card: 'But the wood went dark for everyone else.'"
+    },
+    {
+      "from": 560,
+      "to": 720,
+      "what": "the giving back: the fox climbs the tallest tree in three stepped leaps, branch by branch; at the top she tips the lantern and the moon rises out of it back into the sky, growing to full; the glow returns; card: 'So she climbed the tallest tree and gave it back.'"
+    },
+    {
+      "from": 720,
+      "to": 820,
+      "what": "dawn (the tint dissolves to s3 rose): the fox, the owl and the hare sit together on a hill as the moon sets behind them; the owl bows its head; card: 'A light kept is small. A light shared lights the wood.'"
+    },
+    {
+      "from": 820,
+      "to": 900,
+      "what": "closing card: the ornamental border again, 'The End', and a tiny fox silhouette curled asleep under the words; the glow slowly fades"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the scenery becomes a tall wood (trees taller, the pond smaller and lower), the view pans vertically instead of horizontally (up the tree in the giving-back scene, which suits the tall frame), the fox and friends are larger in the lower half, the moon sits in the upper third, and the caption band sits above the bottom safe margin with the text wrapped to two lines at 40 px. Cards centre with the border inset to the safe area.",
+  "sound": "beatScore soft at 90 bpm (a slow music-box pluck over a pad), key −3 for dusk; a soft tick for each footstep (thinned to every other one) and each leap up the tree; a whoosh ending as the reflection slides into the lantern (frame 300) and as the moon rises back (frame 660); a hit when the wood goes dark (frame 400) and a gentler one when the glow returns (frame 680); the three-note sign-off at frame 840.",
+  "teaches": "Silhouette makes a character pure gesture: with no face or colour to lean on, a fox reads only through the hinge angles of its joints, so the whole performance is in how each part rotates.",
+  "portable": {
+    "fonts": "Instrument Serif for the story cards and the title",
+    "style": "A silhouette film in the 1920s cut-out manner: black articulated paper figures and lacy black scenery against a glowing, backlit, tinted ground. The ground is a radial glow, hot in the centre and darker at the corners, tinted per scene (amber dusk, blue night, rose dawn) with slow cross-dissolves, a faint flicker and gate weave. The figures are rigs of separate black parts joined at hinges that only rotate (body, head, jaw, ears, a segmented tail, two-segment legs, two-segment wings), with every joint angle a function of time, stepped on twos for a hand-animated feel. Silhouettes carry cut-out lace: eye holes, crescents along the tail, filigree leaf holes in the trees, a zig-zag grass fringe, curling tendrils in the corners. Scenery on three planes (far at low opacity, middle, near solid black) that drift at different speeds as the view pans. The moon is the only light object. Captions are silent-film cards: a band at the bottom with an ornamental cut-paper border and one serif sentence per scene, plus opening and closing title cards. The story is an original fable: a fox scoops the moon's reflection into a lantern, the wood goes dark for everyone else, and she climbs the tallest tree to give it back.",
+    "sound": "a slow soft music-box loop at 90 bpm, soft footsteps and leaps, whooshes as the moon goes into the lantern and comes back out, a hit when the wood goes dark, and a three-note sign-off.",
+    "sizes": "vertical: a tall wood, the view pans up instead of across (up the tree for the giving-back scene), the animals larger in the lower half, the caption band wrapped to two lines above the bottom margin."
+  }
+}

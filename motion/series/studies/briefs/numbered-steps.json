@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "butter",
+ "family": "explain",
+ "subject": "oriel",
  "style": "A listicle reel: giant numerals (1, 2, 3) fill the frame on a solid colour field, each step's words stack beside the numeral, and a small illustrated icon scene demonstrates it. The numeral morphs from one to the next. Bold, flat, poster-like. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): giant step numerals with the words stacked beside them, a numbered card (1-2-3) summary, a call to action at the end.",
  "story": [

@@ -1,0 +1,61 @@
+{
+  "id": "terminal-boot",
+  "no": 45,
+  "title": "Terminal Boot",
+  "module": "src/canvas-core/studies/terminalBoot.ts",
+  "pieces": {
+    "landscape": "terminalBoot",
+    "vertical": "terminalBootVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 720,
+  "palette": "terminal",
+  "family": "screen",
+  "subject": "oriel",
+  "style": "A green-phosphor CRT terminal that boots and books a meeting from the command line. Everything is JetBrains Mono 500 on a strict character grid: 30 px type (18 px advance, 34 px rows) at 1080, so the landscape screen is about 80 columns by 26 rows and every element snaps to a cell. The SCREEN is a rounded rectangle (about 40 px radius) inside a flat dark bezel in the surface colour; everything drawn on it goes through one offscreen canvas and then these passes, all closed-form: (1) PHOSPHOR GLOW drawn as layered strokes, never a blur filter or shadowBlur: each text run is stroked twice under its fill, once wide (8 px line, accent at 6% alpha) and once narrower (3 px, accent at 15%), then filled in ink (or accent for highlights); (2) PERSISTENCE: while text scrolls, the same text is also drawn at its position two frames earlier at 25% alpha, a pure function of F; (3) SCANLINES: 1 px ground-coloured lines every 3 px at 18% alpha over the whole screen, plus a soft brighter refresh band (about 120 px tall, +4% ink) rolling down on a 90-frame period; (4) CURVATURE: a radial vignette darkening the corners and an optional barrel bulge made by redrawing the screen canvas in 8 px horizontal strips whose x-scale falls off by 3% toward the top and bottom; (5) FLICKER: global brightness 0.96–1.0 from a seeded hash of the frame number. Cursor: a solid block rectangle the size of one cell, blinking on for 8 frames and off for 7 (one beat). Typing is human: seeded per-key intervals of 2–5 frames with a longer pause before flags. GLYPH LAW: the pack's JetBrains Mono is subset to Latin, so box-drawing (─│┌┐└┘├┤┬┴┼), block (█▓▒░) and tick (✓) glyphs do not exist in it: every frame line, progress-bar fill, busy or free cell and tick is a vector stroke or rect snapped to the character grid (a 2 px line through the cell centre for box edges, a full-cell rect for blocks, three vertical densities of 1 px stripes for ░▒▓), and ticks are the word 'ok' or a drawn check path. Colour roles: ink for text, accent (bright green) for highlights, prompts and success, accent2 (amber) for warnings; the palette's muted is below 4.5:1 on the ground, so it is used only for scanlines, grid rules and decoration, never for text. Power-on: a single bright dot flashes, stretches into a horizontal line, then opens vertically to the full raster with a slight overshoot, the whole screen overexposed for a few frames before it settles.",
+  "learnsFrom": "The CRT terminal look as recreated by cool-retro-term (https://github.com/Swordfish90/cool-retro-term), the VT100-era video terminal (https://en.wikipedia.org/wiki/VT100) and box-drawing text interfaces (https://en.wikipedia.org/wiki/Box_Drawing): phosphor glow and persistence, scanlines, curved glass, a boot log, a typed command and a character-cell UI. Their code, shaders, fonts and screens are not used; the boot log, the command and the interface are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 60,
+      "what": "power on: a dot flashes, stretches into a line and opens into the green raster; the block cursor blinks twice top-left"
+    },
+    {
+      "from": 60,
+      "to": 180,
+      "what": "the boot log scrolls in one line per half-beat with persistence trails: 'ORIEL/TTY 0.9', '[ ok ] calendars mounted: 4', '[ ok ] time zones: 3', '[ ok ] working hours loaded', '[warn] kai: out Friday' (amber), '[ ok ] ready'; then a prompt '~ $'"
+    },
+    {
+      "from": 180,
+      "to": 330,
+      "what": "the command types at a human cadence: 'oriel book --everyone --len 45m \"design review\"' and Enter; output 'reading 4 calendars' with a drawn progress bar filling cell by cell 0% → 100%, then '26 busy blocks · 3 time zones'"
+    },
+    {
+      "from": 330,
+      "to": 480,
+      "what": "the character-cell UI: a drawn box titled 'WEEK 14' opens; five day columns 'Mon' to 'Fri' and four rows 'ana', 'kai', 'mo', 'lee' fill with busy cells (dense stripes) and free cells (empty); an inverse-video scan column sweeps across the week and stops on the only column free for all four, which flips to accent with a drawn arrow and 'Thu 14:00 · everyone free'"
+    },
+    {
+      "from": 480,
+      "to": 600,
+      "what": "booked: the box closes; lines type in: 'booked  Thu 14:00–14:45  design review', then 'ana ok', 'kai ok', 'mo ok', 'lee ok' one per beat in accent, then '4/4 accepted · invites sent'"
+    },
+    {
+      "from": 600,
+      "to": 720,
+      "what": "end: the screen clears to a large glowing 'oriel' (JetBrains Mono, about 120 px) with 'find a time from the command line' and 'oriel.example' beneath, a fresh '~ $' prompt with the block cursor blinking; the scanline band keeps rolling"
+    }
+  ],
+  "sizes": "Vertical re-stacks to about 48 columns by 40 rows in the same 30 px type: the bezel fills the frame inside the safe area; the boot log wraps its long lines; the command wraps onto two lines after '--everyone'; the week UI is transposed, days as rows and the four people as columns, so it fits the narrow grid; the end lockup stacks 'oriel' over its two lines in the upper-middle of the screen.",
+  "sound": "beatScore soft at 120 bpm with the drums entering at the week UI (drop at 330): a hit at 0 for the power-on, a tick per boot-log line, a tick for every second typed key, a hit on Enter (frame 285), a whoosh ending at 330 as the UI box opens, a tick per scan step, a hit at 480 for 'booked', a tick per accepted line, and the sign-off at 630.",
+  "teaches": "A CRT is a stack of cheap passes, not a filter: glow from layered strokes, persistence from a second draw a few frames back, scanlines, a vignette and a flicker, all over a strict character grid, make flat text feel like light on glass.",
+  "portable": {
+    "fonts": "JetBrains Mono (500) for everything",
+    "style": "A green-phosphor CRT terminal that boots and books a meeting from the command line. All text is monospace on a strict character grid (about 80 columns wide) inside a rounded screen within a flat dark bezel. Draw the screen to an offscreen canvas, then: phosphor glow from layered strokes (each text run stroked wide and faint, then narrower, then filled; no blur filters), persistence (scrolling text also drawn two frames back at low opacity), thin dark scanlines every 3 px plus a soft brighter band rolling down, a corner vignette with an optional barrel bulge made by redrawing the screen in thin horizontal strips scaled slightly narrower toward the top and bottom, and a tiny seeded flicker. The cursor is a solid block blinking once per beat; typing has seeded human intervals. Draw box frames, progress-bar fills, busy cells and ticks as strokes and rectangles snapped to the grid rather than relying on the font's box-drawing glyphs. Bright green for highlights and success, amber for a warning, never grey text. Scenes: a CRT power-on (a dot, a line, the raster opening), a boot log with '[ ok ]' lines, a typed command with a filling progress bar, a character-cell week grid whose inverse-video scan column stops on the one slot everyone has free, the booking confirmed line by line, and a large glowing product name with a blinking prompt.",
+    "sound": "a soft loop at 120 bpm whose drums enter when the week grid opens, a thump for the power-on, ticks for log lines and every second keystroke, a hit on Enter and on 'booked', ticks for each acceptance, and a three-note sign-off.",
+    "sizes": "re-stack it to a narrow grid about 48 columns wide: wrap long lines, break the command after its first flag, transpose the week grid (days as rows, people as columns), and stack the end lockup."
+  }
+}

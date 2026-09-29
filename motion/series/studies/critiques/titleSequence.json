@@ -1,0 +1,166 @@
+{
+ "piece": "titleSequence",
+ "sizes": [
+  "titleSequence",
+  "titleSequenceVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.8,
+     "longestCalm": 3.3,
+     "nearStill": 74
+    },
+    "vertical": {
+     "changesPer10s": 3.8,
+     "longestCalm": 4.9,
+     "nearStill": 70
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "sizeNotes": {
+    "vertical": "hook 7: frame 0 is one small credit bar in a mostly empty black field; composition 7 (no credit collision, the staircase grows downward away from its credit)"
+   },
+   "problems": [
+    {
+     "at": "00:16.4-00:18.8 (landscape)",
+     "what": "the 'music by HOLD MUSIC' credit sits in the lane every new step slides through, so seven times the arriving bar crosses the words (frame 562: 'HOLD MUSIC' over 'item 57'); its x also snaps sideways on each landing, and at the top it hugs the right edge past the safe area",
+     "fix": "key the credit's x and y together and hop it to its new place half a beat before the step arrives, so the lane is clear; clamp its right edge to the safe area"
+    },
+    {
+     "at": "00:18.9-00:19.2 (both)",
+     "what": "the step labels and the credit pop off at frame 568 while the staircase is still standing, then eight red bars cross in a tangle and assemble the title frame red-on-cream before the cut recolours it",
+     "fix": "hold the labelled staircase to the hard cut at 576, then assemble the frame after the cut in ink on the vermilion field: top and bottom bars stab in on the cut, the sides half a beat later, clear of the first letter"
+    },
+    {
+     "at": "00:12.8-00:16.0 (both, clearest in the vertical)",
+     "what": "the cup handles are 48-gons of 15 and 30 px radius carrying the full 2 px scissor jitter, so their inner edges read as cog teeth, not a cut",
+     "fix": "scale the jitter with the radius on small circles (about 5% of R)"
+    },
+    {
+     "at": "00:19.2-00:22.4 (landscape)",
+     "what": "the title sits in the left 45% of its frame; the right 40% is empty red until the corner clock lands at 22.4 s",
+     "fix": "not fixed: the brief asks for asymmetric composition and the clock resolves it"
+    },
+    {
+     "at": "00:00.0 (vertical)",
+     "what": "the first frame is one small credit bar in a mostly empty black field; the second bar only arrives at 0.4 s",
+     "fix": "not fixed this round; it is the brief's one-bar-per-beat opening"
+    },
+    {
+     "at": "00:19.2-00:22.0",
+     "what": "title letters land on eighth notes, not one per beat as the brief says (fourteen letters cannot fit 96 frames on beats), and are smooth glyphs among scissor-cut shapes",
+     "fix": "recorded as a forced deviation; the per-letter rotation and baseline offset carry the cut-paper read"
+    }
+   ],
+   "agentSaw": [
+    "the vertical's final calm is 4.9 s because the slam bar covers only ~13% of the tall frame",
+    "frames 568-576 are busy as the agenda steps fly into the title frame",
+    "vertical clock, agenda and title scenes leave the lower third empty (much of it is the reels UI zone, so not scored as a fault)",
+    "title letters are smooth glyphs while shapes get scissor-cut edges",
+    "the 2 px landing shadow is invisible on black fields"
+   ],
+   "agentMissed": [
+    "the agenda credit collides with each arriving step in the landscape, and its x snaps on each landing",
+    "the labels and credit pop off two pictures before the staircase moves, and the frame assembles in the wrong colours before the cut (the builder saw 'busy', not the pop or the colour flip)",
+    "the cup handles read as cogs: full jitter on small circles",
+    "the landscape title leaves the right 40% of its frame empty for three seconds"
+   ],
+   "checks": {
+    "loudness": {
+     "landscape": "-15.4 LUFS",
+     "vertical": "-15.4 LUFS"
+    },
+    "stillFrames": {
+     "landscape": "windows: (empty)",
+     "vertical": "windows: (empty)"
+    },
+    "sync": "hits on 96, 192, 288, 384, 480, 576 and 672, sign-off at 684, ticks thinned to every other arrival, all on the beat grid"
+   },
+   "verdict": "fix",
+   "scoreNotes": {
+    "accuracy": "every credit is an invented part of a meeting and nothing names Oriel or a real brand, person or film; the point off is for deviations from the brief (letters on eighth notes, smooth glyphs, 32 px labels vs 26), not for any false claim"
+   }
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.8,
+     "longestCalm": 3.2,
+     "nearStill": 74
+    },
+    "vertical": {
+     "changesPer10s": 3.8,
+     "longestCalm": 4.8,
+     "nearStill": 70
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "sizeNotes": {
+    "vertical": "hook 8 after the fix: frame 0 is now a cross with the credit, not one strip in an empty field; composition 8"
+   },
+   "fixed": [
+    "the agenda credit hops to the next rung half a beat before each step arrives (x and y keyed together), so no arriving bar crosses the words and its x no longer snaps; its right edge is clamped to the safe area allowing for the drift (frames 550-566 checked)",
+    "no pre-cut flight: the labelled staircase holds to the hard cut at 576, then the title frame assembles in ink on vermilion, top and bottom slamming in on the cut and the sides stabbing in along their length at 582, clear of the first letters (frames 574-582 checked, both sizes)",
+    "small circles take a jitter of 5% of their radius (cup handle rings, clock hub dots), so the handles read as cut rings, not cogs",
+    "vertical only: the long upright lands with the credit bar on frame 0, so the tall film opens on a cross; the one-per-beat stabs follow on 12 and 24"
+   ],
+   "problems": [
+    {
+     "at": "00:19.2-00:22.4 (landscape)",
+     "what": "the right 40% of the title frame is empty until the corner clock lands",
+     "fix": "left as designed: the brief asks for asymmetric composition and the clock resolves it"
+    },
+    {
+     "at": "00:19.2-00:24.0 (vertical)",
+     "what": "longestCalm 4.8 s: the detector misses letters landing every 0.2 s and a slam that covers ~13% of the tall frame",
+     "fix": "none needed; under the five-second line and visibly busy"
+    },
+    {
+     "at": "00:19.2-00:22.0",
+     "what": "title letters are smooth glyphs among scissor-cut shapes and land on eighth notes, not beats",
+     "fix": "recorded deviation from the brief"
+    }
+   ],
+   "checks": {
+    "loudness": {
+     "landscape": "-15.4 LUFS",
+     "vertical": "-15.4 LUFS"
+    },
+    "stillFrames": {
+     "landscape": "windows: (empty)",
+     "vertical": "windows: (empty)"
+    },
+    "determinism": "6/6 probe frames hash-identical in both renders",
+    "tsc": "clean"
+   },
+   "verdict": "ship",
+   "scoreNotes": {
+    "accuracy": "every credit is an invented part of a meeting and nothing names Oriel or a real brand, person or film; the point off is for deviations from the brief (letters on eighth notes, smooth glyphs, 32 px labels vs 26), not for any false claim"
+   }
+  }
+ ]
+}

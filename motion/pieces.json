@@ -1118,6 +1118,454 @@
    "format": "story",
    "length": "26 s",
    "about": "Study 26 · Orb Guide, designed for vertical: the grid cell in the upper middle, the tile ring as a tall oval, the orb's arcs running top to bottom."
+  },
+  {
+   "id": "glitchSignalVertical",
+   "kind": "video",
+   "slug": "glitch-signal-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 30 · Glitch Signal: A glitch reads as real when it follows the machine's own logic: channel splits, displaced slices, blocks that smear along motion, scanlines and frames that hold for a beat look broken; random noise sprinkled on top only looks fake."
+  },
+  {
+   "id": "glitchSignal",
+   "kind": "video",
+   "slug": "glitch-signal",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 30 · Glitch Signal, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "recipeFlatlayVertical",
+   "kind": "video",
+   "slug": "recipe-flatlay-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 47 · Recipe Flat-lay: Stop motion is a clock, not a style filter: hold every pose the same number of frames, put the easing in the spacing between poses, and let a one-pixel boil keep the held shots alive."
+  },
+  {
+   "id": "recipeFlatlay",
+   "kind": "video",
+   "slug": "recipe-flatlay",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 47 · Recipe Flat-lay, designed for square (1080 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "broadcastPackage",
+   "kind": "video",
+   "slug": "broadcast-package",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 46 · Broadcast Package: A broadcast package is a grammar, not a set of pictures: one entry direction, one angle, layers that build in the same order every time, and numbers that never jitter make every graphic read as part of one show."
+  },
+  {
+   "id": "broadcastPackageVertical",
+   "kind": "video",
+   "slug": "broadcast-package-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 46 · Broadcast Package, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "infiniteZoomVertical",
+   "kind": "video",
+   "slug": "infinite-zoom-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 43 · Infinite Zoom: An infinite zoom is arithmetic, not animation: centre every portal, scale by a constant ratio per level so the speed never changes, and make the last scene contain the first, and the push never ends."
+  },
+  {
+   "id": "infiniteZoom",
+   "kind": "video",
+   "slug": "infinite-zoom",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 43 · Infinite Zoom, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "proofWithoutWords",
+   "kind": "video",
+   "slug": "proof-without-words",
+   "format": "film",
+   "length": "32 s",
+   "about": "Study 28 · Proof Without Words: Move the shapes and the proof explains itself: when each quantity keeps one colour and every symbol in the equation flies out of a shape on screen, the viewer sees why it is true, not just that it is."
+  },
+  {
+   "id": "proofWithoutWordsVertical",
+   "kind": "video",
+   "slug": "proof-without-words-vertical",
+   "format": "story",
+   "length": "32 s",
+   "about": "Study 28 · Proof Without Words, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "asciiCinema",
+   "kind": "video",
+   "slug": "ascii-cinema",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 50 · ASCII Cinema: Ten characters are enough for a picture: map brightness to a ramp, keep one grid and a glyph atlas, make every cell a pure function of its position and time, and a spinning doughnut, rain and a face all come out of the same text."
+  },
+  {
+   "id": "asciiCinemaVertical",
+   "kind": "video",
+   "slug": "ascii-cinema-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 50 · ASCII Cinema, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "bauhausBeatSquare",
+   "kind": "video",
+   "slug": "bauhaus-beat-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 34 · Bauhaus Beat: When picture and sound are computed from the same numbers, every hit can move something: give each instrument one shape and one kind of motion, recompose on the bar, and a still composition becomes a piece of music you can watch."
+  },
+  {
+   "id": "bauhausBeat",
+   "kind": "video",
+   "slug": "bauhaus-beat",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 34 · Bauhaus Beat, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "liquidBlobsVertical",
+   "kind": "video",
+   "slug": "liquid-blobs-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 32 · Liquid Blobs: An implicit surface does the animating for you: move a few balls on simple curves and the field produces necks, merges, wobbles and pinch-offs by itself, so one shape can believably become many and many can become one."
+  },
+  {
+   "id": "liquidBlobs",
+   "kind": "video",
+   "slug": "liquid-blobs",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 32 · Liquid Blobs, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "terminalBoot",
+   "kind": "video",
+   "slug": "terminal-boot",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 45 · Terminal Boot: A CRT is a stack of cheap passes, not a filter: glow from layered strokes, persistence from a second draw a few frames back, scanlines, a vignette and a flicker, all over a strict character grid, make flat text feel like light on glass."
+  },
+  {
+   "id": "terminalBootVertical",
+   "kind": "video",
+   "slug": "terminal-boot-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 45 · Terminal Boot, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "titleSequence",
+   "kind": "video",
+   "slug": "title-sequence",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 35 · Title Sequence: A title sequence sells a film's mood before a word of it is spoken: one stark symbol per scene, flat colour fields cut on the beat, and credits that live inside the shapes turn a list of names into a rhythm."
+  },
+  {
+   "id": "titleSequenceVertical",
+   "kind": "video",
+   "slug": "title-sequence-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 35 · Title Sequence, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "swissGridPortrait",
+   "kind": "video",
+   "slug": "swiss-grid-portrait",
+   "format": "ig-portrait",
+   "length": "22 s",
+   "about": "Study 33 · Swiss Grid: A visible grid turns layout into choreography: when every element can only snap along the same lines, even a five-item list feels composed, and the empty space the grid leaves becomes part of the design."
+  },
+  {
+   "id": "swissGrid",
+   "kind": "video",
+   "slug": "swiss-grid",
+   "format": "film",
+   "length": "22 s",
+   "about": "Study 33 · Swiss Grid, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "multiplane",
+   "kind": "video",
+   "slug": "multiplane",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 44 · Multiplane: Depth is a speed, not a size: put flat layers at real distances, move the camera through them, and let the far things refuse to grow; paper shadows and a rack focus do the rest."
+  },
+  {
+   "id": "multiplaneVertical",
+   "kind": "video",
+   "slug": "multiplane-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 44 · Multiplane, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "neonDrive",
+   "kind": "video",
+   "slug": "neon-drive",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 31 · Neon Drive: An era is a set of rules you can code: a perspective grid, a striped sun, layered-stroke neon that ignites irregularly and a banded chrome fill are enough to summon the whole aesthetic, and the irregular flicker is what makes it feel electric rather than animated."
+  },
+  {
+   "id": "neonDriveSquare",
+   "kind": "video",
+   "slug": "neon-drive-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 31 · Neon Drive, designed for square (1080 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "whiteboardHand",
+   "kind": "video",
+   "slug": "whiteboard-hand",
+   "format": "film",
+   "length": "34 s",
+   "about": "Study 27 · Whiteboard Hand: Showing the drawing happen is the explanation: when a hand builds each idea line by line and wipes the board before the next, the viewer follows the reasoning at the speed it is drawn."
+  },
+  {
+   "id": "whiteboardHandVertical",
+   "kind": "video",
+   "slug": "whiteboard-hand-vertical",
+   "format": "story",
+   "length": "34 s",
+   "about": "Study 27 · Whiteboard Hand, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "radialYear",
+   "kind": "video",
+   "slug": "radial-year",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 49 · Radial Year: A radial chart earns its circle only when the data is a cycle: put time on the angle, encode the value as length from a fixed inner ring, label the rings, and a year of daylight becomes one shape you can read at a glance."
+  },
+  {
+   "id": "radialYearVertical",
+   "kind": "video",
+   "slug": "radial-year-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 49 · Radial Year, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "stainedGlassVertical",
+   "kind": "video",
+   "slug": "stained-glass-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 48 · Stained Glass: Stained glass is the light, not the picture: build the window from lead and flat jewel colour, then animate only the sun, and the same panes change mood all day and throw their colour onto the floor."
+  },
+  {
+   "id": "stainedGlass",
+   "kind": "video",
+   "slug": "stained-glass",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 48 · Stained Glass, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "splitFlap",
+   "kind": "video",
+   "slug": "split-flap",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 29 · Split-Flap: A mechanism is a timing system: when every change must travel forward through the same drum, the delays themselves (uneven, audible, one letter at a time) become the drama, and a board settling reads as news."
+  },
+  {
+   "id": "splitFlapVertical",
+   "kind": "video",
+   "slug": "split-flap-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 29 · Split-Flap, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "routeMap",
+   "kind": "video",
+   "slug": "route-map",
+   "format": "film",
+   "length": "36 s",
+   "about": "Study 39 · Route Map: A map route turns numbers into a journey: a line that draws at the traveller's pace, a camera that follows and a counter that ticks with the line make a distance felt before it is read."
+  },
+  {
+   "id": "routeMapVertical",
+   "kind": "video",
+   "slug": "route-map-vertical",
+   "format": "story",
+   "length": "36 s",
+   "about": "Study 39 · Route Map, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "pendulumWaveSquare",
+   "kind": "video",
+   "slug": "pendulum-wave-square",
+   "format": "ig-square",
+   "length": "32 s",
+   "about": "Study 42 · Pendulum Wave: A loop can be exact rather than faked: when every moving part is a closed-form function whose periods all divide the length of the piece, the last frame is the first frame and no cross-fade is needed."
+  },
+  {
+   "id": "pendulumWave",
+   "kind": "video",
+   "slug": "pendulum-wave",
+   "format": "film",
+   "length": "32 s",
+   "about": "Study 42 · Pendulum Wave, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "shadowPuppet",
+   "kind": "video",
+   "slug": "shadow-puppet",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 36 · Shadow Puppet: Silhouette makes a character pure gesture: with no face or colour to lean on, a fox reads only through the hinge angles of its joints, so the whole performance is in how each part rotates."
+  },
+  {
+   "id": "shadowPuppetVertical",
+   "kind": "video",
+   "slug": "shadow-puppet-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 36 · Shadow Puppet, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "seasonsOrrery",
+   "kind": "video",
+   "slug": "seasons-orrery",
+   "format": "film",
+   "length": "34 s",
+   "about": "Study 41 · Seasons Orrery: A mechanical diagram teaches by what it holds still: an orrery whose axis never turns makes the cause of the seasons visible without a word, and a fixed-width beam turns 'direct light' into something you can count."
+  },
+  {
+   "id": "seasonsOrreryVertical",
+   "kind": "video",
+   "slug": "seasons-orrery-vertical",
+   "format": "story",
+   "length": "34 s",
+   "about": "Study 41 · Seasons Orrery, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "oneLine",
+   "kind": "video",
+   "slug": "one-line",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 38 · One Line: One unbroken line can carry a whole explanation: when every drawing is the same resampled path, each step visibly grows out of the last, which is exactly how a seedling grows."
+  },
+  {
+   "id": "oneLineVertical",
+   "kind": "video",
+   "slug": "one-line-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 38 · One Line, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "isotypeSquare",
+   "kind": "video",
+   "slug": "isotype-square",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 40 · Isotype: Counting beats scaling: showing a quantity as many identical symbols (and a remainder as a cut symbol) lets the eye compare 96.5 with 1.7 honestly, where a bigger symbol would exaggerate by area."
+  },
+  {
+   "id": "isotype",
+   "kind": "video",
+   "slug": "isotype",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 40 · Isotype, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "inkWashVertical",
+   "kind": "video",
+   "slug": "ink-wash-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 37 · Ink Wash: Emptiness is a material: when the paper is left bare on purpose (for mist, snow and a poem) a few timed strokes that bleed and dry say more than a filled frame."
+  },
+  {
+   "id": "inkWash",
+   "kind": "video",
+   "slug": "ink-wash",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 37 · Ink Wash, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "twoPartHarmony",
+   "kind": "video",
+   "slug": "two-part-harmony",
+   "format": "film",
+   "length": "120 s",
+   "about": "Study 54 · Two-Part Harmony: a music video for an original duet about how Claude Opus 5.5 and Claude Sonnet 5.5 work together (the advisor tool: Sonnet executes, Opus advises). Two pixel critters sing it with formant voices driven by one syllable table; every claim is sourced. Fan-made, not affiliated with Anthropic."
+  },
+  {
+   "id": "twoPartHarmonyVertical",
+   "kind": "video",
+   "slug": "two-part-harmony-vertical",
+   "format": "story",
+   "length": "120 s",
+   "about": "Study 54 · Two-Part Harmony, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "literalType",
+   "kind": "video",
+   "slug": "literal-type",
+   "format": "film",
+   "length": "32 s",
+   "about": "Study 51 · Literal Type: When every word performs its own meaning with one prop, and each prop becomes the next scene's first shape, a list of seven words plays as one continuous film: the copy is the storyboard, and the transitions are match cuts through objects rather than cuts."
+  },
+  {
+   "id": "literalTypeVertical",
+   "kind": "video",
+   "slug": "literal-type-vertical",
+   "format": "story",
+   "length": "32 s",
+   "about": "Study 51 · Literal Type, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "gouacheStorybook",
+   "kind": "video",
+   "slug": "gouache-storybook",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 52 · Gouache Storybook: Paint reads as paint when every flat shape carries its own brush direction and a dry edge; and when the transitions are themselves painting (a stroke that paints the next scene on, a round window that already holds it), the cuts stop being edits and become part of the picture."
+  },
+  {
+   "id": "gouacheStorybookVertical",
+   "kind": "video",
+   "slug": "gouache-storybook-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 52 · Gouache Storybook, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "burrowDays",
+   "kind": "video",
+   "slug": "burrow-days",
+   "format": "film",
+   "length": "48 s",
+   "about": "Study 53 · Burrow Days: A comic look is a set of substitutions, not a filter: shadows become dots, blur becomes misregistered colour, sound becomes lettering, emphasis becomes an impact frame, and time runs at two rates (characters on twos, the camera on ones), so a code-drawn scene reads as a printed page that moves."
+  },
+  {
+   "id": "burrowDaysVertical",
+   "kind": "video",
+   "slug": "burrow-days-vertical",
+   "format": "story",
+   "length": "48 s",
+   "about": "Study 53 · Burrow Days, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }

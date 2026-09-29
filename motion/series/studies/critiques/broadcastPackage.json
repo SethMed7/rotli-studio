@@ -1,0 +1,278 @@
+{
+ "piece": "broadcastPackage",
+ "sizes": [
+  "broadcastPackage",
+  "broadcastPackageVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 2.9,
+     "longestCalm": 5.8,
+     "nearStill": 52
+    },
+    "vertical": {
+     "changesPer10s": 1.7,
+     "longestCalm": 17.8,
+     "nearStill": 59
+    }
+   },
+   "loudness": {
+    "landscape": -15.5,
+    "vertical": -15.5
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 8,
+    "variety": 5,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "hook": 7,
+     "readability": 7,
+     "motion": 8,
+     "variety": 7,
+     "composition": 7,
+     "accuracy": 10,
+     "sync": 8
+    },
+    "vertical": {
+     "hook": 7,
+     "readability": 7,
+     "motion": 8,
+     "variety": 5,
+     "composition": 6,
+     "accuracy": 10,
+     "sync": 8
+    }
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:17.8 (vertical)",
+     "what": "no abrupt change the eye (or critique.mjs) registers for 17.8 s: the vertical's 'tight' camera is only 1.14x, centred, on the same table, so the cuts at 4.0, 10.5 and 12.0 s read as nothing; 1.7 changes per 10 s",
+     "fix": "a distinct end camera per player (1.7x on one half and its paddle), cut end-to-end on the beat grid: 4.0 MARSH, 6.0 LUND (under LUND's lower third), 8.0 MARSH (through the missed winner), 11.0 LUND (on the match-point hit and roll), 12.5 MARSH, 17.5 MARSH for the winner"
+    },
+    {
+     "at": "00:01.3-00:02.7",
+     "what": "the title plate is fully built at frame 61 and starts wiping out at 74: 'TABLE TWO OPEN' holds under half a second and 'THE FINAL' (32 px) is legible for about 13 frames, well short of the package's own read-it-twice rule",
+     "fix": "hold the title to frame 105 (3.5 s), over the live picture, clear of the bug"
+    },
+    {
+     "at": "00:06.0-00:10.0 (vertical)",
+     "what": "the lower third sits on MARSH's paddle (the action) for the whole four-second hold",
+     "fix": "cut to LUND's end under LUND's lower third, and MARSH's end framed so the paddle ends ~50 px above the plate"
+    },
+    {
+     "at": "00:18.4-00:18.7 (vertical)",
+     "what": "the winning ball flies on into the 320 px band below the ticker and shows there, under the graphics",
+     "fix": "clip the vertical picture at the ticker's top edge"
+    },
+    {
+     "at": "00:14.0-00:17.8 (vertical)",
+     "what": "the stats number column leans with the 12-degree spine, so the last row's '3' lands at about x=67, inside the 80 px safe margin",
+     "fix": "tighten the vertical number column (col 385 -> 350) and bar length (330 -> 300)"
+    },
+    {
+     "at": "00:19.3-00:19.6",
+     "what": "the stinger's event mark (a deep plate) is still wiping out when the win plate's deep base wipes in over it: two deep plates cross in a messy diagonal for about 8 frames",
+     "fix": "clear the mark sooner (out 580-585) and start the win plate at 584"
+    },
+    {
+     "at": "00:00.0-00:01.0",
+     "what": "the stinger's fifth (deep) bar is nearly invisible on the navy ground, so the open reads as four bars",
+     "fix": "a flat line-coloured sliver on the deep bar's leading edge (the brief's colour list is kept)"
+    }
+   ],
+   "agentSaw": [
+    "the vertical's variety is weak (1.7 changes/10 s, longest calm 17.8 s; the 1.14x tight camera barely registers as a cut)",
+    "the winning ball is faintly visible below the ticker in the vertical for 2-3 frames",
+    "the lower third covers part of MARSH's paddle (vertical, 180-300) and a table corner (landscape)",
+    "the open stinger's deep bar is low-contrast on navy",
+    "MARSH's missed lunge could be clearer"
+   ],
+   "agentMissed": [
+    "the title plate holds under half a second fully built; 'THE FINAL' is on screen fully built for about 13 frames",
+    "the vertical stats board's bottom-row number sits inside the 80 px safe margin because the column follows the leaning spine",
+    "the stinger's event-mark plate and the win plate's base cross each other at 00:19.3-19.6 in both sizes",
+    "the self-scores were high: the builder gave the vertical composition 8 with the lower third on the action for four seconds"
+   ],
+   "verdict": "fix",
+   "accuracyNote": "checked line by line against the brief's story: title, bug, lower third, ticker items, stats rows, win plate and bumper copy all match; no real brand, person or film; players and headlines invented"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.3,
+     "longestCalm": 5.3,
+     "nearStill": 49
+    },
+    "vertical": {
+     "changesPer10s": 3.8,
+     "longestCalm": 4.7,
+     "nearStill": 45
+    }
+   },
+   "loudness": {
+    "landscape": -15.5,
+    "vertical": -15.5
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 8,
+     "accuracy": 10,
+     "sync": 8
+    },
+    "vertical": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 7,
+     "accuracy": 10,
+     "sync": 8
+    }
+   },
+   "problems": [
+    {
+     "at": "00:04.0-00:06.9 (vertical)",
+     "what": "introduced by the round-2 fix: the vertical picture is clipped at the ticker's top edge from the first frame, but the ticker only arrives at 206, so on the new end cameras the table and court are cut flat across the frame at y=1546 with bare ground beneath and no graphic to justify the edge",
+     "fix": "drop the clip; after the picture, wipe a ground band over y>=1546 in on the ticker's own frames (206, the house wipe), so the edge only exists once the ticker sits on it"
+    },
+    {
+     "at": "00:12.5-00:17.8 (landscape)",
+     "what": "5.3 s without an abrupt change: the stats board builds row by row on springs, so it is a deliberate hold, but it is the film's quietest stretch",
+     "fix": "none needed; a camera cut under the board is impossible (it is full-frame)"
+    },
+    {
+     "at": "00:11.0-00:12.5 (landscape)",
+     "what": "the landscape LUND end camera leaves the left third of the frame as empty court surround",
+     "fix": "none needed; it keeps LUND's paddle clear of the bug and the match-point tab"
+    },
+    {
+     "at": "00:18.3 (both)",
+     "what": "MARSH's missed lunge is now framed close (the ball passes beside the paddle), but the paddle still barely moves",
+     "fix": "a wider wrong-way lunge if a round 3 is ever run"
+    }
+   ],
+   "fixed": [
+    "the vertical cuts between a wide shot and two end cameras (1.7x on each player's half); all cuts on the beat grid (120, 180, 240, 330, 375, 525), 330 landing on the match-point hit; the landscape gains the same end cameras at 1.5x (8.0, 11.0, 17.5 s)",
+    "the title plate holds to frame 105; 'THE FINAL' is legible for about 1.5 s",
+    "under the lower third the vertical holds LUND's end; MARSH's paddle is never under the plate",
+    "the winning ball no longer shows below the ticker (by a clip that round 3 replaces)",
+    "the vertical stats numbers sit inside the safe margin",
+    "the event mark clears (580-585) before the win plate builds (584)",
+    "the deep stinger bar reads by a line-coloured leading edge"
+   ],
+   "verdict": "fix",
+   "foundBy": "the critique agent's own review of round 2 (a side effect of its round-1 fix)"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.3,
+     "longestCalm": 5.3,
+     "nearStill": 49
+    },
+    "vertical": {
+     "changesPer10s": 3.8,
+     "longestCalm": 4.7,
+     "nearStill": 44
+    }
+   },
+   "loudness": {
+    "landscape": -15.5,
+    "vertical": -15.5
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 8,
+     "accuracy": 10,
+     "sync": 8
+    },
+    "vertical": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 8,
+     "accuracy": 10,
+     "sync": 8
+    }
+   },
+   "problems": [
+    {
+     "at": "00:12.5-00:17.8 (landscape)",
+     "what": "5.3 s without an abrupt change: the stats board builds row by row on springs, so it is a deliberate hold, but it is the film's quietest stretch",
+     "fix": "none needed; a camera cut under the board is impossible (it is full-frame)"
+    },
+    {
+     "at": "00:11.0-00:12.5 (landscape)",
+     "what": "the landscape LUND end camera leaves the left third of the frame as empty court surround",
+     "fix": "none needed; it keeps LUND's paddle clear of the bug and the match-point tab"
+    },
+    {
+     "at": "00:18.3 (both)",
+     "what": "MARSH's missed lunge is now framed close (the ball passes beside the paddle), but the paddle still barely moves",
+     "fix": "a wider wrong-way lunge if a round 3 is ever run"
+    }
+   ],
+   "fixed": [
+    "the vertical picture runs full-frame until the ticker arrives; a ground band wipes in under the ticker on its frames (206-220), so there is no hard edge before it and the winning ball still never shows below it"
+   ],
+   "note": "vertical only re-rendered (the landscape does not take the band); landscape round-2 render stands",
+   "verdict": "ship"
+  }
+ ]
+}

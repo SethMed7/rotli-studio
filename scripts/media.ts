@@ -11,8 +11,9 @@
 //
 // Run `publish` after rendering new or changed pieces, before (or right after) pushing them: the site deploys the
 // published renders. Only media the site uses is published (the same inventory as scripts/export-site.ts: renders
-// of registered pieces, their web copies and thumbnails, and the slides the manifest references), and it is
-// public, like the site itself.
+// of registered pieces, their web copies and thumbnails, the designed thumbnails of Rotli's videos
+// (motion/out/thumbnails/, drawn by `node motion/tools/thumbnails.mjs`), and the slides the manifest references),
+// and it is public, like the site itself.
 import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join, relative } from "node:path";
@@ -51,15 +52,16 @@ const walk = (dir: string): string[] =>
     : [];
 const rel = (f: string) => relative(ROOT, f);
 
-/** the four parts, each a list of repo-relative files */
+/** the five parts, each a list of repo-relative files */
 function parts(): Part[] {
   const pieces = JSON.parse(readFileSync(join(MOTION, "pieces.json"), "utf8")).pieces as {
     slug: string;
     kind: string;
   }[];
-  const video = pieces
-    .filter((p) => p.kind === "video")
-    .flatMap((p) => [`motion/out/video/${p.slug}.mp4`, `motion/out/video/${p.slug}.jpg`]);
+  const videos = pieces.filter((p) => p.kind === "video");
+  const video = videos.flatMap((p) => [`motion/out/video/${p.slug}.mp4`, `motion/out/video/${p.slug}.jpg`]);
+  // designed thumbnails: one per registered video that has one (studies have none; the files exist only once drawn)
+  const thumbnails = videos.map((p) => `motion/out/thumbnails/${p.slug}.jpg`);
   const manifest = JSON.parse(readFileSync(join(MOTION, "out/manifest.json"), "utf8"));
   const slides = new Set<string>();
   const collect = (x: unknown): void => {
@@ -72,6 +74,7 @@ function parts(): Part[] {
     { name: "video", files: video },
     { name: "web", files: walk(join(MOTION, "out/web")).map(rel) },
     { name: "thumbs", files: walk(join(MOTION, "out/thumbs-1280")).map(rel) },
+    { name: "thumbnails", files: thumbnails },
     { name: "exports", files: [...slides] },
   ].map((p) => ({ ...p, files: p.files.filter((f) => existsSync(join(ROOT, f))).sort() }));
 }

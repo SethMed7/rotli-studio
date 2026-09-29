@@ -1,0 +1,61 @@
+{
+  "id": "liquid-blobs",
+  "no": 32,
+  "title": "Liquid Blobs",
+  "module": "src/canvas-core/studies/liquidBlobs.ts",
+  "pieces": {
+    "vertical": "liquidBlobsVertical",
+    "landscape": "liquidBlobs"
+  },
+  "primary": "vertical",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 720,
+  "palette": "sunset",
+  "family": "shape",
+  "subject": "oriel",
+  "style": "Four calendars as four drops of liquid that flow together into one shared time. The ground is the palette's pink ground, flat. The goo is ONE implicit surface: a field f(x, y) = Σ rᵢ² / ((x − xᵢ)² + (y − yᵢ)²) over a handful of balls, the surface is f = 1, and it is CONTOURED, not thresholded per pixel: sample f on a coarse grid (about 10 px at 1080), run marching squares with linear interpolation along each cell edge, join the segments into closed paths and fill them in one path with the palette's deep (violet) at full opacity, so the edge is crisp and anti-aliased. A second contour at f = 1.8, offset 8 px up and left and filled with deep mixed 18% toward white, is the only highlight (a flat gloss, no gradient); a third contour at f = 0.85 stroked 2 px in deep at 25% is a faint meniscus. Each blob is a main ball plus two or three small satellite balls orbiting inside it on slow closed-form circles, so its outline wobbles organically without any simulation; every position is a closed-form function of the frame (springs from kit/motion, sines, lerps). The tells of liquid, all to be shown: necks (as two blobs approach, a bridge thickens between them before they merge), a merged blob that overshoots and wobbles as it settles (a damped spring on its radius and aspect), and a pinch-off when a drop splits away (the neck thins, snaps, and a tiny satellite droplet is left behind for a moment before it is reabsorbed). Each person has a coloured CORE dot (22 px) floating inside their blob: Ana accent (orange), Kai accent2 (gold), Lena surface (white), Theo the pink ground colour (ink would vanish on deep); the cores drift with their blob, swirl together inside the merged one and line up as avatars later. To turn the liquid into a card, lerp the field toward a rounded-rectangle field (a smooth function that is 1 on the card's edge, larger inside) over one beat, so the goo visibly flows into the card shape and holds it. A LIQUID WIPE uses one huge ball that swells from off-frame to cover everything, then drains away. Type is Inter 800 for headlines (ink on ground, white on deep), Inter 600 for tags, Instrument Serif for the wordmark; keep readable text in ink or white: the palette's muted is too light on this pink for small type, use it only for hairlines.",
+  "learnsFrom": "Metaballs, Jim Blinn's 1982 'blobby' surfaces (https://en.wikipedia.org/wiki/Metaballs), and Jamie Wong's walkthrough of drawing them with marching squares and linear interpolation (https://jamie-wong.com/2014/08/19/metaballs-and-marching-squares/): a summed field thresholded to a surface, contoured on a grid, with necks, merges and splits that come free from the maths. Their code, examples and colours are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "the hook: one big drop falls in from the top, lands in the centre with a squash, and splashes into four droplets that bounce apart to four spots; the headline builds at the top: 'Four calendars.'"
+    },
+    {
+      "from": 90,
+      "to": 210,
+      "what": "four people: each blob wobbles in its own rhythm with its core dot inside; under each, a name tag and a free window pop in one per beat: 'Ana · free 1–4', 'Kai · free 3–5', 'Lena · free 2–4', 'Theo · free 3–6'; the headline changes to 'Four different schedules.'"
+    },
+    {
+      "from": 210,
+      "to": 390,
+      "what": "Oriel pulls them together: the tags fade; the headline becomes 'Oriel finds the overlap.'; the blobs drift toward the centre; a neck forms and thickens between Ana and Kai, and they merge with a wobble; then Lena and Theo; then the two pairs become one big blob, the four cores swirling inside"
+    },
+    {
+      "from": 390,
+      "to": 510,
+      "what": "the time: the big blob flows into a rounded card shape and holds it; on the card, in white, 'Thu · 3:00 pm' (large) and 'works for everyone' (smaller); the four cores line up at the bottom of the card as an avatar row"
+    },
+    {
+      "from": 510,
+      "to": 630,
+      "what": "everyone gets it: four droplets bud from the card's lower edge, each neck thinning and pinching off with a tiny satellite droplet; they fly back to the four original spots and land with a squash, each becoming a small tag 'Ana · booked', 'Kai · booked', 'Lena · booked', 'Theo · booked'; the headline: 'One time. On every calendar.'"
+    },
+    {
+      "from": 630,
+      "to": 720,
+      "what": "end: a liquid wipe (one ball swells from the bottom and covers the frame in deep, then drains downward) reveals the lockup: a small wobbling blob beside the wordmark 'Oriel', the line 'Find a time that works for everyone.' and 'oriel.example' in mono; the blob keeps a gentle wobble"
+    }
+  ],
+  "sizes": "Vertical is primary: the headline sits in the top third of the safe area; the four blobs sit in a loose diamond in the middle third (top, left, right, bottom) with tags under each; the card is about 80% of the safe width; the lockup stacks the blob above the wordmark. Landscape re-stacks: the headline sits on the left third, the four blobs in a row across the right two thirds with tags under them, the merged blob and card centred in the right two thirds, and the lockup with the blob to the left of the wordmark, centred.",
+  "sound": "beatScore soft at 120 bpm (pad and pluck), a drop-like tick pair on the splash (frame 30) and on each droplet landing (four, from frame 585), a whoosh ending on each merge (frames 270, 300 and 345), a hit when the card shape holds (frame 405), ticks on each tag pop, a whoosh ending on the liquid wipe (frame 660), and the sign-off at frame 675.",
+  "teaches": "An implicit surface does the animating for you: move a few balls on simple curves and the field produces necks, merges, wobbles and pinch-offs by itself, so one shape can believably become many and many can become one.",
+  "portable": {
+    "fonts": "Inter (800 and 600) for headlines and tags, Instrument Serif for the wordmark, JetBrains Mono for the web address",
+    "style": "Four calendars as four drops of deep violet liquid on a flat pink ground that flow together into one shared time. The goo is one implicit surface: the sum of r² / d² over a handful of moving balls, with the surface at 1, contoured by marching squares with linear interpolation on a coarse grid and filled as one crisp path; a second, smaller contour offset up-left in a lighter violet is a flat gloss. Each blob is a main ball plus small satellites orbiting inside it, so its outline wobbles without simulation; every position is a closed-form function of time. Show the tells of liquid: necks that thicken before a merge, a damped wobble after it, and pinch-offs that leave a tiny satellite droplet. Each person has a coloured core dot inside their blob. The merged blob flows into a rounded card by blending the field toward a rounded-rectangle field. A liquid wipe is one huge ball that swells to cover the frame and drains away. Scenes: one drop splashes into four; four names with their free windows; the drops merge in pairs, then all; the goo becomes a card 'Thu · 3:00 pm, works for everyone'; four droplets bud off and land back as 'booked' tags; a wipe to the wordmark.",
+    "sound": "a soft pad-and-pluck loop at 120 bpm, drop-like clicks on the splash and landings, whooshes on each merge and the wipe, a hit when the card holds, and a three-note sign-off.",
+    "sizes": "vertical first: headline on top, the four blobs in a diamond, the card most of the width; landscape puts the headline on the left and the blobs in a row on the right."
+  }
+}

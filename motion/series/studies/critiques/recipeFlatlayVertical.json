@@ -1,0 +1,149 @@
+{
+ "piece": "recipeFlatlayVertical",
+ "sizes": [
+  "recipeFlatlayVertical",
+  "recipeFlatlay"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0.3,
+     "longestCalm": 27.6,
+     "nearStill": 70
+    },
+    "square": {
+     "changesPer10s": 0.7,
+     "longestCalm": 17.8,
+     "nearStill": 65
+    }
+   },
+   "loudness": {
+    "vertical": -16.0,
+    "square": -16.0
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "square": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 7,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:13.0-00:17.5 (vertical)",
+     "what": "step 03 is the calm stretch: the small bowl tips, the whisk turns, and the timer only arrives at 15.8 s, top right, beside a bowl in the upper half; the lower 600 px of the board stay empty for 4.5 s, and no step change anywhere lands with a punch (the cards swap, but the table never jolts)",
+     "fix": "bring the timer in on the beat at 15 s, larger, in the vertical's empty lower right with its tag under it, ticking from 15.5 s; give every step hit a two-pose stop-motion camera bump (the overhead camera nudged in about 4 %, then back) so each chapter lands with a hard step"
+    },
+    {
+     "at": "00:26.5-00:28.0",
+     "what": "after the last hop the pan sits empty for over a second under the '1½–2 min more' tag, then the plate slides across the departing pan (the plate is drawn over the pan's rim for three poses): an accidental overlap at the reveal; the stack of three reads as one pancake because the offsets are 7-8 px",
+     "fix": "the tag leaves as the last cake lands; the pan and hob leave on the beat after it (pose 318); the plate moves to the centre only once they are gone (pose 324); offset each pancake in the stack by 13 px so three rims read"
+    },
+    {
+     "at": "00:02.5, 00:15.8, 00:18.0, 00:24.5",
+     "what": "learn-study hedges are dropped against the brief's facts: '2 eggs' (fact: 2 large eggs), 'rest 15 min' (fact: rests for at least 15 minutes), '¼ cup each' (fact: about ¼ cup per pancake), '1½–2 min more' (fact: about 1½ to 2 minutes)",
+     "fix": "'2 large eggs', 'rest at least 15 min', 'about ¼ cup each', 'about 1½–2 min more'"
+    },
+    {
+     "at": "00:20.3-00:23.0",
+     "what": "the bubbles are 5-9 px rings in a colour close to the batter: at phone size the pancakes look plain, so 'flip when bubbles form and pop' has nothing to point at",
+     "fix": "fewer, larger bubbles (about 8-13 px) in a darker crust-toned stroke, a clear dot on the pop"
+    },
+    {
+     "at": "00:09.5-00:11.3 (square)",
+     "what": "the three spoons travel under the dry-ingredient tag column on their way to the bowl, hiding the labels for a few poses",
+     "fix": "stack the square's four dry tags in the empty area to the left above the small bowl (where the eggs and butter were), off the spoons' path"
+    },
+    {
+     "at": "00:28.0-00:30.0 (square)",
+     "what": "the footer 'quantities from a standard home recipe' sits over a wood-grain knot after the push-in",
+     "fix": "keep the board's knots out of the footer's band"
+    }
+   ],
+   "agentSaw": [
+    "the pace metric reads 0.3 / 0.7 changes per 10 s because stop-motion on twos has no slams or cuts",
+    "step 03 holds about 4 s with only the bowl, timer and two tags and the vertical board's bottom empty",
+    "in the square the spoons slide under the dry-ingredient tag column",
+    "the square's footer sits over a wood-grain knot after the push-in",
+    "the final pancake stack is modest",
+    "the bubbles do not read clearly before they pop"
+   ],
+   "agentMissed": [
+    "four dropped hedges on a learn study: '2 eggs' (large), 'rest 15 min' (at least), '¼ cup each' (about), '1½–2 min more' (about)",
+    "the plate slides across the departing pan at the end reveal (27.5 s), an accidental overlap",
+    "the pan sits empty for over a second under '1½–2 min more' after the last hop",
+    "no step change lands with a punch: every chapter turn is only a card swap"
+   ],
+   "verdict": "fix",
+   "hookNote": "8: the 'Pancakes' card is set by 0.5 s over the bowl, eggs, jug and butter, so the subject reads at once; the vertical board's lower half fills only at 1.5-2 s (sack, spoons), which keeps it from higher"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 69
+    },
+    "square": {
+     "changesPer10s": 0.7,
+     "longestCalm": 17.8,
+     "nearStill": 65
+    }
+   },
+   "paceNote": "critique.mjs counts cuts, flips and slams; a piece on twos with a 4 % camera bump registers none, so variety is scored by eye on the sheets: a step hit, a pop or a landing every 2-4 s, no calm over about 3 s",
+   "loudness": {
+    "vertical": -16.0,
+    "square": -16.0
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "square": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "fixed": [
+    "every step hit (01-05) lands a two-pose stop-motion camera bump on the board (1.04, 1.015, back), on the beat with the hit; cards and tags stay put",
+    "the timer steps in on the beat at 15.0 s (was 15.8 s), 1.4x in the vertical's empty lower right with 'rest at least 15 min' under it, and leaves downward so it never crosses the arriving hob",
+    "the end is a sequence, not an overlap: '1½–2 min more' leaves as the last cake hops, the pan and hob leave on the beat as it lands (26.5 s), the plate steps to the centre only once they are gone (27.0 s); nothing crosses the plate",
+    "the stack offsets are 13 px, so three rims read under the butter pat",
+    "bubbles: 15 per cake at 8-13 px (was 22 at 5-9 px) in a darker crust stroke, a clear dot on the pop",
+    "hedges: '2 large eggs', 'rest at least 15 min', 'about ¼ cup each', 'about 1½–2 min more'",
+    "square: the four dry tags stack in the empty area above-left of the small bowl, off the spoons' and the sack's paths",
+    "square: the board's knots are placed off the footer's band after the push-in"
+   ],
+   "problems": [
+    {
+     "at": "00:13.0-00:15.0 (vertical)",
+     "what": "the first two seconds of step 03 still use only the upper half of the board (the small bowl tips, the whisk turns)",
+     "fix": "none needed; the timer fills the lower right from 15.0 s"
+    },
+    {
+     "at": "all",
+     "what": "'1½ cups flour' omits all-purpose and '3 tbsp melted butter' omits the oil alternative: omissions, not false claims",
+     "fix": "none needed"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

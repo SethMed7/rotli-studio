@@ -1,0 +1,250 @@
+{
+ "piece": "shadowPuppet",
+ "sizes": [
+  "shadowPuppet",
+  "shadowPuppetVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 24
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 26
+    }
+   },
+   "loudness": {
+    "landscape": -16.2,
+    "vertical": -16.2
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 7,
+    "variety": 5,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "at": "all",
+     "what": "no story beat lands: 0 abrupt changes in 30 s; the wood going dark, the owl's miss, the three leaps and the moon coming out of the lantern are all glides with nothing in the glow or the score marking them",
+     "fix": "a snap of the glow (the lamp gutters or flares for a few frames, then settles) and a hit on each beat: dark at 400, the owl's miss at 460, the leap landings, the moon out of the lantern at 660, the glow's return at 680"
+    },
+    {
+     "at": "00:20.0-00:21.7",
+     "what": "the leaps land on 612, 632 and 652, off the 20-frame beat grid, and their ticks with them",
+     "fix": "leaps land on 600, 620 and 640, the tip and the moon's release on 660"
+    },
+    {
+     "at": "00:22.4 (landscape)",
+     "what": "the pole points straight up at the top of the climb, so the tipped lantern and the emerging moon sit on the top edge and the moon is cut by the frame",
+     "fix": "raise the pole less and hold the camera lower at the top of the tree, so the release happens inside the picture"
+    },
+    {
+     "at": "00:03.5-00:06.2 (vertical)",
+     "what": "the caption band fades in while the camera is still panning down, and the trotting fox passes behind it",
+     "fix": "finish the vertical pan before the fox enters, so the paw line sits above the band"
+    },
+    {
+     "at": "all",
+     "what": "captions at 44 px (landscape) and 40 px (vertical): about 8 px on a phone feed",
+     "fix": "56 px landscape, 52 px vertical, the band sized to its lines"
+    },
+    {
+     "at": "00:14.0-00:18.0",
+     "what": "the owl perches and lands among 70% mid-plane crowns, and the vertical hare stands on the 70% mid ground and a trunk: dark on dark",
+     "fix": "clear the mid plane behind the owl's branch and the hare's path, lower the mid ground in the dark wood, and bring the landscape hare in from the edge into the lantern's glow"
+    },
+    {
+     "at": "00:15.3 (landscape)",
+     "what": "the hare hops and circles hard against the right edge, half in the corner tendril",
+     "fix": "stop it nearer the lantern"
+    },
+    {
+     "at": "00:29.0-00:30.0",
+     "what": "the closing fade darkens the whole glow, so the cream centre turns muddy olive and the rose goes brown",
+     "fix": "dim by shrinking the hot centre, with a much smaller overall fade"
+    },
+    {
+     "at": "00:28.5",
+     "what": "the sleeping fox under 'The End' is small and reads as a black blob",
+     "fix": "larger, with a readable head, ears and a tail curled over the nose"
+    },
+    {
+     "at": "00:00.0",
+     "what": "frame 0 is an empty glow; the title arrives at about 0.5-0.9 s",
+     "fix": "the title and border land in the first quarter second"
+    }
+   ],
+   "agentSaw": [
+    "variety 7 with 0 abrupt changes per 10 s (the brief forbids hard cuts)",
+    "captions at 44/40 px, small on a phone",
+    "paws slide on the trot-in (104-200)",
+    "the pond drifts left while the fox stands (280-320)",
+    "the owl and hare read against the 70% mid trees instead of the glow (430-540)",
+    "about 20 frames per scene with no caption band",
+    "the closing glow turns muddy olive-rose (870-899)",
+    "the sleeping fox on the end card is small and blobby",
+    "the vertical's lower area goes flat dark during the climb (640-720)"
+   ],
+   "agentMissed": [
+    "no beat is marked in picture or sound except the dark at 400: the owl's miss, the leaps and the moon's release have no hit and no glow snap",
+    "the leaps land off the beat grid (612, 632, 652)",
+    "the landscape release of the moon happens on the top edge of the frame, cutting the moon",
+    "the vertical caption band hides the trotting fox during the opening pan",
+    "the landscape hare works against the right edge, inside the corner tendril",
+    "frame 0 is an empty glow"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10,
+     "nearStill": 21
+    },
+    "vertical": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10,
+     "nearStill": 26
+    }
+   },
+   "loudness": {
+    "landscape": -16.3,
+    "vertical": -16.3
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 8,
+    "variety": 7,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "every story beat lands with a snap of the glow and a sound: the lantern lights at 300 (flare), the lamp gutters as the wood goes dark at 400 (hit), the owl misses at 460 (hit, a gutter and a gate jolt, the tip gives way and it slips), each leap lands at 600/620/640 (a soft thump and a small flare), the moon bursts out of the lantern at 660 (hit and a big flare, the halo swelling then collapsing) and the glow returns in 8 frames at 676-684 (gentle hit at 680); pace.json now registers 10.0, 13.3, 22.0 and 22.7 s",
+    "the leaps are re-timed onto the beat grid (land 600, 620, 640; the lantern tips at 648-658 and the moon leaves at 660) and the camera settles two to four frames after each landing",
+    "the landscape release is inside the picture: the camera holds 100 px lower at the top of the tree and the pole rises less, so the moon emerges at about y 140 and sails to its place",
+    "captions at 56 px (landscape) and 52 px (vertical), the band sized to its lines and fading in at +6 frames instead of +12; this overrides the brief's 44/40 px on the caller's instruction (captions >= 48 px)",
+    "the vertical opening pan now finishes by frame 140, so the trotting fox walks above the caption band",
+    "the dark wood's mid plane keeps clearings behind the owl's branch and the hare's path, and its ground sits lower: the owl and the hare read against the glow in both sizes; the landscape hare stops near the lantern's light, clear of the right edge",
+    "the score's gain goes 0.64 -> 0.78 so the added hits keep the mix at -16.3 LUFS"
+   ],
+   "problems": [
+    {
+     "at": "00:00.0",
+     "what": "frame 0 is still an empty glow; the title reads at about 0.5 s",
+     "fix": "the border and the title land in the first few frames"
+    },
+    {
+     "at": "00:00.0-00:10.0",
+     "what": "the first ten seconds have no beat that lands; the lantern's dip into the pond is a glide",
+     "fix": "rings spread in the pond as the lantern dips (274) and a tick on the dip"
+    },
+    {
+     "at": "00:29.0-00:30.0",
+     "what": "the closing fade still turns the cream centre olive and the rose brown",
+     "fix": "dim by contracting the hot centre with a small overall fade"
+    },
+    {
+     "at": "00:28.5",
+     "what": "the sleeping fox under 'The End' is still small and blobby",
+     "fix": "larger, with the head, ears and tail curl separated by cut lines"
+    },
+    {
+     "at": "00:03.6 (vertical)",
+     "what": "the fox's lantern peeps in below the caption band for a few frames at the end of the pan",
+     "fix": "start the vertical trot further left, so she enters after the pan"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10,
+     "nearStill": 22
+    },
+    "vertical": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10,
+     "nearStill": 26
+    }
+   },
+   "loudness": {
+    "landscape": -16.3,
+    "vertical": -16.3
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "the title is legible on frame 0 (it rises in over -3..12), the border draws in 0-20 and the fox is already inside the card, so the first second shows the film's name, its look and its heroine",
+    "the lantern's dip into the pond spreads three rings across the water (270-312, clipped to the pond) on a tick at 270, so the first ten seconds build to the flare at 300 instead of gliding",
+    "the closing fade is 12% instead of 38% and the hot centre contracts instead, so the end card stays rose with a warm centre, not olive-brown",
+    "the sleeping fox is 1.6x larger with its tail and head separated by thin cut lines in the card's colour: body, tail with crescents, resting head with a closed eye and two ears read at phone size",
+    "the vertical trot starts further left, so the fox arrives as the opening pan ends: only her lantern touches the band's top-left corner for about four frames (116-120), no longer passing below it"
+   ],
+   "problems": [
+    {
+     "at": "00:00.0-00:10.0",
+     "what": "pace.json still finds no abrupt change before 10.0 s: the opening is a title hold, a dissolve and a trot, with a new thing every two to three seconds but none of it a punch",
+     "fix": "none needed for a fable's opening; the beats that should punch (lantern lit, dark, owl, leaps, moon) now do"
+    },
+    {
+     "at": "00:07.7, 00:13.0, 00:18.7, 00:23.7",
+     "what": "the caption band's 10-frame fade-out over the ink floor passes through a muddy grey card",
+     "fix": "a later pass could drop or slide the card instead of fading it"
+    },
+    {
+     "at": "00:03.5-00:06.6",
+     "what": "the paws still slide slightly on the trot-in (the builder's note, not fixed)",
+     "fix": "match the trot period to the ground speed"
+    },
+    {
+     "at": "all (vertical)",
+     "what": "the bottom 17% below the caption band is plain ink floor",
+     "fix": "none needed: it is the bottom safe margin, where a phone feed puts its own UI"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

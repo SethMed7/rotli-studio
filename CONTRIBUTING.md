@@ -65,7 +65,8 @@ machine is the check: say in the pull request what ran. Only the owner can merge
 - Pure frames: a piece paints any frame on its own, with no hidden state.
 - Licensed assets only, each licence next to its file. Synthetic data only: no personal paths, emails, private
   notes or real screenshots.
-- Claims that are true: Rotli's from rotli.co, studies for the fictional Oriel.
+- Claims that are true: Rotli's from rotli.co; studies for the imaginary Oriel, real topics sourced in the brief's
+  `facts`, fun pieces naming nothing real.
 - Docs updated in the same change, and a line in `CHANGELOG.md` for anything someone would notice.
 
 ## For the owner: renders and deploys

@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 480,
  "palette": "mono",
+ "family": "shape",
+ "subject": "oriel",
  "style": "Geometry on a pale ground with a dot grid: one solid shape morphs circle → square → triangle → star → circle, rotating a little on each change, with three small coloured satellites orbiting it and a soft shadow. The dot grid ripples outward on each morph. A seamless loop.",
  "learnsFrom": "Shape-morph moments in code-made reels: a primitive that becomes every other primitive, satellites and a reactive dot grid.",
  "story": [

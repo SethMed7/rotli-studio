@@ -4,6 +4,59 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Studies 51–54: the studies reach fifty-four.** Literal Type (seven words that each do what they say, one take),
+  Gouache Storybook (a snow globe that repaints the street), Burrow Days (a rabbit's day in comic-book 3D) and
+  Two-Part Harmony, a fan-made two-minute music video about how Claude Opus 5.5 and Claude Sonnet 5.5 work together
+  (the advisor tool: Sonnet executes, Opus advises). Two pixel critters drawn in code after the Claude Code mascot sing
+  a duet with two formant voices from one syllable table; every lyric and fact strip is sourced to Anthropic's own
+  post and docs, and the character is Anthropic's, not MIT (`NOTICE`). Each has its brief, prompt, portable prompt,
+  critique record and goldens; the bible lists 51–54 and the counts say fifty-four. New palettes in the studio pack.
+- **Kit: a cast library and designed foley** (`kit/cast.ts`, `kit/foley.ts`), not yet used by a piece; the plan is
+  in `docs/proposals/2026-09-29-cast-and-room-to-think.md`.
+- **Designed thumbnails for every Rotli video.** The posters were a frame from the middle of the longest scene:
+  mostly app UI, small text, the quokka small or missing, no title. Now each of the 42 Rotli videos (the film and its
+  teaser, Season One and Rotli in 30 Seconds with their verticals, Looks and Themes, the atmosphere reel and the studio
+  teaser) has a thumbnail drawn in code from its own frames: pushed in on the quokka, beside a title panel in the
+  episode's own theme, General Sans with the key word underlined in clay and a series label, readable at 320 px.
+  1280×720 for YouTube, a 1080×1920 cover for Reels and Shorts. The picks live in `motion/brand/thumbnails.json`,
+  `node motion/tools/thumbnails.mjs` draws them and `--check` holds them to `motion/golden/thumbnails.json` (a gate of
+  `bun run verify`). The landing, Series, series pages, Library and piece pages show them (the 9:16 cut uses the
+  vertical's cover; a vertical in a 16:9 row shows its picture); piece pages add a "Thumbnail" download beside
+  "Poster", and `scripts/media.ts` publishes them with the other renders. Studies keep their frame posters.
+- **The quokka rig closes its fill gaps at any scale, on request.** Drawn far above 1×, a hairline gap in the art let
+  the body fill leak (a pale quokka). `RIG.scaleGap` grows the gap closing with the scale; only the thumbnails turn it
+  on, so every existing render and golden keeps its pixels. `build-page.mjs` takes an optional `probe` for a generated
+  host.
+
+- **Studies 27–50: the studies reach fifty.** Twenty-four motion techniques the studio had never drawn, researched
+  first (field note 02), each built by one agent and then scored and fixed by a second one that did not build it,
+  until every criterion of the critique reached 8. Whiteboard Hand, Proof Without Words, Split-Flap, Glitch Signal,
+  Neon Drive, Liquid Blobs, Swiss Grid, Bauhaus Beat, Title Sequence, Shadow Puppet, Ink Wash, One Line, Route Map,
+  Isotype, Seasons Orrery, Pendulum Wave, Infinite Zoom, Multiplane, Terminal Boot, Broadcast Package, Recipe
+  Flat-lay, Stained Glass, Radial Year and ASCII Cinema: 48 new pieces, each with its brief, prompt, portable prompt,
+  critique record, agent run and golden. Eighteen new palettes in the studio pack.
+- **Not all Oriel.** Briefs now name a `subject`: `oriel` (the imaginary product), `learn` (a real topic, with a
+  `facts` list of every on-screen claim and its source) or `fun` (no product at all), and a `family` the site groups
+  them by. Portable prompts say which, instead of calling every study a "fictional product".
+- **The site, reorganised.** The sidebar keeps Rotli's own work (Series, Carousels, Wallpapers, Brand kit) apart from
+  the Studies (Studies, Journal, Prompt library), Make your own and About; Library and Carousels filter Rotli /
+  Studies. Studies are a poster grid grouped by family with subject filters and hover-to-play previews, and every
+  study says plainly whether it is for the imaginary Oriel, a real topic (facts and sources shown) or just for fun.
+- **The landing** keeps the hero and the Rotli film, then shows the studio's range (the newest study of each
+  family), Rotli's series set apart, and a way to make your own.
+- **Make one for your product** (`#/use`, `src/motion/wizard.ts`): eight steps of questions with pointers beside
+  each; the result is a prompt that has any model interview you for what's missing, fetch your logo, colours, fonts
+  and wording from your site, write a brief for you to approve, build and review. It calls no model; answers stay in
+  the browser.
+- **The Journal:** field notes get their own index, a 42rem reading measure, an "On this page" rail and
+  older/newer links. Field note 02, *Twenty-four techniques and a second reader*, reports the whole wave.
+- **Published** shows whose post each is, the accounts to follow, and the piece each post shares.
+- **A studio pattern** behind the hero (cameras, a clapperboard, film, keyframes on a motion curve) in place of Rotli's
+  synced file pattern, which stays untouched in `library/patterns/`.
+- **The study preamble** now puts phone readability over a brief's type sizes, asks for a hook in the first 1.5 s
+  and a moment that lands in any long calm, and lists the glyphs the pack's fonts lack.
+- **extract-runs.mjs** skips a launch that never ran (refused at the concurrent-agent limit).
+
 - **Removed: Create.** The local post editor at `/create` is gone: its templates, exporter, saved drafts
   (`posts/`), the posts and upload APIs, and its styles. `static/app.css` keeps only the shared tokens and base rules.
   Rendered stills and carousel slides still land in `exports/`.

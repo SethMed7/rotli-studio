@@ -5,7 +5,7 @@
 // For every piece in pieces.json: its module and host, the film's own meta and shots (imported from the
 // module, the way build-page does, so the site can never disagree with the render), the derive spec that
 // cuts its vertical/carousel/card, the brief + prompt + agent run that made it, its golden, and its outputs
-// on disk. series.json groups pieces into series and episodes. A piece that fails to import is listed with
+// on disk (the render, and the designed thumbnail from tools/thumbnails.mjs when it exists). series.json groups pieces into series and episodes. A piece that fails to import is listed with
 // its error instead of stopping the run.
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
@@ -190,6 +190,9 @@ for (const p of pieces) {
       rendered: statSync(vid).mtime.toISOString(),
       sha: sha(vid),
     };
+  // the designed thumbnail (tools/thumbnails.mjs), when it has been drawn: the site's poster for the piece
+  const thumb = join(ROOM, "out/thumbnails", `${p.slug}.jpg`);
+  if (p.kind === "video" && existsSync(thumb)) e.thumbnail = rel(thumb);
   const slides = join(EXPORTS, p.slug, p.format ?? "");
   if (p.kind !== "video" && existsSync(slides))
     e.slides = readdirSync(slides)
@@ -213,6 +216,8 @@ const bySeries = series.map((s) => {
             id: b.id,
             no: b.no,
             title: b.title,
+            family: b.family ?? null,
+            subject: b.subject ?? "oriel",
             primary: sizes[b.primary] ?? Object.values(sizes)[0] ?? null,
             sizes,
             brief: b.file,

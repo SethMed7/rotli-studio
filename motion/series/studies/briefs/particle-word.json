@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "deep",
+ "family": "shape",
+ "subject": "oriel",
  "style": "Generative: thousands of particles on a deep navy ground. Dust drifts, finds its places inside the letters of a word, releases into a 3D point-cloud sphere with orbit rings, becomes a flowing wave surface, and gathers into one bright point. One warm accent for a few particles and the rings.",
  "learnsFrom": "Particle systems in code-made reels: a word assembled from dust, point clouds with orbit rings, a wave surface.",
  "story": [

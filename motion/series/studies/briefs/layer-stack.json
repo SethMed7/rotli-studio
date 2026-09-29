@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "cobalt",
+ "family": "explain",
+ "subject": "oriel",
  "style": "Isometric infographic: three thick isometric slabs, each with a question mark, float in a stack over a sunburst of thin rays; they separate, get named, and lock together. Each layer opens into its own small isometric scene. Flat colour, a soft shadow under each slab. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): isometric slabs that separate and assemble, sunburst rays behind the hero object, a node diagram with orbit ellipses, giant step numerals.",
  "story": [

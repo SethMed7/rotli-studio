@@ -1,0 +1,158 @@
+{
+ "piece": "proofWithoutWords",
+ "sizes": [
+  "proofWithoutWords",
+  "proofWithoutWordsVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 78
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 77
+    }
+   },
+   "loudness": {
+    "landscape": -16.0,
+    "vertical": -16.0
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 6,
+    "motion": 7,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:01.5",
+     "what": "the hook is a single outline tracing on an empty slate: frame 0 is blank, and the only words ('a right triangle', 30 px muted) are unreadable at phone size, so nothing asks a question before the third second",
+     "fix": "write a bold question ('Why is a² + b² = c²?', in the quantity colours) that lands on the first beat, with the note under it at a readable size"
+    },
+    {
+     "at": "00:00.3, 00:16.8-00:18.6, 00:29.0-00:32.0 (landscape)",
+     "what": "every line of prose is 30 px on a 1920 frame (about 6 px in a phone feed): 'a right triangle', 'same square / same four triangles' and the Babylonian end line, the one historical fact in the film, cannot be read",
+     "fix": "prose at 44 px or more; move the comparison line under the squares on one line and break the end line in two (three in the vertical)"
+    },
+    {
+     "at": "00:10.0-00:16.3",
+     "what": "nothing lands with a punch: the four triangles settle on the slow tail of the S-curve and the c², a², b² holes fade in over 16-20 frames, so the moments the proof turns on read as more gliding (0 abrupt changes in 32 s, 78% near-still)",
+     "fix": "a snap as each triangle lands (a quick flash and settle, with its tick) and hard reveals of the holes: full fill on the frame the last piece lands, with a white flash that decays, and a tick"
+    },
+    {
+     "at": "00:21.4-00:22.0",
+     "what": "in the side swap the '=' slides straight through 'a²' and 'c²' passes over it at the start (frame 1290 reads 'c²' on top of '=a²', frame 1296 'a²=+')",
+     "fix": "move the terms off the baseline early in the swap (a lift that reaches full height quickly) and give '=' and c² different heights"
+    },
+    {
+     "at": "00:10.0-00:12.7, 00:14.4-00:15.7, 00:26.2",
+     "what": "the three-sample 180° blur prints three distinct copies on the triangle flights, the rearranging triangles and the flying '5²' (a triple '5' at frame 1575)",
+     "fix": "more samples, so copies sit a few pixels apart and read as a smear"
+    },
+    {
+     "at": "00:00.0-00:08.0 (vertical)",
+     "what": "the triangle and the claim figure sit in the upper 45% of the frame; the lower half is empty slate for eight seconds",
+     "fix": "lower the vertical figure and its equation so the group centres in the safe area"
+    }
+   ],
+   "agentSaw": [
+    "a quiet hook (the triangle writing itself on)",
+    "variety by design: S-curve glides, no cuts, about 78% near-still",
+    "the flying 9, 16, 25 overlap their counters as they peel off",
+    "flashes briefly enlarge shapes into nearby braces and outlines",
+    "landscape prose is 30 px, small in a phone feed",
+    "flights and 180° turns leave a visible three-sample blur trail",
+    "the vertical's lower safe area is fairly empty during setup and rearrangement"
+   ],
+   "agentMissed": [
+    "frame 0 is completely blank and no question is asked in the first two seconds",
+    "the '=' collides with 'a²' and 'c²' in the side swap",
+    "the holes, the proof's payoff, fade in rather than being revealed",
+    "the vertical's emptiest stretch is the intro and the claim (the first eight seconds), not only the setup",
+    "the end line, the film's one historical fact, is illegible at phone size in both sizes"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 78
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 77
+    }
+   },
+   "loudness": {
+    "landscape": -16.3,
+    "vertical": -16.3
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "the hook asks the question: 'Why is a² + b² = c² ?' (in the quantity colours, 80 px landscape, 92 px vertical) is outlined from frame 0 and complete by 0.6 s, with a tick on beat 1 (frame 40); 'a right triangle' sits under it at 44 px; both fade by frame 226, before the claim builds its own equation out of the squares",
+    "prose is 44 px in both sizes: the landscape comparison line is one line under the squares, the end line breaks into two lines (landscape) and three (vertical), spaced from the prose size",
+    "punch: each triangle snaps as it lands in the square (an instant flash that decays in about 6 frames, 1.04× growth); the c² hole fills on the frame the fourth triangle lands (760) with a white flash and a hit; in the rearrangement triangles 1 and 3 land on beat 23 (a² hole revealed hard, tick) and triangle 0 on beat 24 (b² hole revealed hard, tick)",
+    "the side swap lifts the terms off the baseline early and sends c² over '=' at a different height, so no term slides through another",
+    "motion blur samples 3 to 7: the flights and the 180° turns read as a smear, not three copies",
+    "vertical: the hook group and the claim figure moved down (triangle centre 660 to 880, claim figure 560 to 700, equation 1080 to 1230, end group about 70 px lower)",
+    "the re-timing left dead air at 962-1000 and 1115-1151 at first; the 'same square' and 'same four triangles' indications now play as each phrase writes (976, 1016) and the dimming runs 1060-1139, so still-frames is clean"
+   ],
+   "problems": [
+    {
+     "at": "all",
+     "what": "changesPer10s is still 0: the piece glides by design and its snaps and reveals are too small to count as abrupt changes; the punch is visible but not a cut",
+     "fix": "none planned; a cut would break the brief's continuous-camera language"
+    },
+    {
+     "at": "00:25.0-00:26.3",
+     "what": "the 3², 4², 5² labels write on while they fly, so at phone size they briefly read doubled over the pink square and its counter",
+     "fix": "finish writing each label before it lifts off"
+    },
+    {
+     "at": "00:24.0-00:24.5",
+     "what": "the cross-fade from the squares to the check leaves the new triangle's first strokes floating over the dimmed squares",
+     "fix": "start the check triangle after the squares have faded"
+    },
+    {
+     "at": "00:00.0-00:04.0 (vertical)",
+     "what": "the lower third is still empty during the hook (the group spans about 440-1140 of the 220-1600 safe area)",
+     "fix": "acceptable; the claim fills it from 00:06"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

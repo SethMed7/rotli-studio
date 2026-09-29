@@ -163,6 +163,7 @@ const MANIFEST_INPUTS = () => [
   join(MOTION, "brand"),
   join(MOTION, "src"),
   join(OUT, "video"),
+  join(OUT, "thumbnails"),
 ];
 let stamp: { at: number; t: number } | null = null;
 const inputsStamp = () => {

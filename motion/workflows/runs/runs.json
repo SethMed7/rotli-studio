@@ -2,7 +2,8 @@
  "note": "Agent runs recovered from Claude Code transcripts. Regenerate with tools/extract-runs.mjs.",
  "sources": [
   "6f834591-5513-4f19-a058-1af9a5cdd8f7.jsonl",
-  "d919aee8-0829-4b05-988c-37e4e6bfb3d8.jsonl"
+  "d919aee8-0829-4b05-988c-37e4e6bfb3d8.jsonl@2026-09-28T16:45",
+  "c74bb602-6202-4ec5-8b02-3569895eeb14.jsonl"
  ],
  "runs": [
   {
@@ -394,8 +395,248 @@
    "tokens": 709348,
    "minutes": 92.5,
    "file": "workflows/runs/fivePointFive.md"
+  },
+  {
+   "piece": "infiniteZoomVertical",
+   "description": "Build study 43 Infinite Zoom",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 189645,
+   "minutes": 23,
+   "file": "workflows/runs/infiniteZoomVertical.md"
+  },
+  {
+   "piece": "multiplane",
+   "description": "Build study 44 Multiplane",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 255320,
+   "minutes": 36.1,
+   "file": "workflows/runs/multiplane.md"
+  },
+  {
+   "piece": "terminalBoot",
+   "description": "Build study 45 Terminal Boot",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 214622,
+   "minutes": 40.6,
+   "file": "workflows/runs/terminalBoot.md"
+  },
+  {
+   "piece": "broadcastPackage",
+   "description": "Build study 46 Broadcast Package",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 220497,
+   "minutes": 26.3,
+   "file": "workflows/runs/broadcastPackage.md"
+  },
+  {
+   "piece": "recipeFlatlayVertical",
+   "description": "Build study 47 Recipe Flat-lay",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 212413,
+   "minutes": 28.9,
+   "file": "workflows/runs/recipeFlatlayVertical.md"
+  },
+  {
+   "piece": "stainedGlassVertical",
+   "description": "Build study 48 Stained Glass",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 286832,
+   "minutes": 67.4,
+   "file": "workflows/runs/stainedGlassVertical.md"
+  },
+  {
+   "piece": "radialYear",
+   "description": "Build study 49 Radial Year",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 255955,
+   "minutes": 59,
+   "file": "workflows/runs/radialYear.md"
+  },
+  {
+   "piece": "asciiCinema",
+   "description": "Build study 50 ASCII Cinema",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 194452,
+   "minutes": 20.5,
+   "file": "workflows/runs/asciiCinema.md"
+  },
+  {
+   "piece": "whiteboardHand",
+   "description": "Build study 27 Whiteboard Hand",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 252738,
+   "minutes": 44.8,
+   "file": "workflows/runs/whiteboardHand.md"
+  },
+  {
+   "piece": "proofWithoutWords",
+   "description": "Build study 28 Proof Without Words",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 223211,
+   "minutes": 33.8,
+   "file": "workflows/runs/proofWithoutWords.md"
+  },
+  {
+   "piece": "splitFlap",
+   "description": "Build study 29 Split-Flap",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 218363,
+   "minutes": 40.3,
+   "file": "workflows/runs/splitFlap.md"
+  },
+  {
+   "piece": "glitchSignalVertical",
+   "description": "Build study 30 Glitch Signal",
+   "launched": "2026-09-29 01:12",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 193435,
+   "minutes": 14.4,
+   "file": "workflows/runs/glitchSignalVertical.md"
+  },
+  {
+   "piece": "neonDrive",
+   "description": "Build study 31 Neon Drive",
+   "launched": "2026-09-29 01:27",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 214190,
+   "minutes": 46.9,
+   "file": "workflows/runs/neonDrive.md"
+  },
+  {
+   "piece": "liquidBlobsVertical",
+   "description": "Build study 32 Liquid Blobs",
+   "launched": "2026-09-29 01:33",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 204208,
+   "minutes": 24.9,
+   "file": "workflows/runs/liquidBlobsVertical.md"
+  },
+  {
+   "piece": "swissGridPortrait",
+   "description": "Build study 33 Swiss Grid",
+   "launched": "2026-09-29 01:35",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 242009,
+   "minutes": 36.2,
+   "file": "workflows/runs/swissGridPortrait.md"
+  },
+  {
+   "piece": "bauhausBeatSquare",
+   "description": "Build study 34 Bauhaus Beat",
+   "launched": "2026-09-29 01:39",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 171092,
+   "minutes": 17.7,
+   "file": "workflows/runs/bauhausBeatSquare.md"
+  },
+  {
+   "piece": "titleSequence",
+   "description": "Build study 35 Title Sequence",
+   "launched": "2026-09-29 01:41",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 189074,
+   "minutes": 25.9,
+   "file": "workflows/runs/titleSequence.md"
+  },
+  {
+   "piece": "shadowPuppet",
+   "description": "Build study 36 Shadow Puppet",
+   "launched": "2026-09-29 01:42",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 241909,
+   "minutes": 43.8,
+   "file": "workflows/runs/shadowPuppet.md"
+  },
+  {
+   "piece": "inkWashVertical",
+   "description": "Build study 37 Ink Wash",
+   "launched": "2026-09-29 01:46",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 271839,
+   "minutes": 52.6,
+   "file": "workflows/runs/inkWashVertical.md"
+  },
+  {
+   "piece": "oneLine",
+   "description": "Build study 38 One Line",
+   "launched": "2026-09-29 01:48",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 271203,
+   "minutes": 50.4,
+   "file": "workflows/runs/oneLine.md"
+  },
+  {
+   "piece": "routeMap",
+   "description": "Build study 39 Route Map",
+   "launched": "2026-09-29 01:53",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 225520,
+   "minutes": 40.5,
+   "file": "workflows/runs/routeMap.md"
+  },
+  {
+   "piece": "isotypeSquare",
+   "description": "Build study 40 Isotype",
+   "launched": "2026-09-29 01:58",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 221734,
+   "minutes": 41.5,
+   "file": "workflows/runs/isotypeSquare.md"
+  },
+  {
+   "piece": "seasonsOrrery",
+   "description": "Build study 41 Seasons Orrery",
+   "launched": "2026-09-29 02:02",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 252757,
+   "minutes": 42.3,
+   "file": "workflows/runs/seasonsOrrery.md"
+  },
+  {
+   "piece": "pendulumWaveSquare",
+   "description": "Build study 42 Pendulum Wave",
+   "launched": "2026-09-29 02:02",
+   "model": "claude-opus-5-5[1m]",
+   "followUps": 0,
+   "tokens": 196666,
+   "minutes": 32.8,
+   "file": "workflows/runs/pendulumWaveSquare.md"
   }
  ],
  "reviews": 4,
- "requests": 47
+ "requests": 50
 }

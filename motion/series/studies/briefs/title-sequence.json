@@ -1,0 +1,71 @@
+{
+  "id": "title-sequence",
+  "no": 35,
+  "title": "Title Sequence",
+  "module": "src/canvas-core/studies/titleSequence.ts",
+  "pieces": {
+    "landscape": "titleSequence",
+    "vertical": "titleSequenceVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 150,
+  "frames": 720,
+  "palette": "bass",
+  "family": "print",
+  "subject": "fun",
+  "style": "Opening titles for an invented film, 'The Long Meeting', in the mid-century cut-paper manner: flat fields of saturated colour, cut-paper shapes with slightly irregular edges, one stark symbol per scene, asymmetric composition, and credits set INTO the shapes, all moving on a jazz pulse. PAPER: every shape is a polygon whose vertices carry a small seeded jitter (1–3 px at 1080) so edges read as cut with scissors, never vector-perfect; bars are long thin quadrilaterals whose ends are cut at slightly different angles; circles are 48-gons with the same jitter. No outlines, no gradients, no shadows except an optional 2 px offset of the ground colour darkened 8% under a shape that has just landed, gone after 6 frames. A light static paper speckle (seeded, alpha 0.04) sits over everything. COLOUR is per scene, a full-bleed field on a hard cut on the beat: the deep ink (as a black field) with cream shapes, the accent (vermilion) field with ink shapes, the accent2 (mustard) field with ink shapes, the cream ground with ink and vermilion shapes. MOTION is cut-out animation: positions and angles step 'on twos' (quantise the time to every second frame) for the handmade feel, and every arrival lands on a beat with a hard stop and a 1–2 frame overshoot, never a soft ease; bars STAB in from the frame edges on the beat, slide, and stop dead; groups of bars rearrange on each bar of music. SYMBOLS (all cut paper, drawn in code): a long meeting table seen from above with chairs as small rounded rectangles; a clock face whose minute hand jumps a notch on every beat; a raised hand (a simple mitten silhouette with a thumb); a row of identical coffee cups; an agenda that keeps growing as stepped bars (a jagged staircase). TYPE: credits in Inter 600 UPPERCASE with wide tracking (0.18 em), 30–40 px at 1080, set along or inside a shape (on a bar, in the clock's centre, across the table) in the colour that contrasts with that shape; the role words ('starring', 'music by') in Instrument Serif Italic lowercase, a little larger. THE TITLE is Inter 800 at about 180 px, each letter cut as its own piece of paper: a per-letter rotation of ±2°, a per-letter baseline offset of ±6 px and letters that arrive one per beat. Every credit is an INVENTED role, not a person: the cast and crew are the parts of a meeting.",
+  "learnsFrom": "Saul Bass's title sequences: the cut-paper, jazz-driven opening of The Man with the Golden Arm (1955), with white bars that stab in, form patterns and coalesce into a symbol, and the paper cut-outs on a flat ground of Anatomy of a Murder (1959), with credits set beside the pieces (Art of the Title, https://www.artofthetitle.com/title/the-man-with-the-golden-arm/ and https://www.artofthetitle.com/title/anatomy-of-a-murder/; overview at https://www.artofthetitle.com/designer/saul-bass/). Their symbols, lettering, colours, music and credits are not used; the film, its title and every credit here are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 96,
+      "what": "the bars: a black field; cream bars stab in from the frame edges one per beat, stop dead, and on each bar of music slide into a new arrangement; a small credit rides in on one bar: 'A CONFERENCE ROOM PICTURE'"
+    },
+    {
+      "from": 96,
+      "to": 192,
+      "what": "the table: hard cut to the cream field; the bars swing and snap into a long meeting table seen from above, chairs landing around it one per beat; along the table: '*starring* THE AGENDA'"
+    },
+    {
+      "from": 192,
+      "to": 288,
+      "what": "the clock: hard cut to the vermilion field; a cut-paper clock face in ink with a cream centre; the minute hand jumps one notch every beat and the hour hand creeps; in the centre: '*and* ANY OTHER BUSINESS'"
+    },
+    {
+      "from": 288,
+      "to": 384,
+      "what": "the hand: hard cut to the mustard field; an ink hand rises from the bottom edge in three stepped moves, waits, then drops; beside it: '*with* THE PROJECTOR *as itself*'"
+    },
+    {
+      "from": 384,
+      "to": 480,
+      "what": "the cups: hard cut to the black field; cream coffee cups land in a row one per beat, eight of them, then the row slides left and more arrive; on the table line under them: '*screenplay by* THE MINUTES'"
+    },
+    {
+      "from": 480,
+      "to": 576,
+      "what": "the agenda: hard cut to the cream field; vermilion bars stack into a jagged staircase that keeps growing to the right, a new step on every beat, each step labelled in JetBrains Mono 26 px ('item 1', 'item 2', 'item 7', 'item 12'); across the top step: '*music by* HOLD MUSIC'"
+    },
+    {
+      "from": 576,
+      "to": 672,
+      "what": "the title: hard cut to the vermilion field; the staircase bars fly in and assemble into a frame; the title cuts in letter by letter, one per beat, each letter a separate piece of paper: 'THE LONG MEETING'; a thin ink bar underlines it"
+    },
+    {
+      "from": 672,
+      "to": 720,
+      "what": "last card: one ink bar slams across the frame and the last credit sits on it: '*directed by* NOBODY IN PARTICULAR'; the minute hand from the clock scene ticks once in the corner; hold with a slight drift"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the table is seen from above running top to bottom, the bars stab in from the top and bottom edges as well as the sides, the clock sits in the upper half with its credit below it, the cups stack in two rows of four, the agenda staircase grows downward instead of to the right, and the title breaks onto three lines ('THE' / 'LONG' / 'MEETING') at about 150 px. Credits stay inside the safe area on or beside their shape.",
+  "sound": "beatScore drive at 150 bpm (a fast, jazzy pulse; key −2), drums entering on the first hard cut (drop at frame 96); a hit on every hard colour cut (frames 96, 192, 288, 384, 480 and 576) and on the final bar slam (frame 672); soft ticks for each bar that stabs in, each chair, each cup, each clock notch and each title letter (thinned to every other one where they fall on consecutive beats); the three-note sign-off at frame 684.",
+  "teaches": "A title sequence sells a film's mood before a word of it is spoken: one stark symbol per scene, flat colour fields cut on the beat, and credits that live inside the shapes turn a list of names into a rhythm.",
+  "portable": {
+    "fonts": "Inter (600 and 800) for credits and the title, Instrument Serif Italic for the lowercase role words",
+    "style": "Opening titles for an invented film, 'The Long Meeting', in the mid-century cut-paper manner. Flat full-bleed colour fields (black, vermilion, mustard, cream) that change on a hard cut on the beat. Every shape is cut paper: polygons with a small random jitter on each vertex so edges look scissor-cut, bars with ends cut at uneven angles, no outlines or gradients, a faint paper speckle. Motion is cut-out animation stepped on twos: bars stab in from the frame edges on the beat and stop dead, and rearrange on each bar of music. One stark symbol per scene: a meeting table from above with chairs, a clock whose minute hand jumps each beat, a raised hand, a row of coffee cups, an agenda of stepped bars that keeps growing. Credits are wide-tracked uppercase sans set on or inside the shapes, with lowercase italic serif role words; every credit is a part of a meeting ('starring THE AGENDA', 'music by HOLD MUSIC', 'directed by NOBODY IN PARTICULAR'). The title arrives letter by letter, each letter a separately cut piece with a slight rotation and baseline offset.",
+    "sound": "a fast jazzy loop at 150 bpm whose drums enter on the first cut, a hit on every colour cut and on the last bar slam, soft ticks for bars, chairs, cups, clock notches and title letters, and a three-note sign-off.",
+    "sizes": "vertical: the table runs top to bottom, bars stab in from all four edges, the cups stack in two rows, the agenda grows downward, and the title breaks onto three lines."
+  }
+}

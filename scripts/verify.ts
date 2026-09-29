@@ -1,10 +1,11 @@
 // VERIFY: every gate the studio has, in one command, stopping at nothing (each gate reports), exiting 1 if any failed.
 //
 //   bun run verify            everything, including every golden (renders sampled frames: several minutes)
-//   bun run verify --fast     everything but the goldens and the wallpaper check (both render in a browser)
+//   bun run verify --fast     everything but the goldens and the wallpaper and thumbnail checks (they render in a
+//                             browser)
 //
 // Gates: both typechecks, oxlint, oxfmt, the public-repo privacy gate, the anidoodle inventory, the sound catalog,
-// and the goldens (sealed pieces must stay SAME).
+// the goldens (sealed pieces must stay SAME), and the wallpaper and thumbnail goldens.
 import { join } from "node:path";
 
 const ROOT = join(import.meta.dir, ".."),
@@ -23,6 +24,7 @@ const gates: { name: string; cmd: string[]; cwd?: string }[] = [
     : [
         { name: "goldens", cmd: ["node", "tools/studio.mjs", "golden", "all"], cwd: MOTION },
         { name: "wallpapers", cmd: ["node", "tools/wallpapers.mjs", "--check"], cwd: MOTION },
+        { name: "thumbnails", cmd: ["node", "tools/thumbnails.mjs", "--check"], cwd: MOTION },
       ]),
 ];
 
@@ -48,6 +50,6 @@ const failed = results.filter((r) => !r.ok);
 console.log(
   failed.length
     ? `\nverify: ${failed.length} gate(s) FAILED`
-    : `\nverify: all ${results.length} gates PASS${fast ? " (goldens and wallpapers skipped: --fast)" : ""}`,
+    : `\nverify: all ${results.length} gates PASS${fast ? " (goldens, wallpapers and thumbnails skipped: --fast)" : ""}`,
 );
 process.exit(failed.length ? 1 : 0);

@@ -1,0 +1,66 @@
+{
+  "id": "glitch-signal",
+  "no": 30,
+  "title": "Glitch Signal",
+  "module": "src/canvas-core/studies/glitchSignal.ts",
+  "pieces": {
+    "vertical": "glitchSignalVertical",
+    "landscape": "glitchSignal"
+  },
+  "primary": "vertical",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 600,
+  "palette": "glitch",
+  "family": "screen",
+  "subject": "fun",
+  "style": "A late-night transmission from an invented station, 'Relay 7', that breaks up and recovers. Two layers, always: a CLEAN SCENE and a GLITCH PASS. The clean scene is painted each frame into one offscreen canvas at full size: flat colour bars (seven vertical bars in ink, s2 yellow, accent2 cyan, s1 green, a magenta mixed from accent and s3, accent red and s3 blue, over a thin strip of reversed bars and a black pluge band), station chrome in JetBrains Mono (ink, 26–30 px: 'RELAY 7' top-left, a running timecode top-right counting real frames, 'CH 07' bottom-left), and big host lines in Inter 800 (ink, tight, left-aligned). The glitch pass redraws that offscreen onto the frame with operations that are ALL closed-form functions of the frame: every random choice comes from a seeded hash of a HELD index h = floor(F / hold) with hold 2–4 frames (never of raw F, so fractional motion-blur samples agree and glitches hold for a few frames like real ones), scaled by an intensity envelope g(F) set per story beat. The operations: (1) RGB SPLIT: the scene drawn three times through channel masks (multiply by pure red, green and blue, combined with 'lighter'), red offset left and blue right by up to 28 px × g; (2) SLICE DISPLACEMENT: 3–9 horizontal bands (8–140 px tall) copied from the offscreen with a horizontal offset of up to ±220 px × g, some wrapping around the edge; (3) SCANLINES: every third row darkened (20% black), plus a 1-row bright line every 6th row only when g is high; (4) VHS TRACKING: a 60–140 px band that rolls up the screen, inside it rows shifted by a sine of the row index plus hash noise, desaturated and brightened, with white dropout specks; (5) DATAMOSH SMEAR: the scene frozen at a key frame F0 is cut into 24 px macroblocks and each block is displaced by v(block) × (F − F0), where v is a smooth vector field (the motion of the next scene), while a growing, hash-chosen fraction of blocks switch to the new scene; nothing is simulated, the smear is a function of (F − F0); (6) PIXEL SORT: only in the melt beat, the scene is drawn at quarter resolution, read with getImageData, and in each column the runs of pixels brighter than a threshold are sorted by brightness so bright type melts into streaks, then scaled back up with smoothing off; (7) SNOW: per-pixel noise at quarter resolution from the hash of (x, y, h). Per-frame getImageData is allowed here because the result is deterministic; confine it to the pixel-sort and snow beats. Everything else is drawImage offsets of the clean offscreen. No blur filters. Type stays readable in the clean beats; in the heavy beats readability is deliberately lost and then won back.",
+  "learnsFrom": "Glitch art as a practice (https://en.wikipedia.org/wiki/Glitch_art) and its theory in Rosa Menkman's Glitch Studies Manifesto (https://amodern.net/wp-content/uploads/2016/05/2010_Original_Rosa-Menkman-Glitch-Studies-Manifesto.pdf); pixel sorting after Kim Asendorf's open-source ASDFPixelSort (https://github.com/kimasendorf/ASDFPixelSort); datamoshing (removing keyframes so motion data smears old pixels). Their images, works, colours and copy are not used; the station, the host lines and the colour bars here are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "clean signal: the colour bars fill the frame with the station chrome ('RELAY 7', the timecode, 'CH 07') and a lower strip 'NIGHT TRANSMISSION' in mono; one single-frame slice glitch on the downbeat at frame 60, then the bars cut to the host scene"
+    },
+    {
+      "from": 90,
+      "to": 180,
+      "what": "the host lines: on a near-black ground, 'Good evening.' builds large, then 'You are receiving us' / 'clearly.'; tiny glitches on the beats (a 2-frame slice offset at 105, 135 and 165), g about 0.1"
+    },
+    {
+      "from": 180,
+      "to": 300,
+      "what": "breakup: g ramps from 0.3 to 0.9; the RGB split widens, slices tear across the words, scanlines deepen, and the tracking band starts rolling up the screen; the word 'clearly.' stutters on held frames ('cle', 'cle', 'clearly.') and the lines repeat and jump"
+    },
+    {
+      "from": 300,
+      "to": 390,
+      "what": "melt: the picture freezes on the host lines; the colour bars try to return and their motion drags the frozen type in 24 px blocks (datamosh smear); the bright letters melt downward into pixel-sorted streaks; the timecode sticks on one number"
+    },
+    {
+      "from": 390,
+      "to": 450,
+      "what": "signal lost: a hard cut to flat blue (s3) with mono 'NO INPUT' top-left and 'SIGNAL LOST' centred in Inter 800; it holds two beats, blinking; then snow fills the frame from the bottom up"
+    },
+    {
+      "from": 450,
+      "to": 540,
+      "what": "searching: over the snow, a mono readout 'SEARCHING  CH 05 · 06 · 07' steps a number per beat and a signal meter fills; the bars fade up through the snow, rolling vertically (a lost vertical hold) and settling with a damped bounce at frame 525; g falls to 0.05"
+    },
+    {
+      "from": 540,
+      "to": 600,
+      "what": "signal found: clean bars, then the host scene again, calm: 'Signal found.' / 'We never left.'; faint scanlines stay; the timecode runs again; one last one-frame RGB wink at frame 585"
+    }
+  ],
+  "sizes": "Vertical is primary: the bars fill the full frame top to bottom with the chrome inside the safe area (station name and timecode under the top 220 px, channel above the bottom 320 px); host lines are left-aligned in the middle third at the largest size that keeps 'You are receiving us' on one or two lines. Landscape keeps the same scenes: the bars run full width with the reversed strip and pluge band beneath, host lines sit on the left two thirds at a larger size, the tracking band spans the full width and rolls a shorter distance, and the 'SIGNAL LOST' card centres.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at the breakup (drop at 180); hits on the big glitch spikes (frames 180, 240, 300) and on the hard cut to 'SIGNAL LOST' (frame 390); bursts of ticks every 2 frames during each stutter; a whoosh ending at 390 and one ending at 540; the sign-off at 540. Inside the module, add two things around the score (by post-processing its returned buffers, deterministically): a seeded white-noise static bed from frame 390 to 525 that fades as the picture locks, and a gain dropout (to zero for the length of each held glitch, 2–4 frames) at the three spikes, so the sound breaks when the picture does.",
+  "teaches": "A glitch reads as real when it follows the machine's own logic: channel splits, displaced slices, blocks that smear along motion, scanlines and frames that hold for a beat look broken; random noise sprinkled on top only looks fake.",
+  "portable": {
+    "fonts": "Inter (800) for the host lines, JetBrains Mono for the station chrome",
+    "style": "A late-night transmission from an invented station that breaks up and recovers. Paint a clean scene into one offscreen canvas each frame (flat colour bars with mono station chrome and a running timecode, or big left-aligned host lines on near-black), then redraw it through a glitch pass whose every random choice comes from a seeded hash of a held frame index (frames grouped in twos to fours, so glitches hold like real ones) scaled by an intensity envelope per scene. The glitch vocabulary: an RGB channel split (the scene drawn through red, green and blue masks with offsets), horizontal slice displacement, scanlines, a rolling VHS tracking band with warped rows and dropout specks, a datamosh smear (a frozen frame cut into 24 px blocks that drift along a smooth motion field while blocks of the new scene pop in), a pixel sort (bright runs in each column sorted into melting streaks, done at quarter resolution), and snow. Scenes: clean bars; 'Good evening. You are receiving us clearly.'; breakup with a stuttering 'clearly'; a freeze and melt; a flat blue 'SIGNAL LOST' card; snow and a channel search while the bars roll and lock; then 'Signal found. We never left.' with faint scanlines.",
+    "sound": "a driving loop at 120 bpm whose drums enter at the breakup, hits on the glitch spikes and the signal-lost cut, rapid clicks during stutters, a static noise bed while searching, short dropouts when the picture holds, and a three-note sign-off.",
+    "sizes": "vertical first: bars full frame, chrome in the safe corners, host lines left-aligned in the middle third; landscape runs the bars full width with the host lines on the left two thirds."
+  }
+}

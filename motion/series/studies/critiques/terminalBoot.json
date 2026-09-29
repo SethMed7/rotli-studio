@@ -1,0 +1,134 @@
+{
+ "piece": "terminalBoot",
+ "sizes": [
+  "terminalBoot",
+  "terminalBootVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 2.1,
+     "longestCalm": 9.1,
+     "nearStill": 57
+    },
+    "vertical": {
+     "changesPer10s": 2.1,
+     "longestCalm": 9.1,
+     "nearStill": 68
+    }
+   },
+   "scores": {
+    "hook": 6,
+    "readability": 5,
+    "motion": 8,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "all",
+     "what": "at phone width the landscape type is about 8 px even inside the 1.4x push-in, the vertical about 10 px: the command, the found slot and the booked line cannot be read in phone.png",
+     "fix": "drop the 80/48-column grid: a 40-column grid of 66 px type in the landscape and a 30-column grid of 50 px type in the vertical, with the buffer scrolling so only the lines that matter are on the glass"
+    },
+    {
+     "at": "00:00.4-00:09.5",
+     "what": "a 9.1 s calm: the power-on, then a boot log and a typed command that each add one small line at a time; nothing lands with a punch until the week opens at 11 s",
+     "fix": "a large grid-drawn ORIEL banner slams in on the beat at 1 s, and the buffer snap-scrolls at the prompt (4.5 s)"
+    },
+    {
+     "at": "00:00.0-00:02.0",
+     "what": "the hook is only the power-on; the first words ('ORIEL/TTY 0.9') arrive at 2.0 s and are about 6 px on a phone",
+     "fix": "the banner lands at 1.0 s, readable at any size"
+    },
+    {
+     "at": "00:02.0-00:16.0",
+     "what": "the terminal fills from the top, so the lower half of the glass (two-thirds in the vertical) is empty through the boot, the command and the booking",
+     "fix": "fewer, bigger rows and a scroll offset per section so each section's lines fill the glass; the vertical centres the boot block"
+    },
+    {
+     "at": "00:05.0, 00:11.0, 00:16.0 (vertical)",
+     "what": "the per-section camera changes its focus point, so the whole monitor jumps up and down the frame between sections and the bezel edges wander; it reads as an unsteady mount, not a push-in",
+     "fix": "a fixed monitor with only a small zoom drift; bigger type replaces the push-ins"
+    },
+    {
+     "at": "00:14.5 (vertical)",
+     "what": "the found slot is one thin row among thirty and its arrow is one small cell in the margin",
+     "fix": "a full-width accent band, '14:00' in the label column beside it, and the message in large type"
+    }
+   ],
+   "agentSaw": [
+    "readability 7: 30 px type on an 80-column grid is about 8-10 px on a 360 px phone even with the push-in, and the vertical cannot zoom further",
+    "variety 7: 2.1 changes per 10 s, the longest calm 9.1 s from 0:00.4, typing and boot lines only",
+    "the terminal fills from the top, so the lower screen is empty through the booking, most in the vertical",
+    "the vertical's arrow at Thu 14:00 is one small cell"
+   ],
+   "agentMissed": [
+    "the hook: nothing readable in the first two seconds",
+    "the vertical monitor jumps position between sections because the camera's focus point moves",
+    "the builder scored readability 7 and variety 7; at phone size both are lower (5 and 6), and composition is 6, not 8"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.8,
+     "longestCalm": 4.5,
+     "nearStill": 42
+    },
+    "vertical": {
+     "changesPer10s": 3.3,
+     "longestCalm": 4.5,
+     "nearStill": 54
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "fixed": [
+    "readability: the grid is 40 x 12 cells of 66 px type in the landscape and 30 x 23 cells of 50 px type in the vertical (the brief's 80 x 26 of 30 px departed from with the owner's leave); body text is about 12 px on a 360 px phone in the landscape and about 17 px in the vertical, and the command breaks after '--everyone' in both sizes",
+    "the buffer scrolls as a pure function of F, snapping on beats (5.0 s, and 19.0 s in the landscape) and clipped to the grid's rows, so each section's lines fill the glass instead of stacking from the top",
+    "the calm: a grid-drawn ORIEL banner (a 5x7 cell font of rects, no block glyphs) slams in on the beat at 1.0 s with a phosphor surge, the prompt's scroll snap at 5.0 s and the found slot at 14.5 s each get a short surge; longest calm 9.1 s -> 4.5 s, changes per 10 s 2.1 -> 3.8 / 3.3",
+    "the hook: the banner is readable at any size from 1.0 s",
+    "the monitor no longer moves between sections: the camera is centred on the grid with a 1.5-2.5% drift that springs back at each cut",
+    "the vertical found slot is a full-width accent band with '14:00' and an arrow in the label column and the message in 50 px type; the landscape message is clamped inside the 40 columns under its arrow",
+    "the week box fills 3-5 frames sooner after the drop"
+   ],
+   "problems": [
+    {
+     "at": "00:05.0-00:05.2",
+     "what": "the scroll snap draws the persistence copy two frames back over the moved log, so for about three frames the whole log reads doubled (the brief's persistence pass doing what it should, briefly muddy in fast-2)",
+     "fix": "the snap was shortened from 4 to 3 frames; nothing more needed"
+    },
+    {
+     "at": "00:05.0-00:09.5 (vertical)",
+     "what": "the bottom fifth of the glass stays empty until the command's output prints",
+     "fix": "none needed; it fills by 10.5 s"
+    },
+    {
+     "at": "00:11.0-00:16.0 (landscape)",
+     "what": "the hour slots are one column each and unlabelled, so the found column's time is read only from the message; the scan column is about 7 px wide on a phone",
+     "fix": "acceptable: the column is bright accent and the message says Thu 14:00"
+    }
+   ],
+   "sync": "loudness -16.1 LUFS in both sizes; cues depart from the brief's table on purpose: a hit at frame 30 for the banner, the prompt moved from 135 to 150 with a tick on its scroll snap (and on the landscape's snap at 570); Enter 285, the drop at 330, booked 480 and the sign-off at 630 unchanged, every cue on the 15-frame beat grid",
+   "checks": "final render after the last source edit (3-frame snap, lint-only tidy): still-frames windows empty in both sizes (identical: 0); pace and loudness unchanged; npx tsc clean for the module; oxlint and oxfmt clean; no golden exists for either piece",
+   "verdict": "ship"
+  }
+ ]
+}

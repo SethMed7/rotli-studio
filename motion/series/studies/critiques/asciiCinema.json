@@ -1,0 +1,153 @@
+{
+ "piece": "asciiCinema",
+ "sizes": [
+  "asciiCinema",
+  "asciiCinemaVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 2.9,
+     "longestCalm": 12.1,
+     "nearStill": 35
+    },
+    "vertical": {
+     "changesPer10s": 2.9,
+     "longestCalm": 12.1,
+     "nearStill": 33
+    }
+   },
+   "loudness": {
+    "landscape": -15.4,
+    "vertical": -15.4
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 3,
+    "motion": 8,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "readabilityBySize": {
+    "landscape": 3,
+    "vertical": 8
+   },
+   "problems": [
+    {
+     "at": "all (landscape)",
+     "what": "every caption is 24 px type on a 1920 px frame: about 4.5 px on a 360 px phone. 'hello.', 'everything you see here is text.', 'ten characters, one light', 'every glyph is a pixel', 'a portrait of nobody in particular', 'dark'/'light' and 'a love letter to text mode' are all unreadable in phone.png",
+     "fix": "owner-approved departure from the one-24-px-grid rule, landscape only: captions are set as characters on a coarser grid whose cells are exactly 3 x 3 fine cells (72 px type in 43.2 x 72 px cells, about 13.5 px on a phone), aligned to the fine grid, with the fine cells under each big character cleared"
+    },
+    {
+     "at": "00:00.0-00:02.0",
+     "what": "the hook is a 24 px block cursor and 'hello.' alone in the middle of an empty black frame (both sizes); nothing says 'ASCII art' until the flood at 2.1 s",
+     "fix": "open on frame 0 with the whole grid already flooded with ramp noise that resolves by about 0.5 s into a huge 'hello.' drawn in the 5x7 bitmap font as '#' cells (accent flash on arrival), then type 'everything you see here is text.' under it"
+    },
+    {
+     "at": "00:02.6-00:14.7",
+     "what": "longest calm 12.1 s (both sizes): the doughnut spins steadily for six seconds with only a typed caption, then the rain glides in; nothing lands on the drums that enter at 3 s",
+     "fix": "make the caption literal: 'one light' snaps to a new direction on the beat (left at 165, right at 195, below-front at 225, back above-behind at 255), re-shading the whole torus in a frame, each with a hit"
+    },
+    {
+     "at": "00:15.0-00:20.0",
+     "what": "the portrait's only bright area is a band across the eyes, so with the eyes as empty holes it reads as a visor or mask; the hair is horizontal stripes of '=', '<' and '>' (the strand sines plus the shimmer swapping to '<>'); in landscape the neck runs about 115 px from chin to shoulders",
+     "fix": "raise and widen the shoulders, drop the strand stripes and keep the shimmer off the hair"
+    },
+    {
+     "at": "00:11.0-00:13.0 (vertical)",
+     "what": "'every glyph / is a pixel' locks in at 24 px inside rain of the same weight; the quiet band only dims the tails, so at phone size the words are lost among the drops",
+     "fix": "clear the rain from the band around the line while it is locked"
+    }
+   ],
+   "agentSaw": [
+    "landscape captions unreadable on a phone because of the one fixed 24 px grid",
+    "the first two seconds (cursor and 'hello.' at 24 px) are a weak hook",
+    "the doughnut section runs about 6 s with only the spin and a typed caption",
+    "the portrait's hair reads stripy and its neck is long in landscape"
+   ],
+   "agentMissed": [
+    "the calm is 12.1 s by the tool, not six: the rain's arrival is a glide too, so nothing abrupt happens from 2.6 s to 14.7 s",
+    "the portrait's eyes sit in the only bright band of the face, reading as a visor or mask",
+    "in vertical the locked-in line is lost in rain of the same weight at phone size",
+    "the vertical hook is as weak as the landscape one (24 px 'hello.' in an empty 1920 px tall frame)"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 5.8,
+     "longestCalm": 4.9,
+     "nearStill": 19
+    },
+    "vertical": {
+     "changesPer10s": 5.8,
+     "longestCalm": 4.7,
+     "nearStill": 33
+    }
+   },
+   "loudness": {
+    "landscape": -15.9,
+    "vertical": -15.9
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "readabilityBySize": {
+    "landscape": 8,
+    "vertical": 8
+   },
+   "fixed": [
+    "DEPARTURE FROM THE BRIEF (owner-approved, landscape only): captions no longer sit in the fine 24 px grid. Every landscape caption ('everything you see here is text.', 'ten characters, one light', 'every glyph is a pixel', 'a portrait of nobody in particular', 'dark'/'light', 'a love letter to text mode') is set on a coarser grid whose cells are exactly 3 x 3 fine cells (72 px JetBrains Mono in 43.2 x 72 px cells, about 13.5 px on a 360 px phone), aligned to the fine grid, drawn from a second glyph atlas, with the fine cells beneath each big character cleared. The pictures (doughnut, rain, face, ramp, bitmap title) stay on the 24 px grid. Vertical keeps the brief's 24 px captions (about 8 px on a phone, above the rubric's 22 px at 1080)",
+    "DEPARTURE FROM THE BRIEF (scene 1 order): the hook now opens on frame 0 with the whole grid flooded with ramp noise that resolves by 0.5 s into a huge lowercase 'hello.' in a proportional 5x7 bitmap font (3 x 2 fine cells per bitmap pixel in landscape, 2 x 1 in vertical so it fits inside safe.x), with a hit on the beat at frame 15; the brief had a lone cursor typing 'hello.' before the flood. The second line then types under it and the flood/drain into the doughnut is unchanged",
+    "the doughnut: 'one light' is made literal. On the beat at 165, 195, 225 and 255 the light snaps to the left, the right, below and back home, the shading is recomputed from the full surface normal against each light, and each snap is a hard cut to a new framing (left third / right third / close-up / centre in landscape; small-high / large / small-low / centre in vertical) through two frames of full-grid static. The light snaps alone measured only 10-13 grey levels of frame difference against the tool's 18, so the static carries the cut",
+    "the same two-frame static cut lands at 270 (doughnut into the rain) and 390 (as the locked line lets go), so the rain no longer runs 6 s without an abrupt change",
+    "DEPARTURE FROM THE BRIEF (sound cues): hits added at 15, 165, 195, 225, 255, 270 and 390, each on a beat and on a visible cut; the brief's cue table only had a hit at 540. Loudness stays at -15.9 LUFS",
+    "the locked-in line: its band of rain clears fully while it holds (it only dimmed before), and the letters lock in over about 1.2 s instead of 2.5 s, so the whole line holds about 1.7 s before letting go",
+    "the portrait: hair is drawn in strokes that follow its fall ('/', '\\', '|') instead of the ramp's '=' and '-' (which read as stripes), with no shimmer on the hair; the fringe sits higher so a forehead shows above the brows; the skin light is broader so the lit side is a cheek, not a band across the eyes; the shoulders are raised and widened (shorter neck); the jacket fades out a row above the caption",
+    "vertical: the typed hello lines run at 1.4 frames a letter so the cursor is never alone on a still frame (still-frames found 43-63 after round 1's first fix); the doughnut caption moves to row 52 so the large framing never touches it"
+   ],
+   "problems": [
+    {
+     "at": "00:09.0",
+     "what": "after the static cut at 270 the doughnut comes back for about a second before it dissolves into the rain, so the cut reads as a glitch rather than the doughnut shattering",
+     "fix": "none needed at this score; could start the dissolve on the static frame"
+    },
+    {
+     "at": "00:00.5-00:02.0 (vertical)",
+     "what": "'hello.' is 168 px tall in a 1920 px frame (2 x 1 fine cells per bitmap pixel to fit the width); bold, but a smaller share of the frame than in landscape",
+     "fix": "could use 2 x 2 cells per bitmap pixel (taller letters) if the owner wants it louder"
+    },
+    {
+     "at": "00:04.0-00:09.0",
+     "what": "static bursts are now the film's cut grammar (six in 9 s); they add punch but the doughnut's framings change more than the light, which is the caption's subject",
+     "fix": "none needed; the light still changes on every cut"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 60,
  "palette": "riso",
+ "family": "print",
+ "subject": "oriel",
  "style": "Risograph print: two inks (riso blue and fluorescent pink, yellow as a rare third) overprinted with a slight misregistration, halftone fields, paper grain, big condensed-feeling type set tight. Use the engine's own print styles (src/canvas-core/styles/riso.ts, print.ts) where they fit.",
  "learnsFrom": "Printed zines and riso posters: texture and overprint instead of screens.",
  "story": [

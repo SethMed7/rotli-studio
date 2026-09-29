@@ -1,0 +1,163 @@
+{
+ "piece": "burrowDays",
+ "sizes": [
+  "burrowDays",
+  "burrowDaysVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 5,
+     "longestCalm": 5,
+     "nearStill": 41
+    },
+    "vertical": {
+     "changesPer10s": 5,
+     "longestCalm": 4.5,
+     "nearStill": 41
+    }
+   },
+   "loudness": {
+    "landscape": -16.2,
+    "vertical": -16.2
+   },
+   "stillFrames": {
+    "landscape": "identical 13, windows: empty",
+    "vertical": "identical 17, windows: empty"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 7,
+    "motion": 7,
+    "variety": 8,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:29.8-00:30.3",
+     "what": "the whip pan is five discrete copies 15 px apart at 35 % alpha, so the dog and the rabbit read as a stack of ghosts, not a smear; it is the frame phone.png samples at 30 s in both sizes",
+     "fix": "sample the 60 px smear densely (copies about 2 px apart, an equal-weight average with the first copy opaque) so no copy separates"
+    },
+    {
+     "at": "00:12.0-00:12.5",
+     "what": "the thump does not read: THUMP pops 2 frames a letter in a 12-frame shot and starts shaking out at 298, so the screen only ever shows 'T' or 'TH'; the foot lifts 288-292 and the rings and shake start at 292, four frames after the 288 hit",
+     "fix": "pre-lift the foot so it slams on 288 (rings and shake from 288), slam the word in whole on the hit and hold it to the cut"
+    },
+    {
+     "at": "vertical, 00:04-00:43 (every wide)",
+     "what": "the vertical's wides (grazing, shadow, thump, bolt, bramble, stalk, race, fence, chase, tumble, recall, thistle, dusk, warren) put the action in the bottom third under 55-60 % of flat banded sky with nothing in it; at phone size the rabbit is a small figure under a blank wall",
+     "fix": "comic cumulus clouds in the far sky of every tall wide (flat cel fill tinted to the sky, a halftone shadow underneath, ink on the shadow side only, misregistered as out of focus), drifting on ones; the hawk circling far up while it is the threat"
+    },
+    {
+     "at": "00:10.5-00:10.7",
+     "what": "the sticker freeze pops in from 35 %: the rabbit scales about a different origin than the square so the two slide apart, and the 'DON'T. MOVE.' caption lands on top of the rabbit while the square is still small",
+     "fix": "cut in fully formed (the freeze is a cut), keep the breathing"
+    },
+    {
+     "at": "00:19.0-00:21.5",
+     "what": "the overhead zig-zag: from above the fox is an orange spindle with a white tip and reads as a carrot at phone size, the rabbit as a brown blob; the fox's overshoot is the joke and it is hard to read who is who",
+     "fix": "legs splaying on twos and bigger ears on both top views (not fixed this round)"
+    },
+    {
+     "at": "00:31.2-00:32.2",
+     "what": "after FLUMP the cream scalloped cloud with four white capsule legs reads as a sheep, not a dog in a dust cloud; nothing black-and-white of the dog pokes out",
+     "fix": "a dustier tan cloud with the dog's patched head or ear and tail poking out (not fixed this round)"
+    }
+   ],
+   "agentSaw": [
+    "the stalk page's paw panel shows the fox's whole front half, not a macro of the paw",
+    "the dog has no stumble pose before FLUMP (straight from galloping to the impact frame)",
+    "the vertical tumble, recall and race wides have a lot of empty sky",
+    "hedge, bramble and thistle shapes are simple",
+    "the end page's small replay panels skip the colour fringing",
+    "the sticker freeze pops in from 35 % scale rather than cutting in fully formed",
+    "the landscape's deliberate 5 s calm at 38 s (the hop to the warren)"
+   ],
+   "agentMissed": [
+    "the whip pan ghosts into discrete copies, and phone.png lands on it in both sizes",
+    "THUMP never forms on screen (only 'T' or 'TH'), and the foot slams four frames after the 288 hit",
+    "the empty sky is in every vertical wide, not only the tumble, recall and race",
+    "the sticker pop also misaligns the rabbit from its square and drops the caption on top of the rabbit",
+    "the overhead fox reads as a carrot at phone size",
+    "the tumble cloud reads as a sheep"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 5,
+     "longestCalm": 5,
+     "nearStill": 42
+    },
+    "vertical": {
+     "changesPer10s": 5.2,
+     "longestCalm": 4.5,
+     "nearStill": 38
+    }
+   },
+   "loudness": {
+    "landscape": -16.2,
+    "vertical": -16.2
+   },
+   "stillFrames": {
+    "landscape": "identical 12, windows: empty",
+    "vertical": "identical 5, windows: empty"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "the whip pan is a 60 px smear sampled every 2 px as an equal-weight average (31 copies, the first opaque), so the dog and the rabbit blur instead of ghosting; phone.png at 30 s now reads in both sizes",
+    "the thump: the foot is pre-lifted so it slams on the 288 hit, the rings and the shake start at 288, and THUMP is staggered from 280 so the whole word has popped by the slam and holds to the cut at 300 (landscape moved clear of the ears)",
+    "the vertical's wides hold far comic cumulus: a towering bank on the horizon rising behind the hedge (not at dusk) and six loose clouds through the upper sky, sky-tinted flat fills with a halftone underside, ink on the shadow side and a cyan/magenta misregistration, drifting on ones and continuous across cuts; gated to the full tall picture with a deep sky, so the landscape (including the stalk page's tall panels) and the end page's panels are unchanged; the vertical close-ups (the alarm eye, the dog's face, the rabbit's eye) keep them behind the face, fringed out of focus, on purpose",
+    "the sticker freeze cuts in fully formed (it only breathes), so the rabbit stays on its square and the caption never lands on the rabbit",
+    "the overhead top views have legs splaying on twos, and the fox big ink-tipped ears and white cheeks, so it reads as a fox and not a carrot",
+    "the tumble cloud is tan dust with the dog's black floppy ear and white tail poking out, so it reads as the dog, not a sheep"
+   ],
+   "problems": [
+    {
+     "at": "00:31.0",
+     "what": "the dog still goes straight from galloping to the FLUMP impact frame with no stumble pose (the builder's note)",
+     "fix": "a 2-frame trip pose at 740-743 (not fixed)"
+    },
+    {
+     "at": "00:15.5-00:16.5",
+     "what": "the stalk page's paw panel shows the fox's whole front half, not a macro of the paw (the builder's note)",
+     "fix": "push the camera in on the forepaw (not fixed)"
+    },
+    {
+     "at": "vertical, 00:30.8-00:30.9",
+     "what": "just before FLUMP the vertical chase framing leaves the dog cut by the right edge (only its head shows)",
+     "fix": "frame the dog inside the picture before the trip (not fixed)"
+    },
+    {
+     "at": "vertical, 00:36-00:43",
+     "what": "dusk clouds entering at the left edge show as small pink fragments for a second or two",
+     "fix": "none needed; they drift in on ones"
+    },
+    {
+     "at": "00:38.0-00:43.0",
+     "what": "the landscape's 5 s calm on the hop home (the builder's deliberate hold), at the limit",
+     "fix": "none needed"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

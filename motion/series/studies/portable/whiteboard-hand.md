@@ -1,0 +1,35 @@
+You are a world-class motion designer who works in code. Make "Whiteboard Hand": 34 seconds of motion at 1920 × 1080, 30 fps, drawn in code.
+
+WHAT TO BUILD
+- One self-contained HTML file with a <canvas> of 1920 × 1080. Every frame is a pure function of time, draw(ctx, t) with t in seconds, carrying no state from frame to frame, so any moment renders on its own.
+- A player: it autoplays muted on load; the first click turns the sound on, later clicks pause and play; ← and → step one frame at 30 fps; ?t=<seconds> opens paused on that moment.
+- No libraries and no image files: every shape, letter and texture is drawn with Canvas 2D. Fonts: Inter (600) for the written captions, JetBrains Mono for the small footer, loaded from Google Fonts; wait for them to load before the first frame.
+
+THE LOOK
+A whiteboard explainer speed-drawn by a drawn hand on a warm white board with faint ghost marks of old drawings. Every drawing is a set of polylines drawn on by arc length, fast, with an ease-in-out, one stroke after another; marker lines have round caps, 7 px, with a faint felt-tip streak; colour markers are red, blue and the seven spectrum colours; shading is marker hatching, never flat fill. The hand is drawn in code (a flat skin-tone hand with an ink outline pinching a marker, entering from the bottom right), its marker tip locked to the current pen point, with a small tremor stepped on twos so it feels time-lapsed; it lifts away between drawings and never covers a caption being read. Captions are written, not typed: revealed left to right under a clip whose edge the pen tip rides, bobbing like handwriting; step numbers in hand-drawn circles; key words underlined in red. Between ideas the hand sweeps a felt eraser across the board and everything under its path clears, leaving a faint grey ghost. The lesson: sunlight bends entering a raindrop, splits into colours, reflects off the back, and bends again leaving at about 42° (violet about 40°); with the sun behind you and rain in front, red sits on the outside of the bow.
+Palette: ground #f6f6f2, surface #ffffff, ink #1b1e22, muted #5d636b, line #e3e4e0, accent #c8302a, accent2 #2466c9, hand #e9bf9c, deep #1b1e22, s1 #e0342b, s2 #f07f1f, s3 #f2c230, s4 #3aa655, s5 #2a7de1, s6 #3f3fb0, s7 #8a3fc4. Use these colours, blends between them, and the ink colour at low opacity for shadows; nothing else.
+
+THE BEATS (90 bpm, a beat every 0.67 s: every change of state starts on a beat; follow-through may start on a half-beat). Words in quotes are the exact copy.
+- 0–4 s · hook: the hand swoops in from the bottom right and speed-draws a small sun in the upper left, a stick-figure viewer facing right in the lower middle, and a raincloud with slanted rain streaks on the right; it swaps to colour markers and sweeps the rainbow over the rain, seven thick bands, red outermost; then it writes the title top-left: 'How a rainbow forms' with 'rainbow' underlined in red
+- 4–10 s · step 1: an erase-wipe clears the board in one beat; the hand draws one huge raindrop (a circle about 560 px across at 1080, blue marker, a small highlight tick); a single ink ray labelled 'sunlight' draws in from the left, hits the upper part of the drop and kinks inward; a small angle arc marks the bend; caption in a circled '1': 'Light bends as it enters the drop'
+- 10–14.7 s · step 2: inside the drop the ink ray fans into seven thin coloured lines (s1 red bending least, s7 violet bending most), each drawing on in a quick stagger; caption '2': 'Each colour bends a different amount'; 'white light' is written small beside the incoming ray
+- 14.7–19.3 s · step 3: the seven lines reach the back of the drop and bounce once, drawing on toward the lower left; a tiny red marker star flashes at the back wall; caption '3': 'It reflects off the back of the drop'
+- 19.3–24.7 s · step 4: the lines cross the lower surface and kink again as they leave, heading down to the left; the hand draws a dashed line through the exit point parallel to the incoming sunlight, pointing back toward the sun, and a red protractor arc for the small angle between that line and the exiting red ray, then writes 'about 42°' beside it in red, and a smaller 'violet about 40°' under it; caption '4': 'It bends again on the way out'
+- 24.7–30 s · the big picture: an erase-wipe, then a pull-back as the hand speed-draws the whole scene: the sun behind the viewer, a dashed line from the sun through the viewer's head down to a small cross labelled 'point opposite the sun'; two thin lines leave the viewer's eye and fan up at about 40° and 42° from that dashed line (the angle sits at the eye; the cross only marks the direction opposite the sun), and a drop on each line sends one colour to the eye: red from the higher line, violet from the lower; then the full bow draws on over the rain band by band, red on the outside to violet on the inside; captions write on in two lines: 'Sun behind you. Rain in front.' then 'Red outside, violet inside.'
+- 30–34 s · recap and end: an erase-wipe; four tiny drop icons draw in a row, each with its ray drawn in one quick stroke and a word under it: 'bend', 'split', 'reflect', 'bend'; the headline writes above them: 'A rainbow: bend, split, reflect, bend.' with 'reflect' underlined in red; a small mono footer 'a primary rainbow · angles approximate'; the hand caps its marker (a click) and slides out; a slow push-in holds
+
+SIZES
+- landscape: 1920 × 1080.
+- Add ?size=vertical for 1080 × 1920. Design that layout for its shape: re-stack it: captions in the top third, the raindrop in the middle at full width with the angle labels beneath, the big picture turned portrait with the bow across the upper middle, and the recap as a 2×2 grid.
+
+MOTION RULES
+- Ease everything: ease-out for arrivals, ease-in for exits, a spring with a little overshoot for anything that lands. Ambient motion (a breath, a drift, a spin) may be a smooth repeating wave; nothing else moves linearly.
+- Hook in the first second. No dead air: every hold keeps moving (a slow push-in, a drift, a breath).
+- Nothing overlaps unless it is meant to. Keep text inside the safe margins and never smaller than 22 px at 1080 px on the short side.
+- Showing the drawing happen is the explanation: when a hand builds each idea line by line and wipes the board before the next, the viewer follows the reasoning at the speed it is drawn.
+- Sound (Web Audio, starts on the first click): a soft pad-and-pluck loop at 90 bpm with no drums, thinned marker squeaks while lines draw, a whoosh on each eraser wipe, a hit on the 42° label and on the finished bow, and a three-note sign-off.
+
+BEFORE YOU FINISH
+Name 8 moments across the piece (as timestamps) and describe exactly what is on screen at each. Fix anything that overlaps, sits still for more than half a second, or is hard to read. Then give me the complete file.
+
+The topic is real: keep every fact exactly as written above (it is sourced), hedged the way it is hedged. Build it exactly as written first; afterwards, swap in your own topic, colours and words, and source your own facts.

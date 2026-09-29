@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 690,
  "palette": "slate",
+ "family": "product",
+ "subject": "oriel",
  "style": "Annotated product UI: crisp interface cards (an invite, a message thread, a settings panel) get marked up live with hand-drawn annotations: a wobbly red circle that draws itself around the problem, an arrow that swoops in, a highlighter swipe, a scribbled note in a handwriting-like stroke. The camera pushes into each annotated detail. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): UI with hand-drawn red circles around the problem, stacked complaint bubbles that scroll, a highlighted time zone, a reveal from problem to fix.",
  "story": [

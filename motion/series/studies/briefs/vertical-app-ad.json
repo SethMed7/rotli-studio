@@ -13,6 +13,8 @@
  "bpm": 100,
  "frames": 900,
  "palette": "sage",
+ "family": "product",
+ "subject": "oriel",
  "style": "Floating UI on a soft stone ground: white cards with large soft shadows, a phone mockup, a deep-green countdown stack, concentric rings. Serif captions arrive word by word, mixed sizes, one key word in the accent green italic. No gradients; depth from shadow only.",
  "learnsFrom": "The creator-explainer app ad format (a presenter with floating UI and word-by-word captions). This study keeps the UI set and the caption rhythm and replaces the presenter with the product itself: no people, no real brands.",
  "story": [

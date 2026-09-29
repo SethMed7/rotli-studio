@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 480,
  "palette": "loop",
+ "family": "shape",
+ "subject": "oriel",
  "style": "One rounded shape on a pale ground, the indigo accent, a soft floor shadow and a cursor. Springs only (kit track with loop=480) so the last frame flows into the first.",
  "learnsFrom": "UI-morph loops: a single element that becomes every state of an interaction.",
  "story": [

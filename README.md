@@ -9,16 +9,17 @@
 
 ### Films drawn in code. Every prompt kept.
 
-The open-source studio behind Rotli's films, story episodes, shorts and carousels. Every frame is a
-function in code, every piece keeps the brief, the prompt and the agent run that made it, and nothing
-about the engine is Rotli-only.
+An open-source motion studio. It began as the studio behind Rotli's films, story episodes, shorts and
+carousels, and now draws fifty-four other techniques too: whiteboard lessons, shadow puppets, split-flap boards,
+broadcast graphics, ASCII cinema and more. Every frame is a function in code, every piece keeps the brief, the
+prompt and the agent run that made it, and nothing about the engine is Rotli-only.
 
 [**Watch at studio.rotli.co**](https://studio.rotli.co) &nbsp;·&nbsp; [rotli.co](https://rotli.co)
 &nbsp;·&nbsp; MIT licence
 
 <br>
 
-<img src="docs/media/studio-mosaic.jpg" alt="Six frames from the studio: The Rotli Story, the Season One lighthouse episode, the Motion Résumé study, the Sketch Explainer blueprint, the Vertical App Ad and the One-Shape Loop" width="900">
+<img src="docs/media/studio-mosaic.jpg" alt="Twelve frames from the studio: The Rotli Story on its island, then studies: a whiteboard rainbow lesson, a split-flap board, a shadow-puppet fox, a neon synthwave title, a cut-paper title sequence, an Arctic tern route map, a papercut forest cabin, a ping-pong broadcast, ASCII cinema, a proof of the Pythagorean theorem and a terminal booking a meeting" width="900">
 
 </div>
 
@@ -34,7 +35,11 @@ about the engine is Rotli-only.
 | **Looks and Themes** | Shorts and stills about the companion's looks and the app's theme environments. |
 | **Explainer Carousels** | Standalone carousels: how Rotli works in four slides, and how its film was drawn in code. |
 | **Atmosphere Reel** | Every mood a scene can be set in, three seconds each. |
-| **Studies** | Pieces for a fictional product, **Oriel**, in 24 styles and every size: kinetic type, particles, data, geometry, print, blueprint, floating UI, founder-explainer reels (caption ladders, isometric stacks, pixel parables, paper collage, agent maps, dot grids, before/after), a one-take morph launch, a card-wall launch, a halftone host and an orb-guided launch; plus a turtle-hosted explainer and a lyric video sung in code. They show the studio is not only Rotli's. The Studies page opens with **field notes**: measured, sourced write-ups of what we tried. |
+| **Studies** | **54 motion techniques**, each in at least two sizes, grouped into eight families: product and UI, type and lyrics, explainers and data, science and learning, shapes and generative, print and illustration, characters and hosts, retro and screen. Some advertise **Oriel, an imaginary product** (a scheduling assistant we invented so a piece can show a product without claiming anything real); some are **short lessons on real topics**, every fact sourced (how a rainbow forms, why we have seasons, where Earth's water is, the Arctic tern's migration); some are **just for fun** (a shadow-puppet fable, a title sequence, a ping-pong broadcast). Each was built by one agent and then scored and fixed by a second until every criterion reached 8. |
+
+The site keeps **Rotli's work apart from the studies**, so you can tell the product's own films from the
+studio's range at a glance. The **Journal** holds long-form field notes: measured, sourced write-ups of what we
+tried, how we measured it and what we learned.
 
 Every piece opens down to its scenes, the cuts made from it, its brief, its exact prompt, the agent run
 that built it (prompt, follow-ups, report, cost), its source and its golden: the hashes that prove it
@@ -53,7 +58,9 @@ browser at full size.
 2. **A prompt.** The brief plus a shared preamble becomes the agent's prompt, deterministically.
 3. **A build.** The piece is drawn in code on the studio's engine (by a person or an agent), checked on
    contact sheets as it goes.
-4. **A review.** No dead air, no overlaps, claims that match the product, loudness around −16 LUFS.
+4. **A review.** A second reader scores review sheets on seven criteria (hook, readability, motion, variety,
+   composition, accuracy, sync) and fixes what scores under 8. No dead air, no overlaps, claims that match the
+   product or the source, loudness around −16 LUFS.
 5. **A golden.** Sampled frames and the audio are hashed, so any later change shows exactly what moved.
 
 Sound is composed in code too: the studio's own music and effects live in [`sound/`](sound/) with the prompt
@@ -61,6 +68,13 @@ for each one. The music is a playlist, one track for each of Rotli's theme famil
 melody.
 
 ## Use it for your product
+
+The quickest way in is **Make one for your product** on [studio.rotli.co/#/use](https://studio.rotli.co/#/use): a
+few questions, one screen at a time, with pointers beside each (your product, the goal, the sizes, a style from the
+studies, what it may say, your assets, sound and pace). The result is a prompt for Claude or any capable model that
+interviews you for whatever is still missing, fetches your logo, colours, fonts and wording from your site, writes a
+brief for you to approve, builds the piece and reviews it. There is a version for any AI chat (one HTML file) and one
+for Claude Code in a clone of this repository.
 
 Or skip the studio entirely: the **Prompt library** on [studio.rotli.co](https://studio.rotli.co) has a portable
 prompt for every study. Paste one into Claude and get a single HTML file in that style, with nothing to install.

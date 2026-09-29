@@ -4,8 +4,11 @@
      rather than re-deriving it; on any conflict Rotli's canon wins. Tokens live in static/app.css :root (shared tokens and base rules; the pages are static/motion.css). -->
 
 ## Overview
-The studio shows Rotli's code-drawn films and everything that made them, in rotli.co's language: a linen
-ground, the faint file pattern behind the hero, General Sans 600 headlines at -0.045em with a clay
+The studio shows Rotli's code-drawn films, the studies that take the same engine past Rotli, and everything that made
+them, in rotli.co's language: a linen ground, the faint studio pattern behind the hero (cameras, a clapperboard, film,
+keyframes on a motion curve; `library/patterns/studio-pattern.svg`, studio-owned, drawn in the same hairline as
+Rotli's synced file pattern), which fades out behind the headline and intro so it frames the words and never sits
+under them, General Sans 600 headlines at -0.045em with a clay
 underline on the key words, deep bands for emphasis, and hairline-separated lists. Home (`#/`) is a landing
 page; every other route is the app shell (top bar, one sidebar tree, content).
 
@@ -24,13 +27,30 @@ page h1 up to 2.75rem, both 600 with tight tracking; body 14-16px.
 Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast and one-pixel hairlines.
 
 ## Components
-- **The Sidebar:** flat. Home, then three sections under a hairline and a small muted name: **Watch** (Library,
-  Carousels, Series, Studies, Wallpapers), **Make** (Brand kit, Sound, Prompts & briefs, Agent runs, Skills, Tools) and **Open
-  source** (Use it for your product, Published, Docs & licences, Isolation audit). Exactly one row is highlighted
+- **The Sidebar:** flat. Home and Library, then four sections under a hairline and a small muted name, which keep
+  Rotli's own work apart from everything else: **Studies** (Studies, Journal, Prompt library), **Rotli** (Series,
+  Carousels, Wallpapers, Brand kit), **Make your own** (Make one for your product, Prompts & briefs, Agent runs, Sound,
+  Skills, Tools) and **About** (Published, Docs & licences, Isolation audit). Exactly one row is highlighted
   (tinted, never a checkmark); nothing expands inline. Episodes and study sizes live on their own pages, with a
   pager ("5 of 10", previous / next) and a segmented control for cuts or sizes. The top bar carries section links
   only on the landing, where there is no sidebar. Titles are short nouns, the same in the menu, the crumb and the h1.
-- **Rows, not cards:** series, episodes, tools and audit findings are rows divided by hairlines.
+- **Rows, not cards:** series, episodes, tools and audit findings are rows divided by hairlines. Studies are a grid of
+  posters (media carries the border), grouped under their family's heading, each tile a title, a subject dot (accent:
+  Oriel; ok: a real topic; warn: just for fun) and its sizes. Hovering a tile plays its render muted (never on touch,
+  under reduced motion or Save-Data).
+- **Subject notes:** "Oriel is imaginary", "A real topic" and "Made for fun" are a paragraph behind a 3 px rule in the
+  subject's colour, never a box. The Studies page and every study page carry one.
+- **Reading:** journal notes are set at a 42rem measure, 1.07rem/1.75, with an "On this page" rail of their h2s beside
+  them on wide windows and older/newer links at the end.
+- **The questionnaire** (Make one for your product): the steps are a segmented control, options are hairline rows with
+  native radios and checkboxes, and pointers sit beside the form behind a hairline.
+- **Thumbnails:** every Rotli video's poster is its designed thumbnail (`motion/tools/thumbnails.mjs`), never a
+  random frame: a flat title panel in the episode's own theme ground (its dark ground for night scenes) beside the
+  piece's own frame, pushed in until the quokka or the episode's key object reads at 320 px wide. The title is General
+  Sans 600 at -0.045em, fitted as large as the panel allows, its key word underlined in clay (#c97e62, whatever the
+  theme), under a small series + episode pill and over the lockup. Landscape 1280×720, the panel left and nothing key
+  in the bottom-right corner (the duration badge); vertical 1080×1920, the title in the upper third and the subject
+  above the bottom 320 px. Titles use the piece's own words. Studies keep a frame of their render as their poster.
 - **Where a border is allowed:** media (posters, frames, the player), swatches, and the segmented tab control.
   Nothing else gets a box.
 - **Buttons:** dark (`--text` fill) for the primary action, ghost (hairline) for the secondary.

@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "signal",
+ "family": "type",
+ "subject": "oriel",
  "style": "Type only, full bleed. A saturated signal-orange ground, near-black type set huge and tight, outline letters that fill solid as they land, an italic word for emphasis, a marquee of repeating rows, and hard colour-flash title cards (blue, black, paper). Motion blur on fast moves.",
  "learnsFrom": "Kinetic-type reels made with code: big words as the whole picture, outline-to-fill reveals, marquee rows, colour-flash cards cut on the beat.",
  "story": [

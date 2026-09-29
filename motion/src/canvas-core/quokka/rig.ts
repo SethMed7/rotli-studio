@@ -33,8 +33,14 @@ export const POSE_FIX: Partial<Record<PoseName, Fix>> = {
 
 const hexRgb = (h: string) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16));
 
+/** The fill's gap closing is R raster pixels, so far above 1× a hairline gap in the art is wider than R and the
+ *  fill leaks out. `scaleGap` grows R with the scale; it is off by default so every existing render keeps its
+ *  pixels (sealed goldens draw poses above 1× through reframe). A page that draws poses far above 1× turns it on
+ *  once, at load (src/canvas-core/thumbnails.ts). */
+export const RIG = { scaleGap: false };
 const build = (env: Env, name: PoseName, body: string, ink: string): PoseSurface => {
-  const key = `pose:${name}:${body}:${ink}:${env.scale}`;
+  const R = Math.round((POSE_FIX[name]?.gap ?? 3) * (RIG.scaleGap ? Math.max(1, env.scale) : 1)),
+    key = `pose:${name}:${body}:${ink}:${env.scale}:${R}`;
   const hit = env.cache.get(key) as PoseSurface | undefined;
   if (hit) return hit;
   const p = POSES[name],
@@ -56,8 +62,7 @@ const build = (env: Env, name: PoseName, body: string, ink: string): PoseSurface
   // exterior: flood from the border through non-ink
   // the exterior flood runs against the ink DILATED by R px, so hairline gaps in traced art cannot
   // leak the fill; the exterior is then grown back by R so the fill still ends under the line.
-  const R = POSE_FIX[name]?.gap ?? 3,
-    wall = new Uint8Array(N * N);
+  const wall = new Uint8Array(N * N);
   for (let y = 0; y < N; y++)
     for (let x = 0; x < N; x++)
       if (a[y * N + x] >= 110)

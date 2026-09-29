@@ -1,0 +1,61 @@
+{
+  "id": "stained-glass",
+  "no": 48,
+  "title": "Stained Glass",
+  "module": "src/canvas-core/studies/stainedGlass.ts",
+  "pieces": {
+    "vertical": "stainedGlassVertical",
+    "landscape": "stainedGlass"
+  },
+  "primary": "vertical",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 90,
+  "frames": 720,
+  "palette": "glass",
+  "family": "print",
+  "subject": "fun",
+  "style": "A leaded stained-glass window of the four elements, built and then lit by one day of sun. THE WINDOW: a tall lancet (a rectangle under a pointed arch made of two circular arcs) set in a dark ashlar wall (stone blocks as thin line-coloured joints on the ground). Inside: a roundel at the top holding a sun (a ring of flame-like rays), then a 2×2 of panels, air top-left, fire top-right, earth bottom-left, water bottom-right, all framed by a border of small square panes alternating ruby and azure. Each panel is cut into 8–14 panes by its lead lines, and the cut lines ARE the drawing: earth is two mountain triangles and a round tree, water is three wave bands and a fish, air is two spirals and a bird, fire is three flame tongues over embers. THE LEAD: every pane edge is a came, drawn as a 9 px stroke in the lead colour with a 2 px lighter highlight line along it (the raised flange of the H-section), small solder blobs where cames meet, and two darker horizontal iron saddle bars across the whole window. THE GLASS: each pane is one jewel colour from the palette extras (ruby, emerald, azure, violet, the gold accent, the cobalt accent2) with a streaky variation (a seeded linear gradient of ±8% lightness across the pane, as mouth-blown glass is never even), a few tiny seed bubbles (lighter dots) and, on some panes, grisaille: dark brown painted detail lines (leaf veins, fish scales, feather strokes) at 60% alpha. LIGHT (closed-form in F): the sun's elevation e(F) rises from 0 at dawn to its peak at noon and back to 0 at dusk; the transmitted colour of every pane is its colour darkened to 25% plus e times the full colour, with a soft diagonal band of extra brightness sweeping across the window as the sun moves; at night a cool moon glow lights only the air panel faintly and the lead lines dominate. THE FLOOR: in front of the wall the stone floor (floor colour, slab joints in perspective) receives the window's light: the panes are drawn again, projected by a transform whose vertical stretch grows as the sun gets lower and whose shear follows its azimuth, with the 'lighter' composite at low alpha, softened by the downscale-upscale trick (no ctx.filter), and with a slow caustic ripple (a seeded sine wobble of the patch edges). The patches creep and stretch across the floor through the day and redden toward dusk. Build-on: the came lines draw themselves with a dash offset, top to bottom, then panes flood with colour from a seed point (a growing circle clipped to the pane). Labels are sparse: element names in Instrument Serif Italic ink on the sill, time-of-day chips in JetBrains Mono, the title in Instrument Serif.",
+  "learnsFrom": "How leaded windows are made and look, from the V&A's introduction to stained glass (https://www.vam.ac.uk/articles/stained-glass-an-introduction) and the came technique (https://en.wikipedia.org/wiki/Came_glasswork): pot-metal colour, H-shaped lead cames soldered at the joints, iron bars, painted detail, and a picture that changes as daylight moves through it. No real window's design, figures or imagery is used; the four-elements window is original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "dawn: a dark stone wall with the empty lancet showing a pale dawn sky; the time chip 'dawn'; the lead lines draw themselves from the roundel down, solder blobs popping at the joints, the saddle bars last"
+    },
+    {
+      "from": 120,
+      "to": 280,
+      "what": "the panes fill, one panel every two beats, each flooding from a seed point with its name landing on the sill: 'earth', 'water', 'air', 'fire'; the roundel's sun fills last"
+    },
+    {
+      "from": 280,
+      "to": 440,
+      "what": "morning to noon: the time chip 'noon'; the sun strikes: the panes brighten from dark to full jewel colour, the bright band sweeps across the glass, coloured patches of light appear on the floor and creep across it"
+    },
+    {
+      "from": 440,
+      "to": 580,
+      "what": "afternoon to dusk: the time chip 'dusk'; the patches stretch long and slide sideways, warming toward red; the fire panel is the last to blaze"
+    },
+    {
+      "from": 580,
+      "to": 660,
+      "what": "night: the time chip 'night'; the glass dims to deep tones, the floor patches fade, a cool moon glow lights the air panel alone and the lead lines read as a drawing"
+    },
+    {
+      "from": 660,
+      "to": 720,
+      "what": "end: the title 'Four Elements' with 'a window, one day' beneath, while the moon glow drifts slowly across the glass"
+    }
+  ],
+  "sizes": "Vertical (primary): the lancet fills the upper 60% of the frame, centred, with the sill labels just under it; the floor plane fills the lower part above the bottom safe margin, and the light falls toward the viewer; the time chip sits in the top safe area; the title sits on the floor area at the end. Landscape: the lancet stands left of centre at full height inside the safe area; the floor becomes a band along the bottom, and the sun comes from the left so the patches are thrown to the right across the band; labels and title sit in the right half.",
+  "sound": "beatScore soft at 90 bpm (no drums): a tick every 20 frames as the lead draws (thinned), a tick per panel as it floods (frames 120, 160, 200, 240) and one for the roundel, a hit at 280 when the sun strikes, whooshes ending at 440 and 580 as the day turns, and the sign-off at 660.",
+  "teaches": "Stained glass is the light, not the picture: build the window from lead and flat jewel colour, then animate only the sun, and the same panes change mood all day and throw their colour onto the floor.",
+  "portable": {
+    "fonts": "Instrument Serif for the title, Instrument Serif Italic for the element names, JetBrains Mono for the time-of-day chips",
+    "style": "A leaded stained-glass window of the four elements, built and then lit by one day of sun. A tall pointed-arch window in a dark stone wall: a roundel with a sun at the top, then four panels (air, fire, earth, water) inside a border of small alternating red and blue squares. The lead lines are the drawing: each panel is cut into 8–14 panes that make mountains and a tree, waves and a fish, spirals and a bird, flame tongues. Draw every came as a thick dark stroke with a thin lighter highlight along it, small solder blobs at the joints and two iron bars across the window. Each pane is one jewel colour with a slight streak across it, a few tiny bubbles, and on some, dark painted detail lines. Light is one closed-form sun: from dawn to noon to dusk its height scales every pane from dark to full colour, a soft bright band sweeps across the glass, and at night only a faint cool moon glow lights one panel. The stone floor in front receives coloured patches: the panes drawn again through a transform that stretches as the sun gets lower and shears as it moves, added with a lighter blend at low opacity, softened by drawing small and scaling up, with a slow ripple on their edges; they creep, stretch and redden toward dusk. The lead draws itself on first; then panes flood with colour from a point.",
+    "sound": "a slow soft pad at 90 bpm with no drums, small ticks as the lead draws and as each panel floods, a warm hit when the sun strikes, whooshes as the day turns, and a three-note sign-off.",
+    "sizes": "re-stack it: in the wide frame the window stands left of centre, the floor becomes a band along the bottom with the light thrown to the right, and the labels and title sit in the right half."
+  }
+}

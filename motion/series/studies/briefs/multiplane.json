@@ -1,0 +1,61 @@
+{
+  "id": "multiplane",
+  "no": 44,
+  "title": "Multiplane",
+  "module": "src/canvas-core/studies/multiplane.ts",
+  "pieces": {
+    "landscape": "multiplane",
+    "vertical": "multiplaneVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 100,
+  "frames": 720,
+  "palette": "dusk",
+  "family": "print",
+  "subject": "fun",
+  "style": "A papercut diorama shot like a multiplane camera: seven flat layers of cut paper stand at real depths and a camera trucks in through them at dusk, so parallax is computed, never faked. THE CAMERA (closed-form): layer depths z = sky ∞, far ridge 40, far pines 20, cabin clearing 12, mid pines 9, near trunks 5, ferns 3 (units are arbitrary); the camera's depth zc(F) eases from 0 to 7 across frames 108–612 (a slow-in, slow-out cubic), with a gentle drift in x toward the cabin and a 3 px walking bob on the beat (two steps per beat, a sine). Each layer is drawn about the frame centre at scale s = z / (z − zc) and offset by its x drift times s, so near layers grow fast and slide past the frame edges while far ones barely move; the sky and the moon have infinite depth and never grow (the multiplane tell: the moon stays the same size while the trees rush past). A layer is hidden once z − zc < 0.4. RACK FOCUS: a focal depth zf(F) moves ferns → near trunks → mid pines → cabin on the beats below; each layer's blur is K·|1/(z − zc) − 1/(zf − zc)|, quantised to four levels (sharp, 2, 4 and 8 px); blur never uses ctx.filter: draw the layer into a small offscreen canvas at 1/2, 1/4 or 1/8 scale and draw it back up (a downscale-upscale soften), cached per layer per frame. PAPER: every layer is ONE flat colour silhouette with a slightly deckled edge (seeded jitter of 1–2 px along every cut) and a fine paper-fibre texture (a seeded noise tile generated once per size, multiplied at 6% alpha); atmospheric depth runs from the palette's pale s1 (far ridge) through s2, s3 to s4 and deep (the nearest ferns, nearly black); each layer casts a soft shadow on the layer behind it (the same silhouette in deep at 25% alpha, offset down-right by a few px that grow with the depth gap, softened the same downscale way), which is what makes it read as paper in a box, not a vector drawing. The sky is flat bands of ground and a sky-pink horizon strip, not a smooth gradient, with a paper moon (ink-coloured disc with two faint crater circles). LIGHT: moon shafts are long pale wedges in the sky colour at 8% alpha drawn with the 'screen' composite through the gaps in the pines; fireflies (about 30) live at their own depths between the layers so they parallax too, each on a closed-form Lissajous path, blinking on a per-fly sine (accent core dot with three concentric circles of falling alpha as the glow, no blur). The cabin is a cut-paper shape on the clearing layer with a pitched roof, a chimney and one window; when it lights, the window fills with accent, three glow rings bloom around it and a warm trapezoid of light (accent at 18% alpha) falls across the path; chimney smoke is three paper strips curling on sines. Type is sparse: the title in Instrument Serif and the last line in Instrument Serif Italic, both in ink, centred, no plates.",
+  "learnsFrom": "The multiplane camera (https://en.wikipedia.org/wiki/Multiplane_camera) and PetaPixel's account of how it achieved depth (https://petapixel.com/2025/04/04/how-disneys-multiplane-camera-achieved-the-illusion-of-depth/): painted layers on glass at different distances, the far ones moving slower, a truck-in where the background does not grow, focus shifting between planes; with Lotte Reiniger's earlier layered, backlit planes as the ancestor. Their films, characters, paintings and scenes are not used; the forest, cabin and words are original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 108,
+      "what": "the flats drop in: the sky and paper moon are there; one layer per beat lowers in from above on a spring with a tiny overshoot, its shadow landing with it: far ridge, far pines, the clearing with a dark cabin, mid pines, near trunks, ferns; the title 'The Lamp at Hollow End' fades up in the upper third"
+    },
+    {
+      "from": 108,
+      "to": 252,
+      "what": "the walk begins: the title lifts away; the camera trucks in with its walking bob; the ferns part to both edges and leave frame; focus racks from the ferns to the near trunks; fireflies rise between the layers"
+    },
+    {
+      "from": 252,
+      "to": 396,
+      "what": "through the trees: the near trunks slide past the frame edges; moon shafts fall through the pines; focus racks to the mid pines; the moon and the far ridge hold still while everything near rushes by"
+    },
+    {
+      "from": 396,
+      "to": 540,
+      "what": "the clearing: the mid pines part like curtains; the dark cabin sits at the end of the path; focus racks to the cabin; fireflies drift toward it"
+    },
+    {
+      "from": 540,
+      "to": 612,
+      "what": "the lamp: the cabin window fills with warm light, glow rings bloom, a warm trapezoid spills across the path, chimney smoke curls"
+    },
+    {
+      "from": 612,
+      "to": 720,
+      "what": "arrival: the camera settles and keeps a slow drift; fireflies gather round the window; the last line 'home before dark.' fades up in the upper third"
+    }
+  ],
+  "sizes": "Vertical re-stacks: every layer is authored taller than wide (trees reach the top, the ferns rise higher at the bottom), the cabin sits in the lower-middle third, and the camera adds a slight tilt up as it trucks in so the moon stays in the top third; the title and the last line sit in the top safe area, centred, on two lines. Landscape (primary): the cabin sits just right of centre, the moon upper left, the title and last line centred in the upper third.",
+  "sound": "beatScore soft at 100 bpm (no drums): a tick as each flat lands (frames 18, 36, 54, 72, 90 and 108), a whoosh ending at 108 into the walk, soft ticks for firefly blinks thinned to at most one per beat, a whoosh ending at 396 as the mid pines part, a hit at 540 when the window lights, and the sign-off at 648.",
+  "teaches": "Depth is a speed, not a size: put flat layers at real distances, move the camera through them, and let the far things refuse to grow; paper shadows and a rack focus do the rest.",
+  "portable": {
+    "fonts": "Instrument Serif for the title, Instrument Serif Italic for the last line",
+    "style": "A papercut diorama shot like a multiplane camera at dusk. Seven flat cut-paper layers stand at real depths (sky at infinity, a far ridge, far pines, a clearing with a small cabin, mid pines, near trunks, ferns) and a camera trucks in through them: each layer is scaled about the frame centre by z / (z − camera depth), so near layers grow fast and slide off the edges while far ones barely move, and the sky and moon never grow. A rack focus moves from the ferns to the trunks to the pines to the cabin; blur each layer by how far it sits from the focal plane, done by drawing it small and scaling it back up, in a few fixed steps. Every layer is one flat colour with a slightly deckled edge and a faint paper-fibre texture, lighter and cooler far away, nearly black up close, and each casts a soft shadow on the layer behind it, which is what makes it read as paper in a box. The sky is flat bands, not a gradient, with a paper moon. Pale moon shafts fall through the pines; fireflies live between the layers so they parallax too, blinking on their own rhythms, their glow drawn as rings of falling opacity. The cabin window lights with warm glow rings and a trapezoid of light across the path; chimney smoke curls. Sparse serif type: a title at the start, one italic line at the end.",
+    "sound": "a soft pad at 100 bpm with no drums, a tick as each paper layer lands, a whoosh into the walk and another as the pines part, soft ticks for firefly blinks, a warm hit when the window lights, and a three-note sign-off.",
+    "sizes": "re-stack it: taller layers with the cabin in the lower middle, a slight tilt up during the walk so the moon stays in the top third, and the title and last line on two lines in the top safe area."
+  }
+}

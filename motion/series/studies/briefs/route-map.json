@@ -1,0 +1,100 @@
+{
+  "id": "route-map",
+  "no": 39,
+  "title": "Route Map",
+  "module": "src/canvas-core/studies/routeMap.ts",
+  "pieces": {
+    "landscape": "routeMap",
+    "vertical": "routeMapVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 1080,
+  "palette": "atlas",
+  "family": "explain",
+  "subject": "learn",
+  "style": "An animated travel map in the adventure-film manner: a dotted route that draws itself across a stylised map while a camera follows the traveller, pins drop, and a distance counter ticks. THE MAP is the Atlantic from about 80° N to 75° S and 85° W to 45° E in an equirectangular projection (x = longitude, y = latitude, one function in the module), on a paper-coloured sea (ground) with land in surface colour and a 2 px ink coastline. Coastlines are HAND-AUTHORED low-poly outlines (25–60 lon/lat points each for Greenland, Iceland, North America, South America, Europe, Africa and Antarctica, rounded with quadratic curves), stylised, never traced from a copyrighted map. A 1 px line-colour graticule every 15°, the equator and the two polar circles dashed and labelled in JetBrains Mono muted 24 px ('Equator', 'Arctic Circle', 'Antarctic Circle'), each label on a small ground-colour pill so it stays readable where it crosses land (muted on land is only 3.8:1); sea names in Instrument Serif Italic muted ('North Atlantic', 'Southern Ocean', 'Weddell Sea'); a small compass rose in ink; a static paper grain of seeded speckles (alpha 0.05) drawn once. THE ROUTE: an ordered list of lon/lat waypoints resampled by arc length; the part already flown is a dotted accent line (5 px round dots every 14 px at 1080), the last 60 px a solid accent stroke; the head is the TRAVELLER, a small tern silhouette drawn in code (narrow swept wings, a deeply forked tail, a pointed bill; 46 px wingspan) heading along the route's tangent with wings flapping by a closed-form sine. At the fork both branches draw at once (the African and Brazilian routes). PINS drop from above on a spring with a short squash on landing and a soft ink ellipse shadow: an accent teardrop with a surface dot, and a label card (surface fill, 1.5 px ink border, radius 10 px) with Inter 600 34 px text and a muted Inter 400 26 px line. THE CAMERA is a pure function of the frame: its centre follows the traveller's position a few frames behind (evaluate the route at t − lag, so it trails smoothly without simulation) and its zoom eases between 1.0 (whole map) and about 2.2 (following); every move uses an ease-in-out. THE COUNTER sits top-right in a surface card: 'km' in muted mono and the number in JetBrains Mono 52 px, ticking with the route's arc length and scaled so it lands on exactly 70,900 when the loop closes; under it a date chip ('Aug', 'Sep', 'Nov', 'Apr', 'May') changing as the traveller passes each stage. Headlines are Inter 600 56 px ink, top-left inside the safe area on a surface panel at 0.9 alpha so they read over the map. Everything flat: no satellite imagery, no blur, no glow.",
+  "learnsFrom": "The animated route-map sequence from classic adventure cinema and its motion-design tutorials: PremiumBeat's map-path breakdown (https://www.premiumbeat.com/blog/create-animated-map-after-effects/) and CreativePro's 'Making an Animated Route Map' (https://creativepro.com/making-an-animated-route-map/): a line that grows along a masked path, pins that drop at stops, a camera that follows. The route and every figure come from Egevang et al., 'Tracking of Arctic terns Sterna paradisaea reveals longest animal migration', PNAS 2010 (https://www.pnas.org/doi/10.1073/pnas.0909493107). No film footage, map artwork, font or music from any of them is used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "hook: the whole map settles (coastlines draw on, the graticule fades up); the tern flies in from the edge to northeast Greenland and a pin drops: 'Greenland' / 'nests here in the Arctic summer'; headline 'A bird under 125 g' then 'flies pole to pole and back.'"
+    },
+    {
+      "from": 120,
+      "to": 240,
+      "what": "the stopover: date chip 'Aug'; the camera zooms to follow as the route draws southwest over the ocean; a pin drops in the open North Atlantic: 'Stopover' / 'about 25 days of feeding at sea'; the counter starts ticking"
+    },
+    {
+      "from": 240,
+      "to": 420,
+      "what": "the fork: date chip 'Sep'; the route runs southeast toward West Africa and, south of the Cape Verde islands, splits into two dotted branches that draw at the same time, one hugging Africa, one crossing to Brazil; headline 'Then the tracked birds split:' with the line '7 followed Africa, 4 crossed to Brazil.'"
+    },
+    {
+      "from": 420,
+      "to": 600,
+      "what": "the far south: the branches rejoin in the Southern Ocean; date chip 'Nov'; a pin drops near the Weddell Sea: 'Winter by Antarctica' / 'about 5 months'; headline 'It swaps one summer for another.' with the line 'Arctic in June, Antarctic from December to March.'"
+    },
+    {
+      "from": 600,
+      "to": 810,
+      "what": "the way home: date chip 'Apr'; the camera follows a long S-shaped route north up the middle of the Atlantic, crossing from east to west near the equator; thin muted arrows sweep across the sea for the prevailing winds; headline 'Home in an S-curve, riding the winds,' then 'in about 40 days.'; date chip 'May'"
+    },
+    {
+      "from": 810,
+      "to": 960,
+      "what": "the total: the tern lands back in Greenland; the camera pulls out to the whole map with the full route drawn; the counter lands on '70,900' and a pill pops: 'on average, in one year'; the line 'Some flew more than 80,000 km.'"
+    },
+    {
+      "from": 960,
+      "to": 1080,
+      "what": "end card: the route pulses once along its length; headline 'Over a 30-year life:' / 'maybe 2.4 million km.' then the line 'About three trips to the Moon and back.'; mono footer 'routes simplified · 11 tracked birds, 2007–08 · Egevang et al., PNAS 2010'; slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical is the natural shape for a pole-to-pole route: the map is cropped to about 70° W to 20° E so the Atlantic fills the tall frame, the whole route fits at zoom 1.0, and the following camera zooms less (about 1.6) and moves mostly vertically; headlines sit in a panel across the top safe area and the counter in a card across the bottom safe area; pin labels flip to the side with more room. Landscape keeps the wider map, the headline top-left and the counter top-right.",
+  "sound": "beatScore drive at 120 bpm with the drums entering as the tern leaves Greenland (drop at frame 120); a soft tick for each pin drop and each date-chip change; ticks from the counter every 5,000 km (thinned); a whoosh ending on each big camera move (frames 120, 420, 600 and 810); a hit at the fork (frame 330) and on the landing total (frame 840); the three-note sign-off at frame 960.",
+  "teaches": "A map route turns numbers into a journey: a line that draws at the traveller's pace, a camera that follows and a counter that ticks with the line make a distance felt before it is read.",
+  "facts": [
+    {
+      "claim": "The Arctic tern weighs under 125 g.",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "Eleven Arctic terns from Greenland (10) and Iceland (1) were tracked with 1.4 g geolocators; the loggers were fitted in 2007 and retrieved in 2008.",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "After breeding, the tracked birds stopped in the open North Atlantic for about 25 days on average (24.6 days).",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "South of the Cape Verde Islands the routes split: 7 birds followed the African coast and 4 crossed to follow the coast of Brazil.",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "The birds spent the austral summer (December–March) in the Atlantic sector of the Southern Ocean, a region that includes the Weddell Sea, for about 5 months (149 days on average).",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "All returned on a broadly similar S-shaped route, crossing the Atlantic from east to west near the equator and using prevailing winds; the trip north took about 40 days on average.",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "The tracked birds flew about 70,900 km in a year on average; the longest total was 81,600 km (more than 80,000 km).",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    },
+    {
+      "claim": "Arctic terns can live more than 30 years, so the distance flown in a lifetime may exceed 2.4 million km, about three return journeys to the Moon.",
+      "source": "https://www.pnas.org/doi/10.1073/pnas.0909493107"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (400 and 600) for headlines and pin labels, Instrument Serif Italic for sea names, JetBrains Mono for the counter, date chips, graticule labels and the footer",
+    "style": "An animated travel map in the adventure-film manner. A stylised map of the Atlantic from the Arctic to Antarctica in a simple equirectangular projection: a paper-coloured sea, flat land, an ink coastline drawn from your own low-poly outlines, a faint graticule every 15° with the equator and polar circles dashed, sea names in an italic serif, a small compass rose, a light paper grain. A dotted route in a strong red draws itself along a list of waypoints at the traveller's pace; its head is a small bird silhouette (narrow swept wings, forked tail) that flaps and follows the route's direction. Pins drop on a spring with a label card. The camera follows the traveller a few frames behind and zooms between the whole map and a close follow, always eased. A distance counter in a card ticks with the line and lands exactly on the total, with a date chip under it. At one point the route forks and both branches draw at once. Headlines sit on a light panel so they read over the map. Everything is flat: no satellite imagery, no blur.",
+    "sound": "a driving loop at 120 bpm whose drums enter as the journey starts, soft ticks for pins, date changes and every few thousand kilometres on the counter, whooshes on big camera moves, hits at the fork and on the total, and a three-note sign-off.",
+    "sizes": "vertical suits a pole-to-pole route: crop the map to the Atlantic so the whole route fits, zoom less when following, put the headline across the top and the counter across the bottom."
+  }
+}

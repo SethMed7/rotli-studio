@@ -1,0 +1,66 @@
+{
+  "id": "broadcast-package",
+  "no": 46,
+  "title": "Broadcast Package",
+  "module": "src/canvas-core/studies/broadcastPackage.ts",
+  "pieces": {
+    "landscape": "broadcastPackage",
+    "vertical": "broadcastPackageVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 720,
+  "palette": "broadcast",
+  "family": "product",
+  "subject": "fun",
+  "style": "A TV sports graphics package for an invented office ping-pong final, played dead straight. ONE HOUSE DIRECTION: every element enters from the left and builds in layers (base plate, then colour, then text, then detail), each layer 3–4 frames after the one below, on fast ease-out curves (an expo out, no bounce) and leaves by a quick reverse wipe to the left; nothing flies in from another side. ONE HOUSE ANGLE: every plate, bar and wipe is a parallelogram skewed 12°. Type: names and labels in Inter 800 uppercase with slight tracking, secondary lines in Inter 600 uppercase, every number (scores, clock, stats) in JetBrains Mono so digits never jitter. Colours: the navy ground, deep for plates, white ink, player one (LUND) in the accent red-orange, player two (MARSH) in the cyan accent2, gold for 'MATCH POINT' and the win, the table in the table blue with white lines. THE TABLE (the live picture): a flat top-down ping-pong table with a white centre line and net, two round paddles (one per player colour) at the ends; the ball is a white dot on a closed-form rally (x as a triangle wave between the ends, height a parabola per crossing, drawn as a shadow ellipse whose offset and softness follow the height), the paddles slide to meet each return; a slow push-in. STINGER: five skewed bars (accent, accent2, gold, white, deep) sweep across the frame left to right on staggered expo curves, fully covering it for 2 frames at the midpoint, when the picture underneath cuts, then clear off to the right revealing the new picture, with the event mark (a ring around a paddle and 'T2') snapping in the middle for a beat. SCORE BUG (top-left, persistent after it builds): a deep base plate; two rows, each a colour chip, a surname and a score box; a strip below with the game and a running match clock ('G5' and a mm:ss that counts real frames); when a score changes the old digit slides up out of its box and the new one slides in from below with a one-beat flash of the chip colour. LOWER THIRD: an accent bar wipes in, a white name plate slides out from behind it through a mask, the surname lands, then the first name, then a deep strip with the second line, then a small stat tag at the right end; it holds four seconds unchanged (a lower third must not change mid-hold). STATS BOARD: a full-frame deep panel with the two names as headers and rows of diverging bars growing out from a centre spine on staggered springs while the mono numbers count up. TICKER: a bottom band with a fixed accent label block and text crawling at a constant speed (x = x0 − v·F, wrapped), items separated by small drawn diamonds. Nothing is glossy: flat fills only, no gradients, no glows, no shadows except the ball's.",
+  "learnsFrom": "Sports broadcast graphics as a genre: the persistent score bug (https://en.wikipedia.org/wiki/Score_bug), the lower third (https://en.wikipedia.org/wiki/Lower_third) and LIGR's rules for it (https://www.ligrsystems.com/blog/lower-thirds-explained: one direction for the whole package, a hold long enough to read twice, content that never changes mid-hold), and the news ticker (https://en.wikipedia.org/wiki/News_ticker). No network's package, logo, typeface, colours or layout is used; the event, players and headlines are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 60,
+      "what": "the open: the stinger's five bars sweep across; the event mark 'T2' snaps in; the title plate builds from the left: 'TABLE TWO OPEN' over 'THE FINAL'"
+    },
+    {
+      "from": 60,
+      "to": 180,
+      "what": "live: the stinger clears to the table; a rally runs; the score bug builds in layers top-left: 'LUND' 9 over 'MARSH' 9, the strip 'G5' with the clock counting"
+    },
+    {
+      "from": 180,
+      "to": 300,
+      "what": "the lower third builds and holds: 'LUND' then 'PIA', the strip 'ACCOUNTS · 3RD YEAR ON TABLE TWO', the tag 'SERVE WIN 71%'; the ticker band slides in at the bottom and starts to crawl: 'COFFEE MACHINE ON 3 IS FIXED', 'FOOSBALL SEMIS FRIDAY AT 4', 'LOST: ONE ORANGE BALL', 'TABLE ONE CLOSED FOR RE-TAPING'"
+    },
+    {
+      "from": 300,
+      "to": 420,
+      "what": "match point: the lower third wipes out; a long rally; LUND's score rolls 9 → 10 with a flash; a gold tab 'MATCH POINT' slides out beneath the bug"
+    },
+    {
+      "from": 420,
+      "to": 540,
+      "what": "the stats board fills the frame (the bug and ticker stay): headers 'LUND' and 'MARSH', rows with diverging bars and counting numbers: 'ACES 4 · 2', 'LONGEST RALLY 23 · 23', 'EDGE BALLS 1 · 5', 'SNACKS ON THE BENCH 3 · 0'"
+    },
+    {
+      "from": 540,
+      "to": 630,
+      "what": "the winner: back to the table for one fast point; the score rolls 10 → 11; the stinger sweeps; a gold plate builds: 'LUND WINS' over '11–9 · GAME 5'"
+    },
+    {
+      "from": 630,
+      "to": 720,
+      "what": "the bumper: the event mark centred with 'TABLE TWO OPEN' and 'CHAMPION · PIA LUND', the ticker still crawling beneath; the plate holds with a slow push-in until the frame's end"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the table is rotated so the players are at the top and bottom of the frame; the score bug sits top-left just below the 220 px top safe margin; the lower third sits above the ticker, both above the 320 px bottom safe margin; the stats rows keep their diverging bars but the names become stacked headers; the title and win plates break onto two lines; the stinger bars are taller but still sweep left to right (the house direction does not change with the shape).",
+  "sound": "beatScore drive at 120 bpm with the drums entering after the open (drop at 60): whooshes ending at 30 and 570 for the stinger sweeps, a hit at 60 when the live picture lands, a tick for each layer as the bug and the lower third build, soft ticks for the ball's bounces (on the rally's closed-form bounce frames, thinned so they never buzz), hits at 330 for match point and 570 for the winning point, and the sign-off at 660.",
+  "teaches": "A broadcast package is a grammar, not a set of pictures: one entry direction, one angle, layers that build in the same order every time, and numbers that never jitter make every graphic read as part of one show.",
+  "portable": {
+    "fonts": "Inter (800 and 600) for names and labels, JetBrains Mono for every number",
+    "style": "A TV sports graphics package for an invented office ping-pong final, played dead straight. One house direction: every element enters from the left and builds in layers (base plate, colour, text, detail, each a few frames after the last) on fast ease-out curves, and leaves by a quick reverse wipe; one house angle: every plate, bar and wipe is a parallelogram skewed 12°. Names and labels are bold uppercase sans with slight tracking; every number is monospace so digits never jitter. Two player colours (a red-orange and a cyan), gold for match point and the win, white type on a dark navy. The live picture is a flat top-down ping-pong table with a closed-form rally: a white ball whose height shows only through its shadow's offset, paddles sliding to meet it. A stinger of five skewed bars sweeps across, covers the frame for two frames while the picture cuts, and clears. A score bug builds top-left (colour chip, surname, score box per player, a strip with the game and a running clock); score changes roll the old digit up and the new one in. A lower third builds from an accent bar, a masked name plate, a second line and a small stat tag, and holds unchanged for four seconds. A full-frame stats board grows diverging bars from a centre spine while numbers count up. A ticker crawls at a constant speed along the bottom. Flat fills only: no gradients, glows or shadows except the ball's.",
+    "sound": "a driving loop at 120 bpm whose drums enter after the open, whooshes for the stinger sweeps, a hit when the live picture lands, a tick for each layer that builds, soft ticks for the ball's bounces, hits for match point and the winning point, and a three-note sign-off.",
+    "sizes": "re-stack it: rotate the table so the players are top and bottom, keep the bug top-left and the lower third and ticker above the bottom safe margin, stack the stat headers, and keep the house direction left to right."
+  }
+}

@@ -33,4 +33,4 @@ MOTION RULES
 BEFORE YOU FINISH
 Name 8 moments across the piece (as timestamps) and describe exactly what is on screen at each. Fix anything that overlaps, sits still for more than half a second, or is hard to read. Then give me the complete file.
 
-The product in it is fictional ("Oriel"). Build it exactly as written first; afterwards, swap in your own name, colours and words.
+The topic is real: keep every fact exactly as written above (it is sourced), hedged the way it is hedged. Build it exactly as written first; afterwards, swap in your own topic, colours and words, and source your own facts.

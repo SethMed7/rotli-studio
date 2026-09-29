@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 720,
  "palette": "terminal",
+ "family": "explain",
+ "subject": "oriel",
  "style": "A system map: agents are nodes (circles with a small glyph and a mono label) on a dark ground; dotted edges draw between them; messages travel along edges as small glowing packets; thin orbit ellipses spin around the busiest node; a log panel prints each handoff in mono. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a node diagram with dotted connections and orbit ellipses around a hub, handoffs between agents, a dark square with a starburst of connections.",
  "story": [

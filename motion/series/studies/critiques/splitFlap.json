@@ -1,0 +1,223 @@
+{
+ "piece": "splitFlap",
+ "sizes": [
+  "splitFlap",
+  "splitFlapVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 40
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 48
+    }
+   },
+   "loudness": {
+    "landscape": -16.1,
+    "vertical": -16.1
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 6,
+    "motion": 7,
+    "variety": 5,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:02.0",
+     "what": "the hook is a dark, empty board with one small amber word rattling in its top row and garbage in the clock; nothing lands, nothing says 'this is a board and it is about to change'",
+     "fix": "a power-on sweep: every cell flips one colour flap to amber on the first frames, then a diagonal wave flips them back while DEPARTURES spells itself in amber"
+    },
+    {
+     "at": "whole film",
+     "what": "0 abrupt changes in 24 s: every act is the same uniform rattle, 1.5-2 s of drum travel per change (DELAYED to BOOKED is 38 flaps as aligned); the two hits (00:08.5, 00:19.0) have no visual punch because colour arrives cell by cell",
+     "fix": "faster flaps (2 frames), status words aligned for the shortest drum trips, rows and the status column landing every cell on the same frame on the hits, camera cuts to a tight status framing for the trouble and the booking, a kick on each hit"
+    },
+    {
+     "at": "00:21.0-00:23.6",
+     "what": "the end is three seconds of the whole board clearing through random glyphs; the sign-off rows land at 23.3 and 23.6 s, so the clean end card holds for under half a second (the 23 s phone frame is still rattling in both sizes)",
+     "fix": "every cell of the board lands on the sign-off cue together (a clean snap), about 2.5 s before the end, then a real hold with the printed lines"
+    },
+    {
+     "at": "00:09.3-00:20.0",
+     "what": "the printed ticker is 34 px: about 6 px wide text on a phone in landscape",
+     "fix": "46 px, shown only in wide shots"
+    },
+    {
+     "at": "00:08.0 (landscape)",
+     "what": "row 6's ON TIME is readable for about 18 frames before it rattles to DELAYED",
+     "fix": "board the day faster so row 6 settles well before its DELAYED starts; verify the gap from the runs"
+    },
+    {
+     "at": "00:08.5-00:20.0",
+     "what": "the status spans colour their blank padding cells, which read as a dash at phone size: '-DELAYED', '-BOOKED-'",
+     "fix": "colour only the letter flaps"
+    },
+    {
+     "at": "00:02.0, 00:16.0, 00:20.0",
+     "what": "the 3% push-in snaps back to 1.00 on each act cut: a small pop, not a cut",
+     "fix": "make framing changes deliberate cuts (wide to tight), or none"
+    }
+   ],
+   "agentSaw": [
+    "variety: 0 abrupt changes per 10 s and one 24 s calm; the long, uniform drum travel",
+    "the first 2 s are a mostly blank board with amber DEPARTURES rattling",
+    "row 6's ON TIME shows only about 18 frames in landscape",
+    "the printed ticker (34 px) is small on a phone",
+    "DEPARTURES never reaches blank",
+    "the push-in resets on the cuts at 120, 960, 1200"
+   ],
+   "agentMissed": [
+    "the end act: about 3 s of full-board glyph noise and under half a second of clean end card",
+    "the hits land with no visual punch because each cell takes its colour at its own frame",
+    "the cause of the long travel: the status words are aligned so DELAYED to BOOKED needs 38 flaps on one cell",
+    "coloured blank padding flaps read as dashes ('-DELAYED', '-BOOKED-') at phone size"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 3.3,
+     "longestCalm": 6,
+     "nearStill": 34
+    },
+    "vertical": {
+     "changesPer10s": 2.9,
+     "longestCalm": 7,
+     "nearStill": 40
+    }
+   },
+   "loudness": {
+    "landscape": -16.6,
+    "vertical": -16.6
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "hook: every flap on the board flips to amber at once on frame 0 (one colour flap each), a diagonal wave flips it back from 0.4 s while DEPARTURES spells itself in amber and the clock rattles in; DEPARTURES no longer has to clear, row 0 turns straight into the first meeting",
+    "drum travel: a flap now takes 2 frames (30 flaps a second, a full trip 1.3 s), with the phase sampled mid-frame so both frames of a flap show the flip in motion; forward-only drum and two-half flips unchanged",
+    "punches: each DELAYED row snaps red on its beat (00:09.0-00:10.5) and the whole status column snaps green on one hit (00:17.5): every cell starts at its own frame and lands within 6 frames of the hit, with a small fixed jitter so cells bound for the same letter never show the same flap in unison",
+    "camera: deliberate cuts on the beat to a close-up on the times and meetings (00:05-00:07), on the status column (00:08-00:11, 00:16-00:18), and wide again; a decaying kick on every hit; a wide shot runs across act boundaries so the push never snaps back (the reset is hidden inside the sign-off snap)",
+    "end: the whole board snaps clean on the sign-off (00:21.5) to ORIEL in amber; the promise row rattles into EVERYONE BOOKED letter by letter, the web address rattles in on the message row, and the printed line lands at 23.3 s; about 2.5 s of clean end card instead of under 0.5 s",
+    "ticker at 46 px (weight 500), shown only in wide shots; the second ticker became the message row flipping to NEW TIMES FOUND, which also fills the calm before the booking",
+    "row 6's ON TIME now reads for about 1.5 s before its DELAYED rattle starts (the day boards every 54 frames)",
+    "status colour only on letter flaps: no more '-DELAYED' / '-BOOKED-' dash reads"
+   ],
+   "problems": [
+    {
+     "at": "00:08.0-00:11.0, 00:16.0-00:18.0 (landscape)",
+     "what": "the status close-up crops the meeting names mid-word at its left edge ('UP', 'N CRIT', 'ITH ANA'); the crop falls between whole cells, so it reads as a camera crop, not a bug",
+     "fix": "none needed"
+    },
+    {
+     "at": "00:00.0-00:07.0 (vertical)",
+     "what": "critique.mjs finds no abrupt change between the power-on flash and the trouble cut: the vertical's names close-up (z 1.35) is too close to the wide framing to register, though rows board every 0.9 s",
+     "fix": "none needed; the pace is carried by the rows"
+    },
+    {
+     "at": "00:15.9 (landscape)",
+     "what": "at the end of the 5-second wide shot the 5% push carries the right-hand lamps about 10 px past the safe margin",
+     "fix": "a slower push if it matters; the still-frames gate needs some push"
+    },
+    {
+     "at": "00:23.0-00:23.8",
+     "what": "the web address is a flap row now (the brief asked for it printed in mono); its dot is 38 flaps round the drum and lands last, so the full address reads for about 0.5 s (vertical) to 0.8 s (landscape)",
+     "fix": "accepted: the rattle keeps the end alive for the still-frames gate and the flap address is larger than the 26 px print was"
+    }
+   ],
+   "verdict": "fix",
+   "note": "re-read before shipping: two of the round-2 8s leaned on 'accepted' problems (the web address readable for under a second; the wide push carrying the lamps past the safe margin by about 20 px, not 10), so round 2 is a fix, not a ship"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 4.2,
+     "longestCalm": 6,
+     "nearStill": 32
+    },
+    "vertical": {
+     "changesPer10s": 2.9,
+     "longestCalm": 7,
+     "nearStill": 39
+    }
+   },
+   "loudness": {
+    "landscape": -16.5,
+    "vertical": -16.5
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "safe area: the wide push pivots about the point that brings the board's sides (lamps included), the clock and the printed lines to the safe margins together (about 4% of room in both sizes), and a long wide shot pushes more slowly (3.8% at most), so nothing leaves the safe area",
+    "landscape cuts in on the TIME column while the new times land (00:13-00:15); the four new-time snaps and their kicks now read large, and critique.mjs counts 4.2 changes per 10 s (was 3.3)",
+    "the names close-up moved to 00:04 (beat 8), so the first wide shot is 4 s and its push stays small",
+    "the web address is whole by 00:23.0 in both sizes (the dot's cell sets off at 21.7 s and lands at 22.9 s; the last letter lands at 23.0 s): about 1 s of the full address, with the ORIEL / promise rows and the printed line on screen from 21.5 s and 23.0 s",
+    "the power-on wave starts at 0.5 s and the first row sets off at 1.8 s, so the amber board and DEPARTURES each hold under half a second of stillness",
+    "measured from the runs: row 6's ON TIME reads for about 1.5 s in landscape (lands 7.9 s, DELAYED rattle starts 9.3 s) and 1.8 s in vertical"
+   ],
+   "problems": [
+    {
+     "at": "00:08.0-00:11.0, 00:16.0-00:18.0 (landscape)",
+     "what": "the status close-up crops meeting names mid-word at its left edge ('UP', 'N CRIT'); the edge falls in the gap between two cells, so it reads as a camera crop",
+     "fix": "none needed"
+    },
+    {
+     "at": "00:00.0-00:07.0 (vertical)",
+     "what": "critique.mjs finds no abrupt change between the power-on flash and the trouble cut (the vertical names close-up is 1.35x, too close to the wide to register as a cut), though a row boards every 0.9 s and the close-up is visible",
+     "fix": "none needed; the pace is carried by the rows"
+    },
+    {
+     "at": "00:22.0-00:24.0",
+     "what": "the web address is a flap row, not the brief's mono print, because a printed line gave the end nothing to move and the still-frames gate failed",
+     "fix": "accepted as a deliberate change to the brief; the flap address is about twice the size of the old 26 px print"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

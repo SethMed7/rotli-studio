@@ -8,6 +8,8 @@
 // (the owner's requests, in order) and workflows/runs/runs.json (the index the studio site reads).
 // Re-running is safe: it rewrites these files from the transcripts and touches nothing else. Pass every
 // transcript that built the current runs (runs.json lists them as sources); leaving one out is refused.
+// A session that went on to unrelated work is cut off with <session.jsonl>@<ISO time> (only lines stamped at or
+// before it are read); the cut is recorded in sources, so a later run must pass the same cut or is refused.
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { basename, dirname, join, resolve } from "node:path";
@@ -15,7 +17,15 @@ import { fileURLToPath } from "node:url";
 
 const ROOM = resolve(dirname(fileURLToPath(import.meta.url)), ".."),
   OUT = join(ROOM, "workflows/runs");
-const files = process.argv.slice(2).filter((a) => a !== "--replace");
+const args = process.argv.slice(2).filter((a) => a !== "--replace");
+// "<file>@<iso>" -> { file, until }; the source name keeps the cut ("<basename>@<iso>")
+const inputs = args.map((a) => {
+  const at = a.lastIndexOf("@");
+  const until = at > 0 && /^\d{4}-\d\d-\d\dT/.test(a.slice(at + 1)) ? a.slice(at + 1) : null;
+  const file = until ? a.slice(0, at) : a;
+  return { file, until, source: until ? `${basename(file)}@${until}` : basename(file) };
+});
+const files = inputs.map((i) => i.file);
 if (!files.length) {
   console.error("usage: node tools/extract-runs.mjs <session.jsonl> [...] [--replace]");
   process.exit(1);
@@ -24,7 +34,7 @@ if (!files.length) {
 const before = existsSync(join(OUT, "runs.json"))
   ? (JSON.parse(readFileSync(join(OUT, "runs.json"), "utf8")).sources ?? [])
   : [];
-const dropped = before.filter((s) => !files.some((f) => basename(f) === s));
+const dropped = before.filter((s) => !inputs.some((i) => i.source === s));
 if (dropped.length && !process.argv.includes("--replace")) {
   console.error(
     `refused: runs.json was built from ${dropped.join(", ")} too; pass every transcript again (or --replace to drop them knowingly)`,
@@ -88,7 +98,7 @@ const agents = new Map(); // tool_use id -> run
 const byAgentId = new Map();
 const reviews = [],
   requests = [];
-for (const file of files) {
+for (const { file, until } of inputs) {
   for (const line of readFileSync(file, "utf8").split("\n")) {
     let o;
     try {
@@ -96,6 +106,7 @@ for (const file of files) {
     } catch {
       continue;
     }
+    if (until && o.timestamp && o.timestamp > until) continue;
     const m = o.message ?? {},
       when = (o.timestamp ?? "").slice(0, 16).replace("T", " ");
     if (m.role === "assistant" && Array.isArray(m.content))
@@ -181,7 +192,8 @@ for (const file of files) {
 }
 
 mkdirSync(OUT, { recursive: true });
-const runs = [...agents.values()].filter((r) => r.piece);
+// a launch that never ran (refused, e.g. at the concurrent-agent limit) has no tokens and no report: not a run
+const runs = [...agents.values()].filter((r) => r.piece && (r.tokens > 0 || r.reports?.length));
 for (const r of runs) {
   const rep = r.reports ?? [];
   const md = [
@@ -253,7 +265,7 @@ writeFileSync(
 );
 const index = {
   note: "Agent runs recovered from Claude Code transcripts. Regenerate with tools/extract-runs.mjs.",
-  sources: files.map((f) => basename(f)),
+  sources: inputs.map((i) => i.source),
   runs: runs.map((r) => ({
     piece: r.piece,
     description: r.description,

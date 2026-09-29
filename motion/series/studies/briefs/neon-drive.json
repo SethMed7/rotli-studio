@@ -1,0 +1,61 @@
+{
+  "id": "neon-drive",
+  "no": 31,
+  "title": "Neon Drive",
+  "module": "src/canvas-core/studies/neonDrive.ts",
+  "pieces": {
+    "landscape": "neonDrive",
+    "square": "neonDriveSquare"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 100,
+  "frames": 1440,
+  "palette": "neon",
+  "family": "screen",
+  "subject": "fun",
+  "style": "The opening card of an invented night-drive mixtape, 'Lumen Lane', in the synthwave (outrun) manner. The world: a sky that runs from ground (deep violet-black) at the top to s3 (violet) and then accent (hot pink) at the horizon, with a few seeded stars that twinkle; a STRIPED SUN, a disc filled with a vertical gradient from s1 (yellow) at the top to s2 (orange) and accent (pink) at the bottom, cut by horizontal gaps that get taller toward the bottom and drift slowly downward (the gaps are ground-coloured rectangles clipped to the disc, their y a closed-form function of the frame); low wireframe MOUNTAINS in front of the sun (flat surface-coloured polygons with accent2 edge lines); and a PERSPECTIVE GRID FLOOR below the horizon: horizontal lines at depths z_k = k + phase with screen y = horizon + focal / z (phase = frame × speed mod 1, so the grid scrolls forever and seamlessly), and vertical lines converging to the vanishing point, all in accent (pink) on a floor that fades from surface to ground. NEON is always drawn as layered strokes, never a blur filter: a wide stroke (14 px) at 12% alpha, a middle stroke (7 px) at 35%, and a thin core (2.5 px) in ink or a near-white tint of the tube colour at full alpha, all with round caps and joins, composited with 'lighter'. The neon TUBE LETTERING is Inter 800 drawn with strokeText only (no fill) through those three layers, in accent2 (cyan), with tiny dark gaps where a real tube would bend back (two short ground-coloured breaks per word); it ignites letter by letter with an IRREGULAR flicker: each letter's on/off pattern comes from a seeded hash of floor(F / 2), with uneven gaps (for example on, off, off, on, off, on-for-good), never metronomic, and after ignition one letter keeps a rare dropout. The CHROME word is Inter 800 filled with a hard-banded vertical gradient built from the palette: accent2 mixed 60% toward ink (pale cyan) at the top, ink just above the midline, a deep band exactly at the midline (the horizon reflection), then s2 (orange) to s1 (yellow) at the bottom, with a 2 px ink outline and a thin pink outer stroke; a white four-point star glint slides across it once. PALMS are silhouettes in deep: a segmented curved trunk and 6–8 drooping fronds, each frond a tapered polygon with notches; they pass on both sides during the drive with true parallax (x = vanishing x ± offset / z). Small type is JetBrains Mono in muted or ink. Everything else stays still or glides; the only fast things are the grid, the palms and the flicker. A thin scanline overlay (every 3rd row, 6% black) sits over everything.",
+  "learnsFrom": "The synthwave / outrun aesthetic (https://en.wikipedia.org/wiki/Synthwave) and its namesake, Sega's 1986 driving game Out Run (https://en.wikipedia.org/wiki/Out_Run): a perspective grid rushing to a striped sunset, magenta and cyan neon, chrome lettering, palm silhouettes and scanlines. Their artwork, logos, music, colours and copy are not used; the tape, its title and its track names are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 144,
+      "what": "ignition: black; a single cyan neon line draws out from the centre along the horizon with a stutter; stars fade in; the sky's gradient rises from below the horizon"
+    },
+    {
+      "from": 144,
+      "to": 432,
+      "what": "the world rolls in: the striped sun rises from behind the horizon and its gaps start drifting down; the grid floor fades in and starts rushing toward the camera; the wireframe mountains slide up in front of the sun; a tiny mono line top-left: 'SIDE A · 00:00'"
+    },
+    {
+      "from": 432,
+      "to": 720,
+      "what": "the title: 'LUMEN' ignites in cyan neon tube letters, one letter every half beat with an irregular flicker, then holds with a hum; on the downbeat at 576 'LANE' slams in underneath in chrome with a short scale-down from 1.15 and the star glint sweeps across it; a small mono line under both: 'a night-drive mixtape'"
+    },
+    {
+      "from": 720,
+      "to": 1008,
+      "what": "the drive: the camera drops lower and the grid speeds up; palm silhouettes pass on both sides in parallax; the title shrinks to the upper left; a tracklist flickers on at the right, one line per two beats, in pink neon mono: 'A1  Tail Lights', 'A2  Overpass', 'A3  Coastline, 3 AM', 'A4  Last Exit'"
+    },
+    {
+      "from": 1008,
+      "to": 1296,
+      "what": "the lockup: the tracklist switches off line by line; the title returns to the centre; a neon cassette draws itself below it (a rounded rectangle, a label window, two reels whose spokes turn), with an outlined 'SIDE A' pill beside it"
+    },
+    {
+      "from": 1296,
+      "to": 1440,
+      "what": "end: the sun sinks behind the horizon, its last stripe flaring; the grid keeps scrolling; 'PRESS PLAY' blinks in neon on every beat under the cassette; the neon hum holds to the last frame"
+    }
+  ],
+  "sizes": "Square re-stacks: the horizon sits a little below the middle so the grid floor takes the lower 45%; the sun is larger relative to the frame; 'LUMEN' and 'LANE' stack at a size that spans about 80% of the width; in the drive the tracklist moves under the title in the lower half, over the grid on a dark translucent band, and the palms pass closer to the edges; the cassette and 'SIDE A' pill stack centred.",
+  "sound": "beatScore drive at 100 bpm, drums entering with the title (drop at 432); ticks for each neon letter as it strikes (two ticks 2 frames apart, for the buzz of a tube catching) and for each tracklist line; a hit on the 'LANE' slam (frame 576); a whoosh ending at 720 as the drive speeds up; a tick on every 'PRESS PLAY' blink; the sign-off at frame 1296.",
+  "teaches": "An era is a set of rules you can code: a perspective grid, a striped sun, layered-stroke neon that ignites irregularly and a banded chrome fill are enough to summon the whole aesthetic, and the irregular flicker is what makes it feel electric rather than animated.",
+  "portable": {
+    "fonts": "Inter (800) for the neon and chrome title, JetBrains Mono for the small lines and tracklist",
+    "style": "The opening card of an invented night-drive mixtape in the synthwave manner. A sky from violet-black to violet to hot pink at the horizon with twinkling stars; a striped sun filled yellow to orange to pink, cut by horizontal gaps that grow toward the bottom and drift down; low wireframe mountains; and a perspective grid floor whose horizontal lines sit at depths k + phase (screen y = horizon + focal / z) so it scrolls forever, with vertical lines converging on the vanishing point. Neon is always three layered strokes (wide and faint, medium, thin bright core) composited additively, never a blur filter. The first word is neon tube lettering (a bold sans drawn as stroked outlines only) that ignites letter by letter with an irregular, seeded flicker, never metronomic; the second word is chrome: a hard-banded gradient (pale blue, white, a dark band at the midline, then orange to yellow) with an outline and a sliding star glint. Palm silhouettes pass on both sides with true parallax during a drive; a tracklist flickers on; a neon cassette draws itself; the sun sets; 'PRESS PLAY' blinks. A faint scanline overlay sits on top.",
+    "sound": "a driving synth loop at 100 bpm whose drums enter with the title, buzzing double clicks as each neon letter strikes, a hit on the chrome slam, a whoosh into the drive, a click on each blink, and a three-note sign-off.",
+    "sizes": "re-stack it square: horizon a little below the middle, the title stacked large, the tracklist under the title in the lower half, the cassette centred."
+  }
+}

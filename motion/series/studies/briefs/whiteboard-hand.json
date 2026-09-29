@@ -1,0 +1,100 @@
+{
+  "id": "whiteboard-hand",
+  "no": 27,
+  "title": "Whiteboard Hand",
+  "module": "src/canvas-core/studies/whiteboardHand.ts",
+  "pieces": {
+    "landscape": "whiteboardHand",
+    "vertical": "whiteboardHandVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 90,
+  "frames": 1020,
+  "palette": "whiteboard",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A whiteboard explainer, speed-drawn on a clean board by a drawn hand. The ground is the board (ground, a warm white) with a few faint ghost marks of old drawings (line colour, 1–2 px scribbles at fixed seeded positions, 40% alpha), so it reads as a used whiteboard, never a blank screen. Every drawing is a list of polylines authored in unit coordinates (each object 1–6 strokes) and drawn ON by arc length: a stroke is visible from 0 to s(F) and the pen tip sits at s(F); strokes run fast on an ease-in-out (a simple object in 8–14 frames, a complex one in 20–30), one after another, with a 2–3 frame lift between strokes. The marker look: round caps and joins, ink lines 7 px at 1080 (details 4 px), and a felt-tip streak: a second pass 1.5 px narrower, offset 1 px, in the ground colour at 25% alpha. Colour markers are only accent (red), accent2 (blue) and the seven spectrum roles s1–s7 (red to violet) for light; shading is marker hatching (parallel strokes at 30°, 14 px apart), never a flat fill, except the rainbow bands, which are thick 18 px marker arcs. THE HAND is drawn, not a photo: a right hand in the hand colour with a 4 px ink outline, a palm block and a rounded cuff that run off the bottom-right edge, thumb and index finger pinching a marker (a rounded rectangle about 26×150 px at 1080, body in surface, a cap band in the current marker's colour), two short knuckle creases; about 420 px long, rotated about 25°. Its marker tip is locked to the current pen point every frame, plus a small tremor from a seeded hash of floor(F / 2) (±2 px, stepping on twos so it feels time-lapsed). Between drawings the hand lifts away toward the bottom-right (60% out of frame) and returns for the next object; route it so it never covers a caption while that caption is being read. Text is WRITTEN, not typed: each caption is Inter 600 in ink, revealed left to right under a clip whose edge the marker tip rides, the tip bobbing ±10 px at letter rate so it reads as handwriting; step numbers sit in a hand-drawn circle (an open 330° loop); key words get a red underline stroke that draws on after the caption. ERASE-WIPES between ideas: the hand swaps its marker for a felt eraser (a dark grey rounded block about 150×70 px with a lighter felt strip) and sweeps a zigzag across the board in one beat; everything under the swept path is painted out by a 160 px ground-coloured stroke drawn to progress p, leaving a grey ghost (line colour, 35%) that fades over the next beat. The optics diagram is physically honest: violet bends more than red at each surface, the ray reflects once off the back of the drop, and the exiting red ray makes the larger angle (about 42°) with a line drawn back toward the sun, violet the smaller (about 40°); the angle is always measured on the sun side, never against the forward extension of the sunlight (that would be about 138°). Camera: a slow push-in (1.00 to 1.04) through each hold and one pull-back for the big picture. Any frame is the drawn-so-far state computed from the frame alone.",
+  "learnsFrom": "Whiteboard animation as a genre (https://en.wikipedia.org/wiki/Whiteboard_animation): the RSA Animate lecture series drawn by Cognitive Media (https://www.thersa.org/people/andrew-park/) and the VideoScribe software (https://www.videoscribe.co/): a visible hand speed-drawing marker lines in time-lapse, captions written on, erase-and-redraw between ideas, one idea per drawing. Their drawings, characters, voices, colours and copy are not used; the lesson here is original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "hook: the hand swoops in from the bottom right and speed-draws a small sun in the upper left, a stick-figure viewer facing right in the lower middle, and a raincloud with slanted rain streaks on the right; it swaps to colour markers and sweeps the rainbow over the rain, seven thick bands, red outermost; then it writes the title top-left: 'How a rainbow forms' with 'rainbow' underlined in red"
+    },
+    {
+      "from": 120,
+      "to": 300,
+      "what": "step 1: an erase-wipe clears the board in one beat; the hand draws one huge raindrop (a circle about 560 px across at 1080, blue marker, a small highlight tick); a single ink ray labelled 'sunlight' draws in from the left, hits the upper part of the drop and kinks inward; a small angle arc marks the bend; caption in a circled '1': 'Light bends as it enters the drop'"
+    },
+    {
+      "from": 300,
+      "to": 440,
+      "what": "step 2: inside the drop the ink ray fans into seven thin coloured lines (s1 red bending least, s7 violet bending most), each drawing on in a quick stagger; caption '2': 'Each colour bends a different amount'; 'white light' is written small beside the incoming ray"
+    },
+    {
+      "from": 440,
+      "to": 580,
+      "what": "step 3: the seven lines reach the back of the drop and bounce once, drawing on toward the lower left; a tiny red marker star flashes at the back wall; caption '3': 'It reflects off the back of the drop'"
+    },
+    {
+      "from": 580,
+      "to": 740,
+      "what": "step 4: the lines cross the lower surface and kink again as they leave, heading down to the left; the hand draws a dashed line through the exit point parallel to the incoming sunlight, pointing back toward the sun, and a red protractor arc for the small angle between that line and the exiting red ray, then writes 'about 42°' beside it in red, and a smaller 'violet about 40°' under it; caption '4': 'It bends again on the way out'"
+    },
+    {
+      "from": 740,
+      "to": 900,
+      "what": "the big picture: an erase-wipe, then a pull-back as the hand speed-draws the whole scene: the sun behind the viewer, a dashed line from the sun through the viewer's head down to a small cross labelled 'point opposite the sun'; two thin lines leave the viewer's eye and fan up at about 40° and 42° from that dashed line (the angle sits at the eye; the cross only marks the direction opposite the sun), and a drop on each line sends one colour to the eye: red from the higher line, violet from the lower; then the full bow draws on over the rain band by band, red on the outside to violet on the inside; captions write on in two lines: 'Sun behind you. Rain in front.' then 'Red outside, violet inside.'"
+    },
+    {
+      "from": 900,
+      "to": 1020,
+      "what": "recap and end: an erase-wipe; four tiny drop icons draw in a row, each with its ray drawn in one quick stroke and a word under it: 'bend', 'split', 'reflect', 'bend'; the headline writes above them: 'A rainbow: bend, split, reflect, bend.' with 'reflect' underlined in red; a small mono footer 'a primary rainbow · angles approximate'; the hand caps its marker (a click) and slides out; a slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the title and captions sit in the top third of the safe area and wrap to two lines; the raindrop sits in the middle third at nearly the full safe width, with the incoming sunlight entering from the left edge and the exit rays leaving toward the lower left, where the 42° arc and its labels sit under the drop; the big picture turns portrait: the sun at the top left, the viewer at the bottom left, the bow arcing across the upper middle over a rain band, the point opposite the sun off the lower edge (show the dashed line leaving the frame with a small arrow and label); the recap icons become a 2×2 grid. The hand keeps entering from the bottom right, above the bottom safe margin.",
+  "sound": "beatScore soft at 90 bpm (pad and pluck, no drums), marker squeaks as ticks while strokes draw (thinned to one tick every 4 frames, and only on strokes longer than 10 frames, so it never buzzes), a whoosh ending on each erase-wipe (frames 140, 760 and 920), a hit when 'about 42°' is written (frame 680) and when the full bow completes (frame 860), and the sign-off at frame 960.",
+  "teaches": "Showing the drawing happen is the explanation: when a hand builds each idea line by line and wipes the board before the next, the viewer follows the reasoning at the speed it is drawn.",
+  "facts": [
+    {
+      "claim": "Sunlight bends (refracts) as it enters a raindrop.",
+      "source": "https://www.weather.gov/fgz/Rainbow"
+    },
+    {
+      "claim": "Each colour (wavelength) bends by a slightly different amount, so white light separates into colours.",
+      "source": "https://www.weather.gov/fgz/Rainbow"
+    },
+    {
+      "claim": "Inside the drop the light reflects off the back of the drop.",
+      "source": "https://education.nationalgeographic.org/resource/rainbow/"
+    },
+    {
+      "claim": "The light bends (refracts) again as it leaves the drop.",
+      "source": "https://education.nationalgeographic.org/resource/rainbow/"
+    },
+    {
+      "claim": "The primary rainbow lies between about 40° and 42° from the point opposite the sun (the antisolar point), after refraction and a single internal reflection.",
+      "source": "https://hyperphysics.gsu.edu/hbase/atmos/rbowpri.html"
+    },
+    {
+      "claim": "The angle for the primary bow is about 42 degrees.",
+      "source": "https://www.weather.gov/fgz/Rainbow"
+    },
+    {
+      "claim": "Red is on the outside of the primary bow and violet on the inside.",
+      "source": "https://education.nationalgeographic.org/resource/rainbow/"
+    },
+    {
+      "claim": "To see a rainbow you stand with the sun behind you and the rain in front of you.",
+      "source": "https://www.weather.gov/fgz/Rainbow"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (600) for the written captions, JetBrains Mono for the small footer",
+    "style": "A whiteboard explainer speed-drawn by a drawn hand on a warm white board with faint ghost marks of old drawings. Every drawing is a set of polylines drawn on by arc length, fast, with an ease-in-out, one stroke after another; marker lines have round caps, 7 px, with a faint felt-tip streak; colour markers are red, blue and the seven spectrum colours; shading is marker hatching, never flat fill. The hand is drawn in code (a flat skin-tone hand with an ink outline pinching a marker, entering from the bottom right), its marker tip locked to the current pen point, with a small tremor stepped on twos so it feels time-lapsed; it lifts away between drawings and never covers a caption being read. Captions are written, not typed: revealed left to right under a clip whose edge the pen tip rides, bobbing like handwriting; step numbers in hand-drawn circles; key words underlined in red. Between ideas the hand sweeps a felt eraser across the board and everything under its path clears, leaving a faint grey ghost. The lesson: sunlight bends entering a raindrop, splits into colours, reflects off the back, and bends again leaving at about 42° (violet about 40°); with the sun behind you and rain in front, red sits on the outside of the bow.",
+    "sound": "a soft pad-and-pluck loop at 90 bpm with no drums, thinned marker squeaks while lines draw, a whoosh on each eraser wipe, a hit on the 42° label and on the finished bow, and a three-note sign-off.",
+    "sizes": "re-stack it: captions in the top third, the raindrop in the middle at full width with the angle labels beneath, the big picture turned portrait with the bow across the upper middle, and the recap as a 2×2 grid."
+  }
+}

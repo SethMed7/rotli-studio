@@ -1,0 +1,108 @@
+{
+  "id": "seasons-orrery",
+  "no": 41,
+  "title": "Seasons Orrery",
+  "module": "src/canvas-core/studies/seasonsOrrery.ts",
+  "pieces": {
+    "landscape": "seasonsOrrery",
+    "vertical": "seasonsOrreryVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 1020,
+  "palette": "deep",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A science diagram built as a mechanical tellurion (a seasons orrery) on the deep navy ground, drawn like an instrument plate: hairlines, flat fills, no photographs, no glow. THE MACHINE: a tabletop orbit seen from above at about 25° (the orbit is a flat ellipse, 1300 × 420 px at 1080, drawn as a 1.5 px line-colour ring with small tick marks for the twelve months and the labels 'Mar', 'Jun', 'Sep', 'Dec' in JetBrains Mono muted 24 px). The Sun sits on a central pillar: a flat accent disc (radius 90 px) with three concentric flat rings in accent at falling alpha (0.25, 0.12, 0.06) instead of a blur. A brass-like arm (surface fill, 2 px ink outline, two small ink gear wheels at the hub whose teeth turn with the arm) carries the Earth around the orbit. THE TELL of a tellurion: the Earth's axis is a 3 px ink rod tilted 23.4° and it stays PARALLEL to itself all the way round (it never turns toward the Sun); show it with faint ghost Earths at the four season points whose rods are all parallel. THE EARTH (radius 70 px, larger in close-ups): an accent2 disc with the NIGHT side computed, not painted: the terminator is the great circle facing the Sun, projected orthographically as a half-ellipse, filled in ground colour at 0.75 alpha; latitude lines (equator, the two tropics, the two polar circles) are thin ink ellipses tilted with the axis; one small accent marker sits at 40° N and is labelled 'a place at 40° N' when first shown. Everything the Earth does is a function of one orbital angle a(F) that eases between the beat's positions (never simulated). THE BEAM INSET (a flat card, surface fill, 1 px line border, radius 16 px): a torch-shaped ink beam of FIXED width hits a flat strip of ground (a row of 1 px line-colour squares) at the sun's noon elevation for 40° N; the lit patch on the ground is width / sin(elevation), so a low sun lights more squares with the same beam; the patch is accent at 0.6 alpha and a small counter shows the squares lit. THE DAY DIAL (a 24-hour clock face, 180 px, ink hairline): the day arc in accent2 and the night arc in surface, from the sunrise equation cos H = −tan(40°) · tan(δ), with δ = 23.4° · sin(a − a_March); hour ticks but no hour numbers (the dial is a computed illustration, not a quoted figure, so it makes no numeric claim on screen). Captions: Inter 600 headlines (58 px at 1080) in ink with one key word in Instrument Serif Italic in accent (the 'tilt', 'direct', 'south'), a muted Inter 400 second line (34 px), arriving word by word on springs. Holds keep a slow orbit drift of the arm and a slow 2% camera push; the gears always turn with the arm.",
+  "learnsFrom": "The tellurion, the orrery variant made to show day, night and the seasons (History of Science Museum, Oxford, https://www.hsm.ox.ac.uk/orrery; https://en.wikipedia.org/wiki/Orrery), and the standard classroom explanation of the seasons: NASA Space Place (https://spaceplace.nasa.gov/seasons/en/), the U.S. Naval Observatory (https://aa.usno.navy.mil/faq/seasons_orbit) and UCAR's Center for Science Education on sun angle (https://scied.ucar.edu/learning-zone/earth-system/energy-from-sun). Their diagrams, photographs and instrument designs are not copied; the machine here is drawn new in code.",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "hook: the orrery settles out of the dark (the ring draws on, the Sun's rings pop, the arm swings in); headline 'Is summer when we're *closest* to the Sun?'; the arm sweeps to early January and a small accent tag reads 'closest: early January'; the second line lands: 'No. We're closest in early January.'"
+    },
+    {
+      "from": 120,
+      "to": 255,
+      "what": "the tilt: the camera pushes toward the Earth; a protractor arc draws between the axis rod and the upright, labelled '23.4°'; headline 'Earth is *tilted* about 23.4°.'; then the camera pulls back as the arm makes a quick half turn and the four ghost Earths appear with parallel rods: 'And the tilt points the same way all year.'"
+    },
+    {
+      "from": 255,
+      "to": 450,
+      "what": "June: the arm eases to June; the north end of the rod leans toward the Sun; the 40° N marker sits in daylight longer and the day dial's day arc grows past half; headline 'June: the north leans *toward* the Sun.' with the second line 'Longer days, more direct light: northern summer.'"
+    },
+    {
+      "from": 450,
+      "to": 630,
+      "what": "the beam: the beam inset takes over half the frame; the same fixed-width beam tilts from the June noon angle to the December noon angle and its lit patch stretches across more squares (the counter climbs); headline 'Low sun spreads the *same* light over more ground.' with the second line 'So each patch gets less.'"
+    },
+    {
+      "from": 630,
+      "to": 810,
+      "what": "December: the orbit arm carries the Earth half way round (a whoosh); the rod has not turned, so now the south end leans toward the Sun; the day dial shrinks under half for the 40° N marker; headline 'December: the *south* gets its turn.' with the second line 'Short days up north, summer down south.'"
+    },
+    {
+      "from": 810,
+      "to": 930,
+      "what": "equinoxes: the arm pauses at March and then at September; a thin accent line from the Sun meets the Earth at the equator; the day dial sits near half and half; headline 'March and September: the Sun is overhead at the equator.'"
+    },
+    {
+      "from": 930,
+      "to": 1020,
+      "what": "end card: the arm keeps turning slowly behind; headline 'Seasons come from the *tilt*,' / 'not the distance.'; a small mono line 'the distance changes by only about 3% over a year'; mono footer 'not to scale · sizes and distances exaggerated'; slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the headline and second line sit in the top third of the safe area; the orbit becomes a narrower ellipse (900 × 360 px) in the middle with the Sun centred; the beam inset and the day dial sit side by side in the lower third (they stack if the inset needs more width during the beam beat, where the inset takes the whole lower half); the month labels stay outside the ring. Landscape keeps the orbit on the left two thirds and a right column for the inset and dial, with captions across the top.",
+  "sound": "beatScore soft at 120 bpm (a thoughtful pad and pluck, no drums), key +3; a hit on the hook's answer (frame 90); whooshes ending where the arm arrives at a season (frames 255, 630 and 810); soft ticks each time the protractor label, the ghost Earths and the lit-square counter change (thinned so they never buzz); a gentle hit at the end card (frame 930) and the three-note sign-off at frame 960.",
+  "teaches": "A mechanical diagram teaches by what it holds still: an orrery whose axis never turns makes the cause of the seasons visible without a word, and a fixed-width beam turns 'direct light' into something you can count.",
+  "facts": [
+    {
+      "claim": "Earth's axis is tilted about 23.4° relative to a perpendicular to its orbital plane.",
+      "source": "https://aa.usno.navy.mil/faq/seasons_orbit"
+    },
+    {
+      "claim": "Earth's axis is currently tilted 23.4 degrees, and this tilt (obliquity) is why Earth has seasons.",
+      "source": "https://science.nasa.gov/science-research/earth-science/milankovitch-orbital-cycles-and-their-role-in-earths-climate/"
+    },
+    {
+      "claim": "Earth's rotational axis stays nearly fixed in space as Earth orbits the Sun, so it points the same way all year.",
+      "source": "https://aa.usno.navy.mil/faq/seasons_orbit"
+    },
+    {
+      "claim": "Earth is closest to the Sun (perihelion) in early January, about two weeks after the December solstice.",
+      "source": "https://aa.usno.navy.mil/faq/seasons_orbit"
+    },
+    {
+      "claim": "Earth's distance from the Sun is not the cause of the seasons.",
+      "source": "https://spaceplace.nasa.gov/seasons/en/"
+    },
+    {
+      "claim": "Earth is about 91.4 million miles from the Sun in January and about 94.5 million miles in July, a difference of about 3%.",
+      "source": "https://spaceplace.nasa.gov/seasons/en/"
+    },
+    {
+      "claim": "In June the Sun's rays hit the Northern Hemisphere more directly (northern summer); by December it is the south's turn to be tilted toward the Sun.",
+      "source": "https://spaceplace.nasa.gov/seasons/en/"
+    },
+    {
+      "claim": "At the solstices, days are longest for the hemisphere tilted toward the Sun, where it is summer.",
+      "source": "https://aa.usno.navy.mil/faq/seasons_orbit"
+    },
+    {
+      "claim": "Lower sun angles spread the incoming energy over a larger surface area.",
+      "source": "https://scied.ucar.edu/learning-zone/earth-system/energy-from-sun"
+    },
+    {
+      "claim": "At the March and September equinoxes the Sun is directly over the equator.",
+      "source": "https://www.weather.gov/fsd/season"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (400 and 600) for captions, Instrument Serif Italic for one key word per headline, JetBrains Mono for month labels, tags and the footer",
+    "style": "A science diagram built as a mechanical seasons orrery (a tellurion) on a deep navy ground, drawn like an instrument plate: hairlines and flat fills, no glow. A tabletop orbit seen from above at a shallow angle (a flat ellipse with month ticks), a flat Sun disc on a pillar with a few concentric flat rings instead of a blur, and an arm with small turning gears carrying the Earth. The Earth's axis is a rod tilted 23.4° that stays parallel to itself all the way round; faint ghost Earths at the four season points prove it. The night side is computed from the Sun's direction (the terminator as a projected half-ellipse), with thin latitude ellipses and one marker at 40° N. A beam inset shows a fixed-width torch beam hitting a strip of ground squares at the noon sun angle: a low sun lights more squares with the same beam. A 24-hour day dial shows the day arc from the sunrise equation (cos H = −tan φ · tan δ), with no hour numbers. Captions are short headlines with one key word in an italic serif in the accent colour and a quiet second line. Scenes: the hook (closest to the Sun in early January), the tilt with a protractor, June with the north leaning in and long days, the spreading beam, December with the south's turn, the equinoxes, and 'Seasons come from the tilt, not the distance.'",
+    "sound": "a soft thoughtful loop at 120 bpm with no drums, a hit on the hook's answer, whooshes as the arm arrives at each season, soft ticks for labels and counters, and a three-note sign-off.",
+    "sizes": "vertical: captions in the top third, a narrower orbit in the middle, the beam inset and day dial side by side below (the inset takes the whole lower half during the beam scene)."
+  }
+}
