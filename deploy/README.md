@@ -65,7 +65,8 @@ Caddyfile's `@page` list (the same roots as `src/motion/paths.ts`, checked at ex
 at any page path. Media, data and missing files never fall back to the shell, so a miss is still a 404.
 
 The host is Caddy (`Dockerfile`, image pinned by digest; `Caddyfile`): a Content-Security-Policy that allows
-only the snapshot's own files and no inline script, `nosniff`, `DENY` framing, no referrer. Pages and data are
+only the snapshot's own files, plus Cloudflare Web Analytics (the beacon Cloudflare injects at the edge, from
+`static.cloudflareinsights.com`, reporting to `cloudflareinsights.com`), and no inline script, `nosniff`, `DENY` framing, no referrer. Pages and data are
 `no-store`, hashed scripts and styles are immutable, media caches for an hour, and errors are never cached
 (Cloudflare fronts the domain and once kept a 404 for hours).
 

@@ -4,6 +4,10 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Cloudflare Web Analytics runs.** Cloudflare injects its beacon into every page at the edge, and the site's
+  Content-Security-Policy blocked it (a console error on every page, and no analytics). The policy now allows the
+  beacon script from `static.cloudflareinsights.com` and its reports to `cloudflareinsights.com`; everything else is
+  unchanged, and still no inline script runs.
 - **The deploy's live check proves the new build.** It compared the script bundle's hash, which only changes with app
   code, so a release of pieces alone passed at once against the previous build while Railway was still building (the
   Zoomies release, 2026-09-29). It now waits for the manifest's `generated` stamp, which every export changes.
