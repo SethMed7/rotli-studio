@@ -4,6 +4,10 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Deploys no longer fail while Railway is slow.** `railway up --ci` gave up streaming the build log after about a
+  minute whenever Railway queued the build, and failed the job although the build succeeded (twice on 2026-09-29,
+  with the site live both times). The workflow now uploads with `--detach` and the live check waits up to 20
+  minutes for the new bundle.
 - **Studies 51–54: the studies reach fifty-four.** Literal Type (seven words that each do what they say, one take),
   Gouache Storybook (a snow globe that repaints the street), Burrow Days (a rabbit's day in comic-book 3D) and
   Two-Part Harmony, a fan-made two-minute music video about how Claude Opus 5.5 and Claude Sonnet 5.5 work together
