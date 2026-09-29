@@ -4,6 +4,7 @@
 import { esc, markdown } from "./md";
 import { filmPlayer, mountFilmPlayers } from "./player";
 import { chooseTrack, cue, mountSound, nowPlaying } from "./sound";
+import { isPage } from "./paths";
 import { wizard } from "./wizard";
 
 type Shot = { id: string; start: number; end: number; template?: string };
@@ -232,40 +233,40 @@ function renderNav(active: string) {
     `<div class="group"><span class="group-name">${name}</span>${body}</div>`;
   const rotli = M.pieces.filter((p) => !isStudy(p));
   nav.innerHTML =
-    link("home", "#/", "Home") +
-    link("library", "#/library", "Library", M.pieces.length) +
+    link("home", "/", "Home") +
+    link("library", "/library", "Library", M.pieces.length) +
     group(
       "Studies",
-      link("studies", "#/series/studies", "Studies", studies().length) +
-        link("journal", "#/journal", "Journal", seriesOf("studies")?.notes?.length ?? 0) +
-        link("prompts", "#/prompts", "Prompt library"),
+      link("studies", "/series/studies", "Studies", studies().length) +
+        link("journal", "/journal", "Journal", seriesOf("studies")?.notes?.length ?? 0) +
+        link("prompts", "/prompts", "Prompt library"),
     ) +
     group(
       "Rotli",
-      link("series", "#/series", "Series", M.series.filter((x) => x.kind !== "studies").length) +
+      link("series", "/series", "Series", M.series.filter((x) => x.kind !== "studies").length) +
         link(
           "carousels",
-          "#/carousels",
+          "/carousels",
           "Carousels",
           rotli.filter((p) => p.kind !== "video" && p.slides?.length).length,
         ) +
-        link("wallpapers", "#/wallpapers", "Wallpapers") +
-        link("brand", "#/brand", "Brand kit"),
+        link("wallpapers", "/wallpapers", "Wallpapers") +
+        link("brand", "/brand", "Brand kit"),
     ) +
     group(
       "Make your own",
-      link("use", "#/use", "Make one for your product") +
-        link("workflows", "#/workflows", "Prompts & briefs") +
-        link("runs", "#/runs", "Agent runs", M.pieces.filter((p) => p.run).length) +
-        link("sound", "#/sound", "Sound") +
-        link("skills", "#/skills", "Skills") +
-        link("tools", "#/tools", "Tools"),
+      link("use", "/use", "Make one for your product") +
+        link("workflows", "/workflows", "Prompts & briefs") +
+        link("runs", "/runs", "Agent runs", M.pieces.filter((p) => p.run).length) +
+        link("sound", "/sound", "Sound") +
+        link("skills", "/skills", "Skills") +
+        link("tools", "/tools", "Tools"),
     ) +
     group(
       "About",
-      link("posts", "#/posts", "Published") +
-        link("docs", "#/docs", "Docs & licences") +
-        (STATIC ? "" : link("isolation", "#/isolation", "Isolation audit")),
+      link("posts", "/posts", "Published") +
+        link("docs", "/docs", "Docs & licences") +
+        (STATIC ? "" : link("isolation", "/isolation", "Isolation audit")),
     );
 }
 /** which one nav row a route belongs to */
@@ -304,7 +305,7 @@ const seriesRows = (h: 2 | 3 = 3, which = (x: Series) => x.kind !== "studies") =
           : byId(x.pieces?.[0] ?? "");
       // a 9:16 cover in the 16:9 slot shows its picture, not its title band (the row names the series beside it)
       const tall = !!first?.meta && first.meta.H > first.meta.W;
-      return `<li><a class="row" href="#/series/${x.id}"><img${tall ? ' class="tall"' : ""} src="${poster(first)}" alt="" loading="lazy"><div><h${h} class="row-title">${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h${h}><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`;
+      return `<li><a class="row" href="/series/${x.id}"><img${tall ? ' class="tall"' : ""} src="${poster(first)}" alt="" loading="lazy"><div><h${h} class="row-title">${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h${h}><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`;
     })
     .join("")}</ul>`;
 /** the size a study shows in a grid: landscape if it has one, so a grid of studies lines up */
@@ -321,7 +322,7 @@ function studyTile(st: Study, h: 2 | 3 = 3) {
         ? `${p.slides.length} slides`
         : "";
   const meta = [Object.keys(st.sizes).map(sizeShort).join(" · "), len].filter(Boolean).join(" · ");
-  return `<li><a class="study-tile" href="#/piece/${st.primary}"${p.video ? ` data-preview="${esc(m(p.video.file))}"` : ""}><span class="tile-media${p.meta && p.meta.W < p.meta.H * 1.2 ? " contain" : ""}"><img src="${poster(p)}" alt="" loading="lazy"></span>
+  return `<li><a class="study-tile" href="/piece/${st.primary}"${p.video ? ` data-preview="${esc(m(p.video.file))}"` : ""}><span class="tile-media${p.meta && p.meta.W < p.meta.H * 1.2 ? " contain" : ""}"><img src="${poster(p)}" alt="" loading="lazy"></span>
     <h${h} class="tile-title"><span class="num">${String(st.no).padStart(2, "0")}</span>${esc(st.title)}</h${h}><span class="tile-meta"><span class="subject ${st.subject}">${esc(SUBJECT[st.subject]?.chip ?? "")}</span>${esc(meta)}</span></a></li>`;
 }
 /** hovering (or focusing) a study tile plays its render, muted; never under reduced motion or Save-Data */
@@ -357,13 +358,13 @@ function home() {
   main.innerHTML = `<section class="hero">
       <h1>Rotli, <span class="ink">drawn in code.</span></h1>
       <p class="lede">Rotli is the calm notes app for your Mac. This is its studio: every film, episode, carousel and card here is drawn frame by frame in code, and everything that made them is open: the briefs, the prompts, the agent runs and the tools that make them again.</p>
-      <div class="ctas"><a class="button lg" href="#/piece/rotliStory">Watch the film</a><a class="button ghost lg" href="#/series/studies">Explore ${all.length} studies</a></div>
+      <div class="ctas"><a class="button lg" href="/piece/rotliStory">Watch the film</a><a class="button ghost lg" href="/series/studies">Explore ${all.length} studies</a></div>
       <p class="fine">Open source · MIT · ${n.pieces} pieces, ${n.minutes.toFixed(0)} minutes of film</p>
     </section>
     ${
       film?.video
         ? `<section class="film">${filmPlayer(m(film.video.file), `/api/motion/poster/${film.slug}/${HERO_POSTER_FRAME}.jpg`, "The Rotli Story: a 60-second film of a quokka on Rottnest, from the ferry to the sunset")}
-      <p class="film-caption"><span><b>The Rotli Story</b> · 60 s · a quokka on Rottnest, from the ferry to the sunset</span><a class="link" href="#/piece/rotliStory">Scene by scene →</a></p></section>`
+      <p class="film-caption"><span><b>The Rotli Story</b> · 60 s · a quokka on Rottnest, from the ferry to the sunset</span><a class="link" href="/piece/rotliStory">Scene by scene →</a></p></section>`
         : ""
     }
     <section class="band"><div class="inner">
@@ -372,19 +373,19 @@ function home() {
       <ul class="study-grid showcase">${show.map((st) => studyTile(st)).join("")}</ul>
       <p class="fam-links">${FAMILIES.map((f) => {
         const c = all.filter((x) => x.family === f.id).length;
-        return c ? `<a href="#/series/studies?family=${f.id}">${esc(f.label)} <small>${c}</small></a>` : "";
+        return c ? `<a href="/series/studies?family=${f.id}">${esc(f.label)} <small>${c}</small></a>` : "";
       }).join("")}</p>
-      <div class="ctas left"><a class="button" href="#/series/studies">Browse all ${all.length} studies</a><a class="button ghost" href="#/use">Make one for your product</a></div>
+      <div class="ctas left"><a class="button" href="/series/studies">Browse all ${all.length} studies</a><a class="button ghost" href="/use">Make one for your product</a></div>
     </div></section>
     <section class="band tinted"><div class="inner">
       <h2>Made for Rotli.</h2>
       <p class="intro">Rotli's own series: each groups its episodes with the cuts made from them, a vertical for Reels and Shorts, a carousel and a card. Open any piece to see its scenes, the brief behind it and the run that built it.</p>
       ${seriesRows()}
-      <p class="beyond-line">And free <a class="link" href="#/wallpapers">wallpapers</a> with the quokka, made in your browser, and the <a class="link" href="#/brand">brand kit</a> they are drawn from.</p>
+      <p class="beyond-line">And free <a class="link" href="/wallpapers">wallpapers</a> with the quokka, made in your browser, and the <a class="link" href="/brand">brand kit</a> they are drawn from.</p>
     </div></section>
     <section class="band"><div class="inner split">
       <div><h2>Make one for your product.</h2><p class="intro">Answer a few questions. You get a prompt that has Claude, or any capable model, interview you for what's missing, fetch your logo, colours and fonts from your site, write a brief for you to approve, then build and review the piece.</p>
-        <div class="ctas left"><a class="button lg" href="#/use">Start</a><a class="button ghost lg" href="#/prompts">Copy a study's prompt</a></div></div>
+        <div class="ctas left"><a class="button lg" href="/use">Start</a><a class="button ghost lg" href="/prompts">Copy a study's prompt</a></div></div>
       <ol class="steps light">
         <li><b>Answer</b><p>Your product, the goal, the sizes, a style from the studies, what it may say.</p></li>
         <li><b>Paste</b><p>The prompt asks the rest one question at a time and gathers your assets.</p></li>
@@ -407,13 +408,13 @@ function home() {
       <div><h2>Open, all the way down.</h2><p class="intro">The studio is public under the MIT licence, like Rotli. The render engine began as anidoodle by Alex Greenshpun (Apache-2.0).</p>
         <ul class="numbers"><li><b>${n.pieces}</b>pieces</li><li><b>${all.length}</b>studies</li><li><b>${n.goldens}</b>goldens</li><li><b>${n.runs}</b>agent runs</li></ul></div>
       <ul class="links">
-        <li><a href="#/journal">Journal →</a><p>Long-form field notes: what we tried, measured and learned making motion with models.</p></li>
-        <li><a href="#/prompts">Prompt library →</a><p>A prompt for every study: paste it into Claude and get a piece in that style.</p></li>
-        <li><a href="#/runs">Agent runs →</a><p>Every request in the owner's words, and each agent's prompt, follow-ups and report.</p></li>
+        <li><a href="/journal">Journal →</a><p>Long-form field notes: what we tried, measured and learned making motion with models.</p></li>
+        <li><a href="/prompts">Prompt library →</a><p>A prompt for every study: paste it into Claude and get a piece in that style.</p></li>
+        <li><a href="/runs">Agent runs →</a><p>Every request in the owner's words, and each agent's prompt, follow-ups and report.</p></li>
         <li><a href="https://github.com/SethMed7/rotli-studio" target="_blank" rel="noreferrer">Source on GitHub →</a><p>The engine, tools, skills and every piece's code.</p></li>
       </ul>
     </div></section>
-    <footer class="site-foot"><span>rotli studio · ${STATIC ? `snapshot of ${new Date(M.generated).toLocaleDateString()}` : "running on this Mac"}</span><span><a href="https://rotli.co" target="_blank" rel="noreferrer">rotli.co</a> · <a href="#/docs?doc=..%2FLICENSE">MIT</a> · <a href="#/docs?doc=..%2FNOTICE">Notices</a></span></footer>`;
+    <footer class="site-foot"><span>rotli studio · ${STATIC ? `snapshot of ${new Date(M.generated).toLocaleDateString()}` : "running on this Mac"}</span><span><a href="https://rotli.co" target="_blank" rel="noreferrer">rotli.co</a> · <a href="/docs?doc=..%2FLICENSE">MIT</a> · <a href="/docs?doc=..%2FNOTICE">Notices</a></span></footer>`;
   mountPreviews(main);
 }
 
@@ -428,7 +429,7 @@ function library() {
     const u = new URLSearchParams();
     if (f) u.set("for", f);
     if (z) u.set("size", z);
-    return `#/library${u.size ? `?${u}` : ""}`;
+    return `/library${u.size ? `?${u}` : ""}`;
   };
   const sizeTab = (z: Size | undefined, label: string) =>
     `<a href="${q(z, made)}"${z === size ? ' aria-current="page"' : ""}>${label} <small>${M.pieces.filter((p) => mine(p) && (!z || p.size === z)).length}</small></a>`;
@@ -442,10 +443,10 @@ function library() {
       : p.slides?.length
         ? `${p.slides.length} ${p.slides.length === 1 ? "image" : "slides"}`
         : p.kind;
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Library</nav><header class="page-head"><h1>Library</h1><p>Every piece the studio has made, in every size: Rotli's films and cuts, and the studies. ${n.pieces} pieces · ${n.minutes.toFixed(1)} minutes of video · ${n.goldens} locked by goldens.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Library</nav><header class="page-head"><h1>Library</h1><p>Every piece the studio has made, in every size: Rotli's films and cuts, and the studies. ${n.pieces} pieces · ${n.minutes.toFixed(1)} minutes of video · ${n.goldens} locked by goldens.</p></header>
     <div class="filter-bar"><nav class="cut-tabs" aria-label="Filter by what it was made for">${forTab(undefined, "Everything")}${forTab("rotli", "Rotli")}${forTab("studies", "Studies")}</nav>
     <nav class="cut-tabs" aria-label="Filter by size">${sizeTab(undefined, "All sizes")}${(["landscape", "vertical", "square", "portrait"] as Size[]).map((z) => sizeTab(z, SIZE_LABEL[z])).join("")}</nav></div>
-    <div class="pieces">${sorted.map((p) => `<a class="piece-link" href="#/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><b>${esc(pieceTitle(p))}${p.sealed ? chip("sealed", "lock") : ""}</b><p class="meta">${esc([p.size ? SIZE_LABEL[p.size] : p.format, len(p), isStudy(p) ? `Study ${String(studyOfPiece(p)?.no ?? "").padStart(2, "0")}` : seriesOf(p.series)?.title.replace(/:.*/, "")].filter(Boolean).join(" · "))}</p></a>`).join("")}</div>
+    <div class="pieces">${sorted.map((p) => `<a class="piece-link" href="/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><b>${esc(pieceTitle(p))}${p.sealed ? chip("sealed", "lock") : ""}</b><p class="meta">${esc([p.size ? SIZE_LABEL[p.size] : p.format, len(p), isStudy(p) ? `Study ${String(studyOfPiece(p)?.no ?? "").padStart(2, "0")}` : seriesOf(p.series)?.title.replace(/:.*/, "")].filter(Boolean).join(" · "))}</p></a>`).join("")}</div>
     ${sorted.length ? "" : `<p class="empty">Nothing in this size yet.</p>`}
     <p class="foot">Manifest built ${new Date(M.generated).toLocaleString()}${STATIC ? " · a read-only snapshot of the studio." : ` · <button class="link" id="rebuild">Rebuild</button> after rendering or editing <code>pieces.json</code> / <code>series.json</code>.`}</p>`;
   if (!STATIC)
@@ -514,10 +515,10 @@ async function promptLibrary() {
         .map((z) => SIZE_LABEL[z as Size])
         .join(" · "),
     )}</p>
-          <div class="downloads"><button class="button copy" type="button" data-label="Copy prompt" data-copy="${esc(t)}">Copy prompt</button><a class="button ghost" href="#/piece/${p.id}">See the study</a></div>
+          <div class="downloads"><button class="button copy" type="button" data-label="Copy prompt" data-copy="${esc(t)}">Copy prompt</button><a class="button ghost" href="/piece/${p.id}">See the study</a></div>
           <details class="maintainer"><summary>Read the prompt</summary><pre class="prompt">${esc(t)}</pre></details></div></div></li>`;
   };
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Prompt library</nav><header class="page-head"><h1>Prompt library</h1><p>Copy a prompt, paste it into Claude, and get a piece in that style: one HTML file, no setup, nothing from this repository. Each is written from a study's brief, and the study shows what it makes. Want one fitted to your product? <a class="link" href="#/use">Make one for your product →</a></p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Prompt library</nav><header class="page-head"><h1>Prompt library</h1><p>Copy a prompt, paste it into Claude, and get a piece in that style: one HTML file, no setup, nothing from this repository. Each is written from a study's brief, and the study shows what it makes. Want one fitted to your product? <a class="link" href="/use">Make one for your product →</a></p></header>
     ${FAMILIES.map((f) => ({ f, rows: list.filter(({ st }) => st.family === f.id) }))
       .filter((g) => g.rows.length)
       .map(
@@ -535,14 +536,14 @@ function carousels() {
     `<ul class="carousels">${ps
       .map(
         (p) => `<li>
-          <div class="carousel-head"><h3><a href="#/piece/${p.id}">${esc(pieceTitle(p))}</a></h3><p class="meta">${esc([p.size ? SIZE_LABEL[p.size] : p.format, `${p.slides!.length} ${p.slides!.length === 1 ? "image" : "slides"}`, isStudy(p) ? "Studies" : seriesOf(p.series)?.title.replace(/:.*/, "")].filter(Boolean).join(" · "))}</p></div>
+          <div class="carousel-head"><h3><a href="/piece/${p.id}">${esc(pieceTitle(p))}</a></h3><p class="meta">${esc([p.size ? SIZE_LABEL[p.size] : p.format, `${p.slides!.length} ${p.slides!.length === 1 ? "image" : "slides"}`, isStudy(p) ? "Studies" : seriesOf(p.series)?.title.replace(/:.*/, "")].filter(Boolean).join(" · "))}</p></div>
           <div class="strip">${p.slides!.map((f, i) => `<a href="${s(f)}" download="${esc(p.slug)}-${String(i + 1).padStart(2, "0")}.png" title="Download slide ${i + 1}"><img src="${s(f)}" alt="${esc(slideAlt(p, byId(seriesOf(p.series)?.episodes?.find((e) => e.code === p.episode)?.main ?? ""), i, p.slides!.length))}" loading="lazy"></a>`).join("")}</div>
           ${p.caption ? `<p class="caption">${esc(p.caption)}</p>` : ""}
           ${downloads(p)}
         </li>`,
       )
       .join("")}</ul>`;
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Carousels</nav><header class="page-head"><h1>Carousels</h1><p>Rotli's carousels and cards, newest first, with their slides, their caption and one download for the lot. ${rotli.length} posts.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Carousels</nav><header class="page-head"><h1>Carousels</h1><p>Rotli's carousels and cards, newest first, with their slides, their caption and one download for the lot. ${rotli.length} posts.</p></header>
     <section class="sec"><h2>Rotli</h2>${list(rotli)}</section>
     ${fromStudies.length ? `<section class="sec"><h2>From the studies <small>(imaginary product)</small></h2>${list(fromStudies)}</section>` : ""}`;
 }
@@ -557,9 +558,9 @@ async function wallpapers() {
 }
 // ---------------------------------------------------------------- series: the index of Rotli's series
 function seriesIndex() {
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Series</nav><header class="page-head"><h1>Series</h1><p>Rotli's own films and the cuts made from them, series by series. Everything here is about Rotli, the calm notes app for your Mac, and quotes rotli.co.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Series</nav><header class="page-head"><h1>Series</h1><p>Rotli's own films and the cuts made from them, series by series. Everything here is about Rotli, the calm notes app for your Mac, and quotes rotli.co.</p></header>
     ${seriesRows(2)}
-    <section class="beyond"><h2>Not about Rotli</h2><p>The same studio in ${studyCount()}: an imaginary product, real topics and pieces made for fun, each its own technique in every size. <a class="link" href="#/series/studies">Studies →</a></p></section>`;
+    <section class="beyond"><h2>Not about Rotli</h2><p>The same studio in ${studyCount()}: an imaginary product, real topics and pieces made for fun, each its own technique in every size. <a class="link" href="/series/studies">Studies →</a></p></section>`;
 }
 
 // ---------------------------------------------------------------- posts: what has been published, as links
@@ -575,7 +576,7 @@ async function posts() {
   ];
   const list = [...data.posts].sort((a, b) => b.date.localeCompare(a.date));
   const shared = new Set(list.flatMap((p) => p.pieces)).size;
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Published</nav><header class="page-head"><h1>Published</h1><p>Where the studio's work has been posted: ${list.length} post${list.length === 1 ? "" : "s"}, sharing ${shared} piece${shared === 1 ? "" : "s"}. Each links to the post on its platform, with the pieces it shares.</p>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Published</nav><header class="page-head"><h1>Published</h1><p>Where the studio's work has been posted: ${list.length} post${list.length === 1 ? "" : "s"}, sharing ${shared} piece${shared === 1 ? "" : "s"}. Each links to the post on its platform, with the pieces it shares.</p>
     ${accounts.length ? `<p class="follow">Follow along: ${accounts.map((h) => `<a class="button ghost" href="https://x.com/${esc(h)}" target="_blank" rel="noreferrer">@${esc(h)} on X</a>`).join("")}</p>` : ""}
     <details class="maintainer"><summary>How a post gets here</summary><p>Only links to the owner's own accounts are accepted: <code>bun scripts/link-post.ts &lt;url&gt; [--piece &lt;id&gt;]</code> checks the URL against the account patterns in <code>publish/posts.json</code>, and the change reaches this page only through a push by the repository owner. The check is on the link's account handle; the post itself stays on its platform.</p></details></header>
     ${
@@ -587,14 +588,14 @@ async function posts() {
                 lead = pcs[0];
               return `<li class="post"><div class="post-when"><time datetime="${esc(p.date)}">${esc(when(p.date))}</time><span class="chip">${esc(p.platform)}${h ? ` · @${esc(h)}` : ""}</span></div>
       <div class="post-body"><p class="post-text">${p.text ? esc(p.text) : `A post by @${esc(h ?? p.platform)}.`}</p>
-        ${lead ? `<a class="post-lead" href="#/piece/${lead.id}"><img src="${poster(lead)}" alt="" loading="lazy"><span><b>${esc(pieceTitle(lead))}</b><small>${esc([lead.meta && lead.kind === "video" ? secs(lead.meta.durationFrames, lead.meta.fps) : "", isStudy(lead) ? "Study" : seriesOf(lead.series)?.title.replace(/:.*/, "")].filter((x) => x && x !== pieceTitle(lead)).join(" · "))}</small></span></a>` : ""}
+        ${lead ? `<a class="post-lead" href="/piece/${lead.id}"><img src="${poster(lead)}" alt="" loading="lazy"><span><b>${esc(pieceTitle(lead))}</b><small>${esc([lead.meta && lead.kind === "video" ? secs(lead.meta.durationFrames, lead.meta.fps) : "", isStudy(lead) ? "Study" : seriesOf(lead.series)?.title.replace(/:.*/, "")].filter((x) => x && x !== pieceTitle(lead)).join(" · "))}</small></span></a>` : ""}
         ${
           pcs.length > 1
             ? `<div class="post-pieces">${pcs
                 .slice(1)
                 .map(
                   (pc) =>
-                    `<a href="#/piece/${pc.id}"><img src="${poster(pc)}" alt="" loading="lazy"><span>${esc(pieceTitle(pc))}</span></a>`,
+                    `<a href="/piece/${pc.id}"><img src="${poster(pc)}" alt="" loading="lazy"><span>${esc(pieceTitle(pc))}</span></a>`,
                 )
                 .join("")}</div>`
             : ""
@@ -645,7 +646,7 @@ async function sound() {
   };
   const music = cat.sounds.filter((x) => x.kind === "music"),
     fx = cat.sounds.filter((x) => x.kind !== "music");
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Sound</nav><header class="page-head"><h1>Sound</h1><p>The studio's music and effects, composed in code like the films: no samples and no AI audio model. Each one has the prompt it was made from and the recipe that realizes it (<code>sound/src/recipes.ts</code>); <code>bun sound/tools/render.ts</code> makes the same files every time. Turn them on with <b>Sound</b> in the top bar; the music steps aside whenever a film plays with sound.</p></header>
     <section class="sec"><h2>Playlist <small>(${music.length} tracks, one for each theme family)</small></h2><p class="muted">Every track is built on the films' phrase and music-box melody, in its own key, tempo, instruments and room, and mastered to the same loudness. With sound on, each track plays twice and the next one fades in; <b>Play in the studio</b> starts from any of them. Blossom, the app's seventh family, gets its track when its theme is synced into the studio.</p>
     <ul class="sounds">${music.map(row).join("")}</ul></section>
     <section class="sec"><h2>Effects</h2><ul class="sounds">${fx.map(row).join("")}</ul></section>
@@ -666,33 +667,33 @@ function series(id: string) {
   const x = seriesOf(id);
   if (!x) return notFound();
   const docs = [...x.docs, ...(x.schedule ? [x.schedule] : [])];
-  const head = `<nav class="crumbs"><a href="#/">Studio</a> › ${x.kind === "studies" ? "" : `<a href="#/series">Series</a> › `}${esc(x.title.replace(/:.*/, ""))}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="#/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
+  const head = `<nav class="crumbs"><a href="/">Studio</a> › ${x.kind === "studies" ? "" : `<a href="/series">Series</a> › `}${esc(x.title.replace(/:.*/, ""))}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
   if (x.studies) {
     const subject = param("subject") as Study["subject"] | undefined,
       family = param("family"),
       shown = x.studies.filter((st) => (!subject || st.subject === subject) && (!family || st.family === family));
     const tab = (k: Study["subject"] | undefined, label: string) =>
-      `<a href="#/series/studies${k ? `?subject=${k}` : ""}"${k === subject && !family ? ' aria-current="page"' : ""}>${label} <small>${k ? x.studies!.filter((st) => st.subject === k).length : x.studies!.length}</small></a>`;
+      `<a href="/series/studies${k ? `?subject=${k}` : ""}"${k === subject && !family ? ' aria-current="page"' : ""}>${label} <small>${k ? x.studies!.filter((st) => st.subject === k).length : x.studies!.length}</small></a>`;
     const fams = FAMILIES.map((f) => ({ f, list: shown.filter((st) => st.family === f.id) })).filter(
       (g) => g.list.length,
     );
     const latest = x.notes?.[0];
-    main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Studies</nav>
+    main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Studies</nav>
       <header class="page-head"><h1>Studies</h1><p>${x.studies.length} motion techniques, one engine. Each study is one style drawn in code in at least two sizes, with its brief, the exact prompt that built it, a portable prompt anyone can copy, and the critique that shaped it. Start here before pointing the studio at your own product.</p></header>
       <aside class="note-oriel"><p><b>Oriel is imaginary.</b> Most studies advertise Oriel, a scheduling assistant we invented so the pieces can show a product without claiming anything about a real one: no website, no app, no company. The rest need no product at all: short lessons on real topics, every fact sourced, and pieces made just for fun.</p></aside>
       <div class="filter-bar"><nav class="cut-tabs" aria-label="Filter by subject">${tab(undefined, "All")}${tab("oriel", SUBJECT.oriel.label)}${tab("learn", SUBJECT.learn.label)}${tab("fun", SUBJECT.fun.label)}</nav>
-      ${family ? `<p class="meta">Showing ${esc(famLabel(family))} · <a class="link" href="#/series/studies">show every family</a></p>` : `<nav class="fam-jump" aria-label="Families">${fams.map(({ f, list }) => `<a href="#sec-fam-${f.id}">${esc(f.label)} <small>${list.length}</small></a>`).join("")}</nav>`}</div>
+      ${family ? `<p class="meta">Showing ${esc(famLabel(family))} · <a class="link" href="/series/studies">show every family</a></p>` : `<nav class="fam-jump" aria-label="Families">${fams.map(({ f, list }) => `<a href="#sec-fam-${f.id}">${esc(f.label)} <small>${list.length}</small></a>`).join("")}</nav>`}</div>
       ${fams
         .map(
           ({ f, list }) =>
             `<section class="sec fam" id="sec-fam-${f.id}"><h2>${esc(f.label)} <small>${list.length}</small></h2><p class="muted fam-blurb">${esc(f.blurb)}</p><ul class="study-grid">${list.map((st) => studyTile(st)).join("")}</ul></section>`,
         )
         .join("")}
-      ${shown.length ? "" : `<p class="empty">No study matches. <a class="link" href="#/series/studies">Show all</a>.</p>`}
+      ${shown.length ? "" : `<p class="empty">No study matches. <a class="link" href="/series/studies">Show all</a>.</p>`}
       <section class="sec studies-more"><h2>How the studies are made</h2>
         <ul class="links">
-          ${latest ? `<li><a href="#/note/${encodeURIComponent(latest.path.split("/").pop()!)}">${esc(latest.title)} →</a><p>From the journal · ${latest.minutes} min read. ${esc(latest.summary)}</p></li>` : ""}
-          ${docs.map((d) => `<li><a href="#/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))} →</a></li>`).join("")}
+          ${latest ? `<li><a href="/note/${encodeURIComponent(latest.path.split("/").pop()!)}">${esc(latest.title)} →</a><p>From the journal · ${latest.minutes} min read. ${esc(latest.summary)}</p></li>` : ""}
+          ${docs.map((d) => `<li><a href="/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))} →</a></li>`).join("")}
         </ul></section>`;
     mountPreviews(main);
   } else if (x.episodes) {
@@ -706,7 +707,7 @@ function series(id: string) {
           const cut = (k: "vertical" | "carousel" | "single", label: string) => {
             const c = byId(e.cuts[k] ?? "");
             return c
-              ? `<a class="cut" href="#/piece/${c.id}"><img src="${poster(c)}" alt="${label} for ${esc(e.title)}" loading="lazy"><span>${label}</span></a>`
+              ? `<a class="cut" href="/piece/${c.id}"><img src="${poster(c)}" alt="${label} for ${esc(e.title)}" loading="lazy"><span>${label}</span></a>`
               : "";
           };
           const built = p.run
@@ -722,8 +723,8 @@ function series(id: string) {
             built,
             p.golden ? "golden locked" : "no golden",
           ].filter(Boolean);
-          return `<li class="episode"><a class="ep-poster" href="#/piece/${p.id}" tabindex="-1" aria-hidden="true"><img src="${poster(p)}" alt="" loading="lazy"></a>
-        <div class="ep-body"><h2><span class="num">${epNo(e.code)}</span><a href="#/piece/${p.id}">${esc(e.title)}</a></h2><p>${esc(p.logline ?? p.about ?? "")}</p><p class="meta">${bits.map(esc).join(" · ")}</p></div>
+          return `<li class="episode"><a class="ep-poster" href="/piece/${p.id}" tabindex="-1" aria-hidden="true"><img src="${poster(p)}" alt="" loading="lazy"></a>
+        <div class="ep-body"><h2><span class="num">${epNo(e.code)}</span><a href="/piece/${p.id}">${esc(e.title)}</a></h2><p>${esc(p.logline ?? p.about ?? "")}</p><p class="meta">${bits.map(esc).join(" · ")}</p></div>
         <div class="cuts">${cut("vertical", "9:16")}${cut("carousel", "carousel")}${cut("single", "card")}</div></li>`;
         })
         .join("")}</ol>
@@ -734,7 +735,7 @@ function series(id: string) {
       `<div class="pieces">${(x.pieces ?? [])
         .map((pid) => {
           const p = byId(pid)!;
-          return `<a class="piece-link" href="#/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><b>${esc(p.title ?? p.id)}${p.sealed ? chip("sealed", "lock") : ""}</b><p class="meta">${esc(p.kind)} · ${esc(p.format)}${p.meta && p.kind === "video" ? ` · ${secs(p.meta.durationFrames)}` : ""}</p><p>${esc(p.about ?? "")}</p></a>`;
+          return `<a class="piece-link" href="/piece/${p.id}"><img src="${poster(p)}" alt="" loading="lazy"><b>${esc(p.title ?? p.id)}${p.sealed ? chip("sealed", "lock") : ""}</b><p class="meta">${esc(p.kind)} · ${esc(p.format)}${p.meta && p.kind === "video" ? ` · ${secs(p.meta.durationFrames)}` : ""}</p><p>${esc(p.about ?? "")}</p></a>`;
         })
         .join("")}</div>`;
   }
@@ -779,10 +780,10 @@ async function piece(id: string) {
     next = at >= 0 ? seq[at + 1] : undefined;
   const pager =
     x && at >= 0 && seq.length > 1
-      ? `<nav class="pager" aria-label="In this series"><span>${x.episodes ? `${esc(x.title.replace(/:.*/, ""))} · ${at + 1} of ${seq.length}` : `${at + 1} of ${seq.length} in ${esc(x.title)}`}</span>${prev ? `<a href="#/piece/${prev.id}">← ${esc(prev.label)}</a>` : ""}${next ? `<a href="#/piece/${next.id}">${esc(next.label)} →</a>` : ""}</nav>`
+      ? `<nav class="pager" aria-label="In this series"><span>${x.episodes ? `${esc(x.title.replace(/:.*/, ""))} · ${at + 1} of ${seq.length}` : `${at + 1} of ${seq.length} in ${esc(x.title)}`}</span>${prev ? `<a href="/piece/${prev.id}">← ${esc(prev.label)}</a>` : ""}${next ? `<a href="/piece/${next.id}">${esc(next.label)} →</a>` : ""}</nav>`
       : "";
   const sizeTabs = st
-    ? `<nav class="cut-tabs" aria-label="Sizes of this study">${(Object.entries(st.sizes) as [Size, string][]).map(([z, id]) => `<a href="#/piece/${id}"${id === p.id ? ' aria-current="page"' : ""}>${esc(SIZE_LABEL[z])}</a>`).join("")}</nav>`
+    ? `<nav class="cut-tabs" aria-label="Sizes of this study">${(Object.entries(st.sizes) as [Size, string][]).map(([z, id]) => `<a href="/piece/${id}"${id === p.id ? ' aria-current="page"' : ""}>${esc(SIZE_LABEL[z])}</a>`).join("")}</nav>`
     : "";
   const cutTabs = st
     ? sizeTabs
@@ -796,7 +797,7 @@ async function piece(id: string) {
           .filter(([, v]) => v)
           .map(
             ([k, v]) =>
-              `<a href="#/piece/${v}"${v === p.id ? ' aria-current="page"' : ""}>${k === "episode" ? "Episode" : k === "single" ? "Card" : k![0]!.toUpperCase() + k!.slice(1)}</a>`,
+              `<a href="/piece/${v}"${v === p.id ? ' aria-current="page"' : ""}>${k === "episode" ? "Episode" : k === "single" ? "Card" : k![0]!.toUpperCase() + k!.slice(1)}</a>`,
           )
           .join("")}</nav>`
       : "";
@@ -846,9 +847,9 @@ async function piece(id: string) {
     ["source", "Source"],
     ["files", "Files & checks"],
   ];
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › ${x ? `<a href="#/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} · ${esc(ep.title)}` : esc(p.title ?? p.id)}</nav>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › ${x ? `<a href="/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} · ${esc(ep.title)}` : esc(p.title ?? p.id)}</nav>
     <header class="page-head piece-head">${pager}<h1>${esc(p.title ?? (ep ? `${ep.title}` : p.id))}${p.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(p.logline ?? p.about ?? "")}</p>${p.error ? `<p class="error">Import error: ${esc(p.error)}</p>` : ""}</header>
-    ${st ? `<aside class="note-oriel subject-${st.subject}"><p><b>${esc(SUBJECT[st.subject].note[0])}</b> ${esc(SUBJECT[st.subject].note[1])} <a class="link" href="#/series/studies?family=${esc(st.family ?? "")}">More ${esc(famLabel(st.family))} →</a></p></aside>` : ""}
+    ${st ? `<aside class="note-oriel subject-${st.subject}"><p><b>${esc(SUBJECT[st.subject].note[0])}</b> ${esc(SUBJECT[st.subject].note[1])} <a class="link" href="/series/studies?family=${esc(st.family ?? "")}">More ${esc(famLabel(st.family))} →</a></p></aside>` : ""}
     ${cutTabs}<div class="piece-top"><div>${media}${downloads(p)}</div><dl class="facts">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>
     <nav class="section-tabs">${sections.map(([k, v]) => `<a href="#sec-${k}">${v}</a>`).join("")}</nav>
     ${sections.map(([k, v]) => `<section id="sec-${k}" class="sec"><h2>${v}</h2><div class="sec-body" data-sec="${k}"><p class="muted">Loading…</p></div></section>`).join("")}`;
@@ -907,7 +908,7 @@ async function piece(id: string) {
                 ["single", [spec.single]],
               ] as const);
     body("cuts")!.innerHTML =
-      `<p class="muted">Cut from <a class="link" href="#/piece/${src.id}">${esc(src.title ?? src.id)}</a> by <code>studio/derive.ts</code>: every beat re-renders the episode frame inside the box shown${spec.line ? ", ending on the line-art quokka" : ""}.</p>` +
+      `<p class="muted">Cut from <a class="link" href="/piece/${src.id}">${esc(src.title ?? src.id)}</a> by <code>studio/derive.ts</code>: every beat re-renders the episode frame inside the box shown${spec.line ? ", ending on the line-art quokka" : ""}.</p>` +
       show
         .map(
           ([k, beats]) =>
@@ -1069,7 +1070,7 @@ async function brand() {
   }>(m("brand/packs/studio/pack.json"));
   const fams = [...new Set(t.themes.map((x) => x.family))];
   const reel = byId("atmosphereReel");
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Brand kit</nav><header class="page-head"><h1>Brand kit</h1><p>Rotli's pack first, then the neutral pack the studies use. Rotli's pieces read their look from <a class="link" href="${m("brand/brand.json")}" target="_blank">brand/brand.json</a> (copy, palette, fonts with sha256 locks, character), <a class="link" href="${m("brand/themes.json")}" target="_blank">themes.json</a> (the app's twelve environments) and <a class="link" href="${m("brand/companions.json")}" target="_blank">companions.json</a>.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Brand kit</nav><header class="page-head"><h1>Brand kit</h1><p>Rotli's pack first, then the neutral pack the studies use. Rotli's pieces read their look from <a class="link" href="${m("brand/brand.json")}" target="_blank">brand/brand.json</a> (copy, palette, fonts with sha256 locks, character), <a class="link" href="${m("brand/themes.json")}" target="_blank">themes.json</a> (the app's twelve environments) and <a class="link" href="${m("brand/companions.json")}" target="_blank">companions.json</a>.</p></header>
   <section class="sec"><h2>Copy</h2><dl class="facts wide">${[
     "product",
     "wordmark",
@@ -1105,7 +1106,7 @@ async function brand() {
           .join("")}</li>`,
     )
     .join("")}</ul></section>
-  <section class="sec"><h2>Atmospheres <small>(<code>studio/atmospheres.ts</code>)</small></h2>${reel?.video ? `<p><a class="link" href="#/piece/atmosphereReel">Watch the atmosphere reel</a> · <a class="link" href="${m("out/atmosphere-board.png")}" target="_blank">board</a></p>` : ""}
+  <section class="sec"><h2>Atmospheres <small>(<code>studio/atmospheres.ts</code>)</small></h2>${reel?.video ? `<p><a class="link" href="/piece/atmosphereReel">Watch the atmosphere reel</a> · <a class="link" href="${m("out/atmosphere-board.png")}" target="_blank">board</a></p>` : ""}
     <div class="table"><table><thead><tr><th>Id</th><th>Mood</th><th>Family</th><th>Ground</th><th>Music</th><th>Used for</th></tr></thead><tbody>${atm.map((a) => `<tr><td><code>${esc(a.id)}</code></td><td>${esc(a.label)}</td><td>${esc(a.family)}</td><td>${a.dark ? "deep" : "light"} · drift ${a.drift}</td><td>key +${a.key} · melody ${["tune", "walking", "lilting"][a.melody] ?? a.melody}</td><td>${esc(a.why)}</td></tr>`).join("")}</tbody></table></div></section>
   <section class="sec"><h2>The neutral pack <small>(<code>brand/packs/studio/</code>, used by the studies)</small></h2><p class="muted">${esc(pack.note)}</p>
     ${Object.entries(pack.palettes)
@@ -1119,7 +1120,7 @@ async function brand() {
             .join("")}</div>`,
       )
       .join("")}
-    <p class="muted">Fonts: ${pack.fonts.files.map((f) => esc(f.spec.replace("@", " "))).join(" · ")} (OFL). <a class="link" href="#/use">Use it for your product →</a></p></section>
+    <p class="muted">Fonts: ${pack.fonts.files.map((f) => esc(f.spec.replace("@", " "))).join(" · ")} (OFL). <a class="link" href="/use">Use it for your product →</a></p></section>
   <section class="sec"><h2>Companion looks <small>(rendered from the app's real &lt;Character&gt;)</small></h2><div class="looks">${c.looks
     .filter((l) => looks.includes(`${l.id}.png`))
     .map(
@@ -1136,7 +1137,7 @@ type Doc = { label: string; path: string; group?: string };
 async function docPage(title: string, intro: string, docs: Doc[], active?: string) {
   const current = docs.find((d) => d.path === active) ?? docs[0]!;
   const groups = [...new Set(docs.map((d) => d.group ?? ""))];
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › ${esc(title)}</nav><header class="page-head"><h1>${esc(title)}</h1><p>${intro}</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › ${esc(title)}</nav><header class="page-head"><h1>${esc(title)}</h1><p>${intro}</p></header>
     <div class="doc-layout"><aside class="doc-list">${groups
       .map(
         (g) =>
@@ -1144,7 +1145,7 @@ async function docPage(title: string, intro: string, docs: Doc[], active?: strin
             .filter((d) => (d.group ?? "") === g)
             .map(
               (d) =>
-                `<a href="${location.hash.split("?")[0]}?doc=${encodeURIComponent(d.path)}" ${d === current ? 'aria-current="page"' : ""}>${esc(d.label)}</a>`,
+                `<a href="${location.pathname}?doc=${encodeURIComponent(d.path)}" ${d === current ? 'aria-current="page"' : ""}>${esc(d.label)}</a>`,
             )
             .join("")}`,
       )
@@ -1159,7 +1160,7 @@ async function docPage(title: string, intro: string, docs: Doc[], active?: strin
   $("#doc").innerHTML =
     `<p class="doc-path"><code>${esc(current.path.replace(/^skill:(\w+):/, "$1 skill: "))}</code>${url ? ` · <a class="link" href="${url}" target="_blank">raw</a>` : ""} · <button class="link copy" type="button" data-label="Copy" data-copy="${esc(body)}">Copy</button></p>${/(\.(json|ts|mjs|py)|LICENSE|NOTICE)$/.test(current.path) ? `<pre class="code">${esc(body)}</pre>` : embedded(markdown(body))}`;
 }
-const param = (k: string) => new URLSearchParams(location.hash.split("?")[1] ?? "").get(k) ?? undefined;
+const param = (k: string) => new URLSearchParams(location.search).get(k) ?? undefined;
 
 async function workflows() {
   const prompts = M.series.flatMap((x) =>
@@ -1238,7 +1239,7 @@ async function skills() {
 }
 async function tools() {
   const list = await json<{ file: string; about: string }[]>(api("tools"));
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Tools</nav><header class="page-head"><h1>Tools</h1><p>Every command in the studio, with the usage notes from its own header. Motion tools run with Node from <code>motion/</code>; studio scripts run with Bun from the studio root.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Tools</nav><header class="page-head"><h1>Tools</h1><p>Every command in the studio, with the usage notes from its own header. Motion tools run with Node from <code>motion/</code>; studio scripts run with Bun from the studio root.</p></header>
     <ul class="tools">${list
       .map((t) => {
         const lines = (t.about || "(no header)").split("\n").filter((l) => !l.startsWith("Derived from anidoodle")),
@@ -1263,7 +1264,7 @@ async function use() {
     })),
     families: FAMILIES,
     brief: (path) => json<Record<string, unknown>>(m(path)),
-    go: (step) => (location.hash = `#/use?step=${step + 1}`),
+    go: (step) => go(`/use?step=${step + 1}`),
   });
 }
 async function docs() {
@@ -1307,13 +1308,13 @@ async function docs() {
 const noteFile = (path: string) => path.split("/").pop()!;
 function journal() {
   const notes = seriesOf("studies")?.notes ?? [];
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Journal</nav><header class="page-head"><h1>Journal</h1><p>Long-form field notes from the studio: what we tried, how we measured it, and what we would tell you before you start making motion with a model. Every number can be re-run from the repository.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Journal</nav><header class="page-head"><h1>Journal</h1><p>Long-form field notes from the studio: what we tried, how we measured it, and what we would tell you before you start making motion with a model. Every number can be re-run from the repository.</p></header>
     ${
       notes.length
         ? `<ol class="journal">${notes
             .map(
               (n, i) =>
-                `<li><a class="entry" href="#/note/${encodeURIComponent(noteFile(n.path))}"><span class="meta">Field note ${String(notes.length - i).padStart(2, "0")} · ${esc(n.date)} · ${n.minutes} min read</span><h2>${esc(n.title)}</h2><p>${esc(n.summary)}</p><span class="link">Read →</span></a></li>`,
+                `<li><a class="entry" href="/note/${encodeURIComponent(noteFile(n.path))}"><span class="meta">Field note ${String(notes.length - i).padStart(2, "0")} · ${esc(n.date)} · ${n.minutes} min read</span><h2>${esc(n.title)}</h2><p>${esc(n.summary)}</p><span class="link">Read →</span></a></li>`,
             )
             .join("")}</ol>`
         : `<p class="empty">No notes yet.</p>`
@@ -1325,7 +1326,7 @@ async function note(file: string) {
     at = notes.findIndex((n) => noteFile(n.path) === file),
     meta = notes[at];
   if (!meta) return notFound();
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › <a href="#/journal">Journal</a> › Field note ${String(notes.length - at).padStart(2, "0")}</nav><div class="note-layout"><article class="doc note" id="doc"><p class="muted">Loading…</p></article><aside class="toc" id="toc" aria-label="On this page"></aside></div>`;
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › <a href="/journal">Journal</a> › Field note ${String(notes.length - at).padStart(2, "0")}</nav><div class="note-layout"><article class="doc note" id="doc"><p class="muted">Loading…</p></article><aside class="toc" id="toc" aria-label="On this page"></aside></div>`;
   const body = await text(m(meta.path)).catch((e) => `**Could not load:** ${e}`);
   // a note is its own page, so its "# " title stays the page's h1 (other docs sit under a page title and are demoted);
   // every h2 gets an id the contents rail links to (#sec-… links scroll, they never route)
@@ -1341,7 +1342,7 @@ async function note(file: string) {
       /(<\/h1>)/,
       `$1<p class="note-meta">${esc(meta.date)} · ${meta.minutes} min read · <button class="link copy" type="button" data-label="Copy the markdown" data-copy="${esc(body)}">Copy the markdown</button></p>`,
     ) +
-    `<nav class="note-pager" aria-label="More notes">${older ? `<a href="#/note/${encodeURIComponent(noteFile(older.path))}"><small>Older</small>${esc(older.title)}</a>` : "<span></span>"}${newer ? `<a class="next" href="#/note/${encodeURIComponent(noteFile(newer.path))}"><small>Newer</small>${esc(newer.title)}</a>` : `<a class="next" href="#/journal"><small>Back to</small>The journal</a>`}</nav>
+    `<nav class="note-pager" aria-label="More notes">${older ? `<a href="/note/${encodeURIComponent(noteFile(older.path))}"><small>Older</small>${esc(older.title)}</a>` : "<span></span>"}${newer ? `<a class="next" href="/note/${encodeURIComponent(noteFile(newer.path))}"><small>Newer</small>${esc(newer.title)}</a>` : `<a class="next" href="/journal"><small>Back to</small>The journal</a>`}</nav>
     <p class="doc-path"><a class="link" href="${m(meta.path)}" target="_blank">${esc(meta.path)}</a></p>`;
   if (heads.length > 2)
     $("#toc").innerHTML =
@@ -1354,10 +1355,10 @@ async function doc(path: string) {
 // ---------------------------------------------------------------- isolation
 async function isolation(fresh = false) {
   if (STATIC) {
-    main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Isolation audit</nav><header class="page-head"><h1>Isolation audit</h1><p>The audit reads the product repos, worktrees and branches on the Mac, so it only runs there: <code>bun scripts/check-isolation.ts</code>, or the Isolation page of the local studio (<code>bun start</code> → 127.0.0.1:4500/motion). This hosted copy is a static, read-only snapshot served by its own Railway project; it shares nothing with rotli.co.</p></header>`;
+    main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Isolation audit</nav><header class="page-head"><h1>Isolation audit</h1><p>The audit reads the product repos, worktrees and branches on the Mac, so it only runs there: <code>bun scripts/check-isolation.ts</code>, or the Isolation page of the local studio (<code>bun start</code> → 127.0.0.1:4500/motion). This hosted copy is a static, read-only snapshot served by its own Railway project; it shares nothing with rotli.co.</p></header>`;
     return;
   }
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Isolation audit</nav><header class="page-head"><h1>Isolation audit</h1><p>Proof that the studio's work stays in <code>~/rotli-studio</code>: its code only reads declared sources; no render sits in a product repo, worktree or branch; the live sites reference none; and what lives outside the studio does so on purpose. Read-only: <code>bun scripts/check-isolation.ts</code>.</p><p><button class="ghost" id="again">Run again</button> <span class="muted" id="when">${fresh ? "" : "Running (walks the product repos, ~10 s)…"}</span></p></header><div id="iso"></div>`;
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Isolation audit</nav><header class="page-head"><h1>Isolation audit</h1><p>Proof that the studio's work stays in <code>~/rotli-studio</code>: its code only reads declared sources; no render sits in a product repo, worktree or branch; the live sites reference none; and what lives outside the studio does so on purpose. Read-only: <code>bun scripts/check-isolation.ts</code>.</p><p><button class="ghost" id="again">Run again</button> <span class="muted" id="when">${fresh ? "" : "Running (walks the product repos, ~10 s)…"}</span></p></header><div id="iso"></div>`;
   $("#again").onclick = () => isolation(true);
   if (fresh) $("#when").textContent = "Running…";
   type Rep = {
@@ -1388,14 +1389,19 @@ async function isolation(fresh = false) {
 
 // ---------------------------------------------------------------- router
 function notFound() {
-  main.innerHTML = `<p class="empty">Nothing here. <a class="link" href="#/">Back to the studio</a>.</p>`;
+  main.innerHTML = `<p class="empty">Nothing here. <a class="link" href="/">Back to the studio</a>.</p>`;
 }
 async function route() {
-  if (!M) return; // a hash change while the catalogue is still loading: the first render will pick it up
+  if (!M) return; // a navigation while the catalogue is still loading: the first render will pick it up
   const g = ++gen;
-  const h = location.hash || "#/",
-    [path] = h.split("?"),
-    parts = path!.replace(/^#\/?/, "").split("/");
+  // pages live at real paths (/piece/<id>); /motion and /index.html are the shell's own names for home
+  const path = location.pathname.replace(/\/+$/, "") || "/",
+    parts = path
+      .replace(/^\/+/, "")
+      .replace(/^(motion|index\.html)$/, "")
+      .split("/"),
+    toSection = location.hash.startsWith("#sec-");
+  window.dispatchEvent(new Event("studio:route")); // pages that hold listeners (the wallpaper maker) let go of them
   stopPlayers?.();
   stopPlayers = null;
   const turned = routed;
@@ -1404,7 +1410,8 @@ async function route() {
   renderNav(navKey(parts));
   document.body.classList.toggle("is-home", !parts[0]);
   document.querySelectorAll<HTMLAnchorElement>(".topnav a").forEach((a) => {
-    if (path!.startsWith(a.getAttribute("href")!)) a.setAttribute("aria-current", "page");
+    const href = a.getAttribute("href")!;
+    if (href === "/" ? path === "/" : path.startsWith(href)) a.setAttribute("aria-current", "page");
     else a.removeAttribute("aria-current");
   });
   try {
@@ -1437,19 +1444,25 @@ async function route() {
     if (e instanceof Stale || g !== gen) return;
     main.innerHTML = `<p class="error">Could not load this page: ${esc(String(e))}. <button class="link retry" type="button">Retry</button></p>`;
   }
-  if (turned && !h.includes("#sec-")) {
+  if (turned && !toSection) {
     const h1 = main.querySelector<HTMLElement>("h1");
     if (h1) {
       h1.tabIndex = -1;
       h1.focus({ preventScroll: true });
     }
   }
-  if (!h.includes("#sec-")) main.scrollTo?.(0, 0);
+  if (!toSection) main.scrollTo?.(0, 0);
   document.title = parts[0]
     ? `${main.querySelector("h1")?.textContent?.trim() ?? "rotli"} · rotli studio`
     : "rotli studio";
 }
 let routed = false; // the first render is not a page turn
+/** move to a studio page without reloading: the address bar shows the real path, and Back returns here */
+function go(to: string, replace = false) {
+  if (replace) history.replaceState(null, "", to);
+  else history.pushState(null, "", to);
+  void route();
+}
 // in-page section links (#sec-…) must not trigger the router
 document.addEventListener("click", (e) => {
   const copy = (e.target as HTMLElement).closest<HTMLButtonElement>("button.copy");
@@ -1474,11 +1487,25 @@ document.addEventListener("click", (e) => {
     return;
   }
   const a = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="#sec-"]');
-  if (!a) return;
+  if (a) {
+    e.preventDefault();
+    document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: smooth() });
+    return;
+  }
+  // a link to another studio page: route it here instead of loading the page again (files, new tabs,
+  // downloads and modified clicks keep the browser's own behaviour)
+  const to = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href^="/"]');
+  if (!to || to.target || to.hasAttribute("download") || e.defaultPrevented) return;
+  const me = e as MouseEvent;
+  if (me.button !== 0 || me.metaKey || me.ctrlKey || me.shiftKey || me.altKey) return;
+  const url = new URL(to.href);
+  if (url.origin !== location.origin || !isPage(url.pathname)) return;
   e.preventDefault();
-  document.getElementById(a.getAttribute("href")!.slice(1))?.scrollIntoView({ behavior: smooth() });
+  go(url.pathname + url.search);
 });
-window.addEventListener("hashchange", route);
+window.addEventListener("popstate", () => void route());
+// links shared before 2026-09-29 carry the page after a "#" (studio.rotli.co/#/piece/…): keep them working
+if (location.hash.startsWith("#/")) history.replaceState(null, "", location.hash.slice(1) || "/");
 try {
   M = await json<Manifest>(api("manifest"));
 } catch (e) {

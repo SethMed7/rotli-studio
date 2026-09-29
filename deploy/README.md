@@ -59,6 +59,11 @@ the private-name list it refuses to build (`--no-markers` overrides it knowingly
 Left out on purpose: every write route, exact-frame renders, golden verification and
 the isolation audit (they need this Mac).
 
+Pages live at real paths (`/piece/<id>`, `/series/studies`), so the host answers each one: `export-site.ts` writes
+`/piece/<id>/index.html` for every piece (the shell with that piece's title, description, card and words), and the
+Caddyfile's `@page` list (the same roots as `src/motion/paths.ts`, checked at export) serves that page, or the shell,
+at any page path. Media, data and missing files never fall back to the shell, so a miss is still a 404.
+
 The host is Caddy (`Dockerfile`, image pinned by digest; `Caddyfile`): a Content-Security-Policy that allows
 only the snapshot's own files and no inline script, `nosniff`, `DENY` framing, no referrer. Pages and data are
 `no-store`, hashed scripts and styles are immutable, media caches for an hour, and errors are never cached

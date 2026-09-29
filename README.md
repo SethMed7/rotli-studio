@@ -46,7 +46,7 @@ that built it (prompt, follow-ups, report, cost), its source and its golden: the
 still renders the same pixels. Every piece downloads ready to post: the video, or all its slides in one zip,
 and its caption. The **Carousels** page gathers every slide post in one place.
 
-**Wallpapers:** make your own at [studio.rotli.co/#/wallpapers](https://studio.rotli.co/#/wallpapers). Pick a
+**Wallpapers:** make your own at [studio.rotli.co/wallpapers](https://studio.rotli.co/wallpapers). Pick a
 screen (Mac 5120 × 3200, Display 6016 × 3384, iPad 2752 × 2752, iPhone 1320 × 2868 or Android 1440 × 3200), a plain
 theme ground or a scene, and a quokka if you want one: its colour, emotion, glasses, bucket hat or goggles (and their colour), where it
 stands and how big. Or start from one of eleven presets. The engine that makes the films draws the download in your
@@ -69,7 +69,7 @@ melody.
 
 ## Use it for your product
 
-The quickest way in is **Make one for your product** on [studio.rotli.co/#/use](https://studio.rotli.co/#/use): a
+The quickest way in is **Make one for your product** on [studio.rotli.co/use](https://studio.rotli.co/use): a
 few questions, one screen at a time, with pointers beside each (your product, the goal, the sizes, a style from the
 studies, what it may say, your assets, sound and pace). The result is a prompt for Claude or any capable model that
 interviews you for whatever is still missing, fetches your logo, colours, fonts and wording from your site, writes a

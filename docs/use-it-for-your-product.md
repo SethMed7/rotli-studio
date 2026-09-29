@@ -4,7 +4,7 @@ The studio draws video, carousels and stills in code: every frame is a pure func
 again byte for byte, cut into other sizes, reviewed on a contact sheet and locked by a golden. Rotli's films are
 one use of it. The **Studies** (`motion/series/studies/`) show fifty-four other techniques, for Oriel (an imaginary
 product), for real topics and just for fun, and they are the best place to start. On the site, **Make one for your
-product** (`#/use`) asks a few questions and writes you a prompt that does the rest with any capable model.
+product** (`/use`) asks a few questions and writes you a prompt that does the rest with any capable model.
 
 ## Two ways in
 

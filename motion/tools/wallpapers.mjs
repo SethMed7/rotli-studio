@@ -1,4 +1,4 @@
-// WALLPAPERS: proof that the wallpaper maker draws reproducibly. The maker (the site's #/wallpapers) renders each
+// WALLPAPERS: proof that the wallpaper maker draws reproducibly. The maker (the site's /wallpapers) renders each
 // download in the visitor's browser with paintWallpaper (src/canvas-core/wallpapers.ts); this draws every preset on
 // every screen through that same function, twice (tools/still.mjs refuses a frame that does not reproduce), at the
 // design size (short side 1080), and compares each PNG's sha256 with golden/wallpapers.json.

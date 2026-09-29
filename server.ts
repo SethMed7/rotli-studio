@@ -3,6 +3,7 @@
 import { existsSync, statSync } from "node:fs";
 import { join, normalize, relative } from "node:path";
 
+import { BARE_ONLY, PAGE_ROOTS } from "./src/motion/paths";
 import { motionRoutes } from "./src/motion/routes";
 
 const PORT = Number(process.env.PORT ?? 4500);
@@ -55,13 +56,26 @@ function localOnly<T>(routes: T): T {
   ) as T;
 }
 
+// every studio page is the same shell at its own path (/piece/<id>, /series/studies…); the app routes it
+const shell = () => serveFile(join(STATIC, "motion.html"));
+const pageRoutes = Object.fromEntries(
+  PAGE_ROOTS.flatMap((r) =>
+    BARE_ONLY.has(r)
+      ? [[`/${r}`, shell]]
+      : [
+          [`/${r}`, shell],
+          [`/${r}/*`, shell],
+        ],
+  ),
+);
+
 const server = Bun.serve({
   hostname: HOST,
   port: PORT,
   routes: localOnly({
-    // the studio's home is the Motion room's landing; /posts is the list of published posts (a Motion room page)
-    "/": () => serveFile(join(STATIC, "motion.html")),
-    "/posts": () => Response.redirect("/#/posts", 302),
+    // the studio's home is the Motion room's landing; every other page is the same shell at its own path
+    "/": shell,
+    ...pageRoutes,
     "/favicon.ico": () => serveFile(join(LIBRARY, "logo", "favicon.ico")),
     "/build/motion.js": () => bundle("motion/app.ts"),
     "/build/wallpapers.js": () => bundle("../motion/src/site/wallpaperMaker.ts"),

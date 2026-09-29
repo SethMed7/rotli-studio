@@ -4,6 +4,12 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Studio links have no "#".** Pages live at real paths: studio.rotli.co/piece/twoPartHarmony, /series/studies,
+  /journal. The app routes them with the History API (Back and Forward work, clicks do not reload), the local
+  server and the host serve the shell at every page path, and every piece has its own page at /piece/<id>/ with its
+  title, description, poster card and words, so a shared link previews as the piece and reads without JavaScript
+  (this takes in PR #3). Links shared with "#/" keep working: the app rewrites them on load. `src/motion/paths.ts`
+  is the one list of page roots; `export-site.ts` refuses to build if the Caddyfile drifts from it.
 - **Deploys no longer fail while Railway is slow.** `railway up --ci` gave up streaming the build log after about a
   minute whenever Railway queued the build, and failed the job although the build succeeded (twice on 2026-09-29,
   with the site live both times). The workflow now uploads with `--detach` and the live check waits up to 20

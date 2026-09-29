@@ -1,4 +1,4 @@
-// "Make one for your product" (#/use): a step-by-step questionnaire whose result is a prompt. The prompt does the
+// "Make one for your product" (/use): a step-by-step questionnaire whose result is a prompt. The prompt does the
 // AI part: it makes the model interview the visitor for anything still missing, fetch the logo, colours, fonts and
 // sentences from their site, write a brief, build the piece and review it. The site itself calls no model (the
 // hosted copy is static), so the answers stay in this browser (localStorage) and leave it only when copied.
@@ -354,8 +354,8 @@ export async function wizard(ctx: Ctx) {
   const cur = STEPS[step]!;
   const { main } = ctx;
   const intro = `<header class="page-head"><h1>Make one for your product</h1><p>Answer a few questions, one screen at a time. You get a prompt for Claude or any capable model that interviews you for whatever is still missing, fetches your logo, colours and fonts from your site, writes a brief for you to approve, builds the piece and reviews it. Your answers stay in this browser.</p></header>`;
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Make one for your product</nav>${intro}
-    <ol class="wiz-steps" aria-label="Steps">${STEPS.map((s, i) => `<li${i === step ? ' aria-current="step"' : ""}><a href="#/use?step=${i + 1}"><span>${i + 1}</span>${esc(s.title)}</a></li>`).join("")}</ol>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Make one for your product</nav>${intro}
+    <ol class="wiz-steps" aria-label="Steps">${STEPS.map((s, i) => `<li${i === step ? ' aria-current="step"' : ""}><a href="/use?step=${i + 1}"><span>${i + 1}</span>${esc(s.title)}</a></li>`).join("")}</ol>
     <div class="wiz">
       <form class="wiz-form" id="wiz" autocomplete="off"><h2>${step + 1}. ${esc(cur.title)}</h2>${stepBody(cur.id, a, ctx)}
         <div class="wiz-nav">${step > 0 ? `<button class="button ghost" type="button" data-go="${step - 1}">Back</button>` : ""}${step < STEPS.length - 1 ? `<button class="button" type="submit">${step === STEPS.length - 2 ? "Write my prompt" : "Next"}</button>` : `<button class="button ghost" type="button" id="wiz-reset">Start over</button>`}</div>
@@ -363,10 +363,10 @@ export async function wizard(ctx: Ctx) {
       <aside class="wiz-tips" aria-label="Pointers"><h2>Pointers</h2><ul>${POINTERS[cur.id].map((p) => `<li>${p}</li>`).join("")}</ul></aside>
     </div>
     <section class="sec wiz-deeper"><h2>Going deeper</h2><ul class="links">
-      <li><a href="#/doc/${encodeURIComponent("../docs/use-it-for-your-product.md")}">The guide: point the studio at your brand →</a><p>Brand packs, the kit, sizes, and how a piece is made, proved and registered.</p></li>
-      <li><a href="#/prompts">Prompt library →</a><p>Every study's portable prompt, one click to copy.</p></li>
-      <li><a href="#/skills?doc=${encodeURIComponent("skill:studio:brand-motion-studio")}">The brand-motion-studio skill →</a><p>The same flow for Claude Code, from a website to a season of films.</p></li>
-      <li><a href="#/doc/${encodeURIComponent("../docs/evaluation.md")}">What ports, what doesn't →</a><p>What carries over to another product, and what is still shaped like Rotli.</p></li>
+      <li><a href="/doc/${encodeURIComponent("../docs/use-it-for-your-product.md")}">The guide: point the studio at your brand →</a><p>Brand packs, the kit, sizes, and how a piece is made, proved and registered.</p></li>
+      <li><a href="/prompts">Prompt library →</a><p>Every study's portable prompt, one click to copy.</p></li>
+      <li><a href="/skills?doc=${encodeURIComponent("skill:studio:brand-motion-studio")}">The brand-motion-studio skill →</a><p>The same flow for Claude Code, from a website to a season of films.</p></li>
+      <li><a href="/doc/${encodeURIComponent("../docs/evaluation.md")}">What ports, what doesn't →</a><p>What carries over to another product, and what is still shaped like Rotli.</p></li>
     </ul></section>`;
   const form = main.querySelector<HTMLFormElement>("#wiz")!;
   const read = () => {
