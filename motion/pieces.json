@@ -1504,6 +1504,22 @@
    "about": "Study 37 · Ink Wash, designed for landscape (1920 × 1080): its own layout, not a crop."
   },
   {
+   "id": "twoPartHarmony",
+   "kind": "video",
+   "slug": "two-part-harmony",
+   "format": "film",
+   "length": "120 s",
+   "about": "Study 54 · Two-Part Harmony: a music video for an original duet about how Claude Opus 5.5 and Claude Sonnet 5.5 work together (the advisor tool: Sonnet executes, Opus advises). Two pixel critters sing it with formant voices driven by one syllable table; every claim is sourced. Fan-made, not affiliated with Anthropic."
+  },
+  {
+   "id": "twoPartHarmonyVertical",
+   "kind": "video",
+   "slug": "two-part-harmony-vertical",
+   "format": "story",
+   "length": "120 s",
+   "about": "Study 54 · Two-Part Harmony, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
    "id": "literalType",
    "kind": "video",
    "slug": "literal-type",

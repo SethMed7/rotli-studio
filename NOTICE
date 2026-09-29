@@ -29,3 +29,10 @@ The turtle (motion/assets/turtle/, used by the Doodle Guide study):
   The light-blue turtle in glasses is the maintainer's personal mascot.
   Copyright (c) 2026 Seth Medina. All rights reserved.
   The images are not covered by this repository's MIT licence; they may not be reused outside this repository.
+
+The pixel critters in the Two-Part Harmony study (motion/src/canvas-core/studies/twoPartHarmony.ts):
+
+  The critters are drawn from scratch in code, after the Claude Code mascot. That character, and the names
+  Claude, Opus and Sonnet, belong to Anthropic PBC. The study is a fan-made explainer, not affiliated with or
+  endorsed by Anthropic. The character is not covered by this repository's MIT licence; the code that draws it
+  is, but reusing the likeness is subject to Anthropic's rights.

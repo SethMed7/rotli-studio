@@ -2,7 +2,7 @@
 
 The rest of the studio is Rotli's. **Studies** show that the engine is not: each one is an original piece in a
 different motion technique, shipped in at least two sizes, and the place to learn the studio before pointing it at
-your own product. There are 50. Each brief names its **family** (how the site groups it) and its **subject**:
+your own product. There are 54. Each brief names its **family** (how the site groups it) and its **subject**:
 
 - **Oriel** (`"subject": "oriel"`). Oriel is **imaginary**: a scheduling assistant that finds a time that works for
   everyone, invented so a study can show a product without claiming anything about a real one. It has no website,
@@ -64,6 +64,10 @@ your own product. There are 50. Each brief names its **family** (how the site gr
 | 48 | Stained Glass | leaded stained glass that fills and lights through one day (fun) | vertical · landscape | 24 s |
 | 49 | Radial Year | a radial chart: 365 spokes of daylight for two cities (real topic) | square · vertical | 30 s |
 | 50 | ASCII Cinema | ASCII art: a character ramp as pixels, a lit torus, a portrait from noise (fun) | landscape · vertical | 24 s |
+| 51 | Literal Type | seven words that each do what they say, one continuous take, paper and ink (Oriel) | landscape · vertical | 32 s · 60 fps |
+| 52 | Gouache Storybook | an opaque-gouache picture book, scenes painted on with broad brush ribbons (fun) | landscape · vertical | 30 s · 24 fps |
+| 53 | Burrow Days | a comic-book-rendered short: halftone shadows, misregistration for depth, on twos (fun) | landscape · vertical | 48 s · 24 fps |
+| 54 | Two-Part Harmony | a music video: two pixel critters sing a duet about Opus 5.5 and Sonnet 5.5 (real topic) | landscape · vertical | 120 s |
 
 Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
 metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.
@@ -79,6 +83,13 @@ Study 24 is hosted by the owner's own turtle mascot (`assets/turtle/`, all right
 explains a real topic, goldendoodles, with every fact hedged; it never claims a dog is hypoallergenic. Study 25 is a
 song about Opus 5.5 making this studio; every lyric line is true of how the studio works, except the first, which
 quotes the trend's own "one prompt, one link" caption (field note 01 explains why that caption is only half true).
+
+Study 54 is a fan-made music video about how Claude Opus 5.5 and Claude Sonnet 5.5 work together (the advisor
+tool: Sonnet executes, Opus advises), a `learn` study whose every lyric and fact strip is in its brief's `facts` with
+Anthropic's own sources. It learns from a Claude Code mascot music video shared on X
+(https://x.com/LLMJunky/status/2104659862663618566): only the idea of the mascot as a band dancing on a measured beat
+grid; its song, choreography and scenes are not used. The critters are drawn from scratch in code after Anthropic's
+character, which is not MIT (`NOTICE`). It carries Study 25's formant voice forward to two singers from one table.
 
 Studies 27–50 each take one technique the first 26 did not cover, researched first (the references and what defines
 each technique are in field note 02) and credited by link in the brief's `learnsFrom`. Each was built by one agent

@@ -1,0 +1,283 @@
+{
+ "piece": "twoPartHarmony",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 2.7,
+    "longestCalm": 8,
+    "nearStill": 31
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 6,
+    "motion": 7,
+    "variety": 6,
+    "composition": 5,
+    "accuracy": 7,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "01:30.0",
+     "what": "effort line sung by Opus in clay; the source gives these levels for Sonnet 5.5",
+     "fix": "give bar 46 to Sonnet, blue dial, name Sonnet 5.5 in the strip"
+    },
+    {
+     "at": "00:49.0",
+     "what": "chant words collide under the karaoke pop",
+     "fix": "pop 1.05 on upper-case lines"
+    },
+    {
+     "at": "01:32.9",
+     "what": "HALF stamp covers the Sonnet price label",
+     "fix": "move the stamp off the labels"
+    },
+    {
+     "at": "01:10.0",
+     "what": "advisor payoff piles up on Sonnet: laptop hides the face, letter on the head, bulb rays over both",
+     "fix": "move the laptop left of Sonnet, lift the letter, bulb to the upper left"
+    },
+    {
+     "at": "00:56.0",
+     "what": "fact strip at 26-28 px is unreadable on a phone",
+     "fix": "about 38-40 u, shorter strings"
+    },
+    {
+     "at": "00:00.5",
+     "what": "critters and tags sit on the 5.5 numerals (intro and outro)",
+     "fix": "raise and shrink the numeral above the tags"
+    },
+    {
+     "at": "00:06.0",
+     "what": "count-in digits wedged between the critters",
+     "fix": "raise the numeral, hide tags in bar 4"
+    },
+    {
+     "at": "00:08.0",
+     "what": "verse-1 back-up singer parked beside the soloist",
+     "fix": "put it on the far side of the prop"
+    },
+    {
+     "at": "01:10.0",
+     "what": "code window shows an invented 'text: (none)' field",
+     "fix": "show stop_reason instead"
+    },
+    {
+     "at": "00:24.8",
+     "what": "SPEC, CALL, FEATHER on fractional frames; peak -0.4 dBFS",
+     "fix": "snap to beats; -1 dB ceiling"
+    },
+    {
+     "at": "00:40.0",
+     "what": "three choruses share one staging",
+     "fix": "give chorus 2 and 3 their own staging"
+    },
+    {
+     "at": "01:52.0",
+     "what": "8 s calm ending, small grey credits",
+     "fix": "walk-in with zoom kicks; credits 30 u"
+    },
+    {
+     "at": "01:56.0",
+     "what": "end card states one pairing as a rule; 'Opus 5.5' where the source says 'an Opus model'; 'sends a plan' vs 'plan or course correction'",
+     "fix": "hedge the end card, match the source wording"
+    },
+    {
+     "at": "00:20.0",
+     "what": "the two critters read as one at phone size",
+     "fix": "bigger headphones, a cooler Sonnet body"
+    }
+   ],
+   "agentSaw": [
+    "verses glided with no abrupt change (32 s calm) until per-line ground flips and camera punches were added before this round",
+    "the concert crowd read as grey blocks (redrawn as silhouettes before this round)"
+   ],
+   "agentMissed": [
+    "effort levels sung by Opus though the source gives them for Sonnet 5.5",
+    "chant words collide under the 1.14 karaoke pop",
+    "critters overlap the 5.5 numerals and count-in digits",
+    "HALF stamp covers the price label",
+    "advisor payoff piles up on Sonnet (laptop, letter, bulb)",
+    "fact strip too small to read on a phone",
+    "invented 'text: (none)' field",
+    "fractional cue frames (SPEC, CALL, FEATHER)",
+    "three choruses share one staging",
+    "unhedged end card and 'Opus 5.5' where the source says 'an Opus model'"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 2.8,
+    "longestCalm": 8,
+    "nearStill": 30
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "at": "00:08.0",
+     "what": "back-up Sonnet slides across the crate at the cut into verse 1",
+     "fix": "cut to the mark, no tween"
+    },
+    {
+     "at": "01:23.5",
+     "what": "jumping critters cover the chant cards in choruses 2 and 3",
+     "fix": "raise the card rows, cap the chant jump"
+    },
+    {
+     "at": "01:45.0",
+     "what": "chorus-3 cards fall through the sung lyric",
+     "fix": "drop from just above the mark with a fade"
+    },
+    {
+     "at": "01:52.0",
+     "what": "critters pass through each other at the outro cut; end still an 8 s calm",
+     "fix": "start the outro from chorus 3's sides; slam the end card"
+    },
+    {
+     "at": "00:03.0",
+     "what": "name tags touch the grey 5.5",
+     "fix": "retire the numeral before the tags"
+    },
+    {
+     "at": "00:30.0",
+     "what": "fact strip 38 u and prop labels 26-28 u, under the bible's size for lines that matter",
+     "fix": "44 u strip, 30 u labels"
+    },
+    {
+     "at": "00:00.0",
+     "what": "hook names the piece only at 4 s",
+     "fix": "title at bar 2"
+    },
+    {
+     "at": "00:22.0",
+     "what": "back-up Sonnet's headphone overlaps the plan sheet",
+     "fix": "move the sheet or the singer"
+    }
+   ],
+   "agentSaw": [
+    "every round-1 problem, fixed before this round"
+   ],
+   "agentMissed": [
+    "new collisions from the round-1 staging: cards vs jumps, drops through the lyric, the side-swap cut",
+    "plan sheet vs back-up singer"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 2.9,
+    "longestCalm": 4,
+    "nearStill": 30
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "at": "00:56.0",
+     "what": "the cast tweens into the advisor layout, smearing the cut for about 5 frames",
+     "fix": "cut the whole cast at every section boundary"
+    },
+    {
+     "at": "01:28.0",
+     "what": "the chorus-sized cast slides across the 1M card at the bridge cut",
+     "fix": "cut at frameOf(45)"
+    },
+    {
+     "at": "01:32.5",
+     "what": "'per million tokens' sits on the price card border",
+     "fix": "taller card"
+    },
+    {
+     "at": "01:54.5",
+     "what": "walk-in hops push heads into the 5.5; a ghost 5.5 behind the end card; credits low-contrast on the rays",
+     "fix": "raise and retire the numeral; credits on a plate"
+    },
+    {
+     "at": "00:40.0",
+     "what": "verse-2 cast tweens into chorus 1",
+     "fix": "cut"
+    },
+    {
+     "at": "01:47.3",
+     "what": "chorus-3 cast nearly touches on the chant jumps",
+     "fix": "±0.38"
+    }
+   ],
+   "agentSaw": [
+    "every round-2 problem, fixed before this round"
+   ],
+   "agentMissed": [
+    "the cut mechanism used only for the back-up singers, so the other section boundaries still smear"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 4,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 2.9,
+    "longestCalm": 4,
+    "nearStill": 31
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "at": "01:53.2",
+     "what": "walk-in hops graze the 5.5 for 2-3 frames",
+     "fix": "(fixed after the round: numeral raised 40 u)"
+    },
+    {
+     "at": "01:56.0",
+     "what": "the high-five flash is a little muddy",
+     "fix": "optional (not done: the flash is what registers the high five as a hard change)"
+    },
+    {
+     "at": "00:40.0",
+     "what": "variety leans on glides and the 4 s prop cadence",
+     "fix": "optional mid-verse punches (not done)"
+    }
+   ],
+   "agentSaw": [
+    "every round-3 problem, fixed before this round"
+   ],
+   "agentMissed": [
+    "the landscape hop grazing the numeral"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

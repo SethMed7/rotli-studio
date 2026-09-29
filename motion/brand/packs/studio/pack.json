@@ -458,6 +458,18 @@
    "s3": "#8b5a2b",
    "s4": "#3f9b5a"
   },
+  "ivory": {
+   "ground": "#faf9f5",
+   "surface": "#ffffff",
+   "ink": "#141413",
+   "muted": "#b0aea5",
+   "line": "#e8e6dc",
+   "accent": "#d97757",
+   "accent2": "#6a9bcc",
+   "green": "#788c5d",
+   "deep": "#141413",
+   "paper": "#f0eee6"
+  },
   "gouache": {
    "ground": "#f1e7d3",
    "surface": "#fbf6ea",

@@ -4,6 +4,15 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Studies 51–54: the studies reach fifty-four.** Literal Type (seven words that each do what they say, one take),
+  Gouache Storybook (a snow globe that repaints the street), Burrow Days (a rabbit's day in comic-book 3D) and
+  Two-Part Harmony, a fan-made two-minute music video about how Claude Opus 5.5 and Claude Sonnet 5.5 work together
+  (the advisor tool: Sonnet executes, Opus advises). Two pixel critters drawn in code after the Claude Code mascot sing
+  a duet with two formant voices from one syllable table; every lyric and fact strip is sourced to Anthropic's own
+  post and docs, and the character is Anthropic's, not MIT (`NOTICE`). Each has its brief, prompt, portable prompt,
+  critique record and goldens; the bible lists 51–54 and the counts say fifty-four. New palettes in the studio pack.
+- **Kit: a cast library and designed foley** (`kit/cast.ts`, `kit/foley.ts`), not yet used by a piece; the plan is
+  in `docs/proposals/2026-09-29-cast-and-room-to-think.md`.
 - **Designed thumbnails for every Rotli video.** The posters were a frame from the middle of the longest scene:
   mostly app UI, small text, the quokka small or missing, no title. Now each of the 42 Rotli videos (the film and its
   teaser, Season One and Rotli in 30 Seconds with their verticals, Looks and Themes, the atmosphere reel and the studio

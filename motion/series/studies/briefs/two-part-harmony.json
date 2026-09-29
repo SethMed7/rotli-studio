@@ -1,0 +1,134 @@
+{
+ "id": "two-part-harmony",
+ "no": 54,
+ "title": "Two-Part Harmony",
+ "module": "src/canvas-core/studies/twoPartHarmony.ts",
+ "pieces": {
+  "landscape": "twoPartHarmony",
+  "vertical": "twoPartHarmonyVertical"
+ },
+ "primary": "landscape",
+ "kind": "video",
+ "fps": 30,
+ "bpm": 120,
+ "frames": 3600,
+ "palette": "ivory",
+ "family": "character",
+ "subject": "learn",
+ "style": "A two-minute music video for an original duet that teaches how Claude Opus 5.5 and Claude Sonnet 5.5 work together. Two pixel critters, drawn from scratch as a 14 x 8 grid in code after the Claude Code mascot, are the band: Opus wears glasses and sings the low part, Sonnet wears blue headphones and sings the high part; they sing together (Sonnet on the tune, Opus a tenth below) in the choruses. Warm ivory ground, ink, and three accents that mean something: clay is Opus, blue is Sonnet, green is both, so the karaoke lyric teaches who sings what (the sung syllable pops and underlines as it is sung, exact to its frame, and a line keeps its singer's colour). The critters dance on the beat (squash on every landing, alternating legs, arm poses, jumps, spins), open their mouths on every sung syllable (from the same table the voices read), and every two bars a new prop acts out the line: a crate stamped THE HARDEST PROBLEM, a long road to a tangle, a balance, a plan written line by line, a spec card, four checks going green, 30% on an odometer beside a trailing ghost of Sonnet 5, a coin stack shedding tokens. Choruses go dark and loud: a sunburst in the singer's colour, then a concert (LED bars, sweeping spotlights, a bobbing crowd), then every colour a whole step up; PLAN / BUILD / CHECK / SHIP cards slam on the chant. The advisor verse is the lesson: Sonnet at a laptop presses an advisor button, a dotted beam reaches Opus on a cloud, the whole thread scrolls past Opus, a sealed envelope (a lock on its clay seal) rides the beam back, and a code window shows advisor_redacted_result with scrambling encrypted_content while Sonnet opens it and a bulb lights. The bridge is four slammed fact cards (1M tokens, Sonnet's effort dial, the two price tags with a HALF stamp, a token bar at executor rates). A mono fact strip under the stage states each claim with its hedge; a quiet mono HUD names the section, bar and beat. Flat surfaces, a contact shadow under each critter, a slow push-in per section and a kick of zoom on chorus downbeats. THE SOUND IS PART OF THE PIECE: the module's audio(sr) is pure and seeded, a 120 bpm pop band in G (A for the last chorus) and two formant voices (Study 25's engine with a second timbre) driven by one syllable table [bar, beat, length, midi, vowel, consonants, text, singer], so picture and sound cannot drift.",
+ "learnsFrom": "Two posts from 28 Sep 2026: Anthropic's 'Building with Claude Sonnet 5.5' by Addy Osmani (https://claude.dev/blog/building-with-claude-sonnet-5-5/), the source of the model facts; and a music video by @LLMJunky on X (https://x.com/LLMJunky/status/2104659862663618566), a Claude Code mascot parody of a famous music video that its maker says Opus 5.5 storyboarded and Sonnet 5.5 animated, timed to a measured beat grid. From it we take only the idea: the mascot as a band, choreography locked to the beat, a video about the two models made by the two models. Its song, choreography, scenes, jokes and the 'Clawd Animation Base' it was built on are not used; our song and moves are original. The critters are drawn from scratch in code; the character they are based on is Anthropic's (NOTICE), not MIT.",
+ "story": [
+  {
+   "from": 0,
+   "to": 240,
+   "what": "intro (bars 1-4): '5.5' slams in ink on frame 0 with a crash; Opus drops in on beat 2 (a thud), Sonnet on beat 3 (a boing); name tags pop; the title 'Two-Part Harmony' letters in on 16ths; bar 4 the ground flashes ink, blue, green, ink (never clay, where Opus would vanish) under huge numerals as Sonnet counts 'One, two, three, four!'"
+  },
+  {
+   "from": 240,
+   "to": 720,
+   "what": "verse 1, Opus sings (bars 5-12): 'Hand me the hardest problem, / the long road, the tangled kind, / I think it through with judgment, / I plan it all, line by line.' A crate THE HARDEST PROBLEM drops on the downbeat; a road draws to a tangle at the horizon; a balance tips each beat and settles; a plan sheet writes eight lines, one per beat, with a pencil"
+  },
+  {
+   "from": 720,
+   "to": 1200,
+   "what": "verse 2, Sonnet sings (bars 13-20): 'Hand me a clear spec, / and a way to check it's right, / thirty percent faster than my last, / fewer tokens, feather light!' A spec card flies in and is caught; four checks turn green on four beats; 30% rolls up and locks beside a ghost of Sonnet 5; a coin stack sheds tokens on 8ths as a feather falls"
+  },
+  {
+   "from": 1200,
+   "to": 1680,
+   "what": "chorus 1 (bars 21-28), dark sunburst: 'One to make the plan, (Opus) / one to make it go! (Sonnet) / Plan it! Build it! Check it! Ship it! / Opus and Sonnet, oh oh oh!' PLAN / BUILD / CHECK / SHIP cards slam on the half bars, both jump on the last 'oh!' with confetti"
+  },
+  {
+   "from": 1680,
+   "to": 2160,
+   "what": "the advisor (bars 29-36): Sonnet 'When I need a plan, I make the call.' (presses advisor; a dotted beam reaches Opus on a cloud) / Opus 'I read the whole thread, I read it all.' (the thread scrolls past) / Opus 'My advice comes back sealed up tight.' (a sealed envelope rides the beam down; label advisor_redacted_result) / Sonnet 'Your code can't read it, I can, alright!' (a code window scrambles encrypted_content; Sonnet opens the envelope, a bulb lights)"
+  },
+  {
+   "from": 2160,
+   "to": 2640,
+   "what": "chorus 2 (bars 37-44): the same words as a concert: LED bars, sweeping spotlights, a crowd of little silhouettes bobbing in front"
+  },
+  {
+   "from": 2640,
+   "to": 2880,
+   "what": "bridge (bars 45-48), half time, one card a bar: Sonnet 'A million tokens,' (1M) / Sonnet 'effort, low to max,' (a blue dial steps low to max; the source states these levels for Sonnet 5.5) / Sonnet 'half the price per token,' ($2/$10 vs $4/$20, a HALF stamp) / Opus 'most tokens at Sonnet's rates!' (a token bar, mostly blue, labelled illustrative); a snare roll and riser into"
+  },
+  {
+   "from": 2880,
+   "to": 3360,
+   "what": "chorus 3 (bars 49-56): up a whole step with a flash; the critters swap sides, rays cycle every colour, confetti rains, the chant cards drop in from above (chorus 2 flips them, chorus 1 slams them)"
+  },
+  {
+   "from": 3360,
+   "to": 3600,
+   "what": "outro (bars 57-60): both sing 'Five point five, five point five!' as a smaller '5.5' returns above them; they walk in a step per 'five' with a zoom kick on each, meet for a high five on 3480 (a clap, a flash, confetti); the end card: 'Opus 5.5 advises. Sonnet 5.5 executes.' hedged beneath: 'with the advisor tool, Opus 5.5 can advise a Sonnet 5.5 executor · sung and drawn in code · fan-made, not affiliated with Anthropic · facts: claude.dev/blog · platform.claude.com/docs'"
+  }
+ ],
+ "sizes": "Landscape (primary): lyric band across the top, the stage below; in the verses the soloist stands large on one side and the props act beside them (the back-up singer small on the far side), the choruses centre both with the props above their heads. Vertical re-stacks: the lyric wraps to two or three rows in the upper third, the props stack above the critters in the middle, the critters stand on a floor at about 1400 px (about 1520 px on the choruses' deeper stage, where the fact strip is left out), the fact strip wraps to two lines above the 320 px bottom margin; the chant cards become a 2 x 2 grid; the advisor puts Opus's cloud upper left and Sonnet's desk lower right with the thread and the code window between them.",
+ "sound": "NOT beatScore: this piece writes its own audio(sr) (a 120 bpm pop band plus two formant-synthesized voices driven by one syllable table with a singer column). Cuts sit on bar lines (every 60 frames); the thud of each prop, the checks, the chant slams, the advisor call, the envelope, the seal, the bulb, the fact slams, the key change and the high five land on exact beat frames. About -16 LUFS integrated.",
+ "teaches": "A song can teach: give each idea a singer, a colour and a prop, keep one syllable table as the only source of words, pitches, mouths and cuts, and two models' division of labour becomes something you can hum.",
+ "facts": [
+  {
+   "claim": "Opus 5.5 is built for complex work requiring careful judgment.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "For the hardest long-horizon work, an Opus model is the better choice.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Sonnet 5.5 fits best when the task has a clear spec and a way to check the result.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Sonnet 5.5 is 30% faster than Sonnet 5 (the post: 'a clear upgrade over Sonnet 5 ... smarter, more efficient and 30% faster').",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Sonnet 5.5 typically needs far fewer tokens to do the same work (so it costs up to 30% less for most work).",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Per million tokens: Sonnet 5.5 costs $2 input and $10 output; Opus 5.5 costs $4 input and $20 output; cache reads are $0.20 for both. So Sonnet's input and output tokens cost half of Opus's.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Sonnet 5.5 has a 1M-token context window, native, no beta header.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Sonnet 5.5 effort levels: low, medium, high, xhigh, max.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "Opus 5.5 is an accepted advisor for a Sonnet 5.5 executor with the advisor tool.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  },
+  {
+   "claim": "The advisor tool lets a faster, lower-cost executor model consult a higher-intelligence advisor model mid-generation; the advisor reads the full conversation, produces a plan or course correction, and the executor continues.",
+   "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  {
+   "claim": "The executor model decides when to call the advisor, like any other tool.",
+   "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  {
+   "claim": "With Opus 5.5 (or Sonnet 5.5) as the advisor, the result is the encrypted advisor_redacted_result: the executor reads it server-side, the client cannot read the advice text.",
+   "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  {
+   "claim": "With the advisor tool, the bulk of token generation happens at executor-model rates.",
+   "source": "https://platform.claude.com/docs/en/agents-and-tools/tool-use/advisor-tool"
+  },
+  {
+   "claim": "The token bar (2 of 20 tokens from the advisor) and the coin stacks (12 vs 7) are illustrative, labelled so on screen; the four check labels are examples of 'a way to check the result'.",
+   "source": "https://claude.dev/blog/building-with-claude-sonnet-5-5/"
+  }
+ ],
+ "portable": {
+  "fonts": "Instrument Serif for Opus's lines and Instrument Serif Italic for the title, Inter (600 and 800) for Sonnet's lines, the choruses and the cards, JetBrains Mono for the fact strip, labels and the HUD",
+  "style": "A music video for an original duet about how two AI models split the work: one plans and advises (a pixel critter with glasses, the low voice, clay), one executes fast (the same critter with blue headphones, the high voice, blue); together is green. Draw both as a 14 x 8 pixel grid in Canvas 2D (a wide body, two tall eyes with a glint, arm nubs, four short legs) so squash and stretch, leg lifts, arm poses, jumps and spins stay crisp, and open a mouth on every sung syllable. Warm ivory ground, ink, flat surfaces. The lyric is karaoke in the singer's colour, each syllable popping and underlining exactly as it is sung; every two bars a new prop acts out the line; the choruses go dark with a sunburst, then a concert, then every colour up a whole step, with four cards slamming on a 'Plan it! Build it! Check it! Ship it!' chant; one verse shows the advisor pattern (a call button, a beam, the whole thread scrolling, a sealed envelope returning, a code window that can't read it). A mono fact strip states each claim with its hedge. The song is one syllable table [bar, beat, length, midi, vowel, consonants, text, singer] that drives the band, two formant voices (a sawtooth through three vowel formant filters, noise for consonants) and the picture.",
+  "sound": "a 120 bpm pop band in G (kick, clap, hats, a bouncing octave bass, chord stabs, a plucked hook), up to A for the last chorus, under two robot-like formant voices, low and high, singing a duet with a harmony in the choruses, and hits on every prop, the chant, the envelope, the key change and the high five.",
+  "sizes": "re-stack it: the lyric in the upper third, the props above the critters in the middle, the fact strip above the bottom margin."
+ }
+}
