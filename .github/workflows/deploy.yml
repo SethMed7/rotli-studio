@@ -88,9 +88,12 @@ jobs:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Check the live site
         run: |
+          # the manifest's "generated" stamp changes with every export (the script bundle only when app code does,
+          # so on its own it could match the previous build while Railway is still building this one)
+          stamp='"generated":"[^"]*"'
+          built=$(grep -o "$stamp" site-dist/public/api/motion/manifest.json)
           for i in $(seq 1 120); do # up to 20 min: Railway can queue a build for 10 or more
-            live=$(curl -sf https://studio.rotli.co/ | grep -o 'motion\.[0-9a-f]*\.js' || true)
-            built=$(ls site-dist/public/build | grep -o 'motion\.[0-9a-f]*\.js')
+            live=$(curl -sf https://studio.rotli.co/api/motion/manifest.json | grep -o "$stamp" || true)
             if [ "$live" = "$built" ]; then echo "live: $live"; exit 0; fi
             sleep 10
           done
