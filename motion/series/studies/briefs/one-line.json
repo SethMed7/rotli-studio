@@ -1,0 +1,100 @@
+{
+  "id": "one-line",
+  "no": 38,
+  "title": "One Line",
+  "module": "src/canvas-core/studies/oneLine.ts",
+  "pieces": {
+    "landscape": "oneLine",
+    "vertical": "oneLineVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 900,
+  "palette": "meadow",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A continuous single-line drawing that never lifts: ONE unbroken ink stroke (4 px at 1080, round caps and joins, ink colour on the pale meadow ground) draws every subject of the film and morphs from one drawing into the next. As in the classic one-line cartoon, the ground is part of the character: the stroke enters from the left edge as the soil line, dips down to draw the subject, comes back up and leaves at the right edge, so there is always exactly one line on screen. IMPLEMENTATION (pure functions): every drawing is authored in the module as ONE open path (a list of cubic Bézier segments from the left edge to the right edge) and resampled by arc length to the same number of points (e.g. 900); the frame draws the path as a single polyline. A drawing appears by a trim (draw the first p · N points, with a small ink nib dot, 9 px, at the leading end while the pen is moving); a morph interpolates the two resampled point lists point-for-point with an ease-in-out, so the line flows from drawing to drawing without ever breaking; a 1–2 px sinusoidal wobble along the normal (seeded phase, very slow) keeps a held line alive and hand-made. Authoring rule: consecutive drawings keep their points in the same order (the soil line first, the subject in the middle, the soil line last) so morphs do not tangle. THE SUBJECTS, all drawn by the one stroke: (1) a bean seed below the soil line, with the small scar on its side; (2) the same seed, rounder and larger (it has taken up water), with three short water ticks; (3) a root coming out of the seed and curving down; (4) a stem bent into a hook pushing up through the soil line; (5) the hook straightening, lifting two round seed leaves into the air; (6) a small plant with the seed leaves and a pair of true leaves (pointed, veined with one inner line that is part of the same stroke) and a sun drawn as a spiral loop at the end of the line before it leaves the frame. Two colours besides ink are allowed, and only as small flat fills that sit BEHIND the line and fade in after the line has drawn their outline: accent2 (water blue) in the soaked seed's three droplets, accent (sun yellow-orange) inside the sun loop. The soil below the line is a flat s1 (soil brown) band at 0.18 alpha. Captions: Inter 600 headline (56 px at 1080) in ink, one key word in Instrument Serif Italic, and a muted Inter 400 line (32 px), arriving word by word on springs; a small mono step counter '1/6' … '6/6' in muted top-right. Holds keep the wobble and a slow 2% drift of the camera toward the subject.",
+  "learnsFrom": "Continuous single-line drawing: the one-line animated character of Osvaldo Cavandoli's La Linea (https://en.wikipedia.org/wiki/La_Linea_(TV_series)), whose figure is part of the same infinite line he walks on, and the contour line drawing tradition of Matisse and Picasso (https://mymodernmet.com/line-art-history/). Their characters, drawings and gags are not used. The biology follows Penn State Extension's 'Seed and Seedling Biology' (https://extension.psu.edu/seed-and-seedling-biology) and Wikipedia's article on germination (https://en.wikipedia.org/wiki/Germination).",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "the line arrives: the stroke draws on from the left edge as the soil line, dips to draw the bean seed and leaves at the right; headline 'A seed is a *tiny plant*' then the line 'packed with its own food.'; step '1/6'"
+    },
+    {
+      "from": 120,
+      "to": 240,
+      "what": "what it needs: three short marks for water, a wavy line for air and a small thermometer morph briefly out of the soil line and back (all the same stroke); headline 'It needs *water*, air and the right warmth.'"
+    },
+    {
+      "from": 240,
+      "to": 375,
+      "what": "water: the seed morphs rounder and larger; the three water ticks appear beside it and their droplets fill accent2; headline 'First it *drinks*.' with the line 'The seed swells and its coat splits.'; step '2/6'"
+    },
+    {
+      "from": 375,
+      "to": 510,
+      "what": "root: the seed outline opens and the line runs down out of it as a root that curves and branches once; headline 'The *root* comes out first.' with the muted line 'It's called the radicle.'; step '3/6'"
+    },
+    {
+      "from": 510,
+      "to": 645,
+      "what": "hook: the line rises from the seed as a stem bent into a hook and pushes the hook through the soil line; headline 'In a bean, the stem *hooks*' then 'and pulls the seed leaves up through the soil.'; step '4/6'"
+    },
+    {
+      "from": 645,
+      "to": 780,
+      "what": "leaves: the hook straightens and lifts two round seed leaves; then a pair of pointed true leaves unfolds above them; headline '*Seed leaves* first, then true leaves.'; step '5/6'"
+    },
+    {
+      "from": 780,
+      "to": 900,
+      "what": "light: before leaving the frame, the line loops into a spiral sun that fills accent; headline 'When the stored food runs out,' then '*light* takes over.'; step '6/6'; the whole single line holds, wobbling gently, with a slow push-in"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the soil line runs across the frame at about 62% height (the line still enters at the left edge and leaves at the right), the subject is drawn larger and taller (the root runs deeper, the plant grows higher), captions sit in the top third of the safe area and the step counter top-right; the sun loop sits above the plant rather than to its right. Landscape keeps the soil line at about 66% height, the subject left of centre and captions top-left.",
+  "sound": "beatScore soft at 120 bpm (pad and a light pluck, no drums), key +5 for a bright, open feel; a soft continuous pen scratch made from ticks spaced every 3 frames while the line is actively drawing (thinned so it never buzzes); a whoosh ending on each morph's arrival (frames 240, 375, 510, 645 and 780); a small drip tick for each water droplet; the three-note sign-off at frame 840.",
+  "teaches": "One unbroken line can carry a whole explanation: when every drawing is the same resampled path, each step visibly grows out of the last, which is exactly how a seedling grows.",
+  "facts": [
+    {
+      "claim": "A seed holds an embryo, the tiny plant.",
+      "source": "https://en.wikipedia.org/wiki/Seed"
+    },
+    {
+      "claim": "Most plants store a food reserve (such as starch, proteins or oils) with the seed.",
+      "source": "https://en.wikipedia.org/wiki/Germination"
+    },
+    {
+      "claim": "Seeds need the right moisture, air and temperature to germinate (some also need light).",
+      "source": "https://extension.psu.edu/seed-and-seedling-biology"
+    },
+    {
+      "claim": "Germination starts with imbibition: the seed takes up water, swells and its coat softens and breaks.",
+      "source": "https://extension.psu.edu/seed-and-seedling-biology"
+    },
+    {
+      "claim": "The first part to emerge from the seed is the embryonic root, the radicle.",
+      "source": "https://en.wikipedia.org/wiki/Germination"
+    },
+    {
+      "claim": "In beans (epigeal germination) the stem below the seed leaves, the hypocotyl, forms a hook and pulls the seed leaves up through the soil.",
+      "source": "https://en.wikipedia.org/wiki/Germination"
+    },
+    {
+      "claim": "The cotyledons are the seed leaves; the true leaves that follow look like the leaves of the mature plant.",
+      "source": "https://extension.psu.edu/seed-and-seedling-biology"
+    },
+    {
+      "claim": "Once the seedling's food reserves are used up, photosynthesis provides the energy for further growth.",
+      "source": "https://en.wikipedia.org/wiki/Germination"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (400 and 600) for captions, Instrument Serif Italic for one key word per headline, JetBrains Mono for the small step counter",
+    "style": "A continuous single-line drawing that never lifts. One unbroken ink stroke on a pale green-cream ground draws every subject and morphs from one drawing into the next; the ground is part of it: the stroke enters from the left edge as the soil line, dips to draw the subject and leaves at the right edge, so there is only ever one line on screen. Author each drawing as one open path from edge to edge, resample every path by arc length to the same number of points, draw a drawing on by trimming the path (a small nib dot at the moving end), and morph by interpolating point-for-point with an ease-in-out; keep the point order consistent (soil, subject, soil) so morphs never tangle; a tiny slow wobble keeps held lines alive. The subjects: a bean seed under the soil line, the seed swollen with water, a root coming out first, a stem hooked through the soil, the hook straightening to lift two round seed leaves, true leaves, and a spiral sun at the end of the line. Only two small flat fills, placed behind the line after it outlines them: blue in the water droplets and yellow in the sun. Short captions, one italic serif key word, and a small step counter.",
+    "sound": "a soft bright loop at 120 bpm with no drums, a gentle pen scratch while the line draws, a whoosh as each morph arrives, a drip for each droplet, and a three-note sign-off.",
+    "sizes": "vertical: the soil line lower in the frame, the subject larger with the root deeper and the plant taller, captions in the top third, the sun above the plant."
+  }
+}

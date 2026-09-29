@@ -1,0 +1,147 @@
+{
+  "piece": "isotypeSquare",
+  "sizes": [
+    "isotypeSquare",
+    "isotype"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-09-28",
+      "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+      "pace": {
+        "square": {
+          "changesPer10s": 0,
+          "longestCalm": 30,
+          "nearStill": 81
+        },
+        "landscape": {
+          "changesPer10s": 0,
+          "longestCalm": 30,
+          "nearStill": 89
+        }
+      },
+      "loudness": {
+        "square": -16.1,
+        "landscape": -16.1
+      },
+      "stillFrames": {
+        "square": "windows: (none)",
+        "landscape": "windows: (none)"
+      },
+      "scores": {
+        "hook": 7,
+        "readability": 6,
+        "motion": 7,
+        "variety": 6,
+        "composition": 7,
+        "accuracy": 9,
+        "sync": 7
+      },
+      "problems": [
+        {
+          "at": "00:12.0-00:28.0",
+          "what": "the lines that carry the facts are small at phone size: square short-row labels 38-40 px, 'less than a tenth of one drop' 36 px on a second line, '(all lakes and rivers included)' 34 px, the counter 30 px mono, the unit line 40 px, the thumbnail and end-card captions ('all water', 'grey = salty', 'fresh water') 24-28 px mono, the source 24 px; in the landscape the counter is 30 px on a 1920 frame",
+          "fix": "every line that matters at 44 px or more (shorter words where a row is too narrow), the counter at 44 px, captions set in Inter 44, footnotes at 28-30 px"
+        },
+        {
+          "at": "00:10.5, 00:13.0, 00:17.0, 00:20.0, 00:25.0",
+          "what": "no punch where the facts land: each category's total ('about 96.5%', 'about 1.7%', 'less than a tenth…', 'about 69', 'about 30') rises letter by letter like the name before it, and the hits fall on the glyph pops at the section starts instead; the fresh re-count simply stops (0 abrupt changes per 10 s, near-still 81 % / 89 %)",
+          "fix": "slam each total in (scale-down spring with a short ink underline flash) on the beat with a hit; the fresh chart lands on one frame (its last drop, the 100 flash and both totals) with a hit and a one-time pulse of the whole new chart"
+        },
+        {
+          "at": "00:22.3-00:23.6",
+          "what": "square: after the grey-out the frame is a thumbnail and three lone drops drifting across an empty cream field for over a second before the fresh chart starts counting (the landscape's right half is just as empty)",
+          "fix": "draw the new chart's hundred empty outline slots in as the thumbnail shrinks (echoing the opening), so the fresh drops fly into a visible chart; start the re-count on the grid a little earlier"
+        },
+        {
+          "at": "00:02.0-00:02.2",
+          "what": "the hundred outline drops leaving the big drop overlap into a tangle of strokes for about five frames",
+          "fix": "fill each outline drop with the ground colour so overlapping ones stack like cut paper instead of crossing"
+        },
+        {
+          "at": "00:00.9-00:03.5",
+          "what": "the hook notes 'not bigger…' / '…more' are 38 px mono in red and ink, cryptic and hard to read at phone size",
+          "fix": "make them Inter 44+"
+        }
+      ],
+      "agentSaw": [
+        "variety 7 with 0 abrupt changes per 10 s and 81-89 % near-still",
+        "lines under 44 px: square short-row labels 38-40 px, 'less than a tenth of one drop' 36 px, '(all lakes and rivers included)' 34 px, the counter 30 px, mono footnotes 24-28 px",
+        "about 0.5 s mostly empty in the square around frames 690-708",
+        "the outline drops tangle for about 5 frames when the big drop breaks up at frame 60",
+        "the wave glyph reads like a crown at 44 px",
+        "the square's bottom label and footnote are tight",
+        "the landscape pitch is 60 px, not 64"
+      ],
+      "agentMissed": [
+        "the empty stretch is about 1.3 s (frames 668-708), not 0.5 s, and the landscape's right half is empty through it too",
+        "the hits land on the glyph pops at each section start, not on the totals, so the facts arrive without a punch; the fresh re-count has no landing or hit at all",
+        "the unit line ('One drop = 1% of it.') is 40 px and the hook notes are 38 px mono, both under the 44 px bar",
+        "the thumbnail and end-card captions ('all water', 'grey = salty', 'fresh water') are the only key to the end card and are 24-28 px mono",
+        "the counter shows two decimals (98.25, 100.00), a precision the rounded USGS figures do not have (true totals 98.28, 100.01); within 'figures rounded', but the footer saying so arrives only at 28.7 s"
+      ],
+      "verdict": "fix"
+    },
+    {
+      "round": 2,
+      "date": "2026-09-28",
+      "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+      "pace": {
+        "square": {
+          "changesPer10s": 0,
+          "longestCalm": 30,
+          "nearStill": 78
+        },
+        "landscape": {
+          "changesPer10s": 0,
+          "longestCalm": 30,
+          "nearStill": 86
+        }
+      },
+      "loudness": {
+        "square": -16.2,
+        "landscape": -16.2
+      },
+      "stillFrames": {
+        "square": "windows: (none)",
+        "landscape": "windows: (none)"
+      },
+      "scores": {
+        "hook": 8,
+        "readability": 8,
+        "motion": 8,
+        "variety": 8,
+        "composition": 8,
+        "accuracy": 10,
+        "sync": 8
+      },
+      "problems": [
+        {
+          "at": "all",
+          "what": "pace.json still reads 0 abrupt changes per 10 s: the slams are local (a word and a block), not frame-wide cuts, so the tool does not count them; to the eye each section now lands with a hit every 2-4 s",
+          "fix": "none needed for this study; a frame-wide move would fight the printed-chart restraint the brief asks for"
+        },
+        {
+          "at": "00:03.0-00:10.5",
+          "what": "the ocean tally is a 7.5 s stretch with one new row every 0.7 s and the counter as its only change; deliberate (the counting is the point) but the longest stretch without a punch",
+          "fix": "if it ever reads long, slam the running counter at 50 (frame 204) with a tick accent"
+        },
+        {
+          "at": "00:27.0-00:30.0",
+          "what": "the source footnotes are 28-30 px mono, readable at full size but not in a phone feed",
+          "fix": "declared: secondary; the facts they source are all on screen at 44 px or more"
+        }
+      ],
+      "fixed": [
+        "every line that carries a fact is 44 px or more: the square short-row labels 44 ('Ice caps and glaciers · about 1.7%' fits its row at 44), 'Everything else' / 'less than a tenth of one drop' on two 44 px lines, 'Everything else · about 1' and '(all lakes and rivers included)' 44, the fresh labels restacked (name, then glyph + total) so 'Groundwater' fits at 44 in both sizes, the unit line 44, the counter 44, 'grey = salty' / 'all water' / 'fresh water' in Inter 44, the hook notes Inter 800 44; footnotes 28-30 px; the square drops the 'lakes, rivers…' list (no room at a readable size), the landscape keeps it at 30 px",
+        "every total slams in on the beat with a hit of its own and a flash of its category's colour (96.5% at 315, ice 1.7% at 390, groundwater 1.7% at 510, 'less than a tenth' at 600, 69 at 750, 30 and 1 at 765); the ocean block swells 8% as its total lands, and the fresh chart lands on one frame (765: its last drop, the 100 flash, both totals, a whole-chart swell)",
+        "the empty stretch (frames 668-708) is gone: the fresh chart's hundred outline slots draw in as the first chart clears (square) or in reading order (landscape), the re-count starts on the beat at 705, and the fresh drops fly into visible slots",
+        "the break-up tangle at frame 60: outline drops are filled with the ground, so they stack like cut paper",
+        "the wave glyph is three stacked swells, no longer a crown",
+        "the counter shows one decimal (98.3, not 98.25) so it claims no more precision than the rounded figures; the 'Everything else' fresh label now starts 0.5 s before the landing and is on screen about 1.5 s before the end card"
+      ],
+      "verdict": "ship"
+    }
+  ]
+}

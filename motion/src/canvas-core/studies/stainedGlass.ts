@@ -30,7 +30,15 @@ const rgb = (h: string): [number, number, number] => {
   const n = parseInt(h.slice(1), 16);
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 };
-const hex = (c: number[]) => "#" + c.map((v) => Math.round(clamp(v, 0, 255)).toString(16).padStart(2, "0")).join("");
+const hex = (c: number[]) =>
+  "#" +
+  c
+    .map((v) =>
+      Math.round(clamp(v, 0, 255))
+        .toString(16)
+        .padStart(2, "0"),
+    )
+    .join("");
 const mix = (a: string, b: string, t: number) => {
   const A = rgb(a),
     B = rgb(b);
@@ -413,7 +421,8 @@ const grisaille = (kind: Gris, bb: number[], u: number): Pt[][] => {
   } else if (kind === "scales") {
     const s = 11 * u;
     for (let row = 0, y = y0 + s * 0.8; y < y1; row++, y += s * 0.75)
-      for (let x = x0 + (row % 2 ? s / 2 : 0); x < x1; x += s) out.push(arcPts(x, y, s / 2, s / 2, 0.15, Math.PI - 0.15, 7));
+      for (let x = x0 + (row % 2 ? s / 2 : 0); x < x1; x += s)
+        out.push(arcPts(x, y, s / 2, s / 2, 0.15, Math.PI - 0.15, 7));
   } else if (kind === "feathers") {
     for (let x = x0 - h; x < x1; x += 9 * u)
       out.push([
@@ -477,12 +486,7 @@ function buildWindow(Wp: number, u: number, seed: number): Win {
     pw = (1 - 2 * b) / 2,
     ph = panelArea / 2,
     aspect = pw / ph;
-  const panelBox = (col: number, row: number): number[] => [
-    (b + col * pw) * Wp,
-    row * ph * Wp,
-    pw * Wp,
-    ph * Wp,
-  ];
+  const panelBox = (col: number, row: number): number[] => [(b + col * pw) * Wp, row * ph * Wp, pw * Wp, ph * Wp];
   const panels = {
     air: panelBox(0, 0),
     fire: panelBox(1, 0),
@@ -492,15 +496,7 @@ function buildWindow(Wp: number, u: number, seed: number): Win {
   const addSolder = (p: Pt) => {
     if (!solder.some((q) => Math.hypot(q[0] - p[0], q[1] - p[1]) < 10 * u)) solder.push(p);
   };
-  const addRegion = (
-    key: Key,
-    clip: Pt[],
-    defs: Def[],
-    map: (p: Pt) => Pt,
-    seed: Pt,
-    at: number,
-    dur: number,
-  ) => {
+  const addRegion = (key: Key, clip: Pt[], defs: Def[], map: (p: Pt) => Pt, seed: Pt, at: number, dur: number) => {
     const shapes = defs.map((d) => shape(d.pts.map(map), d.col, d.gris)),
       bb = bbox(clip);
     // solder where a corner of a pane meets another came (and is not hidden under a later pane)
@@ -510,8 +506,7 @@ function buildWindow(Wp: number, u: number, seed: number): Win {
       for (const c of cs) {
         if (c[0] < bb[0] - tol || c[0] > bb[2] + tol || c[1] < bb[1] - tol || c[1] > bb[3] + tol) continue;
         if (shapes.slice(i + 1).some((sh) => inside(c, sh.pts) && distTo(c, sh.pts) > tol)) continue;
-        const onOther =
-          distTo(c, clip) < tol || shapes.some((sh, j) => j !== i && j > 0 && distTo(c, sh.pts) < tol);
+        const onOther = distTo(c, clip) < tol || shapes.some((sh, j) => j !== i && j > 0 && distTo(c, sh.pts) < tol);
         if (onOther) addSolder([clamp(c[0], bb[0], bb[2]), clamp(c[1], bb[1], bb[3])]);
       }
     });
@@ -632,15 +627,17 @@ function buildWindow(Wp: number, u: number, seed: number): Win {
   });
 
   const outerL = arcPts(1, 0, 1, 1, Math.PI, outerTop, 28);
-  const outline: Pt[] = ([
-    ...outerL,
-    ...outerL
-      .slice(0, -1)
-      .reverse()
-      .map(([x, y]): Pt => [1 - x, y]),
-    [1, Hr],
-    [0, Hr],
-  ] as Pt[]).map(unit);
+  const outline: Pt[] = (
+    [
+      ...outerL,
+      ...outerL
+        .slice(0, -1)
+        .reverse()
+        .map(([x, y]): Pt => [1 - x, y]),
+      [1, Hr],
+      [0, Hr],
+    ] as Pt[]
+  ).map(unit);
   return {
     Wp,
     b,
@@ -763,7 +760,7 @@ export function make(size: Size, id: string): Film {
   const sweep = (F: number) => {
     const L_ = light(F);
     if (F < 278) {
-      const t = (((F - 10) / 130) % 2 + 2) % 2,
+      const t = ((((F - 10) / 130) % 2) + 2) % 2,
         tri = t < 1 ? t : 2 - t; // down, then back up
       return { pos: lerp(0.02, 1.0, tri), a: window01(F, 10, 30, 250, 276) * 0.42, col: "#ffe2b8" };
     }
@@ -1071,7 +1068,7 @@ export function make(size: Size, id: string): Film {
   const sunGeo = (F: number): PatchGeo => {
     const d = clamp((F + 30) / 620),
       low = 1 - Math.pow(Math.max(0, Math.sin(Math.PI * d)), 0.6),
-      full = Wp * (1 + 2 * padW / Wp);
+      full = Wp * (1 + (2 * padW) / Wp);
     return tall
       ? {
           x0: wcx + lerp(40, -40, d) * u,
@@ -1094,8 +1091,22 @@ export function make(size: Size, id: string): Film {
   const moonGeo = (F: number): PatchGeo => {
     const m = prog(F, 570, N - 1);
     return tall
-      ? { x0: wcx + lerp(40, -60, m) * u, y0: Y0 + 8 * u, len: lerp(380, 540, m) * u, dx: lerp(40, -200, m) * u, w0: Wp * 1.1, w1: Wp * 1.6 }
-      : { x0: wcx + lerp(-20, 240, m) * u, y0: Y0 + 6 * u, len: 140 * u, dx: lerp(260, 520, m) * u, w0: Wp, w1: Wp * 1.2 };
+      ? {
+          x0: wcx + lerp(40, -60, m) * u,
+          y0: Y0 + 8 * u,
+          len: lerp(380, 540, m) * u,
+          dx: lerp(40, -200, m) * u,
+          w0: Wp * 1.1,
+          w1: Wp * 1.6,
+        }
+      : {
+          x0: wcx + lerp(-20, 240, m) * u,
+          y0: Y0 + 6 * u,
+          len: 140 * u,
+          dx: lerp(260, 520, m) * u,
+          w0: Wp,
+          w1: Wp * 1.2,
+        };
   };
 
   // ---- the room: an ashlar wall, a splayed stone reveal, the sill, a slab floor in perspective
@@ -1312,7 +1323,15 @@ export function make(size: Size, id: string): Film {
     ctx.strokeStyle = C.lead;
     ctx.lineWidth = 3 * u;
     ctx.strokeRect(x + (sw - s) / 2, y - nameStyle.size * 0.32 - s / 2, s, s);
-    letters(ctx, key, x + sw + gap, y, nameStyle, (i) => spring((F - at - i * 2) / FPS, { freq: 2.6, damp: 0.7 }), "rise");
+    letters(
+      ctx,
+      key,
+      x + sw + gap,
+      y,
+      nameStyle,
+      (i) => spring((F - at - i * 2) / FPS, { freq: 2.6, damp: 0.7 }),
+      "rise",
+    );
     ctx.restore();
     return sw + gap + measure(ctx, key, nameStyle);
   };
@@ -1341,7 +1360,13 @@ export function make(size: Size, id: string): Film {
   const title = (ctx: Ctx, F: number) => {
     const f = F - T.end;
     if (f < 0) return;
-    const big = { size: (tall ? 112 : 124) * u, family: F_.serif, color: C.ink, align: (tall ? "center" : "left") as CanvasTextAlign, track: -0.01 },
+    const big = {
+        size: (tall ? 112 : 124) * u,
+        family: F_.serif,
+        color: C.ink,
+        align: (tall ? "center" : "left") as CanvasTextAlign,
+        track: -0.01,
+      },
       x = tall ? cx : 1030 * u,
       y = tall ? 1515 * u : 800 * u,
       drift = (1 - ease.outCubic(prog(f, 0, 50))) * 16 * u;
@@ -1451,7 +1476,13 @@ export function make(size: Size, id: string): Film {
       if (Lt.sun > 0.004 || Lt.dawn > 0.004) {
         const red = prog(F, 470, 575),
           tint = red > 0 ? mix("#ffffff", "#ff7a4a", red) : undefined;
-        drawPatch(ctx, patchSource(env, "sun", F, Lt, undefined, tint), 0.66 * Lt.sun + 0.26 * Lt.dawn + 0.3 * Lt.flash, sunGeo(F), F);
+        drawPatch(
+          ctx,
+          patchSource(env, "sun", F, Lt, undefined, tint),
+          0.66 * Lt.sun + 0.26 * Lt.dawn + 0.3 * Lt.flash,
+          sunGeo(F),
+          F,
+        );
       }
       if (Lt.moon > 0.004)
         drawPatch(ctx, patchSource(env, "moon", F, Lt, "air", "#8fb4ff"), 0.4 * Lt.moon, moonGeo(F), F);

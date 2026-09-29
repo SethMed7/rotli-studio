@@ -1,0 +1,259 @@
+{
+ "piece": "inkWashVertical",
+ "sizes": [
+  "inkWashVertical",
+  "inkWash"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 82
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 81
+    }
+   },
+   "scores": {
+    "hook": 4,
+    "readability": 6,
+    "motion": 6,
+    "variety": 5,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:03.5",
+     "what": "no hook: the first 3.5 s are a pale grey mist band on blank paper and a 30 px muted Inter line ('three seasons, in ink') that is about 10 px on a phone and nearly the paper's colour; the first dark ink lands at 3.5 s",
+     "fix": "a bold dark brush stroke slashes in during the first second (landing on beat 1, frame 20, with a whoosh) and the opening line is set at 56 px in the haiku's italic, in ink, soaking in word by word"
+    },
+    {
+     "at": "00:28.0",
+     "what": "the only hit in the film has no punch: the seal presses at 64 px on a zoomed-out scroll (about 21 px on a phone, under the 22 px floor), scales only 1.08 to 1.0, and in the vertical it lands at y about 1690, inside the 320 px bottom margin feeds cover",
+     "fix": "a 120 px seal that slams from 1.6x to 1.0 over the 4 frames ending on the 840 hit, with a visible ink spread and a small press jolt of the camera, placed inside the safe area"
+    },
+    {
+     "at": "00:22.8-00:27.0",
+     "what": "the winter sky is three separate horizontal grey bands (y 110 / 300 / 480) with stepped halo layers, like a stack of fog slabs laid over the pine; falling snow on bare paper is drawn as outlined rings and reads as bubbles",
+     "fix": "overlap the sky strokes into one graded wash (darkest at the top, fading down), and drop the ring on each flake so snow shows only where it crosses the wash"
+    },
+    {
+     "at": "00:10.0-00:10.5, 00:18.5-00:19.8",
+     "what": "both slides pass through near-blank paper: the last haiku has left the frame and the next painting has not started (the heron's neck begins at 362, the pine's trunk at 598, after arrivals at 340 and 580)",
+     "fix": "start the neck and the trunk earlier with a longer stroke so the tip is on paper as the camera arrives, keeping the landings (and their whooshes) at 380 and 620"
+    },
+    {
+     "at": "00:13.0-00:18.0",
+     "what": "the heron's wing reads at phone size as a hatched, striped block (a cylinder), not one wide dry stroke; the neck and branches read as smooth vector ribbons",
+     "fix": "a lighter, more tapered wing with fewer, broken bristle lanes"
+    },
+    {
+     "at": "00:27.5 (vertical), 00:28.8 (landscape)",
+     "what": "the pull-back leaves each painting small: the whole hanging scroll is a thin column in the vertical and a 280 px strip in the landscape; the heron's beak smears into a pale bar in the fast pull-back",
+     "fix": "accept for the whole-scroll idea; keep the pull-back to the last second and a half"
+    }
+   ],
+   "agentSaw": [
+    "the sky and mist washes look like stacked horizontal bands with visible halo layers",
+    "the heron's neck and branches read like smooth vector ribbons",
+    "falling snow on bare paper reads as bubbles",
+    "the heron's beak smears into a pale bar in the fast pull-back (~27.5 s)",
+    "in landscape the whole-scroll view is a thin ~280 px strip, so each painting is small",
+    "critique.mjs counts 0 abrupt changes (it glides)"
+   ],
+   "agentMissed": [
+    "no hook: nothing dark on screen until 3.5 s, and the opening line is 30 px muted text, unreadable at phone size",
+    "the seal is about 21 px on a phone, barely presses (1.08 to 1.0), and lands inside the vertical's bottom safe margin",
+    "both slides pass through near-blank paper for 0.5-1.3 s because the next painting starts after the camera arrives",
+    "the heron's wing reads as a striped hatched block at phone size"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 82
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 82
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:13.0-00:18.0",
+     "what": "the heron's wing still reads as a hatched, striped block at phone size: the wet part is a short dark cuff and the rest is dense parallel bristle lanes",
+     "fix": "a wetter, more tapered wing whose body runs further before it breaks into fewer, wider-spaced dry streaks"
+    },
+    {
+     "at": "00:23.0-00:27.0",
+     "what": "the winter sky is better (one wash) but still shows two flat bands: a dark top band with a straight lower edge over a paler one",
+     "fix": "let the darker top stroke thin out and break at its lower edge so the sky reads graded, not stacked"
+    },
+    {
+     "at": "00:10.0-00:10.7",
+     "what": "the slide into summer still passes about half a second of blank paper (the heron's neck begins at 348)",
+     "fix": "lay the water wash and the neck's first press earlier, as the camera leaves spring"
+    },
+    {
+     "at": "all",
+     "what": "variety: critique.mjs still counts 0 abrupt changes and 82 % near-still frames; the opening slash and the seal slam are the only punches, and neither registers as a change at the tool's threshold",
+     "fix": "none within the brief: the camera 'never cuts' by design; the two punches are what a scroll film can carry"
+    }
+   ],
+   "fixed": [
+    "the hook: a bold dry-ending brush stroke slashes in from frame 0 and lands on beat 1 (frame 20, a new whoosh); the opening line is now 60 px Instrument Serif Italic in ink, soaking in word by word by 0.7 s (a deliberate deviation from the brief's small muted Inter line, which was unreadable at phone size)",
+    "the seal: 120 px on screen (about 40 px on a phone), slams from 1.6x to 1.0 over the 4 frames ending on the 840 hit with a two-ring ink spread and a small camera jolt; in the vertical it sits in the lower right of the scroll inside the safe area (bottom edge at about 1590 of 1920), in the landscape at the far left end",
+    "the winter sky: one very wide pale wash with a narrower darker stroke along its top instead of three equal bands",
+    "the snow: flakes are soft pale dots with no outline (no more bubbles); they read as unpainted paper over the wash",
+    "the pine's trunk is painted in two presses (landing on 600 and 620, each with a whoosh), so the tip is on paper as the camera arrives and the joint reads as an old node; still-frames windows stay empty"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 82
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 82
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 6,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "all",
+     "what": "variety stays under 8: critique.mjs counts 0 abrupt changes and 82 % near-still frames in both sizes. The brief's camera never cuts, so the film is one long glide; its punches (the opening slash, each first stroke, the seal slam with its jolt) are real but under the tool's change threshold",
+     "fix": "only by breaking the brief (cuts or slams between seasons); left for the owner to decide"
+    },
+    {
+     "at": "00:23.0-00:27.0",
+     "what": "the winter sky still keeps a faint darker band along its top edge",
+     "fix": "acceptable: it now reads as one graded wash with a wet top edge"
+    },
+    {
+     "at": "00:27.5",
+     "what": "the heron's beak still smears into a short pale bar in the fastest frames of the pull-back (motion blur of a thin line moving across its length)",
+     "fix": "minor at phone size; left"
+    },
+    {
+     "at": "00:18.5-00:19.0 (landscape)",
+     "what": "the landscape slide into winter still shows about half a second of bare paper and the ground wash before the trunk's first press",
+     "fix": "minor; the vertical is covered"
+    }
+   ],
+   "fixed": [
+    "the heron's wing is a wet stroke that runs dry only in its last third, in 8 wide-spaced bristle lanes (a new `lanes` stroke option): it reads as a wing, not a striped block",
+    "the winter sky's top stroke is narrower, paler and bleeds wider, so the sky reads as one graded wash",
+    "the heron's neck is painted in two presses (the lower curve lands on 340 as the camera arrives, the upper on 380), so the slide into summer lands on ink instead of blank paper",
+    "found while checking the seal frames (836-843): the round-2 camera jolt jumped at the hit, so the shutter straddled it and ghosted the seal at 840; the jolt now rises continuously from zero (peak at 842), and the press lands sharp in both sizes"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 4,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "authorised": "the owner, through the coordinator: every piece must land punches; the brief's 'the camera never cuts' may be broken to get variety to 8, inside the sumi-e style",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 2.3,
+     "longestCalm": 5.9,
+     "nearStill": 87
+    },
+    "landscape": {
+     "changesPer10s": 2,
+     "longestCalm": 7.9,
+     "nearStill": 84
+    }
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:10.6-00:18.5 (landscape)",
+     "what": "critique.mjs reports a 7.9 s calm in the landscape because the two summer cut-ins (00:13.3, 00:14.7) change too little of the wide frame to cross its threshold; they read clearly on screen",
+     "fix": "none needed; something new lands every 2-4 s in both sizes"
+    },
+    {
+     "at": "00:10.6, 00:18.6",
+     "what": "the paler bristle lines inside the flick's body can read as rain streaks for a frame",
+     "fix": "minor; left"
+    },
+    {
+     "at": "00:21.3-00:22.7 (vertical)",
+     "what": "the pine close-up is still a little left-heavy: the trunk sits on the left edge",
+     "fix": "minor; left"
+    }
+   ],
+   "fixed": [
+    "each season change is a wet brush flick: a screen-wide ink stroke with a ragged, wet leading rim and a dry bristle tail whips across the frame in 12 frames (down the scroll in the vertical, right to left in the landscape) and wipes into the next painting; the hard cut sits under the ink on the beat (frames 320 and 560) with a hit and a whoosh",
+    "three cut-in close-ups on the beat show strokes landing: the plum's first stroke (frames 100-140, 2.4x), the heron's neck and wing (400-440), and the pine's branches and needle fans (640-680); each cut has a whoosh",
+    "a hard cut to the whole scroll at frame 820 replaces the gliding pull-back, which also removes the beak smear; the seal still slams on the 840 hit",
+    "a winter gust on the 760 beat throws the snow sideways: the flakes streak and then settle (a closed-form displacement), with a whoosh",
+    "the landscape no longer passes bare paper into winter: the ground wash is laid under the flick (548) and the trunk's first press lands on 580 as the flick clears; the same holds in the vertical",
+    "no shutter across any cut (speed is zero on a cut frame), so no shot blends into another",
+    "the winter haiku starts 10 frames earlier (680/690) and fades out by 818, before the cut, so every word is on screen for at least 1 s and no text shrinks",
+    "gain 0.63 to 0.69 for the added cues: -16.0 LUFS in both sizes"
+   ],
+   "briefDepartures": [
+    "the camera cuts: two hard cuts hidden under brush-flick wipes at the season changes (320, 560), six cut-in/cut-out cuts for three close-ups (100/140, 400/440, 640/680), and a hard cut to the whole scroll at 820; the brief says the camera 'never cuts' and slides between paintings on an ease-in-out",
+    "the season changes and the close-ups move the section starts: summer begins at 320 (brief: 340), winter at 560 (brief: 580); the brief's 'whoosh ending as the camera arrives at each painting (frames 340 and 580)' is now a flick whoosh plus a hit at 320 and 560",
+    "the end is a cut to the whole scroll at 820, not an eased pull-back",
+    "added cue: a winter gust (760) that throws the snow sideways; the brief's snow only falls",
+    "added cues: whooshes at 20, 400, 580, 640, 760 and 820 and hits at 320 and 560; the brief lists one hit (the seal) and whooshes at 120, 140, 160, 180, 340, 380, 420, 580, 620",
+    "the opening line is 60 px Instrument Serif Italic in ink over a bold opening brush stroke (from round 2); the brief asks for a small muted Inter line",
+    "the heron's neck and the pine's trunk are painted in two presses each (neck landing on 340 and 380, trunk on 580 and 620); the brief has the neck land on 380 and the trunk on 620 as single strokes",
+    "the winter sky is two strokes (one wide pale wash and a narrower darker one along its top), not the brief's 'grey wash sky' of several strokes, and the flakes are soft pale dots that also show on bare paper",
+    "the heron's strike and a petal burst (suggested by the coordinator) were not used: both would contradict the haiku ('still on one leg', 'one petal at a time')"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

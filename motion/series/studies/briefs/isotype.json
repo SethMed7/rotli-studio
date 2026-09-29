@@ -1,0 +1,100 @@
+{
+  "id": "isotype",
+  "no": 40,
+  "title": "Isotype",
+  "module": "src/canvas-core/studies/isotype.ts",
+  "pieces": {
+    "square": "isotypeSquare",
+    "landscape": "isotype"
+  },
+  "primary": "square",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 900,
+  "palette": "isotype",
+  "family": "explain",
+  "subject": "learn",
+  "style": "A statistics chart in the Isotype manner, animated: quantities are COUNTED in identical pictograms, never drawn bigger. The unit is ONE WATER DROP = 1% of all the water on Earth, and the whole film is a chart of drop pictograms in rows of ten on the cream ground. As in Isotype charts, EACH CATEGORY GETS ITS OWN ROWS, starting at the left edge, with its label aligned to its rows: the oceans are a block of nine full rows and a tenth of six and a half drops, then one short row each for ice, groundwater and everything else. The drop is a flat Arntz-style silhouette with no outline, no gradient and no perspective: a teardrop built from a circle (radius 18 px at 1080) and two tangent lines to a point, 48 px tall, on a 56 px pitch at 1080 (radius scaled to match). Colour is category, never decoration: oceans s1 (deep blue), ice caps and glaciers s2 (pale ice blue), groundwater s3 (earth brown), everything else s4 (green); grey-out uses line colour. At the head of each category's legend line sits a small category glyph in the same flat style (a three-crest wave, a mountain with a white cap, three stacked earth strata, a winding river), 44 px. Remainders are shown the Isotype way, by CUTTING the last symbol with a vertical cut (a half or a quarter of a drop, clipped with a rectangle), never by shrinking it. Rows COUNT THEMSELVES IN: drops arrive in reading order (left to right, top to bottom), each popping from 0 to full size on a short spring (overshoot 8%) with a 2-frame stagger, so a row reads as a tally; a JetBrains Mono counter under the headline ticks with them. Type: Inter 800 headline (64 px at 1080), ink, left-aligned; Inter 600 legend labels (34 px) with the number in Inter 800 (e.g. 'about 96.5%'); JetBrains Mono footnotes in muted (24 px). Layout is strict like a printed chart: generous margins, the headline, the rule and the drop rows aligned to one left edge, labels on a second column edge, a 2 px ink rule under the headline. No shadows, no glow, no 3D; the only motion beyond the counting is a slow 2% push-in on holds and a gentle 1 px breathing bob of the newest row. The 'transform' beats (the big drop breaking into a hundred, the fresh drops lifting out) move drops along straight lines with an ease-in-out, keeping each drop the same size.",
+  "learnsFrom": "Isotype, the picture-statistics method of Otto Neurath's Vienna museum with pictograms by Gerd Arntz and charts transformed by Marie Neurath: its rule that a greater quantity is shown by more pictograms of the same size, not a larger one (Isotype Revisited, University of Reading, https://isotyperevisited.org/2012/08/introduction.php; https://en.wikipedia.org/wiki/Isotype_(picture_language)), and its practice of cutting a symbol, normally at a half and seldom at a quarter, for a remainder (Nightingale, https://nightingaledvs.com/exploring-isotype-charts-our-two-democracies-at-work-lessons-of-isotype-part-3/). Arntz's actual pictograms, the museum's charts and their colours are not used; the drop and glyphs are drawn new in code.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "the rule: one very large drop swells in the centre while the headline 'All the water on Earth' builds; a red strike (accent2) crosses it with the small mono note 'not bigger…'; the big drop breaks into same-size grey outline drops (line colour) that fly into the rows the chart will fill, with the note '…more'; the line 'One drop = 1% of it.' lands under the headline"
+    },
+    {
+      "from": 90,
+      "to": 330,
+      "what": "oceans: the ocean block fills in blue (s1) in reading order, about six drops per beat, the counter ticking; the tenth row ends in six whole drops and a HALF drop cut vertically; label beside the block with the wave glyph: 'Oceans' / 'about 96.5%'"
+    },
+    {
+      "from": 330,
+      "to": 450,
+      "what": "ice: a new short row under the block fills pale ice blue (s2): one whole drop and a three-quarter drop (a quarter cut off); label beside the row with the mountain glyph: 'Ice caps and glaciers · about 1.7%'"
+    },
+    {
+      "from": 450,
+      "to": 570,
+      "what": "underground: the next short row fills earth brown (s3), one whole and three-quarters; label with the strata glyph: 'Groundwater · about 1.7%'; the chart now holds a hundred drops' worth (96.5 + 1.75 + 1.75)"
+    },
+    {
+      "from": 570,
+      "to": 660,
+      "what": "the rest: a last row holds only a small magnifier ring (2 px ink circle) with a green (s4) speck inside it, far smaller than one drop; label with the river glyph: 'Everything else · less than a tenth of one drop' and a mono line under it 'lakes, rivers, swamps, soil, air, living things, permafrost'"
+    },
+    {
+      "from": 660,
+      "to": 810,
+      "what": "fresh water: the headline changes to 'Only about 2.5% is fresh.'; every salty drop (the oceans and the salty part of the groundwater, about one drop of the brown row) greys out to line colour; the fresh drops lift out and re-count into a new chart of their own, one drop = 1% of FRESH water, again one block per category: 69 ice drops (s2, six full rows and nine), 30 groundwater drops (s3, three rows), 1 green drop (s4), counting in by rows; labels: 'Ice · about 69', 'Groundwater · about 30', 'Everything else · about 1 (all lakes and rivers included)'"
+    },
+    {
+      "from": 810,
+      "to": 900,
+      "what": "end card: the two charts sit side by side, small; headline 'Most of it is salty.' then 'Most of the rest is frozen.'; mono footer 'figures rounded · USGS Water Science School, after Shiklomanov (1993)'; slow push-in holds"
+    }
+  ],
+  "sizes": "Square (primary): the headline and rule in the top band; the drop chart left-aligned under it (rows of ten on a 56 px pitch, about 560 px wide), with each category's label to the right of its rows (the ocean label beside its block, the short-row labels beside the short rows); mono footnotes at the bottom. In the fresh-water beat the first chart shrinks to a small thumbnail at the top right and the new chart takes its place. Landscape re-stacks into a chart spread: the first chart on the left half at a 64 px pitch with its labels, the headline and rule across the top, and in the fresh-water beat the second chart builds on the right half beside the first instead of replacing it; the end card keeps both charts with the two headline lines above them.",
+  "sound": "beatScore drive at 120 bpm with the drums held back until the ocean starts counting (drop at frame 90); a whoosh into the break-up of the big drop (ending at frame 60); ticks on the counting drops, thinned to every third drop so they patter like rain without buzzing; a hit when each new category starts (frames 90, 330, 450, 570) and when the fresh drops lift out (frame 660); the three-note sign-off at frame 810.",
+  "teaches": "Counting beats scaling: showing a quantity as many identical symbols (and a remainder as a cut symbol) lets the eye compare 96.5 with 1.7 honestly, where a bigger symbol would exaggerate by area.",
+  "facts": [
+    {
+      "claim": "About 96.5% of Earth's water is in the oceans, seas and bays (96.54% in the USGS table).",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Ice caps, glaciers and permanent snow hold about 1.7% of Earth's water (1.74%).",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Groundwater, fresh and saline together, is about 1.7% of Earth's water (1.69%: 0.76% fresh, 0.93% saline).",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Everything else together (soil moisture, ground ice and permafrost, lakes, atmosphere, swamps, rivers, biological water) is about 0.04% of Earth's water, less than a tenth of one 1% drop.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Only about 2.5% of Earth's water is fresh.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Of the fresh water, about 69% is in ice and glaciers (68.7%), about 30% is groundwater (30.1%) and about 1% is everything else, which includes all lakes and rivers.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/where-earths-water"
+    },
+    {
+      "claim": "Isotype's principal rule: a greater quantity is shown by a greater number of same-size pictograms, not by an enlarged pictogram.",
+      "source": "https://isotyperevisited.org/2012/08/introduction.php"
+    },
+    {
+      "claim": "Isotype charts cut a symbol to show a fraction, normally at a half and seldom at a quarter.",
+      "source": "https://nightingaledvs.com/exploring-isotype-charts-our-two-democracies-at-work-lessons-of-isotype-part-3/"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (600 and 800) for the headline, labels and numbers, JetBrains Mono for the counter and footnotes",
+    "style": "An Isotype picture-statistics chart, animated, on a cream ground. One flat water-drop pictogram (a circle and two tangent lines, no outline, no gradient, no perspective) stands for 1% of all the water on Earth, and the film is a chart of them in rows of ten, one block of rows per category with its label beside it, as in Isotype charts. Quantities are counted, never scaled: drops pop in one by one in reading order on a short spring so each row tallies itself, and a remainder is a drop cut with a vertical cut (a half or a quarter), never a smaller drop. Colour is category: oceans deep blue, ice pale blue, groundwater brown, everything else green, and salty drops grey out when fresh water is singled out. Each legend line starts with a small flat glyph in the same style (a wave, a snow-capped peak, earth strata, a river). Strict printed-chart layout: generous margins, one left edge for the headline, a thick ink rule, the drop rows and their labels. Scenes: a single giant drop is struck through and breaks into a hundred same-size drops; the oceans count in (about 96.5); ice (about 1.7) and groundwater (about 1.7) take a short row each; a magnifier shows everything else as a speck smaller than one drop; the fresh drops (about 2.5%) lift out and re-count into their own chart of 100 (about 69 ice, 30 groundwater, 1 everything else, lakes and rivers included); an end card with both charts.",
+    "sound": "a soft loop at 120 bpm whose drums enter when the counting starts, a whoosh into the break-up, thinned ticks for the counting drops like light rain, a hit at each new category and at the fresh-water lift, and a three-note sign-off.",
+    "sizes": "square: headline on top, the chart left-aligned with each label beside its rows; landscape: the first chart on the left and the fresh-water chart building beside it on the right."
+  }
+}

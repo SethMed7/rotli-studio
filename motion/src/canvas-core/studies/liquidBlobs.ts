@@ -121,12 +121,22 @@ function contour({ g, nx, ny, ox, oy, st }: Grid, L: number): number[][] {
           add(eL, eB);
           break;
         case 5: // TL and BR inside: a saddle, resolved by the cell's centre
-          if (mid) (add(eT, eR), add(eB, eL));
-          else (add(eL, eT), add(eR, eB));
+          if (mid) {
+            add(eT, eR);
+            add(eB, eL);
+          } else {
+            add(eL, eT);
+            add(eR, eB);
+          }
           break;
         case 10: // TR and BL inside
-          if (mid) (add(eL, eT), add(eR, eB));
-          else (add(eT, eR), add(eB, eL));
+          if (mid) {
+            add(eL, eT);
+            add(eR, eB);
+          } else {
+            add(eT, eR);
+            add(eB, eL);
+          }
           break;
       }
     }

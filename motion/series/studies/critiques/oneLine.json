@@ -1,0 +1,224 @@
+{
+ "piece": "oneLine",
+ "sizes": [
+  "oneLine",
+  "oneLineVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 96
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 96
+    }
+   },
+   "loudness": {
+    "landscape": -16.1,
+    "vertical": -16.1
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 6,
+    "motion": 6,
+    "variety": 5,
+    "composition": 7,
+    "accuracy": 8,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:02.5",
+     "what": "the hook is a bare ground with a pen dot and one word; the seed is not finished until about 2.5 s and nothing says what the film is about",
+     "fix": "the line snaps across the frame and draws the seed in one fast stroke inside the first second, while the question 'How does a seed become a plant?' lands at 72 px"
+    },
+    {
+     "at": "all (every morph)",
+     "what": "every step is a one-second inOutCubic glide that stops dead: 0 changes per 10 s, 96 % near-still, and the root breaking out, the hook, the leaves opening and the sun all arrive with no weight, so the whooshes land on nothing",
+     "fix": "short morphs that end on the beat with a small overshoot and settle (the line snaps into each drawing), plus a small camera kick on each arrival"
+    },
+    {
+     "at": "00:16.0-00:16.8, 00:25.0-00:26.0",
+     "what": "the 3-sample motion blur leaves discrete ghost copies of the seed outline in the hook morph and of the spiral in the sun morph",
+     "fix": "more subframes while the line is moving fast (none while it holds)"
+    },
+    {
+     "at": "00:04.0-00:07.0, all",
+     "what": "the labels 'water / air / warmth' are 24 px, the muted line 32 px and the step counter 24 px: unreadable at phone size",
+     "fix": "labels 44 px, muted line 40 px, headline 64 px, counter 32 px"
+    },
+    {
+     "at": "00:00.0-00:15.0",
+     "what": "the bean reads as an apple: a narrow bottom notch and a V hanging from its top, height too close to width",
+     "fix": "a kidney: flatter, a broad shallow concave belly with the hilum eye in it, a convex back"
+    },
+    {
+     "at": "00:00.0",
+     "what": "'A seed is a tiny plant' overstates the fact 'a seed holds an embryo, the tiny plant'",
+     "fix": "'A seed holds a tiny plant'"
+    },
+    {
+     "at": "00:26.0-00:30.0",
+     "what": "past the sun's base the soil band has no ink along its top (the line has left through the sky)",
+     "fix": "minor; accepted, it is where the line leaves"
+    }
+   ],
+   "agentSaw": [
+    "a weak hook: frame 0 is bare ground with only the pen dot at the left edge",
+    "low variety: 0 changes per 10 s, 96 % near-still",
+    "a faint ghost of the seed outline during the hook morph (00:16.0-00:17.0)",
+    "the bean reads apple-like (dip at top, hilum dent)",
+    "the air-gust icon is weak",
+    "the soil band's last ~40 px at the right edge has no ink in the last section",
+    "small 24 px labels 'water / air / warmth'"
+   ],
+   "agentMissed": [
+    "the morph arrivals have no weight or settle, so the whooshes mark nothing on screen (sync and motion, not only variety)",
+    "the same discrete blur ghosting in the sun morph at 00:25-00:26, not only the hook morph",
+    "the muted line (32 px) and step counter (24 px) are also unreadable at phone size",
+    "'A seed is a tiny plant' overstates the brief's fact ('holds an embryo, the tiny plant')",
+    "the builder's self-scores were 1 to 3 points high on hook, motion and variety"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 90
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 91
+    }
+   },
+   "loudness": {
+    "landscape": -16.1,
+    "vertical": -16.1
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 7,
+    "motion": 8,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:12.5-00:17.0, 00:17.0-00:21.5",
+     "what": "two 4.5 s holds where only the captions move (the root hold and the hook hold)",
+     "fix": "a growth beat inside each hold: the root runs deeper and branches at 00:14.5, the hook rises and pulls the seed up to the surface at 00:19.0, each a snap with a whoosh"
+    },
+    {
+     "at": "all (landscape)",
+     "what": "the 40 px muted line carries facts ('It's called the radicle.', 'and pulls the seed leaves up through the soil.') and is still small at phone width in the landscape",
+     "fix": "muted line 44 px"
+    },
+    {
+     "at": "00:25.4-00:26.0",
+     "what": "the sun morph sweeps the line's tail across the sky so fast that the 10-sample smear reads as a thick grey ribbon for about 8 frames",
+     "fix": "accepted: a smear, not ghost copies"
+    },
+    {
+     "at": "tool",
+     "what": "pace.json still counts 0 abrupt changes per 10 s: the snaps and 3.5 % punch-ins do not register as cuts",
+     "fix": "scored from the sheet; not chased with bigger kicks"
+    }
+   ],
+   "fixed": [
+    "the hook: the line snaps across and draws the seed by 00:00.4 while 'How does a seed become a plant?' lands at 83 px (landscape) / 78 px (vertical)",
+    "every morph is 14-22 frames and snaps into its drawing on the beat (starts from rest, overshoots about 7 %, settles on the arrival), with a punch-in that rises over the last 3 frames; collapsing sections never overshoot",
+    "10 motion-blur subframes while the line moves: the hook and sun morphs smear instead of leaving ghost copies",
+    "labels water / air / warmth 44 px semibold ink, kept in the safe area (the vertical needs moved left, the thermometer spaced out); headline 64 / 60 px, muted line 40 px, step counter 32 px",
+    "the bean is a kidney (about 1.8 : 1, round lobes, a broad shallow belly with the hilum eye in it)",
+    "'A bean seed holds a tiny plant / and its own store of food.' matches the facts (embryo, food store) for a bean"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 91
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 91
+    }
+   },
+   "loudness": {
+    "landscape": -16.3,
+    "vertical": -16.3
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:25.4-00:26.0",
+     "what": "the sun morph's tail sweeps the sky as a thick grey smear for about 6 frames",
+     "fix": "accepted (a smear, not copies); a slower tail would soften it if the owner wants"
+    },
+    {
+     "at": "tool",
+     "what": "pace.json still reads 0 abrupt changes per 10 s (91 % near-still): snaps and small punch-ins are not cuts, and a single-line film has none by design",
+     "fix": "none; variety scored from the sheet, where something lands at 0.4, 1.5, 5, 8, 10, 12.5, 14.5, 17, 19, 21.5, 24 and 26 s"
+    },
+    {
+     "at": "00:26.0-00:30.0",
+     "what": "past the sun's base the soil band has no ink along its top (the line has left through the sky)",
+     "fix": "accepted: it is where the line leaves"
+    },
+    {
+     "at": "00:05.0-00:07.0",
+     "what": "the air gust is still the weakest of the three needs icons (the builder saw this too)",
+     "fix": "left; the 44 px 'air' label now carries it"
+    }
+   ],
+   "fixed": [
+    "two growth beats fill the long holds: the root runs deeper and branches at 00:14.5 (it breaks out short at 00:12.5), the hook breaks the soil with the seed still buried at 00:17.0 and rises to pull the seed to the surface at 00:19.0; each snaps with a whoosh (whooshes added at frames 435 and 570)",
+    "the muted line is 44 px",
+    "lint gate clean for the module (comma expressions, an unused variable, new Array); frames byte-identical before and after"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

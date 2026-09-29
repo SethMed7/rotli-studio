@@ -210,22 +210,34 @@ function tokW(ctx: Ctx, k: Tok, size: number) {
   ctx.restore();
   return w;
 }
-type TokDraw = { alpha?: number; flash?: number };
-/** a term centred on x, on baseline y; p is its WRITE progress */
-function term(ctx: Ctx, k: Tok, x: number, y: number, size: number, p: number, o: TokDraw = {}) {
-  const alpha = o.alpha ?? 1,
-    fl = o.flash ?? 0;
-  if (p <= 0 || alpha <= 0.001) return;
+type TokDraw = { alpha?: number; flash?: number; at?: number };
+// A term that flies changes size every subframe. Text drawn at ever-new sizes rasterises through Chromium's glyph
+// cache, whose state depends on what was drawn before, so the same frame could come out a few pixels different
+// after a different history (a golden that flaked). A finished, unflashed flying term is therefore drawn once, at
+// its landing size `at`, into a sprite that is only ever scaled: same pixels whatever came before.
+const SPRITES = new Map<string, { c: OffscreenCanvas; w: number; top: number; pad: number }>();
+const SS = 2; // sprites are drawn at twice their size so the scaled image stays crisp
+function termSprite(k: Tok, size: number, col: string) {
+  const key = `${k.k}|${k.t}|${k.e ?? ""}|${size}|${col}`;
+  let sp = SPRITES.get(key);
+  if (!sp) {
+    const probe = new OffscreenCanvas(8, 8).getContext("2d") as unknown as Ctx,
+      w = tokW(probe, k, size),
+      pad = size * 0.3,
+      top = size * 1.3,
+      c = new OffscreenCanvas(Math.ceil((w + 2 * pad) * SS), Math.ceil((top + size * 0.5) * SS)),
+      g = c.getContext("2d") as unknown as Ctx;
+    g.scale(SS, SS);
+    drawTerm(g, k, pad + w / 2, top, size, 1, col);
+    sp = { c, w, top, pad };
+    SPRITES.set(key, sp);
+  }
+  return sp;
+}
+function drawTerm(ctx: Ctx, k: Tok, x: number, y: number, size: number, p: number, col: string) {
   const w = tokW(ctx, k, size),
     x0 = x - w / 2,
-    col = mix(k.c, WHITE, fl * 0.7),
-    sc = 1 + 0.15 * fl;
-  ctx.save();
-  ctx.globalAlpha *= alpha;
-  ctx.translate(x, y - size * 0.3);
-  ctx.scale(sc, sc);
-  ctx.translate(-x, -(y - size * 0.3));
-  const bf = baseFont(k.k, size),
+    bf = baseFont(k.k, size),
     bs = k.k === "v" ? size * VS : size;
   writeStr(ctx, k.t, x0, y, bf, bs, col, p);
   if (k.e) {
@@ -243,6 +255,29 @@ function term(ctx: Ctx, k: Tok, x: number, y: number, size: number, p: number, o
       prog(p, 0.2, 1),
     );
   }
+}
+/** a term centred on x, on baseline y; p is its WRITE progress */
+function term(ctx: Ctx, k: Tok, x: number, y: number, size: number, p: number, o: TokDraw = {}) {
+  const alpha = o.alpha ?? 1,
+    fl = o.flash ?? 0;
+  if (p <= 0 || alpha <= 0.001) return;
+  if (o.at && p >= 1 && fl === 0) {
+    const sp = termSprite(k, o.at, k.c),
+      m = size / o.at;
+    ctx.save();
+    ctx.globalAlpha *= alpha;
+    ctx.drawImage(sp.c, x - (sp.w / 2 + sp.pad) * m, y - sp.top * m, (sp.c.width / SS) * m, (sp.c.height / SS) * m);
+    ctx.restore();
+    return;
+  }
+  const col = mix(k.c, WHITE, fl * 0.7),
+    sc = 1 + 0.15 * fl;
+  ctx.save();
+  ctx.globalAlpha *= alpha;
+  ctx.translate(x, y - size * 0.3);
+  ctx.scale(sc, sc);
+  ctx.translate(-x, -(y - size * 0.3));
+  drawTerm(ctx, k, x, y, size, p, col);
   ctx.restore();
 }
 /** the centre x of each term of an equation laid out on one line, centred on cx */
@@ -1126,6 +1161,7 @@ export function make(size: Size, id: string): Film {
         pos = arc(from, to, t, 60 + 0.12 * Math.hypot(to[0] - from[0], to[1] - from[1]));
       term(ctx, k, pos[0], pos[1] - liftOff * Y.eqS * 0.6, lerp(Y.lab, Y.eqS, t), prog(F, flyT[q]!, flyT[q]! + 14), {
         alpha: out * (1 - liftOff),
+        at: Y.eqS,
       });
       // the numbers fly out of the counters
       const nt = sp(F, 1594 + 3 * q, 1634 + 3 * q);
@@ -1135,7 +1171,7 @@ export function make(size: Size, id: string): Film {
         w = tokW(ctx, nk, 40),
         c0: V = [cnt.align === "left" ? cnt.counter[0] + w / 2 : cnt.counter[0] - w / 2, cnt.counter[1]],
         np = arc(c0, [B.xs[slot]!, y], nt, 50);
-      term(ctx, nk, np[0], np[1], lerp(40, Y.eqS, nt), 1, { alpha: numOut, flash: fl });
+      term(ctx, nk, np[0], np[1], lerp(40, Y.eqS, nt), 1, { alpha: numOut, flash: fl, at: Y.eqS });
     });
     [
       [1, 1522],

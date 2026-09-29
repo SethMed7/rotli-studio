@@ -1454,6 +1454,54 @@
    "format": "story",
    "length": "34 s",
    "about": "Study 41 · Seasons Orrery, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "oneLine",
+   "kind": "video",
+   "slug": "one-line",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 38 · One Line: One unbroken line can carry a whole explanation: when every drawing is the same resampled path, each step visibly grows out of the last, which is exactly how a seedling grows."
+  },
+  {
+   "id": "oneLineVertical",
+   "kind": "video",
+   "slug": "one-line-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 38 · One Line, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "isotypeSquare",
+   "kind": "video",
+   "slug": "isotype-square",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 40 · Isotype: Counting beats scaling: showing a quantity as many identical symbols (and a remainder as a cut symbol) lets the eye compare 96.5 with 1.7 honestly, where a bigger symbol would exaggerate by area."
+  },
+  {
+   "id": "isotype",
+   "kind": "video",
+   "slug": "isotype",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 40 · Isotype, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "inkWashVertical",
+   "kind": "video",
+   "slug": "ink-wash-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 37 · Ink Wash: Emptiness is a material: when the paper is left bare on purpose (for mist, snow and a poem) a few timed strokes that bleed and dry say more than a filled frame."
+  },
+  {
+   "id": "inkWash",
+   "kind": "video",
+   "slug": "ink-wash",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 37 · Ink Wash, designed for landscape (1920 × 1080): its own layout, not a crop."
   }
  ]
 }
