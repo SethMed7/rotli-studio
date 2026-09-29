@@ -1,0 +1,76 @@
+{
+  "id": "swiss-grid",
+  "no": 33,
+  "title": "Swiss Grid",
+  "module": "src/canvas-core/studies/swissGrid.ts",
+  "pieces": {
+    "portrait": "swissGridPortrait",
+    "landscape": "swissGrid"
+  },
+  "primary": "portrait",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 660,
+  "palette": "mono",
+  "family": "type",
+  "subject": "fun",
+  "style": "A poster-film for an invented lecture series, 'Grid Week', in the International Typographic Style. Strictly three colours: ground (off-white paper), ink (black) and accent (red). The palette's accent2 (blue) is NOT used anywhere, and neither is any tint, gradient or shadow. THE GRID IS VISIBLE and everything obeys it: portrait uses 6 columns × 8 rows of modules inside 64 px margins with 16 px gutters and a 12 px baseline grid; landscape uses 12 columns × 6 rows. Grid lines are 1 px hairlines in the line colour (baseline lines at half that alpha), with small ink crop marks outside the four corners of the type area. Every element's resting edges sit exactly on module or gutter edges, and its text sits on baselines. MOTION RULES: things move only horizontally or vertically, never diagonally, one axis at a time (a move that needs both goes x first, then y, as two snaps); each snap is fast and final, 6–9 frames on a strong ease-out (exponential), no overshoot, no bounce, no rotation; widths grow in whole-module steps (each step its own little snap, 3 frames apart); arrivals are cuts or snaps, never fades. TYPE: Inter only; the title and giant numerals in Inter 800 set tight (tracking about −4%, leading 0.9), all text flush left and ragged right, never centred, never justified; headings sentence case; small info lines Inter 400 at 26–30 px; the day names Inter 600. The giant numeral is about 560 px tall in portrait (it spans four row modules), ink. Red is used for exactly two things: one solid red rectangle (a whole number of modules) and the active day's small index square. The composition is asymmetric: heavy black numeral on one side, a column of text on the other, a lot of empty paper. A tiny ink page number and an Inter 400 caption 'Grid Week · 5 evenings' sit at the top-left margin like a running head; all readable text is ink (the palette's muted is too light on this paper for small type). Holds keep a very slow, straight push-in (1.00 to 1.015).",
+  "learnsFrom": "The International Typographic Style (https://en.wikipedia.org/wiki/International_Typographic_Style) and Josef Müller-Brockmann's 'Grid Systems in Graphic Design' and concert posters (https://en.wikipedia.org/wiki/Josef_M%C3%BCller-Brockmann): a mathematical grid, flush-left ragged-right sans-serif type, asymmetric layouts, giant numerals, restrained colour. Their posters, typefaces, layouts and copy are not used; the series, its sessions and its hall are invented.",
+  "story": [
+    {
+      "from": 0,
+      "to": 60,
+      "what": "the grid: column hairlines slide down from the top edge one after another (2 frames apart), then row lines slide in from the left, then the baselines; the crop marks tick into the four corners"
+    },
+    {
+      "from": 60,
+      "to": 150,
+      "what": "the title: a red module appears top-left and grows to the right in whole-module snaps until it spans four columns; 'Grid Week' drops onto its baseline beneath it, flush left, in Inter 800; the line 'Five evenings on order' snaps in under it"
+    },
+    {
+      "from": 150,
+      "to": 210,
+      "what": "evening 1: the giant numeral '1' snaps in along its column from the left edge; at the lower right, flush left on the grid, 'Mon' then 'The Module'; a small grid diagram beside it lights ONE module red"
+    },
+    {
+      "from": 210,
+      "to": 270,
+      "what": "evening 2: the numeral slides out left along its row and '2' snaps in from the right; 'Tue' / 'The Margin'; the diagram's margin band turns red and the modules step inward"
+    },
+    {
+      "from": 270,
+      "to": 330,
+      "what": "evening 3: '3' snaps in; 'Wed' / 'The Gutter'; the diagram's gutters flash red one after another"
+    },
+    {
+      "from": 330,
+      "to": 390,
+      "what": "evening 4: '4' snaps in; 'Thu' / 'The Baseline'; the diagram's baselines rule in, and the text beside it visibly drops onto them"
+    },
+    {
+      "from": 390,
+      "to": 450,
+      "what": "evening 5: '5' snaps in; 'Fri' / 'The White Space'; the diagram clears every module except one, and the empty paper around the numeral widens as the text column snaps one column further right"
+    },
+    {
+      "from": 450,
+      "to": 570,
+      "what": "recompose: every element snaps along grid lines into the final poster, one move per half beat: the numeral shrinks into a column of small numerals '1 2 3 4 5' beside the five session titles (a flush-left list), 'Grid Week' grows to span five columns at the top, the red rectangle moves down to the bottom row and stretches across four columns"
+    },
+    {
+      "from": 570,
+      "to": 660,
+      "what": "the poster holds: an info block snaps in at the bottom right: 'Hall 2 · every evening at 19:00' and 'Free entry'; the grid hairlines fall back to a quarter of their strength but stay; the active-day square steps down the list once per beat; a slow straight push-in"
+    }
+  ],
+  "sizes": "Portrait (4:5) is primary: 6 × 8 modules; the numeral occupies columns 1–4 of rows 3–6, the day and title sit in columns 5–6 lower down, the diagram in columns 5–6 above them; the final poster stacks title, list and info block top to bottom. Landscape (16:9) uses 12 × 6 modules: the numeral sits in columns 1–5, the day text in columns 7–9 and the diagram in columns 10–12; the final poster puts the title across columns 1–8 of the top two rows, the list in columns 1–6 below and the info block in columns 9–12, with the red rectangle along the bottom row.",
+  "sound": "beatScore drive at 120 bpm with the drums entering at the title (drop at 60); a tick on every snap (thinned so snaps closer than 3 frames share one tick); a hit on each numeral change (frames 150, 210, 270, 330 and 390) and on the start of the recompose (frame 450); the sign-off at frame 570.",
+  "teaches": "A visible grid turns layout into choreography: when every element can only snap along the same lines, even a five-item list feels composed, and the empty space the grid leaves becomes part of the design.",
+  "portable": {
+    "fonts": "Inter (800, 600 and 400) for everything",
+    "style": "A poster-film for an invented lecture series, 'Grid Week', in the International Typographic Style: off-white paper, black and one red only, with no tints, gradients or shadows. The grid is visible (hairline columns, rows, gutters and baselines with crop marks) and everything obeys it: resting edges sit on module edges, text sits on baselines. Things move only horizontally or vertically, one axis at a time, in fast final snaps with a strong ease-out and no bounce; widths grow in whole-module steps. Type is a grotesque sans set tight, flush left and ragged right, never centred; a giant numeral about four modules tall anchors an asymmetric composition. Red marks one rectangle and the active day. Scenes: the grid draws in; a red module grows and the title drops onto its baseline; five evenings, each a new giant numeral snapping in with a day and session name ('The Module', 'The Margin', 'The Gutter', 'The Baseline', 'The White Space') and a tiny diagram that demonstrates it; then every element snaps into the final poster with the list, the title across the top, the red bar at the bottom and a small info block.",
+    "sound": "a crisp driving loop at 120 bpm whose drums enter at the title, a click on every snap, a hit on each numeral change and on the recompose, and a three-note sign-off.",
+    "sizes": "portrait first on a 6 × 8 grid; landscape on a 12 × 6 grid with the numeral on the left, the day text in the middle and the diagram on the right."
+  }
+}

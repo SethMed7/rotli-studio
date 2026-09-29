@@ -1,0 +1,161 @@
+{
+ "piece": "neonDrive",
+ "sizes": [
+  "neonDrive",
+  "neonDriveSquare"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 1.7,
+     "longestCalm": 9.6,
+     "nearStill": 6
+    },
+    "square": {
+     "changesPer10s": 1.7,
+     "longestCalm": 9.6,
+     "nearStill": 5
+    }
+   },
+   "loudness": {
+    "landscape": -15.9,
+    "square": -15.9
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "square": "windows: (none)"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 7,
+    "motion": 8,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:02.4",
+     "what": "the hook is a black frame, one thin line and a slowly rising gradient; nothing says 'synthwave' until the sun appears at 2.4 s, and the grid only fades in after that",
+     "fix": "strike the horizon line on frame 0 and punch the sun and the grid in together on the first beat (0.6 s) with a hit and a flash"
+    },
+    {
+     "at": "00:00.0-00:09.6",
+     "what": "9.6 s with no abrupt change in either size: the sun, grid and mountains all glide in and LUMEN ignites in small letters that the eye (and pace.json) reads as a glide",
+     "fix": "land punches on the grid: the mountains slam up with a camera lurch at 2.4 s, a grid-speed surge with a whoosh at 4.8 s, and a cyan bloom on every LUMEN tube strike from 7.2 s"
+    },
+    {
+     "at": "00:16.8-00:22.8",
+     "what": "a second 6.0 s calm through the lockup: the title glides back, the cassette draws on, and nothing lands until the sun's flare",
+     "fix": "the cassette body snaps on on a beat, and PRESS PLAY's first blink (the sign-off, 21.6 s) lands with a flash"
+    },
+    {
+     "at": "00:12.0-00:17.0",
+     "what": "in the drive the shrunken LUMEN (0.44x landscape, 0.4x square) is a 2 px outline that reads as a ghost at phone size; only LANE carries the title",
+     "fix": "thicken the tube strokes as the title shrinks so the core stays about 4 px on screen"
+    },
+    {
+     "at": "00:18.4-00:19.0",
+     "what": "while the cassette draws itself the body fades in at partial alpha over the sun, a muddy brown translucent block (both sizes)",
+     "fix": "fill the body at full strength the moment its outline closes, on the beat"
+    },
+    {
+     "at": "00:05.0, 00:18.0+",
+     "what": "the tagline 'a night-drive mixtape' is 26 px mono; on a phone the landscape one is about 5 px tall",
+     "fix": "set it at 32 px and size its square backing pill to the text"
+    },
+    {
+     "at": "00:14.0-00:16.0 (landscape)",
+     "what": "a close palm passes behind the tracklist column",
+     "fix": "none: the tracklist is an overlay and the palm is a silhouette in deep, so the pink lines stay legible"
+    }
+   ],
+   "agentSaw": [
+    "the hook: the first 2.4 s are black, one line and a rising sky; the sun arrives at 2.4 s",
+    "variety: 1.7 changes per 10 s and a 9.6 s calm from 0:00 to the chrome slam",
+    "the ignition is thin at phone size (1-3 px stars)",
+    "the tube breaks are subtle",
+    "the drive-section LUMEN outline is faint in square",
+    "LANE's 1.15x slam overlaps LUMEN for about 3 frames (intended)",
+    "spiky palm fronds",
+    "a close palm passes behind the tracklist in landscape"
+   ],
+   "agentMissed": [
+    "a second 6.0 s calm from 16.8 s to 22.8 s through the lockup",
+    "the drive-section LUMEN is faint in landscape too, not only square",
+    "the half-built cassette's translucent body over the sun reads as a muddy brown block at 00:18.5",
+    "the landscape tagline is about 5 px tall on a phone"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 4.2,
+     "longestCalm": 4.8,
+     "nearStill": 2
+    },
+    "square": {
+     "changesPer10s": 4.2,
+     "longestCalm": 4.8,
+     "nearStill": 1
+    }
+   },
+   "loudness": {
+    "landscape": -15.9,
+    "square": -15.9
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "square": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:07.2",
+     "what": "the cyan bloom on LUMEN's first strike washes the whole frame lavender for 0.2 s; it lands, but it is the heaviest of the flashes",
+     "fix": "none needed; lower its peak from 0.26 if it reads as a strobe next to the slam 2.4 s later"
+    },
+    {
+     "at": "00:16.8-00:21.6",
+     "what": "the lockup is still a 4.8 s stretch whose only full-frame change is at its ends; the cassette body snap at 18.6 s is local",
+     "fix": "none needed at 4.8 s; a punch-in on the cassette at 19.2 s if variety ever drops"
+    },
+    {
+     "at": "00:14.0-00:16.0 (landscape)",
+     "what": "a close palm still passes behind the tracklist column",
+     "fix": "none: a silhouette in deep, the pink lines stay legible"
+    },
+    {
+     "at": "00:10.0, 00:18.0+ (landscape)",
+     "what": "the 32 px tagline and 24 px HUD are about 6 px tall on a 360 px phone feed: within the rubric's 22 px at 1080, but phone-small",
+     "fix": "none needed; the title and tracklist carry the read"
+    }
+   ],
+   "fixed": [
+    "the opening is retimed away from the brief's story[0]/story[1] timing (the brief file is unchanged): the horizon line strikes on frame 0 and reaches full width by 0.57 s, the sky rises in 0.67 s, and on beat 1 (frame 36, 0.6 s) the grid floor snaps on and the striped sun springs up with a hit and a pink flash; the brief had the sun at 2.4 s and the grid fading in from 2.5 s",
+    "the 9.6 s calm is broken by punches on the beat grid: the mountains slam up on springs with a camera lurch, hit and flash at 2.4 s (frame 144); a grid-speed surge with a whoosh and flash at 4.8 s (frame 288, where the HUD starts typing); a cyan bloom on LUMEN's first tube strike at 7.2 s; and a drive surge with a whoosh and flash at 14.4 s (frame 864), so changes land at 0.6, 2.4, 4.8, 7.2, 9.6, 12.0, 14.4, 16.8, 21.6 and 22.8 s in both sizes",
+    "the second calm is broken: PRESS PLAY's first blink (the sign-off, 21.6 s) lands with a cyan bloom, and the cassette body snaps on at full strength on the beat as its outline closes (frame 1116, with a tick), so there is no translucent brown block over the sun",
+    "the shrunken LUMEN's tubes thicken as the title scales down (stroke scale 1 to 2.6), so it reads at phone size in the drive and the lockup in both sizes",
+    "the tagline is 32 px (was 26) and its square backing pill is measured from the text"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

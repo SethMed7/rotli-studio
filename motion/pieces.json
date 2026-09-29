@@ -1278,6 +1278,102 @@
    "format": "story",
    "length": "24 s",
    "about": "Study 35 · Title Sequence, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "swissGridPortrait",
+   "kind": "video",
+   "slug": "swiss-grid-portrait",
+   "format": "ig-portrait",
+   "length": "22 s",
+   "about": "Study 33 · Swiss Grid: A visible grid turns layout into choreography: when every element can only snap along the same lines, even a five-item list feels composed, and the empty space the grid leaves becomes part of the design."
+  },
+  {
+   "id": "swissGrid",
+   "kind": "video",
+   "slug": "swiss-grid",
+   "format": "film",
+   "length": "22 s",
+   "about": "Study 33 · Swiss Grid, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "multiplane",
+   "kind": "video",
+   "slug": "multiplane",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 44 · Multiplane: Depth is a speed, not a size: put flat layers at real distances, move the camera through them, and let the far things refuse to grow; paper shadows and a rack focus do the rest."
+  },
+  {
+   "id": "multiplaneVertical",
+   "kind": "video",
+   "slug": "multiplane-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 44 · Multiplane, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "neonDrive",
+   "kind": "video",
+   "slug": "neon-drive",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 31 · Neon Drive: An era is a set of rules you can code: a perspective grid, a striped sun, layered-stroke neon that ignites irregularly and a banded chrome fill are enough to summon the whole aesthetic, and the irregular flicker is what makes it feel electric rather than animated."
+  },
+  {
+   "id": "neonDriveSquare",
+   "kind": "video",
+   "slug": "neon-drive-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 31 · Neon Drive, designed for square (1080 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "whiteboardHand",
+   "kind": "video",
+   "slug": "whiteboard-hand",
+   "format": "film",
+   "length": "34 s",
+   "about": "Study 27 · Whiteboard Hand: Showing the drawing happen is the explanation: when a hand builds each idea line by line and wipes the board before the next, the viewer follows the reasoning at the speed it is drawn."
+  },
+  {
+   "id": "whiteboardHandVertical",
+   "kind": "video",
+   "slug": "whiteboard-hand-vertical",
+   "format": "story",
+   "length": "34 s",
+   "about": "Study 27 · Whiteboard Hand, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "radialYear",
+   "kind": "video",
+   "slug": "radial-year",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 49 · Radial Year: A radial chart earns its circle only when the data is a cycle: put time on the angle, encode the value as length from a fixed inner ring, label the rings, and a year of daylight becomes one shape you can read at a glance."
+  },
+  {
+   "id": "radialYearVertical",
+   "kind": "video",
+   "slug": "radial-year-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 49 · Radial Year, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "stainedGlassVertical",
+   "kind": "video",
+   "slug": "stained-glass-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 48 · Stained Glass: Stained glass is the light, not the picture: build the window from lead and flat jewel colour, then animate only the sun, and the same panes change mood all day and throw their colour onto the floor."
+  },
+  {
+   "id": "stainedGlass",
+   "kind": "video",
+   "slug": "stained-glass",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 48 · Stained Glass, designed for landscape (1920 × 1080): its own layout, not a crop."
   }
  ]
 }

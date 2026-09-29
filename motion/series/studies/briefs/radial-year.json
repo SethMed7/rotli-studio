@@ -1,0 +1,111 @@
+{
+  "id": "radial-year",
+  "no": 49,
+  "title": "Radial Year",
+  "module": "src/canvas-core/studies/radialYear.ts",
+  "pieces": {
+    "square": "radialYear",
+    "vertical": "radialYearVertical"
+  },
+  "primary": "square",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 900,
+  "palette": "daylight",
+  "family": "explain",
+  "subject": "learn",
+  "style": "A radial data visualisation: one year drawn as a circle, 365 spokes whose LENGTH is the hours of daylight, for two cities overlaid, Reykjavík (64° N) and Quito (near the equator), on a dark night ground. THE DIAL: Jan 1 at the top, running clockwise, day d at angle −90° + 360°·d/365. A spoke starts at an inner radius r0 = 0.24·R (the hole keeps short winter days visible) and its length is proportional to hours: r(h) = r0 + (h/24)·(R − r0), with R about 430 px at 1080. Reference rings at 6, 12, 18 and 24 h in the line colour, the 12 h ring dashed, each labelled once along the upward axis in JetBrains Mono ('6 h', '12 h', '18 h', '24 h'); twelve month ticks outside the 24 h ring with three-letter month labels in JetBrains Mono (at least 24 px). Encode by length, never by area or colour intensity. Reykjavík is drawn as spokes in the accent (sun amber), each about 60% of its angular slot wide; Quito as one smooth closed line in the teal accent2, 4 px, with faint teal spokes under it. THE DATA is closed-form and labelled approximate: the sunrise equation cos H0 = (sin(−0.833°) − sin φ·sin δ) / (cos φ·cos δ), clamped to [−1, 1], daylight = 2·H0 / 15 hours, with the declination δ(d) = 23.44°·sin(2π(d − 79)/365) (d = 0 on 1 Jan) and φ = 64.15° for Reykjavík and −0.22° for Quito. Checked against the US Naval Observatory's sunrise and sunset for 2026, it gives Reykjavík 21 h 09 m on 21 Jun (USNO about 21 h 09 m) and 4 h 07 m on 21 Dec (USNO 4 h 07 m), is within about 20 minutes at the equinoxes (its worst case is late September), and gives Quito 12 h 07–08 m all year (USNO 12 h 06–08 m); on screen every value is rounded to whole hours and said with 'about'. THE HAND: a thin ink line from the centre to beyond the 24 h ring with a small dot at its tip, sweeping clockwise on an ease-in-out; each spoke grows to its length on a short spring (10 frames) once the hand passes it, so the year draws itself. At the centre (inside r0) a readout in JetBrains Mono shows the hand's month and the city's hours ('Jan' over 'about 4 h'). CALLOUTS: a leader line from a spoke tip to a label, drawn on, with the label in Inter 600 ink and the key number in the city's colour. Type: the title in Instrument Serif, labels in Inter 600, numbers and axes in JetBrains Mono. Flat, no glows; the only motion in holds is the hand's small idle drift and a slow push-in. A footer on every frame after the dial draws: 'approximate · sunrise to sunset · data: US Naval Observatory'.",
+  "learnsFrom": "The polar area diagram as Florence Nightingale used it for seasonal data (https://en.wikipedia.org/wiki/Pie_chart#Polar_area_diagram) and the radial bar chart's known pitfalls (https://www.domo.com/learn/charts/radial-bar-chart: outer bars look longer, curved length is hard to compare), answered here by encoding hours as spoke length from a fixed inner ring with labelled hour rings; the sunrise equation (https://en.wikipedia.org/wiki/Sunrise_equation) for the curve, checked against the US Naval Observatory's published sunrise and sunset (https://aa.usno.navy.mil/data/RS_OneDay). Nightingale's data and diagrams are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "title: 'A year of daylight' in Instrument Serif with 'two cities, one year' beneath; the empty dial draws: the 24 h ring, the dashed 12 h ring, the month ticks and labels clockwise from the top"
+    },
+    {
+      "from": 90,
+      "to": 330,
+      "what": "Reykjavík: the legend 'Reykjavík · 64° N' lands in amber; the hand sweeps once round the year and the amber spokes grow behind it, short in winter, long in summer; the centre readout counts with the hand ('Jan' 'about 4 h' … 'Jun' 'about 21 h' …)"
+    },
+    {
+      "from": 330,
+      "to": 450,
+      "what": "the extremes: callouts draw on: '21 Jun · about 21 h of daylight', then '21 Dec · about 4 h'; a smaller line under the June callout: 'twilight lasts all night'"
+    },
+    {
+      "from": 450,
+      "to": 630,
+      "what": "Quito: the legend 'Quito · near the equator' lands in teal; the hand sweeps again, faster, and the teal line draws a near-perfect circle on the 12 h ring; callout 'about 12 h, every day of the year'"
+    },
+    {
+      "from": 630,
+      "to": 780,
+      "what": "where they meet: the two shapes cross twice; markers pulse at the crossings with the callout '20 Mar & 23 Sep · about 12 h in both'"
+    },
+    {
+      "from": 780,
+      "to": 900,
+      "what": "end: the complete chart holds with a slow push-in; the line 'Far north: big swings.' then 'The equator: steady.' lands beneath the title; the footer stays"
+    }
+  ],
+  "sizes": "Square (primary): the dial is centred slightly low, the title and legend in the top band, callouts placed around the dial on leader lines, the footer along the bottom. Vertical re-stacks: the title sits in the top safe area, the dial (about 900 px across) in the upper-middle, and below it everything that sat around the dial becomes stacked rows: the two legends side by side, then the current callout as a text row with a small numbered marker on the dial instead of a long leader line, then the end lines; the footer stays above the 320 px bottom safe margin.",
+  "sound": "beatScore soft at 120 bpm with the drums entering at the Reykjavík sweep (drop at 90): a whoosh ending at 90 as the hand starts, a tick at each month the hand passes (12 per sweep, thinned for the faster Quito sweep), a hit at 330 and 390 for the two extreme callouts, a whoosh ending at 450 for Quito, a hit at 630 for the crossings, and the sign-off at 810.",
+  "teaches": "A radial chart earns its circle only when the data is a cycle: put time on the angle, encode the value as length from a fixed inner ring, label the rings, and a year of daylight becomes one shape you can read at a glance.",
+  "facts": [
+    {
+      "claim": "Reykjavík lies at about 64° N and is the world's northernmost capital of a sovereign state.",
+      "source": "https://en.wikipedia.org/wiki/Reykjav%C3%ADk"
+    },
+    {
+      "claim": "Quito lies at about 0.2° S, the capital city closest to the equator.",
+      "source": "https://en.wikipedia.org/wiki/Quito"
+    },
+    {
+      "claim": "Reykjavík, 21 Jun 2026: sunrise 02:55, sunset 00:04 the next day (local time = UTC), about 21 h 09 m of daylight.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-06-21&coords=64.1466,-21.9426&tz=0"
+    },
+    {
+      "claim": "Reykjavík, 21 Dec 2026: sunrise 11:22, sunset 15:29, about 4 h 07 m of daylight.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-21&coords=64.1466,-21.9426&tz=0"
+    },
+    {
+      "claim": "Reykjavík, around the June solstice the Sun stays above the civil twilight limit all night (twilight lasts all night).",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-06-21&coords=64.1466,-21.9426&tz=0"
+    },
+    {
+      "claim": "Reykjavík, 20 Mar 2026: sunrise 07:29, sunset 19:43, about 12 h 14 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-03-20&coords=64.1466,-21.9426&tz=0"
+    },
+    {
+      "claim": "Reykjavík, 23 Sep 2026: sunrise 07:14, sunset 19:25, about 12 h 11 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-09-23&coords=64.1466,-21.9426&tz=0"
+    },
+    {
+      "claim": "Quito, 20 Mar 2026: sunrise 11:18, sunset 23:24 UTC, about 12 h 06 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-03-20&coords=-0.1807,-78.4678&tz=0"
+    },
+    {
+      "claim": "Quito, 21 Jun 2026: sunrise 11:12, sunset 23:19 UTC, about 12 h 07 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-06-21&coords=-0.1807,-78.4678&tz=0"
+    },
+    {
+      "claim": "Quito, 23 Sep 2026: sunrise 11:03, sunset 23:09 UTC, about 12 h 06 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-09-23&coords=-0.1807,-78.4678&tz=0"
+    },
+    {
+      "claim": "Quito, 21 Dec 2026: sunrise 11:08, sunset 23:16 UTC, about 12 h 08 m.",
+      "source": "https://aa.usno.navy.mil/api/rstt/oneday?date=2026-12-21&coords=-0.1807,-78.4678&tz=0"
+    },
+    {
+      "claim": "The curve is the sunrise equation with a −0.833° altitude for refraction and the Sun's disc; the piece labels it approximate.",
+      "source": "https://en.wikipedia.org/wiki/Sunrise_equation"
+    }
+  ],
+  "portable": {
+    "fonts": "Instrument Serif for the title, Inter (600) for labels, JetBrains Mono for numbers, axes and the footer",
+    "style": "A radial data visualisation: one year as a circle, 365 spokes whose length is the hours of daylight, for two cities overlaid (Reykjavík at 64° N and Quito near the equator) on a dark night ground. Jan 1 at the top, clockwise. Each spoke starts at an inner ring (about a quarter of the radius, so short winter days stay visible) and its length is proportional to hours up to an outer 24 h ring; draw reference rings at 6, 12, 18 and 24 h (12 h dashed), label them once, and put month ticks and three-letter labels outside. Encode by length only. Reykjavík is amber spokes, Quito one smooth teal closed line. Compute daylight with the sunrise equation (cos H0 = (sin(−0.833°) − sin φ sin δ) / (cos φ cos δ), daylight = 2·H0/15 hours, declination 23.44°·sin(2π(day − 79)/365)), label it approximate, and say every value on screen as a whole number of hours with 'about'. A thin hand sweeps the year and each spoke springs to its length as the hand passes; a readout at the centre shows the month and the hours. Callouts draw on with leader lines. Flat, no glows; a slow push-in in holds; a small footer credits the data as approximate.",
+    "sound": "a soft loop at 120 bpm whose drums enter when the first sweep starts, a whoosh as each sweep begins, a tick at each month the hand passes, hits for the callouts and the crossings, and a three-note sign-off.",
+    "sizes": "re-stack it: the dial in the upper middle and everything that sat around it as stacked rows below (legends side by side, the current callout as a text row keyed to a small numbered marker on the dial, then the end lines)."
+  }
+}

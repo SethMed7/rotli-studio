@@ -1,0 +1,256 @@
+{
+ "piece": "multiplane",
+ "sizes": [
+  "multiplane",
+  "multiplaneVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 51
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 76
+    }
+   },
+   "loudness": {
+    "landscape": -16.0,
+    "vertical": -16.0
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none)"
+   },
+   "scores": {
+    "hook": 6,
+    "readability": 8,
+    "motion": 6,
+    "variety": 4,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "composition": 7
+    },
+    "vertical": {
+     "composition": 6
+    }
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:01.5",
+     "what": "the hook is a flat pink field: before the far flats land, everything below the sky bands is horizon pink (about 60 % of the landscape frame, 70 % of the vertical), so the first second and a half reads as an abstract colour block, not a forest",
+     "fix": "a dark stage floor below a thin pink horizon strip, and flats that are never seen with a cut bottom edge"
+    },
+    {
+     "at": "00:03.0-00:03.6",
+     "what": "the fern flat lowers in from above with its mounded bed: its flat-bottomed humps cross the whole frame as floating black slabs (in the vertical a near-black slab with square notches covers ~40 % of the frame for six frames); the clearing and ridge flats show the same hard bottom edge as they wipe down",
+     "fix": "ground-anchored flats (ridge, far pines, clearing, mid pines, ferns) rise from under the stage like toy-theatre ground rows, so only their top silhouettes ever enter; only the near trunks, which run off both edges, still lower from above"
+    },
+    {
+     "at": "00:04.0-00:18.0",
+     "what": "fourteen seconds of one glide: 0 changes per 10 s, longest calm 24 s; between the title leaving and the lamp the only events are gradual rack pulls, so the middle of the film has no punch at all",
+     "fix": "events on the beat grid that stay inside the multiplane look: an owl sweeping close past the camera, a gust that sways the pines and trunks, a deer on the clearing that bolts as the pines part while every firefly flashes at once, and a warm flare when the lamp lights"
+    },
+    {
+     "at": "00:15.0-00:24.0 (vertical)",
+     "what": "the lower third is a large empty field of ground with only the pale path in it",
+     "fix": "stepping stones up the path, a split-rail fence either side and a woodpile, on the clearing flat so they parallax with it"
+    },
+    {
+     "at": "00:12.0-00:24.0",
+     "what": "the cabin's dark door is the same near-black as the unlit window, so at phone size the cabin has two windows",
+     "fix": "a lighter door with a step under it"
+    },
+    {
+     "at": "00:05.0, 00:09.6, 00:14.4",
+     "what": "rack focus steps between blur levels: a flat visibly pops from sharp to half-resolution in one frame",
+     "fix": "cross-fade between neighbouring blur levels"
+    },
+    {
+     "at": "00:12.0-00:17.0 (vertical)",
+     "what": "the far pines read as a row of hanging triangles against the thin pink strip",
+     "fix": "raise the vertical's ridge so less pink shows between the pine tips"
+    }
+   ],
+   "agentSaw": [
+    "variety 6: one continuous camera move, 0 changes per 10 s; the only punches are the six flats landing and the lamp",
+    "the vertical's lower third is a large, mostly empty patch of ground",
+    "the far pines read as a row of hanging triangles against a thin pink strip in the vertical",
+    "blur levels step during rack focus instead of blending",
+    "the clearing flat lowers in as a full-frame wipe for about six frames",
+    "the cabin's dark door can read as a second window at phone size",
+    "the far ridge and pines are strips, so the pink sky shows below them for the first two beats"
+   ],
+   "agentMissed": [
+    "the hook: the first 1.5 s is a flat pink colour block (scored 6, not the builder's 8)",
+    "the fern flat's flat-bottomed mounds cross the whole frame as black slabs at 00:03.0-00:03.6 (the worst frames in the film, the vertical's fast-2 sheet)",
+    "variety is worse than self-scored: the middle 14 s has no punch at all (4, not 6)"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0.4,
+     "longestCalm": 18,
+     "nearStill": 43
+    },
+    "vertical": {
+     "changesPer10s": 0.4,
+     "longestCalm": 18,
+     "nearStill": 72
+    }
+   },
+   "loudness": {
+    "landscape": -16.0,
+    "vertical": -16.0
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none), 2 identical frames"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "composition": 8
+    },
+    "vertical": {
+     "composition": 7
+    }
+   },
+   "fixed": [
+    "the opening is a dusk horizon (a dark stage floor under a thin pink strip), not a pink field; the title is up by 0.8 s",
+    "the ground rows (ridge, far pines, clearing, mid pines, ferns) rise from under the stage on the same spring and ticks, so no flat is ever seen with its cut bottom edge; only the near trunks still lower from above. This departs from the brief's story text ('one layer per beat lowers in from above'): the owner should reconcile the brief",
+    "actors on the beat grid, each at a real depth: an owl's pass at 00:06 (whoosh), a gust through the pines at 00:09 (whoosh), a deer that walks on at 00:10.2, grazes, looks up on a tick at 00:12.6 (the focus snaps to the clearing with it) and bolts on the 00:13.2 whoosh while every firefly flashes at once, the owl landing on the roof on a tick at 00:16.2 (its eyes catch the lamp), and a warm flare on the 00:18 hit",
+    "the vertical's lower third holds a split-rail fence either side of the path, stepping stones and the lamp's light",
+    "the door is a lighter board with a step and a knob, so the cabin has one window"
+   ],
+   "problems": [
+    {
+     "at": "00:05.3-00:06.7",
+     "what": "the owl's first pass is small and high in the sky band: it is new, but it is not a punch",
+     "fix": "bring it close to the lens (between the ferns and the near trunks) and make it big, a dark sweep across the frame"
+    },
+    {
+     "at": "00:08.7-00:09.5",
+     "what": "the gust barely reads in the sheets: the sway is too small and nothing else moves with it",
+     "fix": "a larger sway and a flurry of paper needles blown across between the flats"
+    },
+    {
+     "at": "00:05.0, 00:09.6, 00:12.6",
+     "what": "rack focus still steps: a whole flat pops from one blur level to the next in one frame",
+     "fix": "cross-fade neighbouring blur levels (still four levels; an exact additive mix of the two)"
+    },
+    {
+     "at": "00:12.0-00:24.0 (vertical)",
+     "what": "the far pines still read as pink bunting: pink shows in V's between every pine tip",
+     "fix": "raise the vertical's ridge so the pine tips stand against the ridge, not the sky"
+    }
+   ],
+   "agentSaw": [],
+   "agentMissed": [],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0.4,
+     "longestCalm": 18,
+     "nearStill": 30
+    },
+    "vertical": {
+     "changesPer10s": 0.4,
+     "longestCalm": 18,
+     "nearStill": 51
+    }
+   },
+   "paceNote": "changesPer10s counts mean frame differences above 18 grey levels, which only the lamp's flare reaches: a one-shot camera glide with actors inside it under-reads. On the sheets something new arrives every 2-3 s (flats 0-3.6 s, the walk 3.6 s, the owl's close pass 6 s, the gust 9 s, the deer 10.2-13.2 s, the firefly flash 13.2 s, the owl landing 16.2 s, the lamp and flare 18 s, the last line 21.6 s), with two punches (the owl pass, the flare). No fake cut was added to game the metric",
+   "loudness": {
+    "landscape": -16.0,
+    "vertical": -16.0
+   },
+   "stillFrames": {
+    "landscape": "windows: (none)",
+    "vertical": "windows: (none), 2 identical frames"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "landscape": {
+     "composition": 8
+    },
+    "vertical": {
+     "composition": 8
+    }
+   },
+   "fixed": [
+    "the owl's first pass is a close sweep just behind the ferns (z 3.9), about a third of the landscape frame wide and half the vertical's, centred on its whoosh at 00:06, at under 70 px a frame",
+    "the gust sways the pines and trunks about their bases twice as far, and 34 paper needles blow across between the mid pines and the trunks",
+    "rack focus cross-fades neighbouring blur levels (still the brief's four levels, summed exactly with 'lighter'), so pulls glide instead of popping",
+    "the vertical's ridge stands behind the far pine tips, so the pink bunting is gone (the pink horizon now shows mainly before the walk)"
+   ],
+   "problems": [
+    {
+     "at": "00:18.0",
+     "what": "the flare is a flat screen wash, a little grey on the dusk palette",
+     "fix": "none needed; it is the one registered change and lasts under half a second"
+    },
+    {
+     "at": "00:00.0-00:03.6",
+     "what": "the ground rows rise from below instead of lowering in from above as the brief's story says",
+     "fix": "owner: update the brief's story text to match, or accept the deviation"
+    },
+    {
+     "at": "00:05.0, 00:09.6",
+     "what": "the 25 %-alpha paper shadows still use the stepped blur level, so a shadow's softness can jump one step while its flat cross-fades",
+     "fix": "none needed; faint at phone size"
+    },
+    {
+     "at": "00:12.0-00:24.0 (vertical)",
+     "what": "with the ridge raised, the pale ridge shows between the far pine tips in V notches; far lower contrast than the old pink bunting and it reads as hills at phone size",
+     "fix": "none needed"
+    }
+   ],
+   "agentSaw": [],
+   "agentMissed": [],
+   "verdict": "ship",
+   "briefToReconcile": [
+    "story: the ground rows rise from under the stage; only the trunks lower from above",
+    "sound: two more whooshes (180 owl pass, 270 gust) and two more ticks (378 deer looks up, 486 owl lands)",
+    "style: the clearing rack is a 6-frame snap at 378 (on the beat, with the deer), not an 18-frame pull at 432"
+   ]
+  }
+ ]
+}

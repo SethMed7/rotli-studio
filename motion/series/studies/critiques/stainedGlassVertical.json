@@ -1,0 +1,203 @@
+{
+ "piece": "stainedGlassVertical",
+ "sizes": [
+  "stainedGlassVertical",
+  "stainedGlass"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 77
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 93
+    }
+   },
+   "loudness": {
+    "vertical": -15.9,
+    "landscape": -15.9
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "scores": {
+    "hook": 6,
+    "readability": 8,
+    "motion": 8,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "scoresBySize": {
+    "vertical": {
+     "hook": 6,
+     "readability": 8,
+     "motion": 8,
+     "variety": 7,
+     "composition": 7,
+     "accuracy": 9,
+     "sync": 7
+    },
+    "landscape": {
+     "hook": 5,
+     "readability": 8,
+     "motion": 8,
+     "variety": 6,
+     "composition": 5,
+     "accuracy": 9,
+     "sync": 7
+    }
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:01.5",
+     "what": "the hook is a black lancet with a grey fog rising and a few thin lines drawing: no colour, no event, nothing that says 'stained glass' until about 00:04; the landscape frame 0 is a small black arch on an empty wall with no chip",
+     "fix": "a cold open: the finished window at noon, sun flaring, on a hit for the first beat, then a hard cut on beat 1 to the dark lancet and the build (a deliberate departure from the brief's 0-120 dawn, which now starts at frame 20)"
+    },
+    {
+     "at": "00:09.3",
+     "what": "the sun 'strike' at frame 280 is a 20-frame monotone fade (pane light about 0.49 to 0.70; the sun curve peaks at frame 410), so the piece's only scored hit lands on nothing; 00:09.2 and 00:09.5 are near-identical",
+     "fix": "an overshoot in light(): the glass jumps past full in about six frames and settles onto the sun curve, with a flash over the glass and the roundel flare on the hit"
+    },
+    {
+     "at": "all (landscape)",
+     "what": "the right 55% of the landscape frame is empty dark wall holding only a tiny chip and a small 2x2 legend; the floor band is about 190 px so the thrown patches are thin slivers",
+     "fix": "a close-up loupe in the right half: a large framed detail of the window that cuts on the beat to the panel being built (roundel while the lead draws, each panel as it floods, the sun at noon, fire at dusk, air under the moon), with the element names as a column beside it"
+    },
+    {
+     "at": "00:09.3-00:19.3",
+     "what": "the chip word and its clock disagree: 'noon 07:50', 'noon 08:04', 'dusk 13:05' (invented, but internally false)",
+     "fix": "re-time the CLOCK table so each phase word owns its hours (the clock jumps with the word)"
+    },
+    {
+     "at": "00:22.0-00:24.0 (vertical)",
+     "what": "the sill names stay at 15% as a ghost row directly above the title, reading as clutter",
+     "fix": "fade the sill names out completely under the title"
+    },
+    {
+     "at": "00:13.3, 00:16.7",
+     "what": "the roundel flare at frame 400 and the fire flare at frame 500 are the two visual punches of the day but have no sound cue",
+     "fix": "hits on 400 and 500 (both on the beat grid)"
+    },
+    {
+     "at": "00:20.0-00:24.0",
+     "what": "the moonlit sweep glares the lower lead border near-white, and the moon's floor patch is a small blocky rectangle",
+     "fix": "lower the night sweep; soften the moon patch"
+    }
+   ],
+   "agentSaw": [
+    "a quiet first 1.5 s (dark window lighting while the lead starts to draw)",
+    "no abrupt changes; the punches are only the flood fronts, the sun at 280, two flares and the chip word",
+    "the landscape floor band is about 190 px so the thrown patches are thin and the right half is empty until the title",
+    "the night moon patch is a small blocky rectangle",
+    "the moonlit sweep makes the lower lead border glare near-white",
+    "patches need a softer blur"
+   ],
+   "agentMissed": [
+    "the sun strike at 280 is a slow fade, not a hit: the light curve peaks at 410, so the score's only hit lands on nothing",
+    "the chip word contradicts its own clock ('noon 07:50', 'dusk 13:05')",
+    "the vertical title sits under a 15% ghost row of the sill names",
+    "the two flares (400, 500) have no sound",
+    "the landscape frame 0 has no chip and no colour at all: a worse hook than the vertical"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 76
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 24,
+     "nearStill": 60
+    }
+   },
+   "paceNote": "changesPer10s counts mean frame differences above 18 grey levels; on this dark wall the cold-open cut at frame 20 measures 15.6 (vertical) and 15.3 (landscape), the strike 8.4 per frame over three frames, and the landscape loupe cuts 7-9, so the abrupt changes are real but under the tool's threshold. Variety was scored from the sheets.",
+   "loudness": {
+    "vertical": -15.9,
+    "landscape": -15.9
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "scoresBySize": {
+    "vertical": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 8,
+     "accuracy": 10,
+     "sync": 8
+    },
+    "landscape": {
+     "hook": 8,
+     "readability": 8,
+     "motion": 8,
+     "variety": 8,
+     "composition": 8,
+     "accuracy": 10,
+     "sync": 8
+    }
+   },
+   "fixed": [
+    "cold open (frames 0-20): the finished window at noon with the roundel flaring on a hit, then a hard cut on beat 1 to the dark lancet; a deliberate departure from the brief's dawn-from-frame-0, and the build timings are unchanged",
+    "the sun strike at 280 is a hit: the glass overshoots past full in three frames (plus a flash over the glass, the wall spill and the floor patches) and settles onto the sun curve by 314; the roundel flares on the same frame",
+    "landscape: a close-up loupe fills the right half from frame 0 and cuts on the beat to the part being made (roundel, fire lead, earth, water, air, fire floods, roundel, water, roundel flare, earth, fire flare, air under the moon); the element names are a column beside it with the element in the loupe at full strength; the loupe redraws the glass and lead (its own lead scratch layer), nothing is copied",
+    "the chip's clock jumps with its word (dawn 05:12-07:10, noon 11:20-13:40, dusk 17:30-19:50, night 21:10-23:30)",
+    "the vertical sill names fade out completely under the title",
+    "hits on 400 and 500 for the two flares (with 0 and 280: all on the beat grid); gain raised 0.66 -> 0.78 to hold -15.9 LUFS after the added hits",
+    "the night sweep passes down the lead and back up at 0.4 (was 0.5, straight to the bottom), so the bottom border no longer glares; it keeps the last half-second moving (still-frames clean)"
+   ],
+   "problems": [
+    {
+     "at": "all (landscape)",
+     "what": "the floor band is still about 190 px, so the thrown patches stay thin; the lower-right quarter is empty until the title at 22 s",
+     "fix": "none needed now the loupe carries the right half; a taller floor would need a smaller window"
+    },
+    {
+     "at": "20:00-24:00",
+     "what": "the moon's floor patch is still a small blocky rectangle (builder's note, not fixed this round)",
+     "fix": "soften with a larger downscale or a radial falloff if it is revisited"
+    },
+    {
+     "at": "00:09.3",
+     "what": "for one frame the chip reads 'dawn 11:20' (the clock jumps before the word finishes rolling)",
+     "fix": "none needed at speed"
+    },
+    {
+     "at": "00:09.4-00:10.0",
+     "what": "the strike overexposes the glass to pastel for about half a second before settling; intended as the flash, but it is right at the edge",
+     "fix": "none"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

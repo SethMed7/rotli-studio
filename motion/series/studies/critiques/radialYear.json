@@ -1,0 +1,164 @@
+{
+ "piece": "radialYear",
+ "sizes": [
+  "radialYear",
+  "radialYearVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 96
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 98
+    }
+   },
+   "loudness": {
+    "square": -15.9,
+    "vertical": -15.9
+   },
+   "stillFrames": {
+    "square": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 6,
+    "motion": 7,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 6
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:03.0",
+     "what": "frame 0 is a lone 'A'; the dial draws in the line colour, barely visible on the night ground, and the first amber (the data) only appears at about 3.3 s: the first two seconds are a title over a faint empty grid",
+     "fix": "the title lands whole by about 0.3 s and a burst of the real Reykjavík spokes springs out on a hit at 0.5 s, then folds back into the inner ring before the sweep; the footer ('approximate …') comes with the burst"
+    },
+    {
+     "at": "all",
+     "what": "the centre readout, the running number the whole film is about, is 22 px ('about 4 h'), about 7 px on a phone; the square's end lines ('Far north: big swings.') are 30 px",
+     "fix": "readout as month over a small 'about' over the hours at 44 px or more; square end lines at 44 px beneath the title, with the dial moved down and the end push-in trimmed so the top month labels stay clear"
+    },
+    {
+     "at": "00:11.0-00:13.0 (vertical)",
+     "what": "callout 1 ('21 Jun · about 21 h of daylight') lands at 11.0 s while the hand is still at Jan-Mar; the centre readout says 'Jan · about 6 h' under a row that says 21 Jun",
+     "fix": "end the first sweep a beat earlier so the hand glides to 21 Jun and arrives on the 11.0 s hit (and to 21 Dec on the 13.0 s hit), in both sizes"
+    },
+    {
+     "at": "00:11.0, 00:13.0, 00:21.0",
+     "what": "the callouts fade and slide in over about half a second while the sound hits: the hits have no picture punch; the Quito line closing at 19.0 s has no cue at all",
+     "fix": "the callout labels snap in on the hit with an overshoot, the spoke tip flashes, and the dial gets a small kick; add a landing hit at 19.0 s where the Quito ring closes"
+    },
+    {
+     "at": "all (sound)",
+     "what": "mood 'soft' has no drums at all, so the brief's 'drums enter at the Reykjavík sweep (drop at 90)' never happens; the vertical Quito callout is at frame 558, off the beat grid (37.2 beats)",
+     "fix": "mood 'drive' with drop 90 (the kit's only mood with drums); Quito callout at 570 in both sizes"
+    },
+    {
+     "at": "all (square)",
+     "what": "the square's dial is small (R 300) with wide empty margins left and right; the month and ring labels are 22-24 px",
+     "fix": "not fixed this round (the callouts are placed around the dial); noted"
+    }
+   ],
+   "agentSaw": [
+    "hook 7: frame 0 shows only 'A'; no data until 3 s",
+    "variety 6: 0 abrupt changes per 10 s, 96-98% near-still, one continuous chart",
+    "the brief's 'drums enter at 90' never happens because mood 'soft' has no drums",
+    "the dial is smaller than the brief (R 300 square / 380 vertical)",
+    "vertical: the hand is still gliding when callout 1 appears (row at 336, hand at about 372)",
+    "the centre readout cannot reach 44 px inside the inner ring",
+    "faint moiré in the amber spokes near the inner ring",
+    "square end lines stay 30 px (they collide with the Dec label at 44)",
+    "still-frames passes on thin margins"
+   ],
+   "agentMissed": [
+    "in the vertical the readout contradicts the callout row ('Jan · about 6 h' under '21 Jun · about 21 h'), not only a timing lag",
+    "the empty dial draws in the line colour and is barely visible, so the hook is weaker than 7",
+    "the hits at 11.0, 13.0 and 21.0 s have no picture punch: the callouts fade in softly under a stab",
+    "the Quito ring closing (the second city's landing) has no sound cue",
+    "the vertical Quito callout at frame 558 is off the beat grid",
+    "the readout can reach 44 px if 'about' goes on its own small line above the hours"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 89
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 30,
+     "nearStill": 93
+    }
+   },
+   "loudness": {
+    "square": -16.5,
+    "vertical": -16.5
+   },
+   "stillFrames": {
+    "square": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "all",
+     "what": "changesPer10s still reads 0: the tool counts mean frame differences above 18 grey levels (cuts, flips), which a continuous chart with no cuts never makes; variety is scored from the sheet instead (burst 0.5 s, rings 1-2 s, sweep 3-10 s, callouts on 11 and 13 s, the Quito sweep and its landing at 19 s, crossings at 21 s, end lines at 26 and 27 s)",
+     "fix": "none; a cut or flash would fight the one-continuous-chart idea"
+    },
+    {
+     "at": "00:00.0-00:00.5",
+     "what": "the opening burst springs with an overshoot, so for a few frames the unlabelled spokes run a little past their value (before any ring is labelled)",
+     "fix": "none needed: the same spring the brief asks for on every spoke; it settles by 0.8 s"
+    },
+    {
+     "at": "all",
+     "what": "secondary labels stay small: months 24 px, ring labels and footer 22 px, square callout sub-lines 24-30 px; the square dial is still R 300, not the brief's 430",
+     "fix": "none this round; a larger square dial would need the callouts re-placed"
+    },
+    {
+     "at": "all",
+     "what": "the burst (0-2.7 s) and the hits at 15 and 570 are additions to the brief's story and cue table, made on the caller's priorities (a bold first second, the Quito landing)",
+     "fix": "none; the brief's 0-90 title and empty-dial draw still happen underneath the burst"
+    }
+   ],
+   "fixed": [
+    "hook: the title lands whole by about 0.4 s and the real Reykjavík year bursts out clockwise on a hit at 0.5 s (frame 15), holds, and folds back into the inner ring before the hand draws it; the footer ('approximate …') arrives with the burst so no data is ever on screen without the label",
+    "readout: month, a small 'about', and the hours at 44 px (square) / 55 px (vertical) inside the inner ring; the hedge stays on screen",
+    "the readout's hedge 'about' went from 22 px to 24 px (30 px vertical), on its own line between the month and the hours, so the load-bearing word of a learn study is not the smallest one in the stack",
+    "square end lines at 44 px beneath the title: the dial moved down 25 px and the end push-in ends at 1.03, so the Dec label and the footer stay clear",
+    "the first sweep ends at frame 300, and the hand lands on 21 Jun on the 330 hit and on 21 Dec on the 390 hit in both sizes: the readout and the callout always agree",
+    "punches: every callout snaps in on its hit (alpha in three frames, scale 0.6 through an overshoot), its point flashes a ring, the dial kicks 2%, and a soft pulse from the point every two beats keeps each hold alive",
+    "the Quito landing: the teal ring flashes thick and settles as it closes on a new hit at 570, with its callout snapping in on the same frame in both sizes (the vertical's was off-grid at 558)",
+    "sound: mood 'drive' with drop 90, so drums enter as the first sweep starts; hits at 15, 330, 390, 570, 630",
+    "the sweeps use a sine ease so their ends never stall (still-frames had found dead air there after the retime)",
+    "square callouts moved 10 px down so the June and Quito labels no longer crowd the May and Aug month labels"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}
