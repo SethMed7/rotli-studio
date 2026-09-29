@@ -1,0 +1,108 @@
+{
+  "id": "recipe-flatlay",
+  "no": 47,
+  "title": "Recipe Flat-lay",
+  "module": "src/canvas-core/studies/recipeFlatlay.ts",
+  "pieces": {
+    "vertical": "recipeFlatlayVertical",
+    "square": "recipeFlatlay"
+  },
+  "primary": "vertical",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 120,
+  "frames": 1800,
+  "palette": "kitchen",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A top-down stop-motion recipe on a kitchen table, hands-free: the objects move themselves, one pose at a time. THE STOP-MOTION CLOCK: the film runs at 60 fps but every pose is held exactly 5 frames, so it animates at 12 poses a second ('on twos' at film rate): compute the pose index P = floor(F / 5) and draw everything from P, never from F; the beat is 30 frames, so every beat is exactly 6 poses. Easing lives in the SPACING of poses (big steps, then smaller as an object settles, one pose of overshoot back), never in smooth tweening, and there is no motion blur. BOIL: every object shifts by a seeded ±1 px and rotates ±0.3° per pose (a hash of P and the object's id), so a held shot is never frozen, the way hand-placed objects never sit exactly still. CAMERA: straight overhead, no perspective; one overhead light, so every object casts the same short hard drop shadow (deep at 18% alpha, offset 6 px down-right). THE TABLE: a warm linen ground with a faint woven texture (a seeded pattern of fine lines generated once per size) and a wooden board (board colour with a few grain strokes) under the work area. OBJECTS, flat and slightly rounded, drawn in code: a mixing bowl (surface-white circle with a line-coloured rim and an inner ellipse whose liquid disc grows as it fills), a second smaller bowl, two eggs that crack into halves (a zigzag split) and drop yolks, a milk jug that tilts and pours (the stream is a tapered stroke held for a few poses), a butter dish, a flour sack whose flour lands as a soft heap, small spoons with little mounds (baking powder, sugar, salt), a whisk that spins in stepped quarter turns, a pan (a deep circle with a handle) on a hob ring, a ladle, a kitchen timer, a plate. Batter is the batter colour, cooked faces the accent gold with crust-coloured edges. Liquids and batter fill in poses: a disc that grows in 4–6 steps, never a smooth scale. PANCAKES: ladled circles that grow in steps; bubbles appear as small rings on the surface, a few per pose, and pop (ring, dot, gone) over three poses; the flip is a top-down flip: the pancake's vertical scale steps 1 → 0.5 → 0 → −0.5 → −1 over five poses while its shadow grows and shrinks, and the underside shows the gold side; the stack grows one pancake per pose-step on a plate, each slightly offset. TYPE: each step is a card in the top area: a big step number in Inter 800 ink ('01'), a title in Instrument Serif Italic ink, and quantity tags beside their objects on small white rounded labels in Inter 600 ink (all quantities with ¼, ½ or ¾ are in Inter or JetBrains Mono, because the serif has no fraction glyphs); cards and tags step in on poses too. The accent gold (2.2:1) and the teal accent2 (3.9:1) are below 4.5:1 on the linen, so they are fill colours only, never text; all text is ink on the linen or on white labels. No health, diet or nutrition words anywhere.",
+  "learnsFrom": "Stop-motion cooking films as a genre, credited to PES's Western Spaghetti (https://en.wikipedia.org/wiki/Western_Spaghetti), and animating on twos (https://en.wikipedia.org/wiki/Inbetweening, https://www.stopmotionstudio.com/help/stopmotion/en/shooting-on-twos.html): objects that move themselves on a tabletop, each pose held for more than one frame, easing carried by the spacing between poses, a camera straight overhead. PES's object substitutions, sets and footage are not used; the recipe's quantities and steps follow a standard home recipe from King Arthur Baking (https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe), cited in the facts, with its wording not copied.",
+  "story": [
+    {
+      "from": 0,
+      "to": 150,
+      "what": "title: the empty board; the ingredients step in from the frame edges one per beat around an empty bowl (eggs, milk jug, butter dish, flour sack, spoons); the title card lands: 'Pancakes' in large Instrument Serif and 'a simple batter · makes about 12'"
+    },
+    {
+      "from": 150,
+      "to": 480,
+      "what": "step 01 'Whisk the wet': two eggs crack into the big bowl, the milk jug tilts and pours in poses, melted butter drips in, the whisk spins in stepped quarter turns and the liquid turns pale; tags pop by each object: '2 eggs', '1¼ cups milk', '3 tbsp melted butter'"
+    },
+    {
+      "from": 480,
+      "to": 780,
+      "what": "step 02 'Whisk the dry': a second bowl slides in; flour lands as a heap and the three spoons tip their mounds in; tags: '1½ cups flour', '2 tsp baking powder', '2 tbsp sugar', '¾ tsp salt'"
+    },
+    {
+      "from": 780,
+      "to": 1050,
+      "what": "step 03 'Stir dry into wet': the small bowl tips into the big one in poses; the whisk makes a few turns and leaves a few lumps; a tag 'a few lumps are fine'; a kitchen timer steps in and its dial ticks round: 'rest 15 min'"
+    },
+    {
+      "from": 1050,
+      "to": 1380,
+      "what": "step 04 'Medium heat': the pan slides onto the hob ring; the ladle pours three circles that grow in steps; tag '¼ cup each'; bubbles rise and pop across the surfaces; tag 'flip when bubbles form and pop · about 2 min'"
+    },
+    {
+      "from": 1380,
+      "to": 1650,
+      "what": "step 05 'Flip once': the three pancakes flip one per beat showing their gold side; tag '1½–2 min more'; then they hop one by one onto the plate and the stack grows"
+    },
+    {
+      "from": 1650,
+      "to": 1800,
+      "what": "end: the stack on the plate at the centre, a butter pat lands on top; the card 'Pancakes.' with 'makes about 12'; a small mono footer 'quantities from a standard home recipe'; the boil keeps every object alive"
+    }
+  ],
+  "sizes": "Vertical (primary): the step card sits in the top safe area (number left, title beside it), the work area (board, bowls, pan) fills the middle, tags sit beside their objects and never below the 320 px bottom safe margin. Square: the step card moves to the top-left corner and shrinks (title at least 44 px), the board fills the rest with the work shifted right and down, tags keep at least 26 px type, and the four dry-ingredient tags stack in one column beside the bowl instead of around it.",
+  "sound": "beatScore soft at 120 bpm (the 60 fps film keeps a whole 30-frame beat): a tick as each object lands (on its landing pose, thinned to at most one per 10 frames), a whoosh ending as each pour stops (the milk at 330, the batter circles at 1200), a hit at each step change (150, 480, 780, 1050, 1380), tiny ticks for bubble pops (thinned) and the timer, and the sign-off at 1680.",
+  "teaches": "Stop motion is a clock, not a style filter: hold every pose the same number of frames, put the easing in the spacing between poses, and let a one-pixel boil keep the held shots alive.",
+  "facts": [
+    {
+      "claim": "The batter uses 2 large eggs.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "The batter uses 1¼ cups of milk.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "The batter uses 3 tablespoons of melted butter (or vegetable oil).",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "The dry mix is 1½ cups of all-purpose flour, 2 teaspoons of baking powder, 2 tablespoons of sugar and ¾ teaspoon of salt.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "Wet and dry are whisked separately, then the dry mix is stirred into the wet.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "A few lumps are fine; the batter should not be over-stirred.",
+      "source": "https://www.kingarthurbaking.com/blog/2019/01/21/how-to-make-fluffy-pancakes"
+    },
+    {
+      "claim": "The batter rests for at least 15 minutes.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "Cook over medium heat, about ¼ cup of batter per pancake.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "Turn when bubbles begin to form and break, about 2 minutes, then cook the other side about 1½ to 2 minutes, flipping only once.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    },
+    {
+      "claim": "The recipe makes about a dozen large pancakes.",
+      "source": "https://www.kingarthurbaking.com/recipes/simply-perfect-pancakes-recipe"
+    }
+  ],
+  "portable": {
+    "fonts": "Instrument Serif (and its Italic) for the title and step titles, Inter (800 and 600) for step numbers and quantity tags, JetBrains Mono for a small footer",
+    "style": "A top-down stop-motion recipe on a kitchen table where the objects move themselves. Run at 60 fps but hold every pose exactly 5 frames (12 poses a second): compute a pose index from the time and draw everything from it. Put the easing in the spacing between poses (big steps, then smaller, one pose of overshoot back), never smooth tweening, and no motion blur. Every pose adds a tiny seeded jitter (about 1 px and a fraction of a degree) to every object so held shots never freeze. Straight overhead camera, one overhead light: every object casts the same short hard drop shadow. A warm linen table with a faint woven texture and a wooden board. Flat, slightly rounded objects drawn in code: bowls whose liquid disc grows in steps, eggs that crack in two, a jug that tilts and pours, a butter dish, a flour heap, spoons with small mounds, a whisk turning in quarter steps, a pan on a hob ring, a ladle, a timer, a plate. Pancakes grow as ladled circles; bubbles appear as small rings and pop over three poses; a flip squashes the pancake's height through zero to show its golden side; the stack grows one pancake at a time. Each step is a card at the top: a big bold step number, an italic serif title, and small white labels with the quantities beside their objects. Use a font with fraction glyphs for the quantities. No health or diet words.",
+    "sound": "a soft loop at 120 bpm, a tick as each object lands, a whoosh ending as each pour stops, a hit at each step change, tiny ticks for bubble pops and the timer, and a three-note sign-off.",
+    "sizes": "re-stack it: in the square, the step card moves to the top-left corner, the work shifts right and down, and the dry-ingredient labels stack in one column beside their bowl."
+  }
+}

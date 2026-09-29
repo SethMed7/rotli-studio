@@ -1,0 +1,146 @@
+{
+ "piece": "glitchSignalVertical",
+ "sizes": [
+  "glitchSignalVertical",
+  "glitchSignal"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 5,
+     "longestCalm": 5.5,
+     "nearStill": 28
+    },
+    "landscape": {
+     "changesPer10s": 8.5,
+     "longestCalm": 3.9,
+     "nearStill": 26
+    }
+   },
+   "loudness": {
+    "vertical": -15.9,
+    "landscape": -15.9
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 8,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:18.5-00:20.0",
+     "what": "the payoff 'We never left.' starts rising at 18.9 s and is only fully set at about 19.4 s: at phone size the last line of the film is legible for about half a second, and the 585 wink lands on it while it is still settling",
+     "fix": "cut to the host at 540 (on the beat, with the sign-off) instead of 555; the locked bars 525-540 already are the clean bars; rise both lines faster so 'We never left.' is set by about 19.0 s"
+    },
+    {
+     "at": "00:13.0-00:18.5 (vertical)",
+     "what": "5.5 s with no abrupt change: the blue card, the snow rising, the fade-up and the vertical roll are all gradual, so the search reads as one long slide",
+     "fix": "a tuner does blank the picture when it changes channel: on each channel step (465, 480, 495) hard-cut to black for three frames under the readout, with the static bed muted and a tick, so the search lands three beats"
+    },
+    {
+     "at": "00:15.0-00:18.0",
+     "what": "the search readout, the only words for three seconds, is 34 px mono: about 11 px on a phone in vertical and about 6 px in landscape",
+     "fix": "48 px in vertical, 56 px in landscape (the plate stays inside the safe margins)"
+    },
+    {
+     "at": "00:00.0-00:03.0",
+     "what": "the hook is three seconds of an almost still test card; the only words are 28 px chrome and a 28 px 'NIGHT TRANSMISSION' strip, unreadable at phone size",
+     "fix": "type the lower strip at 44 px (vertical) / 40 px (landscape) on a taller strip, so readable words arrive by about 1.3 s; chrome stays at the brief's 28 px"
+    },
+    {
+     "at": "00:03.0-00:10.0 (landscape)",
+     "what": "the right third is empty during the host scenes",
+     "fix": "none: the brief puts the host lines on the left two thirds"
+    },
+    {
+     "at": "00:08.0, 00:10.0",
+     "what": "the gain dropout before each spike returns to full level instantly at the spike frame",
+     "fix": "none needed: the hit's transient lands on the same sample and masks it (ebur128 momentary dips at 7.9-8.0 and 9.9-10.0 s, jumps at 8.1 and 10.1 s)"
+    }
+   ],
+   "agentSaw": [
+    "'Signal found. / We never left.' holds only about 0.5 s after the RGB wink at 585",
+    "the vertical's longest calm is 5.5 s (13.0-18.5 s: signal-lost card, snow and search)",
+    "the landscape's right third is empty during the host scenes",
+    "the search readout is mono at 34 px, small in landscape",
+    "chrome is unreadable during the heavy breakup/melt beats (intended)",
+    "sound checked only by numbers"
+   ],
+   "agentMissed": [
+    "the readout is too small in vertical too (about 11 px at phone width), not only in landscape",
+    "the first three seconds are a near-still test card whose only words are unreadable at phone size (weak hook)"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "vertical": {
+     "changesPer10s": 6.5,
+     "longestCalm": 4.7,
+     "nearStill": 28
+    },
+    "landscape": {
+     "changesPer10s": 10,
+     "longestCalm": 3.3,
+     "nearStill": 27
+    }
+   },
+   "loudness": {
+    "vertical": -16.0,
+    "landscape": -16.0
+   },
+   "stillFrames": {
+    "vertical": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:00.0-00:03.0",
+     "what": "the host's first words still arrive at 3.0 s; the hook rests on the test card and the typed strip",
+     "fix": "none: the brief holds the bars for a bar; the strip is readable at phone size by about 1.3 s"
+    },
+    {
+     "at": "00:03.0-00:07.7 (vertical)",
+     "what": "the longest calm is now the host intro (4.7 s), carried by the letter rises and the three beat ticks",
+     "fix": "none needed; under five seconds"
+    },
+    {
+     "at": "00:00.0-00:20.0 (landscape)",
+     "what": "the 28 px chrome and 40 px strip are small on a 1920 frame at phone width",
+     "fix": "none: chrome size is set by the brief; the vertical is the primary"
+    }
+   ],
+   "fixed": [
+    "the host returns on the sign-off at 540 (the locked bars 525-540 are the clean bars) and both lines rise faster: 'We never left.' is set by about 19.0 s and holds a second, and the 585 wink lands on settled type",
+    "the tuner blanks the picture to black for three frames on each channel step (465, 480, 495), the static bed mutes with it and a tick marks it: the vertical's 13.0-18.5 s calm is broken at 15.5, 16.0 and 16.5 s",
+    "the search readout is 48 px (vertical) / 56 px (landscape) with the meter scaled to it, inside the safe margins",
+    "the 'NIGHT TRANSMISSION' strip is 44 px (vertical) / 40 px (landscape) on a taller strip, so readable words land by about 1.3 s"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

@@ -1118,6 +1118,70 @@
    "format": "story",
    "length": "26 s",
    "about": "Study 26 · Orb Guide, designed for vertical: the grid cell in the upper middle, the tile ring as a tall oval, the orb's arcs running top to bottom."
+  },
+  {
+   "id": "glitchSignalVertical",
+   "kind": "video",
+   "slug": "glitch-signal-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 30 · Glitch Signal: A glitch reads as real when it follows the machine's own logic: channel splits, displaced slices, blocks that smear along motion, scanlines and frames that hold for a beat look broken; random noise sprinkled on top only looks fake."
+  },
+  {
+   "id": "glitchSignal",
+   "kind": "video",
+   "slug": "glitch-signal",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 30 · Glitch Signal, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "recipeFlatlayVertical",
+   "kind": "video",
+   "slug": "recipe-flatlay-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 47 · Recipe Flat-lay: Stop motion is a clock, not a style filter: hold every pose the same number of frames, put the easing in the spacing between poses, and let a one-pixel boil keep the held shots alive."
+  },
+  {
+   "id": "recipeFlatlay",
+   "kind": "video",
+   "slug": "recipe-flatlay",
+   "format": "ig-square",
+   "length": "30 s",
+   "about": "Study 47 · Recipe Flat-lay, designed for square (1080 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "broadcastPackage",
+   "kind": "video",
+   "slug": "broadcast-package",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 46 · Broadcast Package: A broadcast package is a grammar, not a set of pictures: one entry direction, one angle, layers that build in the same order every time, and numbers that never jitter make every graphic read as part of one show."
+  },
+  {
+   "id": "broadcastPackageVertical",
+   "kind": "video",
+   "slug": "broadcast-package-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 46 · Broadcast Package, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "infiniteZoomVertical",
+   "kind": "video",
+   "slug": "infinite-zoom-vertical",
+   "format": "story",
+   "length": "20 s",
+   "about": "Study 43 · Infinite Zoom: An infinite zoom is arithmetic, not animation: centre every portal, scale by a constant ratio per level so the speed never changes, and make the last scene contain the first, and the push never ends."
+  },
+  {
+   "id": "infiniteZoom",
+   "kind": "video",
+   "slug": "infinite-zoom",
+   "format": "film",
+   "length": "20 s",
+   "about": "Study 43 · Infinite Zoom, designed for landscape (1920 × 1080): its own layout, not a crop."
   }
  ]
 }
