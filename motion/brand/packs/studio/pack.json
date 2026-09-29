@@ -474,6 +474,24 @@
    "s5": "#2b2f5e",
    "s6": "#efbfa2",
    "s7": "#e07d6a"
+  },
+  "warren": {
+   "ground": "#f3ead6",
+   "surface": "#fffaf0",
+   "ink": "#16122b",
+   "muted": "#6a6482",
+   "line": "#ddd1b6",
+   "accent": "#ff2e88",
+   "accent2": "#19d3e0",
+   "deep": "#0a0818",
+   "s1": "#ffd23f",
+   "s2": "#2c2766",
+   "s3": "#f59a6b",
+   "s4": "#49b36c",
+   "s5": "#1f5e4a",
+   "s6": "#e5541c",
+   "s7": "#9c8670",
+   "sky": "#8fcbe8"
   }
  },
  "tagline": "Find a time that works for everyone."

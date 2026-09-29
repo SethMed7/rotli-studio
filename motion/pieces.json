@@ -1534,6 +1534,22 @@
    "format": "story",
    "length": "30 s",
    "about": "Study 52 · Gouache Storybook, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "burrowDays",
+   "kind": "video",
+   "slug": "burrow-days",
+   "format": "film",
+   "length": "48 s",
+   "about": "Study 53 · Burrow Days: A comic look is a set of substitutions, not a filter: shadows become dots, blur becomes misregistered colour, sound becomes lettering, emphasis becomes an impact frame, and time runs at two rates (characters on twos, the camera on ones), so a code-drawn scene reads as a printed page that moves."
+  },
+  {
+   "id": "burrowDaysVertical",
+   "kind": "video",
+   "slug": "burrow-days-vertical",
+   "format": "story",
+   "length": "48 s",
+   "about": "Study 53 · Burrow Days, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }
