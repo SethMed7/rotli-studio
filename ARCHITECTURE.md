@@ -23,6 +23,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | The wallpaper maker (site page) | `motion/src/site/wallpaperMaker.ts` | `#/wallpapers`: screen → background → quokka → download, drawn in the visitor's browser. Its own bundle (`/build/wallpapers.js`), loaded only on that page. |
 | Wallpaper quokka looks | `motion/brand/wallpaper-looks.json` → `library/wallpaper-looks/*.webp` | Every emotion × colour × accessory, rendered from the app's real `<Character>` by `scripts/render-companions.ts --spec`; lossless WebP. Filled accessories are white with a `tint-<pose>-<accessory>` colour mask beside them, so the maker colours them. |
 | Wallpaper golden | `motion/tools/wallpapers.mjs`, `motion/golden/wallpapers.json` | Every preset on every screen through `paintWallpaper`; `--check` proves nothing moved. |
+| **Thumbnails** (the designed posters of Rotli's videos) | `motion/src/canvas-core/thumbnails.ts`, `motion/brand/thumbnails.json`, `motion/tools/thumbnails.mjs` → `motion/out/thumbnails/<slug>.jpg` (gitignored), `motion/golden/thumbnails.json` | One per Rotli video (not the studies): the piece's own frame pushed in on the quokka beside a title panel, 1280×720 for landscape, a 1080×1920 cover for vertical. The per-piece picks (frame, focus, zoom, title, key word, label) are data in the JSON; the tool builds one page per thumbnail and `--check` proves nothing moved. The site uses them as posters; `scripts/media.ts` publishes them. |
 | **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. Each brief names its `family` (how the site groups it) and `subject`: `oriel` (the imaginary product), `learn` (a real topic, with a `facts` list of claims and sources) or `fun` (no product). |
 | **Portable prompts** (copy into any model) | `motion/series/studies/portable/` | Generated from each brief by `motion/tools/portable-prompt.mjs` via `motion/workflows/portable-template.md`; no repository ties. |
 | Render styles (from anidoodle) | `motion/src/canvas-core/styles/` | gallery, drafting, print, riso, storybook, lettering. |
@@ -74,7 +75,8 @@ something, find its row below. If no row fits, add a row here in the same change
 ## Adding things
 
 - **A piece:** source + host in `motion/src/`, register it in `pieces.json`, assign it to a series in
-  `series.json`, render, check, record its golden. See `motion/workflows/README.md`.
+  `series.json`, render, check, record its golden. See `motion/workflows/README.md`. A Rotli video (any video that is
+  not a study) also gets a row in `motion/brand/thumbnails.json`, then `node motion/tools/thumbnails.mjs --only <slug>`.
 - **A series:** a `series.json` entry plus `motion/series/<series-id>/` for its bible, briefs and prompts.
 - **A study** (or any brand-neutral piece): a brief in `motion/series/studies/briefs/`, its prompt from
   `node motion/tools/study-prompt.mjs <brief>`, a module in `motion/src/canvas-core/studies/` built on `kit/` and a

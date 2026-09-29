@@ -14,7 +14,9 @@
 //
 // Videos are web copies (same size, H.264 -tune animation, fast-start; CRF 33, the landing film CRF 22) cached in
 // motion/out/web/; scene and crop thumbnails (routes.ts thumbArgs, 1280 px) are extracted once into
-// motion/out/thumbs-1280/.
+// motion/out/thumbs-1280/. The designed thumbnails of Rotli's videos (motion/tools/thumbnails.mjs, in
+// motion/out/thumbnails/) are drawn on the Mac, never here: the manifest references each one that exists, and the
+// media inventory below copies it like any other referenced image (scripts/media.ts publishes them).
 import {
   cpSync,
   existsSync,
@@ -240,7 +242,8 @@ for (const p of MOTION_PUBLIC)
   for (const f of trackedUnder(`motion/${p}`)) put(join(PUB, "m", relative("motion", f)), join(ROOT, f));
 for (const p of STUDIO_PUBLIC) for (const f of trackedUnder(p)) put(join(PUB, "s", f), join(ROOT, f));
 
-// ---- media the manifest references (stills, carousel slides, posters), and nothing else from exports/ or out/
+// ---- media the manifest references (stills, carousel slides, posters, designed thumbnails), and nothing else from
+// exports/ or out/
 const media = new Set<string>();
 const collect = (x: unknown): void => {
   if (typeof x === "string") {

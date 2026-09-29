@@ -58,6 +58,8 @@ type Piece = {
   video?: { file: string; poster: string | null; bytes: number; rendered: string; sha: string };
   slides?: string[];
   posterFrame?: number;
+  /** the designed thumbnail (motion/tools/thumbnails.mjs): Rotli's videos have one */
+  thumbnail?: string;
 };
 type Episode = {
   code: string;
@@ -147,17 +149,20 @@ const mb = (n: number) => `${(n / 1e6).toFixed(1)} MB`;
 const m = (path: string) => `/m/${path}`;
 const s = (path: string) => `/s/${path.replace(/^\.\.\//, "")}`;
 const fileUrl = (p: string) => (p.startsWith("../") ? s(p) : m(p));
-// posters: a frame from the longest scene (the render's own .jpg is its last frame, the end card)
+// posters: a Rotli video's designed thumbnail; otherwise (studies, or a thumbnail not drawn yet) a frame from the
+// longest scene (the render's own .jpg is its last frame, the end card)
 const poster = (p: Piece | undefined) =>
   !p
     ? ""
-    : p.video && p.posterFrame !== undefined
-      ? `/api/motion/thumb/${p.slug}/${p.posterFrame}.jpg`
-      : p.video?.poster
-        ? m(p.video.poster)
-        : p.slides?.[0]
-          ? s(p.slides[0])
-          : "";
+    : p.thumbnail
+      ? m(p.thumbnail)
+      : p.video && p.posterFrame !== undefined
+        ? `/api/motion/thumb/${p.slug}/${p.posterFrame}.jpg`
+        : p.video?.poster
+          ? m(p.video.poster)
+          : p.slides?.[0]
+            ? s(p.slides[0])
+            : "";
 const epNo = (code: string) => code.replace(/^(s\d\de|ep)/, ""); // "01" in both series
 const chip = (t: string, cls = "") => `<span class="chip ${cls}">${esc(t)}</span>`;
 const seriesOf = (id: string | null) => M.series.find((x) => x.id === id);
@@ -297,7 +302,9 @@ const seriesRows = (h: 2 | 3 = 3, which = (x: Series) => x.kind !== "studies") =
         : x.studies
           ? byId(x.studies[0]?.primary ?? "")
           : byId(x.pieces?.[0] ?? "");
-      return `<li><a class="row" href="#/series/${x.id}"><img src="${poster(first)}" alt="" loading="lazy"><div><h${h} class="row-title">${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h${h}><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`;
+      // a 9:16 cover in the 16:9 slot shows its picture, not its title band (the row names the series beside it)
+      const tall = !!first?.meta && first.meta.H > first.meta.W;
+      return `<li><a class="row" href="#/series/${x.id}"><img${tall ? ' class="tall"' : ""} src="${poster(first)}" alt="" loading="lazy"><div><h${h} class="row-title">${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h${h}><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p></div><span class="go" aria-hidden="true">→</span></a></li>`;
     })
     .join("")}</ul>`;
 /** the size a study shows in a grid: landscape if it has one, so a grid of studies lines up */
@@ -476,6 +483,10 @@ function downloads(p: Piece) {
     );
     if (p.video.poster)
       items.push(`<a class="button ghost" href="${m(p.video.poster)}" download="${esc(p.slug)}.jpg">Poster</a>`);
+    if (p.thumbnail)
+      items.push(
+        `<a class="button ghost" href="${m(p.thumbnail)}" download="${esc(p.slug)}-thumbnail.jpg">Thumbnail</a>`,
+      );
   }
   if (p.slides?.length)
     items.push(
@@ -1003,6 +1014,7 @@ async function piece(id: string) {
     ["Golden", p.golden?.file],
     ["Render", p.video?.file],
     ["Poster", p.video?.poster ?? undefined],
+    ["Thumbnail", p.thumbnail],
   ].filter(([, v]) => v) as [string, string][];
   body("files")!.innerHTML =
     `<dl class="facts wide">${files.map(([k, v]) => `<dt>${k}</dt><dd><a class="link" href="${fileUrl(v)}" target="_blank">${esc(v)}</a></dd>`).join("")}${p.slides?.length ? `<dt>Exports</dt><dd><code>${esc(p.slides[0]!.replace(/\/[^/]+$/, "/"))}</code></dd>` : ""}${p.video ? `<dt>Render sha256</dt><dd><code>${p.video.sha}…</code></dd>` : ""}</dl>

@@ -4,6 +4,21 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Designed thumbnails for every Rotli video.** The posters were a frame from the middle of the longest scene:
+  mostly app UI, small text, the quokka small or missing, no title. Now each of the 42 Rotli videos (the film and its
+  teaser, Season One and Rotli in 30 Seconds with their verticals, Looks and Themes, the atmosphere reel and the studio
+  teaser) has a thumbnail drawn in code from its own frames: pushed in on the quokka, beside a title panel in the
+  episode's own theme, General Sans with the key word underlined in clay and a series label, readable at 320 px.
+  1280×720 for YouTube, a 1080×1920 cover for Reels and Shorts. The picks live in `motion/brand/thumbnails.json`,
+  `node motion/tools/thumbnails.mjs` draws them and `--check` holds them to `motion/golden/thumbnails.json` (a gate of
+  `bun run verify`). The landing, Series, series pages, Library and piece pages show them (the 9:16 cut uses the
+  vertical's cover; a vertical in a 16:9 row shows its picture); piece pages add a "Thumbnail" download beside
+  "Poster", and `scripts/media.ts` publishes them with the other renders. Studies keep their frame posters.
+- **The quokka rig closes its fill gaps at any scale, on request.** Drawn far above 1×, a hairline gap in the art let
+  the body fill leak (a pale quokka). `RIG.scaleGap` grows the gap closing with the scale; only the thumbnails turn it
+  on, so every existing render and golden keeps its pixels. `build-page.mjs` takes an optional `probe` for a generated
+  host.
+
 - **Studies 27–50: the studies reach fifty.** Twenty-four motion techniques the studio had never drawn, researched
   first (field note 02), each built by one agent and then scored and fixed by a second one that did not build it,
   until every criterion of the critique reached 8. Whiteboard Hand, Proof Without Words, Split-Flap, Glitch Signal,

@@ -129,6 +129,7 @@ button.link { border: 0; padding: 0; background: none; font-weight: 600; }
 .rows > li:last-child .row { border-bottom: 1px solid var(--border); }
 a.row:hover .row-title { color: var(--accent-text); }
 .row img { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 0.5rem; border: 1px solid var(--border); background: var(--surface-2); }
+.row img.tall { object-position: 50% 60%; }
 .row .row-title { margin: 0; font-size: 1.2rem; letter-spacing: -0.02em; display: flex; gap: 0.5rem; align-items: center; color: var(--text); }
 .row p { margin: 0.3rem 0 0; color: var(--muted); max-width: 42rem; }
 .row .go { color: var(--muted); font-size: 1.2rem; }
@@ -155,7 +156,7 @@ a.row:hover .row-title { color: var(--accent-text); }
 .ep-body p { margin: 0.3rem 0 0.4rem; color: var(--muted); }
 .cuts { display: flex; gap: 0.6rem; align-items: flex-end; }
 .cut { display: grid; gap: 0.25rem; justify-items: center; color: var(--muted); font-size: 0.75rem; text-decoration: none; }
-.cut img { height: 6rem; border-radius: 0.35rem; border: 1px solid var(--border); background: var(--surface-2); display: block; }
+.cut img { height: 7rem; border-radius: 0.35rem; border: 1px solid var(--border); background: var(--surface-2); display: block; }
 .cut:hover { color: var(--text); }
 .cut:hover img { border-color: var(--accent-text); }
 .pieces { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 2rem 1.5rem; }

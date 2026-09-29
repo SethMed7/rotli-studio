@@ -15,7 +15,9 @@ const MIME = {
   ".ttf": "font/ttf",
   ".svg": "image/svg+xml",
 };
-export const buildPage = async ({ entry, out, title, plugins = [] }) => {
+// `probe` (optional): module source that exports the page's `film`, for a generated host whose film is not one
+// export of src/canvas-core/ (tools/thumbnails.mjs). Default: the host's own import line names the module.
+export const buildPage = async ({ entry, out, title, plugins = [], probe: probeSrc }) => {
   const js = (
     await build({
       entryPoints: [entry],
@@ -34,7 +36,7 @@ export const buildPage = async ({ entry, out, title, plugins = [] }) => {
   const probe = (
     await build({
       stdin: {
-        contents: `export { ${title} as film } from "./src/canvas-core/${mod}";`,
+        contents: probeSrc ?? `export { ${title} as film } from "./src/canvas-core/${mod}";`,
         resolveDir: process.cwd(),
         loader: "ts",
       },

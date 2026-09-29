@@ -44,6 +44,13 @@ Flat, per Rotli: no shadows, glows or blur anywhere. Depth is surface contrast a
   them on wide windows and older/newer links at the end.
 - **The questionnaire** (Make one for your product): the steps are a segmented control, options are hairline rows with
   native radios and checkboxes, and pointers sit beside the form behind a hairline.
+- **Thumbnails:** every Rotli video's poster is its designed thumbnail (`motion/tools/thumbnails.mjs`), never a
+  random frame: a flat title panel in the episode's own theme ground (its dark ground for night scenes) beside the
+  piece's own frame, pushed in until the quokka or the episode's key object reads at 320 px wide. The title is General
+  Sans 600 at -0.045em, fitted as large as the panel allows, its key word underlined in clay (#c97e62, whatever the
+  theme), under a small series + episode pill and over the lockup. Landscape 1280×720, the panel left and nothing key
+  in the bottom-right corner (the duration badge); vertical 1080×1920, the title in the upper third and the subject
+  above the bottom 320 px. Titles use the piece's own words. Studies keep a frame of their render as their poster.
 - **Where a border is allowed:** media (posters, frames, the player), swatches, and the segmented tab control.
   Nothing else gets a box.
 - **Buttons:** dark (`--text` fill) for the primary action, ghost (hairline) for the secondary.
