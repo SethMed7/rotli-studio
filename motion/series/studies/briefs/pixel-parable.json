@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 750,
  "palette": "arcade",
+ "family": "screen",
+ "subject": "oriel",
  "style": "Pixel art: 8-bit characters built from square pixels (no anti-aliasing: snap every pixel to a 6 px grid) stand on a dark ground strip under a pale sky. A cautionary tale told with pixel props, a swarm of notification icons, and a pixel serpent that coils along a path. A few crisp UI cards (not pixelated) cut in to show numbers. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): 8-bit characters at desks on a ground strip, pixel buildings, a swarm of notification icons, a pixel snake on a path, a grid of icons flipping colour, clean UI cards cut into pixel scenes.",
  "story": [

@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 660,
  "palette": "butter",
+ "family": "product",
+ "subject": "oriel",
  "style": "Split screen: the same scene shown twice, BEFORE (cluttered, off-kilter, a warm alarm colour) and AFTER (calm, aligned, the cool colour), divided by a line that wipes, tilts and finally sweeps all the way across so AFTER takes the whole frame. The same objects exist on both sides, so the change is obvious. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a before/after reveal built from the same objects, a wipe that carries the argument.",
  "story": [

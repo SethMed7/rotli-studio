@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 690,
  "palette": "slate",
+ "family": "product",
+ "subject": "oriel",
  "style": "A notification feed as weather: message bubbles and pings rain in and stack into a scrolling column, faster and faster, with motion blur on the scroll; then one calm hand (a cursor) sorts them: most fold away, three are grouped into one decision card. Clean UI, one alarm colour, one calm colour. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): complaint bubbles stacking and scrolling, a feed that overwhelms, then gets sorted into a single decision.",
  "story": [

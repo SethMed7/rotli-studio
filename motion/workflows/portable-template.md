@@ -23,4 +23,4 @@ MOTION RULES
 BEFORE YOU FINISH
 Name 8 moments across the piece (as timestamps) and describe exactly what is on screen at each. Fix anything that overlaps, sits still for more than half a second, or is hard to read. Then give me the complete file.
 
-The product in it is fictional ("{{PRODUCT}}"). Build it exactly as written first; afterwards, swap in your own name, colours and words.
+{{CLOSING}}

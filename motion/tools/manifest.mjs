@@ -213,6 +213,8 @@ const bySeries = series.map((s) => {
             id: b.id,
             no: b.no,
             title: b.title,
+            family: b.family ?? null,
+            subject: b.subject ?? "oriel",
             primary: sizes[b.primary] ?? Object.values(sizes)[0] ?? null,
             sizes,
             brief: b.file,

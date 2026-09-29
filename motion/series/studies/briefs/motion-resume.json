@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 900,
  "palette": "night",
+ "family": "type",
+ "subject": "oriel",
  "style": "Dark ground, one accent (the pack's night palette), small mono HUD labels, a faint dot grid. Sans for statements, the serif italic for feeling. Motion blur (4 subframes, 180° shutter).",
  "learnsFrom": "A public 15 s reel Opus 5.5 made from one prompt (https://x.com/darel023/status/2103424524297420829): show technique as the content, one accent, cut on the music. Nothing from it is copied: every shape and word here is new.",
  "story": [

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 220 220">
+  <!-- The studio's faint hero tile (studio-owned; hero-pattern.svg is Rotli's, synced from the app):
+       a film camera, a clapperboard, a film strip, keyframes on a motion curve, a play button,
+       a sound wave and an aperture, in the same hairline as Rotli's file pattern. -->
+  <g fill="none" stroke="#3a3028" stroke-opacity="0.09" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <!-- film camera: two reels, a body, a lens -->
+    <g transform="translate(16 20) rotate(-7)"><circle cx="8" cy="7" r="6"/><circle cx="23" cy="7" r="6"/><path d="M1 14h28v16H1z"/><path d="M29 19l8-4v14l-8-4"/></g>
+    <!-- clapperboard -->
+    <g transform="translate(128 26) rotate(6)"><path d="M0 10h32v22H0z"/><path d="M0 10l30-8 2 7"/><path d="M8 8l4-6M17 5.5l4-6M26 3l3-3"/></g>
+    <!-- film strip -->
+    <g transform="translate(60 116) rotate(5)"><path d="M0 0h24v36H0z"/><path d="M4 4v2M4 12v2M4 20v2M4 28v2M20 4v2M20 12v2M20 20v2M20 28v2"/><path d="M8 6h8v10H8zM8 20h8v10H8z"/></g>
+    <!-- keyframes on a motion curve -->
+    <g transform="translate(150 130) rotate(-4)"><path d="M0 26C10 26 12 4 34 4"/><path d="M0 22l4 4-4 4-4-4z M34 0l4 4-4 4-4-4z"/></g>
+    <!-- play button -->
+    <g transform="translate(96 72) rotate(-6)"><path d="M0 4a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4z"/><path d="M13 7l8 5-8 5z"/></g>
+    <!-- sound wave -->
+    <g transform="translate(22 178)"><path d="M0 8v4M6 4v12M12 0v20M18 5v10M24 2v16M30 7v6"/></g>
+    <!-- aperture -->
+    <g transform="translate(178 188) rotate(10)"><circle r="13"/><path d="M-4 -12.4L8 1M12.4 -4L-1 8M4 12.4L-8 -1M-12.4 4L1 -8"/></g>
+  </g>
+</svg>

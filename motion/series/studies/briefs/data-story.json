@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 450,
  "palette": "graphite",
+ "family": "explain",
+ "subject": "oriel",
  "style": "A dark dashboard: a grid of rounded widgets on graphite, each animating its own data (a switch, a bar chart that re-sorts, a count-up percentage, a donut, a line chart that draws on, a live blob). Numbers roll like odometers. Coral accent for the headline figure, mint for good news.",
  "learnsFrom": "UI and data-viz moments in code-made reels: a grid of widgets that animate together, numbers that count up, charts that draw on.",
  "story": [

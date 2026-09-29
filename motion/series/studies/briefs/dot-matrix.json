@@ -13,6 +13,8 @@
  "bpm": 120,
  "frames": 600,
  "palette": "cobalt",
+ "family": "screen",
+ "subject": "oriel",
  "style": "Everything is made of dots on one grid: a month calendar where days fill as dots, numerals and words rendered as dot-matrix lettering, a clock whose hands are dot trails, a progress ring of dots. Dots grow, shrink and change colour; nothing else is drawn. Captions are serif word ladders (kit captions.ts): short stacks of mixed sizes, one key word in the accent italic, set beside the action and arriving word by word.",
  "learnsFrom": "Founder explainer reels (Instagram, @gregisenberg's team): a calendar of dots filling up to show time passing, dot-grid lettering.",
  "story": [

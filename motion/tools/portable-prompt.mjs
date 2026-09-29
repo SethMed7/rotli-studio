@@ -49,6 +49,13 @@ function portable(file) {
       : []),
   ].join("\n");
   const sound = p.sound ? `- Sound (Web Audio, starts on the first click): ${p.sound}\n` : "";
+  // the last line says what the piece is about: the imaginary product, a real topic, or nothing at all
+  const closing = (b, product) =>
+    b.subject === "learn"
+      ? "The topic is real: keep every fact exactly as written above (it is sourced), hedged the way it is hedged. Build it exactly as written first; afterwards, swap in your own topic, colours and words, and source your own facts."
+      : b.subject === "fun"
+        ? "There is no product in it; every name is invented. Build it exactly as written first; afterwards, make it yours."
+        : `The product in it is fictional ("${product}"). Build it exactly as written first; afterwards, swap in your own name, colours and words.`;
   const out = readFileSync(join(ROOM, "workflows/portable-template.md"), "utf8")
     .replaceAll("{{TITLE}}", b.title)
     .replaceAll("{{WHAT}}", what)
@@ -61,7 +68,7 @@ function portable(file) {
     .replaceAll("{{SIZES}}", sizesText)
     .replaceAll("{{TEACHES}}", b.teaches)
     .replaceAll("{{SOUND}}", sound)
-    .replaceAll("{{PRODUCT}}", pack.product);
+    .replaceAll("{{CLOSING}}", closing(b, pack.product));
   return out;
 }
 

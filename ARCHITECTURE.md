@@ -10,6 +10,8 @@ something, find its row below. If no row fits, add a row here in the same change
 |---|---|---|
 | **The studio site (server)** | `server.ts` | Bun, `127.0.0.1:4500`, Host-checked. `/` = the Motion room. |
 | Motion room site: pages | `src/motion/app.ts`, `player.ts`, `sound.ts`, `md.ts` | Hash routes; bundled by `server.ts`. |
+| "Make one for your product" | `src/motion/wizard.ts` | `#/use`: eight steps of questions with pointers; the result is a prompt that has any model interview the visitor, fetch their assets, write a brief, build and review. Calls no model; answers stay in localStorage. |
+| The studio's hero pattern | `library/patterns/studio-pattern.svg` | Studio-owned (cameras, film, keyframes). `hero-pattern.svg` beside it is Rotli's, synced by `scripts/sync-library.ts`; never edit that one. |
 | Motion room site: server side | `src/motion/routes.ts` | Manifest, files (`/m/*`, `/s/*` = git-tracked allowlist), posters, verify. |
 | Site HTML and CSS | `static/motion.*`, with the shared tokens and base rules in `static/app.css` | UI rules: `DESIGN.md`. |
 | Rendered stills and carousel slides | `exports/<slug>/<format>/` (gitignored) | Local output of `studio.mjs render`. |
@@ -21,7 +23,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | The wallpaper maker (site page) | `motion/src/site/wallpaperMaker.ts` | `#/wallpapers`: screen → background → quokka → download, drawn in the visitor's browser. Its own bundle (`/build/wallpapers.js`), loaded only on that page. |
 | Wallpaper quokka looks | `motion/brand/wallpaper-looks.json` → `library/wallpaper-looks/*.webp` | Every emotion × colour × accessory, rendered from the app's real `<Character>` by `scripts/render-companions.ts --spec`; lossless WebP. Filled accessories are white with a `tint-<pose>-<accessory>` colour mask beside them, so the maker colours them. |
 | Wallpaper golden | `motion/tools/wallpapers.mjs`, `motion/golden/wallpapers.json` | Every preset on every screen through `paintWallpaper`; `--check` proves nothing moved. |
-| **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. |
+| **Studies** (non-Rotli pieces) | `motion/src/canvas-core/studies/` | One module per study, one Film per size; briefs and prompts in `motion/series/studies/`. Each brief names its `family` (how the site groups it) and `subject`: `oriel` (the imaginary product), `learn` (a real topic, with a `facts` list of claims and sources) or `fun` (no product). |
 | **Portable prompts** (copy into any model) | `motion/series/studies/portable/` | Generated from each brief by `motion/tools/portable-prompt.mjs` via `motion/workflows/portable-template.md`; no repository ties. |
 | Render styles (from anidoodle) | `motion/src/canvas-core/styles/` | gallery, drafting, print, riso, storybook, lettering. |
 | Engine examples (from anidoodle) | `motion/src/canvas-core/examples/` | Reference pieces; not part of any series. |
@@ -30,7 +32,7 @@ something, find its row below. If no row fits, add a row here in the same change
 | **Series** | `motion/series.json` + `motion/series/<series-id>/` | One folder per series: `bible.md`, `episodes/*.json` (briefs), `prompts/*.prompt.md`, and any series notes (e.g. `the-film/story.md`, `score.txt`). |
 | How pieces are made | `motion/workflows/` | `README.md` (process), `agent-preamble.md`, `review-checklist.md`, `critique.md` (the scored critique: seven criteria, 8+ to ship). |
 | Critique records | `motion/series/studies/critiques/<pieceId>.json` | One file per piece, a round per critique: pacing numbers, scores, problems with timestamps, what the building agent saw and missed. Sheets come from `motion/tools/critique.mjs`. |
-| **Field notes** (the studies' blog) | `motion/series/studies/notes/<yyyy-mm-dd>-<slug>.md` | Long-form, sourced write-ups of what we tried and measured. Title = the first `# ` line, summary = the first `> ` line; the manifest lists them on the Studies page, newest first; each opens at `#/note/<file>`. |
+| **Field notes** (the Journal) | `motion/series/studies/notes/<yyyy-mm-dd>-<slug>.md` | Long-form, sourced write-ups of what we tried and measured. Title = the first `# ` line, summary = the first `> ` line; the manifest lists them at `#/journal`, newest first; each opens at `#/note/<file>`. |
 | Agent runs (what built each piece) | `motion/workflows/runs/` | Recovered by `motion/tools/extract-runs.mjs`; redacted. |
 | Goldens (pixel/audio fingerprints) | `motion/golden/<pieceId>.json` | `node motion/tools/studio.mjs golden all` must print SAME. |
 | Rotli's brand data | `motion/brand/` (`brand.json`, `themes.json`, `companions.json`) | Rotli's own pack, synced from the rotli app on purpose, never hand-edited. |

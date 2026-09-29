@@ -13,6 +13,8 @@
  "bpm": 90,
  "frames": 600,
  "palette": "blueprint",
+ "family": "explain",
+ "subject": "oriel",
  "style": "A blueprint: pale lines on deep blue, a fine grid, hand-drawn strokes that draw themselves on (use the engine's pencil/Gfx strokes or stroke-dash reveals), mono hand labels, one warm accent for the answer. The camera pans across one large drawing.",
  "learnsFrom": "Technical explainer sketches and pen-plotter drawings.",
  "story": [
