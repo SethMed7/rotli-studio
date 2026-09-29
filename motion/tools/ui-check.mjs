@@ -5,42 +5,42 @@ import { chromium } from "playwright-core";
 const B = process.argv[2] ?? "http://127.0.0.1:4501",
   widths = [1440, 1280, 390];
 const pages = [
-  "#/",
-  "#/library",
-  "#/carousels",
-  "#/wallpapers",
-  "#/wallpapers?screen=iphone",
-  "#/prompts",
-  "#/piece/kineticPoster",
-  "#/piece/dataStoryVertical",
-  "#/piece/behindTheFilm",
-  "#/library?size=vertical",
-  "#/series",
-  "#/series/studies",
-  "#/piece/motionResume",
-  "#/piece/motionResumeVertical",
-  "#/use",
-  "#/use?step=4",
-  "#/use?step=8",
-  "#/journal",
-  "#/note/2026-09-28-the-harness-is-the-studio.md",
-  "#/series/studies?subject=learn",
-  "#/library?for=studies",
-  "#/piece/doodleGuide",
-  "#/piece/routeMap",
-  "#/piece/inkWashVertical",
-  "#/note/2026-09-28-twenty-four-techniques-and-a-second-reader.md",
-  "#/posts",
-  "#/series/season-one",
-  "#/series/the-film",
-  "#/piece/s01e05LighthouseKeeper",
-  "#/piece/s01e05Vertical",
-  "#/brand",
-  "#/workflows",
-  "#/runs",
-  "#/tools",
-  "#/docs",
-  "#/isolation",
+  "/",
+  "/library",
+  "/carousels",
+  "/wallpapers",
+  "/wallpapers?screen=iphone",
+  "/prompts",
+  "/piece/kineticPoster",
+  "/piece/dataStoryVertical",
+  "/piece/behindTheFilm",
+  "/library?size=vertical",
+  "/series",
+  "/series/studies",
+  "/piece/motionResume",
+  "/piece/motionResumeVertical",
+  "/use",
+  "/use?step=4",
+  "/use?step=8",
+  "/journal",
+  "/note/2026-09-28-the-harness-is-the-studio.md",
+  "/series/studies?subject=learn",
+  "/library?for=studies",
+  "/piece/doodleGuide",
+  "/piece/routeMap",
+  "/piece/inkWashVertical",
+  "/note/2026-09-28-twenty-four-techniques-and-a-second-reader.md",
+  "/posts",
+  "/series/season-one",
+  "/series/the-film",
+  "/piece/s01e05LighthouseKeeper",
+  "/piece/s01e05Vertical",
+  "/brand",
+  "/workflows",
+  "/runs",
+  "/tools",
+  "/docs",
+  "/isolation",
 ];
 const b = await chromium.launch();
 const problems = [];
@@ -53,8 +53,8 @@ for (const w of widths) {
     (r) => r.status() >= 400 && !r.url().includes("favicon") && problems.push(`[${w}] ${r.status()} ${r.url()}`),
   );
   for (const h of pages) {
-    await p.goto(B + "/" + h, { waitUntil: "load" });
-    await p.waitForTimeout(h === "#/isolation" ? 14000 : 1200);
+    await p.goto(B + h, { waitUntil: "load" });
+    await p.waitForTimeout(h === "/isolation" ? 14000 : 1200);
     const r = await p.evaluate(() => {
       const out = [],
         vis = (el) => {
@@ -110,20 +110,12 @@ for (const w of widths) {
     });
     r.forEach((x) => problems.push(`[${w}] ${h}: ${x}`));
     if (
-      [
-        "#/",
-        "#/posts",
-        "#/series/season-one",
-        "#/piece/s01e05LighthouseKeeper",
-        "#/library",
-        "#/tools",
-        "#/brand",
-      ].includes(h)
+      ["/", "/posts", "/series/season-one", "/piece/s01e05LighthouseKeeper", "/library", "/tools", "/brand"].includes(h)
     )
       await p.screenshot({ path: `/tmp/ui-${w}-${h.replace(/[^a-z0-9]+/gi, "_")}.png` });
   }
   if (w === 1440) {
-    await p.goto(B + "/#/", { waitUntil: "load" });
+    await p.goto(B + "/", { waitUntil: "load" });
     await p.waitForTimeout(1200);
     await p.screenshot({ path: "/tmp/ui-home-full.png", fullPage: true });
     const H = await p.evaluate(() => document.querySelector("#main").scrollHeight);

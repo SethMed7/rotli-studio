@@ -30,6 +30,7 @@ import {
 } from "node:fs";
 import { dirname, join, relative } from "node:path";
 
+import { BARE_ONLY, PAGE_ROOTS } from "../src/motion/paths";
 import { THUMB_DIR, atmospheres, looks, skills, thumbArgs, tools, videoFps } from "../src/motion/routes";
 import { pieceIds, readPosts, validatePosts } from "./lib/posts";
 import { baseRules, isText, markerRules, scan } from "./lib/privacy";
@@ -104,8 +105,30 @@ const manifest = JSON.parse(readFileSync(join(MOTION, "out/manifest.json"), "utf
     posterFrame?: number;
     derive: { vertical: { frame: number }[]; slides: { frame: number }[]; single: { frame: number } } | null;
     video?: Video;
+    title?: string;
+    logline?: string;
+    about?: string;
+    format?: string;
+    series?: string;
+    brief?: string;
+    prompt?: string;
+    meta?: { W: number; H: number; fps: number; durationFrames: number };
   }[];
 };
+
+// the host serves the shell at every page path; its list must be the app's (src/motion/paths.ts)
+{
+  const caddy = readFileSync(join(ROOT, "deploy/Caddyfile"), "utf8"),
+    line = caddy.split("\n").find((l) => l.trim().startsWith("@page path ")) ?? "",
+    have = new Set(line.trim().split(/\s+/).slice(2)),
+    want = PAGE_ROOTS.flatMap((r) => (BARE_ONLY.has(r) ? [`/${r}`] : [`/${r}`, `/${r}/*`])),
+    missing = want.filter((x) => !have.has(x)),
+    extra = [...have].filter((x) => !want.includes(x));
+  if (missing.length || extra.length)
+    fail(
+      `deploy/Caddyfile's @page list has drifted from src/motion/paths.ts (missing: ${missing.join(" ") || "none"}; extra: ${extra.join(" ") || "none"})`,
+    );
+}
 
 // an incomplete snapshot is worse than none: every piece must load and every video must be rendered
 {
@@ -139,7 +162,7 @@ const js = await bundle.outputs[0]!.text(),
 mkdirSync(join(PUB, "build"), { recursive: true });
 writeFileSync(join(PUB, "build", jsName), js);
 pageHtml = pageHtml.replace('src="/build/motion.js"', `src="/build/${jsName}"`);
-// the wallpaper maker: its own bundle, fetched only on #/wallpapers and named in a meta tag; the quokka looks it draws
+// the wallpaper maker: its own bundle, fetched only on /wallpapers and named in a meta tag; the quokka looks it draws
 // are tracked images shipped under their own paths (it renders every download in the visitor's browser)
 const maker = await Bun.build({
   entrypoints: [join(MOTION, "src/site/wallpaperMaker.ts")],
@@ -188,6 +211,120 @@ for (const [from, tag] of [
   pageHtml = pageHtml.replaceAll(`https://studio.rotli.co${tag}`, `https://studio.rotli.co${hashed}`);
 }
 writeFileSync(join(PUB, "index.html"), pageHtml);
+
+// ---- every piece's own page at /piece/<id>/ (2026-09-29): the shell again, with the piece's title, description and
+// card, and its words in place of "Loading…". A shared link reaches the server now that pages live at real paths, so
+// a link-preview card, a model reading the link and anything without JavaScript get the piece itself; with
+// JavaScript the app takes over at the same address.
+{
+  const esc = (x: unknown) =>
+    String(x ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  const brief = (ref: string | undefined): Record<string, unknown> | null => {
+    const file = ref ? join(MOTION, ref) : "";
+    if (!file || !file.endsWith(".json") || !existsSync(file)) return null;
+    try {
+      return JSON.parse(readFileSync(file, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  const swap = (html: string, re: RegExp, to: string) => {
+    if (!re.test(html)) fail(`piece pages: static/motion.html no longer has ${re}`);
+    return html.replace(re, to);
+  };
+  const site = "https://studio.rotli.co";
+  for (const p of manifest.pieces) {
+    const b = brief(p.brief) as {
+      story?: { setup?: string; turn?: string; payoff?: string } | { from: number; to: number; what: string }[];
+      features?: { claim: string }[];
+      scenes?: { id: string; template?: string }[];
+    } | null;
+    const title = p.title || p.id,
+      summary = p.logline || p.about || "",
+      url = `${site}/piece/${p.id}`,
+      image =
+        p.video && p.posterFrame !== undefined
+          ? `${site}/api/motion/thumb/${p.slug}/${p.posterFrame}.jpg`
+          : p.video?.poster
+            ? `${site}/m/${p.video.poster}`
+            : "",
+      seconds = p.meta && p.kind === "video" ? Math.round(p.meta.durationFrames / p.meta.fps) : 0;
+    const facts = [
+      p.series ? `Series: ${p.series}` : "",
+      p.format ? `Format: ${p.format}` : "",
+      seconds ? `Length: ${seconds} s` : "",
+      p.meta ? `Size: ${p.meta.W}×${p.meta.H}` : "",
+    ].filter(Boolean);
+    const list = (items: string[]) =>
+      items.length ? `<ul>${items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    const story = Array.isArray(b?.story)
+      ? b.story.map((s) => s.what)
+      : b?.story
+        ? [
+            b.story.setup ? `Setup: ${b.story.setup}` : "",
+            b.story.turn ? `Turn: ${b.story.turn}` : "",
+            b.story.payoff ? `Payoff: ${b.story.payoff}` : "",
+          ].filter(Boolean)
+        : [];
+    const words = `<article class="doc"><h1>${esc(title)}</h1>${summary ? `<p>${esc(summary)}</p>` : ""}${p.about && p.about !== summary ? `<p>${esc(p.about)}</p>` : ""}${list(facts)}${story.length ? `<h2>Story</h2>${list(story)}` : ""}${b?.features?.length ? `<h2>What it shows</h2>${list(b.features.map((f) => f.claim))}` : ""}${b?.scenes?.length ? `<h2>Scenes</h2>${list(b.scenes.map((sc) => (sc.template ? `${sc.id}: ${sc.template}` : sc.id)))}` : ""}<p>${p.prompt ? `<a href="/m/${esc(p.prompt)}">The prompt that made it</a>` : ""}${p.prompt && p.brief ? " · " : ""}${p.brief ? `<a href="/m/${esc(p.brief)}">The brief</a>` : ""}</p></article>`;
+    let html = pageHtml;
+    html = swap(
+      html,
+      /<title>[^<]*<\/title>/,
+      `<title>${esc(title)} · rotli studio</title>\n    <link rel="canonical" href="${esc(url)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta name="description" content="[^"]*" \/>/,
+      `<meta name="description" content="${esc(summary)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta property="og:type" content="[^"]*" \/>/,
+      `<meta property="og:type" content="${p.kind === "video" ? "video.other" : "website"}" />`,
+    );
+    html = swap(
+      html,
+      /<meta property="og:title" content="[^"]*" \/>/,
+      `<meta property="og:title" content="${esc(title)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta property="og:description" content="[^"]*" \/>/,
+      `<meta property="og:description" content="${esc(summary)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta property="og:url" content="[^"]*" \/>/,
+      `<meta property="og:url" content="${esc(url)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta name="twitter:title" content="[^"]*" \/>/,
+      `<meta name="twitter:title" content="${esc(title)}" />`,
+    );
+    html = swap(
+      html,
+      /<meta name="twitter:description" content="[^"]*" \/>/,
+      `<meta name="twitter:description" content="${esc(summary)}" />`,
+    );
+    // the studio's own card and loop give way to the piece's poster (or to no image at all)
+    html = html
+      .replace(/\s*<meta property="og:(image|video)[^>]*\/>/g, "")
+      .replace(/\s*<meta name="twitter:image[^>]*\/>/g, "");
+    html = swap(
+      html,
+      /<meta name="twitter:card" content="[^"]*" \/>/,
+      image
+        ? `<meta property="og:image" content="${esc(image)}" />\n    <meta name="twitter:image" content="${esc(image)}" />\n    <meta name="twitter:card" content="summary_large_image" />`
+        : `<meta name="twitter:card" content="summary" />`,
+    );
+    html = swap(html, /<p class="empty">Loading the studio…<\/p>/, words);
+    mkdirSync(join(PUB, "piece", p.id), { recursive: true });
+    writeFileSync(join(PUB, "piece", p.id, "index.html"), html);
+  }
+  console.log(`piece pages: ${manifest.pieces.length}`);
+}
 // unlisted for search, but link-preview crawlers may read the page so a shared link shows its card and loop
 const PREVIEW_BOTS = [
   "Twitterbot",

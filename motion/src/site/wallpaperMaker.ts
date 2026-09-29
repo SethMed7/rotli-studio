@@ -1,4 +1,4 @@
-// The wallpaper maker (the studio site's #/wallpapers): pick a screen, a background and, if you want one, a quokka (colour, emotion,
+// The wallpaper maker (the studio site's /wallpapers): pick a screen, a background and, if you want one, a quokka (colour, emotion,
 // what it wears, where it stands), or start from a preset; the preview redraws live and the download is drawn in
 // the visitor's browser at the screen's full size. Every pixel comes from paintWallpaper
 // (src/canvas-core/wallpapers.ts), the same function tools/wallpapers.mjs holds to a golden. Its own bundle (the
@@ -104,7 +104,7 @@ export function mountWallpapers(main: HTMLElement, narrow: boolean) {
   };
   let preset: string | null = PRESETS[0]!.id;
 
-  main.innerHTML = `<nav class="crumbs"><a href="#/">Studio</a> › Wallpapers</nav><header class="page-head"><h1>Wallpapers</h1><p>Make your own: pick a screen, a background and a quokka, dress it, then download it at full size. Drawn in your browser by the engine that makes the films. Free to use.</p></header>
+  main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Wallpapers</nav><header class="page-head"><h1>Wallpapers</h1><p>Make your own: pick a screen, a background and a quokka, dress it, then download it at full size. Drawn in your browser by the engine that makes the films. Free to use.</p></header>
     <section class="wp-presets" aria-labelledby="wp-presets-h"><h2 id="wp-presets-h">Start from a preset</h2><ul class="wp-preset-row"></ul></section>
     <div class="wp-maker">
       <form class="wp-steps" aria-label="Your wallpaper">
@@ -310,6 +310,6 @@ export function mountWallpapers(main: HTMLElement, narrow: boolean) {
     resize = window.setTimeout(() => void redraw(), 150);
   };
   window.addEventListener("resize", onResize);
-  window.addEventListener("hashchange", () => window.removeEventListener("resize", onResize), { once: true });
+  window.addEventListener("studio:route", () => window.removeEventListener("resize", onResize), { once: true });
   everything();
 }

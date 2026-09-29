@@ -29,6 +29,13 @@
 	header @hashed Cache-Control "public, max-age=31536000, immutable"
 
 	rewrite /motion /index.html
+	# every studio page is the shell at its own path: a piece's own page (its title and card) if one was built,
+	# else the shell, which routes it. The list is src/motion/paths.ts (export-site.ts refuses to build if it drifts);
+	# anything else (media, data, a missing file) is left to file_server, so a miss is still a 404.
+	@page path /library /carousels /carousels/* /wallpapers /wallpapers/* /prompts /prompts/* /posts /posts/* /sound /series /series/* /use /use/* /piece /piece/* /brand /brand/* /workflows /workflows/* /runs /runs/* /skills /skills/* /tools /tools/* /docs /docs/* /doc /doc/* /note /note/* /journal /journal/* /isolation /isolation/*
+	route @page {
+		try_files {path}/index.html /index.html
+	}
 	file_server
 
 	# a miss must never be cached by the CDN (Cloudflare kept a 404 for hours on 2026-09-25)
