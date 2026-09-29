@@ -181,7 +181,8 @@ for (const file of files) {
 }
 
 mkdirSync(OUT, { recursive: true });
-const runs = [...agents.values()].filter((r) => r.piece);
+// a launch that never ran (refused, e.g. at the concurrent-agent limit) has no tokens and no report: not a run
+const runs = [...agents.values()].filter((r) => r.piece && (r.tokens > 0 || r.reports?.length));
 for (const r of runs) {
   const rep = r.reports ?? [];
   const md = [

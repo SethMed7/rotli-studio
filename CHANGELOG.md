@@ -4,6 +4,35 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Studies 27–50: the studies reach fifty.** Twenty-four motion techniques the studio had never drawn, researched
+  first (field note 02), each built by one agent and then scored and fixed by a second one that did not build it,
+  until every criterion of the critique reached 8. Whiteboard Hand, Proof Without Words, Split-Flap, Glitch Signal,
+  Neon Drive, Liquid Blobs, Swiss Grid, Bauhaus Beat, Title Sequence, Shadow Puppet, Ink Wash, One Line, Route Map,
+  Isotype, Seasons Orrery, Pendulum Wave, Infinite Zoom, Multiplane, Terminal Boot, Broadcast Package, Recipe
+  Flat-lay, Stained Glass, Radial Year and ASCII Cinema: 48 new pieces, each with its brief, prompt, portable prompt,
+  critique record, agent run and golden. Eighteen new palettes in the studio pack.
+- **Not all Oriel.** Briefs now name a `subject`: `oriel` (the imaginary product), `learn` (a real topic, with a
+  `facts` list of every on-screen claim and its source) or `fun` (no product at all), and a `family` the site groups
+  them by. Portable prompts say which, instead of calling every study a "fictional product".
+- **The site, reorganised.** The sidebar keeps Rotli's own work (Series, Carousels, Wallpapers, Brand kit) apart from
+  the Studies (Studies, Journal, Prompt library), Make your own and About; Library and Carousels filter Rotli /
+  Studies. Studies are a poster grid grouped by family with subject filters and hover-to-play previews, and every
+  study says plainly whether it is for the imaginary Oriel, a real topic (facts and sources shown) or just for fun.
+- **The landing** keeps the hero and the Rotli film, then shows the studio's range (the newest study of each
+  family), Rotli's series set apart, and a way to make your own.
+- **Make one for your product** (`#/use`, `src/motion/wizard.ts`): eight steps of questions with pointers beside
+  each; the result is a prompt that has any model interview you for what's missing, fetch your logo, colours, fonts
+  and wording from your site, write a brief for you to approve, build and review. It calls no model; answers stay in
+  the browser.
+- **The Journal:** field notes get their own index, a 42rem reading measure, an "On this page" rail and
+  older/newer links. Field note 02, *Twenty-four techniques and a second reader*, reports the whole wave.
+- **Published** shows whose post each is, the accounts to follow, and the piece each post shares.
+- **A studio pattern** behind the hero (cameras, a clapperboard, film, keyframes on a motion curve) in place of Rotli's
+  synced file pattern, which stays untouched in `library/patterns/`.
+- **The study preamble** now puts phone readability over a brief's type sizes, asks for a hook in the first 1.5 s
+  and a moment that lands in any long calm, and lists the glyphs the pack's fonts lack.
+- **extract-runs.mjs** skips a launch that never ran (refused at the concurrent-agent limit).
+
 - **Removed: Create.** The local post editor at `/create` is gone: its templates, exporter, saved drafts
   (`posts/`), the posts and upload APIs, and its styles. `static/app.css` keeps only the shared tokens and base rules.
   Rendered stills and carousel slides still land in `exports/`.

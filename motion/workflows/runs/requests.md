@@ -227,3 +227,19 @@ What was asked, in the owner's words. Everything in the motion room traces back 
 ## 47. 2026-09-28 15:13 UTC · sent mid-turn
 
 > also see what we can learn form this - https://x.com/RaphaelAubryy/status/2104502744010629269?s=20
+
+## 48. 2026-09-29 00:47 UTC
+
+> Let's do a UI/UX overhaul better grouping and organization of sections in the study as a whole it is very messy also better reading of blogs/design then go ahead and do research and analyze deeper different video techniques and try to cover 20+ more different styles and motion etc. I would like to have a total of 50 also better clairficaiton that oriel is an imagiary brand and also we can do other fun stuff doesnt have to all be about oriel just keep testing out different videos including educational run a full loop 
+> 
+> Then clean u the use it for your produuct I want like a prompt in there thats uses ai's ask questions for the flow. and takes you step by step answering questions and give you a result also tries to get assets. Give pointers too etc. then update my published section and lastly while the landing page yes hero is fine and first video is mine lets then displauy others there and promote this as a full studio not just rotli. Also create seperation between rotli content/stuff and study related stuff.
+
+## 49. 2026-09-29 00:47 UTC · sent mid-turn
+
+> also for fun replace files background with maybe like video style icons and cameras or motion etc to better match that this is a studio.
+> 
+> [a screenshot was attached]
+
+## 50. 2026-09-29 00:48 UTC · sent mid-turn
+
+> and when done with all of this update the read me and lets get everything into a dev branch nice and cleanly.

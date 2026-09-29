@@ -31,6 +31,11 @@ HARD RULES:
 4. Design EACH size (the brief's "sizes" note); a vertical re-stacks, it never just crops. Keep text inside `layout().safe`.
 5. Quality bar: nothing overlaps unintentionally, no text under 22 px (at 1080 short side), flat colour, depth from
    shadow only where the style allows, every hold keeps moving (a slow push-in, drift or ambient motion).
+   Readable on a phone beats the brief's type sizes: a line that matters (caption, key number, call to action) is
+   about 44 px or more at 1080 on the short side; say so if you enlarge one. Land something bold in the first 1.5 s,
+   and give any calm longer than about 4 s a moment that lands (a snap, a pop, a hit, a cut) in the style's own terms.
+   The pack's fonts lack some glyphs (no box-drawing or block characters in JetBrains Mono, no ¼ ½ ¾ in Instrument
+   Serif, no π or √ anywhere): draw those as shapes. beatScore's only mood with drums is "drive".
 6. Copy is invented for the fictional product; never claim anything about a real company or person.
 7. Sound: {{SOUND}}
 
