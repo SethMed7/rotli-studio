@@ -102,6 +102,14 @@ const manifest = JSON.parse(readFileSync(join(MOTION, "out/manifest.json"), "utf
     posterFrame?: number;
     derive: { vertical: { frame: number }[]; slides: { frame: number }[]; single: { frame: number } } | null;
     video?: Video;
+    title?: string;
+    logline?: string;
+    about?: string;
+    format?: string;
+    series?: string;
+    brief?: string;
+    prompt?: string;
+    meta?: { W: number; H: number; fps: number; durationFrames: number };
   }[];
 };
 
@@ -333,6 +341,83 @@ await pool(jobs, 6, async ({ slug, f }) => {
   }
   put(join(apiDir, "thumb", slug, `${f}.jpg`), cache);
 });
+
+// ---- a plain page per piece at /piece/<id>/ (2026-09-29). The studio routes after "#", which never reaches the
+// server, so every studio link used to fetch the same empty shell: a model reading a link, a link-preview card and
+// anything without JavaScript saw "Loading the studio…". Each page carries the piece's words and its own card, and
+// sends a person on to the piece in the studio.
+{
+  const esc = (x: unknown) =>
+    String(x ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
+  const brief = (ref: string | undefined): Record<string, unknown> | null => {
+    const file = ref ? join(MOTION, ref) : "";
+    if (!file || !file.endsWith(".json") || !existsSync(file)) return null;
+    try {
+      return JSON.parse(readFileSync(file, "utf8"));
+    } catch {
+      return null;
+    }
+  };
+  for (const p of manifest.pieces) {
+    const b = brief(p.brief) as {
+      story?: { setup?: string; turn?: string; payoff?: string };
+      features?: { claim: string }[];
+      scenes?: { id: string; template?: string }[];
+      cast?: string[];
+    } | null;
+    const title = p.title || p.id,
+      summary = p.logline || p.about || "",
+      studio = `https://studio.rotli.co/#/piece/${p.id}`,
+      image =
+        p.video && p.posterFrame !== undefined
+          ? `https://studio.rotli.co/api/motion/thumb/${p.slug}/${p.posterFrame}.jpg`
+          : p.video?.poster
+            ? `https://studio.rotli.co/m/${p.video.poster}`
+            : "",
+      seconds = p.meta && p.kind === "video" ? Math.round(p.meta.durationFrames / p.meta.fps) : 0;
+    const facts = [
+      p.series ? `Series: ${p.series}` : "",
+      p.format ? `Format: ${p.format}` : "",
+      seconds ? `Length: ${seconds} s` : "",
+      p.meta ? `Size: ${p.meta.W}×${p.meta.H}` : "",
+    ].filter(Boolean);
+    const list = (items: string[]) =>
+      items.length ? `<ul>${items.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : "";
+    const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta http-equiv="refresh" content="0; url=${esc(studio)}" />
+<title>${esc(title)} · rotli studio</title>
+<meta name="description" content="${esc(summary)}" />
+<link rel="canonical" href="https://studio.rotli.co/piece/${esc(p.id)}/" />
+<meta property="og:type" content="${p.kind === "video" ? "video.other" : "website"}" />
+<meta property="og:site_name" content="rotli studio" />
+<meta property="og:title" content="${esc(title)}" />
+<meta property="og:description" content="${esc(summary)}" />
+<meta property="og:url" content="https://studio.rotli.co/piece/${esc(p.id)}/" />
+${image ? `<meta property="og:image" content="${esc(image)}" />\n<meta name="twitter:image" content="${esc(image)}" />\n` : ""}<meta name="twitter:card" content="${image ? "summary_large_image" : "summary"}" />
+</head>
+<body>
+<main>
+<h1>${esc(title)}</h1>
+${summary ? `<p>${esc(summary)}</p>` : ""}${p.about && p.about !== summary ? `<p>${esc(p.about)}</p>` : ""}
+${list(facts)}
+${b?.story ? `<h2>Story</h2>${list([b.story.setup ? `Setup: ${b.story.setup}` : "", b.story.turn ? `Turn: ${b.story.turn}` : "", b.story.payoff ? `Payoff: ${b.story.payoff}` : ""].filter(Boolean))}` : ""}
+${b?.features?.length ? `<h2>What it shows</h2>${list(b.features.map((f) => f.claim))}` : ""}
+${b?.scenes?.length ? `<h2>Scenes</h2>${list(b.scenes.map((sc) => (sc.template ? `${sc.id}: ${sc.template}` : sc.id)))}` : ""}
+<p><a href="${esc(studio)}">Watch it in rotli studio</a>${p.prompt ? ` · <a href="/m/${esc(p.prompt)}">The prompt that made it</a>` : ""}${p.brief ? ` · <a href="/m/${esc(p.brief)}">The brief</a>` : ""}</p>
+</main>
+</body>
+</html>
+`;
+    mkdirSync(join(PUB, "piece", p.id), { recursive: true });
+    writeFileSync(join(PUB, "piece", p.id, "index.html"), html);
+  }
+  console.log(`piece pages: ${manifest.pieces.length}`);
+}
 
 // ---- the landing poster: one full-size still of the film (the scene thumbnails are 1280 px)
 {

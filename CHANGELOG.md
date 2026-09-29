@@ -4,6 +4,11 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Every piece has a plain page.** The studio routes after `#`, which never reaches the server, so any studio link
+  fetched the same "Loading the studio…" shell: a model asked to review a piece, a link-preview card and anything
+  without JavaScript saw nothing of it. The snapshot now writes `/piece/<id>/` for every piece: its title, logline,
+  length, story, what it shows, its scenes, links to the prompt and brief, and its own preview card. A person is sent
+  straight on to the piece in the studio. Rotli's chat reads a `#/piece/<id>` link through that page.
 - **Studies 27–50: the studies reach fifty.** Twenty-four motion techniques the studio had never drawn, researched
   first (field note 02), each built by one agent and then scored and fixed by a second one that did not build it,
   until every criterion of the critique reached 8. Whiteboard Hand, Proof Without Words, Split-Flap, Glitch Signal,
