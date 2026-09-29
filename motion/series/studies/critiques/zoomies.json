@@ -1,0 +1,161 @@
+{
+ "piece": "zoomies",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 3,
+    "longestCalm": 5.5,
+    "nearStill": 14
+   },
+   "scores": {
+    "hook": 5,
+    "readability": 7,
+    "motion": 5,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:09.9",
+     "what": "fast crossings (leaf-pile pass, split bunnies, bunny bolt) strobe into 3-4 hard-edged copies",
+     "fix": "10-12 blur samples or shutter 0.25 on those shots in `cuts`, or a drawn directional smear"
+    },
+    {
+     "at": "00:05.0",
+     "what": "the launch fur smear is a flat rectangle with stepped edges; the paw never fills the frame",
+     "fix": "lead dog Z down to about 0.35 in `launch`; smear from fluffPath curls and streaks"
+    },
+    {
+     "at": "00:21.0",
+     "what": "near pass: each dog on screen about 8 frames, an empty lawn at f630-645",
+     "fix": "runs start/end at -0.3W/1.3W, hold mid-frame, butt the runs, cut to loop2 at 645"
+    },
+    {
+     "at": "00:00.0",
+     "what": "weak hook: 2.5 s static wide shot, small dogs, glint too small",
+     "fix": "tighter low opener in `peek` (bunny big foreground), stronger push or a cut at f30"
+    },
+    {
+     "at": "00:24.5",
+     "what": "the sit is one 3.9 s framing; the rake handle runs into the parti dog; bench bar at ear height; blinks under the title",
+     "fix": "split `sit` into 2-3 shots; rake to the ground line; move the bench; drop blinks 132 and 140"
+    },
+    {
+     "at": "00:12.5",
+     "what": "split and laps keep the cast tiny in an empty lawn",
+     "fix": "bring the Z keys about 30% closer; tighter loop ellipse"
+    }
+   ],
+   "agentSaw": [],
+   "agentMissed": [],
+   "verdict": "fix",
+   "note": "Scored while shipping Study 54; Zoomies was left out of that release and kept uncommitted for its own session. The vertical (zoomiesVertical) scored hook 5, readability 6, motion 5, variety 5, composition 5, accuracy 10, sync 8, with an 8 s calm at the end and the rake crossing the parti dog's head."
+  },
+  {
+   "round": 2,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 6,
+    "longestCalm": 4,
+    "nearStill": 3
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:02.0",
+     "what": "bunny freeze close-up: bench leg and a dog's rump cut by the top-left corner",
+     "fix": "keep the bench whole and soft, or out of frame"
+    },
+    {
+     "at": "00:21.7",
+     "what": "laps: lead dog cut by the right edge at the ellipse's wide point",
+     "fix": "smaller Rx or scale in at the wide point"
+    },
+    {
+     "at": "00:26.5",
+     "what": "sit close-up: heads under the top edge, red dog's tail cut",
+     "fix": "dogs in ~4% of W, group down ~40 px"
+    },
+    {
+     "at": "00:03.7",
+     "what": "bench jump leaves a translucent ghost dog",
+     "fix": "few samples / short shutter for the hop"
+    },
+    {
+     "at": "00:05.2",
+     "what": "fur wipe still shows stacked bars; the chase is a 4 s single shot",
+     "fix": "curl the trailing edge; a cut inside the chase"
+    }
+   ],
+   "agentSaw": [
+    "borderline: dogs partly off the frame edge at the widest laps; the 4 s chase; a faint ghost on the bench jump; empty lawn above the vertical skid"
+   ],
+   "agentMissed": [
+    "the freeze close-up crops the bench and dogs at the corner (and the bunny at the right in vertical)",
+    "the sit close-up crops the dogs (both ears in vertical)"
+   ],
+   "verdict": "fix",
+   "note": "The vertical scored composition 6 (sit close-up cropped at both edges, freeze close-up cropped, skid stop in the lower half, lap dogs cut while blurred), everything else as landscape."
+  },
+  {
+   "round": 3,
+   "date": "2026-09-29",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "pace": {
+    "changesPer10s": 6.7,
+    "longestCalm": 3,
+    "nearStill": 3
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:22.2",
+     "what": "laps-2 near side: the two dogs overlap into one smear; a face at the left edge",
+     "fix": "(polished after the round: a wider phase gap near the lens)"
+    },
+    {
+     "at": "00:07.5",
+     "what": "the new slow-motion vault cut plays full-speed patter; bark and whoosh ~5 frames early; bunny enters at the edge",
+     "fix": "(polished after the round: patter thinned, cues retimed, bunny starts inside)"
+    },
+    {
+     "at": "00:05.2",
+     "what": "the fur wipe is mostly flat cream at phone size",
+     "fix": "optional"
+    }
+   ],
+   "agentSaw": [
+    "near-side laps still blurred where the dogs overlap",
+    "the vertical sit close-up is really a medium",
+    "the bunny enters the vault shot at the edge"
+   ],
+   "agentMissed": [
+    "the vault cut's slow time is not matched in the audio"
+   ],
+   "verdict": "ship",
+   "note": "The vertical scored the same (composition 8), with the same laps-2 and vault notes."
+  }
+ ]
+}

@@ -4,6 +4,13 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Study 55, Zoomies.** Two small curly-coated dogs spot a bunny from the patio bench and lose their minds: an
+  anime chase shot from the grass (smears, whip pans, an impact frame, a face-filling close-up) that ends with both
+  dogs sitting in the wreckage looking innocent. Just for fun, 30 s, landscape and vertical, with foley designed in
+  code. Scored by a second agent in three rounds (composition 6 -> 8): drawn smears instead of stacked blur copies,
+  a paw that fills the lens, a three-shot opening and ending, the cast kept whole in frame, and a slow-motion vault
+  whose sound follows its picture. The counts say fifty-five. `portable-prompt.mjs` now passes on a brief's palette
+  note when a study keeps its colours in the module.
 - **Studio links have no "#".** Pages live at real paths: studio.rotli.co/piece/twoPartHarmony, /series/studies,
   /journal. The app routes them with the History API (Back and Forward work, clicks do not reload), the local
   server and the host serve the shell at every page path, and every piece has its own page at /piece/<id>/ with its

@@ -16,10 +16,13 @@ function portable(file) {
   const sizes = Object.keys(b.pieces),
     [W, H] = SIZES[b.primary],
     alt = sizes.find((s) => s !== b.primary);
+  // a study may keep its colours in the module instead of the pack (its brief then says so): pass that note on
   const pal = pack.palettes[b.palette];
-  const palette = Object.entries(pal)
-    .map(([k, v]) => `${k} ${v}`)
-    .join(", ");
+  const palette = pal
+    ? Object.entries(pal)
+        .map(([k, v]) => `${k} ${v}`)
+        .join(", ")
+    : b.palette;
   const carousel = b.kind === "carousel",
     slides = carousel ? b.story.length : 0;
   const what = carousel
