@@ -1182,6 +1182,102 @@
    "format": "film",
    "length": "20 s",
    "about": "Study 43 · Infinite Zoom, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "proofWithoutWords",
+   "kind": "video",
+   "slug": "proof-without-words",
+   "format": "film",
+   "length": "32 s",
+   "about": "Study 28 · Proof Without Words: Move the shapes and the proof explains itself: when each quantity keeps one colour and every symbol in the equation flies out of a shape on screen, the viewer sees why it is true, not just that it is."
+  },
+  {
+   "id": "proofWithoutWordsVertical",
+   "kind": "video",
+   "slug": "proof-without-words-vertical",
+   "format": "story",
+   "length": "32 s",
+   "about": "Study 28 · Proof Without Words, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "asciiCinema",
+   "kind": "video",
+   "slug": "ascii-cinema",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 50 · ASCII Cinema: Ten characters are enough for a picture: map brightness to a ramp, keep one grid and a glyph atlas, make every cell a pure function of its position and time, and a spinning doughnut, rain and a face all come out of the same text."
+  },
+  {
+   "id": "asciiCinemaVertical",
+   "kind": "video",
+   "slug": "ascii-cinema-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 50 · ASCII Cinema, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "bauhausBeatSquare",
+   "kind": "video",
+   "slug": "bauhaus-beat-square",
+   "format": "ig-square",
+   "length": "24 s",
+   "about": "Study 34 · Bauhaus Beat: When picture and sound are computed from the same numbers, every hit can move something: give each instrument one shape and one kind of motion, recompose on the bar, and a still composition becomes a piece of music you can watch."
+  },
+  {
+   "id": "bauhausBeat",
+   "kind": "video",
+   "slug": "bauhaus-beat",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 34 · Bauhaus Beat, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "liquidBlobsVertical",
+   "kind": "video",
+   "slug": "liquid-blobs-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 32 · Liquid Blobs: An implicit surface does the animating for you: move a few balls on simple curves and the field produces necks, merges, wobbles and pinch-offs by itself, so one shape can believably become many and many can become one."
+  },
+  {
+   "id": "liquidBlobs",
+   "kind": "video",
+   "slug": "liquid-blobs",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 32 · Liquid Blobs, designed for landscape (1920 × 1080): its own layout, not a crop."
+  },
+  {
+   "id": "terminalBoot",
+   "kind": "video",
+   "slug": "terminal-boot",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 45 · Terminal Boot: A CRT is a stack of cheap passes, not a filter: glow from layered strokes, persistence from a second draw a few frames back, scanlines, a vignette and a flicker, all over a strict character grid, make flat text feel like light on glass."
+  },
+  {
+   "id": "terminalBootVertical",
+   "kind": "video",
+   "slug": "terminal-boot-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 45 · Terminal Boot, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "titleSequence",
+   "kind": "video",
+   "slug": "title-sequence",
+   "format": "film",
+   "length": "24 s",
+   "about": "Study 35 · Title Sequence: A title sequence sells a film's mood before a word of it is spoken: one stark symbol per scene, flat colour fields cut on the beat, and credits that live inside the shapes turn a list of names into a rhythm."
+  },
+  {
+   "id": "titleSequenceVertical",
+   "kind": "video",
+   "slug": "title-sequence-vertical",
+   "format": "story",
+   "length": "24 s",
+   "about": "Study 35 · Title Sequence, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }

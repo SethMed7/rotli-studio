@@ -1,0 +1,84 @@
+{
+  "id": "proof-without-words",
+  "no": 28,
+  "title": "Proof Without Words",
+  "module": "src/canvas-core/studies/proofWithoutWords.ts",
+  "pieces": {
+    "landscape": "proofWithoutWords",
+    "vertical": "proofWithoutWordsVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 90,
+  "frames": 1920,
+  "palette": "chalk",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A math explainer in which the shapes do the arguing. A dark slate ground (ground), crisp vector geometry, no texture, no chalk grain, no shadows. Every quantity has ONE colour for the whole film and keeps it wherever it goes: side a and its square are accent2 (blue), side b and its square are s1 (pink), side c and its square are accent (yellow); ink is for neutral outlines and the equals sign, muted for braces and ghosts. Shapes are drawn as a 4 px stroke in their colour at full opacity with a fill of the same colour at 45% opacity, so overlaps and holes read. The film's vocabulary: (1) WRITE: a shape appears by tracing its outline (stroke drawn by arc length over about 0.6 of a beat) and only then its fill fades in; text and symbols write the same way (outline then fill), never pop; (2) TRANSFORM: a shape moves to its new place by interpolating position and rotation together on one smooth S-curve (slow start, fast middle, slow finish; a symmetric sigmoid-shaped ease), one motion per beat (40 frames at 60 fps), several objects staggered by 6–8 frames (a lag, not a simultaneous jump); (3) COPY: a duplicate peels off its original as a ghost outline and slides away before it fills; (4) INDICATE: to point at something, it scales to 1.15 and flashes toward white and back in half a beat; (5) EQUATIONS ASSEMBLE TERM BY TERM: every symbol in an equation arrives from a shape on screen: the label 'a²' lifts off the blue square and flies on a gentle arc into its slot, then '+', then 'b²' from the pink square, then '=' writes, then 'c²' from the yellow square; when an equation rearranges, matching terms slide past each other on arcs rather than cross-fading. Variables are Instrument Serif Italic (like printed maths), exponents at 60% size raised by 40%, numbers and operators in Inter 400; the few words are Inter 400 in muted, small. The triangle is a 3:4:5 right triangle (a = 3, b = 4, c = 5 units) so the numeric check reuses it, and a small square marks the right angle. The geometry is closed-form in (a, b): corner positions of the big square of side a + b, the four triangles and the holes are functions of a and b, so the figure can be re-solved live when the legs change. The camera is still; the composition re-centres by translating groups on the same S-curve.",
+  "learnsFrom": "The proof-without-words tradition (Roger B. Nelsen's collection for the Mathematical Association of America, https://bookstore.ams.org/view?ProductCode=CLRM%2F1; the Wikipedia overview, https://en.wikipedia.org/wiki/Proof_without_words), the rearrangement proofs catalogued at cut-the-knot (https://www.cut-the-knot.org/pythagoras/), and the animated maths explainer as practised by 3Blue1Brown with its open-source engine (https://github.com/3b1b/manim): dark ground, one colour per quantity, outlines that write on before they fill, shapes that transform on a smooth S-curve, equations assembled from the shapes. Their colours, scenes, voice and copy are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 240,
+      "what": "the triangle: a right triangle writes itself on in the centre (outline, then fill), its right-angle square appears, then each side lights in its colour and its label writes beside it: 'a' (blue), 'b' (pink), 'c' (yellow) on the hypotenuse; above it, small and muted, 'a right triangle' writes and fades"
+    },
+    {
+      "from": 240,
+      "to": 480,
+      "what": "the claim: squares grow outward from each side (blue on a, pink on b, yellow on c), each labelled 'a²', 'b²', 'c²' at its centre; the labels lift off one at a time and assemble below the figure as 'a² + b² = c²', with a small '?' written above the '='; the '?' pulses once"
+    },
+    {
+      "from": 480,
+      "to": 800,
+      "what": "setup: the side squares fade to ghosts and go; the triangle is copied three times (ghost outlines peel off and fill); an ink square outline of side a + b writes on, with muted braces reading 'a' and 'b' along each edge; the four triangles fly in one per beat, each rotating 90° more than the last, and land in the four corners; the tilted square left in the middle fills yellow and gets its label 'c²'"
+    },
+    {
+      "from": 800,
+      "to": 1120,
+      "what": "rearrange: the whole square slides left and a copy peels off to the right; on the right copy the four triangles slide and rotate, two at a time, into two a × b rectangles in opposite corners; the two empty squares they leave fill blue ('a²') and pink ('b²'); under both squares a muted brace reads 'a + b' and the small line 'same square · same four triangles' writes between them"
+    },
+    {
+      "from": 1120,
+      "to": 1440,
+      "what": "so: the triangles in both squares dim to ghosts; the yellow hole on the left and the blue and pink holes on the right indicate (scale and flash); their labels lift out and assemble centred below as 'c² = a² + b²', then the two sides swap on arcs into 'a² + b² = c²'; for the last two beats the legs a and b stretch and shrink (the triangle gets taller, then wider) and both figures re-solve live, the holes changing shape while the equation stays true"
+    },
+    {
+      "from": 1440,
+      "to": 1680,
+      "what": "a check with numbers: the figures clear back to the 3:4:5 triangle with its three squares, now ruled into unit cells; the cells count in fast (9 blue, 16 pink, 25 yellow) with small counters; the equation assembles term by term as '3² + 4² = 5²' and transforms into '9 + 16 = 25'"
+    },
+    {
+      "from": 1680,
+      "to": 1920,
+      "what": "end: the triangle alone with 'a² + b² = c²' beneath it; one muted line writes under it: 'Named for Pythagoras. Known to the Babylonians about 1,000 years earlier.'; a small yellow square (the end-of-proof mark) writes on at the right of the equation and indicates once; a slow drift holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the triangle and its squares sit in the upper half of the safe area, equations below them at a larger size; in the rearrangement the two big squares stack one above the other (the c² square on top, the a² + b² square below) with the 'same square · same four triangles' line between them and the equation under both; the unit-cell check shows the three squares stacked by size; the end line breaks into two lines. Nothing sits in the top 220 px or the bottom 320 px.",
+  "sound": "beatScore soft at 90 bpm (pad and pluck), a tick as each equation term lands and as each triangle lands in the square (four ticks, one per beat), a whoosh ending on the copy slide (frame 840) and on the side swap (frame 1320), a hit when 'a² + b² = c²' completes after the swap (frame 1320), soft ticks thinned to every third cell while the unit cells count, a hit on '9 + 16 = 25' (frame 1640), and the sign-off at frame 1760.",
+  "teaches": "Move the shapes and the proof explains itself: when each quantity keeps one colour and every symbol in the equation flies out of a shape on screen, the viewer sees why it is true, not just that it is.",
+  "facts": [
+    {
+      "claim": "For a right triangle with legs a and b and hypotenuse c, a² + b² = c².",
+      "source": "https://mathworld.wolfram.com/PythagoreanTheorem.html"
+    },
+    {
+      "claim": "Four copies of the right triangle fit in a square of side a + b leaving a square hole of side c; rearranged in the same square they leave two holes of sides a and b, so c² = a² + b².",
+      "source": "https://www.cut-the-knot.org/pythagoras/"
+    },
+    {
+      "claim": "A triangle with sides 3, 4 and 5 is a right triangle (3² + 4² = 5², 9 + 16 = 25).",
+      "source": "https://mathworld.wolfram.com/PythagoreanTheorem.html"
+    },
+    {
+      "claim": "The theorem is named for Pythagoras but was known to the Babylonians about 1,000 years earlier.",
+      "source": "https://mathshistory.st-andrews.ac.uk/Biographies/Pythagoras/"
+    }
+  ],
+  "portable": {
+    "fonts": "Instrument Serif Italic for the variables, Inter (400) for numbers, operators and the few words",
+    "style": "A maths explainer where shapes do the arguing, on a dark slate ground with crisp vector geometry and no texture. Each quantity keeps one colour for the whole film (side a and its square blue, side b and its square pink, the hypotenuse c and its square yellow); shapes are a 4 px stroke plus a 45% fill of the same colour. Shapes and symbols write on (the outline traces, then the fill fades in), move by interpolating position and rotation on one smooth S-curve, one motion per beat with small staggers, copy themselves as ghost outlines that slide away, and flash-scale to point at something. Equations assemble term by term, each term flying out of the shape it names, and rearrange by sliding matching terms past each other on arcs. The proof: four copies of a 3:4:5 right triangle in a square of side a + b leave a hole of area c²; rearranged in the same square they leave holes of area a² and b², so a² + b² = c². Then the legs stretch and the figure re-solves live, a unit-cell check counts 9 + 16 = 25, and one quiet line notes the theorem was known to the Babylonians about 1,000 years before Pythagoras.",
+    "sound": "a soft pad-and-pluck loop at 90 bpm, a tick per landing term and triangle, whooshes on the copy and the side swap, hits when the equation completes and on 9 + 16 = 25, and a three-note sign-off.",
+    "sizes": "re-stack it: the figure in the upper half with equations below; the two big squares stacked vertically with the comparison line between them; the unit-cell squares stacked by size."
+  }
+}

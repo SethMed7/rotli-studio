@@ -1,0 +1,216 @@
+{
+ "piece": "bauhausBeatSquare",
+ "sizes": [
+  "bauhausBeatSquare",
+  "bauhausBeat"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 66
+    },
+    "landscape": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 77
+    }
+   },
+   "loudness": {
+    "square": -15.7,
+    "landscape": -15.7
+   },
+   "stillFrames": {
+    "square": "identical 0, no windows",
+    "landscape": "identical 0, no windows"
+   },
+   "loopSeam": {
+    "square": "seam 14.83 %, largest inner step 36.20 %, SEAMLESS",
+    "landscape": "seam 12.22 %, largest inner step 27.11 %, SEAMLESS"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 7,
+    "motion": 6,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "at": "00:11.8-00:12.0, 00:23.8-00:00.0",
+     "what": "every Pose number lerps linearly and only the disc and triangle angles take the short way, so bars and rules glide their raw angles: across the mirror line (bar 6 to 7 and the seam) the long vertical bar swings 180 degrees through horizontal and the diagonal rule 90, sweeping across the whole frame in six frames; the triangle spins 180 degrees in B to C (00:03.8); and outBack(1.3) puts its overshoot on those angles, so the landing frames (57-59 of each bar) show bars, rules and the triangle tilted 10-20 degrees: the arrival wobbles instead of landing",
+     "fix": "glide each angle to its nearest symmetric equivalent (bars and rules mod 180, triangle mod 120, square mod 90, disc and arc start the short way round) and ease angles with outCubic (no overshoot); only positions and sizes keep the outBack weight"
+    },
+    {
+     "at": "00:11.8-00:12.0 and 00:23.8-00:00.0 (both sizes)",
+     "what": "the title lerps position, size and angle from the margin into the composition, so for three frames 'three shapes' is set diagonally across the red square, the bars and the circle; leaving bars 1 and 7 it does the same in reverse",
+     "fix": "the title never glides: it lands large on the downbeats of bars 1 and 7 (with the hits at 0 and 360) and snaps back to the margin on beat 4 of those bars, both on the beat grid"
+    },
+    {
+     "at": "all (both sizes, worst in landscape)",
+     "what": "the ground band that shows the score is too small to read at phone size: the hats flick 22 px, the dots are 16 px across, so at 360 px wide the hats are a 7 px twitch (3-4 px in landscape) and the arpeggio a row of specks; the study's premise, shapes playing the score, is illegible in the one place it is literal, and about 70 px of paper under it is unused",
+     "fix": "move the hats down into the unused margin, make them jump about 40 px and scale bar width and dot radius with the band's step (larger in landscape), with a bigger bump on the current red dot"
+    },
+    {
+     "at": "every downbeat",
+     "what": "the beat-1 bass note is absorbed into the recomposition, so the triangle visibly steps only once a bar (beat 3), not on beats 1 and 3 as the brief maps it",
+     "fix": "not fixed this round; would need the triangle to finish its glide half a step early and step on the downbeat"
+    },
+    {
+     "at": "00:16.0-00:18.0 (mirrored C)",
+     "what": "the chord's disc quadrant lands under the triangle and against the circle's arc; in the square it reads as a deliberate stack, in landscape the circle covers the disc with black corners peeking and looks accidental",
+     "fix": "not fixed this round; move the C triangle and circle clear of the bar-9 disc quadrant"
+    }
+   ],
+   "agentSaw": [
+    "the growing title crosses shapes and bars for about 3 frames during the glides into bars 1 and 7",
+    "the overshoot tilts bars and the triangle a few degrees in the last frames of some glides",
+    "in mirrored C (bar 9) the triangle and circle overlap the quarter-disc",
+    "the beat-1 bass step is absorbed into the downbeat recomposition",
+    "the square's 90 degree hit turn only reads while it spins (it is symmetric)"
+   ],
+   "agentMissed": [
+    "the tilt is not a few degrees: bars and rules lerp raw angles, so across the mirror line (00:11.8 and the seam) the long bar swings 180 degrees and the rule 90 through the whole frame, and the triangle spins 180 in B to C; the overshoot on those swings is 10-20 degrees in the landing frames",
+    "the title also crosses the composition leaving bars 1 and 7, not only arriving",
+    "the hats row and arpeggio dots are too small to read at phone size, so the music mapping is invisible where it is most literal",
+    "in landscape mirrored C the circle covering the disc leaves black corners that look accidental"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 61
+    },
+    "landscape": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 76
+    }
+   },
+   "loudness": {
+    "square": -15.7,
+    "landscape": -15.7
+   },
+   "stillFrames": {
+    "square": "identical 0, no windows",
+    "landscape": "identical 0, no windows"
+   },
+   "loopSeam": {
+    "square": "seam 14.04 %, largest inner step 34.96 %, SEAMLESS",
+    "landscape": "seam 12.07 %, largest inner step 26.50 %, SEAMLESS"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 7
+   },
+   "fixed": [
+    "angles glide to their nearest symmetric equivalent (bars and rules mod 180, triangle mod 120, square mod 90, disc and arc the short way) with outCubic and no overshoot; across the mirror line the long bar no longer swings through the frame, the triangle turns 60 degrees instead of 180, and bars land level (positions and sizes keep the outBack weight)",
+    "the title never glides: it lands large on the downbeats of bars 1 and 7 with the hits and snaps back to the margin on beat 4",
+    "the ground band reads at phone size: hats sit in the paper under the dots and jump 40 px, dot radius and hat width scale with the band's step (larger in landscape), the current dot swells more"
+   ],
+   "problems": [
+    {
+     "at": "00:16.0-00:18.0 (mirrored C, landscape)",
+     "what": "the bar-9 chord disc lands behind the circle, which covers its middle and leaves three black corners peeking out: it reads as an accident, not a stack; in the square the circle's arc runs into the disc's edge",
+     "fix": "move the landscape C circle clear of both disc quadrants and turn both C arcs away from the disc"
+    },
+    {
+     "at": "every downbeat",
+     "what": "the beat-1 bass note still has no step of its own; the triangle only visibly steps on beat 3",
+     "fix": "the triangle finishes its glide half a step short at frame 57 and steps onto the downbeat in 3 frames"
+    },
+    {
+     "at": "00:16.0 (square, mirrored C)",
+     "what": "the triangle sits inside the disc (yellow on black); it reads as a deliberate Bauhaus stack, so it is left",
+     "fix": "none needed"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 61
+    },
+    "landscape": {
+     "changesPer10s": 5,
+     "longestCalm": 2,
+     "nearStill": 76
+    }
+   },
+   "loudness": {
+    "square": -15.7,
+    "landscape": -15.7
+   },
+   "stillFrames": {
+    "square": "identical 0, no windows",
+    "landscape": "identical 0, no windows"
+   },
+   "loopSeam": {
+    "square": "seam 13.71 %, largest inner step 35.05 %, SEAMLESS",
+    "landscape": "seam 11.90 %, largest inner step 26.46 %, SEAMLESS"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "landscape C's circle sits between the vertical bar and the rule, clear of the bar-3 disc and (mirrored) the bar-9 disc; its arc opens downward, away from both",
+    "square C's arc opens away from where the bar-9 disc lands when mirrored, so it no longer runs into the disc's edge",
+    "beat 1's bass has its own step: the triangle's glide ends half a module short at frame 57 and it steps onto the downbeat in 3 frames, like beat 3's"
+   ],
+   "problems": [
+    {
+     "at": "every glide, frames 57-59",
+     "what": "bars that turn 90 degrees in a recomposition are still a few degrees off level in the last three frames (outCubic converging, no overshoot); it reads as settling, not wobble",
+     "fix": "none needed"
+    },
+    {
+     "at": "00:16.0-00:18.0 (landscape, mirrored C)",
+     "what": "the moved circle's edge now kisses the bar-9 disc's curve (about 0.2 module clear at rest, near-tangent at the kick peak); at phone size it reads as a tangent between two round forms, not the peeking corners it replaced",
+     "fix": "none needed; if a later pass wants air, trim the arc and nudge the circle up rather than right"
+    },
+    {
+     "at": "00:04.0-00:06.0 (landscape C)",
+     "what": "with the circle moved in, the lower right of layout C is open paper; acceptable asymmetric space",
+     "fix": "none needed"
+    },
+    {
+     "at": "00:06.0, 00:12.0, 00:18.0",
+     "what": "the square's 90 degree hit turn only reads while it spins (it is symmetric); the spin is 12 frames on the hit, which is the event",
+     "fix": "none needed"
+    }
+   ],
+   "verdict": "ship",
+   "checked": "round-3 sheet, phone and fast sheets for both sizes, plus frame strips of the glides into E and mirrored E (234-240, 594-600), where the beat-1 pre-step follows the orbit path: the triangle stays clear and steps visibly onto the downbeat"
+  }
+ ]
+}

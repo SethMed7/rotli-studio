@@ -1,0 +1,56 @@
+{
+  "id": "ascii-cinema",
+  "no": 50,
+  "title": "ASCII Cinema",
+  "module": "src/canvas-core/studies/asciiCinema.ts",
+  "pieces": {
+    "landscape": "asciiCinema",
+    "vertical": "asciiCinemaVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 720,
+  "palette": "amber",
+  "family": "screen",
+  "subject": "fun",
+  "style": "ASCII art animation: every picture in the film is made of characters on one fixed grid, used as pixels. THE GRID: JetBrains Mono 500 at 24 px in cells 14.4 × 24 px at 1080 (about 133 columns by 45 rows in landscape), flat on the amber palette's near-black ground; there is no bezel, no scanlines and no curvature (this is text as a medium, not a CRT). THE RAMP: brightness maps to the ten characters ' .:-=+*#%@' (dark to light); a cell's colour also follows its level: the dim role for levels 1–3, ink for 4–8, the accent for '%' and '@'. PERFORMANCE AND PURITY: render the ramp characters and every letter the film needs ONCE per size and colour into a glyph atlas (an offscreen canvas), then draw each cell with drawImage from the atlas; never fillText 6,000 cells a frame. Every cell is a pure function of (column, row, F): no buffers carried between frames, randomness only from a seeded hash. GLYPH LAW: the pack's JetBrains Mono is subset to Latin, so block and box glyphs (█▓▒░ ─│┌) do not exist; use only printable ASCII in cells, and draw any frame or cursor block as a rect. THE FOUR SCENES: (1) CURSOR AND NOISE: a block cursor (a rect) blinks, types a line, then the grid floods with ramp noise that settles to black. (2) THE TORUS, the classic spinning doughnut: a torus with tube radius 1 and ring radius 2, rotated about two axes by angles A = 0.07·F and B = 0.03·F, projected with a viewer distance of 5, sampled at about 90 × 314 (θ, φ) points per frame, a 1/z depth buffer per cell, luminance from the surface normal dotted with a light from above and behind the viewer, mapped onto the ramp; correct for the cell aspect (0.6) so it is round, not stretched. (3) THE TEXT WATERFALL: every column has a seeded speed (0.3–1 rows per frame) and phase; its falling head is the accent '@', its tail of 8–20 cells fades down the ramp; the character in each tail cell re-rolls every 6 frames from a hash of (column, row, floor(F/6)); a line of words in the middle rows locks into place letter by letter as the rain passes through it. (4) THE PORTRAIT: an invented face (not a likeness of anyone) defined as a luminance field from signed-distance shapes, an oval head, a hair mass, two eyes, a nose shadow, a mouth line and shoulders, lit from the upper left; every cell has a seeded resolve time (earlier near the centre, with noise), before which it flickers through random ramp characters (re-rolled every 2 frames) and after which it shows its target character, so the face resolves out of noise. END: the ramp itself laid out big across the screen, and a title built from a 5×7 bitmap font defined in the module, each lit bitmap pixel a small block of '#' cells. Captions are plain characters in the same grid (ink, one accent word), never an overlay font size.",
+  "learnsFrom": "Andy Sloane's donut.c and its maths (https://www.a1k0n.net/2011/07/20/donut-math.html: a torus projected with a 1/z buffer and shaded onto a character ramp), Paul Bourke's character ramps for greyscale (https://paulbourke.net/dataformats/asciiart/, including the ten-level ' .:-=+*#%@' and the note that characters are taller than wide) and ASCII art as a practice (https://en.wikipedia.org/wiki/ASCII_art). Their code and artworks are not used; the scenes, the face and the words are original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 90,
+      "what": "hello: a block cursor blinks, then types 'hello.' and on the next line 'everything you see here is text.'; the grid floods with ramp noise that drains away row by row"
+    },
+    {
+      "from": 90,
+      "to": 270,
+      "what": "the doughnut: a torus of characters fades up and spins, its lit side in '#', '%' and '@', its shadowed side in '.' and ':'; the caption 'ten characters, one light' types in the bottom rows"
+    },
+    {
+      "from": 270,
+      "to": 420,
+      "what": "the rain: the torus dissolves downward into falling columns; the waterfall fills the screen; in the middle rows 'every glyph is a pixel' locks in letter by letter as the rain passes through it, then lets go"
+    },
+    {
+      "from": 420,
+      "to": 600,
+      "what": "the portrait: the rain slows into flickering noise and an invented face resolves out of it from the centre outward; once complete it blinks once (the eye cells swap to '-' for four frames) and the caption 'a portrait of nobody in particular' types in the bottom rows"
+    },
+    {
+      "from": 600,
+      "to": 720,
+      "what": "end: the face breaks back into noise that sorts itself into the ramp ' .:-=+*#%@' laid out big across the middle; above it 'TEXT MODE' builds from '#' blocks in the bitmap font; below it 'a love letter to text mode'; the cursor blinks after the last word"
+    }
+  ],
+  "sizes": "Vertical re-stacks on the same 24 px grid (about 75 columns by 80 rows): the typed lines wrap to the narrower width; the torus sits centred in the upper half with its caption beneath it; the waterfall fills the frame and its locked-in line breaks onto two rows ('every glyph' / 'is a pixel'); the portrait is taller (head and shoulders) and centred; the end title stacks 'TEXT' over 'MODE' with the ramp and the last line below; all captions stay inside the safe area (220 px top, 320 px bottom).",
+  "sound": "beatScore drive at 120 bpm with the drums entering with the doughnut (drop at 90): a tick for every second typed letter, a whoosh ending at 90 as the noise clears, a whoosh ending at 270 into the rain, soft ticks as the locked-in letters land (thinned), a hit at 540 when the portrait completes, a tick per end-title letter, and the sign-off at 660.",
+  "teaches": "Ten characters are enough for a picture: map brightness to a ramp, keep one grid and a glyph atlas, make every cell a pure function of its position and time, and a spinning doughnut, rain and a face all come out of the same text.",
+  "portable": {
+    "fonts": "JetBrains Mono (500) for everything",
+    "style": "ASCII art animation: every picture is made of characters on one fixed monospace grid used as pixels (24 px type, about 133 columns by 45 rows in landscape), amber on a near-black ground, flat: no bezel, scanlines or curvature. Brightness maps to the ramp ' .:-=+*#%@', dim amber for the faint levels and bright amber-orange for the top two. Pre-render the characters once into a glyph atlas and draw cells from it; every cell is a pure function of its column, row and time, with randomness from a seeded hash. Scenes: a block cursor types a line and the grid floods with noise; the classic spinning doughnut (a torus rotated about two axes, projected with a 1/z depth buffer per cell, shaded by its normal against a light, mapped onto the ramp, corrected for the cells being taller than wide); a waterfall of falling columns with bright heads and fading tails whose characters re-roll every few frames, with a line of words locking in as the rain passes through; an invented face built from signed-distance shapes that resolves out of flickering noise, each cell settling at its own seeded time from the centre outward; and an end with the ramp laid out big, a title built from a 5×7 bitmap font of '#' blocks, and one closing line. Captions are characters in the same grid.",
+    "sound": "a driving loop at 120 bpm whose drums enter with the doughnut, ticks for typed letters, whooshes as the noise clears and into the rain, soft ticks as letters lock in, a hit when the face completes, and a three-note sign-off.",
+    "sizes": "re-stack it on a narrow grid about 75 columns wide: wrap the typed lines, put the doughnut in the upper half with its caption below, break the locked-in line onto two rows, make the portrait head-and-shoulders, and stack the title's two words."
+  }
+}

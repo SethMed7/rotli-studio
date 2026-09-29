@@ -1,0 +1,193 @@
+{
+  "piece": "liquidBlobsVertical",
+  "sizes": [
+    "liquidBlobsVertical",
+    "liquidBlobs"
+  ],
+  "rounds": [
+    {
+      "round": 1,
+      "date": "2026-09-28",
+      "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+      "pace": {
+        "vertical": {
+          "changesPer10s": 0.8,
+          "longestCalm": 21.5,
+          "nearStill": 48
+        },
+        "landscape": {
+          "changesPer10s": 0.8,
+          "longestCalm": 21.6,
+          "nearStill": 52
+        }
+      },
+      "loudness": {
+        "vertical": -15.9,
+        "landscape": -15.9
+      },
+      "stillFrames": {
+        "vertical": "windows: none",
+        "landscape": "windows: none"
+      },
+      "scores": {
+        "vertical": {
+          "hook": 6,
+          "readability": 7,
+          "motion": 7,
+          "variety": 7,
+          "composition": 7,
+          "accuracy": 10,
+          "sync": 8
+        },
+        "landscape": {
+          "hook": 6,
+          "readability": 5,
+          "motion": 7,
+          "variety": 7,
+          "composition": 6,
+          "accuracy": 10,
+          "sync": 8
+        }
+      },
+      "problems": [
+        {
+          "at": "00:00.0-00:01.2",
+          "what": "the hook is an empty pink frame: at frame 0 only the bottom edge of the drop shows at the top, the splash waits until 1.0 s and the first headline letter until 1.2 s",
+          "fix": "start with the drop inside the frame, land and splash on beat 1 (0.5 s), and start the headline with the splash"
+        },
+        {
+          "at": "00:03.5-00:07.0",
+          "what": "the free-window tags are 31 px (vertical) and 26 px (landscape): unreadable at phone width in landscape, marginal in vertical; the booked pills (00:19.5-00:22.0) are the same size",
+          "fix": "set every tag at 44 px; make room for them (vertical: a taller diamond and tags clamped to the safe area; landscape: tags and booked pills staggered above and below the row)"
+        },
+        {
+          "at": "00:08.5-00:11.5",
+          "what": "merges are soft: each pair sits necked for about 30 frames and then glides together; nothing marks the merge but a whoosh",
+          "fix": "an accelerating approach so the neck forms only in the last few frames, a fast spring snap that completes on the merge frame, a bigger overshoot, and a hit on each merge"
+        },
+        {
+          "at": "00:21.0-00:22.2",
+          "what": "the liquid wipe reads as the light gloss violet, not solid deep: the f = 1.8 gloss contour of the huge wipe ball covers almost the whole frame",
+          "fix": "paint the wipe ball's own surface in solid deep over the gloss"
+        },
+        {
+          "at": "00:22.0-00:22.8",
+          "what": "while the wipe drains, its field swells the lockup blob and pulls a neck from it down through the wordmark; in landscape the blob covers the 'O' of 'Oriel'",
+          "fix": "after the frame is covered, draw the draining wipe as its own circle over a lockup-blob field that does not include it"
+        },
+        {
+          "at": "00:19.5-00:20.2",
+          "what": "the 'booked' copy fades in while the landing droplet is still a pointed lemon shape half turned into a pill",
+          "fix": "start the copy only after the pill has formed; soften the landing squash"
+        },
+        {
+          "at": "all",
+          "what": "every blob reads as a light violet plate with a thin deep rim, not deep goo with a highlight: the f = 1.8 contour of an r²/d² field sits at about 0.75 r, so the brief's 'only highlight' covers over half the area",
+          "fix": "the brief's number and its intent disagree; raise the gloss level (about 2.6) only if composition stays under 8"
+        },
+        {
+          "at": "00:18.0",
+          "what": "the pinch-off satellite droplets are almost all gloss, so they read as light dots rather than tiny deep drops",
+          "fix": "minor; a consequence of the gloss level"
+        }
+      ],
+      "agentSaw": [
+        "hook: frame 0 mostly empty pink, headline only at 1.2 s",
+        "landscape tags (26 px) small at phone width",
+        "the wipe reads as the lighter gloss violet, not solid deep",
+        "the tiny pinch droplets show as light dots",
+        "tags pass through a pointed lemon shape (~596-604)",
+        "long necks before merges (~30 frames), so merges are not snappy",
+        "the lockup blob briefly overlaps the wordmark while draining"
+      ],
+      "agentMissed": [
+        "the vertical tags (31 px) are also under the 44 px bar, and the booked pills share the problem",
+        "the blobs read as light plates with a thin rim because the gloss covers over half of each blob",
+        "merges have no sound hit and no visual punch; the only punch in 24 s is the wipe (pace: one abrupt change, 21.5 s longest calm)",
+        "in landscape the lockup blob's neck covers the 'O' of the wordmark, not just touches it"
+      ],
+      "verdict": "fix"
+    },
+    {
+      "round": 2,
+      "date": "2026-09-28",
+      "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+      "pace": {
+        "vertical": {
+          "changesPer10s": 0,
+          "longestCalm": 24,
+          "nearStill": 45
+        },
+        "landscape": {
+          "changesPer10s": 0,
+          "longestCalm": 24,
+          "nearStill": 52
+        },
+        "note": "the metric counts whole-frame mean shifts over 18 grey levels; on a flat pink ground with small blobs only a full-frame event can trip it, and the wipe no longer holds a solid frame (round 1's single 'change' was that hold). Variety is scored by eye: splash at 0.5 s, tags on each beat, three snapped merges with hits, the card hit, four landings, the wipe."
+      },
+      "loudness": {
+        "vertical": -16.0,
+        "landscape": -16.0
+      },
+      "stillFrames": {
+        "vertical": "identical: 0, windows: none",
+        "landscape": "identical: 0, windows: none"
+      },
+      "scores": {
+        "vertical": {
+          "hook": 8,
+          "readability": 8,
+          "motion": 8,
+          "variety": 8,
+          "composition": 8,
+          "accuracy": 10,
+          "sync": 8
+        },
+        "landscape": {
+          "hook": 8,
+          "readability": 8,
+          "motion": 8,
+          "variety": 8,
+          "composition": 8,
+          "accuracy": 10,
+          "sync": 8
+        }
+      },
+      "fixed": [
+        "hook: the drop is inside the frame at frame 0, lands at frame 10 and splashes on beat 1 (frame 15, 0.5 s); 'Four calendars.' starts at frame 14 with a faster letter stagger and is whole by about 0.9 s",
+        "merges: the approach starts gently and then accelerates (t⁴), so each neck lives about 8 frames, and a fast spring (3.2 Hz) snaps the merge on its frame with a larger overshoot; the vertical pairs ease apart while they form so the final merge has pink to close; a hit now sounds on each merge (270, 300, 345)",
+        "tags: 44 px in both sizes (were 31 and 26); vertical diamond stretched (740 / 1070 / 1400) and tags clamped to the safe area; landscape tags and booked pills alternate above and below the row so they never collide; booked pills 390 × 88",
+        "wipe: the wipe ball's own surface is painted solid deep over the gloss, it covers the frame exactly on the whoosh (660) and drains from the next frame (no dead hold); after 660 it is drawn as its own circle over a lockup-blob field that does not include it, so the lockup blob never necks through the wordmark",
+        "booked copy appears only after the pill has formed (land + 14), and the landing squash is softer",
+        "mix gain 0.68 -> 0.77: the added hits raised the peak of the peak-normalised mix and pulled it to -17.1 LUFS; now -16.0"
+      ],
+      "cueChanges": [
+        "splash tick pair moved from frames 30/33 to 15/18 (the brief's cue table says 30)",
+        "hits added on the merges at 270, 300 and 345, alongside the brief's whooshes"
+      ],
+      "problems": [
+        {
+          "at": "all",
+          "what": "the blobs still read as light plates with a deep rim, because the brief's f = 1.8 gloss covers over half of each blob",
+          "fix": "a brief-level choice; raise the gloss level to about 2.6 if the owner wants a true highlight"
+        },
+        {
+          "at": "00:18.0",
+          "what": "the pinch-off satellite droplets still read as light dots (mostly gloss)",
+          "fix": "follows the gloss level"
+        },
+        {
+          "at": "00:19.6-00:20.0",
+          "what": "each landing droplet passes through a pointed lemon shape for a few frames as the pill field forms; no copy sits on it any more",
+          "fix": "none needed"
+        },
+        {
+          "at": "00:17.0",
+          "what": "'Thu · 3:00 pm' fades while the card starts to drain, so for a few frames it shows as broken letter shapes",
+          "fix": "fade the copy out two or three frames earlier if it bothers"
+        }
+      ],
+      "verdict": "ship"
+    }
+  ]
+}

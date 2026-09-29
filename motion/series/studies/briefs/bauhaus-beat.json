@@ -1,0 +1,51 @@
+{
+  "id": "bauhaus-beat",
+  "no": 34,
+  "title": "Bauhaus Beat",
+  "module": "src/canvas-core/studies/bauhausBeat.ts",
+  "pieces": {
+    "square": "bauhausBeatSquare",
+    "landscape": "bauhausBeat"
+  },
+  "primary": "square",
+  "kind": "video",
+  "fps": 30,
+  "bpm": 120,
+  "frames": 720,
+  "palette": "bauhaus",
+  "family": "shape",
+  "subject": "fun",
+  "style": "A pure music visual, a seamless 12-bar loop, in the Bauhaus and constructivist manner: flat geometric composition on cream paper where the shapes PLAY the score. The cast, each always in its own colour: one blue circle (accent2), one red square (accent), one yellow triangle (s1), black bars and arcs (ink), and thin black rules. Flat fills only, no outlines, no gradients, no shadows, no texture beyond a very faint paper speckle (seeded, static). Shapes may overlap; where they do, the later one simply covers the earlier (flat print). The composition lives on a module grid (square: 6 × 6; landscape: 10 × 6) and every resting position is on it. THE MUSIC DRIVES THE PICTURE from the same numbers the score uses (beatScore drive at 120 bpm: a kick on every beat, bass on beats 1 and 3, a four-chord cycle that changes every bar, hats on the off-sixteenths and a sixteenth-note arpeggio whose pattern of chord tones is 0, 1, 2, 1, 0, 2, 1, 2): compute beat, bar and sixteenth positions from the frame (one beat = 15 frames, a sixteenth = 3.75 frames, fractional), never from audio analysis. The mapping: the KICK pulses the blue circle (scale 1 + 0.08 × exp(−t / 4 frames) after each beat); the BASS on beats 1 and 3 moves the yellow triangle one half-module along its current path, landing exactly on the note in 3 frames; the CHORD sets the angle of a large black quarter-disc anchored to a corner (0°, 90°, 180°, 270° for the four chords, so it returns to its start every four bars); the HATS flick a row of eight short black bars at the bottom edge (the bar for the current off-sixteenth jumps up and decays); the ARPEGGIO is a row of sixteen small dots whose heights follow the chord-tone pattern, the current step red; each added HIT (bars 1, 4, 7 and 10) turns the red square 90° with a hard ease-out. RECOMPOSITION on every bar: the whole composition (positions and sizes of circle, square, triangle, bars and arcs) glides to the next of six authored layouts during the last 6 frames of the bar and LANDS on the downbeat; bars 1–6 play layouts A–F, bars 7–12 play them mirrored left to right with the ground elements swapped, and bar 12 glides into layout A so frame 720 equals frame 0. The only words are a title in the Bauhaus spirit, all lowercase, Inter 800: 'three shapes' set large as part of the composition in bars 1 and 7 (along a black bar, reading upward in one of them), and small in the bottom-left margin for the rest of the loop, always present so the loop is seamless.",
+  "learnsFrom": "Wassily Kandinsky's Bauhaus colour-form teaching (yellow triangle, red square, blue circle; https://artsandculture.google.com/story/bauhaus-the-importance-of-shapes-the-centre-pompidou/OwURAJwcVUkTow) and Oskar Fischinger's visual music, abstract shapes cut to a score (https://www.centerforvisualmusic.org/Fischinger/OFBio.htm): flat primary geometry, compositions that rebalance, shapes that move on the music's events. Their paintings, films, music and compositions are not used; the six layouts here are original.",
+  "story": [
+    {
+      "from": 0,
+      "to": 180,
+      "what": "bars 1–3: layout A lands on the first downbeat with the title 'three shapes' set large along a black bar; the circle pulses on every kick, the triangle steps on the bass, the hats bar row and the arpeggio dots run along the bottom; the red square turns 90° on the hit at frame 0; bars 2 and 3 recompose into layouts B and C, the title shrinking to the bottom-left margin"
+    },
+    {
+      "from": 180,
+      "to": 360,
+      "what": "bars 4–6: a hit at frame 180 turns the square; layouts D, E and F land one per bar; the quarter-disc rotates with each chord; in layout E the circle grows to fill a third of the frame and the other shapes orbit its edge"
+    },
+    {
+      "from": 360,
+      "to": 540,
+      "what": "bars 7–9: the mirrored pass begins; layout A mirrored lands with 'three shapes' set large again, this time reading upward along a vertical bar; a hit turns the square at frame 360; the ground elements have swapped sides (the quarter-disc now anchors the opposite corner)"
+    },
+    {
+      "from": 540,
+      "to": 720,
+      "what": "bars 10–12: a hit at frame 540; mirrored D, E and F; during the last 6 frames of bar 12 everything glides into layout A, landing exactly as the loop restarts"
+    }
+  ],
+  "sizes": "Square (1:1) is primary on a 6 × 6 module grid with the hats row and the arpeggio dots along the bottom margin. Landscape (16:9) re-authors the six layouts on a 10 × 6 grid: the circle and square sit apart on the wide axis, the triangle travels the long horizontal paths, the quarter-disc anchors the right edge, the hats row and arpeggio dots run in a band across the bottom, and the title sits at the left margin; the mirrored pass mirrors across the vertical centre line.",
+  "sound": "beatScore drive at 120 bpm with loop: true (tails wrap), drums from frame 0 (no drop), added hits at frames 0, 180, 360 and 540 (they turn the red square), no whooshes, no sign-off (it is a loop), and no ticks: the score's own kick, bass, chords, hats and arpeggio are what the shapes play, computed from the same beat grid.",
+  "teaches": "When picture and sound are computed from the same numbers, every hit can move something: give each instrument one shape and one kind of motion, recompose on the bar, and a still composition becomes a piece of music you can watch.",
+  "portable": {
+    "fonts": "Inter (800) for the lowercase title",
+    "style": "A seamless music visual in the Bauhaus manner on cream paper: one blue circle, one red square, one yellow triangle, black bars, arcs and thin rules, flat fills only, on a module grid. The shapes play the music, computed from the same beat grid as the soundtrack rather than from audio analysis: the circle pulses on each kick, the triangle steps half a module on each bass note, a large black quarter-disc rotates 90° with each chord change, a row of eight short bars flicks on the hi-hats, a row of sixteen dots traces the arpeggio with the current step in red, and the square turns 90° on each accent hit. On every bar the whole composition glides to the next of six hand-authored layouts during the last few frames and lands on the downbeat; the second half plays the layouts mirrored; the last bar glides back into the first so the loop is seamless. The only words are a lowercase title, 'three shapes', set large into the composition twice and small in the margin the rest of the time.",
+    "sound": "a driving four-chord synth loop at 120 bpm with kick on every beat, bass on beats 1 and 3, hi-hats and an arpeggio, plus four accent hits; it loops seamlessly with no sign-off.",
+    "sizes": "square first on a 6 × 6 grid; landscape re-authors the layouts on a 10 × 6 grid with the bar and dot rows in a band along the bottom."
+  }
+}
