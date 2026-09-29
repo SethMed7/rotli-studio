@@ -1,0 +1,93 @@
+{
+  "id": "pendulum-wave",
+  "no": 42,
+  "title": "Pendulum Wave",
+  "module": "src/canvas-core/studies/pendulumWave.ts",
+  "pieces": {
+    "square": "pendulumWaveSquare",
+    "landscape": "pendulumWave"
+  },
+  "primary": "square",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 120,
+  "frames": 1920,
+  "palette": "graphite",
+  "family": "learn",
+  "subject": "learn",
+  "style": "A calm physics-lab demonstration on the graphite ground, drawn as a clean instrument, not a cartoon. FIFTEEN uncoupled pendulums hang from one horizontal bar; the whole piece is ONE closed-form system and the seamless loop is the lesson. Let the cycle be G = 32 s (the whole piece, 1920 frames). Pendulum k (k = 0 … 14, longest first) makes N_k = 24 + k full swings per cycle, so its angle is theta_k(t) = A · cos(2π · N_k · t / G) with A = 12° (inside the small-angle range where the simple formula holds) and t = F / 60. Every theta is therefore identical at F = 0 and F = 1920: the loop is exact, with no easing or cross-fade. Lengths follow from the period, L_k = g · (G / (2π · N_k))² with g = 9.81 m/s²: 44.2 cm for the longest down to 17.6 cm for the shortest (pendulum 8 has a period of exactly 1.000 s); draw them to true relative scale. Because 24 is divisible by 2, 3, 4 and 6, at t = G/q the phase of pendulum k is exactly 2πk/q, so the row splits into q interleaved groups (every q-th pendulum swings in step with the others of its group) and the trace repeats every q dots; note that at that instant two groups can share a position while moving in opposite directions, so show the groups a few frames either side of the exact frame too: four groups at 8 s (frame 480), three at 10.67 s (frame 640), two opposite rows at 16 s (frame 960), three again at 21.33 s (frame 1280), four at 24 s (frame 1440), all aligned at 0 and 32 s. MAIN VIEW: an oblique three-quarter view looking along the bar from one end and slightly below, as the demonstration is usually filmed: the bar is a 6 px surface-coloured rail with a 1 px ink highlight, receding in simple perspective (a one-point projection written in the module; nearer pendulums larger), each pendulum a 1.5 px ink string (muted alpha 0.7) and a bob (a sphere: radial gradient from ink at the upper left to surface at the rim, 30 px at 1080 for the nearest, scaled by depth). Each bob swings across the screen (perpendicular to the bar), displacement L_k · sin(theta_k). The longest pendulum's bob is the accent colour so the eye can follow one; the rest are ink. A faint floor plane (line colour, 1 px grid, alpha 0.35) sits under the bobs and each bob casts a small soft ellipse shadow (black, alpha 0.35) whose x follows the bob: the only shadow in the piece. SECOND VIEW, the trace: a flat 'from above' strip where the 15 bobs are 14 px dots evenly spaced left to right and their displacement is drawn vertically, joined by a 3 px accent2 polyline, so the travelling waves, the zig-zag at half time and the clean groups read as shapes; behind it a 1 px line-colour centre axis and faint tick marks. A thin progress ring (1 px line colour, with a 3 px accent2 arc that sweeps from 0 to 360° over the cycle and a small dot at the tip) sits beside the trace with the elapsed time in JetBrains Mono ('t = 16.0 s', counting real time, wrapping to 0.0 at the loop). Pattern moments are called out by a small outlined pill in JetBrains Mono that pops on a spring exactly on the frame ('¼ · four groups', '⅓ · three groups', '½ · two rows', '⅔ · three groups', '¾ · four groups') and fades after two beats. Captions: Inter 600 headline (60 px at 1080) in ink, left-aligned, with a single muted Inter 400 line under it (34 px); they arrive word by word on springs and leave by fading up 12 px. A small formula card (surface fill, 1 px line border, radius 14 px) shows 'T = 2π√(L/g)' in JetBrains Mono (40 px) with the line 'four times the length, twice the time'. Everything is flat and quiet: no glow, no blur. The camera makes a very slow sinusoidal drift of ±1.5° in yaw with period G, so it too returns to the same place at the loop. Nothing is simulated: every caption, pill and ring value is a function of F on the same cycle.",
+  "learnsFrom": "The pendulum-wave demonstration: Harvard's Natural Sciences Lecture Demonstrations page (https://sciencedemonstrations.fas.harvard.edu/presentations/pendulum-waves) and the Wikipedia article (https://en.wikipedia.org/wiki/Pendulum_wave), which describe fifteen uncoupled pendulums whose lengths are tuned so each completes one more oscillation than the last in a fixed time and all realign at the end of the cycle; and the simple-pendulum period T = 2π√(L/g) as taught in OpenStax University Physics (https://openstax.org/books/university-physics-volume-1/pages/15-4-pendulums). Their apparatus, footage, photos and 60-second tuning are not used; the 32-second tuning here is the module's own.",
+  "story": [
+    {
+      "from": 0,
+      "to": 240,
+      "what": "in step (this is also the state the loop returns to): all fifteen pendulums swing together so they read as one; the trace is a flat line swinging up and down as a whole; the headline 'Fifteen pendulums.' with the muted line 'Each one swings on its own.' is already on screen at frame 0 and fades up and out by frame 210; the progress ring is at its start"
+    },
+    {
+      "from": 240,
+      "to": 450,
+      "what": "the rule: they begin to drift apart and a gentle travelling wave (a snake) runs along the row; the formula card slides in from the side on a spring: 'T = 2π√(L/g)' and 'four times the length, twice the time'; the headline 'Shorter string, faster swing.'"
+    },
+    {
+      "from": 450,
+      "to": 600,
+      "what": "the tuning: the trace becomes a tighter wave and at frame 480 falls into four clean groups; the pill '¼ · four groups' pops exactly at 480; the headline 'Tuned to fit one more swing' with the muted line 'The longest: 24 swings in 32 s. The shortest: 38.'"
+    },
+    {
+      "from": 600,
+      "to": 870,
+      "what": "at frame 640 the row splits into three groups ('⅓ · three groups' pops on that frame); then the motion looks tangled; the headline 'It only looks random.' with the muted line 'Every swing is set by a length.'"
+    },
+    {
+      "from": 870,
+      "to": 1050,
+      "what": "half time: at frame 960 the pendulums form two perfectly opposite rows, the trace a sharp zig-zag; the pill '½ · two rows' pops; no headline, only a slow push of 4% on the main view so the zig-zag is the picture"
+    },
+    {
+      "from": 1050,
+      "to": 1410,
+      "what": "the way back: three groups again at frame 1280 ('⅔ · three groups'); the headline 'Same lengths, same dance.' with the muted line 'Small swings, no friction: an ideal model.'; the formula card returns briefly beside the trace"
+    },
+    {
+      "from": 1410,
+      "to": 1680,
+      "what": "four groups at frame 1440 ('¾ · four groups'); the waves lengthen as the phases close up; the headline 'Every one finishes whole swings…'"
+    },
+    {
+      "from": 1680,
+      "to": 1920,
+      "what": "realign: '…so at 32 s they line up again.' holds until frame 1830 and fades; the trace flattens into one line; the progress ring completes; from frame 1860 the opening headline 'Fifteen pendulums.' / 'Each one swings on its own.' fades back in so that frame 1920 is exactly frame 0"
+    }
+  ],
+  "sizes": "Square (primary): captions sit in the top quarter of the safe area; the oblique main view fills the middle; the trace strip runs full width under it with the progress ring and timecode at its right end; the formula card overlaps nothing (it takes the caption's place when shown). Landscape re-stacks into two columns: the main view takes the left 60% at full height, and the right column stacks the caption, the formula card, the trace strip (narrower, dots closer) and the progress ring. Pills sit above the trace in both.",
+  "sound": "beatScore soft at 120 bpm with loop:true and NO sign-off (a sign-off stops the loop and breaks the seam); 1920 frames is 64 beats, exactly four turns of the 16-beat chord cycle, so the music loops as cleanly as the picture: do not retime it. A whoosh that ends on frame 0 (its tail wraps to the end of the file) lands the realignment; ticks on the pattern frames 480, 640, 960, 1280 and 1440. On top, a module-local layer makes the phasing audible: each pendulum plays a very quiet pluck from a pentatonic scale (longest lowest) at each right-hand turning point, at the exact sample t = G · m / N_k, wrapped so the loop is seamless: a single chord when they align, a shimmer between.",
+  "teaches": "A loop can be exact rather than faked: when every moving part is a closed-form function whose periods all divide the length of the piece, the last frame is the first frame and no cross-fade is needed.",
+  "facts": [
+    {
+      "claim": "A pendulum wave is a row of uncoupled simple pendulums of increasing length; each completes one more oscillation than the last in a fixed time, and after that time they come back in sync.",
+      "source": "https://en.wikipedia.org/wiki/Pendulum_wave"
+    },
+    {
+      "claim": "The period of a simple pendulum is T = 2π√(L/g), so a pendulum four times as long takes twice as long per swing ('shorter string, faster swing').",
+      "source": "https://openstax.org/books/university-physics-volume-1/pages/15-4-pendulums"
+    },
+    {
+      "claim": "The simple formula holds for small swings (under about 15°); the period does not depend on the mass or on the size of the swing. The piece uses 12°.",
+      "source": "https://openstax.org/books/university-physics-volume-1/pages/15-4-pendulums"
+    },
+    {
+      "claim": "The patterns seen include travelling waves, standing waves and apparently random motion.",
+      "source": "https://en.wikipedia.org/wiki/Pendulum_wave"
+    },
+    {
+      "claim": "In this piece's tuning (24 to 38 swings in 32 s, g = 9.81 m/s²) the lengths run from about 44 cm to about 18 cm; these follow from T = 2π√(L/g) and are the module's own numbers, not a real apparatus.",
+      "source": "https://openstax.org/books/university-physics-volume-1/pages/15-4-pendulums"
+    }
+  ],
+  "portable": {
+    "fonts": "Inter (400 and 600) for captions, JetBrains Mono for the formula, the pattern pills and the timecode",
+    "style": "A calm physics-lab demonstration on a near-black ground. Fifteen uncoupled pendulums hang from one bar; pendulum k makes 24 + k full swings in a 32-second cycle, so its angle is A·cos(2π(24+k)t/32) with A = 12°, and its length follows from T = 2π√(L/g) (about 44 cm down to about 18 cm, drawn to scale). Everything is a closed-form function of time, so the last frame equals the first and the video loops exactly. Main view: a three-quarter view looking along the bar from one end and slightly below, with simple perspective; thin strings, shaded sphere bobs, one bob in the accent colour to follow, small soft floor shadows under the bobs. Second view: a flat strip with the fifteen bobs as dots in a row, their displacement drawn vertically and joined by a line, so waves, the zig-zag at half time and the clean groups at a quarter, a third, a half, two thirds and three quarters of the cycle read as shapes. A thin progress ring and a mono timecode show where you are in the cycle; a small mono pill names each pattern exactly on its frame. Captions are short, left-aligned, bold sans with one quiet line under them; a small card shows T = 2π√(L/g) with 'four times the length, twice the time'. No glow, no blur.",
+    "sound": "a soft looping bed at 120 bpm whose length is exactly four turns of its chord cycle, no sign-off; a whoosh that lands on the loop point; soft ticks on each named pattern; and a very quiet pentatonic pluck from each pendulum at each of its turning points, so the phasing is audible and everything chimes together when they align.",
+    "sizes": "square: captions at the top, the pendulums in the middle, the dot-trace strip full width below; landscape: pendulums on the left 60%, and captions, formula card, trace and progress ring stacked on the right."
+  }
+}

@@ -1,0 +1,176 @@
+{
+ "piece": "seasonsOrrery",
+ "sizes": [
+  "seasonsOrrery",
+  "seasonsOrreryVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 34,
+     "nearStill": 74
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 34,
+     "nearStill": 79
+    }
+   },
+   "loudness": {
+    "landscape": -16.0,
+    "vertical": -16.0
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 8,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "at": "00:02.7-00:04.3",
+     "what": "the 'closest: early January' tag is ground-coloured text on an accent box that fades: at partial alpha the text vanishes into the navy while the box still reads, so for about half a second on each side it is an empty dim-red rectangle; and at 30 px it is the smallest line in the hook, though it carries the answer",
+     "fix": "the tag slams in whole on the 90 hit (scale overshoot, full alpha in two frames) at 44 px and leaves by collapsing, never by a fade"
+    },
+    {
+     "at": "00:03.0-00:04.3",
+     "what": "the hook's answer has no punch: the hit at frame 90 lands on a muted 44 px second line fading in word by word, then 3.7-4.3 s has no caption at all; the piece never says the answer (the tilt) until the end card",
+     "fix": "'It's the tilt.' slams in on a new hit at frame 120 (the cut into the tilt beat), large, with an overshoot, and holds through the push-in"
+    },
+    {
+     "at": "00:00.0-00:10.8 (vertical)",
+     "what": "the hook and the tilt beat leave the lower third empty (the machine sits at mid-frame and nothing is below it until the dial at 9.2 s and the inset at 10.8 s)",
+     "fix": "in the vertical the tag lands in the lower third and 'It's the tilt.' holds there through the tilt beat"
+    },
+    {
+     "at": "00:17.0-00:21.0",
+     "what": "the beam's spread, the film's central proof, is a glide: the counter's number bumps 14% and the lit patch grows smoothly; nothing lands",
+     "fix": "each count change flashes the newly lit squares and kicks the counter harder; the last count lands with a snap"
+    },
+    {
+     "at": "00:21.0-00:22.0",
+     "what": "the June/December swap does not land: the dial fades back in while the big inset is still shrinking, so the dial and its label peek out from under the inset (an accidental overlap in both sizes), and the rod's south-end flash is at frame 662, off the beat grid",
+     "fix": "the inset shrinks by frame 645; the dial slams back in on a new hit at 645 with the day arc snapping under half, and the south end flashes on the same frame"
+    },
+    {
+     "at": "00:10.0, 00:21.5 (vertical)",
+     "what": "the vertical's wraps leave orphans: 'Sun.' alone under the June headline, 'summer.' alone under its second line, 'turn.' alone under the December headline",
+     "fix": "balanced wrapping (the narrowest width that keeps the line count), so no line is a single word"
+    },
+    {
+     "at": "00:27.0-00:28.5",
+     "what": "at the March pause the enlarged Earth grows down into the Sun's rings (the far point sits just above the Sun), crowding the subsolar point the equinox line is aiming at; the March ghost also clips the outer ring",
+     "fix": "the live Earth grows upward from its post (its bottom stays put) at the equinox pauses"
+    },
+    {
+     "at": "all",
+     "what": "secondary labels are small for a phone: inset labels ('Jun noon at 40° N · same beam', 'squares lit') and the dial label 24 px; 'a place at 40° N' 30 px; the end card's 3% fact line 30 px",
+     "fix": "the beam label at 44 px while the inset is big (its beat); 'a place at 40° N' and the 3% line at 44 px"
+    }
+   ],
+   "agentSaw": [
+    "variety 7: 0 abrupt changes per 10 s, longest calm 34 s, 74-79% near-still; it glides",
+    "the hook tag's text disappears before its box (about frames 118-128), leaving an empty accent rectangle",
+    "the vertical's June second line wraps 'summer.' alone",
+    "the vertical's hook and tilt beats (0-255) leave the lower third empty",
+    "the March ghost Earth sits partly behind the Sun's rings",
+    "the 'same beam' note and the 24 px inset labels are small on a phone"
+   ],
+   "agentMissed": [
+    "the empty tag box also appears on the way in (about 2.7 s), not only on the way out, because the text is ground-coloured",
+    "3.7-4.3 s has no caption at all and the hook's hit lands on a muted fading second line: the answer never slams",
+    "the vertical also orphans 'Sun.' and 'turn.' in the June and December headlines, not only 'summer.'",
+    "at 21 s the dial fades back in under the still-shrinking inset: the dial and its label peek out from behind it in both sizes",
+    "the south-end flash (662) and the ghost flash (250) are off the beat grid",
+    "the enlarged March Earth at the equinox pause grows into the Sun's rings, not only the ghost",
+    "the protractor measures the projected rod (about 25.5° on screen at this viewing angle) under a '23.4°' label; acceptable in a not-to-scale diagram whose headline says 'about', noted only"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 34,
+     "nearStill": 71
+    },
+    "vertical": {
+     "changesPer10s": 0,
+     "longestCalm": 34,
+     "nearStill": 76
+    }
+   },
+   "loudness": {
+    "landscape": -16.4,
+    "vertical": -16.4
+   },
+   "stillFrames": {
+    "landscape": "windows: none",
+    "vertical": "windows: none"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "all",
+     "what": "changesPer10s still reads 0 and longestCalm 34 s: the tool counts frame differences above its threshold (cuts, flips), which one continuous camera never makes and scale slams on text don't cross; variety is scored from the sheet instead (tag slam 3.0 s, 'It's the tilt.' slam 4.0 s, protractor 5 s, ghosts 7 s, June whoosh 8.5 s, dial pop 13 s, count kicks 17-21 s, the swap slam 21.5 s, the equinox pauses 27-30 s, the end card 31 s)",
+     "fix": "none; a cut would fight the one-machine idea"
+    },
+    {
+     "at": "all",
+     "what": "a few secondary labels are still small: the dial's 'day · night at 40° N' 24 px, the month labels 24 px (the brief's size), 'squares lit' and the beam label 26 px in the small card (they are 36 and 44 px in the beam beat, where they matter)",
+     "fix": "none this round; they label, they don't teach"
+    },
+    {
+     "at": "00:04.3-00:10.8 (vertical)",
+     "what": "a flat ground band sits behind 'It's the tilt.' so the pushed-in ring stops at its edge rather than running through the words; it reads as a caption band, not a glow",
+     "fix": "none needed"
+    },
+    {
+     "at": "00:05.0-00:06.5",
+     "what": "the protractor measures the projected rod (about 25.5° on screen at this viewing angle) under the '23.4°' label; the headline hedges 'about' and the footer says 'not to scale'",
+     "fix": "none; noted for accuracy 9"
+    },
+    {
+     "at": "cue table",
+     "what": "the hits at 120 ('It's the tilt.') and 645 (the December swap) and the answer line itself are additions to the brief's story and cue table, made on the caller's priorities; the brief's 0-120 hook and the tilt beat's headline still play as written",
+     "fix": "none"
+    }
+   ],
+   "fixed": [
+    "the hook tag 'closest: early January' slams in whole on the 90 hit at 44 px (a spring scale with overshoot) and collapses on 120; it is never faded, so the empty accent box is gone at both ends",
+    "the answer 'It's the tilt.' (fact: the tilt is why Earth has seasons) slams in on a new hit at 120 with an overshoot kick, 104 px top right in landscape (clear of the headline) and 112 px in the vertical's lower third, and holds through the tilt beat, leaving before the June whoosh",
+    "vertical lower third used from 3 s: the tag lands at 1385 px on an accent leader from the Earth's post and the slam holds at 1600 px through 4-8.3 s; the tilt push-in centres the Earth higher (870 px) so the machine and the words don't collide",
+    "the beam's spread lands count by count: each change flashes the lit patch toward ink and lifts it 6 px, and the counter kicks 40% (was 14%) at up to 88 px; the beam label is 44 px ('Jun noon at 40° N · same beam') while the card is big",
+    "the December swap: the inset is back to small by 645, and on a new hit at 645 the dial slams in with its day arc springing from June's long day to December's short one (flash and overshoot) while the rod's south end flashes; the dial no longer peeks out from under the shrinking inset",
+    "the ghost-rod flash moved from 250 to 255 (on the June whoosh) and the south-end flash from 662 to 645: every landing is on the beat grid",
+    "balanced wrapping: no lone 'Sun.', 'turn.' or 'summer.' in the vertical",
+    "the March Earth grows upward off its post at the equinox pause, clear of the Sun's rings; the equinox line and subsolar dot follow the lifted centre",
+    "'a place at 40° N' at 44 px (two lines in landscape, raised in the vertical, both clear of the March ghost); the end card's 3% line at 44 px"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

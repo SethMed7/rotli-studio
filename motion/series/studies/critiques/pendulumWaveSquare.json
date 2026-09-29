@@ -1,0 +1,215 @@
+{
+ "piece": "pendulumWaveSquare",
+ "sizes": [
+  "pendulumWaveSquare",
+  "pendulumWave"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 0
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 1
+    }
+   },
+   "loudness": {
+    "square": -16.0,
+    "landscape": -16.0
+   },
+   "stillFrames": {
+    "square": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "loopSeam": {
+    "square": "2.25% · SEAMLESS",
+    "landscape": "1.46% · SEAMLESS"
+   },
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 8,
+    "variety": 5,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "at": "00:08.0, 00:10.7, 00:16.0, 00:21.3, 00:24.0",
+     "what": "the named pattern moments do not land: the pill is a small outlined capsule (about a quarter of the width, 11 px text on a phone) that pops at 55% scale, the camera does nothing and the sound is a 6 ms tick; the pace tool counts 0 changes per 10 s and one 32 s calm in both sizes",
+     "fix": "slam each pattern: a full-width accent2 band with the name in large mono that settles into the pill, a spring camera snap on the main view, and a real hit in the score on the exact frame; the realignment at the seam gets the same slam"
+    },
+    {
+     "at": "00:04.0-00:19.5, 00:24.0-00:32.0 (landscape)",
+     "what": "the right column is empty from under the caption to the pill (about 300 px) whenever the formula card is not shown, while the trace, the best picture of the lesson, is squeezed to 128 px tall at the bottom",
+     "fix": "let the trace fill the column (taller, higher) when no card shows and spring it back to the compact place under the card when the card is in"
+    },
+    {
+     "at": "all",
+     "what": "the pentatonic pluck layer is buried under the bed, so the phasing the brief wants audible (a chord at alignment, a shimmer between) is not heard",
+     "fix": "raise the plucks well above the bed and lower the bed gain to hold −16 LUFS"
+    },
+    {
+     "at": "00:00.0-00:01.3",
+     "what": "all fifteen bobs and dots stay lit as 'in step' until 1.3 s, but by 00:00.7 the trace is already a clear slope (the longest and shortest are a third of a swing apart), so the highlight claims more than is true",
+     "fix": "light the seam group only a few frames either side of frame 0"
+    },
+    {
+     "at": "00:00.0-00:02.0",
+     "what": "the hook is calm: a headline and a uniform swing, nothing that says 'watch this'",
+     "fix": "the seam slam ('all in step') is on screen at frame 0 and settles in the first half second"
+    }
+   ],
+   "agentSaw": [
+    "variety 7: one continuous take; pills, group flashes, captions and the card slide do not cross the pace tool's threshold",
+    "'in step' is only true within about ±1 s of the seam",
+    "the far pendulums swing only a short way (true lengths and perspective at 12°)",
+    "the landscape trace could fill the empty column when no card shows",
+    "the pentatonic pluck layer is quiet against the bed"
+   ],
+   "agentMissed": [
+    "the pattern ticks are 6 ms clicks that are close to inaudible under the bed, so no pattern moment is marked in sound",
+    "the seam highlight lights all fifteen as one group for 1.3 s while the trace is visibly a slope by 0.7 s",
+    "the pill pops from 55% scale to a capsule about a quarter of the width with 34 px mono: at phone size it reads as a label, not a moment",
+    "the first two seconds have no punch: the hook is a headline over a uniform swing",
+    "the ring's '32 s' label is 22 px, too small to read on a phone (decorative, so not fixed)"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10.7,
+     "nearStill": 0
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 0
+    }
+   },
+   "loudness": {
+    "square": -16.1,
+    "landscape": -16.1
+   },
+   "stillFrames": {
+    "square": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "loopSeam": {
+    "square": "16.31% (inner 18.45%) · SEAMLESS",
+    "landscape": "8.29% (inner 10.64%) · SEAMLESS"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:08.0, 00:10.7, 00:16.0, 00:21.3, 00:24.0 (landscape)",
+     "what": "the landscape slam fills only the right column (about 5% of the frame), so the main view, where the eye is, gets only the camera snap; the pace tool still counts 0 changes and a 32 s calm in the landscape (the square now counts 4, longest calm 10.7 s)",
+     "fix": "make the moment land in the pendulums too: the lit group's bobs pop on a spring as the band hits, and a harder snap in the landscape's larger main view"
+    },
+    {
+     "at": "00:16.0 (square)",
+     "what": "the half-time slam does not register on the pace tool (it lands inside the slow 4% push), though it reads by eye",
+     "fix": "none needed once the bob pop adds to it"
+    },
+    {
+     "at": "00:25.0-00:32.0 (landscape)",
+     "what": "the main view's bottom third is empty floor for the whole piece",
+     "fix": "accepted: the floor and shadows are the brief's ground plane; the column now carries the picture"
+    }
+   ],
+   "fixed": [
+    "every named pattern and the realignment at the seam slams: an edge-to-edge accent2 band (the square bleeds across the frame; the landscape across its column, clipped at the hairline) with the name in 52 px mono, settling into the brief's outlined pill in about a third of a second",
+    "an instant 7% camera punch-in on every slam, springing back with a small undershoot, zoomed about the bobs' height so they never drop onto the band",
+    "a hit (kick, noise and an A minor stab) on frames 0, 480, 640, 960, 1280 and 1440; 640 and 1280 sit a third of a beat off the grid because that is where the physics puts the pattern",
+    "the pentatonic plucks raised from about −17 dB to about −9 dB against the bed (0.03 → 0.14, a longer tail), the bed gain retuned to hold −16.1 LUFS",
+    "the landscape trace fills the right column (amplitude 64 → 140 px) whenever the formula card is not shown, and springs back under the card when it is",
+    "the seam's 'all in step' highlight now lasts only from 12 frames before frame 0 to about frame 30, while it is true",
+    "the hook: frame 0 opens on the '1 · all in step' slam over fifteen lit bobs with a hit on the first sample"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 3,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "square": {
+     "changesPer10s": 1.3,
+     "longestCalm": 10.7,
+     "nearStill": 0
+    },
+    "landscape": {
+     "changesPer10s": 0,
+     "longestCalm": 32,
+     "nearStill": 0
+    }
+   },
+   "loudness": {
+    "square": -16.1,
+    "landscape": -16.1
+   },
+   "stillFrames": {
+    "square": "windows: (none)",
+    "landscape": "windows: (none)"
+   },
+   "loopSeam": {
+    "square": "16.65% (inner 18.63%) · SEAMLESS",
+    "landscape": "9.35% (inner 11.24%) · SEAMLESS"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "all (landscape)",
+     "what": "the pace tool still counts 0 changes in the landscape: its punches (a column-wide band, a 10% camera snap, the lit group's bobs popping) cover too little of a dark frame to pass the 18-grey-level mean; by eye in fast-2.png each pattern lands, with a hit, and something new arrives every 2–4 s",
+     "fix": "none: crossing the threshold would take a full-frame flash, which the brief rules out ('flat and quiet, no glow')"
+    },
+    {
+     "at": "00:00.0-00:00.5",
+     "what": "at the seam the popped bobs at the far end touch each other for a few frames",
+     "fix": "none needed; it reads as the impact"
+    },
+    {
+     "at": "all",
+     "what": "the ring's '32 s' label is 22 px (decorative; the timecode beside it carries the value)",
+     "fix": "left as built"
+    }
+   ],
+   "fixed": [
+    "the lit group's bobs (and their trace dots) pop on each slam, instant on the frame and settling in about a third of a second, so the moment lands in the pendulums as well as on the band",
+    "the landscape's camera snap is 10% (the square keeps 7%, where the band already bleeds across the frame)",
+    "the landscape band is square-cornered and bleeds across the whole right column, clipped at the hairline, and slims under the formula card so it clears both the card and the trace"
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

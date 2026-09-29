@@ -1,0 +1,61 @@
+{
+  "id": "split-flap",
+  "no": 29,
+  "title": "Split-Flap",
+  "module": "src/canvas-core/studies/splitFlap.ts",
+  "pieces": {
+    "landscape": "splitFlap",
+    "vertical": "splitFlapVertical"
+  },
+  "primary": "landscape",
+  "kind": "video",
+  "fps": 60,
+  "bpm": 120,
+  "frames": 1440,
+  "palette": "solari",
+  "family": "screen",
+  "subject": "oriel",
+  "style": "A mechanical departures board, seen straight on, that fills the frame. The housing is the ground (near-black) with a thin muted frame and a printed header strip above the board (Inter 600, ink, not flaps): the small Oriel mark and 'Departures' on the left, column heads 'TIME', 'MEETING', 'ROOM', 'STATUS' in small muted Inter 600 caps above their columns. The board is a grid of flap CELLS (landscape: 6 rows × 31 cells, each about 50×76 px at 1080 on a 54 px pitch, rows 96 px apart): each cell is a surface-coloured rounded rectangle (radius 4) split across the middle by a 2 px line-coloured gap with two tiny hinge pins at its ends; the character is Inter 600, ink, about 54 px, centred, and its top and bottom halves are drawn clipped to the two half-cells. Every cell carries one DRUM, fixed for the whole film: ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789:.-' (40 flaps), and a cell ONLY moves forward through it, flap by flap, until it reaches its target; it never jumps. A cell's state at frame F is closed-form: given (start char, target char, start frame, flap period P = 3 frames), steps n = forward distance on the drum, k = clamp(floor((F − start) / P), 0, n), phase = the fraction inside the current flap. Draw one flip in two halves: first half of the period, the upper flap (showing the top half of the OLD character) falls toward the viewer around the hinge, drawn as the top half scaled vertically by cos(θ) from 1 to 0 and darkened by up to 45% as it tips, while the top half of the NEW character is already visible behind it; second half, the falling flap (now showing the bottom half of the NEW character) unfolds downward from the hinge, scaleY 0 to 1, over the old bottom half, and lands with a one-frame 4% overshoot. Because cells start from different characters, a row settles letter by letter at uneven moments; that raggedness is the tell, keep it. Rows cascade: a row's cells start 2 frames apart left to right. Status cells are coloured flaps: the whole flap takes the status colour when the status settles (BOARDING in accent amber with ground-coloured text and a 1 Hz blink on its lamp, DELAYED in accent2 red, BOOKED in s1 green, ON TIME plain). A small flap clock in the header top-right shows the time and flips its minute once. The light is flat, with one soft top-to-bottom gradient on each flap face (5% lighter at the top) and nothing else; no bloom, no reflections. Motion outside the flaps is minimal: a very slow push-in on holds (1.00 to 1.03).",
+  "learnsFrom": "The split-flap display (https://en.wikipedia.org/wiki/Split-flap_display) as made famous by Solari di Udine's station and airport boards (https://en.wikipedia.org/wiki/Solari_di_Udine) and Gino Valle's Cifra 3 clock (https://www.cifra3.com/en/): flaps on a drum that flip forward one by one through every intermediate character, rows that settle unevenly, colour status flaps, and the clatter that tells a station something changed. Their typefaces, liveries, layouts and copy are not used.",
+  "story": [
+    {
+      "from": 0,
+      "to": 120,
+      "what": "power on: the board is all blank flaps; the header strip fades up; the clock cells rattle from blank to '09:41'; the first row flips 'DEPARTURES' across its cells and then clears again"
+    },
+    {
+      "from": 120,
+      "to": 480,
+      "what": "the day boards: six rows settle one every two beats, each row rattling through the drum and landing letter by letter: '09:30  STANDUP       A1  BOARDING', '10:00  DESIGN CRIT   B4  ON TIME', '11:15  1:1 WITH ANA  A2  ON TIME', '13:00  ROADMAP       C1  ON TIME', '14:30  HIRING SYNC   B2  ON TIME', '16:00  RETRO         A3  ON TIME'; BOARDING turns amber and its lamp blinks"
+    },
+    {
+      "from": 480,
+      "to": 720,
+      "what": "the trouble: the clock flips to '09:42'; four statuses re-flip to red 'DELAYED' one per beat down the board (rows 2, 3, 4 and 6); a printed ticker line under the board types 'Four meetings need a new time.'"
+    },
+    {
+      "from": 720,
+      "to": 960,
+      "what": "Oriel works: a message row appears under the board and flips 'ORIEL IS FINDING A TIME' with a trailing '...' that cycles; the TIME cells of the delayed rows re-flip, one row per beat, to new times ('10:30', '11:45', '13:30', '16:30'); the ticker changes to 'New times found for everyone.'"
+    },
+    {
+      "from": 960,
+      "to": 1200,
+      "what": "all booked: from the top down, every status flips to green 'BOOKED', a row every half beat, the clatter rising as the cascade runs; the message row flips 'ALL MEETINGS BOOKED'; the whole board holds for a beat with only the clock's colon blinking"
+    },
+    {
+      "from": 1200,
+      "to": 1440,
+      "what": "end: the rows flip back to blank from the top; the middle two rows flip a big message across the board: 'ORIEL' and 'EVERYONE BOOKED'; under the board, printed in Inter: 'Find a time that works for everyone.' and 'oriel.example' in mono; a slow push-in holds"
+    }
+  ],
+  "sizes": "Vertical re-stacks: the board becomes 16 cells wide (cells about 52×80 px on a 56 px pitch, so the board fits the 920 px safe width) and each meeting takes TWO flap rows: the first 'TIME MEETING' ('09:30 STANDUP'), the second 'ROOM STATUS' indented ('A1 BOARDING'), with a thin gap between meetings; the six meetings make a board of twelve rows that fills the middle of the safe area; the header strip sits above it and the ticker and end lines below it, both inside the safe margins; meeting names shorten where needed ('DESIGN CRIT', '1:1 ANA', 'HIRING'). The end message flips across two rows: 'ORIEL' and 'ALL BOOKED'.",
+  "sound": "beatScore soft at 120 bpm with no drums until frame 480, then drive (drop at 480); the clatter is ticks: while any cell is flipping, one tick every 3 frames (one per flap period, never one per cell), with a second tick 1 frame later when more than ten cells flip at once, so a big cascade sounds denser, not louder; a hit when the first DELAYED lands (frame 510) and when the last BOOKED lands (frame 1140); a whoosh ending at frame 960; and the sign-off at frame 1260.",
+  "teaches": "A mechanism is a timing system: when every change must travel forward through the same drum, the delays themselves (uneven, audible, one letter at a time) become the drama, and a board settling reads as news.",
+  "portable": {
+    "fonts": "Inter (600) for the flap characters and printed header, JetBrains Mono for the web address",
+    "style": "A mechanical departures board for meetings, filling the frame, on a near-black housing. Each character is a flap cell: a dark grey rounded rectangle split across the middle by a thin gap with two hinge pins, an off-white bold sans character centred on it, drawn as two clipped halves. Every cell has the same fixed drum (space, A–Z, 0–9, colon, dot, dash) and only moves forward through it, one flap at a time, at about 20 flaps per second, until it reaches its target; its state is a pure function of time from its start character, target and start time. A flip: the upper flap with the old character's top half falls toward the viewer (scaled vertically by the cosine of its angle and darkened), revealing the new top half; then the lower flap with the new bottom half unfolds down from the hinge and lands with a tiny overshoot. Because cells start from different letters, a row settles letter by letter at uneven moments; keep that. Rows cascade left to right. Status flaps are coloured: amber BOARDING with a blinking lamp, red DELAYED, green BOOKED. Scenes: the board powers on, six meetings settle, four flip to DELAYED, a message row says the assistant is finding a time while new times flip in, every status cascades to BOOKED, then the board clears to a two-row sign-off.",
+    "sound": "a soft loop at 120 bpm whose drums enter at the trouble; the clatter as short clicks, one per flap period while anything flips, doubled when many cells flip; hits on the first DELAYED and the last BOOKED, and a three-note sign-off.",
+    "sizes": "re-stack it: a narrower board where each meeting takes two flap rows (time and name, then room and status), header above, ticker and sign-off below."
+  }
+}
