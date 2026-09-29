@@ -457,6 +457,23 @@
    "s2": "#8cc3df",
    "s3": "#8b5a2b",
    "s4": "#3f9b5a"
+  },
+  "gouache": {
+   "ground": "#f1e7d3",
+   "surface": "#fbf6ea",
+   "ink": "#1f1b24",
+   "muted": "#6f6657",
+   "line": "#ddd0b6",
+   "accent": "#d8432c",
+   "accent2": "#2743a6",
+   "deep": "#120f16",
+   "s1": "#e3ad3b",
+   "s2": "#2e7a5f",
+   "s3": "#c56a45",
+   "s4": "#8fa3b8",
+   "s5": "#2b2f5e",
+   "s6": "#efbfa2",
+   "s7": "#e07d6a"
   }
  },
  "tagline": "Find a time that works for everyone."

@@ -1,0 +1,148 @@
+{
+ "piece": "gouacheStorybook",
+ "sizes": [
+  "gouacheStorybook",
+  "gouacheStorybookVertical"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 9.7,
+     "longestCalm": 3.2,
+     "nearStill": 48
+    },
+    "vertical": {
+     "changesPer10s": 8,
+     "longestCalm": 4.6,
+     "nearStill": 43
+    }
+   },
+   "loudness": {
+    "landscape": -15.7,
+    "vertical": -15.7
+   },
+   "stillFrames": {
+    "landscape": "identical 157 (the designed 1-in-4 hold), windows: empty",
+    "vertical": "identical 153 (the designed 1-in-4 hold), windows: empty"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "at": "00:25.0-00:27.0",
+     "what": "the lift: the globe rises over the kid's mouth while the camera pushes 1.5x onto it, so for about a second the kid is a hat and two eyes sliced by the top edge of the frame (landscape; the vertical crops the hat); the grin at 588 is hidden behind the glass",
+     "fix": "lift the globe only to just under the chin, hold the whole face through the sweep, and start the push onto the glass at 624 so it runs with the iris instead of before it"
+    },
+    {
+     "at": "00:10.0-00:14.0",
+     "what": "the montage: the overhead globe is about 83 px across at 1080 (28 px on a phone) and its base sits on the pom-pom, so the one thing the montage is about, the glass foretelling the next world, cannot be read; the hat and globe read as one stacked blob",
+     "fix": "a bigger overhead globe (radius 130, was 90) held clear above the pom-pom on longer arms, with the figure rescaled so it stays inside the safe area"
+    },
+    {
+     "at": "00:15.2 and 00:23.5",
+     "what": "at both glass match cuts the snow pops: 140 globe flakes 15-44 px across become 220 frame flakes 3-8 px across in one frame (push in), and the reverse on the way out",
+     "fix": "as the glass grows past the close-up size, scale the globe flakes toward the frame snow's size, and after the push-in match cut keep drawing the same globe flakes (continuous positions) until the cut to the inside at 384"
+    },
+    {
+     "at": "00:18.0",
+     "what": "the giant tap: the mitten is a plain mustard ellipse sliding in at the top right, which reads as a rising sun or moon, not a hand tapping the glass",
+     "fix": "give it a thumb and a coat cuff (not fixed this round)"
+    },
+    {
+     "at": "00:16.0-00:20.0",
+     "what": "inside the globe the giant face is a floating disc with its hat cut by the frame top; at phone size it reads, but as a moon with a face as much as a kid peering in",
+     "fix": "show the shoulders or the hat's pom-pom through the glass (not fixed this round)"
+    }
+   ],
+   "agentSaw": [
+    "the snow switching from 140 globe flakes to 220 frame flakes at both glass match cuts",
+    "in the montage the overhead globe's base rests on the pom-pom",
+    "in landscape during the lift (600-636) the kid's face is cropped to eyes and hat",
+    "inside the globe the snowy hills cut across the lower part of the giant face",
+    "the evening village hold (544-552) could use more ambient motion",
+    "the montage worlds could each have their own small motion"
+   ],
+   "agentMissed": [
+    "the overhead globe is too small for its foretold world to read at phone size, so the montage's story mechanic is lost, not only its spacing",
+    "the snow pop is a size pop as much as a count pop (15-44 px flakes to 3-8 px), which is what makes it visible",
+    "the lift also hides the 588 grin behind the glass, and the vertical crops the hat there too",
+    "the giant tap's mitten reads as a sun, not a hand",
+    "the evening hold runs on into the back-out: 544-563 is about 0.8 s of the same still village before the pull starts to show"
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-09-28",
+   "reviewer": "claude-opus-5-5 (critique agent, separate from the builder)",
+   "pace": {
+    "landscape": {
+     "changesPer10s": 9.7,
+     "longestCalm": 3.2,
+     "nearStill": 49
+    },
+    "vertical": {
+     "changesPer10s": 8.3,
+     "longestCalm": 4.6,
+     "nearStill": 45
+    }
+   },
+   "loudness": {
+    "landscape": -15.7,
+    "vertical": -15.7
+   },
+   "stillFrames": {
+    "landscape": "identical 155 (the designed 1-in-4 hold), windows: empty",
+    "vertical": "identical 156 (the designed 1-in-4 hold), windows: empty"
+   },
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "fixed": [
+    "the lift raises the globe only to just under the chin (600-618), so the whole grinning face and the nested street read through the sweep at 612; the push onto the glass now runs 624-660 with the iris, so the face leaves by a camera move, not a crop",
+    "the montage globe is radius 130 (was 90) on longer arms with its base clear of the pom-pom; the landscape figure is rescaled (0.84, was 0.92) to stay inside the safe area, and the foretold world now reads as a picture in the glass, clearly in the vertical",
+    "the glass snow no longer pops at the match cuts: as the glass grows past a close-up its flakes shrink toward the frame snow's size, and after the push-in cut the same globe flakes continue until the cut to the inside at 384; the back-out cut swaps flakes of equal size"
+   ],
+   "problems": [
+    {
+     "at": "00:18.0",
+     "what": "the giant tap's mitten is still a plain mustard ellipse that reads as a sun as much as a hand",
+     "fix": "a thumb and a coat cuff"
+    },
+    {
+     "at": "00:16.0-00:20.0",
+     "what": "inside the globe the giant face floats as a disc with its hat cut by the frame top",
+     "fix": "show the pom-pom or the shoulders through the glass"
+    },
+    {
+     "at": "00:10.0-00:14.0 (landscape)",
+     "what": "the overhead globe is bigger but still small in landscape (about 220 px across); the foretold world reads as colours and shapes more than as a place",
+     "fix": "none needed at 8; a closer montage framing would help"
+    },
+    {
+     "at": "00:23.5",
+     "what": "the back-out's radial smear shows its three copies as discrete ghosts on the mittens",
+     "fix": "none: the brief specifies three copies at 25/15/8%"
+    }
+   ],
+   "verdict": "ship"
+  }
+ ]
+}

@@ -1518,6 +1518,22 @@
    "format": "story",
    "length": "32 s",
    "about": "Study 51 · Literal Type, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "gouacheStorybook",
+   "kind": "video",
+   "slug": "gouache-storybook",
+   "format": "film",
+   "length": "30 s",
+   "about": "Study 52 · Gouache Storybook: Paint reads as paint when every flat shape carries its own brush direction and a dry edge; and when the transitions are themselves painting (a stroke that paints the next scene on, a round window that already holds it), the cuts stop being edits and become part of the picture."
+  },
+  {
+   "id": "gouacheStorybookVertical",
+   "kind": "video",
+   "slug": "gouache-storybook-vertical",
+   "format": "story",
+   "length": "30 s",
+   "about": "Study 52 · Gouache Storybook, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }
