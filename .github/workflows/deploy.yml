@@ -81,12 +81,14 @@ jobs:
           GH_TOKEN: ${{ github.token }}
       - name: Deploy to Railway
         working-directory: site-dist
-        run: railway up --ci --no-gitignore --service studio
+        # --detach: return once the upload is in. Streaming the build log (--ci) fails whenever Railway queues the
+        # build for more than about a minute, though the build itself succeeds; the next step is the real proof.
+        run: railway up --detach --no-gitignore --service studio
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
       - name: Check the live site
         run: |
-          for i in $(seq 1 30); do
+          for i in $(seq 1 120); do # up to 20 min: Railway can queue a build for 10 or more
             live=$(curl -sf https://studio.rotli.co/ | grep -o 'motion\.[0-9a-f]*\.js' || true)
             built=$(ls site-dist/public/build | grep -o 'motion\.[0-9a-f]*\.js')
             if [ "$live" = "$built" ]; then echo "live: $live"; exit 0; fi
