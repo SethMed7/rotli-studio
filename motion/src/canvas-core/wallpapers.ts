@@ -212,8 +212,42 @@ export const ACCESSORY_HUES = [
   { hue: 300, label: "Violet" },
   { hue: 350, label: "Pink" },
 ];
-export type QuokkaSpec = { pose: string; style: string; accessory: string; hue: number; place: Place; size: Size };
-export type WallpaperSpec = { background: string; quokka: QuokkaSpec | null };
+export type QuokkaSpec = {
+  pose: string;
+  style: string;
+  accessory: string;
+  hue: number;
+  place: Place;
+  size: Size;
+  /** placed by hand: where its feet stand, as a share of the width and height (overrides `place`) */
+  at?: { x: number; y: number };
+  /** sized by hand: its height as a share of the short side (overrides `size`) */
+  scale?: number;
+};
+/** a colour of your own: the scene is graded to its hue (`amount` 0..1, light and shade kept), and the "custom"
+ *  background is that colour, flat */
+export type Tint = { hex: string; amount: number };
+export type WallpaperSpec = { background: string; quokka: QuokkaSpec | null; tint?: Tint | null };
+/** the flat background in your own colour */
+export const CUSTOM_BG = "custom";
+/** sRGB relative luminance of a hex colour, 0..1 */
+const luminance = (hex: string) => {
+  const n = parseInt(hex.slice(1), 16),
+    ch = (v: number) => {
+      const c = v / 255;
+      return c <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+    };
+  return 0.2126 * ch((n >> 16) & 255) + 0.7152 * ch((n >> 8) & 255) + 0.0722 * ch(n & 255);
+};
+/** is this wallpaper's ground dark (so a line quokka is drawn in its light ink)? */
+export const isDarkSpec = (spec: Pick<WallpaperSpec, "background" | "tint">) =>
+  spec.background === CUSTOM_BG ? luminance(spec.tint?.hex ?? "#ffffff") < 0.18 : backgroundOf(spec.background).dark;
+/** how far a hand-placed quokka may go: feet inside the frame, its head below the top edge */
+export const SCALE_RANGE: [number, number] = [0.12, 0.6];
+export const clampAt = (b: Box, at: { x: number; y: number }, h: number) => ({
+  x: Math.min(0.97, Math.max(0.03, at.x)),
+  y: Math.min(0.99, Math.max((h * 1.02) / b.H, at.y)),
+});
 
 /** the look file for a quokka on a background: the line style has a white-ink render for dark grounds */
 export const lookId = (q: Pick<QuokkaSpec, "pose" | "style" | "accessory">, dark: boolean) =>
@@ -273,25 +307,46 @@ const tintedLook = (env: Env, id: string, mask: string, hue: number) => {
 // higher (clear of the home bar), and every place stays inside the bands the header names
 const HEIGHT: Record<Size, [number, number]> = { small: [0.2, 0.3], medium: [0.27, 0.38], large: [0.36, 0.48] };
 const PLACE_X: Record<Place, [number, number]> = { left: [0.28, 0.3], centre: [0.5, 0.5], right: [0.72, 0.7] };
-export const placement = (b: Box, q: Pick<QuokkaSpec, "place" | "size">) => {
-  const t = b.tall ? 1 : 0;
-  return { x: b.W * PLACE_X[q.place][t], y: b.H * (b.tall ? 0.84 : 0.88), h: Math.min(b.W, b.H) * HEIGHT[q.size][t] };
+export const placement = (b: Box, q: Pick<QuokkaSpec, "place" | "size" | "at" | "scale">) => {
+  const t = b.tall ? 1 : 0,
+    h = Math.min(b.W, b.H) * (q.scale ?? HEIGHT[q.size][t]);
+  if (q.at) {
+    const at = clampAt(b, q.at, h);
+    return { x: b.W * at.x, y: b.H * at.y, h };
+  }
+  return { x: b.W * PLACE_X[q.place][t], y: b.H * (b.tall ? 0.84 : 0.88), h };
 };
 
 /** one wallpaper, drawn in design units (the caller's ctx already carries env.scale); env.image must supply
  *  `look:<lookId>` when the spec has a quokka */
 export const paintWallpaper = (ctx: Ctx, env: Env, spec: WallpaperSpec, b: Box) => {
-  const bg = backgroundOf(spec.background);
+  const custom = spec.background === CUSTOM_BG,
+    bg = backgroundOf(custom ? BACKGROUNDS[0]!.id : spec.background);
   useFamily(bg.family); // every wallpaper sets its own palette first, so any order draws the same
-  bg.draw(ctx, b);
+  if (custom) {
+    ctx.fillStyle = spec.tint?.hex ?? "#ffffff";
+    ctx.fillRect(0, 0, b.W, b.H);
+  } else {
+    bg.draw(ctx, b);
+    // your colour: the scene takes its hue and saturation and keeps its own light and shade (the quokka is drawn
+    // after, so it keeps its colours)
+    if (spec.tint && spec.tint.amount > 0) {
+      ctx.save();
+      ctx.globalCompositeOperation = "color";
+      ctx.globalAlpha = Math.min(1, spec.tint.amount);
+      ctx.fillStyle = spec.tint.hex;
+      ctx.fillRect(0, 0, b.W, b.H);
+      ctx.restore();
+    }
+  }
   if (spec.quokka) {
-    const id = lookId(spec.quokka, bg.dark),
+    const id = lookId(spec.quokka, isDarkSpec(spec)),
       mask = maskId(spec.quokka),
       tinted = mask ? tintedLook(env, id, mask, spec.quokka.hue) : null,
       withTint: Env = tinted ? { ...env, image: (n) => (n === `look:${id}` ? tinted : env.image?.(n)) } : env;
     drawLook(ctx, withTint, { id, ...placement(b, spec.quokka), blink: false });
   }
-  bg.over?.(ctx, b);
+  if (!custom) bg.over?.(ctx, b);
 };
 
 // ---------------------------------------------------------------- presets

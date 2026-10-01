@@ -4,6 +4,12 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Wallpapers: put the quokka where you want it, in a scene of your colour.** Drag the quokka on the preview (or
+  nudge it with the arrow keys) and size it with a slider; "Where I put it" joins Left, Centre and Right. Pick any
+  colour (a picker and nine starting chips): "Your colour" is a flat ground in it, and "Colour the scene" grades any
+  scene or ground to its hue at the strength you choose, keeping the scene's own light and shade; the thumbnails show
+  each choice in your colour. The quokka keeps its own colours. Additive: every preset draws as before (the
+  wallpaper golden is unchanged).
 - **Cloudflare Web Analytics runs.** Cloudflare injects its beacon into every page at the edge, and the site's
   Content-Security-Policy blocked it (a console error on every page, and no analytics). The policy now allows the
   beacon script from `static.cloudflareinsights.com` and its reports to `cloudflareinsights.com`; everything else is
