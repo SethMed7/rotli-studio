@@ -205,6 +205,24 @@ a.row:hover .row-title { color: var(--accent-text); }
 .wp-colour .dot.line { background: var(--ground); border: 2px solid var(--text); } /* the line quokka: ink only */
 .wp-colour .dot.line.dark { background: var(--deep); border-color: var(--deep-text); }
 .wp-swatch:hover, .wp-scene:hover, .wp-colour:hover { background: var(--surface-2); }
+.wp-tint { margin: 0 0 0.9rem; padding: 0; border: 0; min-width: 0; }
+.wp-tint legend { padding: 0; margin-bottom: 0.4rem; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.wp-tint-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; margin-bottom: 0.6rem; }
+.wp-pick { position: relative; display: grid; place-items: center; width: 2.2rem; height: 2.2rem; border-radius: 50%; cursor: pointer; }
+.wp-pick input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; cursor: pointer; }
+.wp-pick .dot { width: 1.8rem; height: 1.8rem; border-radius: 50%; background: conic-gradient(from 0deg, #e86a5c, #e8c25c, #7ccf7a, #5cc6e8, #7a6ae8, #e86ad0, #e86a5c); box-shadow: inset 0 0 0 0.35rem var(--dot); border: 1px solid var(--border-strong); }
+.wp-pick input:focus-visible + .dot, .wp-chip:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
+.wp-chip { display: grid; place-items: center; width: 2rem; height: 2rem; padding: 0; border: 0; border-radius: 50%; background: none; cursor: pointer; }
+.wp-chip .dot { width: 1.4rem; height: 1.4rem; border-radius: 50%; background: var(--dot); border: 1px solid var(--border-strong); }
+.wp-chip:hover, .wp-chip[aria-pressed='true'] { background: var(--tint); }
+.wp-range { display: grid; grid-template-columns: auto minmax(0, 1fr) 3.2rem; align-items: center; gap: 0.6rem; margin: 0 0 0.9rem; font-size: 0.8rem; font-weight: 600; color: var(--muted); }
+.wp-range input { width: 100%; accent-color: var(--accent); }
+.wp-range input:disabled { opacity: 0.4; }
+.wp-range output { font-variant-numeric: tabular-nums; color: var(--text); text-align: right; }
+.wp-hint { margin: 0.5rem 0 0; min-height: 1.3em; }
+.wp-preview canvas.draggable { cursor: grab; touch-action: none; }
+.wp-preview canvas.dragging { cursor: grabbing; }
+.wp-preview canvas:focus-visible { outline: 2px solid var(--accent-text); outline-offset: 2px; }
 .wp-swatch:has(input:checked), .wp-scene:has(input:checked), .wp-colour:has(input:checked) { background: var(--tint); }
 @media (max-width: 900px) {
   .wp-maker, .wp-maker.tall { grid-template-columns: minmax(0, 1fr); gap: 1.5rem; }
