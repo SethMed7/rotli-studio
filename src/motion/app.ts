@@ -168,8 +168,13 @@ const epNo = (code: string) => code.replace(/^(s\d\de|ep)/, ""); // "01" in both
 const chip = (t: string, cls = "") => `<span class="chip ${cls}">${esc(t)}</span>`;
 const seriesOf = (id: string | null) => M.series.find((x) => x.id === id);
 /** "21 studies": counted from the manifest, so the copy never goes stale */
-const studyCount = () => `${seriesOf("studies")?.studies?.length ?? 0} studies`;
 const studies = () => seriesOf("studies")?.studies ?? [];
+// Seconds (family "seconds") is a section of its own: its loops are studies, but "All", the counts and the pager
+// cover the main studies only, and Seconds lists and pages through its own at /series/seconds
+const isSeconds = (st: { family?: string | null }) => st.family === "seconds";
+const mainStudies = () => studies().filter((x) => !isSeconds(x));
+const secondsStudies = () => studies().filter(isSeconds);
+const studyCount = () => `${mainStudies().length} studies`;
 /** a piece made for Rotli, or one of the studies (everything that is not Rotli's) */
 const isStudy = (p: Piece) => p.series === "studies";
 // the families the studies are grouped by (each brief's "family"), in the order the Studies page shows them
@@ -242,13 +247,8 @@ function renderNav(active: string) {
     link("library", "/library", "Library", M.pieces.length) +
     group(
       "Studies",
-      link("studies", "/series/studies", "Studies", studies().length) +
-        link(
-          "seconds",
-          "/series/studies?family=seconds",
-          "Seconds",
-          studies().filter((x) => x.family === "seconds").length,
-        ) +
+      link("studies", "/series/studies", "Studies", mainStudies().length) +
+        link("seconds", "/series/seconds", "Seconds", secondsStudies().length) +
         link("journal", "/journal", "Journal", seriesOf("studies")?.notes?.length ?? 0) +
         link("prompts", "/prompts", "Prompt library"),
     ) +
@@ -284,11 +284,17 @@ function renderNav(active: string) {
 function navKey(parts: string[]) {
   const [a = "", b = ""] = parts;
   if (!a) return "home";
-  if (a === "series") return b === "studies" ? (param("family") === "seconds" ? "seconds" : "studies") : "series";
+  if (a === "series")
+    return b === "seconds" || (b === "studies" && param("family") === "seconds")
+      ? "seconds"
+      : b === "studies"
+        ? "studies"
+        : "series";
   if (a === "piece") {
     const p = byId(b);
     if (p?.series !== "studies") return "series";
-    return studyOfPiece(p)?.family === "seconds" ? "seconds" : "studies";
+    const st = studyOfPiece(p);
+    return st && isSeconds(st) ? "seconds" : "studies";
   }
   if (a === "doc") return "docs";
   if (a === "note") return "journal";
@@ -366,7 +372,7 @@ function mountPreviews(root: HTMLElement) {
 function home() {
   const film = byId("rotliStory"),
     n = stats(),
-    all = studies();
+    all = mainStudies();
   // the showcase: the newest study of every family, so the landing shows the studio's range and never goes stale
   const show = FAMILIES.map((f) => all.filter((x) => x.family === f.id).at(-1)).filter(Boolean) as Study[];
   const bySubject = (k: Study["subject"]) => all.filter((x) => x.subject === k).length;
@@ -389,7 +395,9 @@ function home() {
       <p class="fam-links">${FAMILIES.map((f) => {
         const c = all.filter((x) => x.family === f.id).length;
         return c ? `<a href="/series/studies?family=${f.id}">${esc(f.label)} <small>${c}</small></a>` : "";
-      }).join("")}</p>
+      }).join(
+        "",
+      )}${secondsStudies().length ? `<a href="/series/seconds">Seconds <small>${secondsStudies().length}</small></a>` : ""}</p>
       <div class="ctas left"><a class="button" href="/series/studies">Browse all ${all.length} studies</a><a class="button ghost" href="/use">Make one for your product</a></div>
     </div></section>
     <section class="band tinted"><div class="inner">
@@ -679,33 +687,46 @@ async function sound() {
 
 // ---------------------------------------------------------------- series
 function series(id: string) {
-  const x = seriesOf(id);
+  // Seconds has no series entry of its own: it is the studies series, cut to its family (?family=seconds still works)
+  const sec = id === "seconds" || (id === "studies" && param("family") === "seconds");
+  const x = seriesOf(sec ? "studies" : id);
   if (!x) return notFound();
   const docs = [...x.docs, ...(x.schedule ? [x.schedule] : [])];
   const head = `<nav class="crumbs"><a href="/">Studio</a> › ${x.kind === "studies" ? "" : `<a href="/series">Series</a> › `}${esc(x.title.replace(/:.*/, ""))}</nav><header class="page-head"><h1>${esc(x.title)}${x.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(x.logline)}</p><p class="meta">${esc(x.shape)}</p>${docs.length ? `<p class="docs">${docs.map((d) => `<a href="/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))}</a>`).join("")}</p>` : ""}</header>`;
   if (x.studies) {
-    const subject = param("subject") as Study["subject"] | undefined,
-      family = param("family"),
-      shown = x.studies.filter((st) => (!subject || st.subject === subject) && (!family || st.family === family));
+    const pool = x.studies.filter((st) => isSeconds(st) === sec),
+      subject = sec ? undefined : (param("subject") as Study["subject"] | undefined),
+      family = sec ? undefined : param("family"),
+      shown = pool.filter((st) => (!subject || st.subject === subject) && (!family || st.family === family));
     const tab = (k: Study["subject"] | undefined, label: string) =>
-      `<a href="/series/studies${k ? `?subject=${k}` : ""}"${k === subject && !family ? ' aria-current="page"' : ""}>${label} <small>${k ? x.studies!.filter((st) => st.subject === k).length : x.studies!.length}</small></a>`;
+      `<a href="/series/studies${k ? `?subject=${k}` : ""}"${k === subject && !family ? ' aria-current="page"' : ""}>${label} <small>${k ? pool.filter((st) => st.subject === k).length : pool.length}</small></a>`;
     const fams = FAMILIES.map((f) => ({ f, list: shown.filter((st) => st.family === f.id) })).filter(
       (g) => g.list.length,
     );
-    const latest = x.notes?.[0];
-    main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › Studies</nav>
-      <header class="page-head"><h1>Studies</h1><p>${x.studies.length} motion techniques, one engine. Each study is one style drawn in code in at least two sizes, with its brief, the exact prompt that built it, a portable prompt anyone can copy, and the critique that shaped it. Start here before pointing the studio at your own product.</p></header>
+    // each page leads with its own newest field note
+    const latest = x.notes?.find((n) => /seconds/.test(n.path) === sec);
+    main.innerHTML = `${
+      sec
+        ? `<nav class="crumbs"><a href="/">Studio</a> › Seconds</nav>
+      <header class="page-head"><h1>Seconds</h1><p>Four-second loops, one visual style each, taken to a premium finish: ${pool.length} so far. Each is a seamless loop at 60 fps with its own sound, square with a vertical designed for the tall frame, and no words: the style is the whole piece. They are kept apart from the ${mainStudies().length} <a class="link" href="/series/studies">studies</a>, and built the same way: a brief, the exact prompt, a portable prompt and the critique that shaped it.</p></header>`
+        : `<nav class="crumbs"><a href="/">Studio</a> › Studies</nav>
+      <header class="page-head"><h1>Studies</h1><p>${pool.length} motion techniques, one engine. Each study is one style drawn in code in at least two sizes, with its brief, the exact prompt that built it, a portable prompt anyone can copy, and the critique that shaped it. Start here before pointing the studio at your own product. Four-second loops live apart, in <a class="link" href="/series/seconds">Seconds</a>.</p></header>
       <aside class="note-oriel"><p><b>Oriel is imaginary.</b> Most studies advertise Oriel, a scheduling assistant we invented so the pieces can show a product without claiming anything about a real one: no website, no app, no company. The rest need no product at all: short lessons on real topics, every fact sourced, and pieces made just for fun.</p></aside>
       <div class="filter-bar"><nav class="cut-tabs" aria-label="Filter by subject">${tab(undefined, "All")}${tab("oriel", SUBJECT.oriel.label)}${tab("learn", SUBJECT.learn.label)}${tab("fun", SUBJECT.fun.label)}</nav>
-      ${family ? `<p class="meta">Showing ${esc(famLabel(family))} · <a class="link" href="/series/studies">show every family</a></p>` : `<nav class="fam-jump" aria-label="Families">${fams.map(({ f, list }) => `<a href="#sec-fam-${f.id}">${esc(f.label)} <small>${list.length}</small></a>`).join("")}</nav>`}</div>
-      ${fams
-        .map(
-          ({ f, list }) =>
-            `<section class="sec fam" id="sec-fam-${f.id}"><h2>${esc(f.label)} <small>${list.length}</small></h2><p class="muted fam-blurb">${esc(f.blurb)}</p><ul class="study-grid">${list.map((st) => studyTile(st)).join("")}</ul></section>`,
-        )
-        .join("")}
+      ${family ? `<p class="meta">Showing ${esc(famLabel(family))} · <a class="link" href="/series/studies">show every family</a></p>` : `<nav class="fam-jump" aria-label="Families">${fams.map(({ f, list }) => `<a href="#sec-fam-${f.id}">${esc(f.label)} <small>${list.length}</small></a>`).join("")}</nav>`}</div>`
+    }
+      ${
+        sec
+          ? `<section class="sec fam"><ul class="study-grid">${shown.map((st) => studyTile(st)).join("")}</ul></section>`
+          : fams
+              .map(
+                ({ f, list }) =>
+                  `<section class="sec fam" id="sec-fam-${f.id}"><h2>${esc(f.label)} <small>${list.length}</small></h2><p class="muted fam-blurb">${esc(f.blurb)}</p><ul class="study-grid">${list.map((st) => studyTile(st)).join("")}</ul></section>`,
+              )
+              .join("")
+      }
       ${shown.length ? "" : `<p class="empty">No study matches. <a class="link" href="/series/studies">Show all</a>.</p>`}
-      <section class="sec studies-more"><h2>How the studies are made</h2>
+      <section class="sec studies-more"><h2>${sec ? "How the Seconds are made" : "How the studies are made"}</h2>
         <ul class="links">
           ${latest ? `<li><a href="/note/${encodeURIComponent(latest.path.split("/").pop()!)}">${esc(latest.title)} →</a><p>From the journal · ${latest.minutes} min read. ${esc(latest.summary)}</p></li>` : ""}
           ${docs.map((d) => `<li><a href="/doc/${encodeURIComponent(d)}">${esc(d.replace(/^\.\.\//, ""))} →</a></li>`).join("")}
@@ -788,14 +809,16 @@ async function piece(id: string) {
   const seq = x?.episodes
     ? x.episodes.map((e) => ({ id: e.main ?? "", label: `${epNo(e.code)} · ${e.title}` }))
     : x?.studies
-      ? x.studies.map((s) => ({ id: s.primary, label: `${String(s.no).padStart(2, "0")} · ${s.title}` }))
+      ? x.studies
+          .filter((s) => !st || isSeconds(s) === isSeconds(st))
+          .map((s) => ({ id: s.primary, label: `${String(s.no).padStart(2, "0")} · ${s.title}` }))
       : (x?.pieces ?? []).map((id) => ({ id, label: pieceTitle(byId(id)!) }));
   const at = seq.findIndex((q) => q.id === (ep?.main ?? (st ? st.primary : p.id))),
     prev = at > 0 ? seq[at - 1] : undefined,
     next = at >= 0 ? seq[at + 1] : undefined;
   const pager =
     x && at >= 0 && seq.length > 1
-      ? `<nav class="pager" aria-label="In this series"><span>${x.episodes ? `${esc(x.title.replace(/:.*/, ""))} · ${at + 1} of ${seq.length}` : `${at + 1} of ${seq.length} in ${esc(x.title)}`}</span>${prev ? `<a href="/piece/${prev.id}">← ${esc(prev.label)}</a>` : ""}${next ? `<a href="/piece/${next.id}">${esc(next.label)} →</a>` : ""}</nav>`
+      ? `<nav class="pager" aria-label="In this series"><span>${x.episodes ? `${esc(x.title.replace(/:.*/, ""))} · ${at + 1} of ${seq.length}` : `${at + 1} of ${seq.length} in ${st && isSeconds(st) ? "Seconds" : esc(x.title)}`}</span>${prev ? `<a href="/piece/${prev.id}">← ${esc(prev.label)}</a>` : ""}${next ? `<a href="/piece/${next.id}">${esc(next.label)} →</a>` : ""}</nav>`
       : "";
   const sizeTabs = st
     ? `<nav class="cut-tabs" aria-label="Sizes of this study">${(Object.entries(st.sizes) as [Size, string][]).map(([z, id]) => `<a href="/piece/${id}"${id === p.id ? ' aria-current="page"' : ""}>${esc(SIZE_LABEL[z])}</a>`).join("")}</nav>`
@@ -864,7 +887,7 @@ async function piece(id: string) {
   ];
   main.innerHTML = `<nav class="crumbs"><a href="/">Studio</a> › ${x ? `<a href="/series/${x.id}">${esc(x.title.replace(/:.*/, ""))}</a> › ` : ""}${ep ? `${epNo(ep.code)} · ${esc(ep.title)}` : esc(p.title ?? p.id)}</nav>
     <header class="page-head piece-head">${pager}<h1>${esc(p.title ?? (ep ? `${ep.title}` : p.id))}${p.sealed ? chip("sealed", "lock") : ""}</h1><p>${esc(p.logline ?? p.about ?? "")}</p>${p.error ? `<p class="error">Import error: ${esc(p.error)}</p>` : ""}</header>
-    ${st ? `<aside class="note-oriel subject-${st.subject}"><p><b>${esc(SUBJECT[st.subject].note[0])}</b> ${esc(SUBJECT[st.subject].note[1])} <a class="link" href="/series/studies?family=${esc(st.family ?? "")}">More ${esc(famLabel(st.family))} →</a></p></aside>` : ""}
+    ${st ? `<aside class="note-oriel subject-${st.subject}"><p><b>${esc(SUBJECT[st.subject].note[0])}</b> ${esc(SUBJECT[st.subject].note[1])} <a class="link" href="${isSeconds(st) ? "/series/seconds" : `/series/studies?family=${esc(st.family ?? "")}`}">More ${esc(famLabel(st.family))} →</a></p></aside>` : ""}
     ${cutTabs}<div class="piece-top"><div>${media}${downloads(p)}</div><dl class="facts">${facts.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl></div>
     <nav class="section-tabs">${sections.map(([k, v]) => `<a href="#sec-${k}">${v}</a>`).join("")}</nav>
     ${sections.map(([k, v]) => `<section id="sec-${k}" class="sec"><h2>${v}</h2><div class="sec-body" data-sec="${k}"><p class="muted">Loading…</p></div></section>`).join("")}`;

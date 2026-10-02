@@ -17,6 +17,7 @@ const pages = [
   "/library?size=vertical",
   "/series",
   "/series/studies",
+  "/series/seconds",
   "/piece/motionResume",
   "/piece/motionResumeVertical",
   "/use",

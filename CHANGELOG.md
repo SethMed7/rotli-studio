@@ -4,6 +4,12 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Seconds is its own section.** The four-second loops (56–63) now live at their own page, /series/seconds, and
+  stay out of the main studies: "All", the subject tabs, the family list, the home page and every count cover the
+  55 studies only, and a Seconds piece's previous / next steps through Seconds ("7 of 8 in Seconds") while Zoomies
+  is the last of the studies again. The sidebar's "Seconds" row and the home page link to it, the old
+  `?family=seconds` link opens it, and the study numbers stay as they are. Pages, README and bible say fifty-five
+  studies plus Seconds.
 - **Seconds: Studies 56–63, a new section of four-second loops.** Eight styles, one each, taken to a premium finish
   in a 4 s seamless loop at 60 fps and 120 bpm, with no words: Chrome (Y2K liquid chrome by faked reflection
   mapping), Frost (glassmorphism over a living colour field), Flow Field (plotter ink that curls into a vortex),

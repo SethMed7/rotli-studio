@@ -2,7 +2,7 @@
 
 The rest of the studio is Rotli's. **Studies** show that the engine is not: each one is an original piece in a
 different motion technique, shipped in at least two sizes, and the place to learn the studio before pointing it at
-your own product. There are 63. Each brief names its **family** (how the site groups it) and its **subject**:
+your own product. There are 55, plus eight Seconds (below), which the site keeps in a section of their own. Each brief names its **family** (how the site groups it) and its **subject**:
 
 - **Oriel** (`"subject": "oriel"`). Oriel is **imaginary**: a scheduling assistant that finds a time that works for
   everyone, invented so a study can show a product without claiming anything about a real one. It has no website,
@@ -100,7 +100,7 @@ Anthropic's own sources. It learns from a Claude Code mascot music video shared 
 grid; its song, choreography and scenes are not used. The critters are drawn from scratch in code after Anthropic's
 character, which is not MIT (`NOTICE`). It carries Study 25's formant voice forward to two singers from one table.
 
-Studies 56–63 are **Seconds**, a section of its own (family `seconds`): four-second seamless loops at 60 fps, one
+Studies 56–63 are **Seconds**, a section of its own (family `seconds`; the site lists them at /series/seconds, outside "All" and the study counts): four-second seamless loops at 60 fps, one
 visual style each pushed to a premium finish, no words, built from one shared template (field note 03). Each is
 square first with a designed vertical, and holds to its own pacing rule: something lands on frame 0, a pre-pulse on
 beat 3, the strongest moment on frame 120, no freeze after it, and a seam that is invisible and inaudible.
