@@ -1,0 +1,236 @@
+{
+ "piece": "fold",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 6,
+    "variety": 6,
+    "composition": 7,
+    "accuracy": 7,
+    "sync": 6
+   },
+   "problems": [
+    {
+     "what": "apex washed out and blurred; reads as a heart from the nose",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "360-degree pirouette in place; no touchdown",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "four micro-holds",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "grey trail lines like stray pencil",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "depth glitches at 28/200/224; wings-flat landing",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "fold ticks and pre-pulse inaudible",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 6,
+    "motion": 6,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "depth-order pops at 144/145, 171/172, 181/182 when landed layers go coplanar",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "the hit at 120 is the slowest, palest frame; the specular snap cannot be seen",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "take-off at 76-96 seen three-quarter from above reads as a heart",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "the landed plane starts unfolding at touchdown and never reads as a plane",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "the unfold spins about 110 degrees on the table and reads as repositioning; edge-on flap spike",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "frame 0 lands in sound but barely in picture",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "micro-lull at 25-34",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "motion blur gated on a speed threshold pops at 97-99",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (specular snap at 120 in side profile, 110-degree banked climb with touchdown on 165 and a skid, overlapping fold holds, trails dropped, flaps staggered 28/30, louder ticks with bed dips, vertical redesigned as a tall climb)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 7,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the hit on 120 is a pale whole-wing blink, not a change of shape",
+     "fix": "(fixed before round 4)"
+    },
+    {
+     "what": "after the apex the plane turns rear three-quarter and reads as a lump, near-freeze at 177-186",
+     "fix": "(fixed before round 4)"
+    },
+    {
+     "what": "frame 0 and the pre-pulse on 60 land in sound but not in picture; soft dip at 25-29",
+     "fix": "(fixed before round 4)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-2 fixes in (convex-overlap depth sort with flat flaps drawn as part of their keel or wing, roll and whole-wing glint at 120, take-off at -35 degrees, open delayed to 208, 40-degree table turn, bigger frame-0 slap, arc narrowed to 65 degrees, vertical raised)"
+  },
+  {
+   "round": 4,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 7,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "outside profile the plane reads as a stubby kite: one nose fold leaves rectangular wings",
+     "fix": "(fixed before round 5)"
+    },
+    {
+     "what": "motion blur steps into copies at 116 and 136-142 (apex sample cap)",
+     "fix": "(fixed before round 5)"
+    },
+    {
+     "what": "the flat sheet shows for one frame on 0, so the loop has no visual reset",
+     "fix": "(fixed before round 5)"
+    },
+    {
+     "what": "a notch where the nose flaps meet at 24-27",
+     "fix": "(fixed before round 5)"
+    },
+    {
+     "what": "the band glint crosses the wing about 2 frames after 120",
+     "fix": "(fixed before round 5)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-3 fixes in (band glint with a 0.45 roll and nose-up flick, punch 0.12; camera half-follows the heading so touchdown reads side-on; skid overlaps the open; whole-sheet drop on 0 and a full-speed crossing on 60; vertical re-centred)"
+  },
+  {
+   "round": 5,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the hit frame 120 is the palest picture: the folded dart shows the pink back face at 1.25:1 against the table",
+     "fix": "(fixed before round 6)"
+    },
+    {
+     "what": "dashed seams inside the contact shadow at 237-238 (per-facet shadow fills)",
+     "fix": "(fixed before round 6)"
+    },
+    {
+     "what": "blur band on the edge-on keel at 139-141; flap jog at 11-12",
+     "fix": "(fixed before round 6)"
+    },
+    {
+     "what": "the descent translates one pose; little weight before the flare",
+     "fix": "(fixed before round 6)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-4 fixes in (re-folded as a classic dart: corners to the centre, a second nose fold, in half, wings along a nose-to-tail crease, crease pattern computed by clipping and reflecting the sheet; blur sample cap removed; flat hold on 0; one-frame flap stagger; glint centred on 120; vertical shadow fades with height and the action is centred)"
+  },
+  {
+   "round": 6,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "crease fan shimmers on the flat sheet at 0-6 (opacity tied to speed)",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "the edge-on far wing blurs into a ghost whisker at 104-117",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "the hit punch rises in one frame",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "the flat sheet rests one frame after 0",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "the second landing hop is rubbery for paper",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-5 fixes in (back face pulled a third of the way to red, dart swells 10 percent over the hit, tall shadow fades with height, one-path shadow, continuous 11-sample shutter masked to the swept paper, smootherstep turn, half-frame flap stagger, nose-down glide and flare)"
+  }
+ ]
+}

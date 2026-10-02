@@ -1,0 +1,44 @@
+{
+ "piece": "lightTrailsVertical",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 6,
+    "variety": 7,
+    "composition": 5,
+    "accuracy": 10,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "vertical crosses the top band",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "The lightTrailsVertical cut, scored in the same pass as the square; problems listed here are the vertical-only ones."
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 9,
+    "motion": 9,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-1 fixes in (gather from 60, breath in camera, soft ring, z 0.6, related curves, vertical within bands)"
+  }
+ ]
+}

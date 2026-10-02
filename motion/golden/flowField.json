@@ -1,0 +1,33 @@
+{
+ "piece": "flowField",
+ "W": 1080,
+ "H": 1080,
+ "frames": 240,
+ "audio": "20f745853c8be85abcadf7824dd64874",
+ "hashes": {
+  "0": "af91768b137fc47c8b9ff98be4ed40b7",
+  "14": "a0d12fb154a8e2a5a9edacb43d7bdb02",
+  "29": "6146357376ab153744d445b90ffa6ed1",
+  "30": "098289fd72a5927ef209ed29907fff72",
+  "44": "71be2b6b0e07eb65f4fcb7cae907d64a",
+  "59": "38c51ae9ba6ea922e9cfa69351d89f99",
+  "60": "38a7ef0333d4b013411000d61d09cbf0",
+  "74": "f01f0e78df87e98dcd691a11c1dc6619",
+  "89": "3d0b92459e52c1df977619e21f65284e",
+  "90": "1c9ae32ce1e3f3a4b04341f2c3ec918d",
+  "104": "0257e403ffae36873f2c3bdff0c0eb6d",
+  "119": "9dfff0f8bc4ebf156503069bbfded3d2",
+  "120": "875b50dbfa279353d7ca2e8476aa0e83",
+  "134": "8a9f6a6dbca501943ced3d2eb41b2cc4",
+  "149": "acff9e86f9af1fdc0678a062d27ad1f5",
+  "150": "6512d3636eca946fbc217bb956caf416",
+  "164": "4a835ebe5ed3e1dae8f78e4dccc1f1fe",
+  "179": "fe8861ddd606ed51e412b1a8abbf9ae2",
+  "180": "1f8a0f56edcf43e9dccbc7705335a7cf",
+  "194": "427bdb7b9c01c729e02cb4b6852dc58a",
+  "209": "5a503f0f91648614576ada8332625b7c",
+  "210": "c1e1ad859cb81200d9fcb6ab49fe02c3",
+  "224": "e33d98c55ad48ecd007e7868dfa34b13",
+  "239": "1715cad18d737ec8995588a52a4fffb7"
+ }
+}

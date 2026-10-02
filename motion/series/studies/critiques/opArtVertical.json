@@ -1,0 +1,61 @@
+{
+ "piece": "opArtVertical",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "moire half a static vertical curtain behind a hard straight edge",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "The opArtVertical cut, scored in the same pass as the square; problems listed here are the vertical-only ones."
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (PER2 1.08x at 0.04 rad, curved travelling edge, clearing circle at the hit, snap from 96, bloom to 180, ring period 1.4x, PER 22 px)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-2 fixes in (duty taper replaces all clipping, moire edge retreats 66-100, rounded beat pulses, three accent levels)"
+  }
+ ]
+}

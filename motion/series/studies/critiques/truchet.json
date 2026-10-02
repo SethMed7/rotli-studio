@@ -1,0 +1,80 @@
+{
+ "piece": "truchet",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 9,
+    "motion": 7,
+    "variety": 6,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "~1.9 s with no tile turning",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "wave bands read as boiling confetti; lit path buried in the gold glow; milky haze",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "picture peak lands 20-40 frames after the downbeat",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "weak frame-0 landing",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "bed sags before half-bar lines",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "one-frame nod at 60",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 9,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "static river hold 180-228",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "faint wind-up 92-112",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "riser close to the hit",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "lift plates muddy; hairline hit ring; faint beat 3",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-1 fixes in (TURN 4.2 Hz thin ring, own-colour lit path, centre snap on 120, frame-0 cluster, riser, vertical lit path top to bottom)"
+  }
+ ]
+}

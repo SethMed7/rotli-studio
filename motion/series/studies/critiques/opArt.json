@@ -1,0 +1,110 @@
+{
+ "piece": "opArt",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "f120 split by the moire boundary",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "the pull to centre reads as a cut",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "bloom lasts 40% of the loop; grey sub-pixel smudges",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "disc ends as a stray coin",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "2-frame tick twitch",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "flat sound hierarchy",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "delivery: mosquito noise at platform bitrates",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "hard clip edges: hairline crescent under the bulge at 120-130, phase-flip crease top right",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "lens muddled inside the moire half 90-112",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "beat pulses still cusp",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "f0/f60 accents barely above ordinary beats",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (PER2 1.08x at 0.04 rad, curved travelling edge, clearing circle at the hit, snap from 96, bloom to 180, ring period 1.4x, PER 22 px)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 8,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "rim hairline as the disc grows in",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "slightly spiky pulse60 crest",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-2 fixes in (duty taper replaces all clipping, moire edge retreats 66-100, rounded beat pulses, three accent levels)"
+  }
+ ]
+}

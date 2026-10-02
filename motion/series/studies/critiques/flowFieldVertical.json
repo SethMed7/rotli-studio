@@ -1,0 +1,92 @@
+{
+ "piece": "flowFieldVertical",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 5,
+    "readability": 7,
+    "motion": 6,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "eddy slides into place; field reads as grey hair at 360 px",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "The flowFieldVertical cut, scored in the same pass as the square; problems listed here are the vertical-only ones."
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "what": "dark knot where the top current meets the rim",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in; angle-blend fix rejected by builder with reason (seam/tear); vector blend + no stall cut + windward-only deflection"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "what": "accent strand hangs off the disc like a string (120-152)",
+     "fix": "(fixed before round 4)"
+    },
+    {
+     "what": "Z-crease in the top current (180-196)",
+     "fix": "(fixed before round 4)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-2 fixes in (R tied to V both ways, min-speed fade into the saddle, wake thinning on overlap, short orbit arcs)"
+  },
+  {
+   "round": 4,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 9
+   },
+   "problems": [],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-3 fixes in (vortex strands bounded by the rim with per-strand release, wake thinned by count, wider hand-over band)"
+  }
+ ]
+}

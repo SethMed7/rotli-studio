@@ -1582,6 +1582,134 @@
    "format": "story",
    "length": "30 s",
    "about": "Study 55 · Zoomies, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "chrome",
+   "kind": "video",
+   "slug": "chrome",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 56 · Chrome (Seconds): Y2K liquid chrome: a torus knot whose reflections slide as it turns, then squash. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "chromeVertical",
+   "kind": "video",
+   "slug": "chrome-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 56 · Chrome, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "frost",
+   "kind": "video",
+   "slug": "frost",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 57 · Frost (Seconds): glassmorphism: frosted panes that blur and tint the colour field behind them. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "frostVertical",
+   "kind": "video",
+   "slug": "frost-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 57 · Frost, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "flowField",
+   "kind": "video",
+   "slug": "flow-field",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 58 · Flow Field (Seconds): a plotter-ink flow field that curls into a vortex and lets it go. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "flowFieldVertical",
+   "kind": "video",
+   "slug": "flow-field-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 58 · Flow Field, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "oneBit",
+   "kind": "video",
+   "slug": "one-bit",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 59 · One Bit (Seconds): 1-bit Bayer dithering: a gem that turns and morphs into a torus under a red sun. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "oneBitVertical",
+   "kind": "video",
+   "slug": "one-bit-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 59 · One Bit, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "opArt",
+   "kind": "video",
+   "slug": "op-art",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 60 · Op Art (Seconds): op art: a stripe field that breathes under a travelling lens, with moiré. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "opArtVertical",
+   "kind": "video",
+   "slug": "op-art-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 60 · Op Art, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "truchet",
+   "kind": "video",
+   "slug": "truchet",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 61 · Truchet (Seconds): Truchet tiles that turn in ripples and re-route their paths. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "truchetVertical",
+   "kind": "video",
+   "slug": "truchet-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 61 · Truchet, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "fold",
+   "kind": "video",
+   "slug": "fold",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 62 · Fold (Seconds): a red sheet folds into a paper plane, flies a banked turn, lands and unfolds. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "foldVertical",
+   "kind": "video",
+   "slug": "fold-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 62 · Fold, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "lightTrails",
+   "kind": "video",
+   "slug": "light-trails",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 63 · Light Trails (Seconds): long-exposure light painting: five lights weave, converge and flare. A four-second seamless loop at 60 fps, no words."
+  },
+  {
+   "id": "lightTrailsVertical",
+   "kind": "video",
+   "slug": "light-trails-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 63 · Light Trails, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }
