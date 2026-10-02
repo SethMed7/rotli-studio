@@ -52,6 +52,11 @@ function portable(file) {
       : []),
   ].join("\n");
   const sound = p.sound ? `- Sound (Web Audio, starts on the first click): ${p.sound}\n` : "";
+  // what the file may load: nothing (Canvas 2D), or three.js for a study drawn in WebGL ("libraries": "three")
+  const libraries =
+    p.libraries === "three"
+      ? '- One library only: three.js 0.186.1 as an ES module from a CDN (an import map: "three" -> https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js, "three/addons/" -> https://cdn.jsdelivr.net/npm/three@0.186.1/examples/jsm/). No image, model or HDR files: every shape is built from three\'s primitives and lit by its procedural RoomEnvironment.'
+      : "- No libraries and no image files: every shape, letter and texture is drawn with Canvas 2D.";
   // the last line says what the piece is about: the imaginary product, a real topic, or nothing at all
   const closing = (b, product) =>
     b.subject === "learn"
@@ -63,6 +68,7 @@ function portable(file) {
     .replaceAll("{{TITLE}}", b.title)
     .replaceAll("{{WHAT}}", what)
     .replaceAll("{{DELIVERABLE}}", deliverable)
+    .replaceAll("{{LIBRARIES}}", libraries)
     .replaceAll("{{FONTS}}", p.fonts ?? "Inter")
     .replaceAll("{{STYLE}}", p.style ?? b.style)
     .replaceAll("{{PALETTE}}", palette)

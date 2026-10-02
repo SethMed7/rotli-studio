@@ -26,7 +26,6 @@ licence (`/LICENSE`), except the brand fonts, which keep their own licences (see
 
 Unchanged (byte-identical to upstream):
 
-- `motion/package.json`
 - `motion/src/canvas-core/core.ts`
 - `motion/tools/adapters/README.md`
 - `motion/tools/adapters/html-player.mjs`
@@ -48,6 +47,7 @@ Unchanged (byte-identical to upstream):
 Modified by Rotli contributors (a change notice on the first line; JSON files cannot carry one):
 
 - `motion/package-lock.json`
+- `motion/package.json`
 - `motion/src/canvas-core/examples/balloon.ts` (moved from `src/canvas-core/balloon.ts`)
 - `motion/src/canvas-core/examples/banner.ts` (moved from `src/canvas-core/banner.ts`)
 - `motion/src/canvas-core/examples/fox.ts` (moved from `src/canvas-core/fox.ts`)

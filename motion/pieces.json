@@ -1710,6 +1710,22 @@
    "format": "story",
    "length": "4 s",
    "about": "Study 63 · Light Trails, designed for vertical (1080 × 1920): its own layout, not a crop."
+  },
+  {
+   "id": "pop",
+   "kind": "video",
+   "slug": "pop",
+   "format": "ig-square",
+   "length": "4 s",
+   "about": "Study 64 · Pop (Seconds, in 3D): Pip, an invented little creature, watches a soap bubble, crouches, springs and pops it with the sprout on its head, then giggles. The first Seconds loop drawn in three.js."
+  },
+  {
+   "id": "popVertical",
+   "kind": "video",
+   "slug": "pop-vertical",
+   "format": "story",
+   "length": "4 s",
+   "about": "Study 64 · Pop, designed for vertical (1080 × 1920): its own layout, not a crop."
   }
  ]
 }

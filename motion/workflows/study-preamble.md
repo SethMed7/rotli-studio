@@ -16,6 +16,8 @@ REQUIRED READING, in order:
    letters, timed), `ui.ts` (rr, card, phone, toggle, check), `depth.ts` (iso, block, blockGrid, project, spiral),
    `blur.ts` (motionBlur), `score.ts` (beatScore), `captions.ts` (ladder: the explainer-reel caption, words stacked in
    mixed sizes with one accent italic key word, arriving one at a time).
+   Only if your brief says three.js: `three.ts` (stage3, softRig), WebGL scenes drawn as a pure function of the frame,
+   proved with `node tools/determinism.mjs <pieceId>`.
 4. The pack: `brand/packs/studio/pack.json` (Oriel is a FICTIONAL product; use the palette your brief names;
    faces Inter, Instrument Serif, Instrument Serif Italic, JetBrains Mono).
 5. Only if your brief names them: `src/canvas-core/styles/` (riso, print, drafting, storybook…) and `src/canvas-core/core.ts`

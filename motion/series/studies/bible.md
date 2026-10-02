@@ -2,7 +2,7 @@
 
 The rest of the studio is Rotli's. **Studies** show that the engine is not: each one is an original piece in a
 different motion technique, shipped in at least two sizes, and the place to learn the studio before pointing it at
-your own product. There are 55, plus eight Seconds (below), which the site keeps in a section of their own. Each brief names its **family** (how the site groups it) and its **subject**:
+your own product. There are 55, plus nine Seconds (below), which the site keeps in a section of their own. Each brief names its **family** (how the site groups it) and its **subject**:
 
 - **Oriel** (`"subject": "oriel"`). Oriel is **imaginary**: a scheduling assistant that finds a time that works for
   everyone, invented so a study can show a product without claiming anything about a real one. It has no website,
@@ -77,6 +77,7 @@ your own product. There are 55, plus eight Seconds (below), which the site keeps
 | 61 | Truchet | Truchet tiles that turn in ripples and re-route their paths (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
 | 62 | Fold | a red sheet folds into a paper plane, flies a banked turn, lands and unfolds (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
 | 63 | Light Trails | long-exposure light painting: five lights weave, converge and flare (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 64 | Pop | Pip, an invented little creature in 3D (three.js), pops a soap bubble with the sprout on its head and giggles (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
 
 Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
 metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.
@@ -100,10 +101,13 @@ Anthropic's own sources. It learns from a Claude Code mascot music video shared 
 grid; its song, choreography and scenes are not used. The critters are drawn from scratch in code after Anthropic's
 character, which is not MIT (`NOTICE`). It carries Study 25's formant voice forward to two singers from one table.
 
-Studies 56–63 are **Seconds**, a section of its own (family `seconds`; the site lists them at /series/seconds, outside "All" and the study counts): four-second seamless loops at 60 fps, one
+Studies 56–64 are **Seconds**, a section of its own (family `seconds`; the site lists them at /series/seconds, outside "All" and the study counts): four-second seamless loops at 60 fps, one
 visual style each pushed to a premium finish, no words, built from one shared template (field note 03). Each is
 square first with a designed vertical, and holds to its own pacing rule: something lands on frame 0, a pre-pulse on
 beat 3, the strongest moment on frame 120, no freeze after it, and a seam that is invisible and inaudible.
+From 64 on, Seconds also explores 3D: Pop draws a full invented character with three.js (`kit/three.ts`), each frame
+still a pure function of its number, with no image, model or HDR files, and proved to hash the same on every page
+(`tools/determinism.mjs`).
 
 Studies 27–50 each take one technique the first 26 did not cover, researched first (the references and what defines
 each technique are in field note 02) and credited by link in the brief's `learnsFrom`. Each was built by one agent
@@ -116,7 +120,8 @@ is the plan, the record the as-built.
 
 - **The neutral pack.** Colours and fonts come from `brand/packs/studio/pack.json` through `kit/pack.ts`. Nothing is
   imported from Rotli's kit (`rotli/`, `studio/`) or `brand/brand.json`, so nothing here looks or sounds like Rotli.
-- **The brand-neutral kit**, `src/canvas-core/kit/`: sizes, springs and easing, type, UI, depth, motion blur, score.
+- **The brand-neutral kit**, `src/canvas-core/kit/`: sizes, springs and easing, type, UI, depth, motion blur, score,
+  and `three.ts` for studies drawn in 3D with three.js (proved with `tools/determinism.mjs`).
 - **One source, every size.** A study exports one Film per size from a `make(size, id)` factory. Each size is
   designed: a vertical re-stacks, it never just crops.
 - **Time is a function.** A study paints any fractional frame on its own (no simulation state), so motion blur can

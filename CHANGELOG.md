@@ -4,6 +4,19 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Seconds goes 3D: Study 64, Pop, and three.js in the engine.** Pip, an invented little creature drawn entirely
+  from three.js primitives and lit like a feature-animation short (a warm key with the one shadow, a cool fill, a rim,
+  procedural room light, a faked long-lens depth of field), watches a soap bubble, crouches, springs and pops it with
+  the sprout on its head on the downbeat, giggles, and spots the next one. Square and vertical, its own sound,
+  −16 LUFS. To keep "every frame is a pure function" true in WebGL, `kit/three.ts` builds a scene once and sets
+  every animated property from the frame number, and `tools/determinism.mjs` proves a piece hashes the same on 8
+  pages in 2 browsers (a spike measured it before any brief was written: no browser flags, no change to the 212
+  existing goldens). three.js is a pinned dependency (credited in NOTICE); a brief can let its portable prompt load
+  it (`"libraries": "three"`), and every existing portable prompt is byte-identical.
+  A second agent scored it in nine rounds until every criterion reached 8 in both sizes: the camera that cancelled
+  the leap, a pop that read as a demo effect (a white disc, then a hoop that left a halo), closed eyes that read as
+  swollen domes, a reaction face that read sleepy, and arms that anticipated the wrong way were the misses, in that
+  order.
 - **Seconds is its own section.** The four-second loops (56–63) now live at their own page, /series/seconds, and
   stay out of the main studies: "All", the subject tabs, the family list, the home page and every count cover the
   55 studies only, and a Seconds piece's previous / next steps through Seconds ("7 of 8 in Seconds") while Zoomies

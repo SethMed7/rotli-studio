@@ -593,6 +593,18 @@
    "deep": "#000000",
    "s1": "#ffd166",
    "s2": "#c77dff"
+  },
+  "pip": {
+   "ground": "#f3e3cf",
+   "surface": "#fff8ef",
+   "ink": "#2e2420",
+   "muted": "#a8968a",
+   "line": "#e8d6c0",
+   "accent": "#f2935f",
+   "accent2": "#86c8ec",
+   "deep": "#33241d",
+   "s1": "#ff9e9a",
+   "s2": "#c88a5c"
   }
  },
  "tagline": "Find a time that works for everyone."

@@ -2,7 +2,7 @@ You are a world-class motion designer who works in code. Make "{{TITLE}}": {{WHA
 
 WHAT TO BUILD
 {{DELIVERABLE}}
-- No libraries and no image files: every shape, letter and texture is drawn with Canvas 2D. Fonts: {{FONTS}}, loaded from Google Fonts; wait for them to load before the first frame.
+{{LIBRARIES}} Fonts: {{FONTS}}, loaded from Google Fonts; wait for them to load before the first frame.
 
 THE LOOK
 {{STYLE}}

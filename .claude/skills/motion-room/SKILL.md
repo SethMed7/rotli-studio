@@ -114,6 +114,8 @@ node tools/frames.mjs <id> 0,120,300 --sheet /tmp/s.png --cols 3   # fast review
 - They build on `src/canvas-core/kit/` (sizes, springs, type, UI, depth, motion blur, beat score) and a pack in
   `brand/packs/<id>/`; they never import `rotli/`, `studio/` or `brand/brand.json`.
 - Verify: contact sheets, `tools/still-frames.mjs` (fps-aware), `tools/loop-seam.mjs` for loops, about −16 LUFS.
+- A study drawn in 3D uses `kit/three.ts` (three.js) and must also pass `tools/determinism.mjs <id>`: WebGL frames have
+  to hash the same on every page and browser, not only in the golden's one page.
 
 ## Other products
 

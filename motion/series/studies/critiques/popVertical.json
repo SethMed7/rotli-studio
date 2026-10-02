@@ -1,0 +1,193 @@
+{
+ "piece": "popVertical",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "not a designed tall shot (35% empty tabletop, no low camera, the leap uses 5% of the height)",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "The popVertical cut, scored in the same pass as the square; problems listed here are the vertical-only ones."
+  },
+  {
+   "round": 2,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 6,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "a reframed eye-level shot with 30% empty near table; the leap lifts the feet only 6% of the height",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (pop is the motion and sound peak, film retracts from the puncture behind a clipping plane with clear iridescent droplets, thin-film bubble with its own painted environment and a Fresnel rim, gentler bubble path, moving holds, ^ ^ giggle and fast blinks, stronger rim and cream belly, chirps moved, vertical camera re-derived)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the following camera leaves the tall frame's height unused; the feet cross the 320 px band by about 10 px at f140",
+     "fix": "(fixed before round 4)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-2 fixes in (the leaves press into the intact film before it tears, a camera-leaning tear with 28 legible drops, pop lines and a 3-frame warm flash, a closer camera that follows the leap late, livelier holds, clean one-frame blinks, a laughing giggle, cream belly, feathered near table, vertical redesigned with a following camera)"
+  },
+  {
+   "round": 4,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "Pip about 25% of the height does not carry the tall frame, and the low camera loses the contact shadow",
+     "fix": "(fixed before round 5)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-3 fixes in (shut eyes become flush lash arcs, U for blinks and ^ for the giggle; a take on the hit; a radial glow on the pop point instead of a full-frame flash; a bigger drifting bubble with a darker inner band; livelier holds; intact film on 120 then a rim ring and 28 clear beads; a 6-segment sprout; vertical camera low with almost no follow so Pip rises through the frame)"
+  },
+  {
+   "round": 5,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-4 fixes in (lateral watch with the bubble sweeping across, the crouch pushes in, lid opens snapped, comic streaks dropped, a glow with a core and torn iridescent rim arcs, 16 glinting beads that arc down, bounce boings back; framing bounded by the feed bands, measured)"
+  },
+  {
+   "round": 6,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "near-still stretches in the crouch and the stare; Pip still small (non-blocking)",
+     "fix": "(fixed before round 7)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-5 fixes in (a wince that keeps the irises visible then a wonder take on the hit; the film retracts behind a climbing clip plane with a riding iridescent rim; additive tinted sparkles; the notice lands on 180 with the eyes open; square staging with the bubble at crown height, a near-miss over the sprout at 40 and an escape upward; contact before the dent; a two-beat wind-up; lower, louder giggle bounces)"
+  },
+  {
+   "round": 7,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the stare between the notice and the crouch; the new bubble's top briefly inside the 220 px margin",
+     "fix": "(fixed before round 8)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-6 fixes in (a hue-shifted rim at low opacity that tears into fragments and is gone by 122; tinted beads and star glints thrown on gravity arcs; a surprised hit face with the lids seated; a continuous coil with weight shifts and raised arms; toe-bounces and a grin after the notice; the gaze held on the bubble across the wrap; louder chirps; a clearer bubble)"
+  },
+  {
+   "round": 8,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-7 fixes in (no lower lid through the reaction, a cheek-tinted lower lid; eyes snap to centre with white ringing smaller irises, arched brows, a capped flash; curved tinted film arcs, round beads, the glow gone by 122; an arm sign bug fixed so the arms raise outward; quieter bounce boings; vertical bubble keeps drifting and readable toe-bounces)"
+  },
+  {
+   "round": 9,
+   "date": "2026-10-02",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the quietest stretch f12-30; the bubble far from Pip through the watch",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-8 fixes in (the coil presses the arms down against the leap, then swings them up into an overshooting V; one arm lags 2 frames with less swing everywhere; near-white hero beads and a soft mist ring so the pop has a shape at 360 px; a closed sway so the bubble never parks; a lighter lower lid; a pump on 90; chirp 151 eased)"
+  }
+ ]
+}
