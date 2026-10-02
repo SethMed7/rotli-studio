@@ -4,6 +4,17 @@ Notable changes to the studio and to studio.rotli.co, newest first. Dates are wh
 
 ## Unreleased
 
+- **Seconds: Studies 56–63, a new section of four-second loops.** Eight styles, one each, taken to a premium finish
+  in a 4 s seamless loop at 60 fps and 120 bpm, with no words: Chrome (Y2K liquid chrome by faked reflection
+  mapping), Frost (glassmorphism over a living colour field), Flow Field (plotter ink that curls into a vortex),
+  One Bit (Bayer-dithered 3D under a red sun), Op Art (a breathing grating with moiré), Truchet (tiles that turn in
+  ripples and re-route their paths), Fold (a sheet folds into a paper plane, flies, lands and unfolds) and Light
+  Trails (long-exposure light painting). Each is square with a vertical designed for the tall frame, and has its own
+  sound. All eight were built from one brief template (family `seconds`), with Flow Field as the pilot whose
+  lessons became the template's ten rules, and scored by a second agent until every criterion reached 8 in both
+  sizes (25 rounds in all; Fold, re-folded as a real dart in its fifth, took six). The studies page has a "Seconds" filter and a sidebar link; field note 03
+  ("Seconds: eight styles in four seconds each") writes up the method and what the critic kept finding. The counts
+  say sixty-three.
 - **Wallpapers: put the quokka where you want it, in a scene of your colour.** Drag the quokka on the preview (or
   nudge it with the arrow keys) and size it with a slider; "Where I put it" joins Left, Centre and Right. Pick any
   colour (a picker and nine starting chips): "Your colour" is a flat ground in it, and "Colour the scene" grades any

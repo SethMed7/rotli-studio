@@ -175,6 +175,11 @@ const isStudy = (p: Piece) => p.series === "studies";
 // the families the studies are grouped by (each brief's "family"), in the order the Studies page shows them
 const FAMILIES: { id: string; label: string; blurb: string }[] = [
   {
+    id: "seconds",
+    label: "Seconds",
+    blurb: "Four-second loops, one style each, taken to a premium finish: chrome, glass, flow fields, dither and more.",
+  },
+  {
     id: "product",
     label: "Product & UI",
     blurb: "Launch films and ads: interfaces that float, morph, stack and sell.",
@@ -238,6 +243,12 @@ function renderNav(active: string) {
     group(
       "Studies",
       link("studies", "/series/studies", "Studies", studies().length) +
+        link(
+          "seconds",
+          "/series/studies?family=seconds",
+          "Seconds",
+          studies().filter((x) => x.family === "seconds").length,
+        ) +
         link("journal", "/journal", "Journal", seriesOf("studies")?.notes?.length ?? 0) +
         link("prompts", "/prompts", "Prompt library"),
     ) +
@@ -273,8 +284,12 @@ function renderNav(active: string) {
 function navKey(parts: string[]) {
   const [a = "", b = ""] = parts;
   if (!a) return "home";
-  if (a === "series") return b === "studies" ? "studies" : "series";
-  if (a === "piece") return byId(b)?.series === "studies" ? "studies" : "series";
+  if (a === "series") return b === "studies" ? (param("family") === "seconds" ? "seconds" : "studies") : "series";
+  if (a === "piece") {
+    const p = byId(b);
+    if (p?.series !== "studies") return "series";
+    return studyOfPiece(p)?.family === "seconds" ? "seconds" : "studies";
+  }
   if (a === "doc") return "docs";
   if (a === "note") return "journal";
   return a;

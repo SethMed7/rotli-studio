@@ -1,0 +1,149 @@
+{
+ "piece": "foldVertical",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 6,
+    "variety": 6,
+    "composition": 6,
+    "accuracy": 7,
+    "sync": 6
+   },
+   "problems": [
+    {
+     "what": "vertical is the square re-centred, lower 45% empty",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "The foldVertical cut, scored in the same pass as the square; problems listed here are the vertical-only ones."
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 6,
+    "motion": 6,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "table action centred 64% down, top 880 px empty",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (specular snap at 120 in side profile, 110-degree banked climb with touchdown on 165 and a skid, overlapping fold holds, trails dropped, flaps staggered 28/30, louder ticks with bed dips, vertical redesigned as a tall climb)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 7,
+    "motion": 7,
+    "variety": 7,
+    "composition": 6,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the tail clips the left edge at 108-113",
+     "fix": "(fixed before round 4)"
+    },
+    {
+     "what": "table action sits left of centre with the lower 40% empty",
+     "fix": "(fixed before round 4)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-2 fixes in (convex-overlap depth sort with flat flaps drawn as part of their keel or wing, roll and whole-wing glint at 120, take-off at -35 degrees, open delayed to 208, 40-degree table turn, bigger frame-0 slap, arc narrowed to 65 degrees, vertical raised)"
+  },
+  {
+   "round": 4,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 7,
+    "motion": 7,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "the flight shadow runs off the right edge at 124-155",
+     "fix": "(fixed before round 5)"
+    },
+    {
+     "what": "the action swings from left of centre to right of centre; lower 40% empty",
+     "fix": "(fixed before round 5)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-3 fixes in (band glint with a 0.45 roll and nose-up flick, punch 0.12; camera half-follows the heading so touchdown reads side-on; skid overlaps the open; whole-sheet drop on 0 and a full-speed crossing on 60; vertical re-centred)"
+  },
+  {
+   "round": 5,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the blurred shadow edge still reaches the right edge at 144-156",
+     "fix": "(fixed before round 6)"
+    },
+    {
+     "what": "the plane is small in the tall frame; the 60 pre-pulse barely registers in picture",
+     "fix": "(fixed before round 6)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-4 fixes in (re-folded as a classic dart: corners to the centre, a second nose fold, in half, wings along a nose-to-tail crease, crease pattern computed by clipping and reflecting the sheet; blur sample cap removed; flat hold on 0; one-frame flap stagger; glint centred on 120; vertical shadow fades with height and the action is centred)"
+  },
+  {
+   "round": 6,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "tail whisker within 48-60 px of the left edge; landing could sit lower",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-5 fixes in (back face pulled a third of the way to red, dart swells 10 percent over the hit, tall shadow fades with height, one-path shadow, continuous 11-sample shutter masked to the swept paper, smootherstep turn, half-frame flap stagger, nose-down glide and flare)"
+  }
+ ]
+}

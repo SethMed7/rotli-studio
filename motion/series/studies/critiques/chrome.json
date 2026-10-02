@@ -1,0 +1,102 @@
+{
+ "piece": "chrome",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 7,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "screen-space laser-line glint ignores the form",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "the pinch at the hit hidden by the fastest turn",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "reads as blue steel, no warm band, low contrast",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "knot near-tangent to the horizon",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "hit transient borderline; wrap breath competes with the hit",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 7,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "the slam ghosts into stepped copies on frames 119-120",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "the reflection sweep reads as a third softbox",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "beat-3 tink in a bed dip",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (reflection-space sweep, slowest turn at 120 + whip, warm ENV, pitch 0.1 since 0.16 moved the horizon the wrong way)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 10,
+    "sync": 9
+   },
+   "problems": [
+    {
+     "what": "star tail competes with the first half of the sweep",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "tall star small over bright metal",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "modest beat-3 pulse",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-2 fixes in (adaptive samples on the slam, tall oy 800 ppu 110, sweep the only moving light with softboxes dimmed)"
+  }
+ ]
+}

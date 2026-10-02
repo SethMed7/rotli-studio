@@ -1,0 +1,33 @@
+{
+ "piece": "truchetVertical",
+ "W": 1080,
+ "H": 1920,
+ "frames": 240,
+ "audio": "68f12e3a81f1d2f1a5d343fd80767348",
+ "hashes": {
+  "0": "728237886909dfc0f9a1ed94964056dd",
+  "14": "2f2c9ce1877af793ef257dacc48464a1",
+  "29": "1e8c2ea410e5bf18d1ac49fd1306fd04",
+  "30": "d9979deb5e8b0f7b0bd8ab07f8218c24",
+  "44": "9d7e688ff56e347d938eae26556b123b",
+  "59": "4ceb65f36617c7861ac73ecbe01d3047",
+  "60": "3667672cbe3b02d2df946515618c755a",
+  "74": "5148c9afa8afd6ea1f9b764d48b58c9c",
+  "89": "c359074b94bd0dec0b3952fd0754f403",
+  "90": "97fda7ec5e30515624b7efa796adfe35",
+  "104": "7e53eb51a6f03f23df4f4b507901b2a9",
+  "119": "88dcfda4062549516843070831f65f8b",
+  "120": "ad9b6de23305e293d1399d1bfebc1e5c",
+  "134": "bb2bf7475ef5ee41925a2e2ccdba35a3",
+  "149": "11df7e7b2fda870021ad517ca1d5ce68",
+  "150": "1ccf2a515c1cdc9dd4ab2dcdcd31e34e",
+  "164": "af40ff1fe050d79678d328d24fbbb914",
+  "179": "c2dec96791a24f35b0743e11c1299c19",
+  "180": "d048cb1ccd7f3bbbcb000d4b9d78e9ae",
+  "194": "c0ebbcfc47e80275215e0009fbce72d0",
+  "209": "6c7977a7ae4f4fb5f9ebbb88475a264f",
+  "210": "01125167b4c5dde371bb8e2d4d597204",
+  "224": "a2d9bddf85232606dea021a5db64219c",
+  "239": "70515ff9e236a16404483066a3226138"
+ }
+}

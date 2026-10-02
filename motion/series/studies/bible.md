@@ -2,7 +2,7 @@
 
 The rest of the studio is Rotli's. **Studies** show that the engine is not: each one is an original piece in a
 different motion technique, shipped in at least two sizes, and the place to learn the studio before pointing it at
-your own product. There are 55. Each brief names its **family** (how the site groups it) and its **subject**:
+your own product. There are 63. Each brief names its **family** (how the site groups it) and its **subject**:
 
 - **Oriel** (`"subject": "oriel"`). Oriel is **imaginary**: a scheduling assistant that finds a time that works for
   everyone, invented so a study can show a product without claiming anything about a real one. It has no website,
@@ -69,6 +69,14 @@ your own product. There are 55. Each brief names its **family** (how the site gr
 | 53 | Burrow Days | a comic-book-rendered short: halftone shadows, misregistration for depth, on twos (fun) | landscape · vertical | 48 s · 24 fps |
 | 54 | Two-Part Harmony | a music video: two pixel critters sing a duet about Opus 5.5 and Sonnet 5.5 (real topic) | landscape · vertical | 120 s |
 | 55 | Zoomies | an anime chase shot from the grass: two dogs, bunnies, smears, an impact frame, an innocent sit (fun) | landscape · vertical | 30 s |
+| 56 | Chrome | Y2K liquid chrome: a torus knot whose reflections slide as it turns, then squash (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 57 | Frost | glassmorphism: frosted panes that blur and tint the colour field behind them (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 58 | Flow Field | a plotter-ink flow field that curls into a vortex and lets it go (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 59 | One Bit | 1-bit Bayer dithering: a gem that turns and morphs into a torus under a red sun (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 60 | Op Art | op art: a stripe field that breathes under a travelling lens, with moiré (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 61 | Truchet | Truchet tiles that turn in ripples and re-route their paths (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 62 | Fold | a red sheet folds into a paper plane, flies a banked turn, lands and unfolds (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
+| 63 | Light Trails | long-exposure light painting: five lights weave, converge and flare (Seconds, fun) | square · vertical | 4 s · 60 fps loop |
 
 Studies 10–20 learn from founder explainer reels on Instagram (@gregisenberg's team): serif caption ladders, one
 metaphor per piece, a new visual on almost every phrase. Their colours, characters and brands are not used.
@@ -91,6 +99,11 @@ Anthropic's own sources. It learns from a Claude Code mascot music video shared 
 (https://x.com/LLMJunky/status/2104659862663618566): only the idea of the mascot as a band dancing on a measured beat
 grid; its song, choreography and scenes are not used. The critters are drawn from scratch in code after Anthropic's
 character, which is not MIT (`NOTICE`). It carries Study 25's formant voice forward to two singers from one table.
+
+Studies 56–63 are **Seconds**, a section of its own (family `seconds`): four-second seamless loops at 60 fps, one
+visual style each pushed to a premium finish, no words, built from one shared template (field note 03). Each is
+square first with a designed vertical, and holds to its own pacing rule: something lands on frame 0, a pre-pulse on
+beat 3, the strongest moment on frame 120, no freeze after it, and a seam that is invisible and inaudible.
 
 Studies 27–50 each take one technique the first 26 did not cover, researched first (the references and what defines
 each technique are in field note 02) and credited by link in the brief's `learnsFrom`. Each was built by one agent

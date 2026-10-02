@@ -504,6 +504,95 @@
    "s6": "#e5541c",
    "s7": "#9c8670",
    "sky": "#8fcbe8"
+  },
+  "chrome": {
+   "ground": "#0b0c10",
+   "surface": "#15171d",
+   "ink": "#eef1f6",
+   "muted": "#6b7280",
+   "line": "#22252d",
+   "accent": "#9fd3ff",
+   "accent2": "#ffb38a",
+   "deep": "#050608",
+   "s1": "#ffffff",
+   "s2": "#3a4152"
+  },
+  "frost": {
+   "ground": "#0e1020",
+   "surface": "#1a1d33",
+   "ink": "#f6f7ff",
+   "muted": "#8b90b8",
+   "line": "#2a2e4d",
+   "accent": "#ff6b9a",
+   "accent2": "#5ee6d0",
+   "deep": "#070816",
+   "s1": "#ffc35c",
+   "s2": "#7a7cff"
+  },
+  "flow": {
+   "ground": "#f4efe6",
+   "surface": "#fffaf2",
+   "ink": "#1b1d24",
+   "muted": "#8a857b",
+   "line": "#e4dccd",
+   "accent": "#e4572e",
+   "accent2": "#2a6f97",
+   "deep": "#0f1115",
+   "s1": "#f2a541"
+  },
+  "onebit": {
+   "ground": "#efe8d6",
+   "surface": "#f7f1e3",
+   "ink": "#1c1a17",
+   "muted": "#8f877a",
+   "line": "#d9d0bc",
+   "accent": "#e2483d",
+   "accent2": "#2d2a26",
+   "deep": "#0d0c0b"
+  },
+  "opart": {
+   "ground": "#f7f5f0",
+   "surface": "#ffffff",
+   "ink": "#0d0d0d",
+   "muted": "#8c8a86",
+   "line": "#e2dfd8",
+   "accent": "#ff3b2f",
+   "accent2": "#1e40ff",
+   "deep": "#050505"
+  },
+  "truchet": {
+   "ground": "#10302b",
+   "surface": "#16403a",
+   "ink": "#f3e9d2",
+   "muted": "#6f8f87",
+   "line": "#1f4d45",
+   "accent": "#f2b134",
+   "accent2": "#e8613c",
+   "deep": "#0a1f1c"
+  },
+  "fold": {
+   "ground": "#f2ede4",
+   "surface": "#ffffff",
+   "ink": "#23211e",
+   "muted": "#a39e94",
+   "line": "#e3dccf",
+   "accent": "#d9573b",
+   "accent2": "#2f5d8a",
+   "deep": "#1a1917",
+   "s1": "#f6c9b8",
+   "s2": "#b8442b"
+  },
+  "trails": {
+   "ground": "#05060a",
+   "surface": "#0d0f16",
+   "ink": "#f5f3ee",
+   "muted": "#5b6070",
+   "line": "#171a24",
+   "accent": "#ff7a45",
+   "accent2": "#4fd1ff",
+   "deep": "#000000",
+   "s1": "#ffd166",
+   "s2": "#c77dff"
   }
  },
  "tagline": "Find a time that works for everyone."

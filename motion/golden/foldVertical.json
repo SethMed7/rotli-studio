@@ -1,0 +1,33 @@
+{
+ "piece": "foldVertical",
+ "W": 1080,
+ "H": 1920,
+ "frames": 240,
+ "audio": "56f2ee5b9ccbb7f2986631de91a62379",
+ "hashes": {
+  "0": "e563a5ece381068a5cc0510de300d91f",
+  "14": "70240f949af5a758804f1d4e9f1af08d",
+  "29": "091b8cf3afa422e86393d58d199eb387",
+  "30": "89662ce4fc674109bc5bffec520c923a",
+  "44": "e9949b37f7f8bdc2739bfef75a1b7386",
+  "59": "3b51563e78c5a68517e745f9bbb81dfb",
+  "60": "3edf8f7cefa9729e60ac801d3ff95010",
+  "74": "3a95ef620f2767bb42e8ac9685988579",
+  "89": "b9a2188b551b7625caf4de24fdb9c526",
+  "90": "2f56e4a117b0c6473b0737c6b264dc87",
+  "104": "7debca9ea51e981a46dc538d360f2742",
+  "119": "380ef94586a36654eed1dbf3f1c19da2",
+  "120": "2d1ae86018fac1ebd0cac93a1acf6def",
+  "134": "9367abea3f676c6e32cbf311ab895927",
+  "149": "3d9df26b29e2a19207ff5bcb03bb2234",
+  "150": "80c5ecfd8a281290afb23c876e1182ac",
+  "164": "fb4c8c04da4e7b2d84f8cb0955a081dc",
+  "179": "e79d48b19ab83172b4b71a4089c2ed2c",
+  "180": "a1e22b731f3ec97d364d0c631be6fcd2",
+  "194": "951858183f4f5b6e138cd142b79e5547",
+  "209": "ff922a8dd551256213ad5d326b98fb53",
+  "210": "c660a2344cd36bd94e60719b60cfe63b",
+  "224": "ad2d5bee78a79cb5db861426f1ff12ef",
+  "239": "1a14b6fc10fa03ccbe51b2bc856ebed1"
+ }
+}

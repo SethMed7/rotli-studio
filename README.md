@@ -10,7 +10,7 @@
 ### Films drawn in code. Every prompt kept.
 
 An open-source motion studio. It began as the studio behind Rotli's films, story episodes, shorts and
-carousels, and now draws fifty-five other techniques too: whiteboard lessons, shadow puppets, split-flap boards,
+carousels, and now draws sixty-three other techniques too: whiteboard lessons, shadow puppets, split-flap boards,
 broadcast graphics, ASCII cinema and more. Every frame is a function in code, every piece keeps the brief, the
 prompt and the agent run that made it, and nothing about the engine is Rotli-only.
 
@@ -35,7 +35,7 @@ prompt and the agent run that made it, and nothing about the engine is Rotli-onl
 | **Looks and Themes** | Shorts and stills about the companion's looks and the app's theme environments. |
 | **Explainer Carousels** | Standalone carousels: how Rotli works in four slides, and how its film was drawn in code. |
 | **Atmosphere Reel** | Every mood a scene can be set in, three seconds each. |
-| **Studies** | **55 motion techniques**, each in at least two sizes, grouped into eight families: product and UI, type and lyrics, explainers and data, science and learning, shapes and generative, print and illustration, characters and hosts, retro and screen. Some advertise **Oriel, an imaginary product** (a scheduling assistant we invented so a piece can show a product without claiming anything real); some are **short lessons on real topics**, every fact sourced (how a rainbow forms, why we have seasons, where Earth's water is, the Arctic tern's migration); some are **just for fun** (a shadow-puppet fable, a title sequence, a ping-pong broadcast). Each was built by one agent and then scored and fixed by a second until every criterion reached 8. |
+| **Studies** | **63 motion techniques**, each in at least two sizes, grouped into eight families: product and UI, type and lyrics, explainers and data, science and learning, shapes and generative, print and illustration, characters and hosts, retro and screen. Some advertise **Oriel, an imaginary product** (a scheduling assistant we invented so a piece can show a product without claiming anything real); some are **short lessons on real topics**, every fact sourced (how a rainbow forms, why we have seasons, where Earth's water is, the Arctic tern's migration); some are **just for fun** (a shadow-puppet fable, a title sequence, a ping-pong broadcast). Each was built by one agent and then scored and fixed by a second until every criterion reached 8. |
 
 The site keeps **Rotli's work apart from the studies**, so you can tell the product's own films from the
 studio's range at a glance. The **Journal** holds long-form field notes: measured, sourced write-ups of what we

@@ -1,0 +1,114 @@
+{
+ "piece": "oneBit",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 7,
+    "readability": 8,
+    "motion": 7,
+    "variety": 6,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 7
+   },
+   "problems": [
+    {
+     "what": "frame 0 and frame 60 barely register in the picture; spin slowest on beats",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "mid-morph pebble with no facets (114-119, 192-212)",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "stray torus crease on an ico face (210-228)",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "ground ring smears; peak lands at 123-126",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "survey grid aliases",
+     "fix": "(fixed before round 2)"
+    },
+    {
+     "what": "audio dips before the wrap",
+     "fix": "(fixed before round 2)"
+    }
+   ],
+   "verdict": "fix"
+  },
+  {
+   "round": 2,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 8,
+    "motion": 8,
+    "variety": 8,
+    "composition": 7,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "grid line under the gem: pinned on a stick",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "grid stops at the shadow: an opaque slab",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "dashed creases on the landing frames",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "half-morph spoke fan and one-frame edge swap at ~204",
+     "fix": "(fixed before round 3)"
+    },
+    {
+     "what": "10 ms audio gate before sample 0",
+     "fix": "(fixed before round 3)"
+    }
+   ],
+   "verdict": "fix",
+   "note": "Fixes before this round: round-1 fixes in (facet-ID engraving, ground ring dropped, peak at 118-120, vertical redesigned)"
+  },
+  {
+   "round": 3,
+   "date": "2026-10-01",
+   "reviewer": "independent critic agent (Claude Opus 5.5, did not build it)",
+   "scores": {
+    "hook": 8,
+    "readability": 9,
+    "motion": 8,
+    "variety": 8,
+    "composition": 8,
+    "accuracy": 9,
+    "sync": 8
+   },
+   "problems": [
+    {
+     "what": "smooth-bowl torus on the hit frames",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "lumpy cross-fade 202-206",
+     "fix": "(polished after the shipping round)"
+    },
+    {
+     "what": "grid lines bunch below the horizon",
+     "fix": "(polished after the shipping round)"
+    }
+   ],
+   "verdict": "ship",
+   "note": "Fixes before this round: round-2 fixes in (grid offset half a cell, paper grid through the shadow, Bayer cross-fade of crease sets, tall sun higher)"
+  }
+ ]
+}
