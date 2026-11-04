@@ -18,7 +18,7 @@
     "typescript": "^5.9.0"
   },
   "optionalDependencies": {
-    "@remotion/bundler": "4.0.522",
+    "@remotion/bundler": "4.0.540",
     "@remotion/renderer": "4.0.522",
     "react": "^19.0.0",
     "remotion": "4.0.522"
